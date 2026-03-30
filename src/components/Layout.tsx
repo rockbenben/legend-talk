@@ -1,9 +1,82 @@
 import { Outlet, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useState, useRef, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
 
+interface NavLink {
+  label: string;
+  zh: string;
+  en: string;
+}
+
+const PROJECT_LINKS: NavLink[] = [
+  { label: 'AI Short', zh: 'https://www.aishort.top/', en: 'https://www.aishort.top/en/' },
+  { label: 'ToolsByAI', zh: 'https://tools.newzone.top/zh', en: 'https://tools.newzone.top/en' },
+  { label: 'IMGPrompt', zh: 'https://prompt.newzone.top/app/zh', en: 'https://prompt.newzone.top/app/en' },
+];
+
+const SUPPORT_LINKS: NavLink[] = [
+  { label: 'Discord', zh: 'https://discord.gg/PZTQfJ4GjX', en: 'https://discord.gg/PZTQfJ4GjX' },
+  { label: 'Telegram', zh: 'https://t.me/aishort_top', en: 'https://t.me/aishort_top' },
+  { label: 'QQ', zh: 'https://qm.qq.com/q/uWsUSnyivm', en: '' },
+];
+
+function Dropdown({ label, children }: { label: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
+      >
+        {label}
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-1 w-48 py-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-50">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NavLinks({ links, lang }: { links: NavLink[]; lang: 'zh' | 'en' }) {
+  return (
+    <>
+      {links.map((link) => {
+        const href = lang === 'zh' ? link.zh : link.en;
+        if (!href) return null;
+        return (
+          <a
+            key={link.label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
 export function Layout() {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const lang = (i18n.language.startsWith('zh') ? 'zh' : 'en') as 'zh' | 'en';
 
   return (
     <div className="flex flex-col h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -17,6 +90,12 @@ export function Layout() {
         <div className="flex items-center gap-1">
           <LanguageToggle />
           <ThemeToggle />
+          <Dropdown label={lang === 'zh' ? '更多' : 'More'}>
+            <NavLinks links={PROJECT_LINKS} lang={lang} />
+          </Dropdown>
+          <Dropdown label={lang === 'zh' ? '支持' : 'Support'}>
+            <NavLinks links={SUPPORT_LINKS} lang={lang} />
+          </Dropdown>
           <a
             href="https://github.com/rockbenben/legend-talk"
             target="_blank"

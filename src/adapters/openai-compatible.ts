@@ -1,19 +1,28 @@
-import type { LLMAdapter, ModelOption, ChatParams } from '../types';
+import type { LLMAdapter, ModelOption, ChatParams, ThinkingLevel } from '../types';
 import { parseSSE } from './sse';
+
+type ThinkingMapper = (level: ThinkingLevel) => Record<string, unknown>;
+
+const THINKING_MAPPERS: Record<string, ThinkingMapper> = {
+  reasoning_effort: (level) => ({ reasoning_effort: level }),
+  enable_thinking: () => ({ enable_thinking: true }),
+};
 
 export class OpenAICompatibleAdapter implements LLMAdapter {
   docsUrl?: string;
   apiKeyUrl?: string;
+  private thinkingMapper?: ThinkingMapper;
 
   constructor(
     public id: string,
     public name: string,
     public baseUrl: string,
     public models: ModelOption[],
-    opts?: { docsUrl?: string; apiKeyUrl?: string },
+    opts?: { docsUrl?: string; apiKeyUrl?: string; thinkingStyle?: string },
   ) {
     this.docsUrl = opts?.docsUrl;
     this.apiKeyUrl = opts?.apiKeyUrl;
+    if (opts?.thinkingStyle) this.thinkingMapper = THINKING_MAPPERS[opts.thinkingStyle];
   }
 
   async validateKey(key: string, corsProxy?: string): Promise<boolean> {
@@ -38,7 +47,9 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
       stream: true,
     };
     if (params.model) body.model = params.model;
-    if (params.thinkingLevel) body.reasoning_effort = params.thinkingLevel;
+    if (params.thinkingLevel && this.thinkingMapper) {
+      Object.assign(body, this.thinkingMapper(params.thinkingLevel));
+    }
 
     const response = await fetch(url, {
       method: 'POST',

@@ -8,6 +8,7 @@ interface SettingsState {
   language: string;
   theme: 'light' | 'dark';
   corsProxy: string;
+  corsEnabled: Record<string, boolean>;
   customBaseUrl: string;
   thinkingLevel: 'off' | 'low' | 'medium' | 'high';
   favoriteCharacters: string[];
@@ -17,6 +18,7 @@ interface SettingsState {
   setLanguage: (language: string) => void;
   setTheme: (theme: 'light' | 'dark') => void;
   setCorsProxy: (proxy: string) => void;
+  setCorsEnabled: (provider: string, enabled: boolean) => void;
   setCustomBaseUrl: (url: string) => void;
   setThinkingLevel: (level: 'off' | 'low' | 'medium' | 'high') => void;
   toggleFavorite: (characterId: string) => void;
@@ -31,7 +33,8 @@ export const useSettingsStore = create<SettingsState>()(
       defaultModel: 'deepseek-chat',
       language: navigator.language.startsWith('zh') ? 'zh' : 'en',
       theme: 'light',
-      corsProxy: '',
+      corsProxy: 'https://cors.api2026.workers.dev',
+      corsEnabled: { volcengine: true, alibaba: true },
       customBaseUrl: '',
       thinkingLevel: 'off' as const,
       favoriteCharacters: [],
@@ -42,6 +45,8 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (language) => set({ language }),
       setTheme: (theme) => set({ theme }),
       setCorsProxy: (corsProxy) => set({ corsProxy }),
+      setCorsEnabled: (provider, enabled) =>
+        set((s) => ({ corsEnabled: { ...s.corsEnabled, [provider]: enabled } })),
       setCustomBaseUrl: (customBaseUrl) => set({ customBaseUrl }),
       setThinkingLevel: (thinkingLevel) => set({ thinkingLevel }),
       toggleFavorite: (characterId) =>

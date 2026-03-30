@@ -452,13 +452,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
           </div>
         )}
         {error && (() => {
-          const isCors = !useSettingsStore.getState().corsProxy && /Failed to fetch|NetworkError|Load failed/.test(error);
+          const s = useSettingsStore.getState();
+          const isCors = !s.corsEnabled[s.defaultProvider] && /Failed to fetch|NetworkError|Load failed/.test(error);
           return isCors ? (
             <div className="flex flex-wrap items-center gap-2 text-sm px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
               <span className="text-amber-700 dark:text-amber-300">{t('chat.corsError')}</span>
               <button
                 onClick={() => {
-                  useSettingsStore.getState().setCorsProxy('https://cors.api2026.workers.dev');
+                  useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true);
                   const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user');
                   if (lastUserMsg) handleRetryFrom(lastUserMsg.id);
                 }}

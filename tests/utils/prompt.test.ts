@@ -113,12 +113,23 @@ describe('resolveProvider', () => {
     expect(result!.corsProxy).toBeUndefined();
   });
 
-  it('includes corsProxy when set', () => {
+  it('includes corsProxy when enabled for provider', () => {
     vi.spyOn(registry, 'getAdapter').mockReturnValue(mockAdapter);
     useSettingsStore.getState().setApiKey('deepseek', 'sk-test');
     useSettingsStore.getState().setCorsProxy('https://proxy.example.com');
+    useSettingsStore.getState().setCorsEnabled('deepseek', true);
 
     const result = resolveProvider();
     expect(result!.corsProxy).toBe('https://proxy.example.com');
+  });
+
+  it('excludes corsProxy when not enabled for provider', () => {
+    vi.spyOn(registry, 'getAdapter').mockReturnValue(mockAdapter);
+    useSettingsStore.getState().setApiKey('deepseek', 'sk-test');
+    useSettingsStore.getState().setCorsProxy('https://proxy.example.com');
+    useSettingsStore.getState().setCorsEnabled('deepseek', false);
+
+    const result = resolveProvider();
+    expect(result!.corsProxy).toBeUndefined();
   });
 });

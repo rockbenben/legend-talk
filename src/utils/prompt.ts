@@ -38,7 +38,10 @@ export function resolveProvider() {
 
   const model = settings.defaultModel || (adapter.models[0]?.id ?? '');
 
-  return { adapter, apiKey, model, lang: settings.language, corsProxy: isCustom ? undefined : (settings.corsProxy || undefined), thinkingLevel: settings.thinkingLevel };
+  const DEFAULT_CORS_PROXY = 'https://cors.api2026.workers.dev';
+  const useCors = !isCustom && settings.corsEnabled[settings.defaultProvider];
+  const corsProxy = useCors ? (settings.corsProxy || DEFAULT_CORS_PROXY) : undefined;
+  return { adapter, apiKey, model, lang: settings.language, corsProxy, thinkingLevel: settings.thinkingLevel };
 }
 
 /**

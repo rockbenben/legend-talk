@@ -12,7 +12,7 @@ describe('settingsStore', () => {
     expect(state.defaultProvider).toBe('deepseek');
     expect(state.defaultModel).toBe('deepseek-chat');
     expect(state.theme).toBe('light');
-    expect(state.corsProxy).toBe('');
+    expect(state.corsProxy).toBe('https://cors.api2026.workers.dev');
   });
 
   it('sets and retrieves API key', () => {

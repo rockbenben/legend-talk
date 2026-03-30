@@ -150,17 +150,31 @@ export function SettingsView() {
       </section>
 
       {/* CORS Proxy */}
-      <section>
-        <h3 className="text-lg font-semibold mb-1">{t('settings.corsProxy')}</h3>
-        <p className="text-xs text-gray-400 mb-2">{t('settings.corsProxyHint')}</p>
-        <input
-          type="text"
-          value={settings.corsProxy}
-          onChange={(e) => settings.setCorsProxy(e.target.value)}
-          placeholder={t('settings.corsProxyPlaceholder')}
-          className="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </section>
+      {settings.defaultProvider !== 'custom' && (
+        <section>
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h3 className="text-lg font-semibold">{t('settings.corsProxy')}</h3>
+              <p className="text-xs text-gray-400">{t('settings.corsProxyHint')}</p>
+            </div>
+            <button
+              onClick={() => settings.setCorsEnabled(settings.defaultProvider, !settings.corsEnabled[settings.defaultProvider])}
+              className={`relative w-11 h-6 rounded-full transition-colors ${settings.corsEnabled[settings.defaultProvider] ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+            >
+              <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.corsEnabled[settings.defaultProvider] ? 'translate-x-5' : ''}`} />
+            </button>
+          </div>
+          {settings.corsEnabled[settings.defaultProvider] && (
+            <input
+              type="text"
+              value={settings.corsProxy}
+              onChange={(e) => settings.setCorsProxy(e.target.value)}
+              placeholder={t('settings.corsProxyPlaceholder')}
+              className="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          )}
+        </section>
+      )}
 
       {/* Language & Theme */}
       <section className="flex gap-8">

@@ -100,15 +100,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
     useConversationStore.getState().removeMessagesFrom(conversationId, messageId);
 
     if (msg.role === 'user') {
-      // Re-send the same user message
+      // Re-send the same user message → triggers full roundtable or single chat
       handleSend(msg.content);
+    } else if (isMulti) {
+      // Roundtable: continue from this character through remaining rounds
+      roundtable.continueFrom(conversationId, msg.characterId!, rounds);
     } else {
-      // Regenerate character response based on existing context
-      if (isMulti) {
-        roundtable.regenerate(conversationId, msg.characterId!);
-      } else {
-        singleChat.regenerate(conversationId);
-      }
+      // Single chat: regenerate just this character response
+      singleChat.regenerate(conversationId);
     }
   };
 

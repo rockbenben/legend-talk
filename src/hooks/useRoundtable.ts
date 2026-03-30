@@ -47,29 +47,63 @@ export function useRoundtable() {
     }
   }
 
-  async function regenerate(conversationId: string, characterId: string) {
-    const character = presetCharacters.find((c) => c.id === characterId);
-    if (!character) return;
-
+  async function continueFrom(conversationId: string, startCharId: string, rounds: number) {
     const provider = resolveProvider();
     if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
 
+    const conv = useConversationStore.getState().getConversation(conversationId);
+    if (!conv) return;
+
+    const chars = conv.characters;
+    const startIdx = chars.indexOf(startCharId);
+    if (startIdx === -1) return;
+
+    // Count character messages after the last user message to determine current round position
+    let lastUserIdx = -1;
+    for (let i = conv.messages.length - 1; i >= 0; i--) {
+      if (conv.messages[i].role === 'user') { lastUserIdx = i; break; }
+    }
+    const charsSoFar = conv.messages.slice(lastUserIdx + 1).filter((m) => m.role === 'character').length;
+    const completedRounds = Math.floor(charsSoFar / chars.length);
+    const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
+
     setIsGenerating(true);
     setError(null);
-    setCurrentSpeaker(characterId);
+    setTotalRounds(completedRounds + 1 + remainingFullRounds);
 
     try {
-      const messages = buildRoundtableMessages(character, conversationId, provider.lang);
-      await streamResponse(conversationId, characterId, messages, provider);
+      // Finish current round: from startChar to end
+      setCurrentRound(completedRounds + 1);
+      for (let i = startIdx; i < chars.length; i++) {
+        setCurrentSpeaker(chars[i]);
+        const character = presetCharacters.find((c) => c.id === chars[i]);
+        if (!character) continue;
+        const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+        await streamResponse(conversationId, chars[i], messages, provider);
+      }
+
+      // Remaining full rounds
+      for (let r = 0; r < remainingFullRounds; r++) {
+        setCurrentRound(completedRounds + 2 + r);
+        const currentConv = useConversationStore.getState().getConversation(conversationId)!;
+        for (const charId of currentConv.characters) {
+          setCurrentSpeaker(charId);
+          const character = presetCharacters.find((c) => c.id === charId);
+          if (!character) continue;
+          const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+          await streamResponse(conversationId, charId, messages, provider);
+        }
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
     } finally {
       setIsGenerating(false);
       setCurrentSpeaker(null);
+      setCurrentRound(null);
     }
   }
 
-  return { sendMessage, regenerate, isGenerating, currentSpeaker, currentRound, totalRounds, error };
+  return { sendMessage, continueFrom, isGenerating, currentSpeaker, currentRound, totalRounds, error };
 }
 
 function buildRoundtableMessages(

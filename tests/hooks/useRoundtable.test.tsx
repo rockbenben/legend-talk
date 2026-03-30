@@ -82,7 +82,7 @@ describe('useRoundtable', () => {
     useConversationStore.getState().addMessage(convId, 'character', 'Munger says...', 'munger');
 
     await act(async () => {
-      await result.current.regenerate(convId, 'munger');
+      await result.current.continueFrom(convId, 'munger', 1);
     });
 
     const conv = useConversationStore.getState().getConversation(convId)!;

@@ -67,34 +67,19 @@ You can also use the **Copy lineup link** button in the participants bar or the 
 
 Force UI language via `?lang=zh` or `?lang=en`.
 
-## Features
+## More Features
 
-- **100+ preset thinkers** across 12 domains: philosophy, business, science, strategy, psychology, literature, art, economics, politics, technology, religion, education
-- **Free input** — type any name to consult anyone not in the presets
-- **Roundtable discussions** — select 2-10 thinkers via + buttons, then start a multi-round debate
-- **Random roundtable** — one click to start a roundtable with 5 random thinkers
-- **Featured templates** — 6 curated roundtable lineups with genuinely conflicting perspectives
-- **Stop generation** — cancel mid-stream, preserving content already generated
-- **Conversation import** — restore exported conversations from JSON
-- **Storage warning** — alerts when localStorage approaches its limit
-- **Deep links** — share a URL to start a conversation with specific characters or a full category
-- **Flexible participants** — add or remove participants at any time during a conversation
-- **Configurable rounds** — set how many rounds of discussion the thinkers should have before pausing
-- **Message actions** — copy, edit, retry, or branch from any message
-- **Conversation branching** — fork a new conversation from any point, preserving prior context
+Beyond the usage above:
+
+- **100+ preset thinkers** across 12 domains, sorted by fame, with free input for any name
 - **Conversation search** — search across all conversations by title, character name, or message content
 - **Favorite characters** — star your most-used thinkers for quick access
-- **Sharing** — generate a shareable URL for any conversation (gzip-compressed, no backend needed)
-- **Conversation summary** — one-click AI summary extracting core viewpoints, disagreements, and conclusions
-- **Export** — save conversations as Markdown or JSON
-- **Thinking level** — configure model thinking depth (off/low/medium/high), supporting Anthropic extended thinking and OpenAI reasoning effort
-- **Custom models** — manually enter any model ID beyond the presets
-- **Custom LLM** — connect any OpenAI-compatible API by entering a base URL (no CORS proxy needed)
-- **Multi-API support** — OpenAI, Anthropic, DeepSeek, Volcengine (Doubao), Alibaba Bailian Coding Plan, SiliconFlow, Groq, OpenRouter
-- **Bilingual** — Chinese and English interface with auto-detection
-- **Dark mode**
-- **Responsive** — mobile-friendly layout with overlay sidebar
-- **Local-first** — all data stored in browser localStorage, no backend required
+- **Settings sync** — share settings to another device via URL (API keys AES-encrypted)
+- **Thinking level** — configure model thinking depth (off/low/medium/high)
+- **Custom models** — manually enter any model ID
+- **Custom LLM** — connect any OpenAI-compatible API
+- **Multi-API support** — OpenAI, Anthropic, DeepSeek, Volcengine, Alibaba Bailian, SiliconFlow, Groq, OpenRouter
+- **Bilingual** · **Dark mode** · **Responsive** · **Local-first** (all data in browser localStorage)
 
 ## Supported APIs
 
@@ -171,7 +156,7 @@ src/
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
   stores/         # Zustand state management
-  utils/          # Prompt building, export utilities
+  utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions
 ```
 

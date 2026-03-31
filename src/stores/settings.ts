@@ -31,7 +31,7 @@ export const useSettingsStore = create<SettingsState>()(
       apiKeys: {},
       defaultProvider: 'deepseek',
       defaultModel: 'deepseek-chat',
-      language: navigator.language.startsWith('zh') ? 'zh' : 'en',
+      language: navigator.language || 'en',
       theme: 'light',
       corsProxy: 'https://cors.api2026.workers.dev',
       corsEnabled: { volcengine: true, alibaba: true },

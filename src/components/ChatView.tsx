@@ -1,3 +1,4 @@
+import { currentLang } from '../utils/lang';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
@@ -21,7 +22,7 @@ interface ChatViewProps {
 }
 
 export function ChatView({ conversationId }: ChatViewProps) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const conversation = useConversationStore(
     (s) => s.conversations.find((c) => c.id === conversationId),
@@ -40,7 +41,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const roundtable = useRoundtable();
 
   const bottomRef = useRef<HTMLDivElement>(null);
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
+  const lang = currentLang();
   const [rounds, setRounds] = useState(3);
   const [showPicker, setShowPicker] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
@@ -72,7 +73,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const firstChar = characters[0];
 
   const displayTitle = conversation.title
-    || characters.map((c) => c.name[lang] || c.name.en).join(', ')
+    || characters.map((c) => t(`characters.${c.id}.name`)).join(', ')
     || t('chat.untitled');
 
   const startEditTitle = () => {
@@ -136,7 +137,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const transcript = conv.messages.map((msg) => {
       if (msg.role === 'user') return `[User]: ${msg.content}`;
       const char = presetCharacters.find((c) => c.id === msg.characterId);
-      const name = char ? (char.name[lang] || char.name.en) : msg.characterId || 'Unknown';
+      const name = char ? (t(`characters.${char.id}.name`)) : msg.characterId || 'Unknown';
       return `[${name}]: ${msg.content}`;
     }).join('\n\n');
 
@@ -159,7 +160,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   };
 
   const charNames = Object.fromEntries(
-    characters.map((c) => [c.id, c.name[lang] || c.name.en]),
+    characters.map((c) => [c.id, t(`characters.${c.id}.name`)]),
   );
 
   const handleExportMarkdown = () => {
@@ -198,8 +199,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
         const hashBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64));
         const hashKey = Array.from(new Uint8Array(hashBuf)).slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
 
+        const proxyTag = btoa(corsProxy).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
         if (cache[hashKey]) {
-          url = `${origin}#/shared/s:${cache[hashKey]}`;
+          url = `${origin}#/shared/s:${proxyTag}:${cache[hashKey]}`;
         } else {
           try {
             const ac = new AbortController();
@@ -213,7 +215,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               const keys = Object.keys(cache);
               if (keys.length > 200) { for (const k of keys.slice(0, keys.length - 200)) delete cache[k]; }
               localStorage.setItem(cacheKey, JSON.stringify(cache));
-              url = `${origin}#/shared/s:${id}`;
+              url = `${origin}#/shared/s:${proxyTag}:${id}`;
             } else {
               // Proxy doesn't support short links, skip for this session
               noShortList.push(corsProxy);
@@ -298,7 +300,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             }`}
           >
             <Avatar emoji={char.avatar} color={char.color} size="sm" />
-            <span className="text-xs">{char.name[lang] || char.name.en}</span>
+            <span className="text-xs">{t(`characters.${char.id}.name`)}</span>
             {isMulti && !isGenerating && conversation.characters.length > 2 && (
               <button
                 onClick={() => handleRemoveParticipant(char.id)}
@@ -369,7 +371,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           <div className="text-center py-8">
             <p className="text-gray-400 mb-4">{t('chat.noMessages')}</p>
             <div className="flex flex-wrap justify-center gap-2">
-              {(firstChar.sampleQuestions[lang] || firstChar.sampleQuestions.en).map((q) => (
+              {(t(`characters.${firstChar.id}.questions`, { returnObjects: true }) as string[]).map((q) => (
                 <button
                   key={q}
                   onClick={() => handleSend(q)}
@@ -438,7 +440,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     isUser={msg.role === 'user'}
                     avatar={msgChar?.avatar}
                     color={msgChar?.color}
-                    name={isMulti && msgChar ? (msgChar.name[lang] || msgChar.name.en) : undefined}
+                    name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
@@ -499,7 +501,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <span>{t('roundtable.roundProgress', {
               current: roundtable.currentRound,
               total: roundtable.totalRounds,
-              name: speakerChar.name[lang] || speakerChar.name.en,
+              name: t(`characters.${speakerChar.id}.name`),
             })}</span>
             <span className="flex gap-0.5">
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />

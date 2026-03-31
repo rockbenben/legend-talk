@@ -26,10 +26,8 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
     if (category !== 'all' && !c.domain.includes(category)) return false;
     if (search) {
       const q = search.toLowerCase();
-      return (
-        c.name.zh.toLowerCase().includes(q) ||
-        c.name.en.toLowerCase().includes(q)
-      );
+      const name = t(`characters.${c.id}.name`).toLowerCase();
+      return name.includes(q) || c.id.includes(q);
     }
     return true;
   });

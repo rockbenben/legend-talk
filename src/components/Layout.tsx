@@ -6,21 +6,8 @@ import { LanguageToggle } from './LanguageToggle';
 
 interface NavLink {
   label: string;
-  zh: string;
-  en: string;
+  url: string;
 }
-
-const PROJECT_LINKS: NavLink[] = [
-  { label: 'AI Short', zh: 'https://www.aishort.top/', en: 'https://www.aishort.top/en/' },
-  { label: 'ToolsByAI', zh: 'https://tools.newzone.top/zh', en: 'https://tools.newzone.top/en' },
-  { label: 'IMGPrompt', zh: 'https://prompt.newzone.top/app/zh', en: 'https://prompt.newzone.top/app/en' },
-];
-
-const SUPPORT_LINKS: NavLink[] = [
-  { label: 'Discord', zh: 'https://discord.gg/PZTQfJ4GjX', en: 'https://discord.gg/PZTQfJ4GjX' },
-  { label: 'Telegram', zh: 'https://t.me/aishort_top', en: 'https://t.me/aishort_top' },
-  { label: 'QQ', zh: 'https://qm.qq.com/q/uWsUSnyivm', en: '' },
-];
 
 function Dropdown({ label, children }: { label: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -51,32 +38,29 @@ function Dropdown({ label, children }: { label: string; children: React.ReactNod
   );
 }
 
-function NavLinks({ links, lang }: { links: NavLink[]; lang: 'zh' | 'en' }) {
+function NavLinks({ links }: { links: NavLink[] }) {
   return (
     <>
-      {links.map((link) => {
-        const href = lang === 'zh' ? link.zh : link.en;
-        if (!href) return null;
-        return (
+      {links.map((link) => (
+        link.url ? (
           <a
             key={link.label}
-            href={href}
+            href={link.url}
             target="_blank"
             rel="noopener noreferrer"
             className="block px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
             {link.label}
           </a>
-        );
-      })}
+        ) : null
+      ))}
     </>
   );
 }
 
 export function Layout() {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
-  const lang = (i18n.language.startsWith('zh') ? 'zh' : 'en') as 'zh' | 'en';
+  const { t } = useTranslation();
 
   return (
     <div className="flex flex-col h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -91,13 +75,13 @@ export function Layout() {
           <LanguageToggle />
           <ThemeToggle />
           <div className="hidden sm:block">
-            <Dropdown label={lang === 'zh' ? '更多' : 'More'}>
-              <NavLinks links={PROJECT_LINKS} lang={lang} />
+            <Dropdown label={t('nav.more')}>
+              <NavLinks links={t('nav.projectLinks', { returnObjects: true }) as NavLink[]} />
             </Dropdown>
           </div>
           <div className="hidden sm:block">
-            <Dropdown label={lang === 'zh' ? '支持' : 'Support'}>
-              <NavLinks links={SUPPORT_LINKS} lang={lang} />
+            <Dropdown label={t('nav.support')}>
+              <NavLinks links={t('nav.supportLinks', { returnObjects: true }) as NavLink[]} />
             </Dropdown>
           </div>
           <a

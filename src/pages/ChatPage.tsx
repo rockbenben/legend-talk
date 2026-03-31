@@ -15,8 +15,7 @@ const MAX_PARTICIPANTS = 10;
 
 export function ChatPage() {
   const { id } = useParams<{ id?: string }>();
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const createConversation = useConversationStore((s) => s.createConversation);
   const [searchParams] = useSearchParams();
@@ -36,7 +35,7 @@ export function ChatPage() {
         if (charIds.length >= MAX_PARTICIPANTS) break;
         const lower = name.toLowerCase();
         const found = presetCharacters.find(
-          (p) => p.id === lower || p.name.zh === name || p.name.en.toLowerCase() === lower,
+          (p) => p.id === lower || t(`characters.${p.id}.name`).toLowerCase() === lower || t(`characters.${p.id}.name`) === name,
         );
         if (found) {
           if (!charIds.includes(found.id)) charIds.push(found.id);
@@ -137,8 +136,8 @@ export function ChatPage() {
                         })}
                       </div>
                       <div className="min-w-0">
-                        <div className="text-sm font-medium truncate">{tpl.name[lang] || tpl.name.en}</div>
-                        <div className="text-xs text-gray-400 truncate">{tpl.description[lang] || tpl.description.en}</div>
+                        <div className="text-sm font-medium truncate">{t(`templates.${tpl.id}.name`)}</div>
+                        <div className="text-xs text-gray-400 truncate">{t(`templates.${tpl.id}.description`)}</div>
                       </div>
                     </button>
                   ))}
@@ -161,7 +160,7 @@ export function ChatPage() {
                         <button
                           key={cid}
                           onClick={() => setSelectedIds((prev) => prev.filter((x) => x !== cid))}
-                          title={char.name[lang] || char.name.en}
+                          title={t(`characters.${char.id}.name`)}
                           className="shrink-0 hover:opacity-70 active:opacity-50 transition-opacity"
                         >
                           <Avatar emoji={char.avatar} color={char.color} size="sm" />

@@ -205,7 +205,7 @@ export function SettingsView() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              {t('settings.apiKeys')}
+              API Keys
             </label>
             {currentAdapter?.apiKeyUrl && (
               <a href={currentAdapter.apiKeyUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">
@@ -225,7 +225,7 @@ export function SettingsView() {
         {/* Custom base URL */}
         {settings.defaultProvider === 'custom' && (
           <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400">{t('settings.customBaseUrl')}</label>
+            <label className="text-sm font-medium text-gray-600 dark:text-gray-400">API Base URL</label>
             <p className="text-xs text-gray-400 mb-1">{t('settings.customBaseUrlHint')}</p>
             <input
               type="text"
@@ -292,7 +292,7 @@ export function SettingsView() {
         <section>
           <div className="flex items-center justify-between mb-2">
             <div>
-              <h3 className="text-lg font-semibold">{t('settings.corsProxy')}</h3>
+              <h3 className="text-lg font-semibold">CORS Proxy</h3>
               <p className="text-xs text-gray-400">{t('settings.corsProxyHint')}</p>
             </div>
             <button
@@ -307,7 +307,7 @@ export function SettingsView() {
               type="text"
               value={settings.corsProxy}
               onChange={(e) => settings.setCorsProxy(e.target.value)}
-              placeholder={t('settings.corsProxyPlaceholder')}
+              placeholder="https://cors.api2026.workers.dev"
               className="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           )}
@@ -319,15 +319,18 @@ export function SettingsView() {
         <div>
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.language')}</h3>
           <select
-            value={i18n.language.startsWith('zh') ? 'zh' : 'en'}
+            value={i18n.language}
             onChange={(e) => {
               i18n.changeLanguage(e.target.value);
               settings.setLanguage(e.target.value);
             }}
             className="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
           >
-            <option value="zh">中文</option>
-            <option value="en">English</option>
+            {Object.keys(i18n.store.data).map((lng) => (
+              <option key={lng} value={lng}>
+                {i18n.t('nav.langName', { lng })}
+              </option>
+            ))}
           </select>
         </div>
         <div>
@@ -351,7 +354,7 @@ export function SettingsView() {
             onClick={handleExportAll}
             className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
-            {t('chat.exportJSON')}
+            JSON
           </button>
           <button
             onClick={() => fileInputRef.current?.click()}

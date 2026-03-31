@@ -150,7 +150,7 @@ export function useRoundtable() {
 }
 
 function buildRoundtableMessages(
-  character: { id: string; name: Record<string, string>; systemPrompt: string },
+  character: { id: string; systemPrompt: string },
   conversationId: string,
   lang: string,
 ): Array<{ role: 'system' | 'user' | 'assistant'; content: string }> {
@@ -168,10 +168,9 @@ function buildRoundtableMessages(
     } else if (msg.characterId === character.id) {
       raw.push({ role: 'assistant', content: msg.content });
     } else {
-      const otherChar = presetCharacters.find((c) => c.id === msg.characterId);
-      const name = otherChar
-        ? otherChar.name[lang] || otherChar.name.en
-        : msg.characterId || 'Unknown';
+      const name = msg.characterId
+        ? i18n.t(`characters.${msg.characterId}.name`)
+        : 'Unknown';
       raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
     }
   }

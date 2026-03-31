@@ -1,4 +1,5 @@
 import type { Character } from '../types';
+import i18n from '../i18n';
 
 const COLORS = ['blue', 'emerald', 'red', 'purple', 'amber', 'teal', 'orange', 'indigo'];
 
@@ -7,18 +8,22 @@ export function generateCharacter(name: string): Character {
   const id = 'custom-' + trimmed.toLowerCase().replace(/\s+/g, '-');
   const colorIndex = Math.abs(hashCode(trimmed)) % COLORS.length;
 
+  // Inject translations for this custom character into all loaded languages
+  for (const lng of Object.keys(i18n.store.data)) {
+    const existing = i18n.getResourceBundle(lng, 'translation') || {};
+    if (!existing.characters?.[id]) {
+      i18n.addResourceBundle(lng, 'translation', {
+        characters: { [id]: { name: trimmed, era: i18n.t('common.unknown', { lng }), questions: [] } },
+      }, true, true);
+    }
+  }
+
   return {
     id,
-    name: { zh: trimmed, en: trimmed },
-    era: { zh: '未知', en: 'Unknown' },
     domain: ['custom'],
     avatar: '👤',
     color: COLORS[colorIndex],
     systemPrompt: `Think and respond as ${trimmed} would. Apply their core ideas and thinking framework to analyze problems. Be direct — no pleasantries, jump straight into your perspective.`,
-    sampleQuestions: {
-      zh: ['你会怎么看这个问题？', '从你的角度，我该怎么做？', '用你的方法分析一下我的处境'],
-      en: ['How would you view this problem?', 'From your perspective, what should I do?', 'Analyze my situation using your approach'],
-    },
   };
 }
 

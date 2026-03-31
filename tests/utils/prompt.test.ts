@@ -17,9 +17,31 @@ describe('getLangInstruction', () => {
     expect(getLangInstruction('en')).toBe(' Always respond in English.');
   });
 
-  it('returns English instruction for any non-zh value', () => {
-    expect(getLangInstruction('fr')).toBe(' Always respond in English.');
-    expect(getLangInstruction('')).toBe(' Always respond in English.');
+  it('returns language-specific instruction from i18n for all supported languages', () => {
+    const expected: Record<string, string> = {
+      'zh': 'Chinese (中文)',
+      'zh-Hant': 'Traditional Chinese (繁體中文)',
+      'en': 'English',
+      'ja': 'Japanese (日本語)',
+      'ko': 'Korean (한국어)',
+    };
+    for (const [lang, name] of Object.entries(expected)) {
+      expect(getLangInstruction(lang)).toBe(` Always respond in ${name}.`);
+    }
+  });
+
+  it('falls back to English for unknown languages', () => {
+    expect(getLangInstruction('xx')).toBe(' Always respond in English.');
+  });
+
+  it('settings.language flows through to prompt instruction', () => {
+    const langs = ['zh', 'zh-Hant', 'en', 'ja', 'ko'];
+    for (const lang of langs) {
+      const prompt = buildSystemPrompt('Test prompt.', lang);
+      expect(prompt).toContain('Always respond in');
+      expect(prompt).not.toContain('undefined');
+      expect(prompt).not.toContain('nav.replyLanguage');
+    }
   });
 });
 

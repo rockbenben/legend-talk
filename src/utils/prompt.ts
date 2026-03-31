@@ -2,13 +2,16 @@ import { useSettingsStore } from '../stores/settings';
 import { useConversationStore } from '../stores/conversations';
 import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
+import i18n from '../i18n';
 
 const DIRECTIVE = ' Be direct — state your views immediately, no pleasantries, no filler like "great question", no unnecessary preamble. Stay on topic.';
 
 export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers on the user\'s question.';
 
 export function getLangInstruction(lang: string): string {
-  return lang === 'zh' ? ' Always respond in Chinese (中文).' : ' Always respond in English.';
+  const name = i18n.t('nav.replyLanguage', { lng: lang });
+  const resolved = name === 'nav.replyLanguage' ? 'English' : name;
+  return ` Always respond in ${resolved}.`;
 }
 
 export function buildSystemPrompt(characterPrompt: string, lang: string, suffix = ''): string {

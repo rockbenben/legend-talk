@@ -19,10 +19,9 @@ export function CharacterCard({
   isFavorite,
   onToggleFavorite,
 }: CharacterCardProps) {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
-  const name = character.name[lang] || character.name.en;
-  const era = character.era[lang] || character.era.en;
+  const { t } = useTranslation();
+  const name = t(`characters.${character.id}.name`);
+  const era = t(`characters.${character.id}.era`);
 
   return (
     <div

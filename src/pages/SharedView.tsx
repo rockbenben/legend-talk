@@ -20,18 +20,20 @@ interface SharedData {
 
 export function SharedView() {
   const { data } = useParams<{ data: string }>();
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
+  const { t } = useTranslation();
   const [shared, setShared] = useState<SharedData | null>(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     if (!data) return;
 
-    // s:<id> → fetch from short link service via CORS proxy
+    // s:<proxyBase64>:<id> → fetch from the sharer's proxy
     if (data.startsWith('s:')) {
-      const id = data.slice(2);
-      const proxy = useSettingsStore.getState().corsProxy;
+      const parts = data.slice(2).split(':');
+      const proxy = parts.length >= 2
+        ? atob(parts[0].replace(/-/g, '+').replace(/_/g, '/'))
+        : useSettingsStore.getState().corsProxy;
+      const id = parts.length >= 2 ? parts[1] : parts[0];
       fetch(`${proxy}/s/${id}`)
         .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })
         .then((base64) => decompressFromBase64(base64))
@@ -75,7 +77,7 @@ export function SharedView() {
   const isMulti = characters.length > 1;
 
   const displayTitle = shared.title
-    || characters.map((c) => c.name[lang] || c.name.en).join(', ')
+    || characters.map((c) => t(`characters.${c.id}.name`)).join(', ')
     || t('shared.title');
 
   return (
@@ -97,7 +99,7 @@ export function SharedView() {
               isUser={msg.role === 'user'}
               avatar={msgChar?.avatar}
               color={msgChar?.color}
-              name={isMulti && msgChar ? (msgChar.name[lang] || msgChar.name.en) : undefined}
+              name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
             />
           );
         })}

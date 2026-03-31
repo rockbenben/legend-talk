@@ -15,18 +15,18 @@ interface CharacterPickerProps {
 }
 
 export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: CharacterPickerProps) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
   const favoriteCharacters = useSettingsStore((s) => s.favoriteCharacters);
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
 
   const filtered = presetCharacters.filter((c) => {
     if (excludeIds.includes(c.id)) return false;
     if (category !== 'all' && !c.domain.includes(category)) return false;
     if (search) {
       const q = search.toLowerCase();
-      return c.name.zh.toLowerCase().includes(q) || c.name.en.toLowerCase().includes(q);
+      const name = t(`characters.${c.id}.name`).toLowerCase();
+      return name.includes(q) || c.id.includes(q);
     }
     return true;
   });
@@ -98,8 +98,8 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
             >
               <Avatar emoji={char.avatar} color={char.color} size="sm" />
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium">{char.name[lang] || char.name.en}</div>
-                <div className="text-xs text-gray-400">{char.era[lang] || char.era.en}</div>
+                <div className="text-sm font-medium">{t(`characters.${char.id}.name`)}</div>
+                <div className="text-xs text-gray-400">{t(`characters.${char.id}.era`)}</div>
               </div>
               {favoriteCharacters.includes(char.id) && (
                 <span className="text-sm text-yellow-500">{'\u2605'}</span>

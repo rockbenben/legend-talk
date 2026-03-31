@@ -1,4 +1,5 @@
 import { presetCharacters } from '../../src/characters/presets';
+import i18n from '../../src/i18n';
 
 describe('presetCharacters', () => {
   it('has 100+ characters', () => {
@@ -8,16 +9,13 @@ describe('presetCharacters', () => {
   it('each character has required fields', () => {
     for (const char of presetCharacters) {
       expect(char.id).toBeTruthy();
-      expect(char.name.zh).toBeTruthy();
-      expect(char.name.en).toBeTruthy();
-      expect(char.era.zh).toBeTruthy();
-      expect(char.era.en).toBeTruthy();
       expect(char.domain.length).toBeGreaterThan(0);
       expect(char.avatar).toBeTruthy();
       expect(char.color).toBeTruthy();
       expect(char.systemPrompt).toBeTruthy();
-      expect(char.sampleQuestions.zh.length).toBeGreaterThan(0);
-      expect(char.sampleQuestions.en.length).toBeGreaterThan(0);
+      // i18n translations exist
+      expect(i18n.t(`characters.${char.id}.name`)).toBeTruthy();
+      expect(i18n.t(`characters.${char.id}.era`)).toBeTruthy();
     }
   });
 

@@ -1,3 +1,4 @@
+import { currentLang } from '../utils/lang';
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -20,12 +21,12 @@ function useIsMobile() {
 }
 
 export function ConversationList({ activeId }: ConversationListProps) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const conversations = useConversationStore((s) => s.conversations);
   const deleteConversation = useConversationStore((s) => s.deleteConversation);
   const renameConversation = useConversationStore((s) => s.renameConversation);
-  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
+  const lang = currentLang();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
   const isMobile = useIsMobile();
@@ -41,7 +42,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
     return conv.characters
       .map((id) => {
         const c = presetCharacters.find((p) => p.id === id);
-        return c ? (c.name[lang] || c.name.en) : id;
+        return c ? (t(`characters.${c.id}.name`)) : id;
       })
       .join(', ');
   };
@@ -55,7 +56,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
       const charNames = conv.characters
         .map((id) => {
           const c = presetCharacters.find((p) => p.id === id);
-          return c ? `${c.name.zh} ${c.name.en}`.toLowerCase() : id.toLowerCase();
+          return c ? t(`characters.${c.id}.name`).toLowerCase() : id.toLowerCase();
         })
         .join(' ');
       if (charNames.includes(q)) return true;

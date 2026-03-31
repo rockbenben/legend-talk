@@ -1,12 +1,9 @@
 export interface Character {
   id: string;
-  name: Record<string, string>;
-  era: Record<string, string>;
   domain: string[];
   avatar: string;
   color: string;
   systemPrompt: string;
-  sampleQuestions: Record<string, string[]>;
 }
 
 export interface ModelOption {

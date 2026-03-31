@@ -5,6 +5,7 @@ import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter } from '../adapters/registry';
 import { getStorageUsage } from '../utils/storage';
 import { downloadFile } from '../utils/export';
+import { compressToBase64, decompressFromBase64 } from '../utils/compress';
 import { useConversationStore } from '../stores/conversations';
 
 export function SettingsView() {
@@ -34,7 +35,9 @@ export function SettingsView() {
     const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(text)));
     const buf = new Uint8Array(16 + 12 + ct.length);
     buf.set(salt); buf.set(iv, 16); buf.set(ct, 28);
-    return btoa(String.fromCharCode(...buf));
+    let binary = '';
+    for (let i = 0; i < buf.length; i++) binary += String.fromCharCode(buf[i]);
+    return btoa(binary);
   }
 
   async function decrypt(encoded: string, password: string): Promise<string> {
@@ -45,17 +48,18 @@ export function SettingsView() {
   }
 
   function applyConfig(config: Record<string, unknown>) {
-    if (config.defaultProvider) settings.setDefaultProvider(config.defaultProvider as string);
-    if (config.defaultModel) settings.setDefaultModel(config.defaultModel as string);
-    if (config.language) { settings.setLanguage(config.language as string); i18n.changeLanguage(config.language as string); }
-    if (config.theme) settings.setTheme(config.theme as 'light' | 'dark');
-    if (config.corsProxy) settings.setCorsProxy(config.corsProxy as string);
-    if (config.customBaseUrl) settings.setCustomBaseUrl(config.customBaseUrl as string);
-    if (config.thinkingLevel) settings.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
-    if (config.corsEnabled) Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => settings.setCorsEnabled(k, v));
+    const s = useSettingsStore.getState();
+    if (config.defaultProvider) s.setDefaultProvider(config.defaultProvider as string);
+    if (config.defaultModel) s.setDefaultModel(config.defaultModel as string);
+    if (config.language) { s.setLanguage(config.language as string); i18n.changeLanguage(config.language as string); }
+    if (config.theme) s.setTheme(config.theme as 'light' | 'dark');
+    if (config.thinkingLevel) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
+    if (config.corsProxy) s.setCorsProxy(config.corsProxy as string);
+    if (config.customBaseUrl) s.setCustomBaseUrl(config.customBaseUrl as string);
+    if (config.corsEnabled) Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => s.setCorsEnabled(k, v));
   }
 
-  // Import settings from URL param
+  // Import settings from URL hash param (not query param — hash never leaves browser)
   const importedRef = useRef(false);
   useEffect(() => {
     const configParam = searchParams.get('config');
@@ -65,15 +69,28 @@ export function SettingsView() {
 
     (async () => {
       try {
-        const parsed = JSON.parse(atob(configParam.replace(/-/g, '+').replace(/_/g, '/')));
+        const parsed = JSON.parse(await decompressFromBase64(configParam));
         const { _encrypted, ...config } = parsed;
+
+        // Confirm before applying
+        const summary = [
+          config.defaultProvider && `Provider: ${config.defaultProvider}`,
+          config.defaultModel && `Model: ${config.defaultModel}`,
+          config.corsProxy && `CORS Proxy: ${config.corsProxy}`,
+          config.customBaseUrl && `Custom URL: ${config.customBaseUrl}`,
+          config.language && `Language: ${config.language}`,
+          config.theme && `Theme: ${config.theme}`,
+          _encrypted && 'API Keys (encrypted)',
+        ].filter(Boolean).join('\n');
+        if (!confirm(`${t('chat.settingsImported')}?\n\n${summary}`)) return;
+
         applyConfig(config);
 
         if (_encrypted) {
           const password = prompt(t('chat.enterDecryptPassword'));
           if (password) {
             const keys = JSON.parse(await decrypt(_encrypted, password));
-            Object.entries(keys).forEach(([k, v]) => settings.setApiKey(k, v as string));
+            Object.entries(keys).forEach(([k, v]) => useSettingsStore.getState().setApiKey(k, v as string));
           }
         }
         setShareStatus(t('chat.settingsImported'));
@@ -101,10 +118,15 @@ export function SettingsView() {
       config._encrypted = await encrypt(JSON.stringify(settings.apiKeys), password);
     }
 
-    const base64 = btoa(JSON.stringify(config)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const base64 = await compressToBase64(JSON.stringify(config));
+    // Use hash fragment — query params would be sent to servers via referrer headers
     const url = `${window.location.origin}${window.location.pathname}#/settings?config=${base64}`;
-    navigator.clipboard.writeText(url);
-    setShareStatus(t('chat.copied'));
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareStatus(t('chat.copied'));
+    } catch {
+      prompt(t('chat.copied'), url); // Fallback: show URL for manual copy
+    }
     setTimeout(() => setShareStatus(null), 2000);
   };
 
@@ -357,7 +379,7 @@ export function SettingsView() {
           </button>
         </div>
         {(importStatus || shareStatus) && (
-          <p className="mt-2 text-sm text-green-600 dark:text-green-400">
+          <p className={`mt-2 text-sm ${(importStatus || shareStatus || '').includes(t('chat.importError')) ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>
             {importStatus || shareStatus}
           </p>
         )}

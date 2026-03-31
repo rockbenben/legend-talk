@@ -8,6 +8,7 @@ import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { getLangInstruction, resolveProvider, streamResponse } from '../utils/prompt';
 import { exportAsMarkdown, exportAsJSON, downloadFile } from '../utils/export';
+import { compressToBase64 } from '../utils/compress';
 import { getStorageBytes } from '../utils/storage';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
@@ -48,6 +49,11 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [editingMsgValue, setEditingMsgValue] = useState('');
   const [showExportMenu, setShowExportMenu] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [isSummarizing, setIsSummarizing] = useState(false);
+  const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const storageOverLimit = useMemo(() => getStorageBytes() > 4.8 * 1024 * 1024, []);
+  const summarizeAbortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -92,12 +98,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
     updateCharacters(conversationId, newChars);
   };
 
-  const [isSummarizing, setIsSummarizing] = useState(false);
-  const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'tooLong'>('idle');
-  // Check once on mount — localStorage quota is 5MB, warn at 4.8MB
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const storageOverLimit = useMemo(() => getStorageBytes() > 4.8 * 1024 * 1024, []);
-
   const handleRetryFrom = (messageId: string) => {
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv) return;
@@ -126,8 +126,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
       singleChat.sendMessage(conversationId, content);
     }
   };
-
-  const summarizeAbortRef = useRef<AbortController | null>(null);
 
   const handleSummarize = async () => {
     const provider = resolveProvider();
@@ -175,45 +173,57 @@ export function ChatView({ conversationId }: ChatViewProps) {
   };
 
   const handleShare = async () => {
-    const payload = JSON.stringify({
-      title: conversation.title,
-      characters: conversation.characters,
-      messages: conversation.messages.map((m) => ({
-        role: m.role,
-        characterId: m.characterId,
-        content: m.content,
-      })),
-    });
-    const encoded = new TextEncoder().encode(payload);
-    const cs = new CompressionStream('gzip');
-    const writer = cs.writable.getWriter();
-    writer.write(encoded);
-    writer.close();
-    const reader = cs.readable.getReader();
-    const chunks: Uint8Array[] = [];
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-    }
-    const totalLength = chunks.reduce((sum, c) => sum + c.length, 0);
-    const compressed = new Uint8Array(totalLength);
-    let offset = 0;
-    for (const chunk of chunks) {
-      compressed.set(chunk, offset);
-      offset += chunk.length;
-    }
-    let binary = '';
-    for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
-    const base64 = btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    const url = `${window.location.origin}${window.location.pathname}#/shared/${base64}`;
-    if (url.length > 32000) {
-      setShareStatus('tooLong');
-      setTimeout(() => setShareStatus('idle'), 3000);
+    setShareStatus('sharing');
+    try {
+      const payload = JSON.stringify({
+        title: conversation.title,
+        characters: conversation.characters,
+        messages: conversation.messages.map((m) => ({
+          role: m.role,
+          characterId: m.characterId,
+          content: m.content,
+        })),
+      });
+      const base64 = await compressToBase64(payload);
+      const origin = window.location.origin + window.location.pathname;
+      let url = `${origin}#/shared/${base64}`;
+
+      // Short link: enabled when CORS proxy matches VITE_SHORT_LINK_URL env var
+      const shortLinkUrl = import.meta.env.VITE_SHORT_LINK_URL;
+      const corsProxy = useSettingsStore.getState().corsProxy;
+      if (shortLinkUrl && corsProxy === shortLinkUrl) {
+        const cacheKey = 'legend-talk-short-links';
+        const cache: Record<string, string> = JSON.parse(localStorage.getItem(cacheKey) || '{}');
+        // Use first 16 chars of SHA-256 hex as cache key (collision-resistant)
+        const hashBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64));
+        const hashKey = Array.from(new Uint8Array(hashBuf)).slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
+
+        if (cache[hashKey]) {
+          url = `${origin}#/shared/s:${cache[hashKey]}`;
+        } else {
+          try {
+            const res = await fetch(`${corsProxy}/shorten`, { method: 'POST', body: base64 });
+            if (res.ok) {
+              const { id } = await res.json();
+              cache[hashKey] = id;
+              localStorage.setItem(cacheKey, JSON.stringify(cache));
+              url = `${origin}#/shared/s:${id}`;
+            }
+          } catch { /* shortener unavailable, fall back to long URL */ }
+        }
+      }
+
+      if (url.length > 32000) {
+        setShareStatus('tooLong');
+        setTimeout(() => setShareStatus('idle'), 3000);
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setShareStatus('copied');
+    } catch {
+      setShareStatus('idle');
       return;
     }
-    await navigator.clipboard.writeText(url);
-    setShareStatus('copied');
     setTimeout(() => setShareStatus('idle'), 2000);
   };
 
@@ -564,13 +574,16 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </button>
             <button
               onClick={handleShare}
-              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
+              disabled={shareStatus === 'sharing'}
+              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 disabled:opacity-50 transition-colors"
             >
-              {shareStatus === 'copied'
-                ? t('chat.copied')
-                : shareStatus === 'tooLong'
-                  ? t('chat.shareTooLong')
-                  : t('chat.share')}
+              {shareStatus === 'sharing'
+                ? '...'
+                : shareStatus === 'copied'
+                  ? t('chat.copied')
+                  : shareStatus === 'tooLong'
+                    ? t('chat.shareTooLong')
+                    : t('chat.share')}
             </button>
             <div className="relative">
               <button

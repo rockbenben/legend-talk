@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MessageBubble } from '../components/MessageBubble';
 import { presetCharacters } from '../characters/presets';
+import { decompressFromBase64 } from '../utils/compress';
+import { useSettingsStore } from '../stores/settings';
 
 interface SharedMessage {
   role: 'user' | 'character';
@@ -16,35 +18,6 @@ interface SharedData {
   messages: SharedMessage[];
 }
 
-async function decompressData(base64: string): Promise<SharedData> {
-  const padded = base64.replace(/-/g, '+').replace(/_/g, '/') + '=='.slice(0, (4 - base64.length % 4) % 4);
-  const binary = atob(padded);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  const ds = new DecompressionStream('gzip');
-  const writer = ds.writable.getWriter();
-  writer.write(bytes);
-  writer.close();
-  const reader = ds.readable.getReader();
-  const chunks: Uint8Array[] = [];
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    chunks.push(value);
-  }
-  const totalLength = chunks.reduce((sum, c) => sum + c.length, 0);
-  const result = new Uint8Array(totalLength);
-  let offset = 0;
-  for (const chunk of chunks) {
-    result.set(chunk, offset);
-    offset += chunk.length;
-  }
-  const json = new TextDecoder().decode(result);
-  return JSON.parse(json);
-}
-
 export function SharedView() {
   const { data } = useParams<{ data: string }>();
   const { t, i18n } = useTranslation();
@@ -54,8 +27,22 @@ export function SharedView() {
 
   useEffect(() => {
     if (!data) return;
-    decompressData(data)
-      .then(setShared)
+
+    // s:<id> → fetch from short link service, then decompress
+    if (data.startsWith('s:')) {
+      const id = data.slice(2);
+      const proxyBase = useSettingsStore.getState().corsProxy || 'https://cors.api2026.workers.dev';
+      fetch(`${proxyBase}/s/${id}`)
+        .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })
+        .then((base64) => decompressFromBase64(base64))
+        .then((json) => setShared(JSON.parse(json)))
+        .catch(() => setError('Failed to load shared conversation'));
+      return;
+    }
+
+    // Inline compressed data
+    decompressFromBase64(data)
+      .then((json) => setShared(JSON.parse(json)))
       .catch(() => setError('Failed to decode shared conversation'));
   }, [data]);
 

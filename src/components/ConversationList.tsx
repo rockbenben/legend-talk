@@ -131,7 +131,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xs p-0.5"
+              className="absolute right-1 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xs p-1.5"
             >
               ✕
             </button>
@@ -151,7 +151,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
                 e.stopPropagation();
                 startEditing(conv);
               }}
-              className={`flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 ${
+              className={`flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 ${
                 activeId === conv.id ? 'bg-gray-100 dark:bg-gray-800' : ''
               }`}
             >
@@ -185,7 +185,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
                   deleteConversation(conv.id);
                   if (activeId === conv.id) navigate('/chat');
                 }}
-                className="text-gray-400 hover:text-red-500 text-xs"
+                className="p-1.5 text-gray-400 hover:text-red-500 active:text-red-600 text-xs shrink-0"
               >
                 ✕
               </button>

@@ -37,7 +37,7 @@ export function MessageBubble({ content, isUser, avatar, color, name }: MessageB
         {name && !isUser && (
           <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">{name}</div>
         )}
-        <div className="prose dark:prose-invert prose-sm max-w-none">
+        <div className="prose dark:prose-invert prose-sm max-w-none break-words">
           {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
         </div>
       </div>

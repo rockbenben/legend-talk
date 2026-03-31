@@ -125,7 +125,7 @@ export function ChatPage() {
             </div>
             {selectedIds.length > 0 && (
               <div className="sticky bottom-0 z-10 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 overflow-x-auto shrink min-w-0">
                     {selectedIds.map((cid) => {
                       const char = presetCharacters.find((c) => c.id === cid);
@@ -135,7 +135,7 @@ export function ChatPage() {
                           key={cid}
                           onClick={() => setSelectedIds((prev) => prev.filter((x) => x !== cid))}
                           title={char.name[lang] || char.name.en}
-                          className="shrink-0 hover:opacity-70 transition-opacity"
+                          className="shrink-0 hover:opacity-70 active:opacity-50 transition-opacity"
                         >
                           <Avatar emoji={char.avatar} color={char.color} size="sm" />
                         </button>
@@ -147,7 +147,7 @@ export function ChatPage() {
                     <button
                       onClick={startRoundtable}
                       disabled={selectedIds.length < 2}
-                      className="px-4 py-1.5 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50"
+                      className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600"
                     >
                       {t('roundtable.start')}
                     </button>
@@ -159,14 +159,14 @@ export function ChatPage() {
                           setLinkCopied(true);
                           setTimeout(() => setLinkCopied(false), 2000);
                         }}
-                        className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
+                        className="hidden sm:block px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
                       >
                         {linkCopied ? t('chat.linkCopied') : t('chat.copyLineupLink')}
                       </button>
                     )}
                     <button
                       onClick={() => setSelectedIds([])}
-                      className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 active:text-gray-800"
                     >
                       ✕
                     </button>

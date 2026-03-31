@@ -78,7 +78,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
-                className={`px-2 py-0.5 text-xs rounded-full ${
+                className={`px-2.5 py-1 text-xs rounded-full ${
                   category === cat
                     ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -94,7 +94,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
             <div
               key={char.id}
               onClick={() => handleSelect(char)}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
             >
               <Avatar emoji={char.avatar} color={char.color} size="sm" />
               <div className="flex-1 min-w-0">

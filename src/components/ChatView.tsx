@@ -299,7 +299,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               {linkCopied ? (
                 <span className="text-xs text-blue-500">{t('chat.linkCopied')}</span>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                   <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                 </svg>
@@ -399,33 +399,33 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                  <div className={`flex gap-1.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pr-11' : 'pl-11'}`}>
+                  <div className={`flex gap-0.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pr-11' : 'pl-11'}`}>
                     <button
                       onClick={() => navigator.clipboard.writeText(msg.content)}
-                      className="text-gray-400 hover:text-blue-500"
+                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title="Copy"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                       </svg>
                     </button>
                     <button
                       onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
-                      className="text-gray-400 hover:text-blue-500"
+                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title="Edit"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                       </svg>
                     </button>
                     <button
                       onClick={() => handleRetryFrom(msg.id)}
-                      className="text-gray-400 hover:text-blue-500"
+                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title={t('chat.regenerate')}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <polyline points="1 4 1 10 7 10" />
                         <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
                       </svg>
@@ -435,10 +435,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
                         const newId = branchConversation(conversationId, msg.id);
                         if (newId) navigate(`/chat/${newId}`);
                       }}
-                      className="text-gray-400 hover:text-blue-500"
+                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title={t('chat.branch')}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <line x1="6" y1="3" x2="6" y2="15" />
                         <circle cx="18" cy="6" r="3" />
                         <circle cx="6" cy="18" r="3" />
@@ -519,14 +519,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
             {isMulti && (
               <button
                 onClick={() => roundtable.addRounds(conversationId, rounds)}
-                className="text-xs px-3 py-1 rounded-full border border-blue-400 dark:border-blue-500 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                className="text-xs px-3 py-2 rounded-full border border-blue-400 dark:border-blue-500 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors"
               >
                 {t('roundtable.continue', { count: rounds })}
               </button>
             )}
             <button
               onClick={handleSummarize}
-              className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
             >
               {t('chat.summarize')}
             </button>
@@ -536,13 +536,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 const convId = createConversation(type, conversation.characters);
                 navigate(`/chat/${convId}`);
               }}
-              className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
             >
               {t('chat.newWithSame')}
             </button>
             <button
               onClick={handleShare}
-              className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
             >
               {shareStatus === 'copied'
                 ? t('chat.copied')
@@ -553,7 +553,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <div className="relative">
               <button
                 onClick={() => setShowExportMenu(!showExportMenu)}
-                className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+                className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
               >
                 {t('chat.export')} ▾
               </button>
@@ -563,13 +563,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   <div className="absolute bottom-full left-0 mb-1 py-1 min-w-[120px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
                     <button
                       onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
-                      className="block w-full text-left px-3 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
                     >
                       Markdown
                     </button>
                     <button
                       onClick={() => { handleExportJSON(); setShowExportMenu(false); }}
-                      className="block w-full text-left px-3 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
                     >
                       JSON
                     </button>

@@ -67,7 +67,7 @@ export function CharacterCard({
             e.stopPropagation();
             onStartChat(character);
           }}
-          className="flex-1 py-1.5 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90"
+          className="flex-1 py-2 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90 active:opacity-80"
         >
           {t('home.startChat')}
         </button>
@@ -77,7 +77,7 @@ export function CharacterCard({
               e.stopPropagation();
               onSelect(character);
             }}
-            className={`w-9 py-1.5 text-sm rounded-lg border transition-colors ${
+            className={`w-10 py-2 text-sm rounded-lg border transition-colors ${
               selected
                 ? 'border-blue-500 bg-blue-500 text-white'
                 : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500'

@@ -64,7 +64,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           <button
             key={cat}
             onClick={() => { setCategory(cat); setLinkCopied(false); }}
-            className={`px-3 py-1 text-sm rounded-full ${
+            className={`px-3 py-1.5 text-sm rounded-full ${
               category === cat
                 ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -81,7 +81,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
               setLinkCopied(true);
               setTimeout(() => setLinkCopied(false), 2000);
             }}
-            className="px-3 py-1 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+            className="px-3 py-1.5 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
             title={t('chat.copyCategoryLink')}
           >
             {linkCopied ? (

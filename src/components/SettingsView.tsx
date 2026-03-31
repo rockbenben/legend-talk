@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter } from '../adapters/registry';
 import { getStorageUsage } from '../utils/storage';
@@ -10,14 +10,103 @@ import { useConversationStore } from '../stores/conversations';
 export function SettingsView() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const settings = useSettingsStore();
   const conversations = useConversationStore((s) => s.conversations);
   const importConversations = useConversationStore((s) => s.importConversations);
   const adapters = getAllAdapters();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [importStatus, setImportStatus] = useState<string | null>(null);
+  const [shareStatus, setShareStatus] = useState<string | null>(null);
 
   const currentAdapter = getAdapter(settings.defaultProvider);
+
+  // AES-GCM encrypt/decrypt via Web Crypto API
+  async function deriveKey(password: string, salt: Uint8Array) {
+    const keyMaterial = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt as BufferSource, iterations: 50000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+  }
+
+  async function encrypt(text: string, password: string): Promise<string> {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const key = await deriveKey(password, salt);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(text)));
+    const buf = new Uint8Array(16 + 12 + ct.length);
+    buf.set(salt); buf.set(iv, 16); buf.set(ct, 28);
+    return btoa(String.fromCharCode(...buf));
+  }
+
+  async function decrypt(encoded: string, password: string): Promise<string> {
+    const buf = Uint8Array.from(atob(encoded), c => c.charCodeAt(0));
+    const key = await deriveKey(password, buf.slice(0, 16));
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.slice(16, 28) }, key, buf.slice(28));
+    return new TextDecoder().decode(plain);
+  }
+
+  function applyConfig(config: Record<string, unknown>) {
+    if (config.defaultProvider) settings.setDefaultProvider(config.defaultProvider as string);
+    if (config.defaultModel) settings.setDefaultModel(config.defaultModel as string);
+    if (config.language) { settings.setLanguage(config.language as string); i18n.changeLanguage(config.language as string); }
+    if (config.theme) settings.setTheme(config.theme as 'light' | 'dark');
+    if (config.corsProxy) settings.setCorsProxy(config.corsProxy as string);
+    if (config.customBaseUrl) settings.setCustomBaseUrl(config.customBaseUrl as string);
+    if (config.thinkingLevel) settings.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
+    if (config.corsEnabled) Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => settings.setCorsEnabled(k, v));
+  }
+
+  // Import settings from URL param
+  const importedRef = useRef(false);
+  useEffect(() => {
+    const configParam = searchParams.get('config');
+    if (!configParam || importedRef.current) return;
+    importedRef.current = true;
+    setSearchParams({}, { replace: true });
+
+    (async () => {
+      try {
+        const parsed = JSON.parse(atob(configParam.replace(/-/g, '+').replace(/_/g, '/')));
+        const { _encrypted, ...config } = parsed;
+        applyConfig(config);
+
+        if (_encrypted) {
+          const password = prompt(t('chat.enterDecryptPassword'));
+          if (password) {
+            const keys = JSON.parse(await decrypt(_encrypted, password));
+            Object.entries(keys).forEach(([k, v]) => settings.setApiKey(k, v as string));
+          }
+        }
+        setShareStatus(t('chat.settingsImported'));
+      } catch {
+        setShareStatus(t('chat.importError'));
+      }
+      setTimeout(() => setShareStatus(null), 5000);
+    })();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleShareSettings = async () => {
+    const config: Record<string, unknown> = {
+      defaultProvider: settings.defaultProvider,
+      defaultModel: settings.defaultModel,
+      language: settings.language,
+      theme: settings.theme,
+      corsProxy: settings.corsProxy,
+      corsEnabled: settings.corsEnabled,
+      customBaseUrl: settings.customBaseUrl,
+      thinkingLevel: settings.thinkingLevel,
+    };
+
+    const password = prompt(t('chat.enterPassword'));
+    if (password) {
+      config._encrypted = await encrypt(JSON.stringify(settings.apiKeys), password);
+    }
+
+    const base64 = btoa(JSON.stringify(config)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const url = `${window.location.origin}${window.location.pathname}#/settings?config=${base64}`;
+    navigator.clipboard.writeText(url);
+    setShareStatus(t('chat.copied'));
+    setTimeout(() => setShareStatus(null), 2000);
+  };
 
   const handleExportAll = () => {
     const data = JSON.stringify(conversations, null, 2);
@@ -250,6 +339,12 @@ export function SettingsView() {
           </button>
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
           <button
+            onClick={handleShareSettings}
+            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            {t('chat.shareSettings')}
+          </button>
+          <button
             onClick={() => {
               if (confirm(t('common.confirm'))) {
                 localStorage.clear();
@@ -261,9 +356,9 @@ export function SettingsView() {
             {t('settings.clearData')}
           </button>
         </div>
-        {importStatus && (
-          <p className={`mt-2 text-sm ${importStatus.includes('✗') || importStatus.includes('failed') || importStatus.includes('失败') ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>
-            {importStatus}
+        {(importStatus || shareStatus) && (
+          <p className="mt-2 text-sm text-green-600 dark:text-green-400">
+            {importStatus || shareStatus}
           </p>
         )}
       </section>

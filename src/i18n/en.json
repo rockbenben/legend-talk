@@ -3,10 +3,11 @@
     "settings": "Settings"
   },
   "home": {
-    "title": "Choose a Thinking Mentor",
+    "title": "Talk to Great Minds",
+    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
     "search": "Search or type any name...",
-    "startChat": "Start Chat",
-    "startRoundtable": "Roundtable",
+    "startChat": "Chat",
+    "randomRoundtable": "Random",
     "categories": {
       "all": "All",
       "philosophy": "Philosophy",
@@ -29,13 +30,11 @@
     "thinking": "Thinking...",
     "newChat": "New Chat",
     "export": "Export",
-    "exportMarkdown": "Export as Markdown",
     "exportJSON": "Export as JSON",
-    "delete": "Delete Conversation",
     "noConversations": "No conversations yet",
     "noMessages": "Try a question below, or type your own",
     "rename": "Rename",
-    "addParticipant": "Add participant",
+    "addParticipant": "Add",
     "untitled": "Untitled",
     "noApiKey": "API Key not configured",
     "goSettings": "Go to Settings",
@@ -43,27 +42,25 @@
     "summarize": "Summarize",
     "summarizing": "Summarizing...",
     "searchConversations": "Search conversations...",
-    "share": "Share",
-    "copied": "Link copied",
+    "share": "Share chat",
+    "copied": "Copied",
     "shareTooLong": "Conversation too long to share via URL",
-    "branch": "New conversation from here",
+    "branch": "Branch from here",
+    "newWithSame": "Restart lineup",
+    "copyLineupLink": "Copy lineup link",
+    "copyCategoryLink": "Copy category link",
+    "linkCopied": "Copied",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "useCorsProxy": "Use public proxy"
   },
   "roundtable": {
-    "title": "Roundtable Discussion",
-    "selectCharacters": "Select 2-5 participants",
     "selected": "{{count}} selected",
     "start": "Start Discussion",
-    "speaking": "{{name}} is speaking...",
-    "minCharacters": "Select at least 2 participants",
-    "maxCharacters": "Maximum 5 participants",
     "rounds": "Rounds",
     "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
     "discussionComplete": "Discussion complete",
     "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove",
-    "minParticipants": "At least 2 participants required"
+    "removeParticipant": "Remove"
   },
   "settings": {
     "title": "Settings",
@@ -87,10 +84,8 @@
     "customModel": "Custom model...",
     "customBaseUrl": "API Base URL",
     "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "clearKeys": "Clear All Keys",
     "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data",
-    "saved": "Saved"
+    "clearData": "Clear All Data"
   },
   "shared": {
     "title": "Shared Conversation",
@@ -99,9 +94,6 @@
   "common": {
     "loading": "Loading...",
     "error": "Error: {{message}}",
-    "retry": "Retry",
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "back": "Back"
+    "confirm": "Confirm"
   }
 }

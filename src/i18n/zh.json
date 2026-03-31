@@ -3,10 +3,11 @@
     "settings": "设置"
   },
   "home": {
-    "title": "选择一位思维导师",
+    "title": "与思想大师对话",
+    "subtitle": "点击「对话」一对一请教，或点击「+」组建圆桌讨论",
     "search": "搜索或输入任意名人...",
     "startChat": "开始对话",
-    "startRoundtable": "圆桌讨论",
+    "randomRoundtable": "随机圆桌",
     "categories": {
       "all": "全部",
       "philosophy": "哲学",
@@ -29,9 +30,7 @@
     "thinking": "思考中...",
     "newChat": "新对话",
     "export": "导出",
-    "exportMarkdown": "导出为 Markdown",
     "exportJSON": "导出为 JSON",
-    "delete": "删除对话",
     "noConversations": "暂无对话",
     "noMessages": "试试下面的问题，或直接输入你的",
     "rename": "重命名",
@@ -43,27 +42,25 @@
     "summarize": "总结对话",
     "summarizing": "正在总结...",
     "searchConversations": "搜索对话...",
-    "share": "分享",
-    "copied": "链接已复制",
+    "share": "分享对话",
+    "copied": "已复制",
     "shareTooLong": "对话过长，无法通过链接分享",
     "branch": "从这里开始新对话",
+    "newWithSame": "同阵容新开",
+    "copyLineupLink": "复制阵容链接",
+    "copyCategoryLink": "复制分类圆桌链接",
+    "linkCopied": "已复制",
     "corsError": "请求被浏览器拦截（CORS），需要配置代理",
     "useCorsProxy": "使用公共代理"
   },
   "roundtable": {
-    "title": "圆桌讨论",
-    "selectCharacters": "选择 2-5 位参与者",
     "selected": "已选 {{count}} 位",
     "start": "开始讨论",
-    "speaking": "{{name}} 正在发言...",
-    "minCharacters": "请至少选择 2 位参与者",
-    "maxCharacters": "最多选择 5 位参与者",
     "rounds": "轮数",
     "roundProgress": "第 {{current}}/{{total}} 轮 — {{name}} 正在发言...",
     "discussionComplete": "本轮讨论结束",
     "continue": "再讨论 {{count}} 轮",
-    "removeParticipant": "移除",
-    "minParticipants": "至少需要 2 位参与者"
+    "removeParticipant": "移除"
   },
   "settings": {
     "title": "设置",
@@ -87,10 +84,8 @@
     "customModel": "自定义模型...",
     "customBaseUrl": "API Base URL",
     "customBaseUrlHint": "填入 OpenAI 兼容 API 的地址，如 https://api.example.com/v1",
-    "clearKeys": "清除所有密钥",
     "storageUsed": "已用空间: {{size}}",
-    "clearData": "清除所有数据",
-    "saved": "已保存"
+    "clearData": "清除所有数据"
   },
   "shared": {
     "title": "共享对话",
@@ -99,9 +94,6 @@
   "common": {
     "loading": "加载中...",
     "error": "出错了: {{message}}",
-    "retry": "重试",
-    "cancel": "取消",
-    "confirm": "确认",
-    "back": "返回"
+    "confirm": "确认"
   }
 }

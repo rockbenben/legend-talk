@@ -8,6 +8,7 @@
     "search": "Search or type any name...",
     "startChat": "Chat",
     "randomRoundtable": "Random",
+    "templates": "Featured",
     "categories": {
       "all": "All",
       "philosophy": "Philosophy",
@@ -28,6 +29,7 @@
     "inputPlaceholder": "Type your question...",
     "send": "Send",
     "thinking": "Thinking...",
+    "stop": "Stop",
     "newChat": "New Chat",
     "export": "Export",
     "exportJSON": "Export as JSON",
@@ -50,6 +52,10 @@
     "copyLineupLink": "Copy lineup link",
     "copyCategoryLink": "Copy category link",
     "linkCopied": "Copied",
+    "storageWarning": "Storage almost full — export and delete old conversations",
+    "importConversations": "Import",
+    "importSuccess": "Imported {{count}} conversations",
+    "importError": "Import failed: invalid file format",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "useCorsProxy": "Use public proxy"
   },

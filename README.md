@@ -34,8 +34,13 @@ Click the **+** button on 2-10 character cards to add them to your lineup. A flo
 
 You can also click **🎲 Random** in the top-right to instantly start a roundtable with 5 random thinkers.
 
+### Featured Templates
+
+The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "Philosophy Debate": Socrates vs Confucius vs Nietzsche vs Buddha vs Marcus Aurelius). One click to start.
+
 ### During a Conversation
 
+- **Stop** — cancel generation mid-stream (preserves content already generated)
 - **Add/remove participants** anytime via the participants bar — turning a 1-on-1 into a roundtable or vice versa
 - **Set rounds** — configure how many rounds the thinkers should debate before pausing
 - **Continue** — add more rounds after a discussion completes
@@ -43,6 +48,7 @@ You can also click **🎲 Random** in the top-right to instantly start a roundta
 - **Summarize** — one-click AI summary extracting core viewpoints and disagreements
 - **Share chat** — generate a shareable URL containing the full conversation
 - **Export** — save as Markdown or JSON
+- **Import** — restore conversations from a previously exported JSON file (in Settings)
 - **Branch** — fork a new conversation from any message, preserving prior context
 
 ### Deep Links
@@ -67,6 +73,10 @@ Force UI language via `?lang=zh` or `?lang=en`.
 - **Free input** — type any name to consult anyone not in the presets
 - **Roundtable discussions** — select 2-10 thinkers via + buttons, then start a multi-round debate
 - **Random roundtable** — one click to start a roundtable with 5 random thinkers
+- **Featured templates** — 6 curated roundtable lineups with genuinely conflicting perspectives
+- **Stop generation** — cancel mid-stream, preserving content already generated
+- **Conversation import** — restore exported conversations from JSON
+- **Storage warning** — alerts when localStorage approaches its limit
 - **Deep links** — share a URL to start a conversation with specific characters or a full category
 - **Flexible participants** — add or remove participants at any time during a conversation
 - **Configurable rounds** — set how many rounds of discussion the thinkers should have before pausing

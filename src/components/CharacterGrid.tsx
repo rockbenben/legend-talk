@@ -10,15 +10,15 @@ interface CharacterGridProps {
   onStartChat: (character: Character) => void;
   onSelect?: (character: Character) => void;
   selectedIds?: string[];
-  selectable?: boolean;
 }
 
 const CATEGORIES = ['all', 'philosophy', 'strategy', 'business', 'psychology', 'science', 'literature', 'art', 'economics', 'politics', 'technology', 'religion', 'education'];
 
-export function CharacterGrid({ onStartChat, onSelect, selectedIds = [], selectable }: CharacterGridProps) {
+export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: CharacterGridProps) {
   const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
+  const [linkCopied, setLinkCopied] = useState(false);
   const favoriteCharacters = useSettingsStore((s) => s.favoriteCharacters);
   const toggleFavorite = useSettingsStore((s) => s.toggleFavorite);
 
@@ -63,7 +63,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [], selecta
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
-            onClick={() => setCategory(cat)}
+            onClick={() => { setCategory(cat); setLinkCopied(false); }}
             className={`px-3 py-1 text-sm rounded-full ${
               category === cat
                 ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
@@ -73,6 +73,30 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [], selecta
             {t(`home.categories.${cat}`)}
           </button>
         ))}
+        {category !== 'all' && (
+          <button
+            onClick={() => {
+              const url = `${window.location.origin}${window.location.pathname}#/chat?category=${category}`;
+              navigator.clipboard.writeText(url);
+              setLinkCopied(true);
+              setTimeout(() => setLinkCopied(false), 2000);
+            }}
+            className="px-3 py-1 text-sm rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+            title={t('chat.copyCategoryLink')}
+          >
+            {linkCopied ? (
+              <span className="text-blue-500">{t('chat.linkCopied')}</span>
+            ) : (
+              <span className="flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                {t('chat.copyCategoryLink')}
+              </span>
+            )}
+          </button>
+        )}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {sorted.map((c) => (
@@ -82,7 +106,6 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [], selecta
             onStartChat={onStartChat}
             onSelect={onSelect}
             selected={selectedIds.includes(c.id)}
-            selectable={selectable}
             isFavorite={favoriteCharacters.includes(c.id)}
             onToggleFavorite={toggleFavorite}
           />

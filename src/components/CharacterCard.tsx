@@ -7,7 +7,6 @@ interface CharacterCardProps {
   onStartChat: (character: Character) => void;
   onSelect?: (character: Character) => void;
   selected?: boolean;
-  selectable?: boolean;
   isFavorite?: boolean;
   onToggleFavorite?: (characterId: string) => void;
 }
@@ -17,7 +16,6 @@ export function CharacterCard({
   onStartChat,
   onSelect,
   selected,
-  selectable,
   isFavorite,
   onToggleFavorite,
 }: CharacterCardProps) {
@@ -32,8 +30,7 @@ export function CharacterCard({
         selected
           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-      } ${selectable ? 'cursor-pointer' : ''}`}
-      onClick={() => selectable && onSelect?.(character)}
+      }`}
     >
       <div className="flex items-center gap-3 mb-3">
         <Avatar emoji={character.avatar} color={character.color} />
@@ -64,17 +61,32 @@ export function CharacterCard({
           </span>
         ))}
       </div>
-      {!selectable && (
+      <div className="flex gap-2">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onStartChat(character);
           }}
-          className="w-full py-1.5 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90"
+          className="flex-1 py-1.5 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90"
         >
           {t('home.startChat')}
         </button>
-      )}
+        {onSelect && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(character);
+            }}
+            className={`w-9 py-1.5 text-sm rounded-lg border transition-colors ${
+              selected
+                ? 'border-blue-500 bg-blue-500 text-white'
+                : 'border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500'
+            }`}
+          >
+            {selected ? '✓' : '+'}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

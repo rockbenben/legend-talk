@@ -27,6 +27,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const renameConversation = useConversationStore((s) => s.renameConversation);
   const updateCharacters = useConversationStore((s) => s.updateCharacters);
   const branchConversation = useConversationStore((s) => s.branchConversation);
+  const createConversation = useConversationStore((s) => s.createConversation);
   const isConfigured = useSettingsStore((s) => {
     if (s.defaultProvider === 'custom') return !!s.customBaseUrl;
     const key = s.apiKeys[s.defaultProvider];
@@ -44,6 +45,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [titleValue, setTitleValue] = useState('');
   const [editingMsgId, setEditingMsgId] = useState<string | null>(null);
   const [editingMsgValue, setEditingMsgValue] = useState('');
+  const [showExportMenu, setShowExportMenu] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -276,12 +279,33 @@ export function ChatView({ conversationId }: ChatViewProps) {
           </div>
         ))}
         {!isGenerating && (
-          <button
-            onClick={() => setShowPicker(true)}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors"
-          >
-            + {t('chat.addParticipant')}
-          </button>
+          <>
+            <button
+              onClick={() => setShowPicker(true)}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors"
+            >
+              + {t('chat.addParticipant')}
+            </button>
+            <button
+              onClick={() => {
+                const url = `${window.location.origin}${window.location.pathname}#/chat?chars=${conversation.characters.join(',')}`;
+                navigator.clipboard.writeText(url);
+                setLinkCopied(true);
+                setTimeout(() => setLinkCopied(false), 2000);
+              }}
+              className="p-1 rounded-full text-gray-400 hover:text-blue-500 transition-colors"
+              title={t('chat.copyLineupLink')}
+            >
+              {linkCopied ? (
+                <span className="text-xs text-blue-500">{t('chat.linkCopied')}</span>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              )}
+            </button>
+          </>
         )}
       </div>
 
@@ -489,7 +513,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
         <div ref={bottomRef} />
       </div>
 
-      <div className="flex items-center gap-2 px-2 sm:px-4 pt-1 overflow-x-auto [&>*]:shrink-0">
+      <div className="flex flex-wrap items-center gap-2 px-2 sm:px-4 pt-1">
         {hasMessages && !isGenerating && !isSummarizing && (
           <>
             {isMulti && (
@@ -507,16 +531,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
               {t('chat.summarize')}
             </button>
             <button
-              onClick={handleExportMarkdown}
+              onClick={() => {
+                const type = conversation.characters.length > 1 ? 'roundtable' : 'single';
+                const convId = createConversation(type, conversation.characters);
+                navigate(`/chat/${convId}`);
+              }}
               className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
             >
-              {t('chat.exportMarkdown')}
-            </button>
-            <button
-              onClick={handleExportJSON}
-              className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
-            >
-              {t('chat.exportJSON')}
+              {t('chat.newWithSame')}
             </button>
             <button
               onClick={handleShare}
@@ -528,6 +550,33 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   ? t('chat.shareTooLong')
                   : t('chat.share')}
             </button>
+            <div className="relative">
+              <button
+                onClick={() => setShowExportMenu(!showExportMenu)}
+                className="text-xs px-3 py-1 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors"
+              >
+                {t('chat.export')} ▾
+              </button>
+              {showExportMenu && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setShowExportMenu(false)} />
+                  <div className="absolute bottom-full left-0 mb-1 py-1 min-w-[120px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
+                    <button
+                      onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
+                      className="block w-full text-left px-3 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    >
+                      Markdown
+                    </button>
+                    <button
+                      onClick={() => { handleExportJSON(); setShowExportMenu(false); }}
+                      className="block w-full text-left px-3 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    >
+                      JSON
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </>
         )}
         {isSummarizing && (

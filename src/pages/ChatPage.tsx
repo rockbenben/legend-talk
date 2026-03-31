@@ -1,18 +1,63 @@
-import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ConversationList } from '../components/ConversationList';
 import { ChatView } from '../components/ChatView';
 import { CharacterGrid } from '../components/CharacterGrid';
+import { Avatar } from '../components/Avatar';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
+import { generateCharacter } from '../characters/generator';
 import type { Character } from '../types';
+
+const MAX_PARTICIPANTS = 10;
 
 export function ChatPage() {
   const { id } = useParams<{ id?: string }>();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language.startsWith('zh') ? 'zh' : 'en';
   const navigate = useNavigate();
   const createConversation = useConversationStore((s) => s.createConversation);
+  const [searchParams] = useSearchParams();
+
+  const charsParam = searchParams.get('chars');
+  const categoryParam = searchParams.get('category');
+
+  useEffect(() => {
+    if (id) return;
+    if (!charsParam && !categoryParam) return;
+
+    let charIds: string[] = [];
+
+    if (charsParam) {
+      const names = charsParam.split(',').map((s) => s.trim()).filter(Boolean);
+      for (const name of names) {
+        if (charIds.length >= MAX_PARTICIPANTS) break;
+        const lower = name.toLowerCase();
+        const found = presetCharacters.find(
+          (p) => p.id === lower || p.name.zh === name || p.name.en.toLowerCase() === lower,
+        );
+        if (found) {
+          if (!charIds.includes(found.id)) charIds.push(found.id);
+        } else {
+          const custom = generateCharacter(name);
+          if (!presetCharacters.find((c) => c.id === custom.id)) presetCharacters.push(custom);
+          if (!charIds.includes(custom.id)) charIds.push(custom.id);
+        }
+      }
+    } else if (categoryParam) {
+      charIds = presetCharacters
+        .filter((c) => c.domain.includes(categoryParam))
+        .map((c) => c.id)
+        .slice(0, MAX_PARTICIPANTS);
+    }
+
+    if (charIds.length === 0) return;
+
+    const type = charIds.length === 1 ? 'single' : 'roundtable';
+    const convId = createConversation(type, charIds);
+    navigate(`/chat/${convId}`, { replace: true });
+  }, [id, charsParam, categoryParam, createConversation, navigate]);
 
   const conversation = useConversationStore((s) =>
     id ? s.conversations.find((c) => c.id === id) : undefined,
@@ -20,8 +65,8 @@ export function ChatPage() {
 
   const validId = id && conversation ? id : undefined;
 
-  const [roundtableMode, setRoundtableMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const handleStartChat = (character: Character) => {
     const exists = presetCharacters.find((c) => c.id === character.id);
@@ -34,7 +79,7 @@ export function ChatPage() {
     setSelectedIds((prev) =>
       prev.includes(character.id)
         ? prev.filter((cid) => cid !== character.id)
-        : prev.length < 5
+        : prev.length < MAX_PARTICIPANTS
           ? [...prev, character.id]
           : prev,
     );
@@ -44,7 +89,6 @@ export function ChatPage() {
     if (selectedIds.length >= 2) {
       const convId = createConversation('roundtable', selectedIds);
       setSelectedIds([]);
-      setRoundtableMode(false);
       navigate(`/chat/${convId}`);
     }
   };
@@ -57,41 +101,79 @@ export function ChatPage() {
           <ChatView conversationId={validId} />
         ) : (
           <div className="h-full overflow-y-auto">
-            <div className="p-4 sm:p-6 max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold mb-2">{t('home.title')}</h2>
-              <div className="flex gap-2 mb-6">
+            <div className="p-4 sm:p-6 max-w-4xl mx-auto pb-24">
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="text-2xl font-bold">{t('home.title')}</h2>
                 <button
-                  onClick={() => { setRoundtableMode(false); setSelectedIds([]); }}
-                  className={`px-3 py-1 text-sm rounded-lg ${!roundtableMode ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800'}`}
+                  onClick={() => {
+                    const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
+                    const charIds = shuffled.slice(0, 5).map((c) => c.id);
+                    const convId = createConversation('roundtable', charIds);
+                    navigate(`/chat/${convId}`);
+                  }}
+                  className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0"
                 >
-                  {t('home.startChat')}
-                </button>
-                <button
-                  onClick={() => setRoundtableMode(true)}
-                  className={`px-3 py-1 text-sm rounded-lg ${roundtableMode ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800'}`}
-                >
-                  {t('home.startRoundtable')}
+                  🎲 {t('home.randomRoundtable')}
                 </button>
               </div>
-              {roundtableMode && (
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-sm text-gray-500">{t('roundtable.selected', { count: selectedIds.length })}</span>
-                  <button
-                    onClick={startRoundtable}
-                    disabled={selectedIds.length < 2}
-                    className="px-4 py-1.5 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50"
-                  >
-                    {t('roundtable.start')}
-                  </button>
-                </div>
-              )}
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
               <CharacterGrid
                 onStartChat={handleStartChat}
                 onSelect={handleSelect}
                 selectedIds={selectedIds}
-                selectable={roundtableMode}
               />
             </div>
+            {selectedIds.length > 0 && (
+              <div className="sticky bottom-0 z-10 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
+                  <div className="flex items-center gap-1 overflow-x-auto shrink min-w-0">
+                    {selectedIds.map((cid) => {
+                      const char = presetCharacters.find((c) => c.id === cid);
+                      if (!char) return null;
+                      return (
+                        <button
+                          key={cid}
+                          onClick={() => setSelectedIds((prev) => prev.filter((x) => x !== cid))}
+                          title={char.name[lang] || char.name.en}
+                          className="shrink-0 hover:opacity-70 transition-opacity"
+                        >
+                          <Avatar emoji={char.avatar} color={char.color} size="sm" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <span className="text-sm text-gray-500 shrink-0">{t('roundtable.selected', { count: selectedIds.length })}</span>
+                  <div className="flex items-center gap-2 ml-auto shrink-0">
+                    <button
+                      onClick={startRoundtable}
+                      disabled={selectedIds.length < 2}
+                      className="px-4 py-1.5 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50"
+                    >
+                      {t('roundtable.start')}
+                    </button>
+                    {selectedIds.length >= 2 && (
+                      <button
+                        onClick={() => {
+                          const url = `${window.location.origin}${window.location.pathname}#/chat?chars=${selectedIds.join(',')}`;
+                          navigator.clipboard.writeText(url);
+                          setLinkCopied(true);
+                          setTimeout(() => setLinkCopied(false), 2000);
+                        }}
+                        className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
+                      >
+                        {linkCopied ? t('chat.linkCopied') : t('chat.copyLineupLink')}
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setSelectedIds([])}
+                      className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

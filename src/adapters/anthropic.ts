@@ -70,6 +70,7 @@ export class AnthropicAdapter implements LLMAdapter {
         }),
         messages,
       }),
+      signal: params.signal,
     });
 
     if (!response.ok) {

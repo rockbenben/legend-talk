@@ -8,6 +8,7 @@ import { Avatar } from '../components/Avatar';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
+import { roundtableTemplates } from '../characters/templates';
 import type { Character } from '../types';
 
 const MAX_PARTICIPANTS = 10;
@@ -101,7 +102,7 @@ export function ChatPage() {
           <ChatView conversationId={validId} />
         ) : (
           <div className="h-full overflow-y-auto">
-            <div className="p-4 sm:p-6 max-w-4xl mx-auto pb-24">
+            <div className="p-4 sm:p-6 max-w-6xl mx-auto pb-24">
               <div className="flex items-center justify-between mb-2">
                 <h2 className="text-2xl font-bold">{t('home.title')}</h2>
                 <button
@@ -117,6 +118,32 @@ export function ChatPage() {
                 </button>
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">{t('home.templates')}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {roundtableTemplates.map((tpl) => (
+                    <button
+                      key={tpl.id}
+                      onClick={() => {
+                        const convId = createConversation('roundtable', tpl.characters);
+                        navigate(`/chat/${convId}`);
+                      }}
+                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-left"
+                    >
+                      <div className="flex -space-x-1 shrink-0">
+                        {tpl.characters.slice(0, 3).map((cid) => {
+                          const char = presetCharacters.find((c) => c.id === cid);
+                          return char ? <Avatar key={cid} emoji={char.avatar} color={char.color} size="sm" /> : null;
+                        })}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-medium truncate">{tpl.name[lang] || tpl.name.en}</div>
+                        <div className="text-xs text-gray-400 truncate">{tpl.description[lang] || tpl.description.en}</div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
               <CharacterGrid
                 onStartChat={handleStartChat}
                 onSelect={handleSelect}
@@ -125,7 +152,7 @@ export function ChatPage() {
             </div>
             {selectedIds.length > 0 && (
               <div className="sticky bottom-0 z-10 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 overflow-x-auto shrink min-w-0">
                     {selectedIds.map((cid) => {
                       const char = presetCharacters.find((c) => c.id === cid);

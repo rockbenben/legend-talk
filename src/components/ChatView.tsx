@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { getLangInstruction, resolveProvider, streamResponse } from '../utils/prompt';
 import { exportAsMarkdown, exportAsJSON, downloadFile } from '../utils/export';
+import { getStorageBytes } from '../utils/storage';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
 import { CharacterPicker } from './CharacterPicker';
@@ -56,6 +57,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const isMulti = conversation.characters.length > 1;
   const { isGenerating, error } = isMulti ? roundtable : singleChat;
+  const stopGenerating = isMulti ? roundtable.stop : singleChat.stop;
 
   const characters = conversation.characters
     .map((id) => presetCharacters.find((c) => c.id === id))
@@ -92,6 +94,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'tooLong'>('idle');
+  // Check once on mount — localStorage quota is 5MB, warn at 4.8MB
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const storageOverLimit = useMemo(() => getStorageBytes() > 4.8 * 1024 * 1024, []);
 
   const handleRetryFrom = (messageId: string) => {
     const conv = useConversationStore.getState().getConversation(conversationId);
@@ -122,6 +127,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
     }
   };
 
+  const summarizeAbortRef = useRef<AbortController | null>(null);
+
   const handleSummarize = async () => {
     const provider = resolveProvider();
     if (!provider) return;
@@ -137,16 +144,18 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
     const summaryPrompt = 'Summarize the following conversation concisely. Extract core viewpoints, key disagreements, and conclusions. Stay neutral and impersonal.' + getLangInstruction(lang);
 
+    const controller = new AbortController();
+    summarizeAbortRef.current = controller;
     setIsSummarizing(true);
     try {
       await streamResponse(conversationId, undefined, [
         { role: 'system', content: summaryPrompt },
         { role: 'user', content: transcript },
-      ], provider);
-    } catch {
-      // streamResponse only creates a message when tokens arrive;
-      // if it failed before that, no cleanup needed
+      ], provider, controller.signal);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
     } finally {
+      summarizeAbortRef.current = null;
       setIsSummarizing(false);
     }
   };
@@ -311,6 +320,17 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-2 sm:px-4 py-4 space-y-4">
+        {storageOverLimit && (
+          <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
+            <span className="text-sm text-orange-700 dark:text-orange-300">{t('chat.storageWarning')}</span>
+            <button
+              onClick={() => navigate('/settings')}
+              className="text-sm font-medium text-orange-700 dark:text-orange-300 hover:underline shrink-0"
+            >
+              {t('chat.goSettings')}
+            </button>
+          </div>
+        )}
         {!isConfigured && (
           <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
             <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
@@ -362,7 +382,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     ) : (
                       <div className="w-8 shrink-0" />
                     )}
-                    <div className="flex-1 max-w-[75%]">
+                    <div className="flex-1 max-w-[90%] sm:max-w-[75%]">
                       <textarea
                         value={editingMsgValue}
                         onChange={(e) => setEditingMsgValue(e.target.value)}
@@ -463,6 +483,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </span>
+            <button onClick={stopGenerating} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </div>
         )}
         {isGenerating && !isMulti && (
@@ -473,6 +494,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </span>
+            <button onClick={stopGenerating} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </div>
         )}
         {error && (() => {
@@ -580,7 +602,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
           </>
         )}
         {isSummarizing && (
-          <span className="text-xs text-gray-400">{t('chat.summarizing')}</span>
+          <span className="text-xs text-gray-400">
+            {t('chat.summarizing')}
+            <button onClick={() => summarizeAbortRef.current?.abort()} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
+          </span>
         )}
       </div>
       <ChatInput onSend={handleSend} disabled={isGenerating || isSummarizing} />

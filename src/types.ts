@@ -22,6 +22,7 @@ export interface ChatParams {
   apiKey: string;
   corsProxy?: string;
   thinkingLevel?: ThinkingLevel;
+  signal?: AbortSignal;
 }
 
 export interface LLMAdapter {

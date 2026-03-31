@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSettingsStore } from '../stores/settings';
@@ -11,13 +12,39 @@ export function SettingsView() {
   const navigate = useNavigate();
   const settings = useSettingsStore();
   const conversations = useConversationStore((s) => s.conversations);
+  const importConversations = useConversationStore((s) => s.importConversations);
   const adapters = getAllAdapters();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [importStatus, setImportStatus] = useState<string | null>(null);
 
   const currentAdapter = getAdapter(settings.defaultProvider);
 
   const handleExportAll = () => {
     const data = JSON.stringify(conversations, null, 2);
     downloadFile(data, 'legend-talk-conversations.json', 'application/json');
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result as string);
+        const arr = Array.isArray(data) ? data : [];
+        const valid = arr.filter((c: unknown) =>
+          c && typeof c === 'object' && 'id' in c && 'messages' in c && Array.isArray((c as { messages: unknown }).messages),
+        );
+        if (valid.length === 0) throw new Error('invalid');
+        const count = importConversations(valid);
+        setImportStatus(t('chat.importSuccess', { count }));
+      } catch {
+        setImportStatus(t('chat.importError'));
+      }
+      setTimeout(() => setImportStatus(null), 3000);
+    };
+    reader.readAsText(file);
+    e.target.value = '';
   };
 
   return (
@@ -177,7 +204,7 @@ export function SettingsView() {
       )}
 
       {/* Language & Theme */}
-      <section className="flex gap-8">
+      <section className="flex flex-col sm:flex-row gap-4 sm:gap-8">
         <div>
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.language')}</h3>
           <select
@@ -208,13 +235,20 @@ export function SettingsView() {
       {/* Data Management */}
       <section>
         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.storageUsed', { size: getStorageUsage() })}</h3>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={handleExportAll}
             className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
             {t('chat.exportJSON')}
           </button>
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            {t('chat.importConversations')}
+          </button>
+          <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
           <button
             onClick={() => {
               if (confirm(t('common.confirm'))) {
@@ -227,6 +261,11 @@ export function SettingsView() {
             {t('settings.clearData')}
           </button>
         </div>
+        {importStatus && (
+          <p className={`mt-2 text-sm ${importStatus.includes('✗') || importStatus.includes('failed') || importStatus.includes('失败') ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>
+            {importStatus}
+          </p>
+        )}
       </section>
     </div>
   );

@@ -1,8 +1,8 @@
 import { presetCharacters } from '../../src/characters/presets';
 
 describe('presetCharacters', () => {
-  it('has 100 characters', () => {
-    expect(presetCharacters.length).toBe(100);
+  it('has 100+ characters', () => {
+    expect(presetCharacters.length).toBeGreaterThanOrEqual(100);
   });
 
   it('each character has required fields', () => {

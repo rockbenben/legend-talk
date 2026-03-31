@@ -55,6 +55,7 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
+      signal: params.signal,
     });
 
     if (!response.ok) {

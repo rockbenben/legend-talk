@@ -1,4 +1,4 @@
-export function getStorageUsage(): string {
+export function getStorageBytes(): number {
   let total = 0;
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -6,8 +6,12 @@ export function getStorageUsage(): string {
       total += key.length + (localStorage.getItem(key)?.length || 0);
     }
   }
-  const kb = total * 2;
-  if (kb < 1024) return `${kb} B`;
-  if (kb < 1024 * 1024) return `${(kb / 1024).toFixed(1)} KB`;
-  return `${(kb / (1024 * 1024)).toFixed(1)} MB`;
+  return total * 2; // UTF-16
+}
+
+export function getStorageUsage(): string {
+  const bytes = getStorageBytes();
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }

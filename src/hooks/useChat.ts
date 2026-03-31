@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { buildSystemPrompt, resolveProvider, streamResponse } from '../utils/prompt';
@@ -7,6 +7,7 @@ import i18n from '../i18n';
 export function useChat() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   function buildMessages(conversationId: string, characterPrompt: string, lang: string) {
     const conv = useConversationStore.getState().getConversation(conversationId)!;
@@ -30,6 +31,8 @@ export function useChat() {
     const provider = resolveProvider();
     if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
 
+    const controller = new AbortController();
+    abortRef.current = controller;
     setIsGenerating(true);
     setError(null);
 
@@ -39,17 +42,24 @@ export function useChat() {
 
     try {
       const messages = buildMessages(conversationId, character.systemPrompt, provider.lang);
-      await streamResponse(conversationId, characterId, messages, provider);
+      await streamResponse(conversationId, characterId, messages, provider, controller.signal);
     } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
     } finally {
+      abortRef.current = null;
       setIsGenerating(false);
     }
+  }
+
+  function stop() {
+    abortRef.current?.abort();
   }
 
   return {
     sendMessage: (conversationId: string, content: string) => generate(conversationId, content),
     regenerate: (conversationId: string) => generate(conversationId),
+    stop,
     isGenerating,
     error,
   };

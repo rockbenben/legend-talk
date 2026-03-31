@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { buildSystemPrompt, resolveProvider, streamResponse, ROUNDTABLE_SUFFIX } from '../utils/prompt';
@@ -10,6 +10,11 @@ export function useRoundtable() {
   const [currentRound, setCurrentRound] = useState<number | null>(null);
   const [totalRounds, setTotalRounds] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  function stop() {
+    abortRef.current?.abort();
+  }
 
   async function sendMessage(conversationId: string, content: string, rounds: number = 3) {
     const provider = resolveProvider();
@@ -18,6 +23,8 @@ export function useRoundtable() {
     const conversation = useConversationStore.getState().getConversation(conversationId);
     if (!conversation) return;
 
+    const controller = new AbortController();
+    abortRef.current = controller;
     setIsGenerating(true);
     setError(null);
     setTotalRounds(rounds);
@@ -35,12 +42,14 @@ export function useRoundtable() {
           if (!character) continue;
 
           const messages = buildRoundtableMessages(character, conversationId, provider.lang);
-          await streamResponse(conversationId, charId, messages, provider);
+          await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
     } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
     } finally {
+      abortRef.current = null;
       setIsGenerating(false);
       setCurrentSpeaker(null);
       setCurrentRound(null);
@@ -58,7 +67,6 @@ export function useRoundtable() {
     const startIdx = chars.indexOf(startCharId);
     if (startIdx === -1) return;
 
-    // Count character messages after the last user message to determine current round position
     let lastUserIdx = -1;
     for (let i = conv.messages.length - 1; i >= 0; i--) {
       if (conv.messages[i].role === 'user') { lastUserIdx = i; break; }
@@ -67,22 +75,22 @@ export function useRoundtable() {
     const completedRounds = Math.floor(charsSoFar / chars.length);
     const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
 
+    const controller = new AbortController();
+    abortRef.current = controller;
     setIsGenerating(true);
     setError(null);
     setTotalRounds(completedRounds + 1 + remainingFullRounds);
 
     try {
-      // Finish current round: from startChar to end
       setCurrentRound(completedRounds + 1);
       for (let i = startIdx; i < chars.length; i++) {
         setCurrentSpeaker(chars[i]);
         const character = presetCharacters.find((c) => c.id === chars[i]);
         if (!character) continue;
         const messages = buildRoundtableMessages(character, conversationId, provider.lang);
-        await streamResponse(conversationId, chars[i], messages, provider);
+        await streamResponse(conversationId, chars[i], messages, provider, controller.signal);
       }
 
-      // Remaining full rounds
       for (let r = 0; r < remainingFullRounds; r++) {
         setCurrentRound(completedRounds + 2 + r);
         const currentConv = useConversationStore.getState().getConversation(conversationId)!;
@@ -91,12 +99,14 @@ export function useRoundtable() {
           const character = presetCharacters.find((c) => c.id === charId);
           if (!character) continue;
           const messages = buildRoundtableMessages(character, conversationId, provider.lang);
-          await streamResponse(conversationId, charId, messages, provider);
+          await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
     } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
     } finally {
+      abortRef.current = null;
       setIsGenerating(false);
       setCurrentSpeaker(null);
       setCurrentRound(null);
@@ -107,6 +117,8 @@ export function useRoundtable() {
     const provider = resolveProvider();
     if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
 
+    const controller = new AbortController();
+    abortRef.current = controller;
     setIsGenerating(true);
     setError(null);
     setTotalRounds(count);
@@ -120,19 +132,21 @@ export function useRoundtable() {
           const character = presetCharacters.find((c) => c.id === charId);
           if (!character) continue;
           const messages = buildRoundtableMessages(character, conversationId, provider.lang);
-          await streamResponse(conversationId, charId, messages, provider);
+          await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
     } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
       setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
     } finally {
+      abortRef.current = null;
       setIsGenerating(false);
       setCurrentSpeaker(null);
       setCurrentRound(null);
     }
   }
 
-  return { sendMessage, continueFrom, addRounds, isGenerating, currentSpeaker, currentRound, totalRounds, error };
+  return { sendMessage, continueFrom, addRounds, stop, isGenerating, currentSpeaker, currentRound, totalRounds, error };
 }
 
 function buildRoundtableMessages(

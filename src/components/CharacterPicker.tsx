@@ -54,15 +54,15 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div
-        className="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md max-h-[70vh] flex flex-col"
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md max-h-[80vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold">{t('chat.addParticipant')}</h3>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
+            <button onClick={onClose} className="p-1.5 text-gray-400 hover:text-gray-600 active:text-gray-800">✕</button>
           </div>
           <input
             type="text"

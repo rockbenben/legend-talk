@@ -52,6 +52,7 @@ export async function streamResponse(
   characterId: string | undefined,
   messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
   provider: NonNullable<ReturnType<typeof resolveProvider>>,
+  signal?: AbortSignal,
 ): Promise<void> {
   const store = useConversationStore.getState();
   const msgId = store.addMessage(conversationId, 'character', '', characterId);
@@ -63,6 +64,7 @@ export async function streamResponse(
     apiKey: provider.apiKey,
     corsProxy: provider.corsProxy,
     thinkingLevel: provider.thinkingLevel !== 'off' ? provider.thinkingLevel : undefined,
+    signal,
   })) {
     accumulated += token;
     useConversationStore.getState().updateMessageContent(conversationId, msgId, accumulated);

@@ -19,6 +19,7 @@ interface ConversationState {
   updateCharacters: (id: string, characters: string[]) => void;
   removeMessagesFrom: (conversationId: string, messageId: string) => void;
   branchConversation: (conversationId: string, fromMessageId: string) => string;
+  importConversations: (conversations: Conversation[]) => number;
 }
 
 export const useConversationStore = create<ConversationState>()(
@@ -148,6 +149,15 @@ export const useConversationStore = create<ConversationState>()(
         };
         set((s) => ({ conversations: [conv, ...s.conversations] }));
         return newId;
+      },
+      importConversations: (imported) => {
+        const existing = get().conversations;
+        const existingIds = new Set(existing.map((c) => c.id));
+        const newConvs = imported.filter((c) => !existingIds.has(c.id));
+        if (newConvs.length > 0) {
+          set({ conversations: [...newConvs, ...existing] });
+        }
+        return newConvs.length;
       },
     }),
     { name: 'legend-talk-conversations' },

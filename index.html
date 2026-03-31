@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Legend Talk</title>
+    <script>
+      try {
+        var d = JSON.parse(localStorage.getItem('legend-talk-settings'));
+        if ((d.state ? d.state.theme : d.theme) === 'dark') document.documentElement.classList.add('dark');
+      } catch(e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -188,13 +188,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
       const origin = window.location.origin + window.location.pathname;
       let url = `${origin}#/shared/${base64}`;
 
-      // Short link: enabled when CORS proxy matches VITE_SHORT_LINK_URL env var
-      const shortLinkUrl = import.meta.env.VITE_SHORT_LINK_URL;
+      // Try short link via CORS proxy (auto-detect, cache capability per proxy)
       const corsProxy = useSettingsStore.getState().corsProxy;
-      if (shortLinkUrl && corsProxy === shortLinkUrl) {
+      const noShortKey = 'legend-talk-no-shorten';
+      const noShortList: string[] = JSON.parse(sessionStorage.getItem(noShortKey) || '[]');
+      if (corsProxy && !noShortList.includes(corsProxy)) {
         const cacheKey = 'legend-talk-short-links';
         const cache: Record<string, string> = JSON.parse(localStorage.getItem(cacheKey) || '{}');
-        // Use first 16 chars of SHA-256 hex as cache key (collision-resistant)
         const hashBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64));
         const hashKey = Array.from(new Uint8Array(hashBuf)).slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
 
@@ -202,14 +202,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
           url = `${origin}#/shared/s:${cache[hashKey]}`;
         } else {
           try {
-            const res = await fetch(`${corsProxy}/shorten`, { method: 'POST', body: base64 });
+            const ac = new AbortController();
+            const timer = setTimeout(() => ac.abort(), 3000);
+            const res = await fetch(`${corsProxy}/shorten`, { method: 'POST', body: base64, signal: ac.signal });
+            clearTimeout(timer);
             if (res.ok) {
               const { id } = await res.json();
               cache[hashKey] = id;
+              // Cap cache at 200 entries
+              const keys = Object.keys(cache);
+              if (keys.length > 200) { for (const k of keys.slice(0, keys.length - 200)) delete cache[k]; }
               localStorage.setItem(cacheKey, JSON.stringify(cache));
               url = `${origin}#/shared/s:${id}`;
+            } else {
+              // Proxy doesn't support short links, skip for this session
+              noShortList.push(corsProxy);
+              sessionStorage.setItem(noShortKey, JSON.stringify(noShortList));
             }
-          } catch { /* shortener unavailable, fall back to long URL */ }
+          } catch {
+            noShortList.push(corsProxy);
+            sessionStorage.setItem(noShortKey, JSON.stringify(noShortList));
+          }
         }
       }
 

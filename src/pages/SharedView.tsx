@@ -28,22 +28,22 @@ export function SharedView() {
   useEffect(() => {
     if (!data) return;
 
-    // s:<id> → fetch from short link service, then decompress
+    // s:<id> → fetch from short link service via CORS proxy
     if (data.startsWith('s:')) {
       const id = data.slice(2);
-      const proxyBase = useSettingsStore.getState().corsProxy || 'https://cors.api2026.workers.dev';
-      fetch(`${proxyBase}/s/${id}`)
+      const proxy = useSettingsStore.getState().corsProxy;
+      fetch(`${proxy}/s/${id}`)
         .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })
         .then((base64) => decompressFromBase64(base64))
         .then((json) => setShared(JSON.parse(json)))
-        .catch(() => setError('Failed to load shared conversation'));
+        .catch(() => setError(t('common.error', { message: '' })));
       return;
     }
 
     // Inline compressed data
     decompressFromBase64(data)
       .then((json) => setShared(JSON.parse(json)))
-      .catch(() => setError('Failed to decode shared conversation'));
+      .catch(() => setError(t('common.error', { message: '' })));
   }, [data]);
 
   if (error) {

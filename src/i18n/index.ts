@@ -14,7 +14,7 @@ i18n
     },
     fallbackLng: 'en',
     detection: {
-      order: ['querystring', 'navigator'],
+      order: ['querystring', 'localStorage', 'navigator'],
       lookupQuerystring: 'lang',
     },
     interpolation: {

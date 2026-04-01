@@ -82,7 +82,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
             <input
               type="text" value={name} onChange={(e) => { setName(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterNamePlaceholder')}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -92,17 +92,17 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
             <input
               type="text" value={era} onChange={(e) => { setEra(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterEraPlaceholder')}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {/* Avatar */}
           <div>
             <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterAvatar')}</label>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2">
               {EMOJIS.map((e) => (
                 <button key={e} onClick={() => { setAvatar(e); setSaved(false); }}
-                  className={`w-9 h-9 rounded-lg text-lg flex items-center justify-center transition-colors ${avatar === e ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+                  className={`w-10 h-10 sm:w-9 sm:h-9 rounded-lg text-lg flex items-center justify-center transition-colors ${avatar === e ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-800'}`}>
                   {e}
                 </button>
               ))}
@@ -115,7 +115,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
             <div className="flex flex-wrap gap-2">
               {COLORS.map((c) => (
                 <button key={c} onClick={() => { setColor(c); setSaved(false); }}
-                  className={`w-7 h-7 rounded-full ${COLOR_CSS[c] || 'bg-gray-400'} transition-shadow ${color === c ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-900' : 'hover:ring-1 hover:ring-gray-300'}`}
+                  className={`w-8 h-8 sm:w-7 sm:h-7 rounded-full ${COLOR_CSS[c] || 'bg-gray-400'} transition-shadow ${color === c ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-900' : 'hover:ring-1 hover:ring-gray-300 active:ring-1 active:ring-gray-400'}`}
                 />
               ))}
             </div>
@@ -133,8 +133,8 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
             <textarea
               value={prompt} onChange={(e) => { setPrompt(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterPromptPlaceholder')}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              rows={5}
+              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              rows={4}
             />
           </div>
         </div>

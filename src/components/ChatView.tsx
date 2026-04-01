@@ -259,7 +259,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <p className="text-gray-400 mb-4">{t('chat.noMessages')}</p>
             <div className="flex flex-wrap justify-center gap-2">
               {(t(`characters.${firstChar.id}.questions`, { returnObjects: true }) as string[]).map((q) => (
-                <button key={q} onClick={() => handleSend(q)} className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+                <button key={q} onClick={() => handleSend(q)} className="px-3 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700">
                   {q}
                 </button>
               ))}

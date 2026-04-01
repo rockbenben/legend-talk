@@ -151,16 +151,16 @@ export function SettingsView() {
   };
 
   // ── Render ──────────────────────────────────────────────────────────────
-  const btnClass = 'px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800';
-  const inputClass = 'w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500';
-  const selectClass = 'w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800';
+  const btnClass = 'px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700';
+  const inputClass = 'w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500';
+  const selectClass = 'w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800';
   const labelClass = 'text-sm font-medium text-gray-600 dark:text-gray-400';
 
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500">
+        <button onClick={() => navigate(-1)} className="p-2 sm:p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 text-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 rtl:-scale-x-100"><polyline points="15 18 9 12 15 6" /></svg>
         </button>
         <h2 className="text-2xl font-bold">{t('settings.title')}</h2>
@@ -238,7 +238,7 @@ export function SettingsView() {
       {/* ② General Preferences */}
       <section>
         <h3 className="text-lg font-semibold mb-3">{t('settings.general')}</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={`${labelClass} mb-1 block`}>{t('settings.language')}</label>
             <select value={i18n.language} onChange={(e) => { const lng = e.target.value; ensureLanguageLoaded(lng).then(() => { i18n.changeLanguage(lng); settings.setLanguage(lng); }); }} className={selectClass}>
@@ -290,7 +290,7 @@ export function SettingsView() {
       {/* ⑥ Danger Zone */}
       <section className="pt-4 border-t border-gray-200 dark:border-gray-700">
         <button onClick={async () => { if (confirm(t('common.confirm'))) { await clearAllStorage(); window.location.reload(); } }}
-          className="px-4 py-2 text-sm rounded-lg text-red-500 border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20">
+          className="px-4 py-2 text-sm rounded-lg text-red-500 border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100 dark:active:bg-red-900/30">
           {t('settings.clearData')}
         </button>
       </section>
@@ -326,7 +326,7 @@ function CustomCharactersSection() {
           {customCharacters.length > 0 && <span className="text-sm font-normal text-gray-400 ms-1">({customCharacters.length})</span>}
         </h3>
         <button onClick={() => { setEditingChar(undefined); setShowEditor(true); }}
-          className="text-xs px-3 py-1.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors">
+          className="text-xs sm:text-sm px-3 py-2 sm:py-1.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 hover:border-blue-400 hover:text-blue-500 active:border-blue-400 active:text-blue-500 transition-colors">
           + {t('chat.createCharacter')}
         </button>
       </div>

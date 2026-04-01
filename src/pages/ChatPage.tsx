@@ -113,7 +113,7 @@ export function ChatPage() {
                     const convId = createConversation('roundtable', charIds);
                     navigate(lp(`/chat/${convId}`));
                   }}
-                  className="px-2.5 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0 whitespace-nowrap"
+                  className="px-2.5 py-2 sm:py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-300 dark:active:bg-gray-600 transition-colors shrink-0 whitespace-nowrap"
                 >
                   🎲 {t('home.randomRoundtable')}
                 </button>
@@ -121,7 +121,7 @@ export function ChatPage() {
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
               <div className="mb-6">
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">{t('home.templates')}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                   {roundtableTemplates.map((tpl) => (
                     <button
                       key={tpl.id}
@@ -129,7 +129,7 @@ export function ChatPage() {
                         const convId = createConversation('roundtable', tpl.characters, t(`templates.${tpl.id}.name`));
                         navigate(lp(`/chat/${convId}`));
                       }}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"
+                      className="flex items-center gap-2 sm:gap-3 px-3 py-3 sm:py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"
                     >
                       <div className="flex -space-x-1 rtl:space-x-reverse shrink-0">
                         {tpl.characters.slice(0, 3).map((cid) => {
@@ -153,7 +153,7 @@ export function ChatPage() {
             </div>
             {selectedIds.length > 0 && (
               <div className="sticky bottom-0 z-10 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1 overflow-x-auto shrink min-w-0">
                     {selectedIds.map((cid) => {
                       const char = presetCharacters.find((c) => c.id === cid);
@@ -175,7 +175,7 @@ export function ChatPage() {
                     <button
                       onClick={startRoundtable}
                       disabled={selectedIds.length < 2}
-                      className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600"
+                      className="px-4 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600"
                     >
                       {t('roundtable.start')}
                     </button>

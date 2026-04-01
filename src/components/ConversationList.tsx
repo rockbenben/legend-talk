@@ -106,7 +106,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
       <div className="p-3 border-b border-gray-200 dark:border-gray-700 flex gap-2">
         <button
           onClick={() => { navigate(lp('/chat')); if (isMobile) setCollapsed(true); }}
-          className="flex-1 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+          className="flex-1 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
         >
           + {t('chat.newChat')}
         </button>
@@ -127,7 +127,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('chat.searchConversations')}
-            className="w-full text-sm px-2 py-1.5 pe-7 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full text-sm px-2 py-2 sm:py-1.5 pe-7 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
           {searchQuery && (
             <button

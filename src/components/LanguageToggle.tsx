@@ -64,7 +64,7 @@ export function LanguageToggle() {
             <button
               key={lng}
               onClick={() => handleSelect(lng)}
-              className={`block w-full text-start px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 ${
+              className={`block w-full text-start px-3 py-2.5 sm:py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 ${
                 i18n.language === lng ? 'text-blue-500 font-medium' : 'text-gray-700 dark:text-gray-300'
               }`}
             >

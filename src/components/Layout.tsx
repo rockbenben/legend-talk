@@ -77,7 +77,7 @@ function NavLinks({ links }: { links: NavLink[] }) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            className="block px-3 py-2 sm:py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
           >
             {link.label}
           </a>
@@ -143,7 +143,7 @@ export function Layout() {
 
   return (
     <div className="flex flex-col h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      <header className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700 shrink-0">
+      <header className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <h1
           className="text-lg font-bold cursor-pointer hover:opacity-80"
           onClick={() => navigate(lang ? `/${lang}/chat` : '/chat')}

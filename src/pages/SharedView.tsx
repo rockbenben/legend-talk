@@ -109,7 +109,7 @@ export function SharedView() {
       <div className="flex justify-center px-4 py-4 border-t border-gray-200 dark:border-gray-700">
         <Link
           to={lp("/chat")}
-          className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 text-sm font-medium"
+          className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 text-sm font-medium"
         >
           {t('shared.startOwn')}
         </Link>

@@ -62,7 +62,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit()}
           placeholder={t('home.search')}
-          className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
       <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
@@ -105,11 +105,11 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
       </div>
       <div className="mb-4">
         <button onClick={() => setShowEditor(true)}
-          className="px-3 py-1.5 text-sm rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors">
+          className="px-3 py-2 sm:py-1.5 text-sm rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:border-blue-400 active:text-blue-500 transition-colors">
           + {t('chat.createCharacter')}
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {sorted.map((c) => (
           <CharacterCard
             key={c.id}

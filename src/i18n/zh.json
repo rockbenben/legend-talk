@@ -108,7 +108,11 @@
     "storageUsed": "已用空间: {{size}}",
     "clearData": "清除所有数据",
     "customCharacters": "自定义角色",
-    "noCustomCharacters": "暂无自定义角色"
+    "noCustomCharacters": "暂无自定义角色",
+    "conversations": "对话记录",
+    "exportAll": "导出全部",
+    "settingsSync": "设置同步",
+    "settingsSyncHint": "生成链接，将设置（含 API 密钥）同步到其他设备"
   },
   "shared": {
     "title": "共享对话",

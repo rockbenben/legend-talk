@@ -108,7 +108,11 @@
     "storageUsed": "Armazenamento: {{size}}",
     "clearData": "Excluir todos os dados",
     "customCharacters": "Personagens personalizados",
-    "noCustomCharacters": "Nenhum ainda"
+    "noCustomCharacters": "Nenhum ainda",
+    "conversations": "Conversas",
+    "exportAll": "Exportar tudo",
+    "settingsSync": "Sincronizar configurações",
+    "settingsSyncHint": "Gerar URL para sincronizar configurações (incluindo chaves API) em outro dispositivo"
   },
   "shared": {
     "title": "Conversa compartilhada",

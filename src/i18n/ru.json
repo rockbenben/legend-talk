@@ -108,7 +108,11 @@
     "storageUsed": "Хранилище: {{size}}",
     "clearData": "Удалить все данные",
     "customCharacters": "Свои персонажи",
-    "noCustomCharacters": "Пока нет"
+    "noCustomCharacters": "Пока нет",
+    "conversations": "Диалоги",
+    "exportAll": "Экспортировать все",
+    "settingsSync": "Синхронизация настроек",
+    "settingsSyncHint": "Сгенерировать URL для синхронизации настроек (включая API-ключи) на другое устройство"
   },
   "shared": {
     "title": "Общий диалог",

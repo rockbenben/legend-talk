@@ -108,7 +108,11 @@
     "storageUsed": "স্টোরেজ: {{size}}",
     "clearData": "সমস্ত ডেটা মুছুন",
     "customCharacters": "কাস্টম চরিত্র",
-    "noCustomCharacters": "এখনও নেই"
+    "noCustomCharacters": "এখনও নেই",
+    "conversations": "কথোপকথন",
+    "exportAll": "সব রপ্তানি",
+    "settingsSync": "সেটিংস সিঙ্ক",
+    "settingsSyncHint": "অন্য ডিভাইসে সেটিংস (API কী সহ) সিঙ্ক করতে URL তৈরি করুন"
   },
   "shared": {
     "title": "শেয়ারকৃত কথোপকথন",

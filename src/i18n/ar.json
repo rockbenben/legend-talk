@@ -108,7 +108,11 @@
     "storageUsed": "التخزين: {{size}}",
     "clearData": "حذف جميع البيانات",
     "customCharacters": "شخصيات مخصصة",
-    "noCustomCharacters": "لا توجد بعد"
+    "noCustomCharacters": "لا توجد بعد",
+    "conversations": "المحادثات",
+    "exportAll": "تصدير الكل",
+    "settingsSync": "مزامنة الإعدادات",
+    "settingsSyncHint": "إنشاء رابط لمزامنة الإعدادات (بما في ذلك مفاتيح API) إلى جهاز آخر"
   },
   "shared": {
     "title": "محادثة مشتركة",

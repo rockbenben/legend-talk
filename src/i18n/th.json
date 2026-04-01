@@ -108,7 +108,11 @@
     "storageUsed": "พื้นที่: {{size}}",
     "clearData": "ลบข้อมูลทั้งหมด",
     "customCharacters": "ตัวละครกำหนดเอง",
-    "noCustomCharacters": "ยังไม่มี"
+    "noCustomCharacters": "ยังไม่มี",
+    "conversations": "การสนทนา",
+    "exportAll": "ส่งออกทั้งหมด",
+    "settingsSync": "ซิงค์การตั้งค่า",
+    "settingsSyncHint": "สร้าง URL เพื่อซิงค์การตั้งค่า (รวมคีย์ API) ไปยังอุปกรณ์อื่น"
   },
   "shared": {
     "title": "การสนทนาที่แชร์",

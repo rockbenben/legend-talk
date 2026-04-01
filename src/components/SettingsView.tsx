@@ -367,46 +367,54 @@ export function SettingsView() {
       {/* Custom Characters */}
       <CustomCharactersSection />
 
-      {/* Data Management */}
+      {/* Conversations */}
       <section>
-        <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.storageUsed', { size: getStorageUsage() })}</h3>
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
-          <button
-            onClick={handleExportAll}
-            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            JSON
+        <h3 className="text-lg font-semibold mb-1">{t('settings.conversations')}</h3>
+        <p className="text-xs text-gray-400 mb-2">{t('settings.storageUsed', { size: getStorageUsage() })}</p>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={handleExportAll}
+            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+            {t('settings.exportAll')}
           </button>
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
+          <button onClick={() => fileInputRef.current?.click()}
+            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
             {t('chat.importConversations')}
           </button>
           <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
-          <button
-            onClick={handleShareSettings}
-            className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            {t('chat.shareSettings')}
-          </button>
-          <button
-            onClick={async () => {
-              if (confirm(t('common.confirm'))) {
-                await clearAllStorage();
-                window.location.reload();
-              }
-            }}
-            className="px-4 py-2 text-sm rounded-lg text-red-500 border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20"
-          >
-            {t('settings.clearData')}
-          </button>
         </div>
-        {(importStatus || shareStatus) && (
-          <p className={`mt-2 text-sm ${(importStatus || shareStatus || '').includes(t('chat.importError')) ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>
-            {importStatus || shareStatus}
+        {importStatus && (
+          <p className={`mt-2 text-sm ${importStatus.includes(t('chat.importError')) ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>
+            {importStatus}
           </p>
         )}
+      </section>
+
+      {/* Settings Sync */}
+      <section>
+        <h3 className="text-lg font-semibold mb-1">{t('settings.settingsSync')}</h3>
+        <p className="text-xs text-gray-400 mb-2">{t('settings.settingsSyncHint')}</p>
+        <button onClick={handleShareSettings}
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+          {t('chat.shareSettings')}
+        </button>
+        {shareStatus && (
+          <p className="mt-2 text-sm text-green-600 dark:text-green-400">{shareStatus}</p>
+        )}
+      </section>
+
+      {/* Danger Zone */}
+      <section>
+        <button
+          onClick={async () => {
+            if (confirm(t('common.confirm'))) {
+              await clearAllStorage();
+              window.location.reload();
+            }
+          }}
+          className="px-4 py-2 text-sm rounded-lg text-red-500 border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20"
+        >
+          {t('settings.clearData')}
+        </button>
       </section>
     </div>
   );

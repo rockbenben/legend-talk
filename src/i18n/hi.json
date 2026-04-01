@@ -108,7 +108,11 @@
     "storageUsed": "संग्रहण: {{size}}",
     "clearData": "सभी डेटा हटाएं",
     "customCharacters": "कस्टम चरित्र",
-    "noCustomCharacters": "अभी कोई नहीं"
+    "noCustomCharacters": "अभी कोई नहीं",
+    "conversations": "बातचीत",
+    "exportAll": "सब निर्यात करें",
+    "settingsSync": "सेटिंग्स सिंक",
+    "settingsSyncHint": "सेटिंग्स (API कुंजियों सहित) को दूसरे डिवाइस पर सिंक करने के लिए URL बनाएं"
   },
   "shared": {
     "title": "साझा बातचीत",

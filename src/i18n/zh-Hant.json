@@ -108,7 +108,11 @@
     "storageUsed": "已用空間: {{size}}",
     "clearData": "清除所有資料",
     "customCharacters": "自訂角色",
-    "noCustomCharacters": "暫無自訂角色"
+    "noCustomCharacters": "暫無自訂角色",
+    "conversations": "對話記錄",
+    "exportAll": "匯出全部",
+    "settingsSync": "設定同步",
+    "settingsSyncHint": "生成連結，將設定（含 API 金鑰）同步到其他裝置"
   },
   "shared": {
     "title": "共享對話",

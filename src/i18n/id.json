@@ -108,7 +108,11 @@
     "storageUsed": "Penyimpanan: {{size}}",
     "clearData": "Hapus semua data",
     "customCharacters": "Karakter Kustom",
-    "noCustomCharacters": "Belum ada"
+    "noCustomCharacters": "Belum ada",
+    "conversations": "Percakapan",
+    "exportAll": "Ekspor semua",
+    "settingsSync": "Sinkronisasi pengaturan",
+    "settingsSyncHint": "Buat URL untuk menyinkronkan pengaturan (termasuk kunci API) ke perangkat lain"
   },
   "shared": {
     "title": "Obrolan bersama",

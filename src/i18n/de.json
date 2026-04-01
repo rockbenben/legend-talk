@@ -108,7 +108,11 @@
     "storageUsed": "Speicher: {{size}}",
     "clearData": "Alle Daten löschen",
     "customCharacters": "Eigene Charaktere",
-    "noCustomCharacters": "Noch keine"
+    "noCustomCharacters": "Noch keine",
+    "conversations": "Gespräche",
+    "exportAll": "Alle exportieren",
+    "settingsSync": "Einstellungen synchronisieren",
+    "settingsSyncHint": "URL generieren, um Einstellungen (inkl. API-Schlüssel) auf ein anderes Gerät zu synchronisieren"
   },
   "shared": {
     "title": "Geteiltes Gespräch",

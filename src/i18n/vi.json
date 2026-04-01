@@ -108,7 +108,11 @@
     "storageUsed": "Bộ nhớ: {{size}}",
     "clearData": "Xóa tất cả dữ liệu",
     "customCharacters": "Nhân vật tùy chỉnh",
-    "noCustomCharacters": "Chưa có"
+    "noCustomCharacters": "Chưa có",
+    "conversations": "Cuộc trò chuyện",
+    "exportAll": "Xuất tất cả",
+    "settingsSync": "Đồng bộ cài đặt",
+    "settingsSyncHint": "Tạo URL để đồng bộ cài đặt (bao gồm khóa API) sang thiết bị khác"
   },
   "shared": {
     "title": "Cuộc trò chuyện được chia sẻ",

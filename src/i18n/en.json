@@ -108,7 +108,11 @@
     "storageUsed": "Storage used: {{size}}",
     "clearData": "Clear All Data",
     "customCharacters": "Custom Characters",
-    "noCustomCharacters": "No custom characters yet"
+    "noCustomCharacters": "No custom characters yet",
+    "conversations": "Conversations",
+    "exportAll": "Export All",
+    "settingsSync": "Settings Sync",
+    "settingsSyncHint": "Generate a URL to sync settings (including API keys) to another device"
   },
   "shared": {
     "title": "Shared Conversation",

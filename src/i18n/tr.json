@@ -108,7 +108,11 @@
     "storageUsed": "Depolama: {{size}}",
     "clearData": "Tüm verileri sil",
     "customCharacters": "Özel karakterler",
-    "noCustomCharacters": "Henüz yok"
+    "noCustomCharacters": "Henüz yok",
+    "conversations": "Konuşmalar",
+    "exportAll": "Tümünü dışa aktar",
+    "settingsSync": "Ayarları senkronize et",
+    "settingsSyncHint": "Ayarları (API anahtarları dahil) başka bir cihaza senkronize etmek için URL oluştur"
   },
   "shared": {
     "title": "Paylaşılan sohbet",

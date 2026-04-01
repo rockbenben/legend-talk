@@ -64,7 +64,9 @@
     "importSuccess": "{{count}} sohbet içe aktarıldı",
     "importError": "İçe aktarma başarısız: geçersiz dosya biçimi",
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
-    "useCorsProxy": "Genel proxy kullan"
+    "useCorsProxy": "Genel proxy kullan",
+    "proscons": "Artı/Eksi",
+    "matrix": "Karar Matrisi"
   },
   "roundtable": {
     "selected": "{{count}} seçili",

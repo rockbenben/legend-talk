@@ -64,7 +64,9 @@
     "importSuccess": "{{count}} conversations importées",
     "importError": "Échec de l'importation : format de fichier invalide",
     "corsError": "Requête bloquée par le navigateur (CORS). Un proxy est nécessaire.",
-    "useCorsProxy": "Utiliser le proxy public"
+    "useCorsProxy": "Utiliser le proxy public",
+    "proscons": "Pour/Contre",
+    "matrix": "Matrice de décision"
   },
   "roundtable": {
     "selected": "{{count}} sélectionnés",

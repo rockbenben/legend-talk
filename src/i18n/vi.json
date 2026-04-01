@@ -64,7 +64,9 @@
     "importSuccess": "Đã nhập {{count}} cuộc trò chuyện",
     "importError": "Nhập thất bại: định dạng tệp không hợp lệ",
     "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
-    "useCorsProxy": "Sử dụng proxy công cộng"
+    "useCorsProxy": "Sử dụng proxy công cộng",
+    "proscons": "Ủng hộ/Phản đối",
+    "matrix": "Ma trận quyết định"
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",

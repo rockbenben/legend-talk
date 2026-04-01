@@ -64,7 +64,9 @@
     "importSuccess": "{{count}} Gespräche importiert",
     "importError": "Import fehlgeschlagen: Ungültiges Dateiformat",
     "corsError": "Anfrage vom Browser blockiert (CORS). Ein Proxy wird benötigt.",
-    "useCorsProxy": "Öffentlichen Proxy verwenden"
+    "useCorsProxy": "Öffentlichen Proxy verwenden",
+    "proscons": "Pro/Kontra",
+    "matrix": "Entscheidungsmatrix"
   },
   "roundtable": {
     "selected": "{{count}} ausgewählt",

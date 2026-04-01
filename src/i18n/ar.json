@@ -64,7 +64,9 @@
     "importSuccess": "تم استيراد {{count}} محادثة",
     "importError": "فشل الاستيراد: صيغة ملف غير صالحة",
     "corsError": "الطلب محظور من المتصفح (CORS). مطلوب وكيل.",
-    "useCorsProxy": "استخدام الوكيل العام"
+    "useCorsProxy": "استخدام الوكيل العام",
+    "proscons": "إيجابيات/سلبيات",
+    "matrix": "مصفوفة القرار"
   },
   "roundtable": {
     "selected": "{{count}} مختار",

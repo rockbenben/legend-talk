@@ -64,7 +64,9 @@
     "importSuccess": "{{count}} conversazioni importate",
     "importError": "Importazione fallita: formato file non valido",
     "corsError": "Richiesta bloccata dal browser (CORS). È necessario un proxy.",
-    "useCorsProxy": "Usa proxy pubblico"
+    "useCorsProxy": "Usa proxy pubblico",
+    "proscons": "Pro/Contro",
+    "matrix": "Matrice decisionale"
   },
   "roundtable": {
     "selected": "{{count}} selezionati",

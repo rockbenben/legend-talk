@@ -64,7 +64,9 @@
     "importSuccess": "{{count}}件の対話をインポートしました",
     "importError": "インポート失敗：ファイル形式が不正です",
     "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
-    "useCorsProxy": "公開プロキシを使用"
+    "useCorsProxy": "公開プロキシを使用",
+    "proscons": "賛否両論",
+    "matrix": "意思決定マトリクス"
   },
   "roundtable": {
     "selected": "{{count}}人選択",

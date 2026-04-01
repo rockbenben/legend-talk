@@ -64,7 +64,9 @@
     "importSuccess": "{{count}}개의 대화를 가져왔습니다",
     "importError": "가져오기 실패: 파일 형식이 잘못되었습니다",
     "corsError": "브라우저에서 차단됨 (CORS). 프록시가 필요합니다",
-    "useCorsProxy": "공개 프록시 사용"
+    "useCorsProxy": "공개 프록시 사용",
+    "proscons": "찬반 분석",
+    "matrix": "의사결정 매트릭스"
   },
   "roundtable": {
     "selected": "{{count}}명 선택",

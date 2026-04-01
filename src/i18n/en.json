@@ -64,7 +64,9 @@
     "importSuccess": "Imported {{count}} conversations",
     "importError": "Import failed: invalid file format",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "useCorsProxy": "Use public proxy",
+    "proscons": "Pro/Con",
+    "matrix": "Decision Matrix"
   },
   "roundtable": {
     "selected": "{{count}} selected",

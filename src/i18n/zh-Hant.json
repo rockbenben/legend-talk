@@ -64,7 +64,9 @@
     "importSuccess": "成功匯入 {{count}} 個對話",
     "importError": "匯入失敗：檔案格式不正確",
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
-    "useCorsProxy": "使用公共中轉"
+    "useCorsProxy": "使用公共中轉",
+    "proscons": "正反論點",
+    "matrix": "決策矩陣"
   },
   "roundtable": {
     "selected": "已選 {{count}} 位",

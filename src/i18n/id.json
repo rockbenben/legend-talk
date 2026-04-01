@@ -64,7 +64,9 @@
     "importSuccess": "{{count}} obrolan diimpor",
     "importError": "Impor gagal: format file tidak valid",
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
-    "useCorsProxy": "Gunakan proxy publik"
+    "useCorsProxy": "Gunakan proxy publik",
+    "proscons": "Pro/Kontra",
+    "matrix": "Matriks Keputusan"
   },
   "roundtable": {
     "selected": "{{count}} dipilih",

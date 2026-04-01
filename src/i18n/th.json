@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "ตั้งค่า",
+    "more": "เพิ่มเติม",
+    "support": "สนับสนุน"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "สนทนากับนักคิดผู้ยิ่งใหญ่",
+    "subtitle": "คลิก \"แชท\" เพื่อปรึกษาแบบ 1 ต่อ 1 หรือ \"+\" เพื่อสร้างโต๊ะกลม",
+    "search": "ค้นหาหรือพิมพ์ชื่อ...",
+    "startChat": "แชท",
+    "randomRoundtable": "สุ่ม",
+    "templates": "แนะนำ",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "ทั้งหมด",
+      "philosophy": "ปรัชญา",
+      "business": "ธุรกิจ",
+      "science": "วิทยาศาสตร์",
+      "technology": "เทคโนโลยี",
+      "strategy": "กลยุทธ์",
+      "psychology": "จิตวิทยา",
+      "literature": "วรรณกรรม",
+      "art": "ศิลปะ",
+      "religion": "ศาสนา",
+      "politics": "การเมือง",
+      "economics": "เศรษฐศาสตร์",
+      "education": "การศึกษา",
+      "finance": "การเงิน",
+      "history": "ประวัติศาสตร์",
+      "sociology": "สังคมวิทยา"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "พิมพ์คำถามของคุณ...",
+    "send": "ส่ง",
+    "thinking": "กำลังคิด...",
+    "stop": "หยุด",
+    "newChat": "การสนทนาใหม่",
+    "export": "ส่งออก",
+    "noConversations": "ยังไม่มีการสนทนา",
+    "noMessages": "ลองคำถามด้านล่าง หรือพิมพ์คำถามของคุณเอง",
+    "rename": "เปลี่ยนชื่อ",
+    "addParticipant": "เพิ่ม",
+    "untitled": "ไม่มีชื่อ",
+    "noApiKey": "ยังไม่ได้ตั้งค่า API Key",
+    "goSettings": "ไปที่การตั้งค่า",
+    "regenerate": "สร้างใหม่",
+    "summarize": "สรุป",
+    "summarizing": "กำลังสรุป...",
+    "searchConversations": "ค้นหาการสนทนา...",
+    "share": "แชร์",
+    "copied": "คัดลอกแล้ว",
+    "shareTooLong": "การสนทนายาวเกินไปที่จะแชร์ผ่าน URL",
+    "branch": "แยกสาขาจากที่นี่",
+    "newWithSame": "เริ่มใหม่กับสมาชิกเดิม",
+    "copyLineupLink": "คัดลอกลิงก์กลุ่ม",
+    "copyCategoryLink": "คัดลอกลิงก์หมวดหมู่",
+    "linkCopied": "คัดลอกแล้ว",
+    "shareSettings": "ซิงค์การตั้งค่า",
+    "settingsImported": "นำเข้าการตั้งค่าแล้ว",
+    "enterPassword": "ตั้งรหัสผ่านเพื่อปกป้อง API key (เว้นว่างเพื่อไม่รวม key)",
+    "enterDecryptPassword": "ใส่รหัสผ่านเพื่อถอดรหัส (เว้นว่างเพื่อข้าม key)",
+    "importConversations": "นำเข้า",
+    "importSuccess": "นำเข้า {{count}} การสนทนาแล้ว",
+    "importError": "นำเข้าล้มเหลว: รูปแบบไฟล์ไม่ถูกต้อง",
+    "corsError": "คำขอถูกบล็อกโดยเบราว์เซอร์ (CORS) ต้องใช้พร็อกซี",
+    "useCorsProxy": "ใช้พร็อกซีสาธารณะ"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "เลือก {{count}} คน",
+    "start": "เริ่มอภิปราย",
+    "rounds": "รอบ",
+    "roundProgress": "รอบ {{current}}/{{total}} — {{name}} กำลังพูด...",
+    "discussionComplete": "อภิปรายเสร็จสิ้น",
+    "continue": "+{{count}} รอบเพิ่มเติม",
+    "removeParticipant": "ลบ"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "ตั้งค่า",
+    "apiKeyPlaceholder": "ใส่ {{provider}} API Key...",
+    "defaultProvider": "ผู้ให้บริการ",
+    "defaultModel": "โมเดล",
+    "language": "ภาษา",
+    "theme": "ธีม",
+    "themeLight": "สว่าง",
+    "themeDark": "มืด",
+    "thinkingLevel": "ระดับการคิด",
+    "thinkingLevelHint": "โมเดลคิดลึกขึ้น แม่นยำกว่าแต่ช้ากว่า",
+    "thinkingOff": "ปิด",
+    "thinkingLow": "ต่ำ",
+    "thinkingMedium": "กลาง",
+    "thinkingHigh": "สูง",
+    "corsProxyHint": "ส่งต่อคำขอผ่านพร็อกซีเพื่อข้ามข้อจำกัด CORS",
+    "customModel": "โมเดลกำหนดเอง...",
+    "customBaseUrlHint": "ใส่ endpoint API ที่เข้ากันได้กับ OpenAI",
+    "storageUsed": "พื้นที่: {{size}}",
+    "clearData": "ลบข้อมูลทั้งหมด"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "การสนทนาที่แชร์",
+    "startOwn": "เริ่มการสนทนาของคุณ"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด: {{message}}",
+    "confirm": "ยืนยัน",
+    "unknown": "ไม่ทราบ"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "โสกราตีส",
+      "era": "กรีกโบราณ",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "ขงจื๊อ",
+      "era": "สมัยชุนชิว",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "อริสโตเติล",
+      "era": "กรีกโบราณ",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "เพลโต",
+      "era": "กรีกโบราณ",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "รู้ว่าต้องทำอะไรแต่ทำไม่ได้",
+        "จะรักษาความสงบในความวุ่นวายได้อย่างไร?",
+        "จะแยกแยะถูกผิดได้อย่างไร?"
       ]
     },
     "sun-tzu": {
-      "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "name": "ซุนวู",
+      "era": "สมัยชุนชิว",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "จะชนะด้วยทรัพยากรน้อยกว่าได้อย่างไร?",
+        "จะหาจุดอ่อนของคู่แข่งได้อย่างไร?",
+        "เมื่อไหร่ควรเผชิญหน้าตรง เมื่อไหร่ควรอ้อม?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "จะเปลี่ยนจุดแข็งของคู่ต่อสู้เป็นจุดอ่อนได้อย่างไร?",
+        "จะสร้างความได้เปรียบด้วยทรัพยากรจำกัดได้อย่างไร?",
+        "จะเอาชนะคู่ต่อสู้ที่แข็งแกร่งกว่าด้วยกลยุทธ์สร้างสรรค์ได้อย่างไร?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "นโปเลียน",
+      "era": "ปฏิวัติฝรั่งเศส",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,14 +246,14 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "จะสร้างความได้เปรียบเมื่อเสียเปรียบได้อย่างไร?",
+        "จะคาดการณ์การเคลื่อนไหวถัดไปของคู่ต่อสู้ได้อย่างไร?",
+        "จะเชื่อมช่องว่างระหว่างอุดมคติกับความเป็นจริงได้อย่างไร?"
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "มาเคียเวลลี",
+      "era": "ยุคฟื้นฟูศิลปวิทยา",
       "questions": [
         "How to protect myself in office politics?",
         "What are the fundamental laws of power?",
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "ฉันถึงจุดแตกหักแล้ว — ฉันควรทำอย่างไร?",
+        "จะฟื้นขวัญกำลังใจทีมเมื่อหมดแรงได้อย่างไร?",
+        "จะตัดสินใจอย่างไรเมื่อเผชิญความไม่แน่นอนมหาศาล?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "ฉันใช้เวลากับสิ่งสำคัญที่สุดหรือยัง?",
+        "จะวัดประสิทธิผลของผู้จัดการอย่างไร?",
+        "องค์กรควรตั้งเป้าหมายอย่างไร?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "จะตัดสินคุณค่าระยะยาวของบริษัทอย่างไร?",
+        "ควรทำอย่างไรเมื่อตลาดตก?",
+        "อะไรทำให้โมเดลธุรกิจยอดเยี่ยม?"
       ]
     },
     "peter-thiel": {
@@ -369,8 +369,8 @@
       ]
     },
     "jobs": {
-      "name": "Steve Jobs",
-      "era": "Contemporary",
+      "name": "สตีฟ จ็อบส์",
+      "era": "ร่วมสมัย",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "ฟรอยด์",
+      "era": "สมัยใหม่",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "จะหยุดสนใจว่าคนอื่นคิดอะไรได้อย่างไร?",
+        "บาดแผลในอดีตยังคงส่งผลกระทบต่อฉันอย่างไร?",
+        "ฉันขาดความกล้าที่จะเปลี่ยนสถานการณ์"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "ไอน์สไตน์",
+      "era": "สมัยใหม่",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "นิวตัน",
+      "era": "อังกฤษสมัยใหม่",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "ดาร์วิน",
+      "era": "อังกฤษสมัยใหม่",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "เชกสเปียร์",
+      "era": "ยุคฟื้นฟูศิลปวิทยา",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "จะเข้าใจแรงจูงใจที่ซับซ้อนของคนรอบข้างอย่างไร?",
+        "ความอิจฉาและความทะเยอทะยานทำลายคนอย่างไร?",
+        "โศกนาฏกรรมสามารถหลีกเลี่ยงได้หรือ?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "ตอลสตอย",
+      "era": "จักรวรรดิรัสเซีย",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "คาฟคา",
+      "era": "ยุโรปสมัยใหม่",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -657,8 +657,8 @@
       ]
     },
     "da-vinci": {
-      "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "name": "เลโอนาร์โด ดา วินชี",
+      "era": "ยุคฟื้นฟูศิลปวิทยา",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "เบโธเฟน",
+      "era": "ยุโรปสมัยใหม่",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "ปิกัสโซ",
+      "era": "สมัยใหม่",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "จะยืนหยัดอย่างไรเมื่อไม่มีการยอมรับ?",
+        "ความเหงาเป็นแหล่งของความสร้างสรรค์หรืออุปสรรค?",
+        "จะไม่ถูกครอบงำโดยการตัดสินจากภายนอกได้อย่างไร?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "มาร์กซ์",
+      "era": "ยุโรปสมัยใหม่",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "ใครได้ประโยชน์จากระบบเศรษฐกิจปัจจุบัน?",
+        "คุณค่าของแรงงานถูกประเมินต่ำอย่างไร?",
+        "ความขัดแย้งภายในของทุนนิยมคืออะไร?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "จะตัดสินได้อย่างไรว่านโยบายเป็นประโยชน์ต่อคนส่วนใหญ่?",
+        "ขอบเขตของเสรีภาพส่วนบุคคลอยู่ที่ไหน?",
+        "ผลประโยชน์ของคนกลุ่มน้อยควรได้รับการปกป้องอย่างไร?"
       ]
     },
     "schumpeter": {
@@ -819,12 +819,12 @@
       ]
     },
     "taleb": {
-      "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "name": "นาสซิม ทาเลบ",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "จะทำให้อาชีพของฉันต้านความเปราะบางได้อย่างไร?",
+        "ทำไมผู้เชี่ยวชาญถึงล้มเหลวในการพยากรณ์อย่างสม่ำเสมอ?",
+        "ฉันกำลังเผชิญกับความเสี่ยงที่ซ่อนอยู่อะไรตอนนี้?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "คานธี",
+      "era": "สมัยใหม่",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "ลินคอล์น",
+      "era": "อเมริกาสมัยใหม่",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "แมนเดลา",
+      "era": "ร่วมสมัย",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "ทัวริง",
+      "era": "สมัยใหม่",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "พระพุทธเจ้า",
+      "era": "อินเดียโบราณ",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "อิบน์ คัลดูน",
+      "era": "โลกอิสลามยุคกลาง",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "ทำไมอารยธรรมจึงต้องเสื่อมถอยอย่างหลีกเลี่ยงไม่ได้?",
+        "อะไรยึดสังคมเข้าด้วยกันและอะไรฉีกมันออก?",
+        "เราอยู่ในช่วงรุ่งเรืองหรือเสื่อมถอย?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "จะจุดประกายแรงจูงใจในการเรียนรู้ภายในของเด็กอย่างไร?",
+        "จะสมดุลเสรีภาพกับกฎในการศึกษาอย่างไร?",
+        "จะสร้างสภาพแวดล้อมการเรียนรู้ในอุดมคติได้อย่างไร?"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "เด็กเข้าใจแนวคิดนี้ได้จริงหรือ?",
+        "จะประเมินขั้นตอนพัฒนาการทางปัญญาของเด็กอย่างไร?",
+        "การเรียนรู้เกิดขึ้นจริงอย่างไร?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "จะบ่มเพาะพัฒนาการแบบองค์รวมของเด็กอย่างไร?",
+        "ศิลปะมีบทบาทอย่างไรต่อการเติบโตทางปัญญา?",
+        "เด็กวัยต่างๆ ต้องการการศึกษาแบบไหน?"
       ]
     },
     "cai-yuanpei": {
@@ -1197,255 +1197,255 @@
       ]
     },
     "benjamin-graham": {
-      "name": "Benjamin Graham",
-      "era": "Modern America",
+      "name": "เบนจามิน เกรแฮม",
+      "era": "อเมริกาสมัยใหม่",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "จะรู้ได้อย่างไรว่าบริษัทถูกตีราคาต่ำเกินไป?",
+        "ส่วนเผื่อความปลอดภัยคืออะไร?",
+        "มิสเตอร์มาร์เก็ตวันนี้บ้าไหม?"
       ]
     },
     "george-soros": {
-      "name": "George Soros",
-      "era": "Contemporary",
+      "name": "จอร์จ โซรอส",
+      "era": "ร่วมสมัย",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "ทฤษฎีการสะท้อนกลับคืออะไร?",
+        "จะระบุฟองสบู่ตลาดได้อย่างไร?",
+        "เมื่อไหร่ควรเดิมพันครั้งใหญ่?"
       ]
     },
     "john-bogle": {
-      "name": "John Bogle",
-      "era": "Contemporary",
+      "name": "จอห์น โบเกิล",
+      "era": "ร่วมสมัย",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "ทำไมกองทุนดัชนีดีกว่าการจัดการแบบแอคทีฟ?",
+        "สิ่งสำคัญที่สุดในการลงทุนคืออะไร?",
+        "จะลงทุนด้วยต้นทุนต่ำสุดได้อย่างไร?"
       ]
     },
     "harry-markowitz": {
-      "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "name": "แฮร์รี มาร์โควิตซ์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "การกระจายความเสี่ยงหมายความว่าอย่างไร?",
+        "จะสร้างพอร์ตโฟลิโอที่เหมาะสมที่สุดได้อย่างไร?",
+        "ความสัมพันธ์ระหว่างความเสี่ยงกับผลตอบแทนคืออะไร?"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "ยูจีน ฟามา",
+      "era": "ร่วมสมัย",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "ตลาดมีประสิทธิภาพจริงหรือ?",
+        "ทำไมผู้จัดการกองทุนส่วนใหญ่เอาชนะตลาดไม่ได้?",
+        "การลงทุนแบบ Factor คืออะไร?"
       ]
     },
     "robert-shiller": {
-      "name": "Robert Shiller",
-      "era": "Contemporary",
+      "name": "โรเบิร์ต ชิลเลอร์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "ตลาดปัจจุบันอยู่ในภาวะฟองสบู่หรือไม่?",
+        "เรื่องเล่ามีผลต่อตลาดอย่างไร?",
+        "อัตราส่วน CAPE บอกเราอะไร?"
       ]
     },
     "jesse-livermore": {
-      "name": "Jesse Livermore",
-      "era": "Modern America",
+      "name": "เจสซี ลิเวอร์มอร์",
+      "era": "อเมริกาสมัยใหม่",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "จะอ่านแนวโน้มตลาดได้อย่างไร?",
+        "เมื่อไหร่ควรตัดขาดทุน?",
+        "ความอดทนสำคัญแค่ไหนในการเทรด?"
       ]
     },
     "john-templeton": {
-      "name": "John Templeton",
-      "era": "Contemporary",
+      "name": "จอห์น เทมเพิลตัน",
+      "era": "ร่วมสมัย",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "เวลาที่ดีที่สุดในการซื้อคือเมื่อไหร่?",
+        "จะรักษาความสงบในช่วงตื่นตระหนกได้อย่างไร?",
+        "ข้อดีของการลงทุนระดับโลกคืออะไร?"
       ]
     },
     "philip-fisher": {
-      "name": "Philip Fisher",
-      "era": "Modern America",
+      "name": "ฟิลิป ฟิชเชอร์",
+      "era": "อเมริกาสมัยใหม่",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "จะหาบริษัทที่ควรถือยาวได้อย่างไร?",
+        "วิธี \"Scuttlebutt\" คืออะไร?",
+        "คุณภาพหรือราคาสำคัญกว่ากัน?"
       ]
     },
     "howard-marks": {
-      "name": "Howard Marks",
-      "era": "Contemporary",
+      "name": "โฮเวิร์ด มาร์กส์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "การคิดระดับที่สองคืออะไร?",
+        "ตอนนี้เราอยู่จุดไหนของวัฏจักร?",
+        "จะหลีกเลี่ยงจิตวิทยาฝูงชนได้อย่างไร?"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "ธูซิดิดีส",
+      "era": "กรีกโบราณ",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "การเปลี่ยนผ่านอำนาจระหว่างมหาอำนาจจะนำไปสู่ความขัดแย้งอย่างหลีกเลี่ยงไม่ได้หรือ?",
+        "ความกลัวผลักดันชาติเข้าสู่สงครามอย่างไร?",
+        "ความเป็นกลางสามารถอยู่รอดระหว่างสองมหาอำนาจได้หรือ?"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "ซือหม่าเชียน",
+      "era": "ราชวงศ์ฮั่น",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "รูปแบบการรุ่งเรืองและล่มสลายใดที่ซ้ำรอยในประวัติศาสตร์?",
+        "จะตัดสินบุคคลในประวัติศาสตร์อย่างยุติธรรมได้อย่างไร?",
+        "ความผิดพลาดในอดีตสอนอะไรเราในปัจจุบัน?"
       ]
     },
     "toynbee": {
-      "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "name": "อาร์โนลด์ ทอยน์บี",
+      "era": "ยุคสมัยใหม่",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "อารยธรรมของเรากำลังล้มเหลวในการตอบรับความท้าทายใด?",
+        "ชนกลุ่มน้อยที่สร้างสรรค์ขับเคลื่อนการเปลี่ยนแปลงอย่างไร?",
+        "อารยธรรมที่เสื่อมถอยสามารถพลิกกลับได้หรือ?"
       ]
     },
     "spengler": {
-      "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "name": "ออสวัลด์ ชเปงเลอร์",
+      "era": "ยุคสมัยใหม่",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "อารยธรรมตะวันตกอยู่ในระยะสุดท้ายหรือไม่?",
+        "เทคโนโลยีสามารถชะลอการเสื่อมของอารยธรรมได้หรือ?",
+        "\"ฤดูหนาว\" ทางวัฒนธรรมมีหน้าตาอย่างไรในชีวิตประจำวัน?"
       ]
     },
     "braudel": {
-      "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "name": "แฟร์น็อง โบรเดล",
+      "era": "ร่วมสมัย",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "โครงสร้างลึกใดที่หล่อหลอมยุคสมัยของเรา?",
+        "ภูมิศาสตร์ยังคงกำหนดชะตากรรมทางเศรษฐกิจอยู่หรือ?",
+        "การเปลี่ยนแปลงช้าๆ ใดจะกำหนดศตวรรษหน้า?"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "เรย์ หวง",
+      "era": "ร่วมสมัย",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "ทำไมการปฏิรูปที่มีเจตนาดีมักล้มเหลว?",
+        "ระบบอยู่รอดเหนือผู้พยายามเปลี่ยนแปลงมันได้อย่างไร?",
+        "ข้อจำกัดเชิงโครงสร้างใดที่จำกัดการเปลี่ยนแปลง?"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "ทาซิทัส",
+      "era": "จักรวรรดิโรมัน",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "อำนาจทำลายสถาบันจากภายในอย่างไร?",
+        "สัญญาณแรกของสาธารณรัฐที่กำลังตายคืออะไร?",
+        "ผู้คนโน้มน้าวตัวเองให้ยอมรับทรราชย์ได้อย่างไร?"
       ]
     },
     "tocqueville": {
-      "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "name": "ต็อกเกอวิลล์",
+      "era": "ยุโรปสมัยใหม่ตอนต้น",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "การกดขี่ของเสียงข้างมากเป็นอันตรายจริงในวันนี้หรือ?",
+        "ความเท่าเทียมคุกคามเสรีภาพอย่างขัดแย้งได้อย่างไร?",
+        "อะไรที่ทำให้ประชาธิปไตยยังคงสุขภาพดี?"
       ]
     },
     "gibbon": {
-      "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "name": "เอ็ดเวิร์ด กิบบอน",
+      "era": "ยุโรปสมัยใหม่ตอนต้น",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "จุดอ่อนภายในใดที่คุกคามสถาบันของเรา?",
+        "การขยายตัวมากเกินไปนำไปสู่การล่มสลายอย่างไร?",
+        "การเติบโตกลายเป็นเมล็ดพันธุ์ของความเสื่อมเมื่อไหร่?"
       ]
     },
     "weber": {
-      "name": "Max Weber",
-      "era": "Modern Era",
+      "name": "แม็กซ์ เวเบอร์",
+      "era": "ยุคสมัยใหม่",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "เราติดอยู่ในกรงเหล็กของระบบราชการหรือไม่?",
+        "การทำให้เป็นเหตุผลทำลายความหมายอย่างไร?",
+        "อะไรทำให้ผู้นำมีเสน่ห์อย่างแท้จริง?"
       ]
     },
     "durkheim": {
-      "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "name": "เอมีล เดอร์ไคม์",
+      "era": "ยุคสมัยใหม่",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "ทำไมชีวิตสมัยใหม่ถึงรู้สึกแปลกแยกมาก?",
+        "อะไรยึดสังคมเมื่อประเพณีเลือนหาย?",
+        "การแบ่งงานสร้างทั้งความสามัคคีและความเหงาอย่างไร?"
       ]
     },
     "bourdieu": {
-      "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "name": "ปิแอร์ บูร์ดิเยอ",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "ข้อได้เปรียบที่มองไม่เห็นสะสมข้ามรุ่นอย่างไร?",
+        "การศึกษาสร้างความเท่าเทียมหรือจำลองความไม่เท่าเทียม?",
+        "รสนิยมของฉันเปิดเผยตำแหน่งทางชนชั้นอย่างไร?"
       ]
     },
     "foucault": {
-      "name": "Michel Foucault",
-      "era": "Contemporary",
+      "name": "มิเชล ฟูโกต์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "อำนาจทำงานอย่างมองไม่เห็นในชีวิตประจำวันอย่างไร?",
+        "ใครเป็นคนกำหนดว่าอะไร \"ปกติ\"?",
+        "สถาบันฝึกวินัยเราโดยไม่ใช้กำลังได้อย่างไร?"
       ]
     },
     "beauvoir": {
-      "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "name": "ซีโมน เดอ โบวัวร์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "อัตลักษณ์ของฉันถูกสร้างขึ้นทางสังคมมากแค่ไหน?",
+        "การใช้ชีวิตอย่างแท้จริงหมายความว่าอย่างไร?",
+        "พลวัตของอำนาจหล่อหลอมความสัมพันธ์ใกล้ชิดอย่างไร?"
       ]
     },
     "mcluhan": {
-      "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "name": "มาร์แชลล์ แมคลูฮาน",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "โซเชียลมีเดียเปลี่ยนสมองเราอย่างไร?",
+        "สื่อสำคัญกว่าข้อความจริงหรือ?",
+        "AI ทำอะไรกับรูปแบบความคิดของมนุษย์?"
       ]
     },
     "arendt": {
-      "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "name": "ฮันนาห์ อาเรนท์",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "คนธรรมดาทำเรื่องเลวร้ายได้อย่างไร?",
+        "อะไรทำลายพื้นที่สำหรับวาทกรรมทางการเมืองที่แท้จริง?",
+        "จะต้านทานแรงกดดันให้หยุดคิดด้วยตัวเองได้อย่างไร?"
       ]
     },
     "bauman": {
-      "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "name": "ซิกมุนต์ เบาแมน",
+      "era": "ร่วมสมัย",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "ทำไมทุกอย่างรู้สึกชั่วคราวและไม่แน่นอน?",
+        "จะสร้างสายสัมพันธ์ที่ยืนยาวในโลกที่ใช้แล้วทิ้งได้อย่างไร?",
+        "เสรีภาพของเราทำให้เราวิตกกังวลมากขึ้นจริงหรือ?"
       ]
     },
     "goffman": {
-      "name": "Erving Goffman",
-      "era": "Contemporary",
+      "name": "เออร์วิง กอฟแมน",
+      "era": "ร่วมสมัย",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "ชีวิตทางสังคมของฉันเป็นการแสดงมากแค่ไหน?",
+        "เมื่อ \"หน้ากาก\" ของเราหลุดจะเกิดอะไรขึ้น?",
+        "ทำไมเราถึงทำตามกฎทางสังคมที่ไม่ได้เขียนไว้?"
       ]
     }
   },

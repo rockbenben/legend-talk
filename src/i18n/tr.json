@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "Ayarlar",
+    "more": "Daha Fazla",
+    "support": "Destek"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "Büyük Düşünürlerle Konuşun",
+    "subtitle": "1'e 1 danışmanlık için \"Sohbet\"e, yuvarlak masa için \"+\"ya tıklayın",
+    "search": "İsim ara veya yaz...",
+    "startChat": "Sohbet",
+    "randomRoundtable": "Rastgele",
+    "templates": "Önerilen",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "Tümü",
+      "philosophy": "Felsefe",
+      "business": "İş",
+      "science": "Bilim",
+      "technology": "Teknoloji",
+      "strategy": "Strateji",
+      "psychology": "Psikoloji",
+      "literature": "Edebiyat",
+      "art": "Sanat",
+      "religion": "Din",
+      "politics": "Siyaset",
+      "economics": "Ekonomi",
+      "education": "Eğitim",
+      "finance": "Finans",
+      "history": "Tarih",
+      "sociology": "Sosyoloji"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "Sorunuzu yazın...",
+    "send": "Gönder",
+    "thinking": "Düşünüyor...",
+    "stop": "Durdur",
+    "newChat": "Yeni sohbet",
+    "export": "Dışa aktar",
+    "noConversations": "Henüz sohbet yok",
+    "noMessages": "Aşağıdaki bir soruyu deneyin veya kendi sorunuzu yazın",
+    "rename": "Yeniden adlandır",
+    "addParticipant": "Ekle",
+    "untitled": "Başlıksız",
+    "noApiKey": "API anahtarı yapılandırılmamış",
+    "goSettings": "Ayarlara git",
+    "regenerate": "Yeniden oluştur",
+    "summarize": "Özetle",
+    "summarizing": "Özetleniyor...",
+    "searchConversations": "Sohbetleri ara...",
+    "share": "Paylaş",
+    "copied": "Kopyalandı",
+    "shareTooLong": "Sohbet URL ile paylaşılamayacak kadar uzun",
+    "branch": "Buradan dallan",
+    "newWithSame": "Aynılarıyla yeniden başla",
+    "copyLineupLink": "Grup bağlantısını kopyala",
+    "copyCategoryLink": "Kategori bağlantısını kopyala",
+    "linkCopied": "Kopyalandı",
+    "shareSettings": "Ayarları senkronize et",
+    "settingsImported": "Ayarlar içe aktarıldı",
+    "enterPassword": "API anahtarlarını korumak için şifre belirleyin (boş bırakarak hariç tutun)",
+    "enterDecryptPassword": "Şifre çözmek için şifre girin (boş bırakarak atlayın)",
+    "importConversations": "İçe aktar",
+    "importSuccess": "{{count}} sohbet içe aktarıldı",
+    "importError": "İçe aktarma başarısız: geçersiz dosya biçimi",
+    "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
+    "useCorsProxy": "Genel proxy kullan"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} seçili",
+    "start": "Tartışmayı başlat",
+    "rounds": "Tur",
+    "roundProgress": "Tur {{current}}/{{total}} — {{name}} konuşuyor...",
+    "discussionComplete": "Tartışma tamamlandı",
+    "continue": "+{{count}} tur daha",
+    "removeParticipant": "Kaldır"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "Ayarlar",
+    "apiKeyPlaceholder": "{{provider}} API anahtarını girin...",
+    "defaultProvider": "Sağlayıcı",
+    "defaultModel": "Model",
+    "language": "Dil",
+    "theme": "Tema",
+    "themeLight": "Açık",
+    "themeDark": "Koyu",
+    "thinkingLevel": "Düşünme seviyesi",
+    "thinkingLevelHint": "Model yanıtlamadan önce daha derin düşünür. Daha doğru ama daha yavaş.",
+    "thinkingOff": "Kapalı",
+    "thinkingLow": "Düşük",
+    "thinkingMedium": "Orta",
+    "thinkingHigh": "Yüksek",
+    "corsProxyHint": "İstekleri CORS kısıtlamalarını aşmak için proxy üzerinden yönlendirir",
+    "customModel": "Özel model...",
+    "customBaseUrlHint": "OpenAI uyumlu API uç noktasını girin",
+    "storageUsed": "Depolama: {{size}}",
+    "clearData": "Tüm verileri sil"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "Paylaşılan sohbet",
+    "startOwn": "Kendi sohbetinizi başlatın"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "Yükleniyor...",
+    "error": "Hata: {{message}}",
+    "confirm": "Onayla",
+    "unknown": "Bilinmeyen"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "Sokrates",
+      "era": "Antik Yunan",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "Konfüçyüs",
+      "era": "İlkbahar ve Sonbahar",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "Aristoteles",
+      "era": "Antik Yunan",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "Platon",
+      "era": "Antik Yunan",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "Ne yapmam gerektiğini biliyorum ama yapamıyorum",
+        "Kaos içinde nasıl sakin kalınır?",
+        "Doğruyu yanlıştan nasıl ayırt ederim?"
       ]
     },
     "sun-tzu": {
       "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "era": "İlkbahar ve Sonbahar",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "Daha az kaynakla nasıl kazanılır?",
+        "Rakibin zayıflıkları nasıl bulunur?",
+        "Ne zaman doğrudan yüzleşmeli, ne zaman kuşatmalı?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "Rakibin güçlü yönünü zayıflığa nasıl dönüştürürsünüz?",
+        "Sınırlı kaynaklarla nasıl avantaj yaratılır?",
+        "Yaratıcı taktiklerle daha güçlü rakip nasıl yenilir?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "Napolyon",
+      "era": "Fransız Devrimi",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,14 +246,14 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "Dezavantajlıyken nasıl avantaj oluşturulur?",
+        "Rakibin sonraki hamlesi nasıl öngörülür?",
+        "İdeal ile gerçeklik arasındaki uçurum nasıl kapatılır?"
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "Machiavelli",
+      "era": "Rönesans",
       "questions": [
         "How to protect myself in office politics?",
         "What are the fundamental laws of power?",
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "Sınırlarımdayım — ne yapmalıyım?",
+        "Takım moralini nasıl yükseltirim?",
+        "Büyük belirsizlikle karşı karşıyayken nasıl karar veririm?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "Zamanımı en önemli şeye mi harcıyorum?",
+        "Bir yöneticinin etkinliği nasıl ölçülür?",
+        "Bir organizasyon hedefleri nasıl belirlemeli?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "Bir şirketin uzun vadeli değeri nasıl değerlendirilir?",
+        "Piyasalar düştüğünde ne yapmalı?",
+        "Harika bir iş modelini ne oluşturur?"
       ]
     },
     "peter-thiel": {
@@ -370,7 +370,7 @@
     },
     "jobs": {
       "name": "Steve Jobs",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "Freud",
+      "era": "Modern",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "Başkalarının ne düşündüğünü önemsemeyi nasıl bırakırım?",
+        "Geçmiş travmalar beni nasıl etkilemeye devam ediyor?",
+        "Durumumu değiştirme cesaretim yok"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "Einstein",
+      "era": "Modern",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "Newton",
+      "era": "Modern İngiltere",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -495,8 +495,8 @@
       ]
     },
     "galileo": {
-      "name": "Galileo Galilei",
-      "era": "Early Modern Europe",
+      "name": "Galileo",
+      "era": "Rönesans",
       "questions": [
         "Is my judgment backed by real evidence?",
         "How to challenge industry conventional wisdom?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "Darwin",
+      "era": "Modern İngiltere",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "Shakespeare",
+      "era": "Rönesans",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "İnsanların karmaşık motivasyonlarını nasıl anlarız?",
+        "Kıskançlık ve hırs bir insanı nasıl yok eder?",
+        "Trajedi önlenebilir mi?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "Tolstoy",
+      "era": "Rus İmparatorluğu",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "Kafka",
+      "era": "Modern Avrupa",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -658,7 +658,7 @@
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "era": "Rönesans",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "Beethoven",
+      "era": "Modern Avrupa",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "Picasso",
+      "era": "Modern",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "Tanınmadan nasıl devam edilir?",
+        "Yalnızlık yaratıcılığın kaynağı mı engeli mi?",
+        "Dış yargılardan nasıl etkilenmezsiniz?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "Marx",
+      "era": "Modern Avrupa",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "Mevcut ekonomik sistemden kim yararlanıyor?",
+        "İşçilerin değeri nasıl küçümseniyor?",
+        "Kapitalizmin iç çelişkileri nelerdir?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "Bir politikanın çoğunluğa fayda sağlayıp sağlamadığı nasıl belirlenir?",
+        "Bireysel özgürlüğün sınırı nerede?",
+        "Azınlıkların çıkarları nasıl korunmalı?"
       ]
     },
     "schumpeter": {
@@ -820,11 +820,11 @@
     },
     "taleb": {
       "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "Kariyerimi nasıl antifrajil yaparım?",
+        "Uzmanlar neden sürekli tahmin etmekte başarısız oluyor?",
+        "Şu anda hangi gizli risklere maruz kalıyorum?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "Gandhi",
+      "era": "Modern",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "Lincoln",
+      "era": "Modern Amerika",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "Mandela",
+      "era": "Çağdaş",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "Turing",
+      "era": "Modern",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "Buda",
+      "era": "Antik Hindistan",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1044,8 +1044,8 @@
       ]
     },
     "rumi": {
-      "name": "Rumi",
-      "era": "Medieval Period",
+      "name": "Mevlana",
+      "era": "Ortaçağ Persya",
       "questions": [
         "How to feel connected even in loneliness?",
         "Can love transcend all boundaries?",
@@ -1062,8 +1062,8 @@
       ]
     },
     "al-ghazali": {
-      "name": "Al-Ghazali",
-      "era": "Medieval Period",
+      "name": "Gazali",
+      "era": "Ortaçağ İslam",
       "questions": [
         "Where are the limits of reason?",
         "How to find certainty through doubt?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "İbn Haldun",
+      "era": "Ortaçağ İslam Dünyası",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "Medeniyetler neden kaçınılmaz olarak çöker?",
+        "Bir toplumu bir arada tutan ve bölen nedir?",
+        "Yükseliş döneminde miyiz yoksa çöküş döneminde mi?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "Çocuğun iç öğrenme motivasyonu nasıl uyandırılır?",
+        "Eğitimde özgürlük ve kurallar nasıl dengelenir?",
+        "İdeal öğrenme ortamı nasıl oluşturulur?"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "Bir çocuk bu kavramı gerçekten anlayabilir mi?",
+        "Çocuğun bilişsel gelişim aşaması nasıl değerlendirilir?",
+        "Öğrenme gerçekte nasıl gerçekleşir?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "Çocuğun bütüncül gelişimi nasıl desteklenir?",
+        "Sanat entelektüel gelişimde nasıl bir rol oynar?",
+        "Farklı yaştaki çocuklar nasıl bir eğitime ihtiyaç duyar?"
       ]
     },
     "cai-yuanpei": {
@@ -1198,254 +1198,254 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern America",
+      "era": "Modern Amerika",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "Bir şirketin değerinin altında olduğunu nasıl anlarım?",
+        "Güvenlik marjı nedir?",
+        "Bay Piyasa bugün akılcı mı?"
       ]
     },
     "george-soros": {
       "name": "George Soros",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "Refleksivite teorisi nedir?",
+        "Piyasa balonu nasıl tespit edilir?",
+        "Ne zaman büyük bahis yapmalı?"
       ]
     },
     "john-bogle": {
       "name": "John Bogle",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "Endeks fonları neden aktif yönetimden daha iyidir?",
+        "Yatırımda en önemli şey nedir?",
+        "En düşük maliyetle nasıl yatırım yapılır?"
       ]
     },
     "harry-markowitz": {
       "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "Çeşitlendirme gerçekte ne anlama gelir?",
+        "Optimal portföy nasıl oluşturulur?",
+        "Risk ve getiri arasındaki ilişki nedir?"
       ]
     },
     "eugene-fama": {
       "name": "Eugene Fama",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "Piyasa gerçekten etkin mi?",
+        "Neden çoğu fon yöneticisi piyasayı yenemez?",
+        "Faktör yatırımı nedir?"
       ]
     },
     "robert-shiller": {
       "name": "Robert Shiller",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "Mevcut piyasa balonda mı?",
+        "Anlatılar piyasaları nasıl yönlendirir?",
+        "CAPE oranı bize ne söylüyor?"
       ]
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern America",
+      "era": "Modern Amerika",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "Piyasa trendleri nasıl okunur?",
+        "Kayıpları ne zaman kesmelisiniz?",
+        "Ticarette sabır ne kadar önemli?"
       ]
     },
     "john-templeton": {
       "name": "John Templeton",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "Satın almak için en iyi zaman ne zaman?",
+        "Panik sırasında nasıl sakin kalınır?",
+        "Küresel yatırımın avantajları nelerdir?"
       ]
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern America",
+      "era": "Modern Amerika",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "Uzun vadeli tutmaya değer şirketleri nasıl bulursunuz?",
+        "\"Dedikodu\" yöntemi nedir?",
+        "Kalite mi fiyat mı daha önemli?"
       ]
     },
     "howard-marks": {
       "name": "Howard Marks",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "İkinci seviye düşünme nedir?",
+        "Şu anda döngünün neresindeyiz?",
+        "Sürü zihniyetinden nasıl kaçınılır?"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "Tukidides",
+      "era": "Antik Yunanistan",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "Güç geçişi kaçınılmaz olarak çatışmaya mı yol açar?",
+        "Korku ulusları nasıl savaşa sürükler?",
+        "İki süper güç arasında tarafsızlık sürdürülebilir mi?"
       ]
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "era": "Han Hanedanı",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "Tarihte hangi yükseliş ve düşüş kalıpları tekrarlanır?",
+        "Tarihi figürleri nasıl adil değerlendirebiliriz?",
+        "Antik hatalar bugün bize ne öğretir?"
       ]
     },
     "toynbee": {
       "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "Medeniyetimiz hangi zorluğa yanıt veremiyor?",
+        "Yaratıcı azınlıklar değişimi nasıl yönlendirir?",
+        "Çöken bir medeniyet rotasını tersine çevirebilir mi?"
       ]
     },
     "spengler": {
       "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "Batı medeniyeti son aşamasında mı?",
+        "Teknoloji medeniyet çöküşünü geciktirebilir mi?",
+        "Kültürel \"kış\" günlük hayatta nasıl görünür?"
       ]
     },
     "braudel": {
       "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "Çağımızı şekillendiren derin yapılar nelerdir?",
+        "Coğrafya hâlâ ekonomik kaderi belirliyor mu?",
+        "Hangi yavaş değişimler gelecek yüzyılı tanımlayacak?"
       ]
     },
     "huang-renyu": {
       "name": "Ray Huang",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "İyi niyetli reformlar neden sıklıkla başarısız olur?",
+        "Sistemler kendilerini değiştirmeye çalışanlardan nasıl uzun yaşar?",
+        "Hangi yapısal kısıtlamalar değişimi sınırlar?"
       ]
     },
     "tacitus": {
       "name": "Tacitus",
-      "era": "Roman Empire",
+      "era": "Roma İmparatorluğu",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "İktidar kurumları içeriden nasıl yozlaştırır?",
+        "Bir cumhuriyetin ölümünün erken işaretleri nelerdir?",
+        "İnsanlar tiranlığı kabul etmeye kendilerini nasıl ikna eder?"
       ]
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "era": "Erken Modern Avrupa",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "Çoğunluğun tiranlığı bugün gerçek bir tehlike mi?",
+        "Eşitlik özgürlüğü paradoksal olarak nasıl tehdit eder?",
+        "Bir demokrasiyi sağlıklı tutan nedir?"
       ]
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "era": "Erken Modern Avrupa",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "Hangi iç zayıflıklar kurumlarımızı tehdit ediyor?",
+        "Aşırı genişleme nasıl çöküşe yol açar?",
+        "Büyüme ne zaman çöküşün tohumu olur?"
       ]
     },
     "weber": {
       "name": "Max Weber",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "Bürokratik bir demir kafeste mi mahsuruz?",
+        "Rasyonelleşme anlamı nasıl öldürür?",
+        "Bir lideri gerçekten karizmatik yapan nedir?"
       ]
     },
     "durkheim": {
       "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "Modern hayat neden bu kadar yabancılaştırıcı?",
+        "Gelenekler kaybolunca toplumu ne bir arada tutar?",
+        "İş bölümü nasıl hem dayanışma hem yalnızlık yaratır?"
       ]
     },
     "bourdieu": {
       "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "Görünmez avantajlar nesiller boyunca nasıl birikir?",
+        "Eğitim eşitlik mi sağlar yoksa eşitsizliği mi yeniden üretir?",
+        "Zevklerim sınıf konumumu nasıl ortaya koyar?"
       ]
     },
     "foucault": {
       "name": "Michel Foucault",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "İktidar günlük hayatta görünmez biçimde nasıl işler?",
+        "\"Normal\" neyin olduğuna kim karar verir?",
+        "Kurumlar bizi zorlama olmadan nasıl disipline eder?"
       ]
     },
     "beauvoir": {
       "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "Kimliğimin ne kadarı sosyal yapı?",
+        "Otantik yaşamak ne anlama gelir?",
+        "Güç dinamikleri yakın ilişkileri nasıl şekillendirir?"
       ]
     },
     "mcluhan": {
       "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "Sosyal medya beyinlerimizi nasıl yeniden şekillendiriyor?",
+        "Araç gerçekten mesajdan daha mı önemli?",
+        "Yapay zeka insan düşünce kalıplarına ne yapıyor?"
       ]
     },
     "arendt": {
       "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "Sıradan insanlar nasıl korkunç şeyler yapmaya son veriyor?",
+        "Gerçek siyasi söylem alanını ne yok eder?",
+        "Kendi başıma düşünmeyi bırakma baskısına nasıl direnirim?"
       ]
     },
     "bauman": {
       "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "Neden her şey geçici ve belirsiz hissettiriyor?",
+        "Tek kullanımlık bir dünyada kalıcı bağlar nasıl kurulur?",
+        "Özgürlüğümüz bizi daha kaygılı mı yapıyor?"
       ]
     },
     "goffman": {
       "name": "Erving Goffman",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "Sosyal hayatımın ne kadarı performans?",
+        "\"Maskemiz\" düştüğünde ne olur?",
+        "Neden yazılmamış sosyal kurallara uyarız?"
       ]
     }
   },

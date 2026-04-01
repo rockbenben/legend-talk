@@ -2,20 +2,7 @@
   "nav": {
     "settings": "设置",
     "more": "更多",
-    "support": "支持",
-    "switchLang": "繁",
-    "langName": "中文",
-    "replyLanguage": "Chinese (中文)",
-    "projectLinks": [
-      { "label": "AI Short", "url": "https://www.aishort.top/" },
-      { "label": "ToolsByAI", "url": "https://tools.newzone.top/zh" },
-      { "label": "IMGPrompt", "url": "https://prompt.newzone.top/app/zh" }
-    ],
-    "supportLinks": [
-      { "label": "Discord", "url": "https://discord.gg/PZTQfJ4GjX" },
-      { "label": "Telegram", "url": "https://t.me/aishort_top" },
-      { "label": "QQ", "url": "https://qm.qq.com/q/uWsUSnyivm" }
-    ]
+    "support": "支持"
   },
   "home": {
     "title": "与思想大师对话",
@@ -37,7 +24,10 @@
       "religion": "宗教",
       "politics": "政治",
       "economics": "经济",
-      "education": "教育"
+      "education": "教育",
+      "finance": "金融",
+      "history": "历史",
+      "sociology": "社会学"
     }
   },
   "chat": {
@@ -47,7 +37,6 @@
     "stop": "停止",
     "newChat": "新对话",
     "export": "导出",
-    "exportJSON": "导出为 JSON",
     "noConversations": "暂无对话",
     "noMessages": "试试下面的问题，或直接输入你的",
     "rename": "重命名",
@@ -71,12 +60,11 @@
     "settingsImported": "设置已导入",
     "enterPassword": "设置一个密码保护密钥（留空则不含密钥）",
     "enterDecryptPassword": "输入密码解密设置（留空则跳过密钥）",
-    "storageWarning": "存储空间即将用完，建议导出并删除旧对话",
     "importConversations": "导入对话",
     "importSuccess": "成功导入 {{count}} 个对话",
     "importError": "导入失败：文件格式不正确",
-    "corsError": "请求被浏览器拦截（CORS），需要配置代理",
-    "useCorsProxy": "使用公共代理"
+    "corsError": "请求被浏览器拦截（CORS），需要配置中转",
+    "useCorsProxy": "使用公共中转"
   },
   "roundtable": {
     "selected": "已选 {{count}} 位",
@@ -89,7 +77,6 @@
   },
   "settings": {
     "title": "设置",
-    "apiKeys": "API 密钥",
     "apiKeyPlaceholder": "输入 {{provider}} API Key...",
     "defaultProvider": "当前服务商",
     "defaultModel": "当前模型",
@@ -103,11 +90,8 @@
     "thinkingLow": "低",
     "thinkingMedium": "中",
     "thinkingHigh": "高",
-    "corsProxy": "CORS 代理",
-    "corsProxyPlaceholder": "例如 https://cors.api2026.workers.dev",
-    "corsProxyHint": "开启后通过代理转发请求，解决浏览器跨域限制",
+    "corsProxyHint": "开启后通过中转转发请求，解决浏览器跨域限制",
     "customModel": "自定义模型...",
-    "customBaseUrl": "API Base URL",
     "customBaseUrlHint": "填入 OpenAI 兼容 API 的地址，如 https://api.example.com/v1",
     "storageUsed": "已用空间: {{size}}",
     "clearData": "清除所有数据"
@@ -835,12 +819,12 @@
       ]
     },
     "taleb": {
-      "name": "纳西姆·塔勒布",
+      "name": "塔勒布",
       "era": "当代",
       "questions": [
-        "如何让自己的计划在黑天鹅事件中受益？",
-        "我的系统是脆弱的还是反脆弱的？",
-        "如何区分风险和不确定性？"
+        "如何让自己的职业具有反脆弱性？",
+        "为什么专家总是预测失败？",
+        "我现在暴露在什么隐藏风险中？"
       ]
     },
     "sowell": {
@@ -1115,11 +1099,11 @@
     },
     "ibn-khaldun": {
       "name": "伊本·赫勒敦",
-      "era": "中世纪",
+      "era": "中世纪伊斯兰",
       "questions": [
-        "我们的团队凝聚力够强吗？",
-        "繁荣为何总是孕育衰落？",
-        "如何从历史规律中预见未来？"
+        "文明为什么必然衰落？",
+        "什么力量凝聚社会，什么力量分裂社会？",
+        "我们处于上升期还是衰落期？"
       ]
     },
     "montessori": {
@@ -1210,6 +1194,258 @@
         "我的优势智能是什么？",
         "如何用自己的长处来学习困难的知识？",
         "传统的智力测试能衡量真正的能力吗？"
+      ]
+    },
+    "benjamin-graham": {
+      "name": "本杰明·格雷厄姆",
+      "era": "近代美国",
+      "questions": [
+        "如何判断一家公司被低估了？",
+        "什么是安全边际？",
+        "市场先生今天疯了吗？"
+      ]
+    },
+    "george-soros": {
+      "name": "乔治·索罗斯",
+      "era": "当代",
+      "questions": [
+        "什么是反身性理论？",
+        "如何识别市场泡沫？",
+        "何时该大胆出手？"
+      ]
+    },
+    "john-bogle": {
+      "name": "约翰·博格",
+      "era": "当代",
+      "questions": [
+        "为什么指数基金比主动管理好？",
+        "投资最重要的是什么？",
+        "如何用最低成本投资？"
+      ]
+    },
+    "harry-markowitz": {
+      "name": "哈里·马科维茨",
+      "era": "当代",
+      "questions": [
+        "什么是分散投资的真正含义？",
+        "如何构建最优投资组合？",
+        "风险和收益的关系是什么？"
+      ]
+    },
+    "eugene-fama": {
+      "name": "尤金·法玛",
+      "era": "当代",
+      "questions": [
+        "市场真的是有效的吗？",
+        "为什么大多数基金经理跑不赢市场？",
+        "因子投资是什么？"
+      ]
+    },
+    "robert-shiller": {
+      "name": "罗伯特·席勒",
+      "era": "当代",
+      "questions": [
+        "当前市场是否存在泡沫？",
+        "叙事如何影响市场？",
+        "CAPE 比率告诉我们什么？"
+      ]
+    },
+    "jesse-livermore": {
+      "name": "杰西·利弗莫尔",
+      "era": "近代美国",
+      "questions": [
+        "如何判断市场趋势？",
+        "什么时候该止损？",
+        "耐心在交易中有多重要？"
+      ]
+    },
+    "john-templeton": {
+      "name": "约翰·邓普顿",
+      "era": "当代",
+      "questions": [
+        "什么时候是最佳买入时机？",
+        "如何在恐慌中保持冷静？",
+        "全球化投资有什么优势？"
+      ]
+    },
+    "philip-fisher": {
+      "name": "菲利普·费雪",
+      "era": "近代美国",
+      "questions": [
+        "如何找到值得长期持有的公司？",
+        "什么是\"闲聊法\"调研？",
+        "品质和价格哪个更重要？"
+      ]
+    },
+    "howard-marks": {
+      "name": "霍华德·马克斯",
+      "era": "当代",
+      "questions": [
+        "什么是第二层思维？",
+        "我们现在处于周期的哪个阶段？",
+        "如何避免从众心理？"
+      ]
+    },
+    "thucydides": {
+      "name": "修昔底德",
+      "era": "古希腊",
+      "questions": [
+        "大国权力交接是否必然导致冲突？",
+        "恐惧如何驱使国家走向战争？",
+        "两强之间能否保持中立？"
+      ]
+    },
+    "sima-qian": {
+      "name": "司马迁",
+      "era": "西汉",
+      "questions": [
+        "历史上兴衰的规律有哪些反复出现？",
+        "如何公正地评价历史人物？",
+        "古人的错误对今天有什么启示？"
+      ]
+    },
+    "toynbee": {
+      "name": "阿诺德·汤因比",
+      "era": "近代",
+      "questions": [
+        "我们的文明正在对什么挑战失去回应能力？",
+        "创造性少数如何推动变革？",
+        "衰落的文明能否逆转？"
+      ]
+    },
+    "spengler": {
+      "name": "斯宾格勒",
+      "era": "近代",
+      "questions": [
+        "西方文明是否已进入最终阶段？",
+        "技术能否延缓文明的衰落？",
+        "文化的\"冬天\"在日常中是什么样的？"
+      ]
+    },
+    "braudel": {
+      "name": "费尔南·布罗代尔",
+      "era": "当代",
+      "questions": [
+        "什么深层结构在塑造我们的时代，而不是每日新闻？",
+        "地理如何仍在决定经济命运？",
+        "哪些缓慢变化现在看不见，但将定义下个世纪？"
+      ]
+    },
+    "huang-renyu": {
+      "name": "黄仁宇",
+      "era": "当代",
+      "questions": [
+        "善意的改革为什么常常失败？",
+        "制度如何超越试图改变它的人？",
+        "什么结构性约束限制了组织的变革？"
+      ]
+    },
+    "tacitus": {
+      "name": "塔西佗",
+      "era": "罗马帝国",
+      "questions": [
+        "权力如何从内部腐蚀制度？",
+        "共和制走向消亡的早期信号是什么？",
+        "人们如何说服自己接受暴政？"
+      ]
+    },
+    "tocqueville": {
+      "name": "托克维尔",
+      "era": "近代欧洲",
+      "questions": [
+        "多数人的暴政今天是真实的危险吗？",
+        "平等如何悖论性地威胁自由？",
+        "什么让民主保持健康？"
+      ]
+    },
+    "gibbon": {
+      "name": "爱德华·吉本",
+      "era": "近代欧洲",
+      "questions": [
+        "什么内在弱点在威胁我们的制度？",
+        "过度扩张如何导致崩溃？",
+        "增长何时变成衰落的种子？"
+      ]
+    },
+    "weber": {
+      "name": "马克斯·韦伯",
+      "era": "近代",
+      "questions": [
+        "我们是否被困在官僚制的铁笼中？",
+        "理性化如何扼杀意义？",
+        "什么让一个领导者真正具有魅力？"
+      ]
+    },
+    "durkheim": {
+      "name": "涂尔干",
+      "era": "近代",
+      "questions": [
+        "为什么现代生活让人感到如此疏离？",
+        "传统消退后，什么凝聚社会？",
+        "分工如何同时创造了团结和孤独？"
+      ]
+    },
+    "bourdieu": {
+      "name": "皮埃尔·布迪厄",
+      "era": "当代",
+      "questions": [
+        "隐性优势如何代际累积？",
+        "教育是在促进平等还是在复制不平等？",
+        "我的品味如何暴露我的阶层？"
+      ]
+    },
+    "foucault": {
+      "name": "米歇尔·福柯",
+      "era": "当代",
+      "questions": [
+        "权力如何在日常生活中隐形运作？",
+        "谁决定什么是\"正常\"的？",
+        "制度如何不用暴力就规训我们？"
+      ]
+    },
+    "beauvoir": {
+      "name": "波伏瓦",
+      "era": "当代",
+      "questions": [
+        "我的身份认同有多少是社会建构的？",
+        "什么是真正地活出自我？",
+        "权力关系如何塑造亲密关系？"
+      ]
+    },
+    "mcluhan": {
+      "name": "麦克卢汉",
+      "era": "当代",
+      "questions": [
+        "社交媒体如何重塑了我们的大脑？",
+        "媒介真的比内容更重要吗？",
+        "AI 对人类的思维模式做了什么？"
+      ]
+    },
+    "arendt": {
+      "name": "汉娜·阿伦特",
+      "era": "当代",
+      "questions": [
+        "普通人如何最终做出可怕的事情？",
+        "什么摧毁了真正政治话语的空间？",
+        "如何抵抗停止独立思考的压力？"
+      ]
+    },
+    "bauman": {
+      "name": "齐格蒙特·鲍曼",
+      "era": "当代",
+      "questions": [
+        "为什么一切都感觉是临时和不确定的？",
+        "在一个一次性的世界如何建立持久的联系？",
+        "我们的自由是否反而让我们更焦虑？"
+      ]
+    },
+    "goffman": {
+      "name": "欧文·戈夫曼",
+      "era": "当代",
+      "questions": [
+        "我社交生活中有多少是表演？",
+        "当我们的\"面具\"滑落时会怎样？",
+        "为什么我们遵循不成文的社会规则？"
       ]
     }
   },

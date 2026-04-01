@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "設定",
+    "more": "その他",
+    "support": "サポート"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "偉大な思想家と対話する",
+    "subtitle": "「チャット」で1対1の相談、「+」で円卓討論を組む",
+    "search": "名前を検索または入力...",
+    "startChat": "対話",
+    "randomRoundtable": "ランダム",
+    "templates": "おすすめ円卓",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "すべて",
+      "philosophy": "哲学",
+      "business": "ビジネス",
+      "science": "科学",
+      "technology": "テクノロジー",
+      "strategy": "戦略",
+      "psychology": "心理学",
+      "literature": "文学",
+      "art": "芸術",
+      "religion": "宗教",
+      "politics": "政治",
+      "economics": "経済",
+      "education": "教育",
+      "finance": "金融",
+      "history": "歴史",
+      "sociology": "社会学"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "質問を入力...",
+    "send": "送信",
+    "thinking": "考え中...",
+    "stop": "停止",
+    "newChat": "新しい対話",
+    "export": "エクスポート",
+    "noConversations": "対話がありません",
+    "noMessages": "下の質問を試すか、自分で入力してください",
+    "rename": "名前変更",
+    "addParticipant": "追加",
+    "untitled": "無題",
+    "noApiKey": "APIキーが未設定です",
+    "goSettings": "設定へ",
+    "regenerate": "再生成",
+    "summarize": "要約",
+    "summarizing": "要約中...",
+    "searchConversations": "対話を検索...",
+    "share": "対話を共有",
+    "copied": "コピーしました",
+    "shareTooLong": "対話が長すぎてURLで共有できません",
+    "branch": "ここから分岐",
+    "newWithSame": "同じメンバーで再開",
+    "copyLineupLink": "メンバーリンクをコピー",
+    "copyCategoryLink": "カテゴリリンクをコピー",
+    "linkCopied": "コピー済み",
+    "shareSettings": "設定を他のデバイスに同期",
+    "settingsImported": "設定をインポートしました",
+    "enterPassword": "APIキーを保護するパスワードを設定（空欄でキーを除外）",
+    "enterDecryptPassword": "設定を復号するパスワードを入力（空欄でキーをスキップ）",
+    "importConversations": "インポート",
+    "importSuccess": "{{count}}件の対話をインポートしました",
+    "importError": "インポート失敗：ファイル形式が不正です",
+    "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
+    "useCorsProxy": "公開プロキシを使用"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}}人選択",
+    "start": "討論開始",
+    "rounds": "ラウンド数",
+    "roundProgress": "ラウンド{{current}}/{{total}} — {{name}}が発言中...",
+    "discussionComplete": "討論完了",
+    "continue": "+{{count}}ラウンド追加",
+    "removeParticipant": "削除"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "設定",
+    "apiKeyPlaceholder": "{{provider}} APIキーを入力...",
+    "defaultProvider": "プロバイダー",
+    "defaultModel": "モデル",
+    "language": "言語",
+    "theme": "テーマ",
+    "themeLight": "ライト",
+    "themeDark": "ダーク",
+    "thinkingLevel": "思考レベル",
+    "thinkingLevelHint": "モデルが深く推論してから回答します。より正確ですが遅く、トークン消費が増えます。",
+    "thinkingOff": "オフ",
+    "thinkingLow": "低",
+    "thinkingMedium": "中",
+    "thinkingHigh": "高",
+    "corsProxyHint": "プロキシ経由でリクエストを転送し、CORSを回避",
+    "customModel": "カスタムモデル...",
+    "customBaseUrlHint": "OpenAI互換APIのエンドポイントを入力",
+    "storageUsed": "使用容量：{{size}}",
+    "clearData": "全データ削除"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "共有された対話",
+    "startOwn": "自分の対話を始める"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "読み込み中...",
+    "error": "エラー：{{message}}",
+    "confirm": "確認",
+    "unknown": "不明"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "ソクラテス",
+      "era": "古代ギリシャ",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "孔子",
+      "era": "春秋時代",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "アリストテレス",
+      "era": "古代ギリシャ",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -135,8 +135,8 @@
       ]
     },
     "laozi": {
-      "name": "Laozi",
-      "era": "Spring and Autumn Period",
+      "name": "老子",
+      "era": "春秋時代",
       "questions": [
         "The harder I try the more anxious I get",
         "How to stay true to myself under pressure?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "プラトン",
+      "era": "古代ギリシャ",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -153,8 +153,8 @@
       ]
     },
     "zhuangzi": {
-      "name": "Zhuangzi",
-      "era": "Warring States Period",
+      "name": "荘子",
+      "era": "戦国時代",
       "questions": [
         "I am too attached to success and failure",
         "How to accept what cannot be changed?",
@@ -162,8 +162,8 @@
       ]
     },
     "marcus-aurelius": {
-      "name": "Marcus Aurelius",
-      "era": "Roman Empire",
+      "name": "マルクス・アウレリウス",
+      "era": "ローマ帝国",
       "questions": [
         "How to stay unaffected by external chaos?",
         "How to think about things I cannot change?",
@@ -171,8 +171,8 @@
       ]
     },
     "kant": {
-      "name": "Immanuel Kant",
-      "era": "Early Modern Europe",
+      "name": "カント",
+      "era": "近代ヨーロッパ",
       "questions": [
         "Is lying always wrong?",
         "Should I follow rules or focus on outcomes?",
@@ -180,8 +180,8 @@
       ]
     },
     "descartes": {
-      "name": "René Descartes",
-      "era": "Early Modern Europe",
+      "name": "デカルト",
+      "era": "近世ヨーロッパ",
       "questions": [
         "Can I really trust what I believe?",
         "How to rethink a problem from scratch?",
@@ -189,8 +189,8 @@
       ]
     },
     "hegel": {
-      "name": "Georg Hegel",
-      "era": "Early Modern Europe",
+      "name": "ヘーゲル",
+      "era": "近代ヨーロッパ",
       "questions": [
         "Is there a third way out of this dilemma?",
         "Why do my ideas keep swinging to extremes?",
@@ -198,26 +198,26 @@
       ]
     },
     "wang-yangming": {
-      "name": "Wang Yangming",
-      "era": "Ming Dynasty",
+      "name": "王陽明",
+      "era": "明代",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "やるべきことは分かっているが行動できない",
+        "混乱の中で心の平静を保つには？",
+        "正しいことをどう見分けるか？"
       ]
     },
     "sun-tzu": {
-      "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "name": "孫子",
+      "era": "春秋時代",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "少ない資源でどう勝つか？",
+        "競合の弱点をどう見つけるか？",
+        "正面突破と迂回、いつどちらを選ぶか？"
       ]
     },
     "genghis-khan": {
-      "name": "Genghis Khan",
-      "era": "Medieval Period",
+      "name": "チンギス・カン",
+      "era": "中世",
       "questions": [
         "How to expand rapidly while maintaining organizational effectiveness?",
         "How to recruit and integrate talent from diverse backgrounds?",
@@ -225,17 +225,17 @@
       ]
     },
     "hannibal": {
-      "name": "Hannibal Barca",
-      "era": "Ancient Rome",
+      "name": "ハンニバル",
+      "era": "古代カルタゴ",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "相手の強みを弱みに変えるには？",
+        "限られた資源で優位を作るには？",
+        "創造的戦術で強敵を倒すには？"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "ナポレオン",
+      "era": "フランス革命",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -243,17 +243,17 @@
       ]
     },
     "zhuge-liang": {
-      "name": "Zhuge Liang",
-      "era": "Three Kingdoms",
+      "name": "諸葛亮",
+      "era": "三国時代",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "不利な状況で優位を築くには？",
+        "相手の次の一手を予測するには？",
+        "理想と現実のギャップをどう埋めるか？"
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "マキャヴェッリ",
+      "era": "ルネサンス",
       "questions": [
         "How to protect myself in office politics?",
         "What are the fundamental laws of power?",
@@ -261,8 +261,8 @@
       ]
     },
     "cao-cao": {
-      "name": "Cao Cao",
-      "era": "Three Kingdoms",
+      "name": "曹操",
+      "era": "三国時代",
       "questions": [
         "How should I position myself in this competition?",
         "How to handle subordinates with hidden agendas?",
@@ -270,17 +270,17 @@
       ]
     },
     "churchill": {
-      "name": "Winston Churchill",
-      "era": "Modern Era",
+      "name": "チャーチル",
+      "era": "近代",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "もう限界だ — どうすればいい？",
+        "士気が低い時チームをどう奮い立たせるか？",
+        "大きな不確実性に直面した時どう判断するか？"
       ]
     },
     "bismarck": {
-      "name": "Otto von Bismarck",
-      "era": "Early Modern Europe",
+      "name": "ビスマルク",
+      "era": "近代ドイツ",
       "questions": [
         "How to achieve goals amid conflicting interests?",
         "When is compromise the wise move?",
@@ -288,8 +288,8 @@
       ]
     },
     "zeng-guofan": {
-      "name": "Zeng Guofan",
-      "era": "Late Qing Dynasty",
+      "name": "曽国藩",
+      "era": "清末",
       "questions": [
         "How to overcome my own laziness?",
         "How to lead a team well?",
@@ -297,8 +297,8 @@
       ]
     },
     "munger": {
-      "name": "Charlie Munger",
-      "era": "Contemporary",
+      "name": "チャーリー・マンガー",
+      "era": "現代",
       "questions": [
         "Is this investment worth pursuing?",
         "How to avoid stupid decisions?",
@@ -306,17 +306,17 @@
       ]
     },
     "drucker": {
-      "name": "Peter Drucker",
-      "era": "Contemporary",
+      "name": "ドラッカー",
+      "era": "現代",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "最も重要なことに時間を使えているか？",
+        "マネージャーの有効性をどう測るか？",
+        "組織はどう目標を設定すべきか？"
       ]
     },
     "carnegie": {
-      "name": "Andrew Carnegie",
-      "era": "Modern Era",
+      "name": "カーネギー",
+      "era": "近代アメリカ",
       "questions": [
         "How to scale from small business to large enterprise?",
         "How to build competitive barriers in an industry?",
@@ -324,8 +324,8 @@
       ]
     },
     "matsushita": {
-      "name": "Konosuke Matsushita",
-      "era": "Modern Era",
+      "name": "松下幸之助",
+      "era": "近代日本",
       "questions": [
         "How to maintain quality while cutting costs?",
         "How to make employees genuinely committed?",
@@ -333,8 +333,8 @@
       ]
     },
     "henry-ford": {
-      "name": "Henry Ford",
-      "era": "Industrial Era",
+      "name": "ヘンリー・フォード",
+      "era": "近代アメリカ",
       "questions": [
         "How to drastically cut production costs?",
         "How to make a product accessible to everyone?",
@@ -342,8 +342,8 @@
       ]
     },
     "dalio": {
-      "name": "Ray Dalio",
-      "era": "Contemporary",
+      "name": "レイ・ダリオ",
+      "era": "現代",
       "questions": [
         "How to build a principled decision-making system?",
         "How to learn from failure systematically?",
@@ -351,17 +351,17 @@
       ]
     },
     "buffett": {
-      "name": "Warren Buffett",
-      "era": "Contemporary",
+      "name": "ウォーレン・バフェット",
+      "era": "現代",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "企業の長期的価値をどう判断するか？",
+        "市場が下落した時どうすべきか？",
+        "優れたビジネスモデルとは？"
       ]
     },
     "peter-thiel": {
-      "name": "Peter Thiel",
-      "era": "Contemporary",
+      "name": "ピーター・ティール",
+      "era": "現代",
       "questions": [
         "What important truth do few agree with you on?",
         "Is competition a form of failure?",
@@ -369,8 +369,8 @@
       ]
     },
     "jobs": {
-      "name": "Steve Jobs",
-      "era": "Contemporary",
+      "name": "スティーブ・ジョブズ",
+      "era": "現代",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -378,8 +378,8 @@
       ]
     },
     "musk": {
-      "name": "Elon Musk",
-      "era": "Contemporary",
+      "name": "イーロン・マスク",
+      "era": "現代",
       "questions": [
         "What are the core assumptions in this industry?",
         "How to make the impossible possible?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "フロイト",
+      "era": "近代",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -396,8 +396,8 @@
       ]
     },
     "pavlov": {
-      "name": "Ivan Pavlov",
-      "era": "Imperial Russia",
+      "name": "パヴロフ",
+      "era": "近代ロシア",
       "questions": [
         "Why do certain situations trigger my impulses?",
         "How to break conditioned bad habits?",
@@ -405,8 +405,8 @@
       ]
     },
     "jung": {
-      "name": "Carl Jung",
-      "era": "Modern Era",
+      "name": "ユング",
+      "era": "近代",
       "questions": [
         "Why do I keep repeating the same mistakes?",
         "Why do I overreact to certain things?",
@@ -414,8 +414,8 @@
       ]
     },
     "maslow": {
-      "name": "Abraham Maslow",
-      "era": "Contemporary",
+      "name": "マズロー",
+      "era": "現代",
       "questions": [
         "Why do I feel inner emptiness?",
         "How to find something that gives me meaning?",
@@ -423,17 +423,17 @@
       ]
     },
     "adler": {
-      "name": "Alfred Adler",
-      "era": "Modern Era",
+      "name": "アドラー",
+      "era": "近代",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "他人の目が気になってしまう",
+        "過去のトラウマにずっと影響されている",
+        "現状を変える勇気がない"
       ]
     },
     "skinner": {
-      "name": "B.F. Skinner",
-      "era": "Contemporary",
+      "name": "スキナー",
+      "era": "現代",
       "questions": [
         "How to use reward systems to build good habits?",
         "Why is breaking a bad habit so hard?",
@@ -441,8 +441,8 @@
       ]
     },
     "frankl": {
-      "name": "Viktor Frankl",
-      "era": "Contemporary",
+      "name": "フランクル",
+      "era": "現代",
       "questions": [
         "My life has lost its sense of meaning",
         "How to find value in suffering?",
@@ -450,8 +450,8 @@
       ]
     },
     "kahneman": {
-      "name": "Daniel Kahneman",
-      "era": "Contemporary",
+      "name": "カーネマン",
+      "era": "現代",
       "questions": [
         "Is my judgment intuition or bias?",
         "How to avoid anchoring in my decisions?",
@@ -459,8 +459,8 @@
       ]
     },
     "erikson": {
-      "name": "Erik Erikson",
-      "era": "Modern Era",
+      "name": "エリクソン",
+      "era": "現代",
       "questions": [
         "Is it normal to feel lost in my 30s?",
         "How to navigate a midlife crisis?",
@@ -468,8 +468,8 @@
       ]
     },
     "zimbardo": {
-      "name": "Philip Zimbardo",
-      "era": "Contemporary",
+      "name": "ジンバルドー",
+      "era": "現代",
       "questions": [
         "Why do good people do bad things?",
         "How much does environment shape behavior?",
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "アインシュタイン",
+      "era": "近代",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "ニュートン",
+      "era": "近世イギリス",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -495,8 +495,8 @@
       ]
     },
     "galileo": {
-      "name": "Galileo Galilei",
-      "era": "Early Modern Europe",
+      "name": "ガリレオ",
+      "era": "ルネサンス",
       "questions": [
         "Is my judgment backed by real evidence?",
         "How to challenge industry conventional wisdom?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "ダーウィン",
+      "era": "近代イギリス",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -513,8 +513,8 @@
       ]
     },
     "zhang-heng": {
-      "name": "Zhang Heng",
-      "era": "Eastern Han Dynasty",
+      "name": "張衡",
+      "era": "後漢",
       "questions": [
         "How to apply scientific method to everyday decisions?",
         "How should technology serve society?",
@@ -522,8 +522,8 @@
       ]
     },
     "hawking": {
-      "name": "Stephen Hawking",
-      "era": "Contemporary",
+      "name": "スティーヴン・ホーキング",
+      "era": "現代",
       "questions": [
         "Does my problem matter on a cosmic scale?",
         "Can physical or environmental limits be transcended?",
@@ -531,8 +531,8 @@
       ]
     },
     "tesla": {
-      "name": "Nikola Tesla",
-      "era": "Modern Era",
+      "name": "テスラ",
+      "era": "近代",
       "questions": [
         "My idea is ahead of its time — how to push it forward?",
         "How to mentally simulate a complex system?",
@@ -540,8 +540,8 @@
       ]
     },
     "copernicus": {
-      "name": "Nicolaus Copernicus",
-      "era": "Renaissance",
+      "name": "コペルニクス",
+      "era": "ルネサンス",
       "questions": [
         "Could my fundamental assumption be wrong?",
         "How to step outside a self-centered perspective?",
@@ -549,8 +549,8 @@
       ]
     },
     "feynman": {
-      "name": "Richard Feynman",
-      "era": "Contemporary",
+      "name": "ファインマン",
+      "era": "現代",
       "questions": [
         "What is the essence of this problem?",
         "How do I know I truly understand?",
@@ -558,8 +558,8 @@
       ]
     },
     "curie": {
-      "name": "Marie Curie",
-      "era": "Modern Era",
+      "name": "キュリー",
+      "era": "近代",
       "questions": [
         "How to persist when doubted by others?",
         "How to convince skeptics with data?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "シェイクスピア",
+      "era": "ルネサンス",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "周囲の人の複雑な動機をどう理解するか？",
+        "嫉妬と野心はどう人を滅ぼすか？",
+        "悲劇は避けられるか？"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "トルストイ",
+      "era": "ロシア帝国",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "カフカ",
+      "era": "近代ヨーロッパ",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -594,8 +594,8 @@
       ]
     },
     "li-bai": {
-      "name": "Li Bai",
-      "era": "Tang Dynasty",
+      "name": "李白",
+      "era": "唐代",
       "questions": [
         "How to rediscover passion for life?",
         "How to balance rules and freedom?",
@@ -603,8 +603,8 @@
       ]
     },
     "dostoevsky": {
-      "name": "Fyodor Dostoevsky",
-      "era": "Early Modern Europe",
+      "name": "ドストエフスキー",
+      "era": "ロシア帝国",
       "questions": [
         "I did something wrong — how do I face it?",
         "Can suffering purify a person?",
@@ -612,8 +612,8 @@
       ]
     },
     "hemingway": {
-      "name": "Ernest Hemingway",
-      "era": "Modern Era",
+      "name": "ヘミングウェイ",
+      "era": "現代",
       "questions": [
         "How to stay calm under pressure?",
         "What is worth showing through action rather than words?",
@@ -621,8 +621,8 @@
       ]
     },
     "su-shi": {
-      "name": "Su Shi",
-      "era": "Song Dynasty",
+      "name": "蘇軾",
+      "era": "北宋",
       "questions": [
         "How to stay composed in adversity?",
         "How to find beauty in ordinary life?",
@@ -630,8 +630,8 @@
       ]
     },
     "nietzsche": {
-      "name": "Friedrich Nietzsche",
-      "era": "Early Modern Europe",
+      "name": "ニーチェ",
+      "era": "近代ヨーロッパ",
       "questions": [
         "How to transcend values imposed by others?",
         "How to rebuild yourself when nihilism strikes?",
@@ -639,8 +639,8 @@
       ]
     },
     "borges": {
-      "name": "Jorge Luis Borges",
-      "era": "Contemporary",
+      "name": "ボルヘス",
+      "era": "現代",
       "questions": [
         "Is reality just another kind of fiction?",
         "How to choose amid infinite possibilities?",
@@ -648,8 +648,8 @@
       ]
     },
     "lu-xun": {
-      "name": "Lu Xun",
-      "era": "Modern China",
+      "name": "魯迅",
+      "era": "近代中国",
       "questions": [
         "Why does everyone look the other way?",
         "How to face an uncomfortable truth?",
@@ -657,8 +657,8 @@
       ]
     },
     "da-vinci": {
-      "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "name": "レオナルド・ダ・ヴィンチ",
+      "era": "ルネサンス",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "ベートーヴェン",
+      "era": "近代ヨーロッパ",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -675,8 +675,8 @@
       ]
     },
     "michelangelo": {
-      "name": "Michelangelo",
-      "era": "Renaissance",
+      "name": "ミケランジェロ",
+      "era": "ルネサンス",
       "questions": [
         "How to hold yourself to the highest standard?",
         "Is perfectionism a driver or a burden?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "ピカソ",
+      "era": "近代",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -693,8 +693,8 @@
       ]
     },
     "mozart": {
-      "name": "Wolfgang Amadeus Mozart",
-      "era": "Early Modern Europe",
+      "name": "モーツァルト",
+      "era": "近代ヨーロッパ",
       "questions": [
         "How to make creative work flow more naturally?",
         "How to balance play and serious work?",
@@ -702,8 +702,8 @@
       ]
     },
     "bach": {
-      "name": "Johann Sebastian Bach",
-      "era": "Early Modern Europe",
+      "name": "バッハ",
+      "era": "バロック",
       "questions": [
         "Can strict rules enhance creativity?",
         "How to stay passionate in repetitive work?",
@@ -711,17 +711,17 @@
       ]
     },
     "van-gogh": {
-      "name": "Vincent van Gogh",
-      "era": "Early Modern Europe",
+      "name": "ゴッホ",
+      "era": "近代ヨーロッパ",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "認められなくても創作を続けるには？",
+        "孤独は創造力の源か障害か？",
+        "外部の評価に振り回されないためには？"
       ]
     },
     "monet": {
-      "name": "Claude Monet",
-      "era": "Modern France",
+      "name": "モネ",
+      "era": "近代フランス",
       "questions": [
         "How to see the same problem from a new angle?",
         "Why do first impressions matter?",
@@ -729,8 +729,8 @@
       ]
     },
     "chopin": {
-      "name": "Frédéric Chopin",
-      "era": "Romantic Era",
+      "name": "ショパン",
+      "era": "ロマン派",
       "questions": [
         "How to express complex emotions with elegance?",
         "Can simplicity and depth coexist?",
@@ -738,8 +738,8 @@
       ]
     },
     "miyazaki": {
-      "name": "Hayao Miyazaki",
-      "era": "Contemporary",
+      "name": "宮崎駿",
+      "era": "現代",
       "questions": [
         "How to keep childlike wonder about the world?",
         "How can creative work convey genuine emotion?",
@@ -747,8 +747,8 @@
       ]
     },
     "adam-smith": {
-      "name": "Adam Smith",
-      "era": "Early Modern Europe",
+      "name": "アダム・スミス",
+      "era": "近代イギリス",
       "questions": [
         "How does individual self-interest benefit society as a whole?",
         "When does the free market fail?",
@@ -756,17 +756,17 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "マルクス",
+      "era": "近代ヨーロッパ",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "現在の経済体制から誰が恩恵を受けているか？",
+        "労働者の価値はどう過小評価されているか？",
+        "資本主義の内在的矛盾とは？"
       ]
     },
     "keynes": {
-      "name": "John Maynard Keynes",
-      "era": "Modern Era",
+      "name": "ケインズ",
+      "era": "近代イギリス",
       "questions": [
         "What should governments do during a recession?",
         "How to balance short-term and long-term goals?",
@@ -774,8 +774,8 @@
       ]
     },
     "hayek": {
-      "name": "Friedrich Hayek",
-      "era": "Modern Era",
+      "name": "ハイエク",
+      "era": "現代",
       "questions": [
         "Why does central planning always fail?",
         "How to harness dispersed knowledge within an organization?",
@@ -783,8 +783,8 @@
       ]
     },
     "malthus": {
-      "name": "Thomas Malthus",
-      "era": "Georgian Britain",
+      "name": "マルサス",
+      "era": "近代イギリス",
       "questions": [
         "Can growth really last forever?",
         "What to do when resources fall short?",
@@ -792,8 +792,8 @@
       ]
     },
     "friedman": {
-      "name": "Milton Friedman",
-      "era": "Contemporary",
+      "name": "フリードマン",
+      "era": "現代",
       "questions": [
         "Does government regulation solve or create problems?",
         "How does monetary policy affect inflation?",
@@ -801,17 +801,17 @@
       ]
     },
     "john-stuart-mill": {
-      "name": "John Stuart Mill",
-      "era": "Victorian Era",
+      "name": "ジョン・スチュアート・ミル",
+      "era": "近代イギリス",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "政策が多数者の利益になるかどう判断するか？",
+        "個人の自由の境界はどこか？",
+        "少数者の利益をどう守るか？"
       ]
     },
     "schumpeter": {
-      "name": "Joseph Schumpeter",
-      "era": "Modern Era",
+      "name": "シュンペーター",
+      "era": "近代",
       "questions": [
         "My industry is being disrupted — what should I do?",
         "How to judge whether an innovation truly matters?",
@@ -819,17 +819,17 @@
       ]
     },
     "taleb": {
-      "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "name": "ナシーム・タレブ",
+      "era": "現代",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "キャリアを反脆弱にするには？",
+        "なぜ専門家は予測に失敗し続けるのか？",
+        "今どんな隠れたリスクにさらされているか？"
       ]
     },
     "sowell": {
-      "name": "Thomas Sowell",
-      "era": "Contemporary",
+      "name": "ソーウェル",
+      "era": "現代",
       "questions": [
         "What are the unintended consequences of this policy?",
         "How to avoid seeing only the good side of a policy?",
@@ -837,8 +837,8 @@
       ]
     },
     "julius-caesar": {
-      "name": "Julius Caesar",
-      "era": "Roman Republic",
+      "name": "ユリウス・カエサル",
+      "era": "古代ローマ",
       "questions": [
         "How to drive change from within the system?",
         "When is the right time to act decisively?",
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "ガンディー",
+      "era": "近代",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "リンカーン",
+      "era": "近代アメリカ",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "マンデラ",
+      "era": "現代",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -873,8 +873,8 @@
       ]
     },
     "mlk": {
-      "name": "Martin Luther King Jr.",
-      "era": "Contemporary",
+      "name": "キング牧師",
+      "era": "現代",
       "questions": [
         "How to transform personal experience into a force for change?",
         "How to give a speech that truly moves people?",
@@ -882,8 +882,8 @@
       ]
     },
     "elizabeth-i": {
-      "name": "Elizabeth I",
-      "era": "Tudor England",
+      "name": "エリザベス1世",
+      "era": "チューダー朝",
       "questions": [
         "How to maintain balance among competing factions?",
         "When is strategic ambiguity the right move?",
@@ -891,8 +891,8 @@
       ]
     },
     "franklin": {
-      "name": "Benjamin Franklin",
-      "era": "Modern Era",
+      "name": "ベンジャミン・フランクリン",
+      "era": "近代アメリカ",
       "questions": [
         "How to systematically build good character?",
         "How to balance civic duty and personal interest?",
@@ -900,8 +900,8 @@
       ]
     },
     "thatcher": {
-      "name": "Margaret Thatcher",
-      "era": "Contemporary",
+      "name": "サッチャー",
+      "era": "現代",
       "questions": [
         "How to push forward the right thing despite opposition?",
         "What mindset is needed to make unpopular decisions?",
@@ -909,8 +909,8 @@
       ]
     },
     "roosevelt": {
-      "name": "Theodore Roosevelt",
-      "era": "Modern Era",
+      "name": "ルーズベルト",
+      "era": "近代アメリカ",
       "questions": [
         "How to go from bystander to actor?",
         "How to weigh risk against reward?",
@@ -918,8 +918,8 @@
       ]
     },
     "lee-kuan-yew": {
-      "name": "Lee Kuan Yew",
-      "era": "Contemporary",
+      "name": "リー・クアンユー",
+      "era": "現代",
       "questions": [
         "How to build a strong organization with scarce resources?",
         "How to balance discipline and freedom?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "アラン・チューリング",
+      "era": "近代",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -936,8 +936,8 @@
       ]
     },
     "dennis-ritchie": {
-      "name": "Dennis Ritchie",
-      "era": "Contemporary",
+      "name": "デニス・リッチー",
+      "era": "現代",
       "questions": [
         "How to decompose a complex system into simple parts?",
         "What does a good abstraction look like?",
@@ -945,8 +945,8 @@
       ]
     },
     "lovelace": {
-      "name": "Ada Lovelace",
-      "era": "Early Modern Europe",
+      "name": "エイダ・ラブレス",
+      "era": "近代イギリス",
       "questions": [
         "How can technology and art empower each other?",
         "Can algorithms create something truly original?",
@@ -954,8 +954,8 @@
       ]
     },
     "john-mccarthy": {
-      "name": "John McCarthy",
-      "era": "Contemporary",
+      "name": "ジョン・マッカーシー",
+      "era": "現代",
       "questions": [
         "Can machines truly \"understand\"?",
         "How to formalize human knowledge?",
@@ -963,8 +963,8 @@
       ]
     },
     "berners-lee": {
-      "name": "Tim Berners-Lee",
-      "era": "Contemporary",
+      "name": "ティム・バーナーズ＝リー",
+      "era": "現代",
       "questions": [
         "How to design an open and shared system?",
         "How should tech products handle user data?",
@@ -972,8 +972,8 @@
       ]
     },
     "von-neumann": {
-      "name": "John von Neumann",
-      "era": "Modern Era",
+      "name": "フォン・ノイマン",
+      "era": "近代",
       "questions": [
         "Can this decision be analyzed with game theory?",
         "How to convert a fuzzy problem into a math model?",
@@ -981,8 +981,8 @@
       ]
     },
     "vint-cerf": {
-      "name": "Vint Cerf",
-      "era": "Contemporary",
+      "name": "ヴィントン・サーフ",
+      "era": "現代",
       "questions": [
         "How to design an infinitely scalable system?",
         "Why are open standards better than proprietary protocols?",
@@ -990,8 +990,8 @@
       ]
     },
     "torvalds": {
-      "name": "Linus Torvalds",
-      "era": "Contemporary",
+      "name": "リーナス・トーバルズ",
+      "era": "現代",
       "questions": [
         "Is this technical approach actually viable?",
         "How to manage quality in open-source collaboration?",
@@ -999,8 +999,8 @@
       ]
     },
     "hopper": {
-      "name": "Grace Hopper",
-      "era": "Modern Era",
+      "name": "グレース・ホッパー",
+      "era": "現代",
       "questions": [
         "How to drive innovation within bureaucracy?",
         "When should I act first and ask later?",
@@ -1008,8 +1008,8 @@
       ]
     },
     "shannon": {
-      "name": "Claude Shannon",
-      "era": "Modern Era",
+      "name": "クロード・シャノン",
+      "era": "現代",
       "questions": [
         "How to reduce noise and misunderstanding in communication?",
         "How to tell which information truly matters?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "釈迦",
+      "era": "古代インド",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1026,8 +1026,8 @@
       ]
     },
     "martin-luther": {
-      "name": "Martin Luther",
-      "era": "Reformation Era",
+      "name": "マルティン・ルター",
+      "era": "宗教改革",
       "questions": [
         "When is it right to break the rules?",
         "How to hold your ground under enormous pressure?",
@@ -1035,8 +1035,8 @@
       ]
     },
     "mother-teresa": {
-      "name": "Mother Teresa",
-      "era": "Modern Era",
+      "name": "マザー・テレサ",
+      "era": "現代",
       "questions": [
         "What can one person change?",
         "How to face a hopeless situation?",
@@ -1044,8 +1044,8 @@
       ]
     },
     "rumi": {
-      "name": "Rumi",
-      "era": "Medieval Period",
+      "name": "ルーミー",
+      "era": "中世ペルシア",
       "questions": [
         "How to feel connected even in loneliness?",
         "Can love transcend all boundaries?",
@@ -1053,8 +1053,8 @@
       ]
     },
     "aquinas": {
-      "name": "Thomas Aquinas",
-      "era": "Medieval Period",
+      "name": "トマス・アクィナス",
+      "era": "中世ヨーロッパ",
       "questions": [
         "Are reason and faith in conflict?",
         "Can natural law serve as a moral foundation?",
@@ -1062,8 +1062,8 @@
       ]
     },
     "al-ghazali": {
-      "name": "Al-Ghazali",
-      "era": "Medieval Period",
+      "name": "ガザーリー",
+      "era": "中世イスラム",
       "questions": [
         "Where are the limits of reason?",
         "How to find certainty through doubt?",
@@ -1071,8 +1071,8 @@
       ]
     },
     "thich-nhat-hanh": {
-      "name": "Thich Nhat Hanh",
-      "era": "Contemporary",
+      "name": "ティク・ナット・ハン",
+      "era": "現代",
       "questions": [
         "How to find a moment of peace in busyness?",
         "Does compassion mean tolerating everything?",
@@ -1080,8 +1080,8 @@
       ]
     },
     "huineng": {
-      "name": "Huineng",
-      "era": "Tang Dynasty",
+      "name": "慧能",
+      "era": "唐代",
       "questions": [
         "Can awakening truly happen in an instant?",
         "How to live in the present moment in daily life?",
@@ -1089,8 +1089,8 @@
       ]
     },
     "cs-lewis": {
-      "name": "C.S. Lewis",
-      "era": "Modern Era",
+      "name": "C.S.ルイス",
+      "era": "近代",
       "questions": [
         "Can reason and faith coexist?",
         "How can suffering be compatible with a good God?",
@@ -1098,26 +1098,26 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "イブン・ハルドゥーン",
+      "era": "中世イスラム世界",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "なぜ文明は必然的に衰退するのか？",
+        "社会を結束させるもの、引き裂くものは何か？",
+        "我々は上昇期にあるのか、衰退期にあるのか？"
       ]
     },
     "montessori": {
-      "name": "Maria Montessori",
-      "era": "Modern Era",
+      "name": "モンテッソーリ",
+      "era": "近代",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "子どもの内なる学習意欲を引き出すには？",
+        "教育における自由と規律のバランスは？",
+        "理想的な学習環境をどう作るか？"
       ]
     },
     "helen-keller": {
-      "name": "Helen Keller",
-      "era": "Modern Era",
+      "name": "ヘレン・ケラー",
+      "era": "近代",
       "questions": [
         "How to overcome seemingly impossible obstacles?",
         "How to find a way forward in adversity?",
@@ -1125,8 +1125,8 @@
       ]
     },
     "tagore": {
-      "name": "Rabindranath Tagore",
-      "era": "Modern Era",
+      "name": "タゴール",
+      "era": "近代インド",
       "questions": [
         "How to preserve humanistic and poetic elements in modern education?",
         "What role do beauty and art play in growing up?",
@@ -1134,8 +1134,8 @@
       ]
     },
     "dewey": {
-      "name": "John Dewey",
-      "era": "Modern Era",
+      "name": "デューイ",
+      "era": "近代アメリカ",
       "questions": [
         "How to learn through actual doing?",
         "What is the true purpose of education?",
@@ -1143,26 +1143,26 @@
       ]
     },
     "piaget": {
-      "name": "Jean Piaget",
-      "era": "Modern Era",
+      "name": "ピアジェ",
+      "era": "現代",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "子どもは本当にこの概念を理解できるか？",
+        "子どもの認知発達段階をどう評価するか？",
+        "学びはどのようにして起こるか？"
       ]
     },
     "steiner": {
-      "name": "Rudolf Steiner",
-      "era": "Early Modern Europe",
+      "name": "シュタイナー",
+      "era": "近代",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "子どもの全人的発達をどう育むか？",
+        "芸術は知的成長にどう役立つか？",
+        "年齢によってどんな教育が必要か？"
       ]
     },
     "cai-yuanpei": {
-      "name": "Cai Yuanpei",
-      "era": "Republican China",
+      "name": "蔡元培",
+      "era": "中華民国",
       "questions": [
         "Why does academic freedom matter?",
         "How does aesthetic education shape character?",
@@ -1170,8 +1170,8 @@
       ]
     },
     "freire": {
-      "name": "Paulo Freire",
-      "era": "Contemporary",
+      "name": "フレイレ",
+      "era": "現代",
       "questions": [
         "How can education become liberation rather than oppression?",
         "How to awaken critical thinking in learning?",
@@ -1179,8 +1179,8 @@
       ]
     },
     "tao-xingzhi": {
-      "name": "Tao Xingzhi",
-      "era": "Modern China",
+      "name": "陶行知",
+      "era": "中華民国",
       "questions": [
         "How to turn everyday life into a classroom?",
         "What problems arise when education is divorced from life?",
@@ -1188,8 +1188,8 @@
       ]
     },
     "gardner": {
-      "name": "Howard Gardner",
-      "era": "Contemporary",
+      "name": "ガードナー",
+      "era": "現代",
       "questions": [
         "What are my dominant intelligences?",
         "How to use my strengths to learn difficult subjects?",
@@ -1197,282 +1197,282 @@
       ]
     },
     "benjamin-graham": {
-      "name": "Benjamin Graham",
-      "era": "Modern America",
+      "name": "ベンジャミン・グレアム",
+      "era": "近代アメリカ",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "企業が割安かどうかをどう判断しますか？",
+        "安全余裕とは何ですか？",
+        "今日のミスター・マーケットは正気ですか？"
       ]
     },
     "george-soros": {
-      "name": "George Soros",
-      "era": "Contemporary",
+      "name": "ジョージ・ソロス",
+      "era": "現代",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "再帰性理論とは何ですか？",
+        "市場バブルをどう見分けますか？",
+        "いつ大胆に勝負すべきですか？"
       ]
     },
     "john-bogle": {
-      "name": "John Bogle",
-      "era": "Contemporary",
+      "name": "ジョン・ボーグル",
+      "era": "現代",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "なぜインデックスファンドはアクティブ運用より優れているのですか？",
+        "投資で最も重要なことは何ですか？",
+        "最低コストで投資するには？"
       ]
     },
     "harry-markowitz": {
-      "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "name": "ハリー・マーコウィッツ",
+      "era": "現代",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "分散投資の本当の意味は何ですか？",
+        "最適なポートフォリオの構築方法は？",
+        "リスクとリターンの関係は？"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "ユージン・ファーマ",
+      "era": "現代",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "市場は本当に効率的ですか？",
+        "なぜ多くのファンドマネージャーは市場に勝てないのですか？",
+        "ファクター投資とは何ですか？"
       ]
     },
     "robert-shiller": {
-      "name": "Robert Shiller",
-      "era": "Contemporary",
+      "name": "ロバート・シラー",
+      "era": "現代",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "現在の市場にバブルはありますか？",
+        "ナラティブは市場をどう動かしますか？",
+        "CAPEレシオは何を教えてくれますか？"
       ]
     },
     "jesse-livermore": {
-      "name": "Jesse Livermore",
-      "era": "Modern America",
+      "name": "ジェシー・リバモア",
+      "era": "近代アメリカ",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "市場のトレンドをどう読みますか？",
+        "いつ損切りすべきですか？",
+        "トレードにおいて忍耐はどれほど重要ですか？"
       ]
     },
     "john-templeton": {
-      "name": "John Templeton",
-      "era": "Contemporary",
+      "name": "ジョン・テンプルトン",
+      "era": "現代",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "最良の買い時はいつですか？",
+        "パニック時にどう冷静を保ちますか？",
+        "グローバル投資の利点は何ですか？"
       ]
     },
     "philip-fisher": {
-      "name": "Philip Fisher",
-      "era": "Modern America",
+      "name": "フィリップ・フィッシャー",
+      "era": "近代アメリカ",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "長期保有に値する企業をどう見つけますか？",
+        "「スカトルバット法」とは何ですか？",
+        "品質と価格、どちらが重要ですか？"
       ]
     },
     "howard-marks": {
-      "name": "Howard Marks",
-      "era": "Contemporary",
+      "name": "ハワード・マークス",
+      "era": "現代",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "セカンドレベル思考とは何ですか？",
+        "現在のサイクルのどこにいますか？",
+        "群集心理をどう避けますか？"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "トゥキディデス",
+      "era": "古代ギリシャ",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "大国間の権力移行は必然的に衝突を招くのか？",
+        "恐怖はいかにして国家を戦争に駆り立てるのか？",
+        "二大国の間で中立を保てるのか？"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "司馬遷",
+      "era": "前漢",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "歴史上繰り返される興亡のパターンとは？",
+        "歴史上の人物を公正に評価するには？",
+        "古代の失敗から今日何を学べるか？"
       ]
     },
     "toynbee": {
-      "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "name": "アーノルド・トインビー",
+      "era": "近代",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "我々の文明はどの挑戦に応えられていないか？",
+        "創造的少数派はいかにして変革を推進するか？",
+        "衰退する文明は軌道修正できるか？"
       ]
     },
     "spengler": {
-      "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "name": "シュペングラー",
+      "era": "近代",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "西洋文明は最終段階にあるのか？",
+        "テクノロジーは文明の衰退を遅らせられるか？",
+        "文化の「冬」は日常でどう現れるか？"
       ]
     },
     "braudel": {
-      "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "name": "フェルナン・ブローデル",
+      "era": "現代",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "日々のニュースを超えて、どんな深層構造が時代を形作っているか？",
+        "地理はいまだに経済の運命を決めているか？",
+        "今は見えないが次の世紀を定義するゆっくりした変化は？"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "黄仁宇",
+      "era": "現代",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "善意の改革がしばしば失敗するのはなぜか？",
+        "システムはなぜ変革者を超えて存続するのか？",
+        "組織の変革を制約する構造的要因は何か？"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "タキトゥス",
+      "era": "ローマ帝国",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "権力はいかにして制度を内側から腐敗させるか？",
+        "共和制が死に向かう初期の兆候は？",
+        "人々はなぜ暴政を受け入れるようになるのか？"
       ]
     },
     "tocqueville": {
-      "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "name": "トクヴィル",
+      "era": "近代ヨーロッパ",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "多数の暴政は今日も現実の危険か？",
+        "平等はなぜ逆説的に自由を脅かすのか？",
+        "民主主義を健全に保つものは何か？"
       ]
     },
     "gibbon": {
-      "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "name": "エドワード・ギボン",
+      "era": "近代ヨーロッパ",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "我々の制度を脅かす内的弱点は何か？",
+        "過度の拡大はなぜ崩壊を招くのか？",
+        "成長はいつ衰退の種となるのか？"
       ]
     },
     "weber": {
-      "name": "Max Weber",
-      "era": "Modern Era",
+      "name": "マックス・ヴェーバー",
+      "era": "近代",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "我々は官僚制の鉄の檻に閉じ込められているか？",
+        "合理化はいかにして意味を殺すのか？",
+        "真にカリスマ的なリーダーの条件は？"
       ]
     },
     "durkheim": {
-      "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "name": "エミール・デュルケーム",
+      "era": "近代",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "なぜ現代生活はこれほど疎外感があるのか？",
+        "伝統が薄れたとき社会を結束させるものは？",
+        "分業はなぜ連帯と孤独を同時に生むのか？"
       ]
     },
     "bourdieu": {
-      "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "name": "ピエール・ブルデュー",
+      "era": "現代",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "見えない優位性は世代を超えてどう蓄積するか？",
+        "教育は平等化するのか不平等を再生産するのか？",
+        "自分の趣味は階級をどう表しているか？"
       ]
     },
     "foucault": {
-      "name": "Michel Foucault",
-      "era": "Contemporary",
+      "name": "ミシェル・フーコー",
+      "era": "現代",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "権力は日常生活でどう不可視に機能するか？",
+        "「普通」を決めるのは誰か？",
+        "制度はどうやって力を使わずに我々を規律化するか？"
       ]
     },
     "beauvoir": {
-      "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "name": "シモーヌ・ド・ボーヴォワール",
+      "era": "現代",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "自分のアイデンティティのどれだけが社会的に構築されたものか？",
+        "真に自分らしく生きるとは？",
+        "権力構造はいかにして親密な関係を形作るか？"
       ]
     },
     "mcluhan": {
-      "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "name": "マーシャル・マクルーハン",
+      "era": "現代",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "ソーシャルメディアは脳をどう変えているか？",
+        "メディアは本当にメッセージより重要か？",
+        "AIは人間の思考パターンに何をするか？"
       ]
     },
     "arendt": {
-      "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "name": "ハンナ・アーレント",
+      "era": "現代",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "なぜ普通の人々がひどいことをしてしまうのか？",
+        "真の政治的言論の空間を破壊するものは？",
+        "自分で考えることを止める圧力にどう抵抗するか？"
       ]
     },
     "bauman": {
-      "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "name": "ジグムント・バウマン",
+      "era": "現代",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "なぜすべてが一時的で不確かに感じるのか？",
+        "使い捨ての世界で永続的な絆をどう築くか？",
+        "自由はかえって不安を増しているのか？"
       ]
     },
     "goffman": {
-      "name": "Erving Goffman",
-      "era": "Contemporary",
+      "name": "アーヴィング・ゴフマン",
+      "era": "現代",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "社会生活のどれだけが演技なのか？",
+        "「仮面」が外れたとき何が起こるか？",
+        "なぜ暗黙の社会的ルールに従うのか？"
       ]
     }
   },
   "templates": {
     "philosophy-debate": {
-      "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "name": "哲学討論",
+      "description": "探求・調和・権力・解脱・克己"
     },
     "business-strategy": {
-      "name": "Business Strategy",
-      "description": "Mental models vs first principles vs contrarian"
+      "name": "ビジネス戦略",
+      "description": "思考モデル vs 第一原理 vs 逆張り"
     },
     "science-panel": {
-      "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "name": "科学探究",
+      "description": "確定 vs 確率、理論 vs 実験"
     },
     "strategic-minds": {
-      "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "name": "戦略対決",
+      "description": "戦わずして勝つ vs 力で圧倒 vs 決して降伏しない"
     },
     "psychology-insights": {
-      "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "name": "心理学の洞察",
+      "description": "本能 vs 行動 vs バイアス vs 意味"
     },
     "literary-salon": {
-      "name": "Literary Salon",
-      "description": "Tragedy, morality, absurd, revolt, grit"
+      "name": "文学サロン",
+      "description": "悲喜劇・道徳・不条理・批判・硬派"
     }
   }
 }

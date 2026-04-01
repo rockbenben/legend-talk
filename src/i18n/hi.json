@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "सेटिंग्स",
+    "more": "और",
+    "support": "सहायता"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "महान विचारकों से बात करें",
+    "subtitle": "1-1 परामर्श के लिए \"चैट\" पर क्लिक करें, या \"+\" से गोलमेज बनाएं",
+    "search": "नाम खोजें या टाइप करें...",
+    "startChat": "चैट",
+    "randomRoundtable": "यादृच्छिक",
+    "templates": "सुझाव",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "सभी",
+      "philosophy": "दर्शन",
+      "business": "व्यापार",
+      "science": "विज्ञान",
+      "technology": "प्रौद्योगिकी",
+      "strategy": "रणनीति",
+      "psychology": "मनोविज्ञान",
+      "literature": "साहित्य",
+      "art": "कला",
+      "religion": "धर्म",
+      "politics": "राजनीति",
+      "economics": "अर्थशास्त्र",
+      "education": "शिक्षा",
+      "finance": "वित्त",
+      "history": "इतिहास",
+      "sociology": "समाजशास्त्र"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "अपना प्रश्न लिखें...",
+    "send": "भेजें",
+    "thinking": "सोच रहा है...",
+    "stop": "रोकें",
+    "newChat": "नई बातचीत",
+    "export": "निर्यात",
+    "noConversations": "कोई बातचीत नहीं",
+    "noMessages": "नीचे कोई प्रश्न आज़माएं या अपना लिखें",
+    "rename": "नाम बदलें",
+    "addParticipant": "जोड़ें",
+    "untitled": "शीर्षकहीन",
+    "noApiKey": "API कुंजी कॉन्फ़िगर नहीं है",
+    "goSettings": "सेटिंग्स पर जाएं",
+    "regenerate": "पुनः उत्पन्न करें",
+    "summarize": "सारांश",
+    "summarizing": "सारांश बना रहा है...",
+    "searchConversations": "बातचीत खोजें...",
+    "share": "साझा करें",
+    "copied": "कॉपी हो गया",
+    "shareTooLong": "बातचीत URL से साझा करने के लिए बहुत लंबी है",
+    "branch": "यहां से शाखा बनाएं",
+    "newWithSame": "उन्हीं के साथ पुनः शुरू",
+    "copyLineupLink": "समूह लिंक कॉपी करें",
+    "copyCategoryLink": "श्रेणी लिंक कॉपी करें",
+    "linkCopied": "कॉपी हो गया",
+    "shareSettings": "सेटिंग्स सिंक करें",
+    "settingsImported": "सेटिंग्स आयात की गईं",
+    "enterPassword": "API कुंजियों की सुरक्षा के लिए पासवर्ड सेट करें (खाली छोड़ें तो कुंजियां शामिल नहीं होंगी)",
+    "enterDecryptPassword": "डिक्रिप्ट करने के लिए पासवर्ड दर्ज करें (खाली छोड़ें तो कुंजियां छोड़ दी जाएंगी)",
+    "importConversations": "आयात",
+    "importSuccess": "{{count}} बातचीत आयात की गईं",
+    "importError": "आयात विफल: अमान्य फ़ाइल प्रारूप",
+    "corsError": "अनुरोध ब्राउज़र द्वारा अवरुद्ध (CORS)। प्रॉक्सी आवश्यक है।",
+    "useCorsProxy": "सार्वजनिक प्रॉक्सी का उपयोग करें"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} चयनित",
+    "start": "चर्चा शुरू करें",
+    "rounds": "राउंड",
+    "roundProgress": "राउंड {{current}}/{{total}} — {{name}} बोल रहा है...",
+    "discussionComplete": "चर्चा पूर्ण",
+    "continue": "+{{count}} राउंड और",
+    "removeParticipant": "हटाएं"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "सेटिंग्स",
+    "apiKeyPlaceholder": "{{provider}} API कुंजी दर्ज करें...",
+    "defaultProvider": "प्रदाता",
+    "defaultModel": "मॉडल",
+    "language": "भाषा",
+    "theme": "थीम",
+    "themeLight": "लाइट",
+    "themeDark": "डार्क",
+    "thinkingLevel": "सोच का स्तर",
+    "thinkingLevelHint": "मॉडल उत्तर देने से पहले गहराई से सोचता है। अधिक सटीक लेकिन धीमा।",
+    "thinkingOff": "बंद",
+    "thinkingLow": "कम",
+    "thinkingMedium": "मध्यम",
+    "thinkingHigh": "उच्च",
+    "corsProxyHint": "CORS प्रतिबंधों को दूर करने के लिए प्रॉक्सी के माध्यम से अनुरोध भेजता है",
+    "customModel": "कस्टम मॉडल...",
+    "customBaseUrlHint": "OpenAI संगत API एंडपॉइंट दर्ज करें",
+    "storageUsed": "संग्रहण: {{size}}",
+    "clearData": "सभी डेटा हटाएं"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "साझा बातचीत",
+    "startOwn": "अपनी बातचीत शुरू करें"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि: {{message}}",
+    "confirm": "पुष्टि करें",
+    "unknown": "अज्ञात"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "सुकरात",
+      "era": "प्राचीन ग्रीस",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "कन्फ्यूशियस",
+      "era": "वसंत और शरद",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "अरस्तू",
+      "era": "प्राचीन ग्रीस",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -135,8 +135,8 @@
       ]
     },
     "laozi": {
-      "name": "Laozi",
-      "era": "Spring and Autumn Period",
+      "name": "लाओ त्सू",
+      "era": "वसंत और शरद",
       "questions": [
         "The harder I try the more anxious I get",
         "How to stay true to myself under pressure?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "प्लेटो",
+      "era": "प्राचीन ग्रीस",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -162,8 +162,8 @@
       ]
     },
     "marcus-aurelius": {
-      "name": "Marcus Aurelius",
-      "era": "Roman Empire",
+      "name": "मार्कस ऑरेलियस",
+      "era": "रोमन साम्राज्य",
       "questions": [
         "How to stay unaffected by external chaos?",
         "How to think about things I cannot change?",
@@ -171,8 +171,8 @@
       ]
     },
     "kant": {
-      "name": "Immanuel Kant",
-      "era": "Early Modern Europe",
+      "name": "काण्ट",
+      "era": "आधुनिक यूरोप",
       "questions": [
         "Is lying always wrong?",
         "Should I follow rules or focus on outcomes?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "मुझे पता है क्या करना है लेकिन कर नहीं पाता",
+        "अराजकता में शांत कैसे रहें?",
+        "सही और गलत में कैसे फर्क करें?"
       ]
     },
     "sun-tzu": {
-      "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "name": "सुन त्ज़ू",
+      "era": "वसंत और शरद",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "कम संसाधनों से कैसे जीतें?",
+        "प्रतिस्पर्धी की कमजोरियां कैसे खोजें?",
+        "कब सीधे टकराएं, कब घेरें?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "प्रतिद्वंद्वी की ताकत को कमजोरी में कैसे बदलें?",
+        "सीमित संसाधनों से लाभ कैसे बनाएं?",
+        "रचनात्मक रणनीति से मजबूत प्रतिद्वंद्वी को कैसे हराएं?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "नेपोलियन",
+      "era": "फ्रांसीसी क्रांति",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,14 +246,14 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "कमजोर होने पर लाभ कैसे बनाएं?",
+        "प्रतिद्वंद्वी की अगली चाल का अनुमान कैसे लगाएं?",
+        "आदर्श और वास्तविकता के बीच का अंतर कैसे पाटें?"
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "मैकियावेली",
+      "era": "पुनर्जागरण",
       "questions": [
         "How to protect myself in office politics?",
         "What are the fundamental laws of power?",
@@ -270,12 +270,12 @@
       ]
     },
     "churchill": {
-      "name": "Winston Churchill",
-      "era": "Modern Era",
+      "name": "चर्चिल",
+      "era": "आधुनिक",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "मैं टूटने की कगार पर हूँ — क्या करूँ?",
+        "टीम का मनोबल कैसे बहाल करें?",
+        "भारी अनिश्चितता में कैसे निर्णय लें?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "क्या मैं सबसे महत्वपूर्ण चीज़ पर समय लगा रहा हूँ?",
+        "एक प्रबंधक की प्रभावशीलता कैसे मापें?",
+        "संगठन को लक्ष्य कैसे निर्धारित करने चाहिए?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "किसी कंपनी के दीर्घकालिक मूल्य का आकलन कैसे करें?",
+        "बाज़ार गिरने पर क्या करें?",
+        "एक महान व्यापार मॉडल क्या बनाता है?"
       ]
     },
     "peter-thiel": {
@@ -369,8 +369,8 @@
       ]
     },
     "jobs": {
-      "name": "Steve Jobs",
-      "era": "Contemporary",
+      "name": "स्टीव जॉब्स",
+      "era": "समकालीन",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -378,8 +378,8 @@
       ]
     },
     "musk": {
-      "name": "Elon Musk",
-      "era": "Contemporary",
+      "name": "एलन मस्क",
+      "era": "समकालीन",
       "questions": [
         "What are the core assumptions in this industry?",
         "How to make the impossible possible?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "फ्रायड",
+      "era": "आधुनिक",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "दूसरों की राय की परवाह करना कैसे छोड़ें?",
+        "पिछले आघात मुझे कैसे प्रभावित करते रहते हैं?",
+        "मुझमें अपनी स्थिति बदलने का साहस नहीं है"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "आइंस्टीन",
+      "era": "आधुनिक",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "न्यूटन",
+      "era": "आधुनिक ब्रिटेन",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -495,8 +495,8 @@
       ]
     },
     "galileo": {
-      "name": "Galileo Galilei",
-      "era": "Early Modern Europe",
+      "name": "गैलीलियो",
+      "era": "पुनर्जागरण",
       "questions": [
         "Is my judgment backed by real evidence?",
         "How to challenge industry conventional wisdom?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "डार्विन",
+      "era": "आधुनिक ब्रिटेन",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -522,8 +522,8 @@
       ]
     },
     "hawking": {
-      "name": "Stephen Hawking",
-      "era": "Contemporary",
+      "name": "हॉकिंग",
+      "era": "समकालीन",
       "questions": [
         "Does my problem matter on a cosmic scale?",
         "Can physical or environmental limits be transcended?",
@@ -531,8 +531,8 @@
       ]
     },
     "tesla": {
-      "name": "Nikola Tesla",
-      "era": "Modern Era",
+      "name": "टेस्ला",
+      "era": "आधुनिक",
       "questions": [
         "My idea is ahead of its time — how to push it forward?",
         "How to mentally simulate a complex system?",
@@ -558,8 +558,8 @@
       ]
     },
     "curie": {
-      "name": "Marie Curie",
-      "era": "Modern Era",
+      "name": "क्यूरी",
+      "era": "आधुनिक",
       "questions": [
         "How to persist when doubted by others?",
         "How to convince skeptics with data?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "शेक्सपियर",
+      "era": "पुनर्जागरण",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "लोगों की जटिल प्रेरणाओं को कैसे समझें?",
+        "ईर्ष्या और महत्वाकांक्षा व्यक्ति को कैसे नष्ट करती है?",
+        "क्या त्रासदी से बचा जा सकता है?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "तॉल्स्तॉय",
+      "era": "रूसी साम्राज्य",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "काफ्का",
+      "era": "आधुनिक यूरोप",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -612,8 +612,8 @@
       ]
     },
     "hemingway": {
-      "name": "Ernest Hemingway",
-      "era": "Modern Era",
+      "name": "हेमिंग्वे",
+      "era": "समकालीन",
       "questions": [
         "How to stay calm under pressure?",
         "What is worth showing through action rather than words?",
@@ -630,8 +630,8 @@
       ]
     },
     "nietzsche": {
-      "name": "Friedrich Nietzsche",
-      "era": "Early Modern Europe",
+      "name": "नीत्शे",
+      "era": "आधुनिक यूरोप",
       "questions": [
         "How to transcend values imposed by others?",
         "How to rebuild yourself when nihilism strikes?",
@@ -657,8 +657,8 @@
       ]
     },
     "da-vinci": {
-      "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "name": "लियोनार्दो दा विंची",
+      "era": "पुनर्जागरण",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "बीथोवेन",
+      "era": "आधुनिक यूरोप",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "पिकासो",
+      "era": "आधुनिक",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -693,8 +693,8 @@
       ]
     },
     "mozart": {
-      "name": "Wolfgang Amadeus Mozart",
-      "era": "Early Modern Europe",
+      "name": "मोत्सार्ट",
+      "era": "आधुनिक यूरोप",
       "questions": [
         "How to make creative work flow more naturally?",
         "How to balance play and serious work?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "मान्यता के बिना कैसे टिके रहें?",
+        "अकेलापन रचनात्मकता का स्रोत है या बाधा?",
+        "बाहरी निर्णयों से प्रभावित न होने का तरीका?"
       ]
     },
     "monet": {
@@ -747,8 +747,8 @@
       ]
     },
     "adam-smith": {
-      "name": "Adam Smith",
-      "era": "Early Modern Europe",
+      "name": "एडम स्मिथ",
+      "era": "आधुनिक ब्रिटेन",
       "questions": [
         "How does individual self-interest benefit society as a whole?",
         "When does the free market fail?",
@@ -756,17 +756,17 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "मार्क्स",
+      "era": "आधुनिक यूरोप",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "मौजूदा आर्थिक व्यवस्था से कौन लाभान्वित होता है?",
+        "श्रमिकों का मूल्य कैसे कम आंका जाता है?",
+        "पूंजीवाद के आंतरिक विरोधाभास क्या हैं?"
       ]
     },
     "keynes": {
-      "name": "John Maynard Keynes",
-      "era": "Modern Era",
+      "name": "कीन्स",
+      "era": "आधुनिक ब्रिटेन",
       "questions": [
         "What should governments do during a recession?",
         "How to balance short-term and long-term goals?",
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "कैसे तय करें कि कोई नीति बहुसंख्यकों के लिए अच्छी है?",
+        "व्यक्तिगत स्वतंत्रता की सीमा कहां है?",
+        "अल्पसंख्यकों के हितों की रक्षा कैसे करें?"
       ]
     },
     "schumpeter": {
@@ -819,12 +819,12 @@
       ]
     },
     "taleb": {
-      "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "name": "नसीम तालेब",
+      "era": "समकालीन",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "अपने करियर को एंटीफ्रैजाइल कैसे बनाएं?",
+        "विशेषज्ञ लगातार पूर्वानुमान में क्यों विफल होते हैं?",
+        "मैं अभी किन छिपे जोखिमों के संपर्क में हूं?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "महात्मा गांधी",
+      "era": "आधुनिक",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "लिंकन",
+      "era": "आधुनिक अमेरिका",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "मंडेला",
+      "era": "समकालीन",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "ट्यूरिंग",
+      "era": "आधुनिक",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "गौतम बुद्ध",
+      "era": "प्राचीन भारत",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "इब्न खल्दून",
+      "era": "मध्यकालीन इस्लामी विश्व",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "सभ्यताएँ अनिवार्य रूप से क्यों पतन को प्राप्त होती हैं?",
+        "समाज को क्या जोड़ता है और क्या तोड़ता है?",
+        "हम उत्थान के दौर में हैं या पतन के?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "बच्चे की आंतरिक सीखने की प्रेरणा कैसे जगाएं?",
+        "शिक्षा में स्वतंत्रता और नियमों का संतुलन कैसे बनाएं?",
+        "आदर्श शिक्षण वातावरण कैसे बनाएं?"
       ]
     },
     "helen-keller": {
@@ -1125,8 +1125,8 @@
       ]
     },
     "tagore": {
-      "name": "Rabindranath Tagore",
-      "era": "Modern Era",
+      "name": "रवींद्रनाथ टैगोर",
+      "era": "आधुनिक भारत",
       "questions": [
         "How to preserve humanistic and poetic elements in modern education?",
         "What role do beauty and art play in growing up?",
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "क्या बच्चा वास्तव में इस अवधारणा को समझ सकता है?",
+        "बच्चे के संज्ञानात्मक विकास चरण का मूल्यांकन कैसे करें?",
+        "सीखना वास्तव में कैसे होता है?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "बच्चे के समग्र विकास को कैसे पोषित करें?",
+        "बौद्धिक विकास में कला की क्या भूमिका है?",
+        "विभिन्न उम्र के बच्चों को किस तरह की शिक्षा चाहिए?"
       ]
     },
     "cai-yuanpei": {
@@ -1197,255 +1197,255 @@
       ]
     },
     "benjamin-graham": {
-      "name": "Benjamin Graham",
-      "era": "Modern America",
+      "name": "बेंजामिन ग्राहम",
+      "era": "आधुनिक अमेरिका",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "कैसे पता करें कि कोई कंपनी कम मूल्यांकित है?",
+        "सुरक्षा का मार्जिन क्या है?",
+        "क्या मिस्टर मार्केट आज पागल है?"
       ]
     },
     "george-soros": {
-      "name": "George Soros",
-      "era": "Contemporary",
+      "name": "जॉर्ज सोरोस",
+      "era": "समकालीन",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "रिफ्लेक्सिविटी सिद्धांत क्या है?",
+        "बाज़ार का बुलबुला कैसे पहचानें?",
+        "कब बड़ी शर्त लगानी चाहिए?"
       ]
     },
     "john-bogle": {
-      "name": "John Bogle",
-      "era": "Contemporary",
+      "name": "जॉन बोगल",
+      "era": "समकालीन",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "इंडेक्स फंड सक्रिय प्रबंधन से बेहतर क्यों हैं?",
+        "निवेश में सबसे महत्वपूर्ण क्या है?",
+        "न्यूनतम लागत पर कैसे निवेश करें?"
       ]
     },
     "harry-markowitz": {
-      "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "name": "हैरी मार्कोविट्ज़",
+      "era": "समकालीन",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "विविधीकरण का वास्तविक अर्थ क्या है?",
+        "इष्टतम पोर्टफोलियो कैसे बनाएं?",
+        "जोखिम और रिटर्न का संबंध क्या है?"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "यूजीन फामा",
+      "era": "समकालीन",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "क्या बाज़ार वाकई कुशल है?",
+        "अधिकांश फंड मैनेजर बाज़ार को क्यों नहीं हरा पाते?",
+        "फैक्टर इन्वेस्टिंग क्या है?"
       ]
     },
     "robert-shiller": {
-      "name": "Robert Shiller",
-      "era": "Contemporary",
+      "name": "रॉबर्ट शिलर",
+      "era": "समकालीन",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "क्या वर्तमान बाज़ार में बुलबुला है?",
+        "कथाएं बाज़ार को कैसे प्रभावित करती हैं?",
+        "CAPE अनुपात हमें क्या बताता है?"
       ]
     },
     "jesse-livermore": {
-      "name": "Jesse Livermore",
-      "era": "Modern America",
+      "name": "जेसी लिवरमोर",
+      "era": "आधुनिक अमेरिका",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "बाज़ार के रुझान कैसे पढ़ें?",
+        "नुकसान कब काटना चाहिए?",
+        "ट्रेडिंग में धैर्य कितना महत्वपूर्ण है?"
       ]
     },
     "john-templeton": {
-      "name": "John Templeton",
-      "era": "Contemporary",
+      "name": "जॉन टेम्पलटन",
+      "era": "समकालीन",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "खरीदने का सबसे अच्छा समय कब है?",
+        "डर के माहौल में शांत कैसे रहें?",
+        "वैश्विक निवेश के क्या फायदे हैं?"
       ]
     },
     "philip-fisher": {
-      "name": "Philip Fisher",
-      "era": "Modern America",
+      "name": "फिलिप फिशर",
+      "era": "आधुनिक अमेरिका",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "लंबी अवधि के लिए रखने योग्य कंपनियां कैसे खोजें?",
+        "\"स्कटलबट\" विधि क्या है?",
+        "गुणवत्ता या कीमत — क्या अधिक महत्वपूर्ण है?"
       ]
     },
     "howard-marks": {
-      "name": "Howard Marks",
-      "era": "Contemporary",
+      "name": "हॉवर्ड मार्क्स",
+      "era": "समकालीन",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "दूसरे स्तर की सोच क्या है?",
+        "हम वर्तमान चक्र में कहां हैं?",
+        "भीड़ मानसिकता से कैसे बचें?"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "थूसीडाइड्स",
+      "era": "प्राचीन ग्रीस",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "महाशक्तियों के बीच सत्ता हस्तांतरण अनिवार्य रूप से संघर्ष की ओर ले जाता है?",
+        "भय राष्ट्रों को युद्ध की ओर कैसे ले जाता है?",
+        "दो महाशक्तियों के बीच तटस्थता बनी रह सकती है?"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "सीमा चिएन",
+      "era": "हान राजवंश",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "इतिहास में उत्थान और पतन के कौन से पैटर्न दोहराते हैं?",
+        "ऐतिहासिक व्यक्तियों का निष्पक्ष मूल्यांकन कैसे करें?",
+        "प्राचीन गलतियाँ आज हमें क्या सिखाती हैं?"
       ]
     },
     "toynbee": {
-      "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "name": "आर्नोल्ड टॉयनबी",
+      "era": "आधुनिक काल",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "हमारी सभ्यता किस चुनौती का जवाब देने में विफल हो रही है?",
+        "रचनात्मक अल्पसंख्यक परिवर्तन कैसे लाते हैं?",
+        "क्या एक पतनशील सभ्यता अपनी दिशा बदल सकती है?"
       ]
     },
     "spengler": {
-      "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "name": "ऑस्वाल्ड श्पेंग्लर",
+      "era": "आधुनिक काल",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "क्या पश्चिमी सभ्यता अपने अंतिम चरण में है?",
+        "क्या प्रौद्योगिकी सभ्यता के पतन को विलंबित कर सकती है?",
+        "सांस्कृतिक \"शीतकाल\" दैनिक जीवन में कैसा दिखता है?"
       ]
     },
     "braudel": {
-      "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "name": "फर्नांड ब्रोदेल",
+      "era": "समकालीन",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "कौन सी गहरी संरचनाएं हमारे युग को आकार दे रही हैं?",
+        "भूगोल अभी भी आर्थिक भाग्य कैसे निर्धारित करता है?",
+        "कौन से धीमे परिवर्तन अगली सदी को परिभाषित करेंगे?"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "रे हुआंग",
+      "era": "समकालीन",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "अच्छे इरादे वाले सुधार अक्सर क्यों विफल होते हैं?",
+        "व्यवस्थाएं उन लोगों से कैसे आगे बढ़ जाती हैं जो उन्हें बदलना चाहते हैं?",
+        "कौन सी संरचनात्मक बाधाएं परिवर्तन को सीमित करती हैं?"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "टैसिटस",
+      "era": "रोमन साम्राज्य",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "सत्ता भीतर से संस्थाओं को कैसे भ्रष्ट करती है?",
+        "गणतंत्र के मरने के शुरुआती संकेत क्या हैं?",
+        "लोग अत्याचार स्वीकार करने के लिए खुद को कैसे मना लेते हैं?"
       ]
     },
     "tocqueville": {
-      "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "name": "टॉकविल",
+      "era": "प्रारंभिक आधुनिक यूरोप",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "बहुमत का अत्याचार आज एक वास्तविक खतरा है?",
+        "समानता विरोधाभासी रूप से स्वतंत्रता को कैसे खतरे में डालती है?",
+        "लोकतंत्र को स्वस्थ क्या रखता है?"
       ]
     },
     "gibbon": {
-      "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "name": "एडवर्ड गिबन",
+      "era": "प्रारंभिक आधुनिक यूरोप",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "हमारी संस्थाओं को कौन सी आंतरिक कमजोरियां खतरे में डालती हैं?",
+        "अत्यधिक विस्तार कैसे पतन की ओर ले जाता है?",
+        "विकास कब पतन का बीज बनता है?"
       ]
     },
     "weber": {
-      "name": "Max Weber",
-      "era": "Modern Era",
+      "name": "मैक्स वेबर",
+      "era": "आधुनिक काल",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "क्या हम नौकरशाही के लोहे के पिंजरे में फंसे हैं?",
+        "तर्कसंगतकरण अर्थ को कैसे मारता है?",
+        "एक नेता को वास्तव में करिश्माई क्या बनाता है?"
       ]
     },
     "durkheim": {
-      "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "name": "एमिल दुर्खाइम",
+      "era": "आधुनिक काल",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "आधुनिक जीवन इतना अलगाव क्यों महसूस कराता है?",
+        "परंपराएं फीकी पड़ने पर समाज को क्या जोड़ता है?",
+        "श्रम विभाजन एकजुटता और अकेलापन दोनों कैसे बनाता है?"
       ]
     },
     "bourdieu": {
-      "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "name": "पियरे बूर्दियू",
+      "era": "समकालीन",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "अदृश्य फायदे पीढ़ियों में कैसे जमा होते हैं?",
+        "शिक्षा समानता लाती है या असमानता का पुनरुत्पादन करती है?",
+        "मेरी रुचियां मेरी वर्ग स्थिति कैसे प्रकट करती हैं?"
       ]
     },
     "foucault": {
-      "name": "Michel Foucault",
-      "era": "Contemporary",
+      "name": "मिशेल फूको",
+      "era": "समकालीन",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "सत्ता दैनिक जीवन में अदृश्य रूप से कैसे काम करती है?",
+        "\"सामान्य\" क्या है यह कौन तय करता है?",
+        "संस्थाएं बिना बल के हमें कैसे अनुशासित करती हैं?"
       ]
     },
     "beauvoir": {
-      "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "name": "सीमोन द बोवुआर",
+      "era": "समकालीन",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "मेरी पहचान का कितना हिस्सा सामाजिक रूप से निर्मित है?",
+        "प्रामाणिक रूप से जीना क्या मतलब है?",
+        "सत्ता की गतिशीलता अंतरंग संबंधों को कैसे आकार देती है?"
       ]
     },
     "mcluhan": {
-      "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "name": "मार्शल मैक्लुहान",
+      "era": "समकालीन",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "सोशल मीडिया हमारे दिमाग को कैसे बदल रहा है?",
+        "क्या माध्यम वाकई संदेश से ज्यादा महत्वपूर्ण है?",
+        "AI मानव सोच के पैटर्न का क्या करता है?"
       ]
     },
     "arendt": {
-      "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "name": "हन्ना आरेंट",
+      "era": "समकालीन",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "साधारण लोग अंततः भयानक काम कैसे करने लगते हैं?",
+        "सच्चे राजनीतिक विमर्श के स्थान को क्या नष्ट करता है?",
+        "स्वतंत्र सोच बंद करने के दबाव का प्रतिरोध कैसे करें?"
       ]
     },
     "bauman": {
-      "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "name": "ज़िगमंट बाउमन",
+      "era": "समकालीन",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "सब कुछ अस्थायी और अनिश्चित क्यों लगता है?",
+        "एक डिस्पोजेबल दुनिया में स्थायी बंधन कैसे बनाएं?",
+        "क्या हमारी स्वतंत्रता वास्तव में हमें अधिक चिंतित बना रही है?"
       ]
     },
     "goffman": {
-      "name": "Erving Goffman",
-      "era": "Contemporary",
+      "name": "अर्विंग गॉफ़मैन",
+      "era": "समकालीन",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "मेरे सामाजिक जीवन का कितना हिस्सा अभिनय है?",
+        "जब हमारा \"मुखौटा\" फिसलता है तो क्या होता है?",
+        "हम अलिखित सामाजिक नियमों का पालन क्यों करते हैं?"
       ]
     }
   },

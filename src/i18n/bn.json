@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "সেটিংস",
+    "more": "আরও",
+    "support": "সহায়তা"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "মহান চিন্তাবিদদের সাথে কথা বলুন",
+    "subtitle": "\"চ্যাট\" ক্লিক করুন ১-১ পরামর্শের জন্য, বা \"+\" গোলটেবিল তৈরি করতে",
+    "search": "নাম খুঁজুন বা টাইপ করুন...",
+    "startChat": "চ্যাট",
+    "randomRoundtable": "র‍্যান্ডম",
+    "templates": "প্রস্তাবিত",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "সব",
+      "philosophy": "দর্শন",
+      "business": "ব্যবসা",
+      "science": "বিজ্ঞান",
+      "technology": "প্রযুক্তি",
+      "strategy": "কৌশল",
+      "psychology": "মনোবিজ্ঞান",
+      "literature": "সাহিত্য",
+      "art": "শিল্প",
+      "religion": "ধর্ম",
+      "politics": "রাজনীতি",
+      "economics": "অর্থনীতি",
+      "education": "শিক্ষা",
+      "finance": "অর্থায়ন",
+      "history": "ইতিহাস",
+      "sociology": "সমাজবিজ্ঞান"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "আপনার প্রশ্ন লিখুন...",
+    "send": "পাঠান",
+    "thinking": "ভাবছে...",
+    "stop": "থামুন",
+    "newChat": "নতুন কথোপকথন",
+    "export": "রপ্তানি",
+    "noConversations": "কোনো কথোপকথন নেই",
+    "noMessages": "নিচের একটি প্রশ্ন চেষ্টা করুন বা নিজের লিখুন",
+    "rename": "নাম পরিবর্তন",
+    "addParticipant": "যোগ করুন",
+    "untitled": "শিরোনামহীন",
+    "noApiKey": "API কী কনফিগার করা হয়নি",
+    "goSettings": "সেটিংসে যান",
+    "regenerate": "পুনরায় তৈরি করুন",
+    "summarize": "সারসংক্ষেপ",
+    "summarizing": "সারসংক্ষেপ করা হচ্ছে...",
+    "searchConversations": "কথোপকথন খুঁজুন...",
+    "share": "শেয়ার করুন",
+    "copied": "কপি হয়েছে",
+    "shareTooLong": "কথোপকথন URL দিয়ে শেয়ার করার জন্য খুব দীর্ঘ",
+    "branch": "এখান থেকে শাখা করুন",
+    "newWithSame": "একই সদস্যদের সাথে পুনরায় শুরু",
+    "copyLineupLink": "গ্রুপ লিঙ্ক কপি করুন",
+    "copyCategoryLink": "বিভাগ লিঙ্ক কপি করুন",
+    "linkCopied": "কপি সম্পন্ন",
+    "shareSettings": "সেটিংস সিঙ্ক করুন",
+    "settingsImported": "সেটিংস আমদানি হয়েছে",
+    "enterPassword": "API কী সুরক্ষার জন্য পাসওয়ার্ড সেট করুন (খালি রাখলে কী বাদ যাবে)",
+    "enterDecryptPassword": "ডিক্রিপ্ট করতে পাসওয়ার্ড দিন (খালি রাখলে কী বাদ যাবে)",
+    "importConversations": "আমদানি",
+    "importSuccess": "{{count}}টি কথোপকথন আমদানি হয়েছে",
+    "importError": "আমদানি ব্যর্থ: অবৈধ ফাইল ফরম্যাট",
+    "corsError": "ব্রাউজার দ্বারা অনুরোধ ব্লক করা হয়েছে (CORS)। প্রক্সি প্রয়োজন।",
+    "useCorsProxy": "পাবলিক প্রক্সি ব্যবহার করুন"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} জন নির্বাচিত",
+    "start": "আলোচনা শুরু",
+    "rounds": "রাউন্ড",
+    "roundProgress": "রাউন্ড {{current}}/{{total}} — {{name}} কথা বলছেন...",
+    "discussionComplete": "আলোচনা সম্পন্ন",
+    "continue": "+{{count}} রাউন্ড",
+    "removeParticipant": "সরান"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "সেটিংস",
+    "apiKeyPlaceholder": "{{provider}} API কী দিন...",
+    "defaultProvider": "প্রদানকারী",
+    "defaultModel": "মডেল",
+    "language": "ভাষা",
+    "theme": "থিম",
+    "themeLight": "হালকা",
+    "themeDark": "গাঢ়",
+    "thinkingLevel": "চিন্তার স্তর",
+    "thinkingLevelHint": "মডেল উত্তর দেওয়ার আগে গভীরভাবে চিন্তা করে। আরও সঠিক কিন্তু ধীর।",
+    "thinkingOff": "বন্ধ",
+    "thinkingLow": "নিম্ন",
+    "thinkingMedium": "মাঝারি",
+    "thinkingHigh": "উচ্চ",
+    "corsProxyHint": "CORS সীমাবদ্ধতা এড়াতে প্রক্সির মাধ্যমে অনুরোধ পাঠায়",
+    "customModel": "কাস্টম মডেল...",
+    "customBaseUrlHint": "OpenAI সামঞ্জস্যপূর্ণ API এন্ডপয়েন্ট দিন",
+    "storageUsed": "স্টোরেজ: {{size}}",
+    "clearData": "সমস্ত ডেটা মুছুন"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "শেয়ারকৃত কথোপকথন",
+    "startOwn": "আপনার নিজের কথোপকথন শুরু করুন"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "লোড হচ্ছে...",
+    "error": "ত্রুটি: {{message}}",
+    "confirm": "নিশ্চিত করুন",
+    "unknown": "অজানা"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "সক্রেটিস",
+      "era": "প্রাচীন গ্রীস",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "কনফুসিয়াস",
+      "era": "বসন্ত ও শরৎ",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "অ্যারিস্টটল",
+      "era": "প্রাচীন গ্রীস",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "প্লেটো",
+      "era": "প্রাচীন গ্রীস",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "কী করতে হবে জানি কিন্তু করতে পারি না",
+        "বিশৃঙ্খলার মধ্যে কীভাবে শান্ত থাকবেন?",
+        "সঠিক-ভুল কীভাবে পার্থক্য করবেন?"
       ]
     },
     "sun-tzu": {
-      "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "name": "সুন জু",
+      "era": "বসন্ত ও শরৎ",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "কম সম্পদ নিয়ে কীভাবে জিতবেন?",
+        "প্রতিযোগীর দুর্বলতা কীভাবে খুঁজবেন?",
+        "কখন সরাসরি মোকাবেলা, কখন ঘুরপথে?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "প্রতিপক্ষের শক্তিকে দুর্বলতায় কীভাবে পরিণত করবেন?",
+        "সীমিত সম্পদে কীভাবে সুবিধা তৈরি করবেন?",
+        "সৃজনশীল কৌশলে শক্তিশালী প্রতিপক্ষকে কীভাবে পরাজিত করবেন?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "নেপোলিয়ন",
+      "era": "ফরাসি বিপ্লব",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,9 +246,9 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "দুর্বল অবস্থায় সুবিধা কীভাবে তৈরি করবেন?",
+        "প্রতিপক্ষের পরবর্তী পদক্ষেপ কীভাবে অনুমান করবেন?",
+        "আদর্শ ও বাস্তবের মধ্যে ব্যবধান কীভাবে পূরণ করবেন?"
       ]
     },
     "machiavelli": {
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "আমি ভেঙে পড়ার দ্বারপ্রান্তে — কী করব?",
+        "দলের মনোবল কীভাবে পুনরুদ্ধার করবেন?",
+        "বিশাল অনিশ্চয়তায় কীভাবে সিদ্ধান্ত নেবেন?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "আমি কি সবচেয়ে গুরুত্বপূর্ণ বিষয়ে সময় দিচ্ছি?",
+        "একজন ম্যানেজারের কার্যকারিতা কীভাবে পরিমাপ করবেন?",
+        "সংস্থা কীভাবে লক্ষ্য নির্ধারণ করবে?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "কোম্পানির দীর্ঘমেয়াদি মূল্য কীভাবে বিচার করবেন?",
+        "বাজার পড়লে কী করবেন?",
+        "একটি দুর্দান্ত ব্যবসায়িক মডেল কী তৈরি করে?"
       ]
     },
     "peter-thiel": {
@@ -369,8 +369,8 @@
       ]
     },
     "jobs": {
-      "name": "Steve Jobs",
-      "era": "Contemporary",
+      "name": "স্টিভ জবস",
+      "era": "সমসাময়িক",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "ফ্রয়েড",
+      "era": "আধুনিক",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "অন্যরা কী ভাবে তা নিয়ে চিন্তা করা কীভাবে বন্ধ করবেন?",
+        "অতীতের আঘাত কীভাবে আমাকে প্রভাবিত করতে থাকে?",
+        "পরিস্থিতি বদলানোর সাহস আমার নেই"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "আইনস্টাইন",
+      "era": "আধুনিক",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "নিউটন",
+      "era": "আধুনিক ব্রিটেন",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "ডারউইন",
+      "era": "আধুনিক ব্রিটেন",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "শেক্সপিয়র",
+      "era": "রেনেসাঁ",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "মানুষের জটিল প্রেরণা কীভাবে বুঝবেন?",
+        "হিংসা ও উচ্চাকাঙ্ক্ষা কীভাবে মানুষকে ধ্বংস করে?",
+        "ট্র্যাজেডি কি এড়ানো যায়?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "তলস্তয়",
+      "era": "রুশ সাম্রাজ্য",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "কাফকা",
+      "era": "আধুনিক ইউরোপ",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -657,8 +657,8 @@
       ]
     },
     "da-vinci": {
-      "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "name": "লিওনার্দো দা ভিঞ্চি",
+      "era": "রেনেসাঁ",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "বিটোভেন",
+      "era": "আধুনিক ইউরোপ",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "পিকাসো",
+      "era": "আধুনিক",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "স্বীকৃতি ছাড়া কীভাবে টিকে থাকবেন?",
+        "একাকীত্ব কি সৃজনশীলতার উৎস নাকি বাধা?",
+        "বাহ্যিক বিচারে প্রভাবিত না হওয়ার উপায়?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "মার্কস",
+      "era": "আধুনিক ইউরোপ",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "বর্তমান অর্থনৈতিক ব্যবস্থা থেকে কে লাভবান?",
+        "শ্রমিকদের মূল্য কীভাবে অবমূল্যায়িত হয়?",
+        "পুঁজিবাদের অভ্যন্তরীণ দ্বন্দ্ব কী?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "একটি নীতি সংখ্যাগরিষ্ঠের জন্য উপকারী কিনা কীভাবে নির্ধারণ করবেন?",
+        "ব্যক্তিগত স্বাধীনতার সীমানা কোথায়?",
+        "সংখ্যালঘুদের স্বার্থ কীভাবে রক্ষা করা উচিত?"
       ]
     },
     "schumpeter": {
@@ -819,12 +819,12 @@
       ]
     },
     "taleb": {
-      "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "name": "নাসিম তালেব",
+      "era": "সমসাময়িক",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "কীভাবে আমার ক্যারিয়ারকে অ্যান্টিফ্র্যাজাইল করব?",
+        "বিশেষজ্ঞরা কেন ধারাবাহিকভাবে ভবিষ্যদ্বাণীতে ব্যর্থ হন?",
+        "এই মুহূর্তে আমি কোন লুকানো ঝুঁকির সম্মুখীন?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "মহাত্মা গান্ধী",
+      "era": "আধুনিক",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "লিংকন",
+      "era": "আধুনিক আমেরিকা",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "ম্যান্ডেলা",
+      "era": "সমসাময়িক",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "টুরিং",
+      "era": "আধুনিক",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "গৌতম বুদ্ধ",
+      "era": "প্রাচীন ভারত",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "ইবনে খালদুন",
+      "era": "মধ্যযুগীয় ইসলামি বিশ্ব",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "সভ্যতা কেন অনিবার্যভাবে পতিত হয়?",
+        "সমাজকে কী একত্রিত করে আর কী ভেঙে দেয়?",
+        "আমরা কি উত্থানে নাকি পতনে?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "শিশুর অভ্যন্তরীণ শেখার প্রেরণা কীভাবে জাগাবেন?",
+        "শিক্ষায় স্বাধীনতা ও নিয়মের ভারসাম্য কীভাবে রাখবেন?",
+        "আদর্শ শিক্ষার পরিবেশ কীভাবে তৈরি করবেন?"
       ]
     },
     "helen-keller": {
@@ -1125,8 +1125,8 @@
       ]
     },
     "tagore": {
-      "name": "Rabindranath Tagore",
-      "era": "Modern Era",
+      "name": "রবীন্দ্রনাথ ঠাকুর",
+      "era": "আধুনিক ভারত",
       "questions": [
         "How to preserve humanistic and poetic elements in modern education?",
         "What role do beauty and art play in growing up?",
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "শিশু কি সত্যিই এই ধারণা বুঝতে পারে?",
+        "শিশুর জ্ঞানীয় বিকাশের পর্যায় কীভাবে মূল্যায়ন করবেন?",
+        "শেখা আসলে কীভাবে ঘটে?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "শিশুর সামগ্রিক বিকাশ কীভাবে লালন করবেন?",
+        "বুদ্ধিবৃত্তিক বিকাশে শিল্পের ভূমিকা কী?",
+        "বিভিন্ন বয়সের শিশুদের কোন ধরনের শিক্ষা প্রয়োজন?"
       ]
     },
     "cai-yuanpei": {
@@ -1197,255 +1197,255 @@
       ]
     },
     "benjamin-graham": {
-      "name": "Benjamin Graham",
-      "era": "Modern America",
+      "name": "বেঞ্জামিন গ্রাহাম",
+      "era": "আধুনিক আমেরিকা",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "কীভাবে বুঝবেন একটি কোম্পানি অবমূল্যায়িত?",
+        "নিরাপত্তা মার্জিন কী?",
+        "মিস্টার মার্কেট আজ কি অযৌক্তিক?"
       ]
     },
     "george-soros": {
-      "name": "George Soros",
-      "era": "Contemporary",
+      "name": "জর্জ সোরোস",
+      "era": "সমসাময়িক",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "প্রতিফলনশীলতা তত্ত্ব কী?",
+        "বাজার বুদবুদ কীভাবে চিহ্নিত করবেন?",
+        "কখন বড় বাজি ধরা উচিত?"
       ]
     },
     "john-bogle": {
-      "name": "John Bogle",
-      "era": "Contemporary",
+      "name": "জন বোগল",
+      "era": "সমসাময়িক",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "কেন ইনডেক্স ফান্ড সক্রিয় ব্যবস্থাপনার চেয়ে ভালো?",
+        "বিনিয়োগে সবচেয়ে গুরুত্বপূর্ণ কী?",
+        "সবচেয়ে কম খরচে কীভাবে বিনিয়োগ করবেন?"
       ]
     },
     "harry-markowitz": {
-      "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "name": "হ্যারি মার্কোভিৎজ",
+      "era": "সমসাময়িক",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "বৈচিত্র্যকরণের প্রকৃত অর্থ কী?",
+        "সর্বোত্তম পোর্টফোলিও কীভাবে তৈরি করবেন?",
+        "ঝুঁকি ও রিটার্নের সম্পর্ক কী?"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "ইউজিন ফামা",
+      "era": "সমসাময়িক",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "বাজার কি সত্যিই দক্ষ?",
+        "কেন বেশিরভাগ ফান্ড ম্যানেজার বাজারকে হারাতে পারে না?",
+        "ফ্যাক্টর ইনভেস্টিং কী?"
       ]
     },
     "robert-shiller": {
-      "name": "Robert Shiller",
-      "era": "Contemporary",
+      "name": "রবার্ট শিলার",
+      "era": "সমসাময়িক",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "বর্তমান বাজারে কি বুদবুদ আছে?",
+        "আখ্যান কীভাবে বাজারকে চালিত করে?",
+        "CAPE অনুপাত আমাদের কী বলে?"
       ]
     },
     "jesse-livermore": {
-      "name": "Jesse Livermore",
-      "era": "Modern America",
+      "name": "জেসি লিভারমোর",
+      "era": "আধুনিক আমেরিকা",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "বাজারের প্রবণতা কীভাবে পড়বেন?",
+        "কখন লোকসান কাটা উচিত?",
+        "ট্রেডিংয়ে ধৈর্য কতটা গুরুত্বপূর্ণ?"
       ]
     },
     "john-templeton": {
-      "name": "John Templeton",
-      "era": "Contemporary",
+      "name": "জন টেম্পলটন",
+      "era": "সমসাময়িক",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "কেনার সেরা সময় কখন?",
+        "আতঙ্কের সময় কীভাবে শান্ত থাকবেন?",
+        "বৈশ্বিক বিনিয়োগের সুবিধা কী?"
       ]
     },
     "philip-fisher": {
-      "name": "Philip Fisher",
-      "era": "Modern America",
+      "name": "ফিলিপ ফিশার",
+      "era": "আধুনিক আমেরিকা",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "দীর্ঘমেয়াদে রাখার যোগ্য কোম্পানি কীভাবে খুঁজবেন?",
+        "\"স্কাটলবাট\" পদ্ধতি কী?",
+        "গুণমান নাকি দাম — কোনটি বেশি গুরুত্বপূর্ণ?"
       ]
     },
     "howard-marks": {
-      "name": "Howard Marks",
-      "era": "Contemporary",
+      "name": "হাওয়ার্ড মার্কস",
+      "era": "সমসাময়িক",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "দ্বিতীয়-স্তরের চিন্তা কী?",
+        "আমরা বর্তমান চক্রের কোথায় আছি?",
+        "পশুপালন মানসিকতা কীভাবে এড়াবেন?"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "থুসিডাইডিস",
+      "era": "প্রাচীন গ্রীস",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "মহাশক্তির মধ্যে ক্ষমতা হস্তান্তর কি অনিবার্যভাবে সংঘাতের দিকে নিয়ে যায়?",
+        "ভয় কীভাবে জাতিকে যুদ্ধের দিকে ঠেলে দেয়?",
+        "দুই পরাশক্তির মধ্যে নিরপেক্ষতা টিকে থাকতে পারে?"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "সিমা চিয়ান",
+      "era": "হান রাজবংশ",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "ইতিহাসে উত্থান ও পতনের কোন ধরন বারবার দেখা যায়?",
+        "ঐতিহাসিক ব্যক্তিদের কীভাবে ন্যায্যভাবে বিচার করবেন?",
+        "প্রাচীন ভুল আজ আমাদের কী শেখায়?"
       ]
     },
     "toynbee": {
-      "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "name": "আর্নল্ড টয়নবি",
+      "era": "আধুনিক যুগ",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "আমাদের সভ্যতা কোন চ্যালেঞ্জের উত্তর দিতে ব্যর্থ হচ্ছে?",
+        "সৃজনশীল সংখ্যালঘু কীভাবে পরিবর্তন আনে?",
+        "পতনশীল সভ্যতা কি দিক পরিবর্তন করতে পারে?"
       ]
     },
     "spengler": {
-      "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "name": "অসওয়াল্ড স্পেংলার",
+      "era": "আধুনিক যুগ",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "পশ্চিমা সভ্যতা কি তার চূড়ান্ত পর্যায়ে?",
+        "প্রযুক্তি কি সভ্যতার পতন বিলম্বিত করতে পারে?",
+        "সাংস্কৃতিক \"শীতকাল\" দৈনন্দিন জীবনে কেমন দেখায়?"
       ]
     },
     "braudel": {
-      "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "name": "ফের্নান্দ ব্রোদেল",
+      "era": "সমসাময়িক",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "কোন গভীর কাঠামো আমাদের যুগকে রূপ দিচ্ছে?",
+        "ভূগোল এখনও অর্থনৈতিক ভাগ্য নির্ধারণ করে কীভাবে?",
+        "কোন ধীর পরিবর্তন পরবর্তী শতাব্দীকে সংজ্ঞায়িত করবে?"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "রে হুয়াং",
+      "era": "সমসাময়িক",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "সদিচ্ছামূলক সংস্কার কেন প্রায়ই ব্যর্থ হয়?",
+        "ব্যবস্থা কীভাবে পরিবর্তনকারীদের ছাড়িয়ে যায়?",
+        "কোন কাঠামোগত সীমাবদ্ধতা পরিবর্তনকে সীমিত করে?"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "ট্যাসিটাস",
+      "era": "রোমান সাম্রাজ্য",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "ক্ষমতা কীভাবে প্রতিষ্ঠানকে ভেতর থেকে কলুষিত করে?",
+        "প্রজাতন্ত্রের মৃত্যুর প্রাথমিক লক্ষণ কী?",
+        "মানুষ কীভাবে নিজেদের স্বৈরাচার মেনে নিতে রাজি করায়?"
       ]
     },
     "tocqueville": {
-      "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "name": "তকভিল",
+      "era": "প্রারম্ভিক আধুনিক ইউরোপ",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "সংখ্যাগরিষ্ঠের স্বৈরাচার কি আজ প্রকৃত বিপদ?",
+        "সমতা কীভাবে বিপরীতভাবে স্বাধীনতাকে হুমকি দেয়?",
+        "গণতন্ত্রকে সুস্থ রাখে কী?"
       ]
     },
     "gibbon": {
-      "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "name": "এডওয়ার্ড গিবন",
+      "era": "প্রারম্ভিক আধুনিক ইউরোপ",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "কোন অভ্যন্তরীণ দুর্বলতা আমাদের প্রতিষ্ঠানকে হুমকি দিচ্ছে?",
+        "অতিরিক্ত প্রসার কীভাবে পতনের দিকে নিয়ে যায়?",
+        "প্রবৃদ্ধি কখন পতনের বীজ হয়?"
       ]
     },
     "weber": {
-      "name": "Max Weber",
-      "era": "Modern Era",
+      "name": "ম্যাক্স ভেবার",
+      "era": "আধুনিক যুগ",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "আমরা কি আমলাতন্ত্রের লোহার খাঁচায় আটকে আছি?",
+        "যুক্তিবাদীকরণ কীভাবে অর্থ ধ্বংস করে?",
+        "একজন নেতাকে সত্যিকারের ক্যারিশম্যাটিক কী করে তোলে?"
       ]
     },
     "durkheim": {
-      "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "name": "এমিল দুর্খেইম",
+      "era": "আধুনিক যুগ",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "আধুনিক জীবন কেন এত বিচ্ছিন্ন মনে হয়?",
+        "ঐতিহ্য হারিয়ে গেলে সমাজকে কী ধরে রাখে?",
+        "শ্রম বিভাজন কীভাবে সংহতি ও একাকীত্ব দুটোই সৃষ্টি করে?"
       ]
     },
     "bourdieu": {
-      "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "name": "পিয়ের বুর্দিও",
+      "era": "সমসাময়িক",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "অদৃশ্য সুবিধা কীভাবে প্রজন্ম জুড়ে জমা হয়?",
+        "শিক্ষা কি সমতা আনে নাকি বৈষম্য পুনরুৎপাদন করে?",
+        "আমার রুচি কীভাবে আমার শ্রেণি অবস্থান প্রকাশ করে?"
       ]
     },
     "foucault": {
-      "name": "Michel Foucault",
-      "era": "Contemporary",
+      "name": "মিশেল ফুকো",
+      "era": "সমসাময়িক",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "দৈনন্দিন জীবনে ক্ষমতা কীভাবে অদৃশ্যভাবে কাজ করে?",
+        "\"স্বাভাবিক\" কী তা কে নির্ধারণ করে?",
+        "প্রতিষ্ঠান কীভাবে বল প্রয়োগ ছাড়াই আমাদের শৃঙ্খলাবদ্ধ করে?"
       ]
     },
     "beauvoir": {
-      "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "name": "সিমোন দ্য বোভোয়ার",
+      "era": "সমসাময়িক",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "আমার পরিচয়ের কতটা সামাজিকভাবে নির্মিত?",
+        "সত্যিকারভাবে বেঁচে থাকা মানে কী?",
+        "ক্ষমতার গতিশীলতা ঘনিষ্ঠ সম্পর্ককে কীভাবে রূপ দেয়?"
       ]
     },
     "mcluhan": {
-      "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "name": "মার্শাল ম্যাকলুহান",
+      "era": "সমসাময়িক",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "সোশ্যাল মিডিয়া কীভাবে আমাদের মস্তিষ্ক পুনর্গঠন করছে?",
+        "মাধ্যম কি সত্যিই বার্তার চেয়ে বেশি গুরুত্বপূর্ণ?",
+        "AI মানুষের চিন্তার ধরনে কী করছে?"
       ]
     },
     "arendt": {
-      "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "name": "হান্না আরেন্ট",
+      "era": "সমসাময়িক",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "সাধারণ মানুষ কীভাবে ভয়ংকর কাজ করে ফেলে?",
+        "প্রকৃত রাজনৈতিক আলোচনার জায়গা কী ধ্বংস করে?",
+        "নিজের জন্য চিন্তা করা বন্ধ করার চাপকে কীভাবে প্রতিরোধ করবেন?"
       ]
     },
     "bauman": {
-      "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "name": "জিগমুন্ট বাউমান",
+      "era": "সমসাময়িক",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "কেন সবকিছু সাময়িক ও অনিশ্চিত মনে হয়?",
+        "নিষ্পত্তিযোগ্য বিশ্বে স্থায়ী বন্ধন কীভাবে তৈরি করবেন?",
+        "আমাদের স্বাধীনতা কি আমাদের আরও উদ্বিগ্ন করছে?"
       ]
     },
     "goffman": {
-      "name": "Erving Goffman",
-      "era": "Contemporary",
+      "name": "আর্ভিং গফম্যান",
+      "era": "সমসাময়িক",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "আমার সামাজিক জীবনের কতটুকু পারফর্ম্যান্স?",
+        "আমাদের \"মুখোশ\" পড়ে গেলে কী হয়?",
+        "কেন আমরা অলিখিত সামাজিক নিয়ম অনুসরণ করি?"
       ]
     }
   },

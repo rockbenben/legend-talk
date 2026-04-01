@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "Pengaturan",
+    "more": "Lainnya",
+    "support": "Dukungan"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "Bicara dengan Pemikir Besar",
+    "subtitle": "Klik \"Obrolan\" untuk konsultasi 1-1, atau \"+\" untuk meja bundar",
+    "search": "Cari atau ketik nama...",
+    "startChat": "Obrolan",
+    "randomRoundtable": "Acak",
+    "templates": "Rekomendasi",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "Semua",
+      "philosophy": "Filsafat",
+      "business": "Bisnis",
+      "science": "Sains",
+      "technology": "Teknologi",
+      "strategy": "Strategi",
+      "psychology": "Psikologi",
+      "literature": "Sastra",
+      "art": "Seni",
+      "religion": "Agama",
+      "politics": "Politik",
+      "economics": "Ekonomi",
+      "education": "Pendidikan",
+      "finance": "Keuangan",
+      "history": "Sejarah",
+      "sociology": "Sosiologi"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "Ketik pertanyaan Anda...",
+    "send": "Kirim",
+    "thinking": "Berpikir...",
+    "stop": "Berhenti",
+    "newChat": "Obrolan baru",
+    "export": "Ekspor",
+    "noConversations": "Belum ada obrolan",
+    "noMessages": "Coba pertanyaan di bawah atau ketik sendiri",
+    "rename": "Ganti nama",
+    "addParticipant": "Tambah",
+    "untitled": "Tanpa judul",
+    "noApiKey": "API Key belum dikonfigurasi",
+    "goSettings": "Ke Pengaturan",
+    "regenerate": "Buat ulang",
+    "summarize": "Ringkas",
+    "summarizing": "Meringkas...",
+    "searchConversations": "Cari obrolan...",
+    "share": "Bagikan",
+    "copied": "Disalin",
+    "shareTooLong": "Obrolan terlalu panjang untuk dibagikan via URL",
+    "branch": "Cabang dari sini",
+    "newWithSame": "Mulai ulang dengan yang sama",
+    "copyLineupLink": "Salin tautan grup",
+    "copyCategoryLink": "Salin tautan kategori",
+    "linkCopied": "Disalin",
+    "shareSettings": "Sinkronkan pengaturan",
+    "settingsImported": "Pengaturan diimpor",
+    "enterPassword": "Atur kata sandi untuk melindungi API key (kosongkan untuk mengecualikan key)",
+    "enterDecryptPassword": "Masukkan kata sandi untuk mendekripsi (kosongkan untuk melewati key)",
+    "importConversations": "Impor",
+    "importSuccess": "{{count}} obrolan diimpor",
+    "importError": "Impor gagal: format file tidak valid",
+    "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
+    "useCorsProxy": "Gunakan proxy publik"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} dipilih",
+    "start": "Mulai diskusi",
+    "rounds": "Ronde",
+    "roundProgress": "Ronde {{current}}/{{total}} — {{name}} sedang berbicara...",
+    "discussionComplete": "Diskusi selesai",
+    "continue": "+{{count}} ronde lagi",
+    "removeParticipant": "Hapus"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "Pengaturan",
+    "apiKeyPlaceholder": "Masukkan {{provider}} API Key...",
+    "defaultProvider": "Penyedia",
+    "defaultModel": "Model",
+    "language": "Bahasa",
+    "theme": "Tema",
+    "themeLight": "Terang",
+    "themeDark": "Gelap",
+    "thinkingLevel": "Tingkat berpikir",
+    "thinkingLevelHint": "Model berpikir lebih dalam. Lebih akurat tapi lebih lambat.",
+    "thinkingOff": "Mati",
+    "thinkingLow": "Rendah",
+    "thinkingMedium": "Sedang",
+    "thinkingHigh": "Tinggi",
+    "corsProxyHint": "Meneruskan permintaan melalui proxy untuk melewati pembatasan CORS",
+    "customModel": "Model kustom...",
+    "customBaseUrlHint": "Masukkan endpoint API yang kompatibel dengan OpenAI",
+    "storageUsed": "Penyimpanan: {{size}}",
+    "clearData": "Hapus semua data"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "Obrolan bersama",
+    "startOwn": "Mulai obrolan Anda sendiri"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "Memuat...",
+    "error": "Kesalahan: {{message}}",
+    "confirm": "Konfirmasi",
+    "unknown": "Tidak diketahui"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "Sokrates",
+      "era": "Yunani Kuno",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "Konfusius",
+      "era": "Musim Semi dan Gugur",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "Aristoteles",
+      "era": "Yunani Kuno",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -145,7 +145,7 @@
     },
     "plato": {
       "name": "Plato",
-      "era": "Ancient Greece",
+      "era": "Yunani Kuno",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "Saya tahu apa yang harus dilakukan tapi tidak bisa bertindak",
+        "Bagaimana tetap tenang di tengah kekacauan?",
+        "Bagaimana membedakan benar dan salah?"
       ]
     },
     "sun-tzu": {
       "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "era": "Musim Semi dan Gugur",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "Bagaimana menang dengan sumber daya lebih sedikit?",
+        "Bagaimana menemukan kelemahan pesaing?",
+        "Kapan berhadapan langsung vs. mengepung?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "Bagaimana mengubah kekuatan lawan menjadi kelemahan?",
+        "Bagaimana menciptakan keunggulan dengan sumber daya terbatas?",
+        "Bagaimana mengalahkan lawan lebih kuat dengan taktik kreatif?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "Napoleon",
+      "era": "Revolusi Prancis",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,14 +246,14 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "Bagaimana membangun keunggulan saat kalah?",
+        "Bagaimana mengantisipasi langkah selanjutnya lawan?",
+        "Bagaimana menjembatani kesenjangan antara ideal dan kenyataan?"
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "Machiavelli",
+      "era": "Renaisans",
       "questions": [
         "How to protect myself in office politics?",
         "What are the fundamental laws of power?",
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "Saya sudah di titik batas — apa yang harus saya lakukan?",
+        "Bagaimana memulihkan semangat tim?",
+        "Bagaimana memutuskan saat menghadapi ketidakpastian besar?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "Apakah saya menghabiskan waktu untuk hal terpenting?",
+        "Bagaimana mengukur efektivitas manajer?",
+        "Bagaimana organisasi harus menetapkan tujuan?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "Bagaimana menilai nilai jangka panjang perusahaan?",
+        "Apa yang harus dilakukan saat pasar jatuh?",
+        "Apa yang membuat model bisnis hebat?"
       ]
     },
     "peter-thiel": {
@@ -370,7 +370,7 @@
     },
     "jobs": {
       "name": "Steve Jobs",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "Freud",
+      "era": "Modern",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "Bagaimana berhenti peduli pendapat orang lain?",
+        "Bagaimana trauma masa lalu terus mempengaruhi saya?",
+        "Saya kurang berani mengubah situasi saya"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "Einstein",
+      "era": "Modern",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "Newton",
+      "era": "Inggris Modern",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "Darwin",
+      "era": "Inggris Modern",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "Shakespeare",
+      "era": "Renaisans",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "Bagaimana memahami motivasi kompleks orang lain?",
+        "Bagaimana kecemburuan dan ambisi menghancurkan seseorang?",
+        "Bisakah tragedi dihindari?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "Tolstoy",
+      "era": "Kekaisaran Rusia",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "Kafka",
+      "era": "Eropa Modern",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -658,7 +658,7 @@
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "era": "Renaisans",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "Beethoven",
+      "era": "Eropa Modern",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "Picasso",
+      "era": "Modern",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "Bagaimana bertahan tanpa pengakuan?",
+        "Apakah kesepian sumber kreativitas atau hambatan?",
+        "Bagaimana tidak terpengaruh penilaian eksternal?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "Marx",
+      "era": "Eropa Modern",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "Siapa yang diuntungkan dari sistem ekonomi saat ini?",
+        "Bagaimana nilai pekerja diremehkan?",
+        "Apa kontradiksi internal kapitalisme?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "Bagaimana menentukan apakah kebijakan menguntungkan mayoritas?",
+        "Di mana batas kebebasan individu?",
+        "Bagaimana melindungi kepentingan minoritas?"
       ]
     },
     "schumpeter": {
@@ -820,11 +820,11 @@
     },
     "taleb": {
       "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "Bagaimana membuat karier saya antifragile?",
+        "Mengapa para ahli terus gagal dalam prediksi?",
+        "Risiko tersembunyi apa yang saya hadapi sekarang?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "Gandhi",
+      "era": "Modern",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -855,8 +855,8 @@
       ]
     },
     "lincoln": {
-      "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "name": "Lincoln",
+      "era": "Amerika Modern",
       "questions": [
         "How to build consensus amid deep division?",
         "How should a leader handle opposition?",
@@ -864,8 +864,8 @@
       ]
     },
     "mandela": {
-      "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "name": "Mandela",
+      "era": "Kontemporer",
       "questions": [
         "How to forgive someone who truly hurt me?",
         "How to balance personal sacrifice with collective goals?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "Turing",
+      "era": "Modern",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "Buddha",
+      "era": "India Kuno",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1099,20 +1099,20 @@
     },
     "ibn-khaldun": {
       "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "era": "Dunia Islam Abad Pertengahan",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "Mengapa peradaban pasti runtuh?",
+        "Apa yang menyatukan masyarakat dan apa yang memecahnya?",
+        "Apakah kita dalam fase naik atau turun?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "Bagaimana memicu motivasi belajar internal anak?",
+        "Bagaimana menyeimbangkan kebebasan dan aturan dalam pendidikan?",
+        "Bagaimana menciptakan lingkungan belajar ideal?"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "Bisakah anak benar-benar memahami konsep ini?",
+        "Bagaimana menilai tahap perkembangan kognitif anak?",
+        "Bagaimana pembelajaran sebenarnya terjadi?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "Bagaimana memelihara perkembangan holistik anak?",
+        "Apa peran seni dalam pertumbuhan intelektual?",
+        "Pendidikan seperti apa yang dibutuhkan anak-anak di usia berbeda?"
       ]
     },
     "cai-yuanpei": {
@@ -1198,254 +1198,254 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern America",
+      "era": "Amerika Modern",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "Bagaimana mengetahui apakah perusahaan undervalued?",
+        "Apa itu margin of safety?",
+        "Apakah Mr. Market sedang irasional hari ini?"
       ]
     },
     "george-soros": {
       "name": "George Soros",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "Apa itu teori refleksivitas?",
+        "Bagaimana mengidentifikasi gelembung pasar?",
+        "Kapan harus bertaruh besar?"
       ]
     },
     "john-bogle": {
       "name": "John Bogle",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "Mengapa dana indeks lebih baik dari manajemen aktif?",
+        "Apa yang paling penting dalam berinvestasi?",
+        "Bagaimana berinvestasi dengan biaya terendah?"
       ]
     },
     "harry-markowitz": {
       "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "Apa arti sebenarnya dari diversifikasi?",
+        "Bagaimana membangun portofolio optimal?",
+        "Apa hubungan antara risiko dan imbal hasil?"
       ]
     },
     "eugene-fama": {
       "name": "Eugene Fama",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "Apakah pasar benar-benar efisien?",
+        "Mengapa kebanyakan manajer dana tidak bisa mengalahkan pasar?",
+        "Apa itu factor investing?"
       ]
     },
     "robert-shiller": {
       "name": "Robert Shiller",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "Apakah pasar saat ini dalam gelembung?",
+        "Bagaimana narasi menggerakkan pasar?",
+        "Apa yang ditunjukkan rasio CAPE?"
       ]
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern America",
+      "era": "Amerika Modern",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "Bagaimana membaca tren pasar?",
+        "Kapan harus cut loss?",
+        "Seberapa penting kesabaran dalam trading?"
       ]
     },
     "john-templeton": {
       "name": "John Templeton",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "Kapan waktu terbaik untuk membeli?",
+        "Bagaimana tetap tenang saat panik?",
+        "Apa keuntungan investasi global?"
       ]
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern America",
+      "era": "Amerika Modern",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "Bagaimana menemukan perusahaan yang layak dipegang jangka panjang?",
+        "Apa itu metode \"scuttlebutt\"?",
+        "Mana yang lebih penting: kualitas atau harga?"
       ]
     },
     "howard-marks": {
       "name": "Howard Marks",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "Apa itu pemikiran tingkat kedua?",
+        "Di mana kita dalam siklus saat ini?",
+        "Bagaimana menghindari mentalitas kawanan?"
       ]
     },
     "thucydides": {
       "name": "Thucydides",
-      "era": "Ancient Greece",
+      "era": "Yunani Kuno",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "Apakah transisi kekuasaan antar negara besar pasti berujung konflik?",
+        "Bagaimana rasa takut mendorong negara menuju perang?",
+        "Bisakah netralitas bertahan di antara dua kekuatan besar?"
       ]
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "era": "Dinasti Han",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "Pola kebangkitan dan kejatuhan apa yang berulang dalam sejarah?",
+        "Bagaimana menilai tokoh sejarah secara adil?",
+        "Apa yang bisa kita pelajari dari kesalahan kuno?"
       ]
     },
     "toynbee": {
       "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "era": "Era Modern",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "Tantangan apa yang gagal dijawab peradaban kita?",
+        "Bagaimana minoritas kreatif mendorong perubahan?",
+        "Bisakah peradaban yang menurun membalikkan arah?"
       ]
     },
     "spengler": {
       "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "era": "Era Modern",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "Apakah peradaban Barat sedang dalam fase terakhirnya?",
+        "Bisakah teknologi menunda kemunduran peradaban?",
+        "Seperti apa \"musim dingin\" budaya dalam kehidupan sehari-hari?"
       ]
     },
     "braudel": {
       "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "Struktur dalam apa yang membentuk era kita?",
+        "Bagaimana geografi masih menentukan nasib ekonomi?",
+        "Perubahan lambat apa yang akan mendefinisikan abad berikutnya?"
       ]
     },
     "huang-renyu": {
       "name": "Ray Huang",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "Mengapa reformasi yang berniat baik sering gagal?",
+        "Bagaimana sistem bertahan lebih lama dari orang yang mencoba mengubahnya?",
+        "Batasan struktural apa yang membatasi perubahan?"
       ]
     },
     "tacitus": {
       "name": "Tacitus",
-      "era": "Roman Empire",
+      "era": "Kekaisaran Romawi",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "Bagaimana kekuasaan merusak institusi dari dalam?",
+        "Apa tanda-tanda awal matinya republik?",
+        "Bagaimana orang meyakinkan diri untuk menerima tirani?"
       ]
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "era": "Eropa Modern Awal",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "Apakah tirani mayoritas bahaya nyata hari ini?",
+        "Bagaimana kesetaraan secara paradoks mengancam kebebasan?",
+        "Apa yang menjaga demokrasi tetap sehat?"
       ]
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "era": "Eropa Modern Awal",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "Kelemahan internal apa yang mengancam institusi kita?",
+        "Bagaimana ekspansi berlebihan mengarah pada keruntuhan?",
+        "Kapan pertumbuhan menjadi benih kemunduran?"
       ]
     },
     "weber": {
       "name": "Max Weber",
-      "era": "Modern Era",
+      "era": "Era Modern",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "Apakah kita terjebak dalam sangkar besi birokrasi?",
+        "Bagaimana rasionalisasi membunuh makna?",
+        "Apa yang membuat pemimpin benar-benar karismatik?"
       ]
     },
     "durkheim": {
       "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "era": "Era Modern",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "Mengapa kehidupan modern terasa begitu mengasingkan?",
+        "Apa yang menyatukan masyarakat ketika tradisi memudar?",
+        "Bagaimana pembagian kerja menciptakan solidaritas dan kesepian?"
       ]
     },
     "bourdieu": {
       "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "Bagaimana keuntungan tak terlihat terakumulasi antar generasi?",
+        "Apakah pendidikan menyetarakan atau mereproduksi ketimpangan?",
+        "Bagaimana selera saya mengungkap posisi kelas saya?"
       ]
     },
     "foucault": {
       "name": "Michel Foucault",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "Bagaimana kekuasaan beroperasi tak terlihat dalam kehidupan sehari-hari?",
+        "Siapa yang memutuskan apa yang \"normal\"?",
+        "Bagaimana institusi mendisiplinkan kita tanpa kekerasan?"
       ]
     },
     "beauvoir": {
       "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "Seberapa banyak identitas saya yang dikonstruksi secara sosial?",
+        "Apa artinya hidup secara otentik?",
+        "Bagaimana dinamika kekuasaan membentuk hubungan intim?"
       ]
     },
     "mcluhan": {
       "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "Bagaimana media sosial mengubah otak kita?",
+        "Apakah medium benar-benar lebih penting dari pesan?",
+        "Apa yang dilakukan AI terhadap pola pikir manusia?"
       ]
     },
     "arendt": {
       "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "Bagaimana orang biasa akhirnya melakukan hal-hal mengerikan?",
+        "Apa yang menghancurkan ruang diskursus politik sejati?",
+        "Bagaimana melawan tekanan untuk berhenti berpikir sendiri?"
       ]
     },
     "bauman": {
       "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "Mengapa semuanya terasa sementara dan tidak pasti?",
+        "Bagaimana membangun ikatan bertahan lama di dunia sekali pakai?",
+        "Apakah kebebasan kita justru membuat kita lebih cemas?"
       ]
     },
     "goffman": {
       "name": "Erving Goffman",
-      "era": "Contemporary",
+      "era": "Kontemporer",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "Seberapa banyak kehidupan sosial saya adalah pertunjukan?",
+        "Apa yang terjadi ketika \"topeng\" kita terlepas?",
+        "Mengapa kita mengikuti aturan sosial tak tertulis?"
       ]
     }
   },

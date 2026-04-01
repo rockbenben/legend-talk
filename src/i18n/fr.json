@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
+    "settings": "Paramètres",
+    "more": "Plus",
     "support": "Support"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
+    "title": "Dialoguez avec les Grands Esprits",
+    "subtitle": "Cliquez sur \"Chat\" pour une consultation 1 à 1, ou \"+\" pour une table ronde",
+    "search": "Rechercher ou saisir un nom...",
     "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "randomRoundtable": "Aléatoire",
+    "templates": "Recommandés",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
+      "all": "Tout",
+      "philosophy": "Philosophie",
+      "business": "Commerce",
       "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
+      "technology": "Technologie",
+      "strategy": "Stratégie",
+      "psychology": "Psychologie",
+      "literature": "Littérature",
       "art": "Art",
       "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
+      "politics": "Politique",
+      "economics": "Économie",
+      "education": "Éducation",
       "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "history": "Histoire",
+      "sociology": "Sociologie"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "Posez votre question...",
+    "send": "Envoyer",
+    "thinking": "Réflexion...",
+    "stop": "Arrêter",
+    "newChat": "Nouvelle conversation",
+    "export": "Exporter",
+    "noConversations": "Aucune conversation",
+    "noMessages": "Essayez une question ci-dessous ou tapez la vôtre",
+    "rename": "Renommer",
+    "addParticipant": "Ajouter",
+    "untitled": "Sans titre",
+    "noApiKey": "Clé API non configurée",
+    "goSettings": "Aller aux paramètres",
+    "regenerate": "Régénérer",
+    "summarize": "Résumer",
+    "summarizing": "Résumé en cours...",
+    "searchConversations": "Rechercher des conversations...",
+    "share": "Partager",
+    "copied": "Copié",
+    "shareTooLong": "Conversation trop longue pour être partagée par URL",
+    "branch": "Bifurquer ici",
+    "newWithSame": "Relancer avec les mêmes",
+    "copyLineupLink": "Copier le lien du groupe",
+    "copyCategoryLink": "Copier le lien de catégorie",
+    "linkCopied": "Copié",
+    "shareSettings": "Synchroniser les paramètres",
+    "settingsImported": "Paramètres importés",
+    "enterPassword": "Définir un mot de passe pour protéger les clés API (vide pour exclure)",
+    "enterDecryptPassword": "Entrer le mot de passe pour déchiffrer (vide pour ignorer les clés)",
+    "importConversations": "Importer",
+    "importSuccess": "{{count}} conversations importées",
+    "importError": "Échec de l'importation : format de fichier invalide",
+    "corsError": "Requête bloquée par le navigateur (CORS). Un proxy est nécessaire.",
+    "useCorsProxy": "Utiliser le proxy public"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} sélectionnés",
+    "start": "Démarrer la discussion",
+    "rounds": "Tours",
+    "roundProgress": "Tour {{current}}/{{total}} — {{name}} parle...",
+    "discussionComplete": "Discussion terminée",
+    "continue": "+{{count}} tours",
+    "removeParticipant": "Retirer"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "Paramètres",
+    "apiKeyPlaceholder": "Entrer la clé API {{provider}}...",
+    "defaultProvider": "Fournisseur",
+    "defaultModel": "Modèle",
+    "language": "Langue",
+    "theme": "Thème",
+    "themeLight": "Clair",
+    "themeDark": "Sombre",
+    "thinkingLevel": "Niveau de réflexion",
+    "thinkingLevelHint": "Le modèle raisonne plus avant de répondre. Plus précis mais plus lent.",
+    "thinkingOff": "Désactivé",
+    "thinkingLow": "Bas",
+    "thinkingMedium": "Moyen",
+    "thinkingHigh": "Élevé",
+    "corsProxyHint": "Achemine les requêtes via un proxy pour contourner les restrictions CORS",
+    "customModel": "Modèle personnalisé...",
+    "customBaseUrlHint": "Entrez votre endpoint API compatible OpenAI",
+    "storageUsed": "Stockage : {{size}}",
+    "clearData": "Supprimer toutes les données"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "Conversation partagée",
+    "startOwn": "Démarrer votre propre conversation"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "Chargement...",
+    "error": "Erreur : {{message}}",
+    "confirm": "Confirmer",
+    "unknown": "Inconnu"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "Socrate",
+      "era": "Grèce antique",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -118,7 +118,7 @@
     },
     "confucius": {
       "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "era": "Printemps et Automne",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -126,8 +126,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "Aristote",
+      "era": "Grèce antique",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -144,8 +144,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "Platon",
+      "era": "Grèce antique",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "Je sais quoi faire mais je n'arrive pas à agir",
+        "Comment rester calme dans le chaos ?",
+        "Comment distinguer le bien du mal ?"
       ]
     },
     "sun-tzu": {
       "name": "Sun Tzu",
       "era": "Spring and Autumn Period",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "Comment gagner avec moins de ressources ?",
+        "Comment trouver les faiblesses d'un concurrent ?",
+        "Quand confronter vs. contourner ?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "Comment transformer la force de l'adversaire en faiblesse ?",
+        "Comment créer un avantage avec des ressources limitées ?",
+        "Comment vaincre un adversaire plus fort par des tactiques créatives ?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "Napoléon",
+      "era": "Révolution française",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -246,9 +246,9 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "Comment construire un avantage en position de faiblesse ?",
+        "Comment anticiper le prochain coup de l'adversaire ?",
+        "Comment combler l'écart entre idéal et réalité ?"
       ]
     },
     "machiavelli": {
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "Je suis à bout — que faire ?",
+        "Comment restaurer le moral de l'équipe ?",
+        "Comment décider face à une énorme incertitude ?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "Est-ce que je consacre mon temps à ce qui compte le plus ?",
+        "Comment mesurer l'efficacité d'un manager ?",
+        "Comment une organisation doit-elle fixer ses objectifs ?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "Comment juger la valeur à long terme d'une entreprise ?",
+        "Que faire quand les marchés chutent ?",
+        "Qu'est-ce qui fait un excellent modèle d'affaires ?"
       ]
     },
     "peter-thiel": {
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "Freud",
+      "era": "Moderne",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "Comment arrêter de se soucier de l'opinion des autres ?",
+        "Comment les traumatismes passés continuent-ils à me toucher ?",
+        "Je manque de courage pour changer ma situation"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "Einstein",
+      "era": "Moderne",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "Newton",
+      "era": "Grande-Bretagne moderne",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "Darwin",
+      "era": "Grande-Bretagne moderne",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,12 +567,12 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
+      "name": "Shakespeare",
       "era": "Renaissance",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "Comment comprendre les motivations complexes des gens ?",
+        "Comment la jalousie et l'ambition détruisent-elles une personne ?",
+        "La tragédie peut-elle être évitée ?"
       ]
     },
     "tolstoy": {
@@ -657,7 +657,7 @@
       ]
     },
     "da-vinci": {
-      "name": "Leonardo da Vinci",
+      "name": "Léonard de Vinci",
       "era": "Renaissance",
       "questions": [
         "How to cultivate genuine curiosity?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "Comment persister sans reconnaissance ?",
+        "La solitude est-elle source de créativité ou obstacle ?",
+        "Comment ne pas se laisser influencer par les jugements extérieurs ?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "Marx",
+      "era": "Europe moderne",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "Qui profite du système économique actuel ?",
+        "Comment la valeur des travailleurs est-elle sous-estimée ?",
+        "Quelles sont les contradictions internes du capitalisme ?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "Comment savoir si une politique bénéficie à la majorité ?",
+        "Où est la limite de la liberté individuelle ?",
+        "Comment protéger les intérêts des minorités ?"
       ]
     },
     "schumpeter": {
@@ -820,11 +820,11 @@
     },
     "taleb": {
       "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "Comment rendre ma carrière antifragile ?",
+        "Pourquoi les experts échouent-ils constamment à prédire ?",
+        "À quels risques cachés suis-je exposé maintenant ?"
       ]
     },
     "sowell": {
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "Bouddha",
+      "era": "Inde ancienne",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "Ibn Khaldoun",
+      "era": "Monde islamique médiéval",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "Pourquoi les civilisations déclinent-elles inévitablement ?",
+        "Qu'est-ce qui unit une société et qu'est-ce qui la divise ?",
+        "Sommes-nous en phase d'ascension ou de déclin ?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "Comment éveiller la motivation interne de l'enfant ?",
+        "Comment équilibrer liberté et règles en éducation ?",
+        "Comment créer un environnement d'apprentissage idéal ?"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "Un enfant peut-il vraiment comprendre ce concept ?",
+        "Comment évaluer le stade de développement cognitif d'un enfant ?",
+        "Comment l'apprentissage se produit-il réellement ?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "Comment favoriser le développement holistique de l'enfant ?",
+        "Quel rôle joue l'art dans la croissance intellectuelle ?",
+        "De quel type d'éducation les enfants de différents âges ont-ils besoin ?"
       ]
     },
     "cai-yuanpei": {
@@ -1198,254 +1198,254 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern America",
+      "era": "Amérique moderne",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "Comment savoir si une entreprise est sous-évaluée ?",
+        "Qu'est-ce que la marge de sécurité ?",
+        "M. Marché est-il irrationnel aujourd'hui ?"
       ]
     },
     "george-soros": {
       "name": "George Soros",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "Qu'est-ce que la théorie de la réflexivité ?",
+        "Comment identifier une bulle de marché ?",
+        "Quand faut-il miser gros ?"
       ]
     },
     "john-bogle": {
       "name": "John Bogle",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "Pourquoi les fonds indiciels sont-ils meilleurs que la gestion active ?",
+        "Qu'est-ce qui compte le plus en investissement ?",
+        "Comment investir au moindre coût ?"
       ]
     },
     "harry-markowitz": {
       "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "Que signifie vraiment la diversification ?",
+        "Comment construire un portefeuille optimal ?",
+        "Quelle est la relation entre risque et rendement ?"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "Eugène Fama",
+      "era": "Contemporain",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "Le marché est-il vraiment efficient ?",
+        "Pourquoi la plupart des gérants ne battent-ils pas le marché ?",
+        "Qu'est-ce que l'investissement factoriel ?"
       ]
     },
     "robert-shiller": {
       "name": "Robert Shiller",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "Le marché actuel est-il en bulle ?",
+        "Comment les récits influencent-ils les marchés ?",
+        "Que nous dit le ratio CAPE ?"
       ]
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern America",
+      "era": "Amérique moderne",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "Comment lire les tendances du marché ?",
+        "Quand couper ses pertes ?",
+        "Quelle est l'importance de la patience en trading ?"
       ]
     },
     "john-templeton": {
       "name": "John Templeton",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "Quel est le meilleur moment pour acheter ?",
+        "Comment rester calme pendant une panique ?",
+        "Quels sont les avantages de l'investissement mondial ?"
       ]
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern America",
+      "era": "Amérique moderne",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "Comment trouver des entreprises à conserver sur le long terme ?",
+        "Qu'est-ce que la méthode du \"bouche-à-oreille\" ?",
+        "Qu'est-ce qui compte le plus : la qualité ou le prix ?"
       ]
     },
     "howard-marks": {
       "name": "Howard Marks",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "Qu'est-ce que la pensée de second niveau ?",
+        "Où en sommes-nous dans le cycle actuel ?",
+        "Comment éviter la mentalité de troupeau ?"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "Thucydide",
+      "era": "Grèce antique",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "Le conflit est-il inévitable lors d'une transition de pouvoir ?",
+        "Comment la peur pousse-t-elle les nations à la guerre ?",
+        "La neutralité peut-elle survivre entre deux superpuissances ?"
       ]
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "era": "Dynastie Han",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "Quels schémas d'essor et de déclin se répètent dans l'histoire ?",
+        "Comment juger équitablement les figures historiques ?",
+        "Que nous enseignent les erreurs anciennes ?"
       ]
     },
     "toynbee": {
       "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "era": "Époque moderne",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "À quel défi notre civilisation échoue-t-elle à répondre ?",
+        "Comment les minorités créatives conduisent-elles le changement ?",
+        "Une civilisation en déclin peut-elle inverser sa trajectoire ?"
       ]
     },
     "spengler": {
       "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "era": "Époque moderne",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "La civilisation occidentale est-elle dans sa phase finale ?",
+        "La technologie peut-elle retarder le déclin civilisationnel ?",
+        "À quoi ressemble l'« hiver » culturel au quotidien ?"
       ]
     },
     "braudel": {
       "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "Quelles structures profondes façonnent notre époque ?",
+        "Comment la géographie détermine-t-elle encore le destin économique ?",
+        "Quels changements lents définiront le prochain siècle ?"
       ]
     },
     "huang-renyu": {
       "name": "Ray Huang",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "Pourquoi les réformes bien intentionnées échouent-elles souvent ?",
+        "Comment les systèmes survivent-ils à ceux qui tentent de les changer ?",
+        "Quelles contraintes structurelles limitent le changement ?"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "Tacite",
+      "era": "Empire romain",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "Comment le pouvoir corrompt-il les institutions de l'intérieur ?",
+        "Quels sont les premiers signes de la mort d'une république ?",
+        "Comment les gens se persuadent-ils d'accepter la tyrannie ?"
       ]
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "era": "Europe moderne",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "La tyrannie de la majorité est-elle un danger réel aujourd'hui ?",
+        "Comment l'égalité menace-t-elle paradoxalement la liberté ?",
+        "Qu'est-ce qui maintient une démocratie en bonne santé ?"
       ]
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "era": "Europe moderne",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "Quelles faiblesses internes menacent nos institutions ?",
+        "Comment la surextension mène-t-elle à l'effondrement ?",
+        "Quand la croissance devient-elle la graine du déclin ?"
       ]
     },
     "weber": {
       "name": "Max Weber",
-      "era": "Modern Era",
+      "era": "Époque moderne",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "Sommes-nous piégés dans une cage d'acier bureaucratique ?",
+        "Comment la rationalisation tue-t-elle le sens ?",
+        "Qu'est-ce qui rend un leader véritablement charismatique ?"
       ]
     },
     "durkheim": {
       "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "era": "Époque moderne",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "Pourquoi la vie moderne est-elle si aliénante ?",
+        "Qu'est-ce qui maintient la société unie quand les traditions s'effacent ?",
+        "Comment la division du travail crée-t-elle solidarité et solitude ?"
       ]
     },
     "bourdieu": {
       "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "Comment les avantages invisibles s'accumulent-ils entre générations ?",
+        "L'éducation égalise-t-elle ou reproduit-elle les inégalités ?",
+        "Comment mes goûts révèlent-ils ma position de classe ?"
       ]
     },
     "foucault": {
       "name": "Michel Foucault",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "Comment le pouvoir opère-t-il invisiblement dans la vie quotidienne ?",
+        "Qui décide de ce qui est « normal » ?",
+        "Comment les institutions nous disciplinent-elles sans force ?"
       ]
     },
     "beauvoir": {
       "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "Quelle part de mon identité est socialement construite ?",
+        "Que signifie vivre authentiquement ?",
+        "Comment les dynamiques de pouvoir façonnent-elles les relations intimes ?"
       ]
     },
     "mcluhan": {
       "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "Comment les réseaux sociaux recâblent-ils nos cerveaux ?",
+        "Le média est-il vraiment plus important que le message ?",
+        "Que fait l'IA aux schémas de pensée humains ?"
       ]
     },
     "arendt": {
       "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "Comment des personnes ordinaires finissent-elles par faire des choses terribles ?",
+        "Qu'est-ce qui détruit l'espace du discours politique authentique ?",
+        "Comment résister à la pression de cesser de penser par soi-même ?"
       ]
     },
     "bauman": {
       "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "Pourquoi tout semble-t-il temporaire et incertain ?",
+        "Comment construire des liens durables dans un monde jetable ?",
+        "Notre liberté nous rend-elle plus anxieux ?"
       ]
     },
     "goffman": {
       "name": "Erving Goffman",
-      "era": "Contemporary",
+      "era": "Contemporain",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "Quelle part de ma vie sociale est une performance ?",
+        "Que se passe-t-il quand notre « masque » glisse ?",
+        "Pourquoi suivons-nous des règles sociales non écrites ?"
       ]
     }
   },

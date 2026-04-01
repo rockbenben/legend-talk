@@ -2,13 +2,13 @@
 
 > 365 Open Source Plan #002 · Multi-round AI roundtable with history's greatest thinkers
 
-[中文说明](./README.zh.md)
+[中文](./README.zh.md) · [繁體中文](./i18n/README.zh-Hant.md) · [日本語](./i18n/README.ja.md) · [한국어](./i18n/README.ko.md) · [Español](./i18n/README.es.md) · [Français](./i18n/README.fr.md) · [Deutsch](./i18n/README.de.md) · [Português](./i18n/README.pt.md) · [Italiano](./i18n/README.it.md) · [Русский](./i18n/README.ru.md) · [العربية](./i18n/README.ar.md) · [हिन्दी](./i18n/README.hi.md) · [Tiếng Việt](./i18n/README.vi.md) · [ไทย](./i18n/README.th.md) · [Türkçe](./i18n/README.tr.md) · [Indonesia](./i18n/README.id.md) · [বাংলা](./i18n/README.bn.md)
 
 Put the world's greatest thinkers in a room and let them debate your problem.
 
 Legend Talk is a multi-round AI roundtable — pick 2-10 historical or contemporary figures, throw in a question, and watch them argue across multiple rounds, each responding to what others said. Socrates questions Munger's assumptions while Nietzsche challenges them both.
 
-Also works as a 1-on-1 thinking tool: consult any of 100+ thinkers through their unique frameworks, not generic AI roleplay.
+Also works as a 1-on-1 thinking tool: consult any of 140+ thinkers through their unique frameworks, not generic AI roleplay.
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -61,17 +61,17 @@ Start a conversation directly via URL:
 - **Single chat:** `/#/chat?chars=socrates`
 - **Custom names:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (unrecognized names auto-create custom characters)
 
-Available categories: `philosophy`, `strategy`, `business`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
+Available categories: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
 
 You can also use the **Copy lineup link** button in the participants bar or the **Copy category link** button in the category filter to generate these URLs from the UI.
 
-Force UI language via `?lang=zh` or `?lang=en`.
+**Language routing:** Use a language prefix in the URL to set the UI language, e.g. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. You can also use `?lang=zh` as a query parameter. Supports all 18 languages.
 
 ## More Features
 
 Beyond the usage above:
 
-- **100+ preset thinkers** across 12 domains, sorted by fame, with free input for any name
+- **140+ preset thinkers** across 15 domains, sorted by fame, with free input for any name
 - **Conversation search** — search across all conversations by title, character name, or message content
 - **Favorite characters** — star your most-used thinkers for quick access
 - **Settings sync** — share settings to another device via URL (API keys AES-encrypted)
@@ -79,7 +79,7 @@ Beyond the usage above:
 - **Custom models** — manually enter any model ID
 - **Custom LLM** — connect any OpenAI-compatible API
 - **Multi-API support** — OpenAI, Anthropic, DeepSeek, Volcengine, Alibaba Bailian, SiliconFlow, Groq, OpenRouter
-- **Bilingual** · **Dark mode** · **Responsive** · **Local-first** (all data in browser localStorage)
+- **18 languages** · **Dark mode** · **Responsive** · **Local-first** (IndexedDB + localStorage dual-write, compatible with WeChat and restricted WebViews)
 
 ## Supported APIs
 
@@ -181,7 +181,7 @@ Build and deploy the `dist/` folder to any static hosting (Vercel, Netlify, GitH
 npm run build
 ```
 
-Uses hash-based routing (`/#/chat/...`) so no server-side routing config needed.
+Uses hash-based routing (`/#/chat/...`, `/#/ja/chat/...`) so no server-side routing config needed.
 
 ## About 365 Open Source Plan
 

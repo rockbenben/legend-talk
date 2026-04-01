@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "Cài đặt",
+    "more": "Thêm",
+    "support": "Hỗ trợ"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
+    "title": "Trò chuyện với Bậc Thầy Tư Tưởng",
+    "subtitle": "Nhấn \"Chat\" để tư vấn 1-1, hoặc \"+\" để lập bàn tròn",
+    "search": "Tìm hoặc nhập tên...",
     "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "randomRoundtable": "Ngẫu nhiên",
+    "templates": "Đề xuất",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "Tất cả",
+      "philosophy": "Triết học",
+      "business": "Kinh doanh",
+      "science": "Khoa học",
+      "technology": "Công nghệ",
+      "strategy": "Chiến lược",
+      "psychology": "Tâm lý học",
+      "literature": "Văn học",
+      "art": "Nghệ thuật",
+      "religion": "Tôn giáo",
+      "politics": "Chính trị",
+      "economics": "Kinh tế",
+      "education": "Giáo dục",
+      "finance": "Tài chính",
+      "history": "Lịch sử",
+      "sociology": "Xã hội học"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "Nhập câu hỏi của bạn...",
+    "send": "Gửi",
+    "thinking": "Đang suy nghĩ...",
+    "stop": "Dừng",
+    "newChat": "Cuộc trò chuyện mới",
+    "export": "Xuất",
+    "noConversations": "Chưa có cuộc trò chuyện nào",
+    "noMessages": "Thử một câu hỏi bên dưới hoặc nhập câu hỏi của bạn",
+    "rename": "Đổi tên",
+    "addParticipant": "Thêm",
+    "untitled": "Chưa đặt tên",
+    "noApiKey": "Chưa cấu hình API Key",
+    "goSettings": "Đi đến Cài đặt",
+    "regenerate": "Tạo lại",
+    "summarize": "Tóm tắt",
+    "summarizing": "Đang tóm tắt...",
+    "searchConversations": "Tìm kiếm cuộc trò chuyện...",
+    "share": "Chia sẻ",
+    "copied": "Đã sao chép",
+    "shareTooLong": "Cuộc trò chuyện quá dài để chia sẻ qua URL",
+    "branch": "Phân nhánh từ đây",
+    "newWithSame": "Bắt đầu lại với cùng thành viên",
+    "copyLineupLink": "Sao chép liên kết nhóm",
+    "copyCategoryLink": "Sao chép liên kết danh mục",
+    "linkCopied": "Đã sao chép",
+    "shareSettings": "Đồng bộ cài đặt",
+    "settingsImported": "Đã nhập cài đặt",
+    "enterPassword": "Đặt mật khẩu để bảo vệ API key (để trống để loại trừ key)",
+    "enterDecryptPassword": "Nhập mật khẩu để giải mã (để trống để bỏ qua key)",
+    "importConversations": "Nhập",
+    "importSuccess": "Đã nhập {{count}} cuộc trò chuyện",
+    "importError": "Nhập thất bại: định dạng tệp không hợp lệ",
+    "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
+    "useCorsProxy": "Sử dụng proxy công cộng"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "Đã chọn {{count}}",
+    "start": "Bắt đầu thảo luận",
+    "rounds": "Vòng",
+    "roundProgress": "Vòng {{current}}/{{total}} — {{name}} đang phát biểu...",
+    "discussionComplete": "Thảo luận hoàn tất",
+    "continue": "+{{count}} vòng nữa",
+    "removeParticipant": "Xóa"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "Cài đặt",
+    "apiKeyPlaceholder": "Nhập {{provider}} API Key...",
+    "defaultProvider": "Nhà cung cấp",
+    "defaultModel": "Mô hình",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "themeLight": "Sáng",
+    "themeDark": "Tối",
+    "thinkingLevel": "Mức suy nghĩ",
+    "thinkingLevelHint": "Mô hình suy nghĩ sâu hơn. Chính xác hơn nhưng chậm hơn.",
+    "thinkingOff": "Tắt",
+    "thinkingLow": "Thấp",
+    "thinkingMedium": "Trung bình",
+    "thinkingHigh": "Cao",
+    "corsProxyHint": "Chuyển tiếp yêu cầu qua proxy để vượt qua hạn chế CORS",
+    "customModel": "Mô hình tùy chỉnh...",
+    "customBaseUrlHint": "Nhập endpoint API tương thích OpenAI",
+    "storageUsed": "Bộ nhớ: {{size}}",
+    "clearData": "Xóa tất cả dữ liệu"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "Cuộc trò chuyện được chia sẻ",
+    "startOwn": "Bắt đầu cuộc trò chuyện của bạn"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "Đang tải...",
+    "error": "Lỗi: {{message}}",
+    "confirm": "Xác nhận",
+    "unknown": "Không rõ"
   },
   "characters": {
     "socrates": {
       "name": "Socrates",
-      "era": "Ancient Greece",
+      "era": "Hy Lạp cổ đại",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -117,8 +117,8 @@
       ]
     },
     "confucius": {
-      "name": "Confucius",
-      "era": "Spring and Autumn Period",
+      "name": "Khổng Tử",
+      "era": "Xuân Thu",
       "questions": [
         "How to handle conflict with my boss?",
         "What does it mean to be a good person?",
@@ -127,7 +127,7 @@
     },
     "aristotle": {
       "name": "Aristotle",
-      "era": "Ancient Greece",
+      "era": "Hy Lạp cổ đại",
       "questions": [
         "What does a good life look like?",
         "How do I cultivate virtue?",
@@ -135,8 +135,8 @@
       ]
     },
     "laozi": {
-      "name": "Laozi",
-      "era": "Spring and Autumn Period",
+      "name": "Lão Tử",
+      "era": "Xuân Thu",
       "questions": [
         "The harder I try the more anxious I get",
         "How to stay true to myself under pressure?",
@@ -145,7 +145,7 @@
     },
     "plato": {
       "name": "Plato",
-      "era": "Ancient Greece",
+      "era": "Hy Lạp cổ đại",
       "questions": [
         "Is what I see really reality?",
         "How to bridge the gap between ideal and real?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "Biết phải làm gì nhưng không thể hành động",
+        "Làm sao giữ bình tĩnh giữa hỗn loạn?",
+        "Làm sao phân biệt đúng sai?"
       ]
     },
     "sun-tzu": {
-      "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "name": "Tôn Tử",
+      "era": "Xuân Thu",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "Làm sao thắng với ít tài nguyên hơn?",
+        "Làm sao tìm điểm yếu đối thủ?",
+        "Khi nào đối đầu trực tiếp, khi nào đánh vòng?"
       ]
     },
     "genghis-khan": {
@@ -228,14 +228,14 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "Làm sao biến điểm mạnh đối thủ thành điểm yếu?",
+        "Làm sao tạo lợi thế với nguồn lực hạn chế?",
+        "Làm sao đánh bại đối thủ mạnh hơn bằng chiến thuật sáng tạo?"
       ]
     },
     "napoleon": {
-      "name": "Napoleon Bonaparte",
-      "era": "French Revolution",
+      "name": "Napoléon",
+      "era": "Cách mạng Pháp",
       "questions": [
         "How to find breakthroughs in chaos?",
         "How to turn disadvantage into advantage?",
@@ -243,12 +243,12 @@
       ]
     },
     "zhuge-liang": {
-      "name": "Zhuge Liang",
-      "era": "Three Kingdoms",
+      "name": "Gia Cát Lượng",
+      "era": "Tam Quốc",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "Làm sao xây dựng lợi thế khi yếu hơn?",
+        "Làm sao dự đoán nước đi tiếp theo của đối thủ?",
+        "Làm sao thu hẹp khoảng cách giữa lý tưởng và thực tế?"
       ]
     },
     "machiavelli": {
@@ -261,8 +261,8 @@
       ]
     },
     "cao-cao": {
-      "name": "Cao Cao",
-      "era": "Three Kingdoms",
+      "name": "Tào Tháo",
+      "era": "Tam Quốc",
       "questions": [
         "How should I position myself in this competition?",
         "How to handle subordinates with hidden agendas?",
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "Tôi đã đến giới hạn — phải làm sao?",
+        "Làm sao khôi phục tinh thần đội khi sa sút?",
+        "Làm sao quyết định trước sự bất định khổng lồ?"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "Tôi có đang dành thời gian cho điều quan trọng nhất?",
+        "Làm sao đo lường hiệu quả của người quản lý?",
+        "Tổ chức nên đặt mục tiêu như thế nào?"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "Làm sao đánh giá giá trị dài hạn của công ty?",
+        "Phải làm gì khi thị trường sụt giảm?",
+        "Điều gì tạo nên mô hình kinh doanh tuyệt vời?"
       ]
     },
     "peter-thiel": {
@@ -370,7 +370,7 @@
     },
     "jobs": {
       "name": "Steve Jobs",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
         "Should I simplify or add features?",
         "How to find what truly matters?",
@@ -379,7 +379,7 @@
     },
     "musk": {
       "name": "Elon Musk",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
         "What are the core assumptions in this industry?",
         "How to make the impossible possible?",
@@ -387,8 +387,8 @@
       ]
     },
     "freud": {
-      "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "name": "Freud",
+      "era": "Hiện đại",
       "questions": [
         "Why do I have this strange habit?",
         "How did childhood shape my current behavior?",
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "Làm sao ngừng quan tâm người khác nghĩ gì?",
+        "Tổn thương quá khứ tiếp tục ảnh hưởng tôi thế nào?",
+        "Tôi thiếu can đảm thay đổi tình huống"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "Einstein",
+      "era": "Hiện đại",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -486,8 +486,8 @@
       ]
     },
     "newton": {
-      "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "name": "Newton",
+      "era": "Anh hiện đại",
       "questions": [
         "How to break a complex problem into simple laws?",
         "How to build a predictable system?",
@@ -504,8 +504,8 @@
       ]
     },
     "darwin": {
-      "name": "Charles Darwin",
-      "era": "Modern Era",
+      "name": "Darwin",
+      "era": "Anh hiện đại",
       "questions": [
         "How should my strategy adapt to a changing environment?",
         "How to survive long-term competition?",
@@ -567,17 +567,17 @@
       ]
     },
     "shakespeare": {
-      "name": "William Shakespeare",
-      "era": "Renaissance",
+      "name": "Shakespeare",
+      "era": "Phục Hưng",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "Làm sao hiểu động cơ phức tạp của người khác?",
+        "Ghen tị và tham vọng hủy hoại con người thế nào?",
+        "Bi kịch có thể tránh được không?"
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "Tolstoy",
+      "era": "Đế quốc Nga",
       "questions": [
         "What separates happy families from unhappy ones?",
         "Should one live for ideals or duty?",
@@ -585,8 +585,8 @@
       ]
     },
     "kafka": {
-      "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "name": "Kafka",
+      "era": "Châu Âu hiện đại",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -594,8 +594,8 @@
       ]
     },
     "li-bai": {
-      "name": "Li Bai",
-      "era": "Tang Dynasty",
+      "name": "Lý Bạch",
+      "era": "Nhà Đường",
       "questions": [
         "How to rediscover passion for life?",
         "How to balance rules and freedom?",
@@ -621,8 +621,8 @@
       ]
     },
     "su-shi": {
-      "name": "Su Shi",
-      "era": "Song Dynasty",
+      "name": "Tô Thức",
+      "era": "Bắc Tống",
       "questions": [
         "How to stay composed in adversity?",
         "How to find beauty in ordinary life?",
@@ -658,7 +658,7 @@
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "era": "Phục Hưng",
       "questions": [
         "How to cultivate genuine curiosity?",
         "How can art and science inspire each other?",
@@ -666,8 +666,8 @@
       ]
     },
     "beethoven": {
-      "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "name": "Beethoven",
+      "era": "Châu Âu hiện đại",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -684,8 +684,8 @@
       ]
     },
     "picasso": {
-      "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "name": "Picasso",
+      "era": "Hiện đại",
       "questions": [
         "How to break out of fixed thinking patterns?",
         "How can creativity and rules coexist?",
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "Làm sao kiên trì khi không được công nhận?",
+        "Cô đơn là nguồn sáng tạo hay trở ngại?",
+        "Làm sao không bị chi phối bởi đánh giá bên ngoài?"
       ]
     },
     "monet": {
@@ -756,12 +756,12 @@
       ]
     },
     "marx": {
-      "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "name": "Marx",
+      "era": "Châu Âu hiện đại",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "Ai hưởng lợi từ hệ thống kinh tế hiện tại?",
+        "Giá trị của người lao động bị đánh giá thấp thế nào?",
+        "Mâu thuẫn nội tại của chủ nghĩa tư bản là gì?"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "Làm sao biết chính sách có lợi cho đa số?",
+        "Ranh giới tự do cá nhân ở đâu?",
+        "Lợi ích của thiểu số nên được bảo vệ thế nào?"
       ]
     },
     "schumpeter": {
@@ -820,11 +820,11 @@
     },
     "taleb": {
       "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "Làm sao để sự nghiệp trở nên chống mong manh?",
+        "Tại sao chuyên gia liên tục thất bại trong dự đoán?",
+        "Tôi đang phơi nhiễm trước rủi ro ẩn nào?"
       ]
     },
     "sowell": {
@@ -846,8 +846,8 @@
       ]
     },
     "gandhi": {
-      "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "name": "Gandhi",
+      "era": "Hiện đại",
       "questions": [
         "How to drive change through nonviolent means?",
         "What to do when the rules themselves are unjust?",
@@ -927,8 +927,8 @@
       ]
     },
     "turing": {
-      "name": "Alan Turing",
-      "era": "Modern Era",
+      "name": "Turing",
+      "era": "Hiện đại",
       "questions": [
         "Can this problem be solved algorithmically?",
         "How to turn vague requirements into precise rules?",
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "Đức Phật",
+      "era": "Ấn Độ cổ đại",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1071,8 +1071,8 @@
       ]
     },
     "thich-nhat-hanh": {
-      "name": "Thich Nhat Hanh",
-      "era": "Contemporary",
+      "name": "Thích Nhất Hạnh",
+      "era": "Hiện đại",
       "questions": [
         "How to find a moment of peace in busyness?",
         "Does compassion mean tolerating everything?",
@@ -1099,20 +1099,20 @@
     },
     "ibn-khaldun": {
       "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "era": "Thế giới Hồi giáo trung cổ",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "Tại sao các nền văn minh tất yếu suy tàn?",
+        "Điều gì gắn kết xã hội và điều gì phá vỡ nó?",
+        "Chúng ta đang ở giai đoạn thăng hay trầm?"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "Làm sao khơi dậy động lực học nội tại của trẻ?",
+        "Cân bằng tự do và kỷ luật trong giáo dục thế nào?",
+        "Làm sao tạo môi trường học tập lý tưởng?"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "Trẻ có thể thực sự hiểu khái niệm này không?",
+        "Làm sao đánh giá giai đoạn phát triển nhận thức của trẻ?",
+        "Học tập thực sự diễn ra như thế nào?"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "Làm sao nuôi dưỡng sự phát triển toàn diện của trẻ?",
+        "Nghệ thuật đóng vai trò gì trong phát triển trí tuệ?",
+        "Trẻ ở các độ tuổi khác nhau cần giáo dục như thế nào?"
       ]
     },
     "cai-yuanpei": {
@@ -1198,254 +1198,254 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern America",
+      "era": "Mỹ cận đại",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "Làm sao biết một công ty bị định giá thấp?",
+        "Biên độ an toàn là gì?",
+        "Ông Thị Trường hôm nay có đang điên không?"
       ]
     },
     "george-soros": {
       "name": "George Soros",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "Lý thuyết phản thân là gì?",
+        "Làm sao nhận diện bong bóng thị trường?",
+        "Khi nào nên đặt cược lớn?"
       ]
     },
     "john-bogle": {
       "name": "John Bogle",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "Tại sao quỹ chỉ số tốt hơn quản lý chủ động?",
+        "Điều quan trọng nhất trong đầu tư là gì?",
+        "Làm sao đầu tư với chi phí thấp nhất?"
       ]
     },
     "harry-markowitz": {
       "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "Đa dạng hóa thực sự có nghĩa là gì?",
+        "Làm sao xây dựng danh mục đầu tư tối ưu?",
+        "Mối quan hệ giữa rủi ro và lợi nhuận là gì?"
       ]
     },
     "eugene-fama": {
       "name": "Eugene Fama",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "Thị trường có thực sự hiệu quả không?",
+        "Tại sao hầu hết các quỹ không thắng được thị trường?",
+        "Đầu tư theo nhân tố là gì?"
       ]
     },
     "robert-shiller": {
       "name": "Robert Shiller",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "Thị trường hiện tại có đang trong bong bóng không?",
+        "Tường thuật ảnh hưởng thị trường như thế nào?",
+        "Tỷ lệ CAPE cho chúng ta biết điều gì?"
       ]
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern America",
+      "era": "Mỹ cận đại",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "Làm sao đọc xu hướng thị trường?",
+        "Khi nào nên cắt lỗ?",
+        "Kiên nhẫn quan trọng thế nào trong giao dịch?"
       ]
     },
     "john-templeton": {
       "name": "John Templeton",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "Khi nào là thời điểm mua tốt nhất?",
+        "Làm sao giữ bình tĩnh trong hoảng loạn?",
+        "Đầu tư toàn cầu có lợi thế gì?"
       ]
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern America",
+      "era": "Mỹ cận đại",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "Làm sao tìm công ty đáng nắm giữ dài hạn?",
+        "Phương pháp \"scuttlebutt\" là gì?",
+        "Chất lượng hay giá cả quan trọng hơn?"
       ]
     },
     "howard-marks": {
       "name": "Howard Marks",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "Tư duy bậc hai là gì?",
+        "Chúng ta đang ở đâu trong chu kỳ hiện tại?",
+        "Làm sao tránh tâm lý bầy đàn?"
       ]
     },
     "thucydides": {
       "name": "Thucydides",
-      "era": "Ancient Greece",
+      "era": "Hy Lạp cổ đại",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "Chuyển giao quyền lực giữa cường quốc có nhất thiết dẫn đến xung đột?",
+        "Nỗi sợ hãi thúc đẩy các quốc gia ra sao trong chiến tranh?",
+        "Trung lập có thể tồn tại giữa hai siêu cường?"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "Tư Mã Thiên",
+      "era": "Nhà Hán",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "Quy luật hưng vong nào lặp lại trong lịch sử?",
+        "Làm sao đánh giá công bằng các nhân vật lịch sử?",
+        "Sai lầm của người xưa dạy ta điều gì?"
       ]
     },
     "toynbee": {
       "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "era": "Thời hiện đại",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "Nền văn minh chúng ta đang thất bại trước thách thức nào?",
+        "Thiểu số sáng tạo thúc đẩy thay đổi như thế nào?",
+        "Một nền văn minh suy tàn có thể đảo ngược?"
       ]
     },
     "spengler": {
       "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "era": "Thời hiện đại",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "Nền văn minh phương Tây có đang ở giai đoạn cuối?",
+        "Công nghệ có thể trì hoãn sự suy tàn của văn minh?",
+        "\"Mùa đông\" văn hóa trông như thế nào trong đời thường?"
       ]
     },
     "braudel": {
       "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "Cấu trúc sâu nào đang định hình thời đại chúng ta?",
+        "Địa lý vẫn quyết định vận mệnh kinh tế như thế nào?",
+        "Những thay đổi chậm nào sẽ định nghĩa thế kỷ tới?"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "Hoàng Nhân Vũ",
+      "era": "Đương đại",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "Tại sao cải cách thiện chí thường thất bại?",
+        "Hệ thống tồn tại lâu hơn người muốn thay đổi nó như thế nào?",
+        "Ràng buộc cấu trúc nào hạn chế sự thay đổi?"
       ]
     },
     "tacitus": {
       "name": "Tacitus",
-      "era": "Roman Empire",
+      "era": "Đế chế La Mã",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "Quyền lực làm mục nát thể chế từ bên trong như thế nào?",
+        "Dấu hiệu sớm của một nền cộng hòa sắp chết là gì?",
+        "Con người tự thuyết phục mình chấp nhận bạo chính ra sao?"
       ]
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "era": "Châu Âu cận đại",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "Chuyên chế của đa số có phải mối nguy thực sự ngày nay?",
+        "Bình đẳng đe dọa tự do một cách nghịch lý như thế nào?",
+        "Điều gì giữ cho nền dân chủ khỏe mạnh?"
       ]
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "era": "Châu Âu cận đại",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "Điểm yếu nội tại nào đe dọa thể chế của chúng ta?",
+        "Mở rộng quá mức dẫn đến sụp đổ như thế nào?",
+        "Khi nào tăng trưởng trở thành hạt giống của suy tàn?"
       ]
     },
     "weber": {
       "name": "Max Weber",
-      "era": "Modern Era",
+      "era": "Thời hiện đại",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "Chúng ta có bị mắc kẹt trong lồng sắt quan liêu?",
+        "Hợp lý hóa giết chết ý nghĩa như thế nào?",
+        "Điều gì làm nên một nhà lãnh đạo thực sự có sức hút?"
       ]
     },
     "durkheim": {
       "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "era": "Thời hiện đại",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "Tại sao cuộc sống hiện đại cảm thấy xa lạ đến vậy?",
+        "Điều gì giữ xã hội khi truyền thống phai nhạt?",
+        "Phân công lao động tạo ra đoàn kết và cô đơn thế nào?"
       ]
     },
     "bourdieu": {
       "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "Lợi thế vô hình tích lũy qua các thế hệ như thế nào?",
+        "Giáo dục cân bằng hay tái tạo bất bình đẳng?",
+        "Sở thích của tôi tiết lộ vị trí giai cấp như thế nào?"
       ]
     },
     "foucault": {
       "name": "Michel Foucault",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "Quyền lực vận hành vô hình trong cuộc sống hàng ngày thế nào?",
+        "Ai quyết định cái gì là \"bình thường\"?",
+        "Thể chế kỷ luật chúng ta mà không dùng vũ lực ra sao?"
       ]
     },
     "beauvoir": {
       "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "Bao nhiêu bản sắc của tôi được xây dựng xã hội?",
+        "Sống đích thực có nghĩa là gì?",
+        "Động lực quyền lực định hình quan hệ thân mật thế nào?"
       ]
     },
     "mcluhan": {
       "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "Mạng xã hội tái cấu trúc não chúng ta thế nào?",
+        "Phương tiện thực sự quan trọng hơn thông điệp?",
+        "AI làm gì với mô hình tư duy con người?"
       ]
     },
     "arendt": {
       "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "Làm sao người bình thường lại làm những điều khủng khiếp?",
+        "Điều gì phá hủy không gian cho diễn ngôn chính trị chân thực?",
+        "Làm sao chống lại áp lực ngừng tự suy nghĩ?"
       ]
     },
     "bauman": {
       "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "Tại sao mọi thứ đều cảm thấy tạm thời và bất định?",
+        "Làm sao xây dựng mối quan hệ bền vững trong thế giới dùng một lần?",
+        "Tự do có thực sự khiến chúng ta lo lắng hơn?"
       ]
     },
     "goffman": {
       "name": "Erving Goffman",
-      "era": "Contemporary",
+      "era": "Đương đại",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "Bao nhiêu đời sống xã hội của tôi là diễn kịch?",
+        "Chuyện gì xảy ra khi \"mặt nạ\" của chúng ta tuột?",
+        "Tại sao chúng ta tuân theo quy tắc xã hội bất thành văn?"
       ]
     }
   },

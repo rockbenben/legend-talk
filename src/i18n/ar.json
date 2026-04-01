@@ -1,115 +1,115 @@
 {
   "nav": {
-    "settings": "Settings",
-    "more": "More",
-    "support": "Support"
+    "settings": "الإعدادات",
+    "more": "المزيد",
+    "support": "الدعم"
   },
   "home": {
-    "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
-    "search": "Search or type any name...",
-    "startChat": "Chat",
-    "randomRoundtable": "Random",
-    "templates": "Featured",
+    "title": "تحدث مع العقول العظيمة",
+    "subtitle": "انقر على \"محادثة\" للاستشارة الفردية، أو \"+\" لتشكيل طاولة مستديرة",
+    "search": "ابحث أو اكتب اسماً...",
+    "startChat": "محادثة",
+    "randomRoundtable": "عشوائي",
+    "templates": "مقترحات",
     "categories": {
-      "all": "All",
-      "philosophy": "Philosophy",
-      "business": "Business",
-      "science": "Science",
-      "technology": "Technology",
-      "strategy": "Strategy",
-      "psychology": "Psychology",
-      "literature": "Literature",
-      "art": "Art",
-      "religion": "Religion",
-      "politics": "Politics",
-      "economics": "Economics",
-      "education": "Education",
-      "finance": "Finance",
-      "history": "History",
-      "sociology": "Sociology"
+      "all": "الكل",
+      "philosophy": "فلسفة",
+      "business": "أعمال",
+      "science": "علوم",
+      "technology": "تكنولوجيا",
+      "strategy": "استراتيجية",
+      "psychology": "علم نفس",
+      "literature": "أدب",
+      "art": "فن",
+      "religion": "دين",
+      "politics": "سياسة",
+      "economics": "اقتصاد",
+      "education": "تعليم",
+      "finance": "المالية",
+      "history": "التاريخ",
+      "sociology": "علم الاجتماع"
     }
   },
   "chat": {
-    "inputPlaceholder": "Type your question...",
-    "send": "Send",
-    "thinking": "Thinking...",
-    "stop": "Stop",
-    "newChat": "New Chat",
-    "export": "Export",
-    "noConversations": "No conversations yet",
-    "noMessages": "Try a question below, or type your own",
-    "rename": "Rename",
-    "addParticipant": "Add",
-    "untitled": "Untitled",
-    "noApiKey": "API Key not configured",
-    "goSettings": "Go to Settings",
-    "regenerate": "Regenerate",
-    "summarize": "Summarize",
-    "summarizing": "Summarizing...",
-    "searchConversations": "Search conversations...",
-    "share": "Share chat",
-    "copied": "Copied",
-    "shareTooLong": "Conversation too long to share via URL",
-    "branch": "Branch from here",
-    "newWithSame": "Restart lineup",
-    "copyLineupLink": "Copy lineup link",
-    "copyCategoryLink": "Copy category link",
-    "linkCopied": "Copied",
-    "shareSettings": "Sync settings to another device",
-    "settingsImported": "Settings imported",
-    "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
-    "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
-    "importConversations": "Import",
-    "importSuccess": "Imported {{count}} conversations",
-    "importError": "Import failed: invalid file format",
-    "corsError": "Request blocked by browser (CORS). A proxy is needed.",
-    "useCorsProxy": "Use public proxy"
+    "inputPlaceholder": "...اكتب سؤالك",
+    "send": "إرسال",
+    "thinking": "...جارٍ التفكير",
+    "stop": "إيقاف",
+    "newChat": "محادثة جديدة",
+    "export": "تصدير",
+    "noConversations": "لا توجد محادثات بعد",
+    "noMessages": "جرّب سؤالاً أدناه، أو اكتب سؤالك",
+    "rename": "إعادة تسمية",
+    "addParticipant": "إضافة",
+    "untitled": "بدون عنوان",
+    "noApiKey": "مفتاح API غير مُعدّ",
+    "goSettings": "الذهاب للإعدادات",
+    "regenerate": "إعادة التوليد",
+    "summarize": "تلخيص",
+    "summarizing": "...جارٍ التلخيص",
+    "searchConversations": "...بحث في المحادثات",
+    "share": "مشاركة",
+    "copied": "تم النسخ",
+    "shareTooLong": "المحادثة طويلة جداً للمشاركة عبر رابط",
+    "branch": "تفرّع من هنا",
+    "newWithSame": "إعادة مع نفس المجموعة",
+    "copyLineupLink": "نسخ رابط المجموعة",
+    "copyCategoryLink": "نسخ رابط الفئة",
+    "linkCopied": "تم النسخ",
+    "shareSettings": "مزامنة الإعدادات",
+    "settingsImported": "تم استيراد الإعدادات",
+    "enterPassword": "عيّن كلمة مرور لحماية مفاتيح API (اتركه فارغاً لاستبعاد المفاتيح)",
+    "enterDecryptPassword": "أدخل كلمة المرور لفك التشفير (اتركه فارغاً لتخطي المفاتيح)",
+    "importConversations": "استيراد",
+    "importSuccess": "تم استيراد {{count}} محادثة",
+    "importError": "فشل الاستيراد: صيغة ملف غير صالحة",
+    "corsError": "الطلب محظور من المتصفح (CORS). مطلوب وكيل.",
+    "useCorsProxy": "استخدام الوكيل العام"
   },
   "roundtable": {
-    "selected": "{{count}} selected",
-    "start": "Start Discussion",
-    "rounds": "Rounds",
-    "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
-    "discussionComplete": "Discussion complete",
-    "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "selected": "{{count}} مختار",
+    "start": "بدء النقاش",
+    "rounds": "جولات",
+    "roundProgress": "الجولة {{current}}/{{total}} — {{name}} يتحدث...",
+    "discussionComplete": "اكتمل النقاش",
+    "continue": "+{{count}} جولات إضافية",
+    "removeParticipant": "إزالة"
   },
   "settings": {
-    "title": "Settings",
-    "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "defaultProvider": "Current Provider",
-    "defaultModel": "Current Model",
-    "language": "Language",
-    "theme": "Theme",
-    "themeLight": "Light",
-    "themeDark": "Dark",
-    "thinkingLevel": "Thinking Level",
-    "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
-    "thinkingOff": "Off",
-    "thinkingLow": "Low",
-    "thinkingMedium": "Medium",
-    "thinkingHigh": "High",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
-    "customModel": "Custom model...",
-    "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
-    "clearData": "Clear All Data"
+    "title": "الإعدادات",
+    "apiKeyPlaceholder": "...{{provider}} أدخل مفتاح API",
+    "defaultProvider": "المزوّد",
+    "defaultModel": "النموذج",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "themeLight": "فاتح",
+    "themeDark": "داكن",
+    "thinkingLevel": "مستوى التفكير",
+    "thinkingLevelHint": "النموذج يفكر أعمق. أدق لكن أبطأ.",
+    "thinkingOff": "إيقاف",
+    "thinkingLow": "منخفض",
+    "thinkingMedium": "متوسط",
+    "thinkingHigh": "مرتفع",
+    "corsProxyHint": "يوجّه الطلبات عبر وكيل لتجاوز قيود CORS",
+    "customModel": "...نموذج مخصص",
+    "customBaseUrlHint": "أدخل نقطة نهاية API متوافقة مع OpenAI",
+    "storageUsed": "التخزين: {{size}}",
+    "clearData": "حذف جميع البيانات"
   },
   "shared": {
-    "title": "Shared Conversation",
-    "startOwn": "Start your own conversation"
+    "title": "محادثة مشتركة",
+    "startOwn": "ابدأ محادثتك الخاصة"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "Error: {{message}}",
-    "confirm": "Confirm",
-    "unknown": "Unknown"
+    "loading": "...جارٍ التحميل",
+    "error": "خطأ: {{message}}",
+    "confirm": "تأكيد",
+    "unknown": "غير معروف"
   },
   "characters": {
     "socrates": {
-      "name": "Socrates",
-      "era": "Ancient Greece",
+      "name": "سقراط",
+      "era": "اليونان القديمة",
       "questions": [
         "Should I quit to start a business?",
         "What is true success?",
@@ -201,18 +201,18 @@
       "name": "Wang Yangming",
       "era": "Ming Dynasty",
       "questions": [
-        "I know what to do but can't act on it",
-        "How to stay calm amid chaos?",
-        "How to distinguish right from wrong?"
+        "أعرف ما يجب فعله لكن لا أستطيع التصرف",
+        "كيف أحافظ على هدوئي وسط الفوضى؟",
+        "كيف أميز الصواب من الخطأ؟"
       ]
     },
     "sun-tzu": {
       "name": "Sun Tzu",
       "era": "Spring and Autumn Period",
       "questions": [
-        "How to win with fewer resources?",
-        "How to find a competitor's weaknesses?",
-        "When to confront directly vs. outflank?"
+        "كيف تفوز بموارد أقل؟",
+        "كيف تجد نقاط ضعف المنافس؟",
+        "متى تواجه مباشرة ومتى تلتف؟"
       ]
     },
     "genghis-khan": {
@@ -228,9 +228,9 @@
       "name": "Hannibal Barca",
       "era": "Ancient Rome",
       "questions": [
-        "How to turn an opponent's strength into a weakness?",
-        "How to create advantage with limited resources?",
-        "How to defeat a stronger opponent with creative tactics?"
+        "كيف تحول قوة الخصم إلى ضعف؟",
+        "كيف تخلق ميزة بموارد محدودة؟",
+        "كيف تهزم خصماً أقوى بتكتيكات إبداعية؟"
       ]
     },
     "napoleon": {
@@ -246,9 +246,9 @@
       "name": "Zhuge Liang",
       "era": "Three Kingdoms",
       "questions": [
-        "How to build advantage when outmatched?",
-        "How to anticipate an opponent's next move?",
-        "How to bridge the gap between ideal and reality?"
+        "كيف تبني ميزة وأنت في موقف أضعف؟",
+        "كيف تتوقع الخطوة التالية للخصم؟",
+        "كيف تسد الفجوة بين المثالي والواقع؟"
       ]
     },
     "machiavelli": {
@@ -273,9 +273,9 @@
       "name": "Winston Churchill",
       "era": "Modern Era",
       "questions": [
-        "I'm at my breaking point — what do I do?",
-        "How to restore team morale when spirits are low?",
-        "How to decide when facing enormous uncertainty?"
+        "أنا على وشك الانهيار — ماذا أفعل؟",
+        "كيف أعيد رفع معنويات الفريق؟",
+        "كيف أتخذ قراراً أمام عدم يقين هائل؟"
       ]
     },
     "bismarck": {
@@ -309,9 +309,9 @@
       "name": "Peter Drucker",
       "era": "Contemporary",
       "questions": [
-        "Am I spending time on what matters most?",
-        "How to measure a manager's effectiveness?",
-        "How should an organization set goals?"
+        "هل أقضي وقتي فيما يهم حقاً؟",
+        "كيف تقيس فعالية المدير؟",
+        "كيف يجب أن تحدد المنظمة أهدافها؟"
       ]
     },
     "carnegie": {
@@ -354,9 +354,9 @@
       "name": "Warren Buffett",
       "era": "Contemporary",
       "questions": [
-        "How to judge a company's long-term value?",
-        "What to do when markets fall?",
-        "What makes a great business model?"
+        "كيف تحكم على القيمة طويلة المدى لشركة؟",
+        "ماذا تفعل عندما تنخفض الأسواق؟",
+        "ما الذي يجعل نموذج أعمال عظيماً؟"
       ]
     },
     "peter-thiel": {
@@ -426,9 +426,9 @@
       "name": "Alfred Adler",
       "era": "Modern Era",
       "questions": [
-        "How do I stop caring what others think?",
-        "How do past traumas keep affecting me?",
-        "I lack the courage to change my situation"
+        "كيف أتوقف عن الاهتمام بما يعتقده الآخرون؟",
+        "كيف تستمر الصدمات الماضية في التأثير عليّ؟",
+        "أفتقر إلى الشجاعة لتغيير وضعي"
       ]
     },
     "skinner": {
@@ -477,8 +477,8 @@
       ]
     },
     "einstein": {
-      "name": "Albert Einstein",
-      "era": "Modern Era",
+      "name": "أينشتاين",
+      "era": "العصر الحديث",
       "questions": [
         "What if we view this from a totally different angle?",
         "Are we building on wrong assumptions?",
@@ -570,9 +570,9 @@
       "name": "William Shakespeare",
       "era": "Renaissance",
       "questions": [
-        "How to understand people's complex motivations?",
-        "How do jealousy and ambition destroy a person?",
-        "Can tragedy be avoided?"
+        "كيف تفهم دوافع الناس المعقدة؟",
+        "كيف يدمر الحسد والطموح الإنسان؟",
+        "هل يمكن تجنب المأساة؟"
       ]
     },
     "tolstoy": {
@@ -714,9 +714,9 @@
       "name": "Vincent van Gogh",
       "era": "Early Modern Europe",
       "questions": [
-        "How to persist without recognition?",
-        "Is loneliness a source of creativity or an obstacle?",
-        "How to not be swayed by external judgment?"
+        "كيف تستمر بدون اعتراف؟",
+        "هل الوحدة مصدر للإبداع أم عائق؟",
+        "كيف لا تتأثر بأحكام الآخرين؟"
       ]
     },
     "monet": {
@@ -759,9 +759,9 @@
       "name": "Karl Marx",
       "era": "Early Modern Europe",
       "questions": [
-        "Who benefits from the current economic system?",
-        "How is workers' value underestimated?",
-        "What are capitalism's internal contradictions?"
+        "من يستفيد من النظام الاقتصادي الحالي؟",
+        "كيف يتم التقليل من قيمة العمال؟",
+        "ما التناقضات الداخلية للرأسمالية؟"
       ]
     },
     "keynes": {
@@ -804,9 +804,9 @@
       "name": "John Stuart Mill",
       "era": "Victorian Era",
       "questions": [
-        "How to decide if a policy benefits the majority?",
-        "Where is the boundary of individual freedom?",
-        "How should minorities' interests be protected?"
+        "كيف تحدد ما إذا كانت سياسة تفيد الأغلبية؟",
+        "أين حدود الحرية الفردية؟",
+        "كيف يجب حماية مصالح الأقليات؟"
       ]
     },
     "schumpeter": {
@@ -819,12 +819,12 @@
       ]
     },
     "taleb": {
-      "name": "Nassim Taleb",
-      "era": "Contemporary",
+      "name": "نسيم طالب",
+      "era": "معاصر",
       "questions": [
-        "How do I make my career antifragile?",
-        "Why do experts consistently fail at prediction?",
-        "What hidden risks am I exposed to right now?"
+        "كيف أجعل مسيرتي المهنية مضادة للهشاشة؟",
+        "لماذا يفشل الخبراء باستمرار في التنبؤ؟",
+        "ما المخاطر الخفية التي أتعرض لها الآن؟"
       ]
     },
     "sowell": {
@@ -1017,8 +1017,8 @@
       ]
     },
     "buddha": {
-      "name": "Gautama Buddha",
-      "era": "Ancient India",
+      "name": "بوذا",
+      "era": "الهند القديمة",
       "questions": [
         "How to let go of attachment?",
         "Where does suffering come from?",
@@ -1044,8 +1044,8 @@
       ]
     },
     "rumi": {
-      "name": "Rumi",
-      "era": "Medieval Period",
+      "name": "الرومي",
+      "era": "فارس في العصور الوسطى",
       "questions": [
         "How to feel connected even in loneliness?",
         "Can love transcend all boundaries?",
@@ -1062,8 +1062,8 @@
       ]
     },
     "al-ghazali": {
-      "name": "Al-Ghazali",
-      "era": "Medieval Period",
+      "name": "الغزالي",
+      "era": "العصور الوسطى الإسلامية",
       "questions": [
         "Where are the limits of reason?",
         "How to find certainty through doubt?",
@@ -1098,21 +1098,21 @@
       ]
     },
     "ibn-khaldun": {
-      "name": "Ibn Khaldun",
-      "era": "Medieval Islamic World",
+      "name": "ابن خلدون",
+      "era": "العالم الإسلامي في العصور الوسطى",
       "questions": [
-        "Why do civilizations inevitably decline?",
-        "What holds a society together — and what tears it apart?",
-        "Are we in a rising or declining phase?"
+        "لماذا تنهار الحضارات حتمياً؟",
+        "ما الذي يجمع المجتمع وما الذي يفرقه؟",
+        "هل نحن في مرحلة صعود أم انحدار؟"
       ]
     },
     "montessori": {
       "name": "Maria Montessori",
       "era": "Modern Era",
       "questions": [
-        "How to spark a child's inner motivation to learn?",
-        "How to balance freedom and rules in education?",
-        "How to create an ideal learning environment?"
+        "كيف تحفز الدافع الداخلي للتعلم عند الطفل؟",
+        "كيف توازن بين الحرية والقواعد في التعليم؟",
+        "كيف تخلق بيئة تعليمية مثالية؟"
       ]
     },
     "helen-keller": {
@@ -1146,18 +1146,18 @@
       "name": "Jean Piaget",
       "era": "Modern Era",
       "questions": [
-        "Can a child really understand this concept?",
-        "How to assess a child's cognitive development stage?",
-        "How does learning actually happen?"
+        "هل يستطيع الطفل فعلاً فهم هذا المفهوم؟",
+        "كيف تقيّم مرحلة التطور المعرفي للطفل؟",
+        "كيف يحدث التعلم فعلاً؟"
       ]
     },
     "steiner": {
       "name": "Rudolf Steiner",
       "era": "Early Modern Europe",
       "questions": [
-        "How to nurture a child's holistic development?",
-        "What role does art play in intellectual growth?",
-        "What kind of education do children of different ages need?"
+        "كيف تعزز النمو الشامل للطفل؟",
+        "ما دور الفن في النمو العقلي؟",
+        "ما نوع التعليم الذي يحتاجه أطفال الأعمار المختلفة؟"
       ]
     },
     "cai-yuanpei": {
@@ -1197,255 +1197,255 @@
       ]
     },
     "benjamin-graham": {
-      "name": "Benjamin Graham",
-      "era": "Modern America",
+      "name": "بنجامين غراهام",
+      "era": "أمريكا الحديثة",
       "questions": [
-        "How do I know if a company is undervalued?",
-        "What is the margin of safety?",
-        "Is Mr. Market being irrational today?"
+        "كيف أعرف أن شركة ما مُقيّمة بأقل من قيمتها؟",
+        "ما هو هامش الأمان؟",
+        "هل السيد سوق غير عقلاني اليوم؟"
       ]
     },
     "george-soros": {
-      "name": "George Soros",
-      "era": "Contemporary",
+      "name": "جورج سوروس",
+      "era": "معاصر",
       "questions": [
-        "What is the theory of reflexivity?",
-        "How do you identify a market bubble?",
-        "When should you bet big?"
+        "ما هي نظرية الانعكاسية؟",
+        "كيف تتعرف على فقاعة السوق؟",
+        "متى يجب المراهنة بشكل كبير؟"
       ]
     },
     "john-bogle": {
-      "name": "John Bogle",
-      "era": "Contemporary",
+      "name": "جون بوغل",
+      "era": "معاصر",
       "questions": [
-        "Why are index funds better than active management?",
-        "What matters most in investing?",
-        "How to invest at the lowest cost?"
+        "لماذا صناديق المؤشرات أفضل من الإدارة النشطة؟",
+        "ما الأهم في الاستثمار؟",
+        "كيف تستثمر بأقل تكلفة؟"
       ]
     },
     "harry-markowitz": {
-      "name": "Harry Markowitz",
-      "era": "Contemporary",
+      "name": "هاري ماركوتز",
+      "era": "معاصر",
       "questions": [
-        "What does diversification really mean?",
-        "How to build an optimal portfolio?",
-        "What is the relationship between risk and return?"
+        "ما المعنى الحقيقي للتنويع؟",
+        "كيف تبني محفظة استثمارية مثالية؟",
+        "ما العلاقة بين المخاطر والعوائد؟"
       ]
     },
     "eugene-fama": {
-      "name": "Eugene Fama",
-      "era": "Contemporary",
+      "name": "يوجين فاما",
+      "era": "معاصر",
       "questions": [
-        "Is the market truly efficient?",
-        "Why can't most fund managers beat the market?",
-        "What is factor investing?"
+        "هل السوق فعال حقًا؟",
+        "لماذا لا يستطيع معظم مديري الصناديق التغلب على السوق؟",
+        "ما هو الاستثمار القائم على العوامل؟"
       ]
     },
     "robert-shiller": {
-      "name": "Robert Shiller",
-      "era": "Contemporary",
+      "name": "روبرت شيلر",
+      "era": "معاصر",
       "questions": [
-        "Is the current market in a bubble?",
-        "How do narratives drive markets?",
-        "What does the CAPE ratio tell us?"
+        "هل السوق الحالي في فقاعة؟",
+        "كيف تؤثر السرديات على الأسواق؟",
+        "ماذا يخبرنا مؤشر CAPE؟"
       ]
     },
     "jesse-livermore": {
-      "name": "Jesse Livermore",
-      "era": "Modern America",
+      "name": "جيسي ليفرمور",
+      "era": "أمريكا الحديثة",
       "questions": [
-        "How do you read market trends?",
-        "When should you cut your losses?",
-        "How important is patience in trading?"
+        "كيف تقرأ اتجاهات السوق؟",
+        "متى يجب وقف الخسائر؟",
+        "ما أهمية الصبر في التداول؟"
       ]
     },
     "john-templeton": {
-      "name": "John Templeton",
-      "era": "Contemporary",
+      "name": "جون تمبلتون",
+      "era": "معاصر",
       "questions": [
-        "When is the best time to buy?",
-        "How to stay calm during a panic?",
-        "What are the advantages of global investing?"
+        "متى أفضل وقت للشراء؟",
+        "كيف تحافظ على هدوئك أثناء الذعر؟",
+        "ما مزايا الاستثمار العالمي؟"
       ]
     },
     "philip-fisher": {
-      "name": "Philip Fisher",
-      "era": "Modern America",
+      "name": "فيليب فيشر",
+      "era": "أمريكا الحديثة",
       "questions": [
-        "How to find companies worth holding long-term?",
-        "What is the \"scuttlebutt\" method?",
-        "Which matters more: quality or price?"
+        "كيف تجد شركات تستحق الاحتفاظ بها طويلاً؟",
+        "ما هي طريقة \"الشائعات\" في البحث؟",
+        "أيهما أهم: الجودة أم السعر؟"
       ]
     },
     "howard-marks": {
-      "name": "Howard Marks",
-      "era": "Contemporary",
+      "name": "هوارد ماركس",
+      "era": "معاصر",
       "questions": [
-        "What is second-level thinking?",
-        "Where are we in the current cycle?",
-        "How to avoid herd mentality?"
+        "ما هو التفكير من المستوى الثاني؟",
+        "في أي مرحلة من الدورة نحن الآن؟",
+        "كيف نتجنب عقلية القطيع؟"
       ]
     },
     "thucydides": {
-      "name": "Thucydides",
-      "era": "Ancient Greece",
+      "name": "ثوسيديدس",
+      "era": "اليونان القديمة",
       "questions": [
-        "Is a power transition between great powers inevitable?",
-        "How does fear drive nations to war?",
-        "Can neutrality survive between two superpowers?"
+        "هل الصراع حتمي عند انتقال القوة بين الدول العظمى؟",
+        "كيف يدفع الخوف الأمم نحو الحرب؟",
+        "هل يمكن الحفاظ على الحياد بين قوتين عظميين؟"
       ]
     },
     "sima-qian": {
-      "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "name": "سيما تشيان",
+      "era": "أسرة هان",
       "questions": [
-        "What patterns of rise and fall repeat across history?",
-        "How should we judge historical figures fairly?",
-        "What can ancient mistakes teach us today?"
+        "ما أنماط الصعود والسقوط المتكررة في التاريخ؟",
+        "كيف نحكم على الشخصيات التاريخية بإنصاف؟",
+        "ماذا تعلمنا أخطاء الماضي اليوم؟"
       ]
     },
     "toynbee": {
-      "name": "Arnold Toynbee",
-      "era": "Modern Era",
+      "name": "أرنولد توينبي",
+      "era": "العصر الحديث",
       "questions": [
-        "What challenge is our civilization failing to respond to?",
-        "How do creative minorities drive change?",
-        "Can a declining civilization reverse course?"
+        "ما التحدي الذي تفشل حضارتنا في الاستجابة له؟",
+        "كيف تقود الأقليات المبدعة التغيير؟",
+        "هل يمكن لحضارة متراجعة عكس مسارها؟"
       ]
     },
     "spengler": {
-      "name": "Oswald Spengler",
-      "era": "Modern Era",
+      "name": "أوزوالد شبنغلر",
+      "era": "العصر الحديث",
       "questions": [
-        "Is Western civilization in its final phase?",
-        "Can technology delay civilizational decline?",
-        "What does cultural \"winter\" look like in daily life?"
+        "هل الحضارة الغربية في مرحلتها الأخيرة؟",
+        "هل يمكن للتكنولوجيا تأخير الانحدار الحضاري؟",
+        "كيف يبدو \"الشتاء\" الثقافي في الحياة اليومية؟"
       ]
     },
     "braudel": {
-      "name": "Fernand Braudel",
-      "era": "Contemporary",
+      "name": "فرناند بروديل",
+      "era": "معاصر",
       "questions": [
-        "What deep structures shape our era beyond daily headlines?",
-        "How does geography still determine economic destiny?",
-        "What slow changes are invisible now but will define the next century?"
+        "ما البنى العميقة التي تشكل عصرنا؟",
+        "كيف لا تزال الجغرافيا تحدد المصير الاقتصادي؟",
+        "ما التغييرات البطيئة التي ستحدد القرن القادم؟"
       ]
     },
     "huang-renyu": {
-      "name": "Ray Huang",
-      "era": "Contemporary",
+      "name": "راي هوانغ",
+      "era": "معاصر",
       "questions": [
-        "Why do well-intentioned reforms often fail?",
-        "How do systems outlast the people trying to change them?",
-        "What structural constraints limit change in my organization?"
+        "لماذا تفشل الإصلاحات حسنة النية غالباً؟",
+        "كيف تتجاوز الأنظمة من يحاولون تغييرها؟",
+        "ما القيود الهيكلية التي تحد من التغيير؟"
       ]
     },
     "tacitus": {
-      "name": "Tacitus",
-      "era": "Roman Empire",
+      "name": "تاسيتوس",
+      "era": "الإمبراطورية الرومانية",
       "questions": [
-        "How does power corrupt institutions from within?",
-        "What are the early signs of a republic dying?",
-        "How do people convince themselves to accept tyranny?"
+        "كيف تفسد السلطة المؤسسات من الداخل؟",
+        "ما العلامات المبكرة لموت الجمهورية؟",
+        "كيف يقنع الناس أنفسهم بقبول الاستبداد؟"
       ]
     },
     "tocqueville": {
-      "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "name": "توكفيل",
+      "era": "أوروبا الحديثة",
       "questions": [
-        "Is the tyranny of the majority a real danger today?",
-        "How does equality paradoxically threaten freedom?",
-        "What keeps a democracy healthy?"
+        "هل طغيان الأغلبية خطر حقيقي اليوم؟",
+        "كيف تهدد المساواة الحرية بشكل متناقض؟",
+        "ما الذي يحافظ على صحة الديمقراطية؟"
       ]
     },
     "gibbon": {
-      "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "name": "إدوارد غيبون",
+      "era": "أوروبا الحديثة",
       "questions": [
-        "What internal weaknesses threaten our institutions?",
-        "How does over-extension lead to collapse?",
-        "When does growth become the seed of decline?"
+        "ما نقاط الضعف الداخلية التي تهدد مؤسساتنا؟",
+        "كيف يؤدي التمدد المفرط إلى الانهيار؟",
+        "متى يصبح النمو بذرة الانحدار؟"
       ]
     },
     "weber": {
-      "name": "Max Weber",
-      "era": "Modern Era",
+      "name": "ماكس فيبر",
+      "era": "العصر الحديث",
       "questions": [
-        "Are we trapped in an iron cage of bureaucracy?",
-        "How does rationalization kill meaning?",
-        "What makes a leader truly charismatic?"
+        "هل نحن محاصرون في قفص حديدي بيروقراطي؟",
+        "كيف تقتل العقلانية المعنى؟",
+        "ما الذي يجعل القائد كاريزمياً حقاً؟"
       ]
     },
     "durkheim": {
-      "name": "Émile Durkheim",
-      "era": "Modern Era",
+      "name": "إميل دوركايم",
+      "era": "العصر الحديث",
       "questions": [
-        "Why does modern life feel so alienating?",
-        "What holds society together when traditions fade?",
-        "How does the division of labor create both solidarity and loneliness?"
+        "لماذا تبدو الحياة الحديثة مغتربة إلى هذا الحد؟",
+        "ما الذي يجمع المجتمع عندما تتلاشى التقاليد؟",
+        "كيف يخلق تقسيم العمل التضامن والوحدة؟"
       ]
     },
     "bourdieu": {
-      "name": "Pierre Bourdieu",
-      "era": "Contemporary",
+      "name": "بيير بورديو",
+      "era": "معاصر",
       "questions": [
-        "How do invisible advantages compound over generations?",
-        "Does education equalize or reproduce inequality?",
-        "How do my tastes reveal my class position?"
+        "كيف تتراكم المزايا غير المرئية عبر الأجيال؟",
+        "هل التعليم يحقق المساواة أم يعيد إنتاج اللامساواة؟",
+        "كيف تكشف أذواقي عن موقعي الطبقي؟"
       ]
     },
     "foucault": {
-      "name": "Michel Foucault",
-      "era": "Contemporary",
+      "name": "ميشيل فوكو",
+      "era": "معاصر",
       "questions": [
-        "How does power operate invisibly in daily life?",
-        "Who decides what counts as \"normal\"?",
-        "How do institutions discipline us without force?"
+        "كيف تعمل السلطة بشكل غير مرئي في الحياة اليومية؟",
+        "من يقرر ما هو \"طبيعي\"؟",
+        "كيف تنضبطنا المؤسسات دون قوة؟"
       ]
     },
     "beauvoir": {
-      "name": "Simone de Beauvoir",
-      "era": "Contemporary",
+      "name": "سيمون دي بوفوار",
+      "era": "معاصر",
       "questions": [
-        "How much of my identity is socially constructed?",
-        "What does it mean to live authentically?",
-        "How do power dynamics shape intimate relationships?"
+        "كم من هويتي مبني اجتماعياً؟",
+        "ماذا يعني العيش بأصالة؟",
+        "كيف تشكل ديناميكيات القوة العلاقات الحميمة؟"
       ]
     },
     "mcluhan": {
-      "name": "Marshall McLuhan",
-      "era": "Contemporary",
+      "name": "مارشال ماكلوهان",
+      "era": "معاصر",
       "questions": [
-        "How is social media rewiring our brains?",
-        "Is the medium really more important than the message?",
-        "What does AI do to human thought patterns?"
+        "كيف تعيد وسائل التواصل الاجتماعي توصيل أدمغتنا؟",
+        "هل الوسيلة حقاً أهم من الرسالة؟",
+        "ماذا يفعل الذكاء الاصطناعي بأنماط التفكير البشري؟"
       ]
     },
     "arendt": {
-      "name": "Hannah Arendt",
-      "era": "Contemporary",
+      "name": "حنة آرندت",
+      "era": "معاصر",
       "questions": [
-        "How do ordinary people end up doing terrible things?",
-        "What destroys the space for genuine political discourse?",
-        "How do I resist the pressure to stop thinking for myself?"
+        "كيف ينتهي الأمر بأشخاص عاديين يفعلون أشياء فظيعة؟",
+        "ما الذي يدمر مساحة الخطاب السياسي الحقيقي؟",
+        "كيف أقاوم ضغط التوقف عن التفكير بنفسي؟"
       ]
     },
     "bauman": {
-      "name": "Zygmunt Bauman",
-      "era": "Contemporary",
+      "name": "زيجمونت باومان",
+      "era": "معاصر",
       "questions": [
-        "Why does everything feel temporary and uncertain?",
-        "How do we build lasting bonds in a disposable world?",
-        "Is our freedom actually making us more anxious?"
+        "لماذا يبدو كل شيء مؤقتاً وغير مؤكد؟",
+        "كيف نبني روابط دائمة في عالم قابل للتخلص؟",
+        "هل حريتنا تجعلنا أكثر قلقاً؟"
       ]
     },
     "goffman": {
-      "name": "Erving Goffman",
-      "era": "Contemporary",
+      "name": "إرفينغ غوفمان",
+      "era": "معاصر",
       "questions": [
-        "How much of my social life is performance?",
-        "What happens when our \"mask\" slips?",
-        "Why do we follow unwritten social rules?"
+        "كم من حياتي الاجتماعية هي تمثيل؟",
+        "ماذا يحدث عندما ينزلق \"القناع\"؟",
+        "لماذا نتبع قواعد اجتماعية غير مكتوبة؟"
       ]
     }
   },

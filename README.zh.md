@@ -1,8 +1,28 @@
-# Legend Talk
+<h1 align="center">Legend Talk</h1>
 
-> 365 开源计划 #002 · 让最伟大的思想家围绕你的问题展开多轮 AI 圆桌辩论
+<p align="center">
+  365 开源计划 #002 · 让最伟大的思想家围绕你的问题展开多轮 AI 圆桌辩论
+</p>
 
-[English](./README.md) · [繁體中文](./i18n/README.zh-Hant.md) · [日本語](./i18n/README.ja.md) · [한국어](./i18n/README.ko.md) · [Español](./i18n/README.es.md) · [Français](./i18n/README.fr.md) · [Deutsch](./i18n/README.de.md) · [Português](./i18n/README.pt.md) · [Italiano](./i18n/README.it.md) · [Русский](./i18n/README.ru.md) · [العربية](./i18n/README.ar.md) · [हिन्दी](./i18n/README.hi.md) · [Tiếng Việt](./i18n/README.vi.md) · [ไทย](./i18n/README.th.md) · [Türkçe](./i18n/README.tr.md) · [Indonesia](./i18n/README.id.md) · [বাংলা](./i18n/README.bn.md)
+<p align="center">
+  <a href="./README.md">English</a> ·
+  <a href="./i18n/README.zh-Hant.md">繁體中文</a> ·
+  <a href="./i18n/README.ja.md">日本語</a> ·
+  <a href="./i18n/README.ko.md">한국어</a> ·
+  <a href="./i18n/README.es.md">Español</a> ·
+  <a href="./i18n/README.fr.md">Français</a> ·
+  <a href="./i18n/README.de.md">Deutsch</a> ·
+  <a href="./i18n/README.pt.md">Português</a> ·
+  <a href="./i18n/README.it.md">Italiano</a> ·
+  <a href="./i18n/README.ru.md">Русский</a> ·
+  <a href="./i18n/README.ar.md">العربية</a> ·
+  <a href="./i18n/README.hi.md">हिन्दी</a> ·
+  <a href="./i18n/README.vi.md">Tiếng Việt</a> ·
+  <a href="./i18n/README.th.md">ไทย</a> ·
+  <a href="./i18n/README.tr.md">Türkçe</a> ·
+  <a href="./i18n/README.id.md">Indonesia</a> ·
+  <a href="./i18n/README.bn.md">বাংলা</a>
+</p>
 
 把最伟大的思想家们请到一张桌上，让他们围绕你的问题展开辩论。
 

@@ -1,7 +1,7 @@
 import type { Conversation } from '../types';
 
 const ANALYSIS_LABELS: Record<string, string> = {
-  '__summarize__': 'Summary', '__proscons__': 'Pro/Con Analysis', '__matrix__': 'Decision Matrix',
+  '__summarize__': 'Summary',
 };
 
 function resolveName(msg: { role: string; characterId?: string }, characterNames: Record<string, string>): string {

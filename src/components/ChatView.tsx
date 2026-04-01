@@ -24,8 +24,6 @@ function isAnalysisMsg(characterId?: string): boolean {
 
 const ANALYSIS_META: Record<string, { emoji: string; labelKey: string }> = {
   '__summarize__': { emoji: '📋', labelKey: 'chat.summarize' },
-  '__proscons__': { emoji: '⚖️', labelKey: 'chat.proscons' },
-  '__matrix__': { emoji: '📊', labelKey: 'chat.matrix' },
 };
 
 interface ChatViewProps {
@@ -104,7 +102,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     if (msg.role === 'user') {
       handleSend(msg.content);
     } else if (isAnalysisMsg(msg.characterId)) {
-      handleAnalyze(msg.characterId!.replace(/__/g, ''));
+      handleSummarize();
     } else if (isMulti) {
       roundtable.continueFrom(conversationId, msg.characterId!, rounds);
     } else {
@@ -112,13 +110,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     }
   };
 
-  const ANALYSIS_PROMPTS: Record<string, string> = {
-    summarize: 'Summarize the following conversation concisely. Extract core viewpoints, key disagreements, and conclusions. Stay neutral and impersonal.',
-    proscons: 'Analyze the following conversation and produce a structured Pro/Con analysis. For each major viewpoint or proposal discussed, list the arguments FOR and AGAINST in a clear table or list format. Be balanced and thorough.',
-    matrix: 'Analyze the following conversation and produce a Decision Matrix. Identify the key options/approaches discussed, then evaluate each against criteria mentioned (feasibility, risk, impact, effort, etc.) in a structured table. Rate each cell and provide a clear recommendation.',
-  };
-
-  const handleAnalyze = async (mode: string = 'summarize') => {
+  const handleSummarize = async () => {
     const provider = resolveProvider();
     if (!provider) { navigate(lp('/settings')); return; }
     const conv = useConversationStore.getState().getConversation(conversationId);
@@ -135,8 +127,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
     summarizeAbortRef.current = controller;
     setIsSummarizing(true);
     try {
-      await streamResponse(conversationId, `__${mode}__`, [
-        { role: 'system', content: (ANALYSIS_PROMPTS[mode] || ANALYSIS_PROMPTS.summarize) + getLangInstruction(lang) },
+      await streamResponse(conversationId, '__summarize__', [
+        { role: 'system', content: 'Summarize the following conversation concisely. Extract core viewpoints, key disagreements, and conclusions. Stay neutral and impersonal.' + getLangInstruction(lang) },
         { role: 'user', content: transcript },
       ], provider, controller.signal);
     } catch (err) {
@@ -146,8 +138,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
       setIsSummarizing(false);
     }
   };
-
-  const handleSummarize = () => handleAnalyze('summarize');
 
   const handleShare = async () => {
     setShareStatus('sharing');
@@ -390,7 +380,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
         rounds={rounds} shareStatus={shareStatus}
         onContinue={() => roundtable.addRounds(conversationId, rounds)}
         onSummarize={handleSummarize} onShare={handleShare}
-        onAnalyze={handleAnalyze}
         onStopSummarize={() => summarizeAbortRef.current?.abort()}
       />
       <ChatInput onSend={handleSend} disabled={isGenerating || isSummarizing} />

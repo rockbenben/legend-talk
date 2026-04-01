@@ -17,14 +17,13 @@ interface ActionBarProps {
   shareStatus: 'idle' | 'sharing' | 'copied' | 'tooLong';
   onContinue: () => void;
   onSummarize: () => void;
-  onAnalyze: (mode: string) => void;
   onShare: () => void;
   onStopSummarize: () => void;
 }
 
 export function ActionBar({
   conversation, characters, displayTitle, isMulti, isGenerating, isSummarizing, rounds,
-  shareStatus, onContinue, onSummarize, onAnalyze, onShare, onStopSummarize,
+  shareStatus, onContinue, onSummarize, onShare, onStopSummarize,
 }: ActionBarProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -65,18 +64,6 @@ export function ActionBar({
             className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
           >
             {t('chat.summarize')}
-          </button>
-          <button
-            onClick={() => onAnalyze('proscons')}
-            className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-          >
-            {t('chat.proscons')}
-          </button>
-          <button
-            onClick={() => onAnalyze('matrix')}
-            className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-          >
-            {t('chat.matrix')}
           </button>
           <button
             onClick={() => {

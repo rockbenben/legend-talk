@@ -66,7 +66,14 @@
     "corsError": "คำขอถูกบล็อกโดยเบราว์เซอร์ (CORS) ต้องใช้พร็อกซี",
     "useCorsProxy": "ใช้พร็อกซีสาธารณะ",
     "proscons": "ข้อดี/ข้อเสีย",
-    "matrix": "เมทริกซ์การตัดสินใจ"
+    "matrix": "เมทริกซ์การตัดสินใจ",
+    "createCharacter": "สร้างตัวละคร",
+    "editCharacter": "แก้ไขตัวละคร",
+    "characterName": "ชื่อ",
+    "characterNamePlaceholder": "เช่น Ada Lovelace",
+    "characterAvatar": "อวาตาร์",
+    "characterColor": "สี",
+    "characterPromptPlaceholder": "อธิบายว่าตัวละครนี้คิดและตอบอย่างไร..."
   },
   "roundtable": {
     "selected": "เลือก {{count}} คน",
@@ -96,7 +103,9 @@
     "customModel": "โมเดลกำหนดเอง...",
     "customBaseUrlHint": "ใส่ endpoint API ที่เข้ากันได้กับ OpenAI",
     "storageUsed": "พื้นที่: {{size}}",
-    "clearData": "ลบข้อมูลทั้งหมด"
+    "clearData": "ลบข้อมูลทั้งหมด",
+    "customCharacters": "ตัวละครกำหนดเอง",
+    "noCustomCharacters": "ยังไม่มี"
   },
   "shared": {
     "title": "การสนทนาที่แชร์",
@@ -106,7 +115,9 @@
     "loading": "กำลังโหลด...",
     "error": "ข้อผิดพลาด: {{message}}",
     "confirm": "ยืนยัน",
-    "unknown": "ไม่ทราบ"
+    "unknown": "ไม่ทราบ",
+    "cancel": "ยกเลิก",
+    "save": "บันทึก"
   },
   "characters": {
     "socrates": {

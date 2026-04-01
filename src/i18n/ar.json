@@ -66,7 +66,14 @@
     "corsError": "الطلب محظور من المتصفح (CORS). مطلوب وكيل.",
     "useCorsProxy": "استخدام الوكيل العام",
     "proscons": "إيجابيات/سلبيات",
-    "matrix": "مصفوفة القرار"
+    "matrix": "مصفوفة القرار",
+    "createCharacter": "إنشاء شخصية",
+    "editCharacter": "تعديل الشخصية",
+    "characterName": "الاسم",
+    "characterNamePlaceholder": "مثال: أدا لوفليس",
+    "characterAvatar": "الصورة",
+    "characterColor": "اللون",
+    "characterPromptPlaceholder": "صف كيف تفكر هذه الشخصية وتستجيب..."
   },
   "roundtable": {
     "selected": "{{count}} مختار",
@@ -96,7 +103,9 @@
     "customModel": "...نموذج مخصص",
     "customBaseUrlHint": "أدخل نقطة نهاية API متوافقة مع OpenAI",
     "storageUsed": "التخزين: {{size}}",
-    "clearData": "حذف جميع البيانات"
+    "clearData": "حذف جميع البيانات",
+    "customCharacters": "شخصيات مخصصة",
+    "noCustomCharacters": "لا توجد بعد"
   },
   "shared": {
     "title": "محادثة مشتركة",
@@ -106,7 +115,9 @@
     "loading": "...جارٍ التحميل",
     "error": "خطأ: {{message}}",
     "confirm": "تأكيد",
-    "unknown": "غير معروف"
+    "unknown": "غير معروف",
+    "cancel": "إلغاء",
+    "save": "حفظ"
   },
   "characters": {
     "socrates": {

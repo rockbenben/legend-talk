@@ -66,7 +66,14 @@
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
     "useCorsProxy": "使用公共中轉",
     "proscons": "正反論點",
-    "matrix": "決策矩陣"
+    "matrix": "決策矩陣",
+    "createCharacter": "建立角色",
+    "editCharacter": "編輯角色",
+    "characterName": "名稱",
+    "characterNamePlaceholder": "如 愛達·洛芙萊斯",
+    "characterAvatar": "頭像",
+    "characterColor": "顏色",
+    "characterPromptPlaceholder": "描述這個角色如何思考和回應..."
   },
   "roundtable": {
     "selected": "已選 {{count}} 位",
@@ -96,7 +103,9 @@
     "customModel": "自定義模型...",
     "customBaseUrlHint": "填入 OpenAI 相容 API 的地址，如 https://api.example.com/v1",
     "storageUsed": "已用空間: {{size}}",
-    "clearData": "清除所有資料"
+    "clearData": "清除所有資料",
+    "customCharacters": "自訂角色",
+    "noCustomCharacters": "暫無自訂角色"
   },
   "shared": {
     "title": "共享對話",
@@ -106,7 +115,9 @@
     "loading": "載入中...",
     "error": "出錯了: {{message}}",
     "confirm": "確認",
-    "unknown": "未知"
+    "unknown": "未知",
+    "cancel": "取消",
+    "save": "儲存"
   },
   "characters": {
     "socrates": {

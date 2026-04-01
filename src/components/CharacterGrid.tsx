@@ -2,6 +2,7 @@ import { useLangPath } from "../hooks/useLangPath";
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CharacterCard } from './CharacterCard';
+import { CharacterEditor } from './CharacterEditor';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { useSettingsStore } from '../stores/settings';
@@ -21,6 +22,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
   const [linkCopied, setLinkCopied] = useState(false);
+  const [showEditor, setShowEditor] = useState(false);
   const favoriteCharacters = useSettingsStore((s) => s.favoriteCharacters);
   const toggleFavorite = useSettingsStore((s) => s.toggleFavorite);
 
@@ -97,6 +99,12 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           </button>
         )}
       </div>
+      <div className="mb-4">
+        <button onClick={() => setShowEditor(true)}
+          className="px-3 py-1.5 text-sm rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 transition-colors">
+          + {t('chat.createCharacter')}
+        </button>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {sorted.map((c) => (
           <CharacterCard
@@ -121,6 +129,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           </button>
         </div>
       )}
+      {showEditor && <CharacterEditor onClose={() => setShowEditor(false)} />}
     </div>
   );
 }

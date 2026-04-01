@@ -19,7 +19,8 @@ export function exportAsMarkdown(
     if (msg.role === 'user') {
       md += `**You:** ${msg.content}\n\n`;
     } else {
-      const name = msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Summary';
+      const analysisLabels: Record<string, string> = { '__summarize__': 'Summary', '__proscons__': 'Pro/Con Analysis', '__matrix__': 'Decision Matrix' };
+      const name = msg.characterId?.startsWith('__') ? (analysisLabels[msg.characterId] || 'Analysis') : (msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Summary');
       md += `**${name}:** ${msg.content}\n\n`;
     }
   }

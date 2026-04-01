@@ -66,7 +66,14 @@
     "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
     "useCorsProxy": "公開プロキシを使用",
     "proscons": "賛否両論",
-    "matrix": "意思決定マトリクス"
+    "matrix": "意思決定マトリクス",
+    "createCharacter": "キャラクター作成",
+    "editCharacter": "キャラクター編集",
+    "characterName": "名前",
+    "characterNamePlaceholder": "例: エイダ・ラブレス",
+    "characterAvatar": "アバター",
+    "characterColor": "色",
+    "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述..."
   },
   "roundtable": {
     "selected": "{{count}}人選択",
@@ -96,7 +103,9 @@
     "customModel": "カスタムモデル...",
     "customBaseUrlHint": "OpenAI互換APIのエンドポイントを入力",
     "storageUsed": "使用容量：{{size}}",
-    "clearData": "全データ削除"
+    "clearData": "全データ削除",
+    "customCharacters": "カスタムキャラクター",
+    "noCustomCharacters": "まだありません"
   },
   "shared": {
     "title": "共有された対話",
@@ -106,7 +115,9 @@
     "loading": "読み込み中...",
     "error": "エラー：{{message}}",
     "confirm": "確認",
-    "unknown": "不明"
+    "unknown": "不明",
+    "cancel": "キャンセル",
+    "save": "保存"
   },
   "characters": {
     "socrates": {

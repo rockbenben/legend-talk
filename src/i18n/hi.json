@@ -66,7 +66,14 @@
     "corsError": "अनुरोध ब्राउज़र द्वारा अवरुद्ध (CORS)। प्रॉक्सी आवश्यक है।",
     "useCorsProxy": "सार्वजनिक प्रॉक्सी का उपयोग करें",
     "proscons": "पक्ष/विपक्ष",
-    "matrix": "निर्णय मैट्रिक्स"
+    "matrix": "निर्णय मैट्रिक्स",
+    "createCharacter": "चरित्र बनाएं",
+    "editCharacter": "चरित्र संपादित करें",
+    "characterName": "नाम",
+    "characterNamePlaceholder": "जैसे एडा लवलेस",
+    "characterAvatar": "अवतार",
+    "characterColor": "रंग",
+    "characterPromptPlaceholder": "बताएं कि यह चरित्र कैसे सोचता और जवाब देता है..."
   },
   "roundtable": {
     "selected": "{{count}} चयनित",
@@ -96,7 +103,9 @@
     "customModel": "कस्टम मॉडल...",
     "customBaseUrlHint": "OpenAI संगत API एंडपॉइंट दर्ज करें",
     "storageUsed": "संग्रहण: {{size}}",
-    "clearData": "सभी डेटा हटाएं"
+    "clearData": "सभी डेटा हटाएं",
+    "customCharacters": "कस्टम चरित्र",
+    "noCustomCharacters": "अभी कोई नहीं"
   },
   "shared": {
     "title": "साझा बातचीत",
@@ -106,7 +115,9 @@
     "loading": "लोड हो रहा है...",
     "error": "त्रुटि: {{message}}",
     "confirm": "पुष्टि करें",
-    "unknown": "अज्ञात"
+    "unknown": "अज्ञात",
+    "cancel": "रद्द करें",
+    "save": "सहेजें"
   },
   "characters": {
     "socrates": {

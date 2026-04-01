@@ -66,7 +66,14 @@
     "corsError": "Solicitação bloqueada pelo navegador (CORS). Um proxy é necessário.",
     "useCorsProxy": "Usar proxy público",
     "proscons": "Prós/Contras",
-    "matrix": "Matriz de decisão"
+    "matrix": "Matriz de decisão",
+    "createCharacter": "Criar personagem",
+    "editCharacter": "Editar personagem",
+    "characterName": "Nome",
+    "characterNamePlaceholder": "ex. Ada Lovelace",
+    "characterAvatar": "Avatar",
+    "characterColor": "Cor",
+    "characterPromptPlaceholder": "Descreva como este personagem pensa e responde..."
   },
   "roundtable": {
     "selected": "{{count}} selecionados",
@@ -96,7 +103,9 @@
     "customModel": "Modelo personalizado...",
     "customBaseUrlHint": "Digite o endpoint de API compatível com OpenAI",
     "storageUsed": "Armazenamento: {{size}}",
-    "clearData": "Excluir todos os dados"
+    "clearData": "Excluir todos os dados",
+    "customCharacters": "Personagens personalizados",
+    "noCustomCharacters": "Nenhum ainda"
   },
   "shared": {
     "title": "Conversa compartilhada",
@@ -106,7 +115,9 @@
     "loading": "Carregando...",
     "error": "Erro: {{message}}",
     "confirm": "Confirmar",
-    "unknown": "Desconhecido"
+    "unknown": "Desconhecido",
+    "cancel": "Cancelar",
+    "save": "Salvar"
   },
   "characters": {
     "socrates": {

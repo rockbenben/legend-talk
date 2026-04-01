@@ -66,7 +66,14 @@
     "corsError": "ব্রাউজার দ্বারা অনুরোধ ব্লক করা হয়েছে (CORS)। প্রক্সি প্রয়োজন।",
     "useCorsProxy": "পাবলিক প্রক্সি ব্যবহার করুন",
     "proscons": "পক্ষে/বিপক্ষে",
-    "matrix": "সিদ্ধান্ত ম্যাট্রিক্স"
+    "matrix": "সিদ্ধান্ত ম্যাট্রিক্স",
+    "createCharacter": "চরিত্র তৈরি",
+    "editCharacter": "চরিত্র সম্পাদনা",
+    "characterName": "নাম",
+    "characterNamePlaceholder": "যেমন Ada Lovelace",
+    "characterAvatar": "অবতার",
+    "characterColor": "রং",
+    "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন..."
   },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",
@@ -96,7 +103,9 @@
     "customModel": "কাস্টম মডেল...",
     "customBaseUrlHint": "OpenAI সামঞ্জস্যপূর্ণ API এন্ডপয়েন্ট দিন",
     "storageUsed": "স্টোরেজ: {{size}}",
-    "clearData": "সমস্ত ডেটা মুছুন"
+    "clearData": "সমস্ত ডেটা মুছুন",
+    "customCharacters": "কাস্টম চরিত্র",
+    "noCustomCharacters": "এখনও নেই"
   },
   "shared": {
     "title": "শেয়ারকৃত কথোপকথন",
@@ -106,7 +115,9 @@
     "loading": "লোড হচ্ছে...",
     "error": "ত্রুটি: {{message}}",
     "confirm": "নিশ্চিত করুন",
-    "unknown": "অজানা"
+    "unknown": "অজানা",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ"
   },
   "characters": {
     "socrates": {

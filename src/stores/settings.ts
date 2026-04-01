@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { persistStorage } from '../utils/persistStorage';
+import type { Character } from '../types';
+
+/** Stored custom character — includes display name for i18n injection */
+export interface CustomCharacter extends Character {
+  displayName: string;
+}
 
 interface SettingsState {
   apiKeys: Record<string, string>;
@@ -13,6 +19,7 @@ interface SettingsState {
   customBaseUrl: string;
   thinkingLevel: 'off' | 'low' | 'medium' | 'high';
   favoriteCharacters: string[];
+  customCharacters: CustomCharacter[];
   setApiKey: (provider: string, key: string) => void;
   setDefaultProvider: (provider: string) => void;
   setDefaultModel: (model: string) => void;
@@ -24,6 +31,8 @@ interface SettingsState {
   setThinkingLevel: (level: 'off' | 'low' | 'medium' | 'high') => void;
   toggleFavorite: (characterId: string) => void;
   clearApiKeys: () => void;
+  saveCustomCharacter: (char: CustomCharacter) => void;
+  deleteCustomCharacter: (id: string) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -39,6 +48,7 @@ export const useSettingsStore = create<SettingsState>()(
       customBaseUrl: '',
       thinkingLevel: 'off' as const,
       favoriteCharacters: [],
+      customCharacters: [],
       setApiKey: (provider, key) =>
         set((s) => ({ apiKeys: { ...s.apiKeys, [provider]: key } })),
       setDefaultProvider: (defaultProvider) => set({ defaultProvider }),
@@ -57,6 +67,14 @@ export const useSettingsStore = create<SettingsState>()(
             : [...s.favoriteCharacters, characterId],
         })),
       clearApiKeys: () => set({ apiKeys: {} }),
+      saveCustomCharacter: (char) =>
+        set((s) => ({
+          customCharacters: s.customCharacters.some((c) => c.id === char.id)
+            ? s.customCharacters.map((c) => (c.id === char.id ? char : c))
+            : [...s.customCharacters, char],
+        })),
+      deleteCustomCharacter: (id) =>
+        set((s) => ({ customCharacters: s.customCharacters.filter((c) => c.id !== id) })),
     }),
     { name: 'legend-talk-settings', storage: createJSONStorage(() => persistStorage) },
   ),

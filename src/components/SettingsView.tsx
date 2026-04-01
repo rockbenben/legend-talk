@@ -9,6 +9,9 @@ import { compressToBase64, decompressFromBase64 } from '../utils/compress';
 import { useConversationStore } from '../stores/conversations';
 import { clearAllStorage } from '../utils/persistStorage';
 import { ensureLanguageLoaded } from '../i18n';
+import { CharacterEditor } from './CharacterEditor';
+import { Avatar } from './Avatar';
+import type { CustomCharacter } from '../stores/settings';
 
 export function SettingsView() {
   const { t, i18n } = useTranslation();
@@ -352,6 +355,9 @@ export function SettingsView() {
         </div>
       </section>
 
+      {/* Custom Characters */}
+      <CustomCharactersSection />
+
       {/* Data Management */}
       <section>
         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.storageUsed', { size: getStorageUsage() })}</h3>
@@ -394,5 +400,49 @@ export function SettingsView() {
         )}
       </section>
     </div>
+  );
+}
+
+function CustomCharactersSection() {
+  const { t } = useTranslation();
+  const customCharacters = useSettingsStore((s) => s.customCharacters);
+  const deleteCustomCharacter = useSettingsStore((s) => s.deleteCustomCharacter);
+  const [showEditor, setShowEditor] = useState(false);
+  const [editingChar, setEditingChar] = useState<CustomCharacter | undefined>();
+
+  return (
+    <section>
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-lg font-semibold">{t('settings.customCharacters')}</h3>
+        <button onClick={() => { setEditingChar(undefined); setShowEditor(true); }}
+          className="text-xs px-3 py-1.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors">
+          + {t('chat.createCharacter')}
+        </button>
+      </div>
+      {customCharacters.length === 0 ? (
+        <p className="text-sm text-gray-400">{t('settings.noCustomCharacters')}</p>
+      ) : (
+        <div className="space-y-2">
+          {customCharacters.map((c) => (
+            <div key={c.id} className="flex items-center gap-3 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+              <Avatar emoji={c.avatar} color={c.color} size="sm" />
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-medium truncate">{c.displayName}</div>
+                <div className="text-xs text-gray-400 truncate">{c.systemPrompt.slice(0, 60)}...</div>
+              </div>
+              <button onClick={() => { setEditingChar(c); setShowEditor(true); }}
+                className="p-1.5 text-gray-400 hover:text-blue-500 text-xs shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+              </button>
+              <button onClick={() => deleteCustomCharacter(c.id)}
+                className="p-1.5 text-gray-400 hover:text-red-500 text-xs shrink-0">✕</button>
+            </div>
+          ))}
+        </div>
+      )}
+      {showEditor && <CharacterEditor character={editingChar} onClose={() => setShowEditor(false)} />}
+    </section>
   );
 }

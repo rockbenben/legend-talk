@@ -66,7 +66,14 @@
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "useCorsProxy": "Gunakan proxy publik",
     "proscons": "Pro/Kontra",
-    "matrix": "Matriks Keputusan"
+    "matrix": "Matriks Keputusan",
+    "createCharacter": "Buat Karakter",
+    "editCharacter": "Edit Karakter",
+    "characterName": "Nama",
+    "characterNamePlaceholder": "mis. Ada Lovelace",
+    "characterAvatar": "Avatar",
+    "characterColor": "Warna",
+    "characterPromptPlaceholder": "Jelaskan bagaimana karakter ini berpikir dan merespons..."
   },
   "roundtable": {
     "selected": "{{count}} dipilih",
@@ -96,7 +103,9 @@
     "customModel": "Model kustom...",
     "customBaseUrlHint": "Masukkan endpoint API yang kompatibel dengan OpenAI",
     "storageUsed": "Penyimpanan: {{size}}",
-    "clearData": "Hapus semua data"
+    "clearData": "Hapus semua data",
+    "customCharacters": "Karakter Kustom",
+    "noCustomCharacters": "Belum ada"
   },
   "shared": {
     "title": "Obrolan bersama",
@@ -106,7 +115,9 @@
     "loading": "Memuat...",
     "error": "Kesalahan: {{message}}",
     "confirm": "Konfirmasi",
-    "unknown": "Tidak diketahui"
+    "unknown": "Tidak diketahui",
+    "cancel": "Batal",
+    "save": "Simpan"
   },
   "characters": {
     "socrates": {

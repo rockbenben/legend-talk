@@ -66,7 +66,14 @@
     "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
     "useCorsProxy": "Sử dụng proxy công cộng",
     "proscons": "Ủng hộ/Phản đối",
-    "matrix": "Ma trận quyết định"
+    "matrix": "Ma trận quyết định",
+    "createCharacter": "Tạo nhân vật",
+    "editCharacter": "Sửa nhân vật",
+    "characterName": "Tên",
+    "characterNamePlaceholder": "VD: Ada Lovelace",
+    "characterAvatar": "Avatar",
+    "characterColor": "Màu",
+    "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi..."
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",
@@ -96,7 +103,9 @@
     "customModel": "Mô hình tùy chỉnh...",
     "customBaseUrlHint": "Nhập endpoint API tương thích OpenAI",
     "storageUsed": "Bộ nhớ: {{size}}",
-    "clearData": "Xóa tất cả dữ liệu"
+    "clearData": "Xóa tất cả dữ liệu",
+    "customCharacters": "Nhân vật tùy chỉnh",
+    "noCustomCharacters": "Chưa có"
   },
   "shared": {
     "title": "Cuộc trò chuyện được chia sẻ",
@@ -106,7 +115,9 @@
     "loading": "Đang tải...",
     "error": "Lỗi: {{message}}",
     "confirm": "Xác nhận",
-    "unknown": "Không rõ"
+    "unknown": "Không rõ",
+    "cancel": "Hủy",
+    "save": "Lưu"
   },
   "characters": {
     "socrates": {

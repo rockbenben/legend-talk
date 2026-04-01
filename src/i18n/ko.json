@@ -66,7 +66,14 @@
     "corsError": "브라우저에서 차단됨 (CORS). 프록시가 필요합니다",
     "useCorsProxy": "공개 프록시 사용",
     "proscons": "찬반 분석",
-    "matrix": "의사결정 매트릭스"
+    "matrix": "의사결정 매트릭스",
+    "createCharacter": "캐릭터 만들기",
+    "editCharacter": "캐릭터 편집",
+    "characterName": "이름",
+    "characterNamePlaceholder": "예: 에이다 러브레이스",
+    "characterAvatar": "아바타",
+    "characterColor": "색상",
+    "characterPromptPlaceholder": "이 캐릭터가 어떻게 생각하고 응답하는지 설명..."
   },
   "roundtable": {
     "selected": "{{count}}명 선택",
@@ -96,7 +103,9 @@
     "customModel": "커스텀 모델...",
     "customBaseUrlHint": "OpenAI 호환 API 엔드포인트 입력",
     "storageUsed": "사용 용량: {{size}}",
-    "clearData": "모든 데이터 삭제"
+    "clearData": "모든 데이터 삭제",
+    "customCharacters": "커스텀 캐릭터",
+    "noCustomCharacters": "아직 없습니다"
   },
   "shared": {
     "title": "공유된 대화",
@@ -106,7 +115,9 @@
     "loading": "로딩 중...",
     "error": "오류: {{message}}",
     "confirm": "확인",
-    "unknown": "알 수 없음"
+    "unknown": "알 수 없음",
+    "cancel": "취소",
+    "save": "저장"
   },
   "characters": {
     "socrates": {

@@ -17,6 +17,17 @@ import { ParticipantsBar } from './ParticipantsBar';
 import { ActionBar } from './ActionBar';
 import type { Character } from '../types';
 
+/** Check if a characterId is an analysis marker (not a real character) */
+function isAnalysisMsg(characterId?: string): boolean {
+  return !!characterId?.startsWith('__') && !!characterId?.endsWith('__');
+}
+
+const ANALYSIS_META: Record<string, { emoji: string; labelKey: string }> = {
+  '__summarize__': { emoji: '📋', labelKey: 'chat.summarize' },
+  '__proscons__': { emoji: '⚖️', labelKey: 'chat.proscons' },
+  '__matrix__': { emoji: '📊', labelKey: 'chat.matrix' },
+};
+
 interface ChatViewProps {
   conversationId: string;
 }
@@ -92,10 +103,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
     useConversationStore.getState().removeMessagesFrom(conversationId, messageId);
     if (msg.role === 'user') {
       handleSend(msg.content);
-    } else if (!msg.characterId) {
-      handleSummarize();
+    } else if (isAnalysisMsg(msg.characterId)) {
+      handleAnalyze(msg.characterId!.replace(/__/g, ''));
     } else if (isMulti) {
-      roundtable.continueFrom(conversationId, msg.characterId, rounds);
+      roundtable.continueFrom(conversationId, msg.characterId!, rounds);
     } else {
       singleChat.regenerate(conversationId);
     }
@@ -113,7 +124,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv || conv.messages.length === 0) return;
     const transcript = conv.messages
-      .filter((msg) => msg.role === 'user' || msg.characterId)
+      .filter((msg) => msg.role === 'user' || (msg.characterId && !isAnalysisMsg(msg.characterId)))
       .map((msg) => {
         if (msg.role === 'user') return `[User]: ${msg.content}`;
         const char = presetCharacters.find((c) => c.id === msg.characterId);
@@ -124,7 +135,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     summarizeAbortRef.current = controller;
     setIsSummarizing(true);
     try {
-      await streamResponse(conversationId, undefined, [
+      await streamResponse(conversationId, `__${mode}__`, [
         { role: 'system', content: (ANALYSIS_PROMPTS[mode] || ANALYSIS_PROMPTS.summarize) + getLangInstruction(lang) },
         { role: 'user', content: transcript },
       ], provider, controller.signal);
@@ -294,9 +305,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 ) : (
                   <MessageBubble
                     content={msg.content} isUser={msg.role === 'user'}
-                    avatar={msgChar?.avatar || (msg.role === 'character' && !msg.characterId ? '📋' : undefined)}
-                    color={msgChar?.color || (msg.role === 'character' && !msg.characterId ? 'blue' : undefined)}
-                    name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (msg.role === 'character' && !msg.characterId ? t('chat.summarize') : undefined)}
+                    avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
+                    color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
+                    name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (

@@ -66,7 +66,14 @@
     "corsError": "Запрос заблокирован браузером (CORS). Нужен прокси.",
     "useCorsProxy": "Использовать публичный прокси",
     "proscons": "За/Против",
-    "matrix": "Матрица решений"
+    "matrix": "Матрица решений",
+    "createCharacter": "Создать персонажа",
+    "editCharacter": "Редактировать",
+    "characterName": "Имя",
+    "characterNamePlaceholder": "напр. Ада Лавлейс",
+    "characterAvatar": "Аватар",
+    "characterColor": "Цвет",
+    "characterPromptPlaceholder": "Опишите, как этот персонаж думает и отвечает..."
   },
   "roundtable": {
     "selected": "Выбрано: {{count}}",
@@ -96,7 +103,9 @@
     "customModel": "Своя модель...",
     "customBaseUrlHint": "Введите эндпоинт API, совместимый с OpenAI",
     "storageUsed": "Хранилище: {{size}}",
-    "clearData": "Удалить все данные"
+    "clearData": "Удалить все данные",
+    "customCharacters": "Свои персонажи",
+    "noCustomCharacters": "Пока нет"
   },
   "shared": {
     "title": "Общий диалог",
@@ -106,7 +115,9 @@
     "loading": "Загрузка...",
     "error": "Ошибка: {{message}}",
     "confirm": "Подтвердить",
-    "unknown": "Неизвестно"
+    "unknown": "Неизвестно",
+    "cancel": "Отмена",
+    "save": "Сохранить"
   },
   "characters": {
     "socrates": {

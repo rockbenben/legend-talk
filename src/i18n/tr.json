@@ -66,7 +66,14 @@
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
     "useCorsProxy": "Genel proxy kullan",
     "proscons": "Artı/Eksi",
-    "matrix": "Karar Matrisi"
+    "matrix": "Karar Matrisi",
+    "createCharacter": "Karakter oluştur",
+    "editCharacter": "Karakter düzenle",
+    "characterName": "Ad",
+    "characterNamePlaceholder": "örn. Ada Lovelace",
+    "characterAvatar": "Avatar",
+    "characterColor": "Renk",
+    "characterPromptPlaceholder": "Bu karakterin nasıl düşünüp yanıt verdiğini tanımlayın..."
   },
   "roundtable": {
     "selected": "{{count}} seçili",
@@ -96,7 +103,9 @@
     "customModel": "Özel model...",
     "customBaseUrlHint": "OpenAI uyumlu API uç noktasını girin",
     "storageUsed": "Depolama: {{size}}",
-    "clearData": "Tüm verileri sil"
+    "clearData": "Tüm verileri sil",
+    "customCharacters": "Özel karakterler",
+    "noCustomCharacters": "Henüz yok"
   },
   "shared": {
     "title": "Paylaşılan sohbet",
@@ -106,7 +115,9 @@
     "loading": "Yükleniyor...",
     "error": "Hata: {{message}}",
     "confirm": "Onayla",
-    "unknown": "Bilinmeyen"
+    "unknown": "Bilinmeyen",
+    "cancel": "İptal",
+    "save": "Kaydet"
   },
   "characters": {
     "socrates": {

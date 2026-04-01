@@ -27,7 +27,8 @@
       "education": "교육",
       "finance": "금융",
       "history": "역사",
-      "sociology": "사회학"
+      "sociology": "사회학",
+      "custom": "커스텀"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "예: 에이다 러브레이스",
     "characterAvatar": "아바타",
     "characterColor": "색상",
-    "characterPromptPlaceholder": "이 캐릭터가 어떻게 생각하고 응답하는지 설명..."
+    "characterPromptPlaceholder": "이 캐릭터가 어떻게 생각하고 응답하는지 설명...",
+    "characterEra": "시대",
+    "characterEraPlaceholder": "예: 현대, 르네상스"
   },
   "roundtable": {
     "selected": "{{count}}명 선택",

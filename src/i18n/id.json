@@ -27,7 +27,8 @@
       "education": "Pendidikan",
       "finance": "Keuangan",
       "history": "Sejarah",
-      "sociology": "Sosiologi"
+      "sociology": "Sosiologi",
+      "custom": "Kustom"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "mis. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Warna",
-    "characterPromptPlaceholder": "Jelaskan bagaimana karakter ini berpikir dan merespons..."
+    "characterPromptPlaceholder": "Jelaskan bagaimana karakter ini berpikir dan merespons...",
+    "characterEra": "Era",
+    "characterEraPlaceholder": "mis. Kontemporer, Renaisans"
   },
   "roundtable": {
     "selected": "{{count}} dipilih",

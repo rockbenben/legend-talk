@@ -27,7 +27,8 @@
       "education": "Eğitim",
       "finance": "Finans",
       "history": "Tarih",
-      "sociology": "Sosyoloji"
+      "sociology": "Sosyoloji",
+      "custom": "Özel"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "örn. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Renk",
-    "characterPromptPlaceholder": "Bu karakterin nasıl düşünüp yanıt verdiğini tanımlayın..."
+    "characterPromptPlaceholder": "Bu karakterin nasıl düşünüp yanıt verdiğini tanımlayın...",
+    "characterEra": "Dönem",
+    "characterEraPlaceholder": "örn. Çağdaş, Rönesans"
   },
   "roundtable": {
     "selected": "{{count}} seçili",

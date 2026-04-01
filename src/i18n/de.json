@@ -27,7 +27,8 @@
       "education": "Bildung",
       "finance": "Finanzen",
       "history": "Geschichte",
-      "sociology": "Soziologie"
+      "sociology": "Soziologie",
+      "custom": "Eigene"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "z.B. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Farbe",
-    "characterPromptPlaceholder": "Beschreiben Sie, wie dieser Charakter denkt und antwortet..."
+    "characterPromptPlaceholder": "Beschreiben Sie, wie dieser Charakter denkt und antwortet...",
+    "characterEra": "Epoche",
+    "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance"
   },
   "roundtable": {
     "selected": "{{count}} ausgewählt",

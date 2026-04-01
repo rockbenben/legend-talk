@@ -3,9 +3,10 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { persistStorage } from '../utils/persistStorage';
 import type { Character } from '../types';
 
-/** Stored custom character — includes display name for i18n injection */
+/** Stored custom character — includes display name + era for i18n injection */
 export interface CustomCharacter extends Character {
   displayName: string;
+  era?: string;
 }
 
 interface SettingsState {

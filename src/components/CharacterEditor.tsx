@@ -9,19 +9,29 @@ import type { CustomCharacter } from '../stores/settings';
 const COLORS = ['blue', 'emerald', 'red', 'purple', 'amber', 'teal', 'orange', 'indigo', 'cyan', 'rose', 'violet', 'green', 'slate', 'stone', 'pink', 'sky'];
 const EMOJIS = ['👤', '🧠', '💡', '🎓', '🔬', '📚', '🎭', '🎨', '⚡', '🌟', '🔥', '🌊', '🏔️', '🦉', '🐉', '🤖'];
 
+const COLOR_CSS: Record<string, string> = {
+  blue: 'bg-blue-400', emerald: 'bg-emerald-400', red: 'bg-red-400', purple: 'bg-purple-400',
+  amber: 'bg-amber-400', teal: 'bg-teal-400', orange: 'bg-orange-400', indigo: 'bg-indigo-400',
+  cyan: 'bg-cyan-400', rose: 'bg-rose-400', violet: 'bg-violet-400', green: 'bg-green-400',
+  slate: 'bg-slate-400', stone: 'bg-stone-400', pink: 'bg-pink-400', sky: 'bg-sky-400',
+};
+
 interface CharacterEditorProps {
   character?: CustomCharacter;
   onClose: () => void;
+  onStartChat?: (id: string) => void;
 }
 
-export function CharacterEditor({ character, onClose }: CharacterEditorProps) {
+export function CharacterEditor({ character, onClose, onStartChat }: CharacterEditorProps) {
   const { t } = useTranslation();
   const saveCustomCharacter = useSettingsStore((s) => s.saveCustomCharacter);
 
   const [name, setName] = useState(character?.displayName || '');
   const [avatar, setAvatar] = useState(character?.avatar || '👤');
   const [color, setColor] = useState(character?.color || 'blue');
+  const [era, setEra] = useState(character?.era || '');
   const [prompt, setPrompt] = useState(character?.systemPrompt || '');
+  const [saved, setSaved] = useState(false);
   const isEdit = !!character;
 
   const handleSave = () => {
@@ -30,7 +40,7 @@ export function CharacterEditor({ character, onClose }: CharacterEditorProps) {
     const id = character?.id || 'custom-' + trimmed.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
     const char: CustomCharacter = {
-      id, displayName: trimmed, domain: ['custom'], avatar, color, systemPrompt: prompt.trim(),
+      id, displayName: trimmed, era: era.trim() || undefined, domain: ['custom'], avatar, color, systemPrompt: prompt.trim(),
     };
     saveCustomCharacter(char);
 
@@ -45,12 +55,18 @@ export function CharacterEditor({ character, onClose }: CharacterEditorProps) {
     // Inject i18n translations
     for (const lng of Object.keys(i18n.store.data)) {
       i18n.addResourceBundle(lng, 'translation', {
-        characters: { [id]: { name: trimmed, era: i18n.t('common.unknown', { lng }), questions: [] } },
+        characters: { [id]: { name: trimmed, era: era.trim() || i18n.t('common.unknown', { lng }), questions: [] } },
       }, true, true);
     }
 
-    onClose();
+    if (onStartChat) {
+      setSaved(true);
+    } else {
+      onClose();
+    }
   };
+
+  const savedId = character?.id || 'custom-' + name.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-end sm:items-center justify-center z-50 sm:p-4" onClick={onClose}>
@@ -64,60 +80,80 @@ export function CharacterEditor({ character, onClose }: CharacterEditorProps) {
           <div>
             <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterName')}</label>
             <input
-              type="text" value={name} onChange={(e) => setName(e.target.value)}
+              type="text" value={name} onChange={(e) => { setName(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterNamePlaceholder')}
               className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          {/* Avatar + Color */}
-          <div className="flex gap-4">
-            <div className="flex-1">
-              <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterAvatar')}</label>
-              <div className="flex flex-wrap gap-1">
-                {EMOJIS.map((e) => (
-                  <button key={e} onClick={() => setAvatar(e)}
-                    className={`w-8 h-8 rounded-lg text-lg flex items-center justify-center ${avatar === e ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
-                    {e}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1">
-              <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterColor')}</label>
-              <div className="flex flex-wrap gap-1">
-                {COLORS.map((c) => (
-                  <button key={c} onClick={() => setColor(c)}
-                    className={`w-6 h-6 rounded-full ${color === c ? 'ring-2 ring-offset-2 ring-blue-500' : ''}`}>
-                    <Avatar emoji="" color={c} size="sm" />
-                  </button>
-                ))}
-              </div>
+
+          {/* Era */}
+          <div>
+            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterEra')}</label>
+            <input
+              type="text" value={era} onChange={(e) => { setEra(e.target.value); setSaved(false); }}
+              placeholder={t('chat.characterEraPlaceholder')}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Avatar */}
+          <div>
+            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterAvatar')}</label>
+            <div className="flex flex-wrap gap-1.5">
+              {EMOJIS.map((e) => (
+                <button key={e} onClick={() => { setAvatar(e); setSaved(false); }}
+                  className={`w-9 h-9 rounded-lg text-lg flex items-center justify-center transition-colors ${avatar === e ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+                  {e}
+                </button>
+              ))}
             </div>
           </div>
+
+          {/* Color */}
+          <div>
+            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterColor')}</label>
+            <div className="flex flex-wrap gap-2">
+              {COLORS.map((c) => (
+                <button key={c} onClick={() => { setColor(c); setSaved(false); }}
+                  className={`w-7 h-7 rounded-full ${COLOR_CSS[c] || 'bg-gray-400'} transition-shadow ${color === c ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-900' : 'hover:ring-1 hover:ring-gray-300'}`}
+                />
+              ))}
+            </div>
+          </div>
+
           {/* Preview */}
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
             <Avatar emoji={avatar} color={color} size="sm" />
             <span className="text-sm font-medium">{name || '...'}</span>
           </div>
+
           {/* System Prompt */}
           <div>
             <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">System Prompt</label>
             <textarea
-              value={prompt} onChange={(e) => setPrompt(e.target.value)}
+              value={prompt} onChange={(e) => { setPrompt(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterPromptPlaceholder')}
               className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               rows={5}
             />
           </div>
         </div>
+
         <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 flex gap-2 justify-end">
           <button onClick={onClose} className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
             {t('common.cancel')}
           </button>
-          <button onClick={handleSave} disabled={!name.trim() || !prompt.trim()}
-            className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">
-            {t('common.save')}
-          </button>
+          {saved && onStartChat ? (
+            <button onClick={() => { onStartChat(savedId); onClose(); }}
+              className="px-4 py-2 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90">
+              {t('home.startChat')}
+            </button>
+          ) : (
+            <button onClick={handleSave} disabled={!name.trim() || !prompt.trim()}
+              className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">
+              {t('common.save')}
+            </button>
+          )}
         </div>
       </div>
     </div>

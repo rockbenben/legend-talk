@@ -27,7 +27,8 @@
       "education": "शिक्षा",
       "finance": "वित्त",
       "history": "इतिहास",
-      "sociology": "समाजशास्त्र"
+      "sociology": "समाजशास्त्र",
+      "custom": "कस्टम"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "जैसे एडा लवलेस",
     "characterAvatar": "अवतार",
     "characterColor": "रंग",
-    "characterPromptPlaceholder": "बताएं कि यह चरित्र कैसे सोचता और जवाब देता है..."
+    "characterPromptPlaceholder": "बताएं कि यह चरित्र कैसे सोचता और जवाब देता है...",
+    "characterEra": "काल",
+    "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण"
   },
   "roundtable": {
     "selected": "{{count}} चयनित",

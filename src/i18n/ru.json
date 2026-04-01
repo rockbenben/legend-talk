@@ -27,7 +27,8 @@
       "education": "Образование",
       "finance": "Финансы",
       "history": "История",
-      "sociology": "Социология"
+      "sociology": "Социология",
+      "custom": "Свои"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "напр. Ада Лавлейс",
     "characterAvatar": "Аватар",
     "characterColor": "Цвет",
-    "characterPromptPlaceholder": "Опишите, как этот персонаж думает и отвечает..."
+    "characterPromptPlaceholder": "Опишите, как этот персонаж думает и отвечает...",
+    "characterEra": "Эпоха",
+    "characterEraPlaceholder": "напр. Современность, Ренессанс"
   },
   "roundtable": {
     "selected": "Выбрано: {{count}}",

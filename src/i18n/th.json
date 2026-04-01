@@ -27,7 +27,8 @@
       "education": "การศึกษา",
       "finance": "การเงิน",
       "history": "ประวัติศาสตร์",
-      "sociology": "สังคมวิทยา"
+      "sociology": "สังคมวิทยา",
+      "custom": "กำหนดเอง"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "เช่น Ada Lovelace",
     "characterAvatar": "อวาตาร์",
     "characterColor": "สี",
-    "characterPromptPlaceholder": "อธิบายว่าตัวละครนี้คิดและตอบอย่างไร..."
+    "characterPromptPlaceholder": "อธิบายว่าตัวละครนี้คิดและตอบอย่างไร...",
+    "characterEra": "ยุคสมัย",
+    "characterEraPlaceholder": "เช่น ร่วมสมัย, เรอเนสซองส์"
   },
   "roundtable": {
     "selected": "เลือก {{count}} คน",

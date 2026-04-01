@@ -27,7 +27,8 @@
       "education": "Education",
       "finance": "Finance",
       "history": "History",
-      "sociology": "Sociology"
+      "sociology": "Sociology",
+      "custom": "Custom"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "e.g. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Color",
-    "characterPromptPlaceholder": "Describe how this character thinks and responds..."
+    "characterPromptPlaceholder": "Describe how this character thinks and responds...",
+    "characterEra": "Era / Period",
+    "characterEraPlaceholder": "e.g. Contemporary, Renaissance"
   },
   "roundtable": {
     "selected": "{{count}} selected",

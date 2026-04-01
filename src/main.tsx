@@ -15,7 +15,7 @@ function injectCustomCharacters() {
     }
     for (const lng of Object.keys(i18n.store.data)) {
       i18n.addResourceBundle(lng, 'translation', {
-        characters: { [c.id]: { name: c.displayName, era: i18n.t('common.unknown', { lng }), questions: [] } },
+        characters: { [c.id]: { name: c.displayName, era: c.era || i18n.t('common.unknown', { lng }), questions: [] } },
       }, true, true);
     }
   }

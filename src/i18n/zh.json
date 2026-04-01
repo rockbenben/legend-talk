@@ -27,7 +27,8 @@
       "education": "教育",
       "finance": "金融",
       "history": "历史",
-      "sociology": "社会学"
+      "sociology": "社会学",
+      "custom": "自定义"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "如 爱达·洛芙莱斯",
     "characterAvatar": "头像",
     "characterColor": "颜色",
-    "characterPromptPlaceholder": "描述这个角色如何思考和回应..."
+    "characterPromptPlaceholder": "描述这个角色如何思考和回应...",
+    "characterEra": "时代",
+    "characterEraPlaceholder": "如 当代、文艺复兴"
   },
   "roundtable": {
     "selected": "已选 {{count}} 位",

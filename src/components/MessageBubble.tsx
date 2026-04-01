@@ -11,8 +11,6 @@ interface MessageBubbleProps {
 
 export function MessageBubble({ content, isUser, avatar, color, name }: MessageBubbleProps) {
   const trimmed = content?.trim() || '...';
-  // Single char: render raw to avoid Markdown eating symbols like *
-  // Multi char: escape [text]: to prevent invisible link reference definitions
   const isRaw = trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
 
@@ -29,9 +27,7 @@ export function MessageBubble({ content, isUser, avatar, color, name }: MessageB
       )}
       <div
         className={`max-w-[90%] sm:max-w-[75%] rounded-2xl px-3 py-2 sm:px-4 ${
-          isUser
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-100 dark:bg-gray-800'
+          isUser ? 'bg-blue-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
         }`}
       >
         {name && !isUser && (

@@ -36,10 +36,14 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
     return true;
   });
 
+  // Sort: favorites first, then custom characters, then presets
   const sorted = [...filtered].sort((a, b) => {
     const aFav = favoriteCharacters.includes(a.id) ? 0 : 1;
     const bFav = favoriteCharacters.includes(b.id) ? 0 : 1;
-    return aFav - bFav;
+    if (aFav !== bFav) return aFav - bFav;
+    const aCustom = a.domain.includes('custom') ? 0 : 1;
+    const bCustom = b.domain.includes('custom') ? 0 : 1;
+    return aCustom - bCustom;
   });
 
   const handleSearchSubmit = () => {
@@ -129,7 +133,15 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           </button>
         </div>
       )}
-      {showEditor && <CharacterEditor onClose={() => setShowEditor(false)} />}
+      {showEditor && (
+        <CharacterEditor
+          onClose={() => setShowEditor(false)}
+          onStartChat={(id) => {
+            const char = presetCharacters.find((c) => c.id === id);
+            if (char) onStartChat(char);
+          }}
+        />
+      )}
     </div>
   );
 }

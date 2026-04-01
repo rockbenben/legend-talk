@@ -27,7 +27,8 @@
       "education": "Giáo dục",
       "finance": "Tài chính",
       "history": "Lịch sử",
-      "sociology": "Xã hội học"
+      "sociology": "Xã hội học",
+      "custom": "Tùy chỉnh"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "VD: Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Màu",
-    "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi..."
+    "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi...",
+    "characterEra": "Thời đại",
+    "characterEraPlaceholder": "VD: Đương đại, Phục hưng"
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",

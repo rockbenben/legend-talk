@@ -27,7 +27,8 @@
       "education": "শিক্ষা",
       "finance": "অর্থায়ন",
       "history": "ইতিহাস",
-      "sociology": "সমাজবিজ্ঞান"
+      "sociology": "সমাজবিজ্ঞান",
+      "custom": "কাস্টম"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "যেমন Ada Lovelace",
     "characterAvatar": "অবতার",
     "characterColor": "রং",
-    "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন..."
+    "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন...",
+    "characterEra": "যুগ",
+    "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ"
   },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",

@@ -27,7 +27,8 @@
       "education": "教育",
       "finance": "金融",
       "history": "歴史",
-      "sociology": "社会学"
+      "sociology": "社会学",
+      "custom": "カスタム"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "例: エイダ・ラブレス",
     "characterAvatar": "アバター",
     "characterColor": "色",
-    "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述..."
+    "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述...",
+    "characterEra": "時代",
+    "characterEraPlaceholder": "例: 現代、ルネサンス"
   },
   "roundtable": {
     "selected": "{{count}}人選択",

@@ -27,7 +27,8 @@
       "education": "تعليم",
       "finance": "المالية",
       "history": "التاريخ",
-      "sociology": "علم الاجتماع"
+      "sociology": "علم الاجتماع",
+      "custom": "مخصص"
     }
   },
   "chat": {
@@ -73,7 +74,9 @@
     "characterNamePlaceholder": "مثال: أدا لوفليس",
     "characterAvatar": "الصورة",
     "characterColor": "اللون",
-    "characterPromptPlaceholder": "صف كيف تفكر هذه الشخصية وتستجيب..."
+    "characterPromptPlaceholder": "صف كيف تفكر هذه الشخصية وتستجيب...",
+    "characterEra": "العصر",
+    "characterEraPlaceholder": "مثال: معاصر، عصر النهضة"
   },
   "roundtable": {
     "selected": "{{count}} مختار",

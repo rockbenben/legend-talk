@@ -175,7 +175,7 @@ export function Layout() {
           </a>
         </div>
       </header>
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 min-w-0 overflow-hidden">
         <Outlet />
       </main>
     </div>

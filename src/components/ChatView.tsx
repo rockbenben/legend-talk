@@ -201,7 +201,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     ? presetCharacters.find((c) => c.id === roundtable.currentSpeaker) : null;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full overflow-hidden">
       {/* Title bar */}
       <div className="flex flex-wrap items-center gap-2 px-2 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
         {editingTitle ? (
@@ -214,18 +214,18 @@ export function ChatView({ conversationId }: ChatViewProps) {
             className="flex-1 min-w-0 text-sm font-semibold px-1 py-0 border border-blue-500 rounded bg-white dark:bg-gray-800 focus:outline-none"
           />
         ) : (
-          <span className="font-semibold cursor-pointer hover:opacity-70 truncate" onClick={startEditTitle} title={t('chat.rename')}>
+          <span className="font-semibold cursor-pointer hover:opacity-70 truncate min-w-0 flex-1" onClick={startEditTitle} title={t('chat.rename')}>
             {displayTitle}
           </span>
         )}
         {isMulti && (
-          <div className="flex items-center gap-2 ms-auto">
-            <label className="text-xs text-gray-500">{t('roundtable.rounds')}</label>
+          <div className="flex items-center gap-2 ms-auto shrink-0">
+            <label className="text-xs text-gray-500 whitespace-nowrap">{t('roundtable.rounds')}</label>
             <input
               type="number" min={1} max={100} value={rounds}
               onChange={(e) => setRounds(Math.max(1, Math.min(100, Number(e.target.value))))}
               disabled={isGenerating}
-              className="w-14 px-1 py-0.5 text-sm rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-center"
+              className="w-12 px-1 py-0.5 text-sm rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-center"
             />
           </div>
         )}

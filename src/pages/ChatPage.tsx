@@ -96,9 +96,9 @@ export function ChatPage() {
   };
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full overflow-hidden">
       <ConversationList activeId={validId} />
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         {validId ? (
           <ChatView conversationId={validId} />
         ) : (

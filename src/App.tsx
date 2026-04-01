@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { ChatPage } from './pages/ChatPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SharedView } from './pages/SharedView';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Routes shared between default and language-prefixed paths
 const appRoutes = [
@@ -27,5 +28,9 @@ const router = createHashRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
 }

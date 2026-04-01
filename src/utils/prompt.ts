@@ -4,7 +4,7 @@ import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
 const DIRECTIVE = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
-export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — challenge, refine, or explore new angles. Push deeper, raise counterexamples, or connect to broader ideas. Never conclude, summarize, or end the discussion.';
+export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — challenge, refine, or deepen the analysis. Push deeper, raise counterexamples, or connect to broader ideas. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion.';
 
 const LANG_NAMES: Record<string, string> = {
   en: 'English', zh: 'Chinese (中文)', 'zh-Hant': 'Traditional Chinese (繁體中文)',
@@ -22,6 +22,38 @@ export function getLangInstruction(lang: string): string {
 
 export function buildSystemPrompt(characterPrompt: string, lang: string, suffix = ''): string {
   return characterPrompt + suffix + DIRECTIVE + getLangInstruction(lang);
+}
+
+/**
+ * Distill the core discussion topic from multiple user messages.
+ * Filters out meta-instructions like "continue" or language preferences.
+ * Only called when there are 2+ user messages in a roundtable.
+ */
+export async function distillTopic(
+  userMessages: string[],
+  provider: NonNullable<ReturnType<typeof resolveProvider>>,
+  signal?: AbortSignal,
+): Promise<string> {
+  const numbered = userMessages.map((m, i) => `${i + 1}. ${m}`).join('\n');
+  const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
+    {
+      role: 'system',
+      content: 'Extract the discussion content from these user messages. Remove ONLY meta-instructions (e.g. "continue", "go on", language/formatting preferences). Preserve all substantive points, questions, conditions, and topic refinements. Output in the same language as the user.' + getLangInstruction(provider.lang),
+    },
+    { role: 'user', content: numbered },
+  ];
+
+  let result = '';
+  for await (const token of provider.adapter.chat({
+    messages,
+    model: provider.model,
+    apiKey: provider.apiKey,
+    corsProxy: provider.corsProxy,
+    signal,
+  })) {
+    result += token;
+  }
+  return result.trim();
 }
 
 /**

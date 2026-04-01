@@ -46,7 +46,7 @@ describe('getLangInstruction', () => {
 });
 
 describe('buildSystemPrompt', () => {
-  const directive = ' Be direct — state your views immediately, no pleasantries, no filler like "great question", no unnecessary preamble. Stay on topic.';
+  const directive = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
   it('concatenates prompt, directive, and lang instruction', () => {
     const result = buildSystemPrompt('You are Socrates.', 'en');

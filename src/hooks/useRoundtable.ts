@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
-import { buildSystemPrompt, resolveProvider, streamResponse, ROUNDTABLE_SUFFIX } from '../utils/prompt';
+import { buildSystemPrompt, resolveProvider, streamResponse, distillTopic, ROUNDTABLE_SUFFIX } from '../utils/prompt';
 import i18n from '../i18n';
 
 export function useRoundtable() {
@@ -32,6 +32,8 @@ export function useRoundtable() {
     useConversationStore.getState().addMessage(conversationId, 'user', content, undefined);
 
     try {
+      const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
+
       for (let round = 1; round <= rounds; round++) {
         setCurrentRound(round);
         const conv = useConversationStore.getState().getConversation(conversationId)!;
@@ -41,7 +43,7 @@ export function useRoundtable() {
           const character = presetCharacters.find((c) => c.id === charId);
           if (!character) continue;
 
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
           await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
@@ -82,12 +84,14 @@ export function useRoundtable() {
     setTotalRounds(completedRounds + 1 + remainingFullRounds);
 
     try {
+      const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
+
       setCurrentRound(completedRounds + 1);
       for (let i = startIdx; i < chars.length; i++) {
         setCurrentSpeaker(chars[i]);
         const character = presetCharacters.find((c) => c.id === chars[i]);
         if (!character) continue;
-        const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+        const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
         await streamResponse(conversationId, chars[i], messages, provider, controller.signal);
       }
 
@@ -98,7 +102,7 @@ export function useRoundtable() {
           setCurrentSpeaker(charId);
           const character = presetCharacters.find((c) => c.id === charId);
           if (!character) continue;
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
           await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
@@ -124,6 +128,8 @@ export function useRoundtable() {
     setTotalRounds(count);
 
     try {
+      const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
+
       for (let round = 1; round <= count; round++) {
         setCurrentRound(round);
         const conv = useConversationStore.getState().getConversation(conversationId)!;
@@ -131,7 +137,7 @@ export function useRoundtable() {
           setCurrentSpeaker(charId);
           const character = presetCharacters.find((c) => c.id === charId);
           if (!character) continue;
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang);
+          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
           await streamResponse(conversationId, charId, messages, provider, controller.signal);
         }
       }
@@ -149,10 +155,42 @@ export function useRoundtable() {
   return { sendMessage, continueFrom, addRounds, stop, isGenerating, currentSpeaker, currentRound, totalRounds, error };
 }
 
+/**
+ * Resolve the discussion topic for the system prompt.
+ * - Single user message: returns undefined (use raw message directly)
+ * - Multiple user messages: uses AI to distill the core topic, filtering noise like "continue"
+ * - Cached: reuses previous result if no new user messages were added
+ */
+const topicCache = new Map<string, { userMsgCount: number; topic: string }>();
+
+async function resolveRoundtableTopic(
+  conversationId: string,
+  provider: NonNullable<ReturnType<typeof resolveProvider>>,
+  signal?: AbortSignal,
+): Promise<string | undefined> {
+  const conv = useConversationStore.getState().getConversation(conversationId)!;
+  if (conv.characters.length <= 1) return undefined;
+  const userMsgs = conv.messages.filter((m) => m.role === 'user').map((m) => m.content);
+  if (userMsgs.length <= 1) return undefined;
+
+  const cached = topicCache.get(conversationId);
+  if (cached && cached.userMsgCount === userMsgs.length) return cached.topic;
+
+  try {
+    const topic = await distillTopic(userMsgs, provider, signal);
+    topicCache.set(conversationId, { userMsgCount: userMsgs.length, topic });
+    return topic;
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'AbortError') throw err;
+    return cached?.topic; // reuse stale cache if available, otherwise undefined
+  }
+}
+
 function buildRoundtableMessages(
   character: { id: string; systemPrompt: string },
   conversationId: string,
   lang: string,
+  topic?: string,
 ): Array<{ role: 'system' | 'user' | 'assistant'; content: string }> {
   const conversation = useConversationStore.getState().getConversation(conversationId)!;
   const isMulti = conversation.characters.length > 1;
@@ -163,6 +201,10 @@ function buildRoundtableMessages(
       .map((id) => i18n.t(`characters.${id}.name`))
       .join(', ');
     suffix = ROUNDTABLE_SUFFIX + ` Other participants: ${otherNames}.`;
+    const displayTopic = topic || conversation.messages.find((m) => m.role === 'user')?.content;
+    if (displayTopic) {
+      suffix += ` The discussion topic is: "${displayTopic}". Always relate your arguments back to this topic.`;
+    }
   }
   const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, suffix);
 

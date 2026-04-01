@@ -6,7 +6,7 @@ import type { Conversation, Message } from '../types';
 
 interface ConversationState {
   conversations: Conversation[];
-  createConversation: (type: 'single' | 'roundtable', characters: string[]) => string;
+  createConversation: (type: 'single' | 'roundtable', characters: string[], title?: string) => string;
   addMessage: (
     conversationId: string,
     role: 'user' | 'character',
@@ -28,7 +28,7 @@ export const useConversationStore = create<ConversationState>()(
     (set, get) => ({
       conversations: [],
 
-      createConversation: (type, characters) => {
+      createConversation: (type, characters, title?) => {
         const id = nanoid();
         const now = Date.now();
         const conv: Conversation = {
@@ -38,6 +38,7 @@ export const useConversationStore = create<ConversationState>()(
           messages: [],
           createdAt: now,
           updatedAt: now,
+          ...(title && { title }),
         };
         set((s) => ({ conversations: [conv, ...s.conversations] }));
         return id;

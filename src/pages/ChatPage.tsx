@@ -126,7 +126,7 @@ export function ChatPage() {
                     <button
                       key={tpl.id}
                       onClick={() => {
-                        const convId = createConversation('roundtable', tpl.characters);
+                        const convId = createConversation('roundtable', tpl.characters, t(`templates.${tpl.id}.name`));
                         navigate(lp(`/chat/${convId}`));
                       }}
                       className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"

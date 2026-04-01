@@ -39,12 +39,12 @@ export function ActionBar({
   );
 
   const handleExportMarkdown = () => {
-    const md = exportAsMarkdown(conversation, charNames);
+    const md = exportAsMarkdown(conversation, charNames, displayTitle);
     downloadFile(md, `${displayTitle}.md`, 'text/markdown');
   };
 
   const handleExportJSON = () => {
-    const json = exportAsJSON(conversation);
+    const json = exportAsJSON(conversation, charNames, displayTitle);
     downloadFile(json, `${displayTitle}.json`, 'application/json');
   };
 

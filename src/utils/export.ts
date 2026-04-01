@@ -1,26 +1,28 @@
 import type { Conversation } from '../types';
 
+const ANALYSIS_LABELS: Record<string, string> = {
+  '__summarize__': 'Summary', '__proscons__': 'Pro/Con Analysis', '__matrix__': 'Decision Matrix',
+};
+
+function resolveName(msg: { role: string; characterId?: string }, characterNames: Record<string, string>): string {
+  if (msg.role === 'user') return 'You';
+  if (msg.characterId?.startsWith('__')) return ANALYSIS_LABELS[msg.characterId] || 'Analysis';
+  return msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Unknown';
+}
+
 export function exportAsMarkdown(
   conversation: Conversation,
   characterNames: Record<string, string>,
+  displayTitle: string,
 ): string {
-  const names = conversation.characters
-    .map((id) => characterNames[id] || id)
-    .join(', ');
-  const title =
-    conversation.type === 'single'
-      ? `Conversation with ${names}`
-      : `Roundtable: ${names}`;
-
-  let md = `# ${title}\n\n`;
-  md += `*${new Date(conversation.createdAt).toLocaleString()}*\n\n---\n\n`;
+  let md = `# ${displayTitle}\n\n`;
 
   for (const msg of conversation.messages) {
-    if (msg.role === 'user') {
-      md += `**You:** ${msg.content}\n\n`;
+    const name = resolveName(msg, characterNames);
+    if (msg.characterId?.startsWith('__')) {
+      // Analysis block — use heading
+      md += `### ${name}\n\n${msg.content}\n\n`;
     } else {
-      const analysisLabels: Record<string, string> = { '__summarize__': 'Summary', '__proscons__': 'Pro/Con Analysis', '__matrix__': 'Decision Matrix' };
-      const name = msg.characterId?.startsWith('__') ? (analysisLabels[msg.characterId] || 'Analysis') : (msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Summary');
       md += `**${name}:** ${msg.content}\n\n`;
     }
   }
@@ -28,7 +30,22 @@ export function exportAsMarkdown(
   return md;
 }
 
-export function exportAsJSON(conversation: Conversation): string {
+export function exportAsJSON(
+  conversation: Conversation,
+  characterNames: Record<string, string>,
+  displayTitle: string,
+): string {
+  return JSON.stringify({
+    title: displayTitle,
+    messages: conversation.messages.map((msg) => [
+      resolveName(msg, characterNames),
+      msg.content,
+    ]),
+  }, null, 2);
+}
+
+/** Export full internal format (for import/backup) */
+export function exportAsJSONFull(conversation: Conversation): string {
   return JSON.stringify(conversation, null, 2);
 }
 

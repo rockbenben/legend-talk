@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { persistStorage } from '../utils/persistStorage';
 import { nanoid } from 'nanoid';
 import type { Conversation, Message } from '../types';
 
@@ -160,6 +161,6 @@ export const useConversationStore = create<ConversationState>()(
         return newConvs.length;
       },
     }),
-    { name: 'legend-talk-conversations' },
+    { name: 'legend-talk-conversations', storage: createJSONStorage(() => persistStorage) },
   ),
 );

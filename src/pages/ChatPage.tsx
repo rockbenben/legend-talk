@@ -1,3 +1,4 @@
+import { useLangPath } from '../hooks/useLangPath';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +18,7 @@ export function ChatPage() {
   const { id } = useParams<{ id?: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const lp = useLangPath();
   const createConversation = useConversationStore((s) => s.createConversation);
   const [searchParams] = useSearchParams();
 
@@ -56,7 +58,7 @@ export function ChatPage() {
 
     const type = charIds.length === 1 ? 'single' : 'roundtable';
     const convId = createConversation(type, charIds);
-    navigate(`/chat/${convId}`, { replace: true });
+    navigate(lp(`/chat/${convId}`), { replace: true });
   }, [id, charsParam, categoryParam, createConversation, navigate]);
 
   const conversation = useConversationStore((s) =>
@@ -72,7 +74,7 @@ export function ChatPage() {
     const exists = presetCharacters.find((c) => c.id === character.id);
     if (!exists) presetCharacters.push(character);
     const convId = createConversation('single', [character.id]);
-    navigate(`/chat/${convId}`);
+    navigate(lp(`/chat/${convId}`));
   };
 
   const handleSelect = (character: Character) => {
@@ -89,7 +91,7 @@ export function ChatPage() {
     if (selectedIds.length >= 2) {
       const convId = createConversation('roundtable', selectedIds);
       setSelectedIds([]);
-      navigate(`/chat/${convId}`);
+      navigate(lp(`/chat/${convId}`));
     }
   };
 
@@ -102,16 +104,16 @@ export function ChatPage() {
         ) : (
           <div className="h-full overflow-y-auto">
             <div className="p-4 sm:p-6 max-w-6xl mx-auto pb-24">
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-2xl font-bold">{t('home.title')}</h2>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold min-w-0 truncate">{t('home.title')}</h2>
                 <button
                   onClick={() => {
                     const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
                     const charIds = shuffled.slice(0, 5).map((c) => c.id);
                     const convId = createConversation('roundtable', charIds);
-                    navigate(`/chat/${convId}`);
+                    navigate(lp(`/chat/${convId}`));
                   }}
-                  className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0"
+                  className="px-2.5 py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0 whitespace-nowrap"
                 >
                   🎲 {t('home.randomRoundtable')}
                 </button>
@@ -125,11 +127,11 @@ export function ChatPage() {
                       key={tpl.id}
                       onClick={() => {
                         const convId = createConversation('roundtable', tpl.characters);
-                        navigate(`/chat/${convId}`);
+                        navigate(lp(`/chat/${convId}`));
                       }}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-left"
+                      className="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"
                     >
-                      <div className="flex -space-x-1 shrink-0">
+                      <div className="flex -space-x-1 rtl:space-x-reverse shrink-0">
                         {tpl.characters.slice(0, 3).map((cid) => {
                           const char = presetCharacters.find((c) => c.id === cid);
                           return char ? <Avatar key={cid} emoji={char.avatar} color={char.color} size="sm" /> : null;
@@ -169,7 +171,7 @@ export function ChatPage() {
                     })}
                   </div>
                   <span className="text-sm text-gray-500 shrink-0">{t('roundtable.selected', { count: selectedIds.length })}</span>
-                  <div className="flex items-center gap-2 ml-auto shrink-0">
+                  <div className="flex items-center gap-2 ms-auto shrink-0">
                     <button
                       onClick={startRoundtable}
                       disabled={selectedIds.length < 2}
@@ -180,8 +182,8 @@ export function ChatPage() {
                     {selectedIds.length >= 2 && (
                       <button
                         onClick={() => {
-                          const url = `${window.location.origin}${window.location.pathname}#/chat?chars=${selectedIds.join(',')}`;
-                          navigator.clipboard.writeText(url);
+                          const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${selectedIds.join(',')}`;
+                          navigator.clipboard.writeText(url).catch(() => {});
                           setLinkCopied(true);
                           setTimeout(() => setLinkCopied(false), 2000);
                         }}

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { persistStorage } from '../utils/persistStorage';
 
 interface SettingsState {
   apiKeys: Record<string, string>;
@@ -57,6 +58,6 @@ export const useSettingsStore = create<SettingsState>()(
         })),
       clearApiKeys: () => set({ apiKeys: {} }),
     }),
-    { name: 'legend-talk-settings' },
+    { name: 'legend-talk-settings', storage: createJSONStorage(() => persistStorage) },
   ),
 );

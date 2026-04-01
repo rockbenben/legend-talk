@@ -1,5 +1,6 @@
+import { useLangPath } from '../hooks/useLangPath';
 import { currentLang } from '../utils/lang';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +11,6 @@ import { presetCharacters } from '../characters/presets';
 import { getLangInstruction, resolveProvider, streamResponse } from '../utils/prompt';
 import { exportAsMarkdown, exportAsJSON, downloadFile } from '../utils/export';
 import { compressToBase64 } from '../utils/compress';
-import { getStorageBytes } from '../utils/storage';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
 import { CharacterPicker } from './CharacterPicker';
@@ -24,6 +24,7 @@ interface ChatViewProps {
 export function ChatView({ conversationId }: ChatViewProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const lp = useLangPath();
   const conversation = useConversationStore(
     (s) => s.conversations.find((c) => c.id === conversationId),
   );
@@ -52,8 +53,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [linkCopied, setLinkCopied] = useState(false);
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const storageOverLimit = useMemo(() => getStorageBytes() > 4.8 * 1024 * 1024, []);
   const summarizeAbortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -192,10 +191,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
       // Try short link via CORS proxy (auto-detect, cache capability per proxy)
       const corsProxy = useSettingsStore.getState().corsProxy;
       const noShortKey = 'legend-talk-no-shorten';
-      const noShortList: string[] = JSON.parse(sessionStorage.getItem(noShortKey) || '[]');
+      let noShortList: string[] = [];
+      try { noShortList = JSON.parse(sessionStorage.getItem(noShortKey) || '[]'); } catch { /* ok */ }
       if (corsProxy && !noShortList.includes(corsProxy)) {
         const cacheKey = 'legend-talk-short-links';
-        const cache: Record<string, string> = JSON.parse(localStorage.getItem(cacheKey) || '{}');
+        let cache: Record<string, string> = {};
+        try { cache = JSON.parse(localStorage.getItem(cacheKey) || '{}'); } catch { /* ok */ }
         const hashBuf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64));
         const hashKey = Array.from(new Uint8Array(hashBuf)).slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
 
@@ -214,16 +215,16 @@ export function ChatView({ conversationId }: ChatViewProps) {
               // Cap cache at 200 entries
               const keys = Object.keys(cache);
               if (keys.length > 200) { for (const k of keys.slice(0, keys.length - 200)) delete cache[k]; }
-              localStorage.setItem(cacheKey, JSON.stringify(cache));
+              try { localStorage.setItem(cacheKey, JSON.stringify(cache)); } catch { /* ok */ }
               url = `${origin}#/shared/s:${proxyTag}:${id}`;
             } else {
               // Proxy doesn't support short links, skip for this session
               noShortList.push(corsProxy);
-              sessionStorage.setItem(noShortKey, JSON.stringify(noShortList));
+              try { sessionStorage.setItem(noShortKey, JSON.stringify(noShortList)); } catch { /* ok */ }
             }
           } catch {
             noShortList.push(corsProxy);
-            sessionStorage.setItem(noShortKey, JSON.stringify(noShortList));
+            try { sessionStorage.setItem(noShortKey, JSON.stringify(noShortList)); } catch { /* ok */ }
           }
         }
       }
@@ -275,7 +276,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           </span>
         )}
         {isMulti && (
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 ms-auto">
             <label className="text-xs text-gray-500">{t('roundtable.rounds')}</label>
             <input
               type="number"
@@ -291,7 +292,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       </div>
 
       {/* Participants bar */}
-      <div className="flex flex-wrap items-center gap-1 px-2 sm:px-4 py-1.5 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center gap-1 px-2 sm:px-4 py-1.5 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
         {characters.map((char) => (
           <div
             key={char.id}
@@ -304,7 +305,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             {isMulti && !isGenerating && conversation.characters.length > 2 && (
               <button
                 onClick={() => handleRemoveParticipant(char.id)}
-                className="text-gray-400 hover:text-red-500 text-xs ml-0.5"
+                className="text-gray-400 hover:text-red-500 text-xs ms-0.5"
                 title={t('roundtable.removeParticipant')}
               >
                 ✕
@@ -322,8 +323,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </button>
             <button
               onClick={() => {
-                const url = `${window.location.origin}${window.location.pathname}#/chat?chars=${conversation.characters.join(',')}`;
-                navigator.clipboard.writeText(url);
+                const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${conversation.characters.join(',')}`;
+                navigator.clipboard.writeText(url).catch(() => {});
                 setLinkCopied(true);
                 setTimeout(() => setLinkCopied(false), 2000);
               }}
@@ -345,22 +346,11 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-2 sm:px-4 py-4 space-y-4">
-        {storageOverLimit && (
-          <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
-            <span className="text-sm text-orange-700 dark:text-orange-300">{t('chat.storageWarning')}</span>
-            <button
-              onClick={() => navigate('/settings')}
-              className="text-sm font-medium text-orange-700 dark:text-orange-300 hover:underline shrink-0"
-            >
-              {t('chat.goSettings')}
-            </button>
-          </div>
-        )}
         {!isConfigured && (
           <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
             <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
             <button
-              onClick={() => navigate('/settings')}
+              onClick={() => navigate(lp('/settings'))}
               className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline"
             >
               {t('chat.goSettings')}
@@ -444,10 +434,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                  <div className={`flex gap-0.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pr-11' : 'pl-11'}`}>
+                  <div className={`flex gap-0.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pe-11' : 'ps-11'}`}>
                     <button
-                      onClick={() => navigator.clipboard.writeText(msg.content)}
-                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
+                      onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})}
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title="Copy"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -457,7 +447,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     </button>
                     <button
                       onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
-                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title="Edit"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -467,7 +457,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     </button>
                     <button
                       onClick={() => handleRetryFrom(msg.id)}
-                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title={t('chat.regenerate')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -478,9 +468,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     <button
                       onClick={() => {
                         const newId = branchConversation(conversationId, msg.id);
-                        if (newId) navigate(`/chat/${newId}`);
+                        if (newId) navigate(lp(`/chat/${newId}`));
                       }}
-                      className="p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
                       title={t('chat.branch')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -508,7 +498,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </span>
-            <button onClick={stopGenerating} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
+            <button onClick={stopGenerating} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </div>
         )}
         {isGenerating && !isMulti && (
@@ -519,7 +509,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </span>
-            <button onClick={stopGenerating} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
+            <button onClick={stopGenerating} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </div>
         )}
         {error && (() => {
@@ -539,7 +529,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 {t('chat.useCorsProxy')}
               </button>
               <button
-                onClick={() => navigate('/settings')}
+                onClick={() => navigate(lp('/settings'))}
                 className="text-xs px-2 py-1 rounded text-amber-700 dark:text-amber-300 hover:underline"
               >
                 {t('chat.goSettings')}
@@ -549,7 +539,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <div className="flex items-center gap-2 text-sm text-red-500">
               <span>{t('common.error', { message: error })}</span>
               <button
-                onClick={() => navigate('/settings')}
+                onClick={() => navigate(lp('/settings'))}
                 className="shrink-0 text-xs px-2 py-0.5 rounded border border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
               >
                 {t('chat.goSettings')}
@@ -581,7 +571,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               onClick={() => {
                 const type = conversation.characters.length > 1 ? 'roundtable' : 'single';
                 const convId = createConversation(type, conversation.characters);
-                navigate(`/chat/${convId}`);
+                navigate(lp(`/chat/${convId}`));
               }}
               className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
             >
@@ -610,16 +600,16 @@ export function ChatView({ conversationId }: ChatViewProps) {
               {showExportMenu && (
                 <>
                   <div className="fixed inset-0 z-10" onClick={() => setShowExportMenu(false)} />
-                  <div className="absolute bottom-full left-0 mb-1 py-1 min-w-[120px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
+                  <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[120px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
                     <button
                       onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
-                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
+                      className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
                     >
                       Markdown
                     </button>
                     <button
                       onClick={() => { handleExportJSON(); setShowExportMenu(false); }}
-                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
+                      className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
                     >
                       JSON
                     </button>
@@ -632,7 +622,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
         {isSummarizing && (
           <span className="text-xs text-gray-400">
             {t('chat.summarizing')}
-            <button onClick={() => summarizeAbortRef.current?.abort()} className="ml-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
+            <button onClick={() => summarizeAbortRef.current?.abort()} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </span>
         )}
       </div>

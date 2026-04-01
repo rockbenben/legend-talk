@@ -2,16 +2,22 @@ import { useSettingsStore } from '../stores/settings';
 import { useConversationStore } from '../stores/conversations';
 import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
-import i18n from '../i18n';
-
 const DIRECTIVE = ' Be direct — state your views immediately, no pleasantries, no filler like "great question", no unnecessary preamble. Stay on topic.';
 
 export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers on the user\'s question.';
 
+const LANG_NAMES: Record<string, string> = {
+  en: 'English', zh: 'Chinese (中文)', 'zh-Hant': 'Traditional Chinese (繁體中文)',
+  ja: 'Japanese (日本語)', ko: 'Korean (한국어)', es: 'Spanish (Español)',
+  pt: 'Portuguese (Português)', fr: 'French (Français)', de: 'German (Deutsch)',
+  it: 'Italian (Italiano)', ru: 'Russian (Русский)', ar: 'Arabic (العربية)',
+  tr: 'Turkish (Türkçe)', hi: 'Hindi (हिन्दी)', id: 'Indonesian (Bahasa Indonesia)',
+  vi: 'Vietnamese (Tiếng Việt)', th: 'Thai (ไทย)', bn: 'Bengali (বাংলা)',
+};
+
 export function getLangInstruction(lang: string): string {
-  const name = i18n.t('nav.replyLanguage', { lng: lang });
-  const resolved = name === 'nav.replyLanguage' ? 'English' : name;
-  return ` Always respond in ${resolved}.`;
+  const name = LANG_NAMES[lang] || LANG_NAMES[lang.split('-')[0]] || 'English';
+  return ` Always respond in ${name}.`;
 }
 
 export function buildSystemPrompt(characterPrompt: string, lang: string, suffix = ''): string {

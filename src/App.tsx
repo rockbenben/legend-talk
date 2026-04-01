@@ -4,15 +4,25 @@ import { ChatPage } from './pages/ChatPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SharedView } from './pages/SharedView';
 
+// Routes shared between default and language-prefixed paths
+const appRoutes = [
+  { index: true, element: <Navigate to="chat" replace /> },
+  { path: 'chat/:id?', element: <ChatPage /> },
+  { path: 'settings', element: <SettingsPage /> },
+  { path: 'shared/:data', element: <SharedView /> },
+];
+
 const router = createHashRouter([
+  // Default routes (auto-detect language)
   {
     element: <Layout />,
-    children: [
-      { index: true, element: <Navigate to="/chat" replace /> },
-      { path: 'chat/:id?', element: <ChatPage /> },
-      { path: 'settings', element: <SettingsPage /> },
-      { path: 'shared/:data', element: <SharedView /> },
-    ],
+    children: appRoutes,
+  },
+  // Language-prefixed routes (e.g., /ja/chat, /zh-Hant/settings)
+  {
+    path: ':lang',
+    element: <Layout />,
+    children: appRoutes,
   },
 ]);
 

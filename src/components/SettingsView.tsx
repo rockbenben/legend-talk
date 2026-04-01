@@ -7,6 +7,8 @@ import { getStorageUsage } from '../utils/storage';
 import { downloadFile } from '../utils/export';
 import { compressToBase64, decompressFromBase64 } from '../utils/compress';
 import { useConversationStore } from '../stores/conversations';
+import { clearAllStorage } from '../utils/persistStorage';
+import { ensureLanguageLoaded } from '../i18n';
 
 export function SettingsView() {
   const { t, i18n } = useTranslation();
@@ -49,14 +51,14 @@ export function SettingsView() {
 
   function applyConfig(config: Record<string, unknown>) {
     const s = useSettingsStore.getState();
-    if (config.defaultProvider) s.setDefaultProvider(config.defaultProvider as string);
-    if (config.defaultModel) s.setDefaultModel(config.defaultModel as string);
-    if (config.language) { s.setLanguage(config.language as string); i18n.changeLanguage(config.language as string); }
-    if (config.theme) s.setTheme(config.theme as 'light' | 'dark');
-    if (config.thinkingLevel) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
-    if (config.corsProxy) s.setCorsProxy(config.corsProxy as string);
-    if (config.customBaseUrl) s.setCustomBaseUrl(config.customBaseUrl as string);
-    if (config.corsEnabled) Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => s.setCorsEnabled(k, v));
+    if (typeof config.defaultProvider === 'string') s.setDefaultProvider(config.defaultProvider);
+    if (typeof config.defaultModel === 'string') s.setDefaultModel(config.defaultModel);
+    if (typeof config.language === 'string') { const lng = config.language; s.setLanguage(lng); ensureLanguageLoaded(lng).then(() => i18n.changeLanguage(lng)); }
+    if (config.theme === 'light' || config.theme === 'dark') s.setTheme(config.theme);
+    if (['off', 'low', 'medium', 'high'].includes(config.thinkingLevel as string)) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
+    if (typeof config.corsProxy === 'string') s.setCorsProxy(config.corsProxy);
+    if (typeof config.customBaseUrl === 'string') s.setCustomBaseUrl(config.customBaseUrl);
+    if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
   }
 
   // Import settings from URL hash param (not query param — hash never leaves browser)
@@ -165,7 +167,7 @@ export function SettingsView() {
           onClick={() => navigate(-1)}
           className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 rtl:-scale-x-100">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
@@ -181,9 +183,10 @@ export function SettingsView() {
             onChange={(e) => {
               const prev = settings.defaultProvider;
               const next = e.target.value;
-              const modelMap = JSON.parse(localStorage.getItem('legend-talk-provider-models') || '{}');
+              let modelMap: Record<string, string> = {};
+              try { modelMap = JSON.parse(localStorage.getItem('legend-talk-provider-models') || '{}'); } catch { /* ok */ }
               modelMap[prev] = settings.defaultModel;
-              localStorage.setItem('legend-talk-provider-models', JSON.stringify(modelMap));
+              try { localStorage.setItem('legend-talk-provider-models', JSON.stringify(modelMap)); } catch { /* ok */ }
               settings.setDefaultProvider(next);
               const saved = modelMap[next];
               if (saved) {
@@ -299,7 +302,7 @@ export function SettingsView() {
               onClick={() => settings.setCorsEnabled(settings.defaultProvider, !settings.corsEnabled[settings.defaultProvider])}
               className={`relative w-11 h-6 rounded-full transition-colors ${settings.corsEnabled[settings.defaultProvider] ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
             >
-              <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.corsEnabled[settings.defaultProvider] ? 'translate-x-5' : ''}`} />
+              <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.corsEnabled[settings.defaultProvider] ? 'ltr:translate-x-5 rtl:-translate-x-5' : ''}`} />
             </button>
           </div>
           {settings.corsEnabled[settings.defaultProvider] && (
@@ -321,14 +324,17 @@ export function SettingsView() {
           <select
             value={i18n.language}
             onChange={(e) => {
-              i18n.changeLanguage(e.target.value);
-              settings.setLanguage(e.target.value);
+              const lng = e.target.value;
+              ensureLanguageLoaded(lng).then(() => {
+                i18n.changeLanguage(lng);
+                settings.setLanguage(lng);
+              });
             }}
             className="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
           >
-            {Object.keys(i18n.store.data).map((lng) => (
+            {((i18n.options.supportedLngs || []) as string[]).filter((l) => l !== 'cimode').map((lng) => (
               <option key={lng} value={lng}>
-                {i18n.t('nav.langName', { lng })}
+                {({ en: 'English', zh: '中文', 'zh-Hant': '繁體中文', ja: '日本語', ko: '한국어', es: 'Español', pt: 'Português', fr: 'Français', de: 'Deutsch', it: 'Italiano', ru: 'Русский', ar: 'العربية', tr: 'Türkçe', hi: 'हिन्दी', id: 'Indonesia', vi: 'Tiếng Việt', th: 'ไทย', bn: 'বাংলা' } as Record<string, string>)[lng] || lng}
               </option>
             ))}
           </select>
@@ -349,7 +355,7 @@ export function SettingsView() {
       {/* Data Management */}
       <section>
         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t('settings.storageUsed', { size: getStorageUsage() })}</h3>
-        <div className="flex flex-wrap gap-3">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
           <button
             onClick={handleExportAll}
             className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
@@ -370,9 +376,9 @@ export function SettingsView() {
             {t('chat.shareSettings')}
           </button>
           <button
-            onClick={() => {
+            onClick={async () => {
               if (confirm(t('common.confirm'))) {
-                localStorage.clear();
+                await clearAllStorage();
                 window.location.reload();
               }
             }}

@@ -1,10 +1,14 @@
 export function getStorageBytes(): number {
   let total = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key) {
-      total += key.length + (localStorage.getItem(key)?.length || 0);
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key) {
+        total += key.length + (localStorage.getItem(key)?.length || 0);
+      }
     }
+  } catch {
+    return 0; // localStorage unavailable — IndexedDB has much larger limits
   }
   return total * 2; // UTF-16
 }

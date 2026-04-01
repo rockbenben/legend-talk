@@ -20,4 +20,10 @@ export async function* parseSSE(response: Response): AsyncGenerator<string> {
       }
     }
   }
+
+  // Flush remaining buffer (e.g., stream closed without trailing newline)
+  const remaining = buffer.trim();
+  if (remaining.startsWith('data: ') && remaining.slice(6) !== '[DONE]') {
+    yield remaining.slice(6);
+  }
 }

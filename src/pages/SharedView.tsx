@@ -1,3 +1,4 @@
+import { useLangPath } from "../hooks/useLangPath";
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +22,7 @@ interface SharedData {
 export function SharedView() {
   const { data } = useParams<{ data: string }>();
   const { t } = useTranslation();
+  const lp = useLangPath();
   const [shared, setShared] = useState<SharedData | null>(null);
   const [error, setError] = useState('');
 
@@ -30,9 +32,8 @@ export function SharedView() {
     // s:<proxyBase64>:<id> → fetch from the sharer's proxy
     if (data.startsWith('s:')) {
       const parts = data.slice(2).split(':');
-      const proxy = parts.length >= 2
-        ? atob(parts[0].replace(/-/g, '+').replace(/_/g, '/'))
-        : useSettingsStore.getState().corsProxy;
+      let proxy = useSettingsStore.getState().corsProxy;
+      try { if (parts.length >= 2) proxy = atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')); } catch { /* use default */ }
       const id = parts.length >= 2 ? parts[1] : parts[0];
       fetch(`${proxy}/s/${id}`)
         .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })
@@ -53,7 +54,7 @@ export function SharedView() {
       <div className="flex flex-col items-center justify-center h-full gap-4">
         <p className="text-red-500">{error}</p>
         <Link
-          to="/chat"
+          to={lp("/chat")}
           className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
         >
           {t('shared.startOwn')}
@@ -107,7 +108,7 @@ export function SharedView() {
 
       <div className="flex justify-center px-4 py-4 border-t border-gray-200 dark:border-gray-700">
         <Link
-          to="/chat"
+          to={lp("/chat")}
           className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 text-sm font-medium"
         >
           {t('shared.startOwn')}

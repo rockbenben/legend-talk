@@ -128,7 +128,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setIsSummarizing(true);
     try {
       await streamResponse(conversationId, '__summarize__', [
-        { role: 'system', content: 'Summarize the following conversation concisely. Extract core viewpoints, key disagreements, and conclusions. Stay neutral and impersonal.' + getLangInstruction(lang) },
+        { role: 'system', content: 'Summarize this discussion. Highlight each viewpoint, key disagreements, and insights worth remembering. Stay neutral. Match summary length to discussion length.' + getLangInstruction(lang) },
         { role: 'user', content: transcript },
       ], provider, controller.signal);
     } catch (err) {

@@ -71,7 +71,7 @@ export function useRoundtable() {
     for (let i = conv.messages.length - 1; i >= 0; i--) {
       if (conv.messages[i].role === 'user') { lastUserIdx = i; break; }
     }
-    const charsSoFar = conv.messages.slice(lastUserIdx + 1).filter((m) => m.role === 'character').length;
+    const charsSoFar = conv.messages.slice(lastUserIdx + 1).filter((m) => m.role === 'character' && m.characterId).length;
     const completedRounds = Math.floor(charsSoFar / chars.length);
     const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
 
@@ -165,12 +165,13 @@ function buildRoundtableMessages(
   for (const msg of conversation.messages) {
     if (msg.role === 'user') {
       raw.push({ role: 'user', content: msg.content });
+    } else if (!msg.characterId) {
+      // Skip summary messages (no characterId) — they shouldn't be in roundtable context
+      continue;
     } else if (msg.characterId === character.id) {
       raw.push({ role: 'assistant', content: msg.content });
     } else {
-      const name = msg.characterId
-        ? i18n.t(`characters.${msg.characterId}.name`)
-        : 'Unknown';
+      const name = i18n.t(`characters.${msg.characterId}.name`);
       raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
     }
   }

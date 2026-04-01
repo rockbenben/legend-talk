@@ -19,7 +19,7 @@ export function exportAsMarkdown(
     if (msg.role === 'user') {
       md += `**You:** ${msg.content}\n\n`;
     } else {
-      const name = msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Assistant';
+      const name = msg.characterId ? (characterNames[msg.characterId] || msg.characterId) : 'Summary';
       md += `**${name}:** ${msg.content}\n\n`;
     }
   }

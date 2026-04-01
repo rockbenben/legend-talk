@@ -99,6 +99,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   };
 
   const handleRetryFrom = (messageId: string) => {
+    if (isGenerating || isSummarizing) return;
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv) return;
     const msg = conv.messages.find((m) => m.id === messageId);
@@ -132,16 +133,18 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const handleSummarize = async () => {
     const provider = resolveProvider();
-    if (!provider) return;
+    if (!provider) { navigate(lp('/settings')); return; }
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv || conv.messages.length === 0) return;
 
-    const transcript = conv.messages.map((msg) => {
-      if (msg.role === 'user') return `[User]: ${msg.content}`;
-      const char = presetCharacters.find((c) => c.id === msg.characterId);
-      const name = char ? (t(`characters.${char.id}.name`)) : msg.characterId || 'Unknown';
-      return `[${name}]: ${msg.content}`;
-    }).join('\n\n');
+    const transcript = conv.messages
+      .filter((msg) => msg.role === 'user' || msg.characterId) // exclude summaries
+      .map((msg) => {
+        if (msg.role === 'user') return `[User]: ${msg.content}`;
+        const char = presetCharacters.find((c) => c.id === msg.characterId);
+        const name = char ? (t(`characters.${char.id}.name`)) : msg.characterId || 'Unknown';
+        return `[${name}]: ${msg.content}`;
+      }).join('\n\n');
 
     const summaryPrompt = 'Summarize the following conversation concisely. Extract core viewpoints, key disagreements, and conclusions. Stay neutral and impersonal.' + getLangInstruction(lang);
 
@@ -411,7 +414,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
                       <div className="flex gap-2 mt-1">
                         <button
                           onClick={() => {
-                            useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue);
+                            if (editingMsgValue.trim()) {
+                              useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
+                            }
                             setEditingMsgId(null);
                           }}
                           className="text-xs px-2 py-0.5 rounded bg-blue-500 text-white"
@@ -431,9 +436,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   <MessageBubble
                     content={msg.content}
                     isUser={msg.role === 'user'}
-                    avatar={msgChar?.avatar}
-                    color={msgChar?.color}
-                    name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
+                    avatar={msgChar?.avatar || (msg.role === 'character' && !msg.characterId ? '📋' : undefined)}
+                    color={msgChar?.color || (msg.role === 'character' && !msg.characterId ? 'blue' : undefined)}
+                    name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (msg.role === 'character' && !msg.characterId ? t('chat.summarize') : undefined)}
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (

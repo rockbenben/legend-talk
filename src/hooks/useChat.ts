@@ -15,6 +15,7 @@ export function useChat() {
       { role: 'system', content: buildSystemPrompt(characterPrompt, lang) },
     ];
     for (const msg of conv.messages) {
+      if (msg.role === 'character' && !msg.characterId) continue; // skip summary
       messages.push({ role: msg.role === 'user' ? 'user' : 'assistant', content: msg.content });
     }
     return messages;

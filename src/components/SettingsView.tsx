@@ -9,13 +9,16 @@ import { compressToBase64, decompressFromBase64 } from '../utils/compress';
 import { useConversationStore } from '../stores/conversations';
 import { clearAllStorage } from '../utils/persistStorage';
 import { ensureLanguageLoaded } from '../i18n';
+import { useLangPath } from '../hooks/useLangPath';
 import { CharacterEditor } from './CharacterEditor';
 import { Avatar } from './Avatar';
+import { presetCharacters } from '../characters/presets';
 import type { CustomCharacter } from '../stores/settings';
 
 export function SettingsView() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const lp = useLangPath();
   const [searchParams, setSearchParams] = useSearchParams();
   const settings = useSettingsStore();
   const conversations = useConversationStore((s) => s.conversations);
@@ -62,6 +65,11 @@ export function SettingsView() {
     if (typeof config.corsProxy === 'string') s.setCorsProxy(config.corsProxy);
     if (typeof config.customBaseUrl === 'string') s.setCustomBaseUrl(config.customBaseUrl);
     if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
+    if (Array.isArray(config.customCharacters)) {
+      for (const c of config.customCharacters as CustomCharacter[]) {
+        if (c.id && c.displayName && c.systemPrompt) s.saveCustomCharacter(c);
+      }
+    }
   }
 
   // Import settings from URL hash param (not query param — hash never leaves browser)
@@ -116,6 +124,7 @@ export function SettingsView() {
       corsEnabled: settings.corsEnabled,
       customBaseUrl: settings.customBaseUrl,
       thinkingLevel: settings.thinkingLevel,
+      customCharacters: settings.customCharacters.length > 0 ? settings.customCharacters : undefined,
     };
 
     const password = prompt(t('chat.enterPassword'));
@@ -125,7 +134,7 @@ export function SettingsView() {
 
     const base64 = await compressToBase64(JSON.stringify(config));
     // Use hash fragment — query params would be sent to servers via referrer headers
-    const url = `${window.location.origin}${window.location.pathname}#/settings?config=${base64}`;
+    const url = `${window.location.origin}${window.location.pathname}#${lp('/settings')}?config=${base64}`;
     try {
       await navigator.clipboard.writeText(url);
       setShareStatus(t('chat.copied'));
@@ -407,6 +416,13 @@ function CustomCharactersSection() {
   const { t } = useTranslation();
   const customCharacters = useSettingsStore((s) => s.customCharacters);
   const deleteCustomCharacter = useSettingsStore((s) => s.deleteCustomCharacter);
+
+  const handleDelete = (id: string) => {
+    deleteCustomCharacter(id);
+    // Clean up runtime: remove from presetCharacters array
+    const idx = presetCharacters.findIndex((c) => c.id === id);
+    if (idx !== -1) presetCharacters.splice(idx, 1);
+  };
   const [showEditor, setShowEditor] = useState(false);
   const [editingChar, setEditingChar] = useState<CustomCharacter | undefined>();
 
@@ -428,7 +444,7 @@ function CustomCharactersSection() {
               <Avatar emoji={c.avatar} color={c.color} size="sm" />
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium truncate">{c.displayName}</div>
-                <div className="text-xs text-gray-400 truncate">{c.systemPrompt.slice(0, 60)}...</div>
+                <div className="text-xs text-gray-400 truncate">{c.era || c.systemPrompt.slice(0, 60)}</div>
               </div>
               <button onClick={() => { setEditingChar(c); setShowEditor(true); }}
                 className="p-1.5 text-gray-400 hover:text-blue-500 text-xs shrink-0">
@@ -436,7 +452,7 @@ function CustomCharactersSection() {
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                 </svg>
               </button>
-              <button onClick={() => deleteCustomCharacter(c.id)}
+              <button onClick={() => handleDelete(c.id)}
                 className="p-1.5 text-gray-400 hover:text-red-500 text-xs shrink-0">✕</button>
             </div>
           ))}

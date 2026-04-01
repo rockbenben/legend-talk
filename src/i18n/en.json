@@ -66,8 +66,6 @@
     "importError": "Import failed: invalid file format",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "useCorsProxy": "Use public proxy",
-    "proscons": "Pro/Con",
-    "matrix": "Decision Matrix",
     "createCharacter": "Create Character",
     "editCharacter": "Edit Character",
     "characterName": "Name",
@@ -126,7 +124,9 @@
     "confirm": "Confirm",
     "unknown": "Unknown",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "collapse": "Show less",
+    "showAll": "Show all ({{count}})"
   },
   "characters": {
     "socrates": {

@@ -66,8 +66,6 @@
     "importError": "Impor gagal: format file tidak valid",
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "useCorsProxy": "Gunakan proxy publik",
-    "proscons": "Pro/Kontra",
-    "matrix": "Matriks Keputusan",
     "createCharacter": "Buat Karakter",
     "editCharacter": "Edit Karakter",
     "characterName": "Nama",
@@ -126,7 +124,9 @@
     "confirm": "Konfirmasi",
     "unknown": "Tidak diketahui",
     "cancel": "Batal",
-    "save": "Simpan"
+    "save": "Simpan",
+    "collapse": "Sembunyikan",
+    "showAll": "Tampilkan semua ({{count}})"
   },
   "characters": {
     "socrates": {

@@ -66,8 +66,6 @@
     "importError": "匯入失敗：檔案格式不正確",
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
     "useCorsProxy": "使用公共中轉",
-    "proscons": "正反論點",
-    "matrix": "決策矩陣",
     "createCharacter": "建立角色",
     "editCharacter": "編輯角色",
     "characterName": "名稱",
@@ -126,7 +124,9 @@
     "confirm": "確認",
     "unknown": "未知",
     "cancel": "取消",
-    "save": "儲存"
+    "save": "儲存",
+    "collapse": "收起",
+    "showAll": "展開全部 ({{count}})"
   },
   "characters": {
     "socrates": {

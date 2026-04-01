@@ -66,8 +66,6 @@
     "importError": "นำเข้าล้มเหลว: รูปแบบไฟล์ไม่ถูกต้อง",
     "corsError": "คำขอถูกบล็อกโดยเบราว์เซอร์ (CORS) ต้องใช้พร็อกซี",
     "useCorsProxy": "ใช้พร็อกซีสาธารณะ",
-    "proscons": "ข้อดี/ข้อเสีย",
-    "matrix": "เมทริกซ์การตัดสินใจ",
     "createCharacter": "สร้างตัวละคร",
     "editCharacter": "แก้ไขตัวละคร",
     "characterName": "ชื่อ",
@@ -126,7 +124,9 @@
     "confirm": "ยืนยัน",
     "unknown": "ไม่ทราบ",
     "cancel": "ยกเลิก",
-    "save": "บันทึก"
+    "save": "บันทึก",
+    "collapse": "ย่อ",
+    "showAll": "แสดงทั้งหมด ({{count}})"
   },
   "characters": {
     "socrates": {

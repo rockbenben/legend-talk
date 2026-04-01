@@ -66,8 +66,6 @@
     "importError": "আমদানি ব্যর্থ: অবৈধ ফাইল ফরম্যাট",
     "corsError": "ব্রাউজার দ্বারা অনুরোধ ব্লক করা হয়েছে (CORS)। প্রক্সি প্রয়োজন।",
     "useCorsProxy": "পাবলিক প্রক্সি ব্যবহার করুন",
-    "proscons": "পক্ষে/বিপক্ষে",
-    "matrix": "সিদ্ধান্ত ম্যাট্রিক্স",
     "createCharacter": "চরিত্র তৈরি",
     "editCharacter": "চরিত্র সম্পাদনা",
     "characterName": "নাম",
@@ -126,7 +124,9 @@
     "confirm": "নিশ্চিত করুন",
     "unknown": "অজানা",
     "cancel": "বাতিল",
-    "save": "সংরক্ষণ"
+    "save": "সংরক্ষণ",
+    "collapse": "সংকুচিত",
+    "showAll": "সব দেখান ({{count}})"
   },
   "characters": {
     "socrates": {

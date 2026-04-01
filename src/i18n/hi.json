@@ -66,8 +66,6 @@
     "importError": "आयात विफल: अमान्य फ़ाइल प्रारूप",
     "corsError": "अनुरोध ब्राउज़र द्वारा अवरुद्ध (CORS)। प्रॉक्सी आवश्यक है।",
     "useCorsProxy": "सार्वजनिक प्रॉक्सी का उपयोग करें",
-    "proscons": "पक्ष/विपक्ष",
-    "matrix": "निर्णय मैट्रिक्स",
     "createCharacter": "चरित्र बनाएं",
     "editCharacter": "चरित्र संपादित करें",
     "characterName": "नाम",
@@ -126,7 +124,9 @@
     "confirm": "पुष्टि करें",
     "unknown": "अज्ञात",
     "cancel": "रद्द करें",
-    "save": "सहेजें"
+    "save": "सहेजें",
+    "collapse": "कम दिखाएं",
+    "showAll": "सभी दिखाएं ({{count}})"
   },
   "characters": {
     "socrates": {

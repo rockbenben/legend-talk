@@ -66,8 +66,6 @@
     "importError": "가져오기 실패: 파일 형식이 잘못되었습니다",
     "corsError": "브라우저에서 차단됨 (CORS). 프록시가 필요합니다",
     "useCorsProxy": "공개 프록시 사용",
-    "proscons": "찬반 분석",
-    "matrix": "의사결정 매트릭스",
     "createCharacter": "캐릭터 만들기",
     "editCharacter": "캐릭터 편집",
     "characterName": "이름",
@@ -126,7 +124,9 @@
     "confirm": "확인",
     "unknown": "알 수 없음",
     "cancel": "취소",
-    "save": "저장"
+    "save": "저장",
+    "collapse": "접기",
+    "showAll": "전체 보기 ({{count}})"
   },
   "characters": {
     "socrates": {

@@ -66,8 +66,6 @@
     "importError": "Error al importar: formato de archivo no válido",
     "corsError": "Solicitud bloqueada por el navegador (CORS). Se necesita un proxy.",
     "useCorsProxy": "Usar proxy público",
-    "proscons": "Pro/Contra",
-    "matrix": "Matriz de decisión",
     "createCharacter": "Crear personaje",
     "editCharacter": "Editar personaje",
     "characterName": "Nombre",
@@ -126,7 +124,9 @@
     "confirm": "Confirmar",
     "unknown": "Desconocido",
     "cancel": "Cancelar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "collapse": "Mostrar menos",
+    "showAll": "Mostrar todo ({{count}})"
   },
   "characters": {
     "socrates": {

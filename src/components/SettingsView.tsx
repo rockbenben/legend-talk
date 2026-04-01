@@ -296,12 +296,15 @@ export function SettingsView() {
   );
 }
 
+const COLLAPSE_THRESHOLD = 3;
+
 function CustomCharactersSection() {
   const { t } = useTranslation();
   const customCharacters = useSettingsStore((s) => s.customCharacters);
   const deleteCustomCharacter = useSettingsStore((s) => s.deleteCustomCharacter);
   const [showEditor, setShowEditor] = useState(false);
   const [editingChar, setEditingChar] = useState<CustomCharacter | undefined>();
+  const [expanded, setExpanded] = useState(false);
 
   const handleDelete = (id: string) => {
     deleteCustomCharacter(id);
@@ -309,10 +312,17 @@ function CustomCharactersSection() {
     if (idx !== -1) presetCharacters.splice(idx, 1);
   };
 
+  const visible = expanded || customCharacters.length <= COLLAPSE_THRESHOLD
+    ? customCharacters
+    : customCharacters.slice(0, COLLAPSE_THRESHOLD);
+
   return (
     <section>
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold">{t('settings.customCharacters')}</h3>
+        <h3 className="text-lg font-semibold">
+          {t('settings.customCharacters')}
+          {customCharacters.length > 0 && <span className="text-sm font-normal text-gray-400 ms-1">({customCharacters.length})</span>}
+        </h3>
         <button onClick={() => { setEditingChar(undefined); setShowEditor(true); }}
           className="text-xs px-3 py-1.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors">
           + {t('chat.createCharacter')}
@@ -322,7 +332,7 @@ function CustomCharactersSection() {
         <p className="text-sm text-gray-400">{t('settings.noCustomCharacters')}</p>
       ) : (
         <div className="space-y-2">
-          {customCharacters.map((c) => (
+          {visible.map((c) => (
             <div key={c.id} className="flex items-center gap-3 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
               <Avatar emoji={c.avatar} color={c.color} size="sm" />
               <div className="flex-1 min-w-0">
@@ -338,6 +348,12 @@ function CustomCharactersSection() {
               <button onClick={() => handleDelete(c.id)} className="p-2 text-gray-400 hover:text-red-500 shrink-0">✕</button>
             </div>
           ))}
+          {customCharacters.length > COLLAPSE_THRESHOLD && (
+            <button onClick={() => setExpanded(!expanded)}
+              className="w-full py-1.5 text-xs text-gray-400 hover:text-blue-500 transition-colors">
+              {expanded ? t('common.collapse') : t('common.showAll', { count: customCharacters.length })}
+            </button>
+          )}
         </div>
       )}
       {showEditor && <CharacterEditor character={editingChar} onClose={() => setShowEditor(false)} />}

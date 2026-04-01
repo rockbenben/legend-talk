@@ -103,7 +103,6 @@
     "corsProxyHint": "İstekleri CORS kısıtlamalarını aşmak için proxy üzerinden yönlendirir",
     "customModel": "Özel model...",
     "customBaseUrlHint": "OpenAI uyumlu API uç noktasını girin",
-    "storageUsed": "Depolama: {{size}}",
     "clearData": "Tüm verileri sil",
     "customCharacters": "Özel karakterler",
     "noCustomCharacters": "Henüz yok",

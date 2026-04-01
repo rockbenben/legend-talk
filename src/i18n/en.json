@@ -103,7 +103,6 @@
     "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
     "customModel": "Custom model...",
     "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
-    "storageUsed": "Storage used: {{size}}",
     "clearData": "Clear All Data",
     "customCharacters": "Custom Characters",
     "noCustomCharacters": "No custom characters yet",

@@ -103,7 +103,6 @@
     "corsProxyHint": "Meneruskan permintaan melalui proxy untuk melewati pembatasan CORS",
     "customModel": "Model kustom...",
     "customBaseUrlHint": "Masukkan endpoint API yang kompatibel dengan OpenAI",
-    "storageUsed": "Penyimpanan: {{size}}",
     "clearData": "Hapus semua data",
     "customCharacters": "Karakter Kustom",
     "noCustomCharacters": "Belum ada",

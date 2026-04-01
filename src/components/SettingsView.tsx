@@ -46,6 +46,7 @@ export function SettingsView() {
     if (typeof config.language === 'string') { const lng = config.language; s.setLanguage(lng); ensureLanguageLoaded(lng).then(() => i18n.changeLanguage(lng)); }
     if (config.theme === 'light' || config.theme === 'dark') s.setTheme(config.theme);
     if (['off', 'low', 'medium', 'high'].includes(config.thinkingLevel as string)) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
+    if (typeof config.roundtableRounds === 'number' && config.roundtableRounds >= 1) s.setRoundtableRounds(config.roundtableRounds);
     if (typeof config.corsProxy === 'string') s.setCorsProxy(config.corsProxy);
     if (typeof config.customBaseUrl === 'string') s.setCustomBaseUrl(config.customBaseUrl);
     if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
@@ -102,6 +103,7 @@ export function SettingsView() {
       corsEnabled: settings.corsEnabled,
       customBaseUrl: settings.customBaseUrl,
       thinkingLevel: settings.thinkingLevel,
+      roundtableRounds: settings.roundtableRounds,
       customCharacters: settings.customCharacters.length > 0 ? settings.customCharacters : undefined,
     };
     const password = prompt(t('chat.enterPassword'));

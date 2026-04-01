@@ -103,7 +103,6 @@
     "corsProxyHint": "Chuyển tiếp yêu cầu qua proxy để vượt qua hạn chế CORS",
     "customModel": "Mô hình tùy chỉnh...",
     "customBaseUrlHint": "Nhập endpoint API tương thích OpenAI",
-    "storageUsed": "Bộ nhớ: {{size}}",
     "clearData": "Xóa tất cả dữ liệu",
     "customCharacters": "Nhân vật tùy chỉnh",
     "noCustomCharacters": "Chưa có",

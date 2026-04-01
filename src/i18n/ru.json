@@ -103,7 +103,6 @@
     "corsProxyHint": "Перенаправляет запросы через прокси для обхода CORS",
     "customModel": "Своя модель...",
     "customBaseUrlHint": "Введите эндпоинт API, совместимый с OpenAI",
-    "storageUsed": "Хранилище: {{size}}",
     "clearData": "Удалить все данные",
     "customCharacters": "Свои персонажи",
     "noCustomCharacters": "Пока нет",

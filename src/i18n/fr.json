@@ -103,7 +103,6 @@
     "corsProxyHint": "Achemine les requêtes via un proxy pour contourner les restrictions CORS",
     "customModel": "Modèle personnalisé...",
     "customBaseUrlHint": "Entrez votre endpoint API compatible OpenAI",
-    "storageUsed": "Stockage : {{size}}",
     "clearData": "Supprimer toutes les données",
     "customCharacters": "Personnages personnalisés",
     "noCustomCharacters": "Aucun pour le moment",

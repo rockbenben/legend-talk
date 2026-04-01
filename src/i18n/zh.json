@@ -103,7 +103,6 @@
     "corsProxyHint": "开启后通过中转转发请求，解决浏览器跨域限制",
     "customModel": "自定义模型...",
     "customBaseUrlHint": "填入 OpenAI 兼容 API 的地址，如 https://api.example.com/v1",
-    "storageUsed": "已用空间: {{size}}",
     "clearData": "清除所有数据",
     "customCharacters": "自定义角色",
     "noCustomCharacters": "暂无自定义角色",

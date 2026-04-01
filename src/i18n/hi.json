@@ -103,7 +103,6 @@
     "corsProxyHint": "CORS प्रतिबंधों को दूर करने के लिए प्रॉक्सी के माध्यम से अनुरोध भेजता है",
     "customModel": "कस्टम मॉडल...",
     "customBaseUrlHint": "OpenAI संगत API एंडपॉइंट दर्ज करें",
-    "storageUsed": "संग्रहण: {{size}}",
     "clearData": "सभी डेटा हटाएं",
     "customCharacters": "कस्टम चरित्र",
     "noCustomCharacters": "अभी कोई नहीं",

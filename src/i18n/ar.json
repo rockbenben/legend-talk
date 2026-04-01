@@ -103,7 +103,6 @@
     "corsProxyHint": "يوجّه الطلبات عبر وكيل لتجاوز قيود CORS",
     "customModel": "...نموذج مخصص",
     "customBaseUrlHint": "أدخل نقطة نهاية API متوافقة مع OpenAI",
-    "storageUsed": "التخزين: {{size}}",
     "clearData": "حذف جميع البيانات",
     "customCharacters": "شخصيات مخصصة",
     "noCustomCharacters": "لا توجد بعد",

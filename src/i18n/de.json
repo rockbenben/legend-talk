@@ -103,7 +103,6 @@
     "corsProxyHint": "Leitet Anfragen über einen Proxy weiter, um CORS-Beschränkungen zu umgehen",
     "customModel": "Benutzerdefiniertes Modell...",
     "customBaseUrlHint": "OpenAI-kompatiblen API-Endpunkt eingeben",
-    "storageUsed": "Speicher: {{size}}",
     "clearData": "Alle Daten löschen",
     "customCharacters": "Eigene Charaktere",
     "noCustomCharacters": "Noch keine",

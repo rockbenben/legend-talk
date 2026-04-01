@@ -103,7 +103,6 @@
     "corsProxyHint": "프록시를 통해 요청을 전달하여 CORS를 우회",
     "customModel": "커스텀 모델...",
     "customBaseUrlHint": "OpenAI 호환 API 엔드포인트 입력",
-    "storageUsed": "사용 용량: {{size}}",
     "clearData": "모든 데이터 삭제",
     "customCharacters": "커스텀 캐릭터",
     "noCustomCharacters": "아직 없습니다",

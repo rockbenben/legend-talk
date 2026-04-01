@@ -103,7 +103,6 @@
     "corsProxyHint": "ส่งต่อคำขอผ่านพร็อกซีเพื่อข้ามข้อจำกัด CORS",
     "customModel": "โมเดลกำหนดเอง...",
     "customBaseUrlHint": "ใส่ endpoint API ที่เข้ากันได้กับ OpenAI",
-    "storageUsed": "พื้นที่: {{size}}",
     "clearData": "ลบข้อมูลทั้งหมด",
     "customCharacters": "ตัวละครกำหนดเอง",
     "noCustomCharacters": "ยังไม่มี",

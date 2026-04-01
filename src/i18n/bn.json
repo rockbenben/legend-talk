@@ -103,7 +103,6 @@
     "corsProxyHint": "CORS সীমাবদ্ধতা এড়াতে প্রক্সির মাধ্যমে অনুরোধ পাঠায়",
     "customModel": "কাস্টম মডেল...",
     "customBaseUrlHint": "OpenAI সামঞ্জস্যপূর্ণ API এন্ডপয়েন্ট দিন",
-    "storageUsed": "স্টোরেজ: {{size}}",
     "clearData": "সমস্ত ডেটা মুছুন",
     "customCharacters": "কাস্টম চরিত্র",
     "noCustomCharacters": "এখনও নেই",

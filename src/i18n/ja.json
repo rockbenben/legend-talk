@@ -103,7 +103,6 @@
     "corsProxyHint": "プロキシ経由でリクエストを転送し、CORSを回避",
     "customModel": "カスタムモデル...",
     "customBaseUrlHint": "OpenAI互換APIのエンドポイントを入力",
-    "storageUsed": "使用容量：{{size}}",
     "clearData": "全データ削除",
     "customCharacters": "カスタムキャラクター",
     "noCustomCharacters": "まだありません",

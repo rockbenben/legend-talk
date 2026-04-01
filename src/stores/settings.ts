@@ -19,6 +19,7 @@ interface SettingsState {
   corsEnabled: Record<string, boolean>;
   customBaseUrl: string;
   thinkingLevel: 'off' | 'low' | 'medium' | 'high';
+  roundtableRounds: number;
   favoriteCharacters: string[];
   customCharacters: CustomCharacter[];
   setApiKey: (provider: string, key: string) => void;
@@ -30,6 +31,7 @@ interface SettingsState {
   setCorsEnabled: (provider: string, enabled: boolean) => void;
   setCustomBaseUrl: (url: string) => void;
   setThinkingLevel: (level: 'off' | 'low' | 'medium' | 'high') => void;
+  setRoundtableRounds: (rounds: number) => void;
   toggleFavorite: (characterId: string) => void;
   clearApiKeys: () => void;
   saveCustomCharacter: (char: CustomCharacter) => void;
@@ -48,6 +50,7 @@ export const useSettingsStore = create<SettingsState>()(
       corsEnabled: { volcengine: true, alibaba: true },
       customBaseUrl: '',
       thinkingLevel: 'off' as const,
+      roundtableRounds: 3,
       favoriteCharacters: [],
       customCharacters: [],
       setApiKey: (provider, key) =>
@@ -61,6 +64,7 @@ export const useSettingsStore = create<SettingsState>()(
         set((s) => ({ corsEnabled: { ...s.corsEnabled, [provider]: enabled } })),
       setCustomBaseUrl: (customBaseUrl) => set({ customBaseUrl }),
       setThinkingLevel: (thinkingLevel) => set({ thinkingLevel }),
+      setRoundtableRounds: (roundtableRounds) => set({ roundtableRounds }),
       toggleFavorite: (characterId) =>
         set((s) => ({
           favoriteCharacters: s.favoriteCharacters.includes(characterId)

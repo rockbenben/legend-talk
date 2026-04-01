@@ -51,7 +51,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const lang = currentLang();
-  const [rounds, setRounds] = useState(3);
+  const rounds = useSettingsStore((s) => s.roundtableRounds);
+  const setRounds = useSettingsStore((s) => s.setRoundtableRounds);
   const [showPicker, setShowPicker] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleValue, setTitleValue] = useState('');

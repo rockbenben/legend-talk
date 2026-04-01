@@ -112,7 +112,9 @@
     "conversations": "Cuộc trò chuyện",
     "exportAll": "Xuất tất cả",
     "settingsSync": "Đồng bộ cài đặt",
-    "settingsSyncHint": "Tạo URL để đồng bộ cài đặt (bao gồm khóa API) sang thiết bị khác"
+    "settingsSyncHint": "Tạo URL để đồng bộ cài đặt (bao gồm khóa API) sang thiết bị khác",
+    "general": "Chung",
+    "dataManagement": "Dữ liệu"
   },
   "shared": {
     "title": "Cuộc trò chuyện được chia sẻ",

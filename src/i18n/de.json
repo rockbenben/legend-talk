@@ -112,7 +112,9 @@
     "conversations": "Gespräche",
     "exportAll": "Alle exportieren",
     "settingsSync": "Einstellungen synchronisieren",
-    "settingsSyncHint": "URL generieren, um Einstellungen (inkl. API-Schlüssel) auf ein anderes Gerät zu synchronisieren"
+    "settingsSyncHint": "URL generieren, um Einstellungen (inkl. API-Schlüssel) auf ein anderes Gerät zu synchronisieren",
+    "general": "Allgemein",
+    "dataManagement": "Daten"
   },
   "shared": {
     "title": "Geteiltes Gespräch",

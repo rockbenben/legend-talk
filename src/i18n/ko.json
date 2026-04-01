@@ -112,7 +112,9 @@
     "conversations": "대화",
     "exportAll": "전체 내보내기",
     "settingsSync": "설정 동기화",
-    "settingsSyncHint": "URL을 생성하여 다른 기기에 설정(API 키 포함)을 동기화"
+    "settingsSyncHint": "URL을 생성하여 다른 기기에 설정(API 키 포함)을 동기화",
+    "general": "일반",
+    "dataManagement": "데이터"
   },
   "shared": {
     "title": "공유된 대화",

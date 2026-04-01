@@ -112,7 +112,9 @@
     "conversations": "Conversations",
     "exportAll": "Export All",
     "settingsSync": "Settings Sync",
-    "settingsSyncHint": "Generate a URL to sync settings (including API keys) to another device"
+    "settingsSyncHint": "Generate a URL to sync settings (including API keys) to another device",
+    "general": "General",
+    "dataManagement": "Data"
   },
   "shared": {
     "title": "Shared Conversation",

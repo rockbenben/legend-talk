@@ -112,7 +112,9 @@
     "conversations": "Conversazioni",
     "exportAll": "Esporta tutto",
     "settingsSync": "Sincronizza impostazioni",
-    "settingsSyncHint": "Genera URL per sincronizzare le impostazioni (incluse le chiavi API) su un altro dispositivo"
+    "settingsSyncHint": "Genera URL per sincronizzare le impostazioni (incluse le chiavi API) su un altro dispositivo",
+    "general": "Generale",
+    "dataManagement": "Dati"
   },
   "shared": {
     "title": "Conversazione condivisa",

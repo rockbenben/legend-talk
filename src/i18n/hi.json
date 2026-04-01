@@ -112,7 +112,9 @@
     "conversations": "बातचीत",
     "exportAll": "सब निर्यात करें",
     "settingsSync": "सेटिंग्स सिंक",
-    "settingsSyncHint": "सेटिंग्स (API कुंजियों सहित) को दूसरे डिवाइस पर सिंक करने के लिए URL बनाएं"
+    "settingsSyncHint": "सेटिंग्स (API कुंजियों सहित) को दूसरे डिवाइस पर सिंक करने के लिए URL बनाएं",
+    "general": "सामान्य",
+    "dataManagement": "डेटा"
   },
   "shared": {
     "title": "साझा बातचीत",

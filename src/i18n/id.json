@@ -112,7 +112,9 @@
     "conversations": "Percakapan",
     "exportAll": "Ekspor semua",
     "settingsSync": "Sinkronisasi pengaturan",
-    "settingsSyncHint": "Buat URL untuk menyinkronkan pengaturan (termasuk kunci API) ke perangkat lain"
+    "settingsSyncHint": "Buat URL untuk menyinkronkan pengaturan (termasuk kunci API) ke perangkat lain",
+    "general": "Umum",
+    "dataManagement": "Data"
   },
   "shared": {
     "title": "Obrolan bersama",

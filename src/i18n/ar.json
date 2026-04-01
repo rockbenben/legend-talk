@@ -112,7 +112,9 @@
     "conversations": "المحادثات",
     "exportAll": "تصدير الكل",
     "settingsSync": "مزامنة الإعدادات",
-    "settingsSyncHint": "إنشاء رابط لمزامنة الإعدادات (بما في ذلك مفاتيح API) إلى جهاز آخر"
+    "settingsSyncHint": "إنشاء رابط لمزامنة الإعدادات (بما في ذلك مفاتيح API) إلى جهاز آخر",
+    "general": "عام",
+    "dataManagement": "البيانات"
   },
   "shared": {
     "title": "محادثة مشتركة",

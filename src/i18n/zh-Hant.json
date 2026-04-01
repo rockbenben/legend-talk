@@ -112,7 +112,9 @@
     "conversations": "對話記錄",
     "exportAll": "匯出全部",
     "settingsSync": "設定同步",
-    "settingsSyncHint": "生成連結，將設定（含 API 金鑰）同步到其他裝置"
+    "settingsSyncHint": "生成連結，將設定（含 API 金鑰）同步到其他裝置",
+    "general": "一般",
+    "dataManagement": "資料"
   },
   "shared": {
     "title": "共享對話",

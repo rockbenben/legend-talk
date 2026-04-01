@@ -112,7 +112,9 @@
     "conversations": "会話",
     "exportAll": "すべてエクスポート",
     "settingsSync": "設定の同期",
-    "settingsSyncHint": "URLを生成して他のデバイスに設定（APIキー含む）を同期"
+    "settingsSyncHint": "URLを生成して他のデバイスに設定（APIキー含む）を同期",
+    "general": "一般",
+    "dataManagement": "データ"
   },
   "shared": {
     "title": "共有された対話",

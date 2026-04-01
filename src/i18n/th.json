@@ -112,7 +112,9 @@
     "conversations": "การสนทนา",
     "exportAll": "ส่งออกทั้งหมด",
     "settingsSync": "ซิงค์การตั้งค่า",
-    "settingsSyncHint": "สร้าง URL เพื่อซิงค์การตั้งค่า (รวมคีย์ API) ไปยังอุปกรณ์อื่น"
+    "settingsSyncHint": "สร้าง URL เพื่อซิงค์การตั้งค่า (รวมคีย์ API) ไปยังอุปกรณ์อื่น",
+    "general": "ทั่วไป",
+    "dataManagement": "ข้อมูล"
   },
   "shared": {
     "title": "การสนทนาที่แชร์",

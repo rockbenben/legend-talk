@@ -112,7 +112,9 @@
     "conversations": "Konuşmalar",
     "exportAll": "Tümünü dışa aktar",
     "settingsSync": "Ayarları senkronize et",
-    "settingsSyncHint": "Ayarları (API anahtarları dahil) başka bir cihaza senkronize etmek için URL oluştur"
+    "settingsSyncHint": "Ayarları (API anahtarları dahil) başka bir cihaza senkronize etmek için URL oluştur",
+    "general": "Genel",
+    "dataManagement": "Veri"
   },
   "shared": {
     "title": "Paylaşılan sohbet",

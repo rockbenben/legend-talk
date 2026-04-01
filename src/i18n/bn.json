@@ -112,7 +112,9 @@
     "conversations": "কথোপকথন",
     "exportAll": "সব রপ্তানি",
     "settingsSync": "সেটিংস সিঙ্ক",
-    "settingsSyncHint": "অন্য ডিভাইসে সেটিংস (API কী সহ) সিঙ্ক করতে URL তৈরি করুন"
+    "settingsSyncHint": "অন্য ডিভাইসে সেটিংস (API কী সহ) সিঙ্ক করতে URL তৈরি করুন",
+    "general": "সাধারণ",
+    "dataManagement": "ডেটা"
   },
   "shared": {
     "title": "শেয়ারকৃত কথোপকথন",

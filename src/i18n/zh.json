@@ -112,7 +112,9 @@
     "conversations": "对话记录",
     "exportAll": "导出全部",
     "settingsSync": "设置同步",
-    "settingsSyncHint": "生成链接，将设置（含 API 密钥）同步到其他设备"
+    "settingsSyncHint": "生成链接，将设置（含 API 密钥）同步到其他设备",
+    "general": "常规",
+    "dataManagement": "数据"
   },
   "shared": {
     "title": "共享对话",

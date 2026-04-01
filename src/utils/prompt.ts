@@ -4,7 +4,7 @@ import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
 const DIRECTIVE = ' Be direct — state your views immediately, no pleasantries, no filler like "great question", no unnecessary preamble. Stay on topic.';
 
-export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — agree, challenge, or build on their points. Avoid repeating what has already been said.';
+export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — challenge, refine, or explore new angles. Push deeper, raise counterexamples, or connect to broader ideas. Never conclude, summarize, or end the discussion.';
 
 const LANG_NAMES: Record<string, string> = {
   en: 'English', zh: 'Chinese (中文)', 'zh-Hant': 'Traditional Chinese (繁體中文)',

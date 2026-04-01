@@ -46,19 +46,36 @@ const loaders: Record<string, () => Promise<{ default: Record<string, unknown> }
   bn: () => import('./bn.json'),
 };
 
-/** Load a lazy language if not yet loaded. Returns immediately if already available. */
-export async function ensureLanguageLoaded(lng: string): Promise<void> {
-  if (i18n.hasResourceBundle(lng, 'translation')) return;
-  const loader = loaders[lng];
-  if (!loader) return;
-  const mod = await loader();
-  i18n.addResourceBundle(lng, 'translation', mod.default, true, true);
+/** Resolve a language code to the closest supported language (e.g., zh-TW → zh-Hant, zh-CN → zh, en-US → en) */
+export function resolveSupported(lng: string): string {
+  const supported = (i18n.options.supportedLngs || []) as string[];
+  if (supported.includes(lng)) return lng;
+  // Chinese: Traditional (TW/HK/MO/Hant) → zh-Hant, Simplified (CN/SG/Hans) → zh
+  if (lng.startsWith('zh')) {
+    return /Hant|TW|HK|MO/i.test(lng) ? 'zh-Hant' : 'zh';
+  }
+  // Other languages: strip region (en-US → en, pt-BR → pt, ar-SA → ar, etc.)
+  const base = lng.split('-')[0];
+  return supported.find((s) => s === base) || lng;
 }
 
-// Auto-load detected language at startup (if not en/zh)
-const detected = i18n.language;
-if (detected && !i18n.hasResourceBundle(detected, 'translation')) {
-  ensureLanguageLoaded(detected);
+/** Load a lazy language if not yet loaded. Returns immediately if already available. */
+export async function ensureLanguageLoaded(lng: string): Promise<void> {
+  const resolved = resolveSupported(lng);
+  if (i18n.hasResourceBundle(resolved, 'translation')) return;
+  const loader = loaders[resolved];
+  if (!loader) return;
+  const mod = await loader();
+  i18n.addResourceBundle(resolved, 'translation', mod.default, true, true);
+}
+
+// Normalize detected language to closest supported (e.g., zh-CN → zh, en-US → en)
+// i18n.resolvedLanguage is the actual language used for resource lookup
+const resolved = i18n.resolvedLanguage;
+if (resolved && i18n.language !== resolved) {
+  i18n.changeLanguage(resolved);
+} else if (i18n.language && !i18n.hasResourceBundle(i18n.language, 'translation')) {
+  ensureLanguageLoaded(i18n.language);
 }
 
 export default i18n;

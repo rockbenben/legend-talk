@@ -110,9 +110,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
     if (msg.role === 'user') {
       // Re-send the same user message → triggers full roundtable or single chat
       handleSend(msg.content);
+    } else if (!msg.characterId) {
+      // Summary message (no characterId) — re-summarize
+      handleSummarize();
     } else if (isMulti) {
       // Roundtable: continue from this character through remaining rounds
-      roundtable.continueFrom(conversationId, msg.characterId!, rounds);
+      roundtable.continueFrom(conversationId, msg.characterId, rounds);
     } else {
       // Single chat: regenerate just this character response
       singleChat.regenerate(conversationId);

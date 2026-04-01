@@ -32,12 +32,14 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
   const [era, setEra] = useState(character?.era || '');
   const [prompt, setPrompt] = useState(character?.systemPrompt || '');
   const [saved, setSaved] = useState(false);
+  const [savedId, setSavedId] = useState(character?.id || '');
   const isEdit = !!character;
 
   const handleSave = () => {
     const trimmed = name.trim();
     if (!trimmed || !prompt.trim()) return;
-    const id = character?.id || 'custom-' + trimmed.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const id = character?.id || 'custom-' + Date.now().toString(36);
+    setSavedId(id);
 
     const char: CustomCharacter = {
       id, displayName: trimmed, era: era.trim() || undefined, domain: ['custom'], avatar, color, systemPrompt: prompt.trim(),
@@ -65,8 +67,6 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
       onClose();
     }
   };
-
-  const savedId = character?.id || 'custom-' + name.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-end sm:items-center justify-center z-50 sm:p-4" onClick={onClose}>

@@ -156,7 +156,15 @@ function buildRoundtableMessages(
 ): Array<{ role: 'system' | 'user' | 'assistant'; content: string }> {
   const conversation = useConversationStore.getState().getConversation(conversationId)!;
   const isMulti = conversation.characters.length > 1;
-  const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, isMulti ? ROUNDTABLE_SUFFIX : '');
+  let suffix = '';
+  if (isMulti) {
+    const otherNames = conversation.characters
+      .filter((id) => id !== character.id)
+      .map((id) => i18n.t(`characters.${id}.name`))
+      .join(', ');
+    suffix = ROUNDTABLE_SUFFIX + ` Other participants: ${otherNames}.`;
+  }
+  const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, suffix);
 
   const raw: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
     { role: 'system', content: systemPrompt },

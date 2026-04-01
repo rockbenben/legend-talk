@@ -2,7 +2,7 @@ import { useSettingsStore } from '../stores/settings';
 import { useConversationStore } from '../stores/conversations';
 import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
-const DIRECTIVE = ' Be direct — state your views immediately, no pleasantries, no filler like "great question", no unnecessary preamble. Stay on topic.';
+const DIRECTIVE = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
 export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — challenge, refine, or explore new angles. Push deeper, raise counterexamples, or connect to broader ideas. Never conclude, summarize, or end the discussion.';
 

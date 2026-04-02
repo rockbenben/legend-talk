@@ -10,7 +10,7 @@ beforeEach(() => {
 
 describe('getLangInstruction', () => {
   it('returns Chinese instruction for "zh"', () => {
-    expect(getLangInstruction('zh')).toBe(' Always respond in Chinese (中文).');
+    expect(getLangInstruction('zh')).toBe(' Always respond in Simplified Chinese (简体中文).');
   });
 
   it('returns English instruction for "en"', () => {
@@ -19,7 +19,7 @@ describe('getLangInstruction', () => {
 
   it('returns language-specific instruction from i18n for all supported languages', () => {
     const expected: Record<string, string> = {
-      'zh': 'Chinese (中文)',
+      'zh': 'Simplified Chinese (简体中文)',
       'zh-Hant': 'Traditional Chinese (繁體中文)',
       'en': 'English',
       'ja': 'Japanese (日本語)',
@@ -60,7 +60,7 @@ describe('buildSystemPrompt', () => {
 
   it('uses Chinese instruction when lang is "zh"', () => {
     const result = buildSystemPrompt('You are Socrates.', 'zh');
-    expect(result).toBe('You are Socrates.' + directive + ' Always respond in Chinese (中文).');
+    expect(result).toBe('You are Socrates.' + directive + ' Always respond in Simplified Chinese (简体中文).');
   });
 
   it('defaults suffix to empty string', () => {

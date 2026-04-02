@@ -74,7 +74,12 @@
     "characterColor": "Cor",
     "characterPromptPlaceholder": "Descreva como este personagem pensa e responde...",
     "characterEra": "Época",
-    "characterEraPlaceholder": "ex. Contemporâneo, Renascimento"
+    "characterEraPlaceholder": "ex. Contemporâneo, Renascimento",
+    "shareCardZip": "Cartões (ZIP)",
+    "shareCardLong": "Cartão (imagem longa)",
+    "generatingCard": "Gerando...",
+    "cardError": "Falha ao gerar cartão",
+    "cardNetworkError": "Não foi possível conectar à API — o servidor está ativo?"
   },
   "roundtable": {
     "selected": "{{count}} selecionados",
@@ -111,7 +116,9 @@
     "settingsSync": "Sincronizar configurações",
     "settingsSyncHint": "Gerar URL para sincronizar configurações (incluindo chaves API) em outro dispositivo",
     "general": "Geral",
-    "dataManagement": "Dados"
+    "dataManagement": "Dados",
+    "shareCardEndpoint": "API de cartões",
+    "shareCardEndpointHint": "Endpoint da API para gerar cartões. Deixe vazio para ocultar."
   },
   "shared": {
     "title": "Conversa compartilhada",

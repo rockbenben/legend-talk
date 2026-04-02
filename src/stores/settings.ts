@@ -20,6 +20,7 @@ interface SettingsState {
   customBaseUrl: string;
   thinkingLevel: 'off' | 'low' | 'medium' | 'high';
   roundtableRounds: number;
+  shareCardEndpoint: string;
   favoriteCharacters: string[];
   customCharacters: CustomCharacter[];
   setApiKey: (provider: string, key: string) => void;
@@ -32,6 +33,7 @@ interface SettingsState {
   setCustomBaseUrl: (url: string) => void;
   setThinkingLevel: (level: 'off' | 'low' | 'medium' | 'high') => void;
   setRoundtableRounds: (rounds: number) => void;
+  setShareCardEndpoint: (url: string) => void;
   toggleFavorite: (characterId: string) => void;
   clearApiKeys: () => void;
   saveCustomCharacter: (char: CustomCharacter) => void;
@@ -51,6 +53,7 @@ export const useSettingsStore = create<SettingsState>()(
       customBaseUrl: '',
       thinkingLevel: 'off' as const,
       roundtableRounds: 3,
+      shareCardEndpoint: '',
       favoriteCharacters: [],
       customCharacters: [],
       setApiKey: (provider, key) =>
@@ -65,6 +68,7 @@ export const useSettingsStore = create<SettingsState>()(
       setCustomBaseUrl: (customBaseUrl) => set({ customBaseUrl }),
       setThinkingLevel: (thinkingLevel) => set({ thinkingLevel }),
       setRoundtableRounds: (roundtableRounds) => set({ roundtableRounds }),
+      setShareCardEndpoint: (shareCardEndpoint) => set({ shareCardEndpoint }),
       toggleFavorite: (characterId) =>
         set((s) => ({
           favoriteCharacters: s.favoriteCharacters.includes(characterId)

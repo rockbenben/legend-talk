@@ -61,7 +61,7 @@ Clique em **+** em 2-10 cartões. Ou **🎲 Aleatório** para 5 pensadores.
 - **Reiniciar**
 - **Resumir** — resumo IA
 - **Compartilhar**
-- **Exportar** — Markdown ou JSON
+- **Exportar** — Markdown, JSON ou gerar cartões de compartilhamento via [json2card](https://github.com/rockbenben/json2card) (configurar endpoint nas Configurações)
 - **Importar** — restaurar de JSON
 - **Ramificar**
 

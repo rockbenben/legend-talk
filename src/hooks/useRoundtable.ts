@@ -161,7 +161,7 @@ export function useRoundtable() {
  * - Multiple user messages: uses AI to distill the core topic, filtering noise like "continue"
  * - Cached: reuses previous result if no new user messages were added
  */
-const topicCache = new Map<string, { userMsgCount: number; topic: string }>();
+const topicCache = new Map<string, { userMsgCount: number; lang: string; topic: string }>();
 
 async function resolveRoundtableTopic(
   conversationId: string,
@@ -174,11 +174,11 @@ async function resolveRoundtableTopic(
   if (userMsgs.length <= 1) return undefined;
 
   const cached = topicCache.get(conversationId);
-  if (cached && cached.userMsgCount === userMsgs.length) return cached.topic;
+  if (cached && cached.userMsgCount === userMsgs.length && cached.lang === provider.lang) return cached.topic;
 
   try {
     const topic = await distillTopic(userMsgs, provider, signal);
-    topicCache.set(conversationId, { userMsgCount: userMsgs.length, topic });
+    topicCache.set(conversationId, { userMsgCount: userMsgs.length, lang: provider.lang, topic });
     return topic;
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') throw err;

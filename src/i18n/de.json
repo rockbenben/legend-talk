@@ -74,7 +74,12 @@
     "characterColor": "Farbe",
     "characterPromptPlaceholder": "Beschreiben Sie, wie dieser Charakter denkt und antwortet...",
     "characterEra": "Epoche",
-    "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance"
+    "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance",
+    "shareCardZip": "Karten (ZIP)",
+    "shareCardLong": "Karte (Langbild)",
+    "generatingCard": "Wird generiert...",
+    "cardError": "Fehler beim Generieren der Karte",
+    "cardNetworkError": "Keine Verbindung zur API — läuft der Server?"
   },
   "roundtable": {
     "selected": "{{count}} ausgewählt",
@@ -111,7 +116,9 @@
     "settingsSync": "Einstellungen synchronisieren",
     "settingsSyncHint": "URL generieren, um Einstellungen (inkl. API-Schlüssel) auf ein anderes Gerät zu synchronisieren",
     "general": "Allgemein",
-    "dataManagement": "Daten"
+    "dataManagement": "Daten",
+    "shareCardEndpoint": "Karten-API",
+    "shareCardEndpointHint": "API-Endpunkt zum Generieren von Karten. Leer lassen zum Ausblenden."
   },
   "shared": {
     "title": "Geteiltes Gespräch",

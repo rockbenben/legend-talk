@@ -61,7 +61,7 @@ Klik **+** pada 2-10 kartu. Atau **🎲 Acak** untuk 5 pemikir.
 - **Mulai ulang**
 - **Ringkasan** — ringkasan AI
 - **Bagikan**
-- **Ekspor** — Markdown atau JSON
+- **Ekspor** — Markdown, JSON atau buat kartu berbagi via [json2card](https://github.com/rockbenben/json2card) (atur endpoint API di Pengaturan)
 - **Impor**
 - **Cabang**
 

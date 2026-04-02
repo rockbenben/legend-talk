@@ -67,7 +67,7 @@ The home page shows 6 curated roundtable templates — pre-built lineups with th
 - **Restart lineup** — start a fresh conversation with the same characters
 - **Summarize** — one-click AI summary extracting core viewpoints and disagreements
 - **Share chat** — generate a shareable URL containing the full conversation
-- **Export** — save as Markdown or JSON
+- **Export** — save as Markdown or JSON, or generate share cards via [json2card](https://github.com/rockbenben/json2card) (configure API endpoint in Settings)
 - **Import** — restore conversations from a previously exported JSON file (in Settings)
 - **Branch** — fork a new conversation from any message, preserving prior context
 

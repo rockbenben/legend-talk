@@ -74,7 +74,12 @@
     "characterColor": "Renk",
     "characterPromptPlaceholder": "Bu karakterin nasıl düşünüp yanıt verdiğini tanımlayın...",
     "characterEra": "Dönem",
-    "characterEraPlaceholder": "örn. Çağdaş, Rönesans"
+    "characterEraPlaceholder": "örn. Çağdaş, Rönesans",
+    "shareCardZip": "Kartlar (ZIP)",
+    "shareCardLong": "Kart (uzun görsel)",
+    "generatingCard": "Oluşturuluyor...",
+    "cardError": "Kart oluşturulamadı",
+    "cardNetworkError": "API'ye bağlanılamıyor — sunucu çalışıyor mu?"
   },
   "roundtable": {
     "selected": "{{count}} seçili",
@@ -111,7 +116,9 @@
     "settingsSync": "Ayarları senkronize et",
     "settingsSyncHint": "Ayarları (API anahtarları dahil) başka bir cihaza senkronize etmek için URL oluştur",
     "general": "Genel",
-    "dataManagement": "Veri"
+    "dataManagement": "Veri",
+    "shareCardEndpoint": "Kart API",
+    "shareCardEndpointHint": "Kart oluşturmak için API uç noktası. Gizlemek için boş bırakın."
   },
   "shared": {
     "title": "Paylaşılan sohbet",

@@ -74,7 +74,12 @@
     "characterColor": "색상",
     "characterPromptPlaceholder": "이 캐릭터가 어떻게 생각하고 응답하는지 설명...",
     "characterEra": "시대",
-    "characterEraPlaceholder": "예: 현대, 르네상스"
+    "characterEraPlaceholder": "예: 현대, 르네상스",
+    "shareCardZip": "공유 카드 (ZIP)",
+    "shareCardLong": "공유 카드 (긴 이미지)",
+    "generatingCard": "카드 생성 중...",
+    "cardError": "공유 카드 생성 실패",
+    "cardNetworkError": "공유 카드 API에 연결할 수 없습니다 — 서버가 실행 중인가요?"
   },
   "roundtable": {
     "selected": "{{count}}명 선택",
@@ -111,7 +116,9 @@
     "settingsSync": "설정 동기화",
     "settingsSyncHint": "URL을 생성하여 다른 기기에 설정(API 키 포함)을 동기화",
     "general": "일반",
-    "dataManagement": "데이터"
+    "dataManagement": "데이터",
+    "shareCardEndpoint": "공유 카드 API",
+    "shareCardEndpointHint": "공유 카드를 생성하는 API 엔드포인트. 비워두면 기능이 숨겨집니다."
   },
   "shared": {
     "title": "공유된 대화",

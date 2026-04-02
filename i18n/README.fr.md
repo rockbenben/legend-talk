@@ -61,7 +61,7 @@ Cliquez sur **+** sur 2-10 cartes. Ou **🎲 Aléatoire** pour 5 penseurs.
 - **Recommencer**
 - **Résumer** — résumé IA
 - **Partager**
-- **Exporter** — Markdown ou JSON
+- **Exporter** — Markdown, JSON ou générer des cartes de partage via [json2card](https://github.com/rockbenben/json2card) (configurer le point d'accès dans les Paramètres)
 - **Importer** — restaurer depuis JSON
 - **Bifurquer**
 

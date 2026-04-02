@@ -63,7 +63,7 @@ Legend Talk은 다중 라운드 AI 원탁 토론 도구입니다. 2-10명의 역
 - **재시작** — 같은 캐릭터로 새 대화
 - **요약** — AI 요약
 - **공유** — 공유 링크
-- **내보내기** — Markdown 또는 JSON
+- **내보내기** — Markdown, JSON 또는 [json2card](https://github.com/rockbenben/json2card)로 공유 카드 생성 (설정에서 API 엔드포인트 구성)
 - **가져오기** — JSON에서 복원
 - **브랜치** — 모든 메시지에서 새 대화
 

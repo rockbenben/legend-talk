@@ -57,6 +57,11 @@
     "copyLineupLink": "复制阵容链接",
     "copyCategoryLink": "复制分类圆桌链接",
     "linkCopied": "已复制",
+    "shareCardZip": "分享卡片 (ZIP)",
+    "shareCardLong": "分享卡片 (长图)",
+    "generatingCard": "生成中...",
+    "cardError": "生成分享卡片失败",
+    "cardNetworkError": "无法连接分享卡片 API — 服务是否已启动？",
     "shareSettings": "同步设置到其他设备",
     "settingsImported": "设置已导入",
     "enterPassword": "设置一个密码保护密钥（留空则不含密钥）",
@@ -111,7 +116,9 @@
     "settingsSync": "设置同步",
     "settingsSyncHint": "生成链接，将设置（含 API 密钥）同步到其他设备",
     "general": "常规",
-    "dataManagement": "数据"
+    "dataManagement": "数据",
+    "shareCardEndpoint": "分享卡片 API",
+    "shareCardEndpointHint": "生成分享卡片的 API 端点，留空则隐藏该功能"
   },
   "shared": {
     "title": "共享对话",

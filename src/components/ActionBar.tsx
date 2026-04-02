@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLangPath } from '../hooks/useLangPath';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useConversationStore } from '../stores/conversations';
-import { exportAsMarkdown, exportAsJSON, downloadFile } from '../utils/export';
+import { useSettingsStore } from '../stores/settings';
+import { exportAsMarkdown, exportAsJSON, downloadFile, generateShareCard } from '../utils/export';
 import type { Conversation, Character } from '../types';
 
 interface ActionBarProps {
@@ -29,7 +30,11 @@ export function ActionBar({
   const navigate = useNavigate();
   const lp = useLangPath();
   const createConversation = useConversationStore((s) => s.createConversation);
+  const shareCardEndpoint = useSettingsStore((s) => s.shareCardEndpoint);
   const [showExportMenu, setShowExportMenu] = useState(false);
+  const [cardStatus, setCardStatus] = useState<'idle' | 'generating' | 'error' | 'network-error'>('idle');
+  const cardAbortRef = useRef<AbortController | null>(null);
+  const cardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const hasMessages = conversation.messages.length > 0;
 
@@ -45,6 +50,30 @@ export function ActionBar({
   const handleExportJSON = () => {
     const json = exportAsJSON(conversation, charNames, displayTitle);
     downloadFile(json, `${displayTitle}.json`, 'application/json');
+  };
+
+  const handleShareCard = async (mode: 'zip' | 'long') => {
+    if (cardStatus === 'generating') return;
+    if (cardTimerRef.current) { clearTimeout(cardTimerRef.current); cardTimerRef.current = null; }
+    const controller = new AbortController();
+    cardAbortRef.current = controller;
+    setCardStatus('generating');
+    setShowExportMenu(false);
+    try {
+      await generateShareCard(shareCardEndpoint, conversation, charNames, displayTitle, mode, controller.signal);
+      setCardStatus('idle');
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') { setCardStatus('idle'); return; }
+      const isNetwork = err instanceof TypeError;
+      setCardStatus(isNetwork ? 'network-error' : 'error');
+      cardTimerRef.current = setTimeout(() => { setCardStatus('idle'); cardTimerRef.current = null; }, 4000);
+    } finally {
+      cardAbortRef.current = null;
+    }
+  };
+
+  const handleCancelCard = () => {
+    cardAbortRef.current?.abort();
   };
 
   return (
@@ -98,7 +127,7 @@ export function ActionBar({
             {showExportMenu && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setShowExportMenu(false)} />
-                <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[120px] rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
+                <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[120px] whitespace-nowrap rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
                   <button
                     onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
                     className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
@@ -111,10 +140,37 @@ export function ActionBar({
                   >
                     JSON
                   </button>
+                  {shareCardEndpoint && (
+                    <>
+                      <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
+                      <button
+                        onClick={() => handleShareCard('zip')}
+                        disabled={cardStatus === 'generating'}
+                        className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 disabled:opacity-40"
+                      >
+                        {t('chat.shareCardZip')}
+                      </button>
+                      <button
+                        onClick={() => handleShareCard('long')}
+                        disabled={cardStatus === 'generating'}
+                        className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 disabled:opacity-40"
+                      >
+                        {t('chat.shareCardLong')}
+                      </button>
+                    </>
+                  )}
                 </div>
               </>
             )}
           </div>
+          {cardStatus === 'generating' && (
+            <span className="text-xs text-gray-400">
+              {t('chat.generatingCard')}
+              <button onClick={handleCancelCard} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
+            </span>
+          )}
+          {cardStatus === 'network-error' && <span className="text-xs text-red-500">{t('chat.cardNetworkError')}</span>}
+          {cardStatus === 'error' && <span className="text-xs text-red-500">{t('chat.cardError')}</span>}
         </>
       )}
       {isSummarizing && (

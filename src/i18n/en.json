@@ -57,6 +57,11 @@
     "copyLineupLink": "Copy lineup link",
     "copyCategoryLink": "Copy category link",
     "linkCopied": "Copied",
+    "shareCardZip": "Share Cards (ZIP)",
+    "shareCardLong": "Share Card (Long Image)",
+    "generatingCard": "Generating card...",
+    "cardError": "Failed to generate share card",
+    "cardNetworkError": "Cannot connect to share card API — is the server running?",
     "shareSettings": "Sync settings to another device",
     "settingsImported": "Settings imported",
     "enterPassword": "Set a password to protect API keys (leave empty to exclude keys)",
@@ -111,7 +116,9 @@
     "settingsSync": "Settings Sync",
     "settingsSyncHint": "Generate a URL to sync settings (including API keys) to another device",
     "general": "General",
-    "dataManagement": "Data"
+    "dataManagement": "Data",
+    "shareCardEndpoint": "Share Card API",
+    "shareCardEndpointHint": "API endpoint for generating share cards. Leave empty to hide the feature."
   },
   "shared": {
     "title": "Shared Conversation",

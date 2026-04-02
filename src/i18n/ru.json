@@ -74,7 +74,12 @@
     "characterColor": "Цвет",
     "characterPromptPlaceholder": "Опишите, как этот персонаж думает и отвечает...",
     "characterEra": "Эпоха",
-    "characterEraPlaceholder": "напр. Современность, Ренессанс"
+    "characterEraPlaceholder": "напр. Современность, Ренессанс",
+    "shareCardZip": "Карточки (ZIP)",
+    "shareCardLong": "Карточка (длинное изображение)",
+    "generatingCard": "Генерация...",
+    "cardError": "Ошибка генерации карточки",
+    "cardNetworkError": "Не удалось подключиться к API — сервер запущен?"
   },
   "roundtable": {
     "selected": "Выбрано: {{count}}",
@@ -111,7 +116,9 @@
     "settingsSync": "Синхронизация настроек",
     "settingsSyncHint": "Сгенерировать URL для синхронизации настроек (включая API-ключи) на другое устройство",
     "general": "Общие",
-    "dataManagement": "Данные"
+    "dataManagement": "Данные",
+    "shareCardEndpoint": "API карточек",
+    "shareCardEndpointHint": "Адрес API для генерации карточек. Оставьте пустым, чтобы скрыть."
   },
   "shared": {
     "title": "Общий диалог",

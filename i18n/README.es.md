@@ -61,7 +61,7 @@ Haz clic en **+** en 2-10 tarjetas. O **🎲 Aleatorio** para 5 pensadores al az
 - **Reiniciar** — nueva conversación, mismos personajes
 - **Resumir** — resumen IA
 - **Compartir** — enlace compartible
-- **Exportar** — Markdown o JSON
+- **Exportar** — Markdown, JSON o generar tarjetas compartibles con [json2card](https://github.com/rockbenben/json2card) (configurar endpoint en Ajustes)
 - **Importar** — restaurar desde JSON
 - **Bifurcar** — nueva conversación desde cualquier mensaje
 

@@ -74,7 +74,12 @@
     "characterColor": "Warna",
     "characterPromptPlaceholder": "Jelaskan bagaimana karakter ini berpikir dan merespons...",
     "characterEra": "Era",
-    "characterEraPlaceholder": "mis. Kontemporer, Renaisans"
+    "characterEraPlaceholder": "mis. Kontemporer, Renaisans",
+    "shareCardZip": "Kartu Berbagi (ZIP)",
+    "shareCardLong": "Kartu Berbagi (gambar panjang)",
+    "generatingCard": "Membuat...",
+    "cardError": "Gagal membuat kartu",
+    "cardNetworkError": "Tidak dapat terhubung ke API — apakah server berjalan?"
   },
   "roundtable": {
     "selected": "{{count}} dipilih",
@@ -111,7 +116,9 @@
     "settingsSync": "Sinkronisasi pengaturan",
     "settingsSyncHint": "Buat URL untuk menyinkronkan pengaturan (termasuk kunci API) ke perangkat lain",
     "general": "Umum",
-    "dataManagement": "Data"
+    "dataManagement": "Data",
+    "shareCardEndpoint": "API Kartu Berbagi",
+    "shareCardEndpointHint": "Endpoint API untuk membuat kartu berbagi. Kosongkan untuk menyembunyikan."
   },
   "shared": {
     "title": "Obrolan bersama",

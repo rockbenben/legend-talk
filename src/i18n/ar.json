@@ -74,7 +74,12 @@
     "characterColor": "اللون",
     "characterPromptPlaceholder": "صف كيف تفكر هذه الشخصية وتستجيب...",
     "characterEra": "العصر",
-    "characterEraPlaceholder": "مثال: معاصر، عصر النهضة"
+    "characterEraPlaceholder": "مثال: معاصر، عصر النهضة",
+    "shareCardZip": "بطاقات (ZIP)",
+    "shareCardLong": "بطاقة (صورة طويلة)",
+    "generatingCard": "جارٍ الإنشاء...",
+    "cardError": "فشل في إنشاء البطاقة",
+    "cardNetworkError": "تعذر الاتصال بـ API — هل الخادم يعمل؟"
   },
   "roundtable": {
     "selected": "{{count}} مختار",
@@ -111,7 +116,9 @@
     "settingsSync": "مزامنة الإعدادات",
     "settingsSyncHint": "إنشاء رابط لمزامنة الإعدادات (بما في ذلك مفاتيح API) إلى جهاز آخر",
     "general": "عام",
-    "dataManagement": "البيانات"
+    "dataManagement": "البيانات",
+    "shareCardEndpoint": "API البطاقات",
+    "shareCardEndpointHint": "نقطة نهاية API لإنشاء البطاقات. اتركه فارغاً للإخفاء."
   },
   "shared": {
     "title": "محادثة مشتركة",

@@ -61,7 +61,7 @@ Klicken Sie auf **+** bei 2-10 Karten. Oder **🎲 Zufällig** für 5 Denker.
 - **Neustart**
 - **Zusammenfassen** — KI-Zusammenfassung
 - **Teilen**
-- **Exportieren** — Markdown oder JSON
+- **Exportieren** — Markdown, JSON oder Karten über [json2card](https://github.com/rockbenben/json2card) generieren (API-Endpunkt in den Einstellungen konfigurieren)
 - **Importieren** — aus JSON wiederherstellen
 - **Verzweigen**
 

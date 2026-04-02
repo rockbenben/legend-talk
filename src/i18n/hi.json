@@ -74,7 +74,12 @@
     "characterColor": "रंग",
     "characterPromptPlaceholder": "बताएं कि यह चरित्र कैसे सोचता और जवाब देता है...",
     "characterEra": "काल",
-    "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण"
+    "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण",
+    "shareCardZip": "शेयर कार्ड (ZIP)",
+    "shareCardLong": "शेयर कार्ड (लंबी छवि)",
+    "generatingCard": "कार्ड बनाया जा रहा है...",
+    "cardError": "शेयर कार्ड बनाने में विफल",
+    "cardNetworkError": "API से कनेक्ट नहीं हो पा रहा — क्या सर्वर चल रहा है?"
   },
   "roundtable": {
     "selected": "{{count}} चयनित",
@@ -111,7 +116,9 @@
     "settingsSync": "सेटिंग्स सिंक",
     "settingsSyncHint": "सेटिंग्स (API कुंजियों सहित) को दूसरे डिवाइस पर सिंक करने के लिए URL बनाएं",
     "general": "सामान्य",
-    "dataManagement": "डेटा"
+    "dataManagement": "डेटा",
+    "shareCardEndpoint": "शेयर कार्ड API",
+    "shareCardEndpointHint": "शेयर कार्ड बनाने के लिए API एंडपॉइंट। खाली छोड़ें तो छिपा रहेगा।"
   },
   "shared": {
     "title": "साझा बातचीत",

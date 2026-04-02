@@ -74,7 +74,12 @@
     "characterColor": "রং",
     "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন...",
     "characterEra": "যুগ",
-    "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ"
+    "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ",
+    "shareCardZip": "শেয়ার কার্ড (ZIP)",
+    "shareCardLong": "শেয়ার কার্ড (লম্বা ছবি)",
+    "generatingCard": "তৈরি হচ্ছে...",
+    "cardError": "শেয়ার কার্ড তৈরি ব্যর্থ",
+    "cardNetworkError": "API-তে সংযোগ করা যাচ্ছে না — সার্ভার চলছে কি?"
   },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",
@@ -111,7 +116,9 @@
     "settingsSync": "সেটিংস সিঙ্ক",
     "settingsSyncHint": "অন্য ডিভাইসে সেটিংস (API কী সহ) সিঙ্ক করতে URL তৈরি করুন",
     "general": "সাধারণ",
-    "dataManagement": "ডেটা"
+    "dataManagement": "ডেটা",
+    "shareCardEndpoint": "শেয়ার কার্ড API",
+    "shareCardEndpointHint": "শেয়ার কার্ড তৈরির API এন্ডপয়েন্ট। খালি রাখলে লুকানো থাকবে।"
   },
   "shared": {
     "title": "শেয়ারকৃত কথোপকথন",

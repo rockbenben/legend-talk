@@ -61,7 +61,7 @@ Herhangi bir karakter kartındaki **Sohbet** düğmesine tıklayın.
 - **Yeniden başlat**
 - **Özetle** — AI özeti
 - **Paylaş**
-- **Dışa aktar** — Markdown veya JSON
+- **Dışa aktar** — Markdown, JSON veya [json2card](https://github.com/rockbenben/json2card) ile paylaşım kartı oluştur (Ayarlar'da API uç noktasını yapılandırın)
 - **İçe aktar**
 - **Dallandır**
 

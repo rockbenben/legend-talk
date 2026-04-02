@@ -74,7 +74,12 @@
     "characterColor": "Màu",
     "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi...",
     "characterEra": "Thời đại",
-    "characterEraPlaceholder": "VD: Đương đại, Phục hưng"
+    "characterEraPlaceholder": "VD: Đương đại, Phục hưng",
+    "shareCardZip": "Thẻ chia sẻ (ZIP)",
+    "shareCardLong": "Thẻ chia sẻ (ảnh dài)",
+    "generatingCard": "Đang tạo...",
+    "cardError": "Tạo thẻ chia sẻ thất bại",
+    "cardNetworkError": "Không thể kết nối API — máy chủ đang chạy chưa?"
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",
@@ -111,7 +116,9 @@
     "settingsSync": "Đồng bộ cài đặt",
     "settingsSyncHint": "Tạo URL để đồng bộ cài đặt (bao gồm khóa API) sang thiết bị khác",
     "general": "Chung",
-    "dataManagement": "Dữ liệu"
+    "dataManagement": "Dữ liệu",
+    "shareCardEndpoint": "API thẻ chia sẻ",
+    "shareCardEndpointHint": "Endpoint API để tạo thẻ chia sẻ. Để trống để ẩn tính năng."
   },
   "shared": {
     "title": "Cuộc trò chuyện được chia sẻ",

@@ -59,10 +59,51 @@ export function importFromJSON(json: string): Conversation {
 
 export function downloadFile(content: string, filename: string, mimeType: string) {
   const blob = new Blob([content], { type: mimeType });
+  downloadBlob(blob, filename);
+}
+
+function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+/**
+ * Generate share card via external API.
+ * mode 'zip' → POST /api/generate → downloads .zip
+ * mode 'long' → POST /api/generate-long → downloads .png
+ */
+export async function generateShareCard(
+  endpoint: string,
+  conversation: Conversation,
+  characterNames: Record<string, string>,
+  displayTitle: string,
+  mode: 'zip' | 'long',
+  signal?: AbortSignal,
+): Promise<void> {
+  const messages = conversation.messages.map((msg) => [
+    resolveName(msg, characterNames),
+    msg.content,
+  ]);
+
+  const apiPath = mode === 'zip' ? '/api/generate' : '/api/generate-long';
+  let base = endpoint.replace(/\/+$/, '');
+  if (base && !/^https?:\/\//i.test(base)) base = (base.includes('localhost') || base.includes('127.0.0.1') ? 'http://' : 'https://') + base;
+  const url = base + apiPath;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: { title: displayTitle, messages }, config: {} }),
+    signal,
+  });
+
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+  const blob = await response.blob();
+  const ext = mode === 'zip' ? 'zip' : 'png';
+  downloadBlob(blob, `${displayTitle}.${ext}`);
 }

@@ -74,7 +74,12 @@
     "characterColor": "色",
     "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述...",
     "characterEra": "時代",
-    "characterEraPlaceholder": "例: 現代、ルネサンス"
+    "characterEraPlaceholder": "例: 現代、ルネサンス",
+    "shareCardZip": "シェアカード (ZIP)",
+    "shareCardLong": "シェアカード (長画像)",
+    "generatingCard": "カード生成中...",
+    "cardError": "シェアカードの生成に失敗しました",
+    "cardNetworkError": "シェアカードAPIに接続できません — サーバーは起動していますか？"
   },
   "roundtable": {
     "selected": "{{count}}人選択",
@@ -111,7 +116,9 @@
     "settingsSync": "設定の同期",
     "settingsSyncHint": "URLを生成して他のデバイスに設定（APIキー含む）を同期",
     "general": "一般",
-    "dataManagement": "データ"
+    "dataManagement": "データ",
+    "shareCardEndpoint": "シェアカード API",
+    "shareCardEndpointHint": "シェアカードを生成するAPIエンドポイント。空欄で機能を非表示にします。"
   },
   "shared": {
     "title": "共有された対話",

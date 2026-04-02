@@ -49,6 +49,7 @@ export function SettingsView() {
     if (typeof config.roundtableRounds === 'number' && config.roundtableRounds >= 1) s.setRoundtableRounds(config.roundtableRounds);
     if (typeof config.corsProxy === 'string') s.setCorsProxy(config.corsProxy);
     if (typeof config.customBaseUrl === 'string') s.setCustomBaseUrl(config.customBaseUrl);
+    if (typeof config.shareCardEndpoint === 'string') s.setShareCardEndpoint(config.shareCardEndpoint);
     if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
     if (Array.isArray(config.customCharacters)) {
       for (const c of config.customCharacters as CustomCharacter[]) {
@@ -102,6 +103,7 @@ export function SettingsView() {
       corsProxy: settings.corsProxy,
       corsEnabled: settings.corsEnabled,
       customBaseUrl: settings.customBaseUrl,
+      shareCardEndpoint: settings.shareCardEndpoint,
       thinkingLevel: settings.thinkingLevel,
       roundtableRounds: settings.roundtableRounds,
       customCharacters: settings.customCharacters.length > 0 ? settings.customCharacters : undefined,
@@ -254,6 +256,14 @@ export function SettingsView() {
               <option value="dark">{t('settings.themeDark')}</option>
             </select>
           </div>
+        </div>
+        <div className="mt-4">
+          <div className="flex items-center gap-2 mb-1">
+            <label className={labelClass}>{t('settings.shareCardEndpoint')}</label>
+            <a href="https://github.com/rockbenben/json2card" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">json2card ↗</a>
+          </div>
+          <p className="text-xs text-gray-400 mb-1">{t('settings.shareCardEndpointHint')}</p>
+          <input type="text" value={settings.shareCardEndpoint} onChange={(e) => settings.setShareCardEndpoint(e.target.value)} placeholder="http://localhost:3000" className={inputClass} />
         </div>
       </section>
 

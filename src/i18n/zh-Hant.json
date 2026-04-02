@@ -74,7 +74,12 @@
     "characterColor": "顏色",
     "characterPromptPlaceholder": "描述這個角色如何思考和回應...",
     "characterEra": "時代",
-    "characterEraPlaceholder": "如 當代、文藝復興"
+    "characterEraPlaceholder": "如 當代、文藝復興",
+    "shareCardZip": "分享卡片 (ZIP)",
+    "shareCardLong": "分享卡片 (長圖)",
+    "generatingCard": "生成中...",
+    "cardError": "生成分享卡片失敗",
+    "cardNetworkError": "無法連線分享卡片 API — 服務是否已啟動？"
   },
   "roundtable": {
     "selected": "已選 {{count}} 位",
@@ -111,7 +116,9 @@
     "settingsSync": "設定同步",
     "settingsSyncHint": "生成連結，將設定（含 API 金鑰）同步到其他裝置",
     "general": "一般",
-    "dataManagement": "資料"
+    "dataManagement": "資料",
+    "shareCardEndpoint": "分享卡片 API",
+    "shareCardEndpointHint": "生成分享卡片的 API 端點，留空則隱藏該功能"
   },
   "shared": {
     "title": "共享對話",

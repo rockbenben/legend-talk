@@ -61,7 +61,7 @@ Clicca su **+** su 2-10 carte. O **🎲 Casuale** per 5 pensatori.
 - **Ricomincia**
 - **Riassumi**
 - **Condividi**
-- **Esporta** — Markdown o JSON
+- **Esporta** — Markdown, JSON o genera schede di condivisione tramite [json2card](https://github.com/rockbenben/json2card) (configura l'endpoint nelle Impostazioni)
 - **Importa**
 - **Biforca**
 

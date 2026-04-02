@@ -74,7 +74,12 @@
     "characterColor": "Couleur",
     "characterPromptPlaceholder": "Décrivez comment ce personnage pense et répond...",
     "characterEra": "Époque",
-    "characterEraPlaceholder": "ex. Contemporain, Renaissance"
+    "characterEraPlaceholder": "ex. Contemporain, Renaissance",
+    "shareCardZip": "Cartes (ZIP)",
+    "shareCardLong": "Carte (image longue)",
+    "generatingCard": "Génération...",
+    "cardError": "Échec de la génération",
+    "cardNetworkError": "Impossible de se connecter à l'API — le serveur est-il en marche ?"
   },
   "roundtable": {
     "selected": "{{count}} sélectionnés",
@@ -111,7 +116,9 @@
     "settingsSync": "Synchroniser les paramètres",
     "settingsSyncHint": "Générer une URL pour synchroniser les paramètres (y compris les clés API) vers un autre appareil",
     "general": "Général",
-    "dataManagement": "Données"
+    "dataManagement": "Données",
+    "shareCardEndpoint": "API de cartes",
+    "shareCardEndpointHint": "Point d'accès API pour générer des cartes. Laisser vide pour masquer."
   },
   "shared": {
     "title": "Conversation partagée",

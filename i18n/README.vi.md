@@ -61,7 +61,7 @@ Nhấn **+** trên 2-10 thẻ. Hoặc **🎲 Ngẫu nhiên** để chọn 5 ngư
 - **Bắt đầu lại**
 - **Tóm tắt** — tóm tắt AI
 - **Chia sẻ**
-- **Xuất** — Markdown hoặc JSON
+- **Xuất** — Markdown, JSON hoặc tạo thẻ chia sẻ qua [json2card](https://github.com/rockbenben/json2card) (cấu hình endpoint API trong Cài đặt)
 - **Nhập**
 - **Nhánh**
 

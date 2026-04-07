@@ -29,7 +29,10 @@
       "history": "التاريخ",
       "sociology": "علم الاجتماع",
       "custom": "مخصص"
-    }
+    },
+    "topicPlaceholder": "أدخل موضوعًا — الذكاء الاصطناعي يختار أفضل العقول...",
+    "autoRoundtable": "ابدأ",
+    "suggesting": "جارٍ الاختيار..."
   },
   "chat": {
     "inputPlaceholder": "...اكتب سؤالك",

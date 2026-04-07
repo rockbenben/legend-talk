@@ -29,7 +29,10 @@
       "history": "Geschichte",
       "sociology": "Soziologie",
       "custom": "Eigene"
-    }
+    },
+    "topicPlaceholder": "Thema eingeben — KI wählt die besten Denker...",
+    "autoRoundtable": "Starten",
+    "suggesting": "Auswahl..."
   },
   "chat": {
     "inputPlaceholder": "Frage eingeben...",

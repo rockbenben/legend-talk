@@ -10,6 +10,7 @@ import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
+import { resolveProvider } from '../utils/prompt';
 import type { Character } from '../types';
 
 const MAX_PARTICIPANTS = 10;
@@ -69,6 +70,18 @@ export function ChatPage() {
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [topicInput, setTopicInput] = useState('');
+
+  const handleAutoRoundtable = () => {
+    const topic = topicInput.trim();
+    if (!topic) return;
+    if (!resolveProvider()) { navigate(lp('/settings')); return; }
+    // Create conversation with empty characters — ChatView handles summoning
+    const convId = createConversation('roundtable', [], topic);
+    sessionStorage.setItem('legend-talk-auto-topic', JSON.stringify({ convId, topic }));
+    setTopicInput('');
+    navigate(lp(`/chat/${convId}`));
+  };
 
   const handleStartChat = (character: Character) => {
     const exists = presetCharacters.find((c) => c.id === character.id);
@@ -119,6 +132,25 @@ export function ChatPage() {
                 </button>
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
+              <form
+                onSubmit={(e) => { e.preventDefault(); handleAutoRoundtable(); }}
+                className="mb-6 flex gap-2"
+              >
+                <input
+                  type="text"
+                  value={topicInput}
+                  onChange={(e) => setTopicInput(e.target.value)}
+                  placeholder={t('home.topicPlaceholder')}
+                  className="flex-1 min-w-0 px-4 py-3 sm:py-2.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:border-blue-400"
+                />
+                <button
+                  type="submit"
+                  disabled={!topicInput.trim()}
+                  className="px-4 py-3 sm:py-2.5 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600 shrink-0 whitespace-nowrap"
+                >
+                  {t('home.autoRoundtable')}
+                </button>
+              </form>
               <div className="mb-6">
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">{t('home.templates')}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">

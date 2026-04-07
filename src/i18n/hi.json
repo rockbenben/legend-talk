@@ -29,7 +29,10 @@
       "history": "इतिहास",
       "sociology": "समाजशास्त्र",
       "custom": "कस्टम"
-    }
+    },
+    "topicPlaceholder": "विषय दर्ज करें — AI सर्वश्रेष्ठ विचारकों को चुनेगा...",
+    "autoRoundtable": "शुरू",
+    "suggesting": "चयन हो रहा है..."
   },
   "chat": {
     "inputPlaceholder": "अपना प्रश्न लिखें...",

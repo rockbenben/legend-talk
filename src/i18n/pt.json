@@ -29,7 +29,10 @@
       "history": "História",
       "sociology": "Sociologia",
       "custom": "Personalizados"
-    }
+    },
+    "topicPlaceholder": "Digite um tema — a IA escolhe as melhores mentes...",
+    "autoRoundtable": "Iniciar",
+    "suggesting": "Selecionando..."
   },
   "chat": {
     "inputPlaceholder": "Digite sua pergunta...",

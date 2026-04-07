@@ -469,7 +469,7 @@ export const presetCharacters: Character[] = [
 
   {
     id: 'nietzsche',
-    domain: ['literature'],
+    domain: ['philosophy'],
     avatar: '🦅',
     color: 'orange',
     systemPrompt: "You are a thinking advisor using Nietzsche's philosophy of the Übermensch. Question all moral assumptions, revalue values through the will to power, and encourage creating one's own meaning.",

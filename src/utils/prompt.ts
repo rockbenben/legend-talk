@@ -100,6 +100,50 @@ export function resolveProvider() {
 }
 
 /**
+ * Suggest 3-5 characters for a roundtable on the given topic.
+ * Returns an array of character IDs from presetCharacters.
+ */
+export async function suggestCharacters(
+  topic: string,
+  provider: NonNullable<ReturnType<typeof resolveProvider>>,
+  allChars: Array<{ id: string; domain: string }>,
+  signal?: AbortSignal,
+): Promise<string[]> {
+  const charList = allChars.map((c) => `${c.id} [${c.domain}]`).join(', ');
+  const validIds = new Set(allChars.map((c) => c.id));
+  const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
+    {
+      role: 'system',
+      content: `You select 3-5 participants for a roundtable discussion. Each candidate is listed as "id [domain]". Pick characters whose viewpoints create productive tension — not simple pro/con, but a network of distinct angles. Include at least one unexpected perspective from outside the topic's obvious domain. Return ONLY a JSON array of character IDs, e.g. ["socrates","elon-musk","taleb"]. No explanation.`,
+    },
+    {
+      role: 'user',
+      content: `Topic: ${topic}\n\nAvailable participants:\n${charList}`,
+    },
+  ];
+
+  let result = '';
+  for await (const token of provider.adapter.chat({
+    messages,
+    model: provider.model,
+    apiKey: provider.apiKey,
+    corsProxy: provider.corsProxy,
+    signal,
+  })) {
+    result += token;
+  }
+
+  const match = result.match(/\[[\s\S]*?\]/);
+  if (!match) return [];
+  try {
+    const ids = JSON.parse(match[0]) as string[];
+    return ids.filter((id) => validIds.has(id)).slice(0, 5);
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Stream a response from the LLM and write tokens into a conversation message.
  */
 export async function streamResponse(

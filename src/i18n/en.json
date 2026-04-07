@@ -10,6 +10,9 @@
     "search": "Search or type any name...",
     "startChat": "Chat",
     "randomRoundtable": "Random",
+    "topicPlaceholder": "Enter a topic — AI picks the best minds for it...",
+    "autoRoundtable": "Start",
+    "suggesting": "Picking minds...",
     "templates": "Featured",
     "categories": {
       "all": "All",

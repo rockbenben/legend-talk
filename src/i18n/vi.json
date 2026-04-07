@@ -29,7 +29,10 @@
       "history": "Lịch sử",
       "sociology": "Xã hội học",
       "custom": "Tùy chỉnh"
-    }
+    },
+    "topicPlaceholder": "Nhập chủ đề — AI chọn những bộ óc phù hợp nhất...",
+    "autoRoundtable": "Bắt đầu",
+    "suggesting": "Đang chọn..."
   },
   "chat": {
     "inputPlaceholder": "Nhập câu hỏi của bạn...",

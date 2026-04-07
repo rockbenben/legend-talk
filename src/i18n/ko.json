@@ -29,7 +29,10 @@
       "history": "역사",
       "sociology": "사회학",
       "custom": "커스텀"
-    }
+    },
+    "topicPlaceholder": "주제를 입력하세요 — AI가 최적의 사상가를 선택합니다...",
+    "autoRoundtable": "시작",
+    "suggesting": "선택 중..."
   },
   "chat": {
     "inputPlaceholder": "질문을 입력하세요...",

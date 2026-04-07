@@ -29,7 +29,10 @@
       "history": "ইতিহাস",
       "sociology": "সমাজবিজ্ঞান",
       "custom": "কাস্টম"
-    }
+    },
+    "topicPlaceholder": "বিষয় লিখুন — AI সেরা চিন্তাবিদদের বেছে নেবে...",
+    "autoRoundtable": "শুরু",
+    "suggesting": "নির্বাচন করা হচ্ছে..."
   },
   "chat": {
     "inputPlaceholder": "আপনার প্রশ্ন লিখুন...",

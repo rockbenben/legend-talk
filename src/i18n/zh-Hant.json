@@ -29,7 +29,10 @@
       "history": "歷史",
       "sociology": "社會學",
       "custom": "自訂"
-    }
+    },
+    "topicPlaceholder": "輸入話題，AI 自動召喚最合適的思想家...",
+    "autoRoundtable": "開始",
+    "suggesting": "正在召喚..."
   },
   "chat": {
     "inputPlaceholder": "輸入你的問題...",

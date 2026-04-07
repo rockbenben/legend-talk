@@ -29,7 +29,10 @@
       "history": "Tarih",
       "sociology": "Sosyoloji",
       "custom": "Özel"
-    }
+    },
+    "topicPlaceholder": "Bir konu girin — yapay zeka en iyi düşünürleri seçer...",
+    "autoRoundtable": "Başlat",
+    "suggesting": "Seçiliyor..."
   },
   "chat": {
     "inputPlaceholder": "Sorunuzu yazın...",

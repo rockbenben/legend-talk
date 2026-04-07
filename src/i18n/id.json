@@ -29,7 +29,10 @@
       "history": "Sejarah",
       "sociology": "Sosiologi",
       "custom": "Kustom"
-    }
+    },
+    "topicPlaceholder": "Masukkan topik — AI memilih pemikir terbaik...",
+    "autoRoundtable": "Mulai",
+    "suggesting": "Memilih..."
   },
   "chat": {
     "inputPlaceholder": "Ketik pertanyaan Anda...",

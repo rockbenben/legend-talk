@@ -29,7 +29,10 @@
       "history": "歴史",
       "sociology": "社会学",
       "custom": "カスタム"
-    }
+    },
+    "topicPlaceholder": "トピックを入力 — AIが最適な思想家を選びます...",
+    "autoRoundtable": "開始",
+    "suggesting": "選出中..."
   },
   "chat": {
     "inputPlaceholder": "質問を入力...",

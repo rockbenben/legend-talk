@@ -10,6 +10,9 @@
     "search": "搜索或输入任意名人...",
     "startChat": "开始对话",
     "randomRoundtable": "随机圆桌",
+    "topicPlaceholder": "输入话题，AI 自动召唤最合适的思想家...",
+    "autoRoundtable": "开始",
+    "suggesting": "正在召唤...",
     "templates": "推荐圆桌",
     "categories": {
       "all": "全部",

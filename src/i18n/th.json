@@ -29,7 +29,10 @@
       "history": "ประวัติศาสตร์",
       "sociology": "สังคมวิทยา",
       "custom": "กำหนดเอง"
-    }
+    },
+    "topicPlaceholder": "ป้อนหัวข้อ — AI เลือกนักคิดที่เหมาะที่สุด...",
+    "autoRoundtable": "เริ่ม",
+    "suggesting": "กำลังเลือก..."
   },
   "chat": {
     "inputPlaceholder": "พิมพ์คำถามของคุณ...",

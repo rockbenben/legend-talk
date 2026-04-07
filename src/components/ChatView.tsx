@@ -8,7 +8,7 @@ import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
-import { getLangInstruction, resolveProvider, streamResponse } from '../utils/prompt';
+import { getLangInstruction, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
 import { compressToBase64 } from '../utils/compress';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
@@ -66,6 +66,35 @@ export function ChatView({ conversationId }: ChatViewProps) {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [conversation?.messages]);
+
+  // Auto-summon characters and start discussion from topic input
+  const [isSummoning, setIsSummoning] = useState(false);
+  const summonRef = useRef(false);
+  useEffect(() => {
+    if (summonRef.current) return;
+    try {
+      const raw = sessionStorage.getItem('legend-talk-auto-topic');
+      if (!raw) return;
+      const { convId, topic } = JSON.parse(raw) as { convId: string; topic: string };
+      if (convId !== conversationId) return;
+      sessionStorage.removeItem('legend-talk-auto-topic');
+      summonRef.current = true;
+
+      const provider = resolveProvider();
+      if (!provider) return;
+
+      setIsSummoning(true);
+      const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
+      suggestCharacters(topic, provider, allChars)
+        .then((charIds) => {
+          if (charIds.length < 2) return;
+          useConversationStore.getState().updateCharacters(conversationId, charIds);
+          setIsSummoning(false);
+          roundtable.sendMessage(conversationId, topic, rounds);
+        })
+        .catch(() => setIsSummoning(false));
+    } catch { /* ignore */ }
+  }, [conversationId]);
 
   if (!conversation) return null;
 
@@ -205,7 +234,17 @@ export function ChatView({ conversationId }: ChatViewProps) {
     ? presetCharacters.find((c) => c.id === roundtable.currentSpeaker) : null;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden relative">
+      {isSummoning && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-auto">
+          <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-white/90 dark:bg-gray-800/90 shadow-lg border border-gray-200 dark:border-gray-700">
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            <span className="text-sm text-gray-500 dark:text-gray-400 ms-1">{t('home.suggesting')}</span>
+          </div>
+        </div>
+      )}
       {/* Title bar */}
       <div className="flex flex-wrap items-center gap-2 px-2 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
         {editingTitle ? (

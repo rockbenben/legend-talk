@@ -29,7 +29,10 @@
       "history": "История",
       "sociology": "Социология",
       "custom": "Свои"
-    }
+    },
+    "topicPlaceholder": "Введите тему — ИИ подберёт лучших мыслителей...",
+    "autoRoundtable": "Начать",
+    "suggesting": "Подбираем..."
   },
   "chat": {
     "inputPlaceholder": "Введите ваш вопрос...",

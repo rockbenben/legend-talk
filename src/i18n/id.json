@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Bicara dengan Pemikir Besar",
-    "subtitle": "Klik \"Obrolan\" untuk konsultasi 1-1, atau \"+\" untuk meja bundar",
+    "subtitle": "Masukkan topik untuk meja bundar AI, atau pilih karakter secara manual",
     "search": "Cari atau ketik nama...",
     "startChat": "Obrolan",
     "randomRoundtable": "Acak",
@@ -95,7 +95,9 @@
     "roundProgress": "Ronde {{current}}/{{total}} — {{name}} sedang berbicara...",
     "discussionComplete": "Diskusi selesai",
     "continue": "+{{count}} ronde lagi",
-    "removeParticipant": "Hapus"
+    "removeParticipant": "Hapus",
+    "addToRoundtable": "Tambah ke meja",
+    "removeFromRoundtable": "Hapus dari meja"
   },
   "settings": {
     "title": "Pengaturan",

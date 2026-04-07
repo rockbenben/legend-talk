@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Trò chuyện với Bậc Thầy Tư Tưởng",
-    "subtitle": "Nhấn \"Chat\" để tư vấn 1-1, hoặc \"+\" để lập bàn tròn",
+    "subtitle": "Nhập chủ đề cho bàn tròn AI, hoặc chọn nhân vật thủ công",
     "search": "Tìm hoặc nhập tên...",
     "startChat": "Chat",
     "randomRoundtable": "Ngẫu nhiên",
@@ -95,7 +95,9 @@
     "roundProgress": "Vòng {{current}}/{{total}} — {{name}} đang phát biểu...",
     "discussionComplete": "Thảo luận hoàn tất",
     "continue": "+{{count}} vòng nữa",
-    "removeParticipant": "Xóa"
+    "removeParticipant": "Xóa",
+    "addToRoundtable": "Thêm vào bàn tròn",
+    "removeFromRoundtable": "Bỏ khỏi bàn tròn"
   },
   "settings": {
     "title": "Cài đặt",

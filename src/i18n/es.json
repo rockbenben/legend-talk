@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Habla con Grandes Mentes",
-    "subtitle": "Haz clic en \"Chat\" para consultar 1 a 1, o en \"+\" para formar una mesa redonda",
+    "subtitle": "Ingresa un tema para mesa redonda con IA, o elige personajes manualmente",
     "search": "Buscar o escribir un nombre...",
     "startChat": "Chat",
     "randomRoundtable": "Aleatorio",
@@ -95,7 +95,9 @@
     "roundProgress": "Ronda {{current}}/{{total}} — {{name}} está hablando...",
     "discussionComplete": "Discusión completa",
     "continue": "+{{count}} rondas más",
-    "removeParticipant": "Eliminar"
+    "removeParticipant": "Eliminar",
+    "addToRoundtable": "Añadir a la mesa",
+    "removeFromRoundtable": "Quitar de la mesa"
   },
   "settings": {
     "title": "Configuración",

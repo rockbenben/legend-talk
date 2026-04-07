@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "মহান চিন্তাবিদদের সাথে কথা বলুন",
-    "subtitle": "\"চ্যাট\" ক্লিক করুন ১-১ পরামর্শের জন্য, বা \"+\" গোলটেবিল তৈরি করতে",
+    "subtitle": "AI গোলটেবিলের জন্য বিষয় লিখুন, অথবা নিজে চরিত্র নির্বাচন করুন",
     "search": "নাম খুঁজুন বা টাইপ করুন...",
     "startChat": "চ্যাট",
     "randomRoundtable": "র‍্যান্ডম",
@@ -95,7 +95,9 @@
     "roundProgress": "রাউন্ড {{current}}/{{total}} — {{name}} কথা বলছেন...",
     "discussionComplete": "আলোচনা সম্পন্ন",
     "continue": "+{{count}} রাউন্ড",
-    "removeParticipant": "সরান"
+    "removeParticipant": "সরান",
+    "addToRoundtable": "গোলটেবিলে যোগ করুন",
+    "removeFromRoundtable": "গোলটেবিল থেকে সরান"
   },
   "settings": {
     "title": "সেটিংস",

@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "تحدث مع العقول العظيمة",
-    "subtitle": "انقر على \"محادثة\" للاستشارة الفردية، أو \"+\" لتشكيل طاولة مستديرة",
+    "subtitle": "أدخل موضوعًا لطاولة مستديرة بالذكاء الاصطناعي، أو اختر الشخصيات يدويًا",
     "search": "ابحث أو اكتب اسماً...",
     "startChat": "محادثة",
     "randomRoundtable": "عشوائي",
@@ -95,7 +95,9 @@
     "roundProgress": "الجولة {{current}}/{{total}} — {{name}} يتحدث...",
     "discussionComplete": "اكتمل النقاش",
     "continue": "+{{count}} جولات إضافية",
-    "removeParticipant": "إزالة"
+    "removeParticipant": "إزالة",
+    "addToRoundtable": "إضافة للطاولة",
+    "removeFromRoundtable": "إزالة من الطاولة"
   },
   "settings": {
     "title": "الإعدادات",

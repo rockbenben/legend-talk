@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "महान विचारकों से बात करें",
-    "subtitle": "1-1 परामर्श के लिए \"चैट\" पर क्लिक करें, या \"+\" से गोलमेज बनाएं",
+    "subtitle": "AI गोलमेज के लिए विषय दर्ज करें, या मैन्युअल रूप से किरदार चुनें",
     "search": "नाम खोजें या टाइप करें...",
     "startChat": "चैट",
     "randomRoundtable": "यादृच्छिक",
@@ -95,7 +95,9 @@
     "roundProgress": "राउंड {{current}}/{{total}} — {{name}} बोल रहा है...",
     "discussionComplete": "चर्चा पूर्ण",
     "continue": "+{{count}} राउंड और",
-    "removeParticipant": "हटाएं"
+    "removeParticipant": "हटाएं",
+    "addToRoundtable": "गोलमेज में जोड़ें",
+    "removeFromRoundtable": "गोलमेज से हटाएं"
   },
   "settings": {
     "title": "सेटिंग्स",

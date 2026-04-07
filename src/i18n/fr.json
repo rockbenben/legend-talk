@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Dialoguez avec les Grands Esprits",
-    "subtitle": "Cliquez sur \"Chat\" pour une consultation 1 à 1, ou \"+\" pour une table ronde",
+    "subtitle": "Entrez un sujet pour une table ronde IA, ou choisissez les personnages manuellement",
     "search": "Rechercher ou saisir un nom...",
     "startChat": "Chat",
     "randomRoundtable": "Aléatoire",
@@ -95,7 +95,9 @@
     "roundProgress": "Tour {{current}}/{{total}} — {{name}} parle...",
     "discussionComplete": "Discussion terminée",
     "continue": "+{{count}} tours",
-    "removeParticipant": "Retirer"
+    "removeParticipant": "Retirer",
+    "addToRoundtable": "Ajouter à la table",
+    "removeFromRoundtable": "Retirer de la table"
   },
   "settings": {
     "title": "Paramètres",

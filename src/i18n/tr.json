@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Büyük Düşünürlerle Konuşun",
-    "subtitle": "1'e 1 danışmanlık için \"Sohbet\"e, yuvarlak masa için \"+\"ya tıklayın",
+    "subtitle": "Yapay zeka yuvarlak masası için konu girin veya karakterleri kendiniz seçin",
     "search": "İsim ara veya yaz...",
     "startChat": "Sohbet",
     "randomRoundtable": "Rastgele",
@@ -95,7 +95,9 @@
     "roundProgress": "Tur {{current}}/{{total}} — {{name}} konuşuyor...",
     "discussionComplete": "Tartışma tamamlandı",
     "continue": "+{{count}} tur daha",
-    "removeParticipant": "Kaldır"
+    "removeParticipant": "Kaldır",
+    "addToRoundtable": "Masaya ekle",
+    "removeFromRoundtable": "Masadan çıkar"
   },
   "settings": {
     "title": "Ayarlar",

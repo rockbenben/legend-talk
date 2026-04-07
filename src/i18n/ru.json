@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Беседуйте с великими мыслителями",
-    "subtitle": "Нажмите «Чат» для консультации 1 на 1, или «+» для круглого стола",
+    "subtitle": "Введите тему для ИИ-круглого стола или выберите персонажей вручную",
     "search": "Найти или ввести имя...",
     "startChat": "Чат",
     "randomRoundtable": "Случайный",
@@ -95,7 +95,9 @@
     "roundProgress": "Раунд {{current}}/{{total}} — {{name}} говорит...",
     "discussionComplete": "Обсуждение завершено",
     "continue": "+{{count}} раундов",
-    "removeParticipant": "Удалить"
+    "removeParticipant": "Удалить",
+    "addToRoundtable": "Добавить за стол",
+    "removeFromRoundtable": "Убрать из-за стола"
   },
   "settings": {
     "title": "Настройки",

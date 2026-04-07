@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Sprich mit großen Denkern",
-    "subtitle": "Klicke auf \"Chat\" für Einzelgespräche oder \"+\" für eine Diskussionsrunde",
+    "subtitle": "Thema eingeben für KI-Roundtable, oder Charaktere manuell wählen",
     "search": "Name suchen oder eingeben...",
     "startChat": "Chat",
     "randomRoundtable": "Zufällig",
@@ -95,7 +95,9 @@
     "roundProgress": "Runde {{current}}/{{total}} — {{name}} spricht...",
     "discussionComplete": "Diskussion abgeschlossen",
     "continue": "+{{count}} Runden",
-    "removeParticipant": "Entfernen"
+    "removeParticipant": "Entfernen",
+    "addToRoundtable": "Zum Roundtable",
+    "removeFromRoundtable": "Vom Roundtable entfernen"
   },
   "settings": {
     "title": "Einstellungen",

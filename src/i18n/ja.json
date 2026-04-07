@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "偉大な思想家と対話する",
-    "subtitle": "「チャット」で1対1の相談、「+」で円卓討論を組む",
+    "subtitle": "トピックを入力してAI円卓会議、または手動でキャラクターを選択",
     "search": "名前を検索または入力...",
     "startChat": "対話",
     "randomRoundtable": "ランダム",
@@ -95,7 +95,9 @@
     "roundProgress": "ラウンド{{current}}/{{total}} — {{name}}が発言中...",
     "discussionComplete": "討論完了",
     "continue": "+{{count}}ラウンド追加",
-    "removeParticipant": "削除"
+    "removeParticipant": "削除",
+    "addToRoundtable": "円卓に追加",
+    "removeFromRoundtable": "円卓から外す"
   },
   "settings": {
     "title": "設定",

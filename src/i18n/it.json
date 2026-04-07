@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Parla con le Grandi Menti",
-    "subtitle": "Clicca su \"Chat\" per una consulenza 1 a 1, o \"+\" per formare una tavola rotonda",
+    "subtitle": "Inserisci un tema per tavola rotonda IA, o scegli i personaggi manualmente",
     "search": "Cerca o digita un nome...",
     "startChat": "Chat",
     "randomRoundtable": "Casuale",
@@ -95,7 +95,9 @@
     "roundProgress": "Turno {{current}}/{{total}} — {{name}} sta parlando...",
     "discussionComplete": "Discussione completata",
     "continue": "+{{count}} turni",
-    "removeParticipant": "Rimuovi"
+    "removeParticipant": "Rimuovi",
+    "addToRoundtable": "Aggiungi alla tavola",
+    "removeFromRoundtable": "Rimuovi dalla tavola"
   },
   "settings": {
     "title": "Impostazioni",

@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "与思想大师对话",
-    "subtitle": "点击「对话」一对一请教，或点击「+」组建圆桌讨论",
+    "subtitle": "输入话题自动召唤圆桌，或手动选择角色",
     "search": "搜索或输入任意名人...",
     "startChat": "开始对话",
     "randomRoundtable": "随机圆桌",
@@ -95,7 +95,9 @@
     "roundProgress": "第 {{current}}/{{total}} 轮 — {{name}} 正在发言...",
     "discussionComplete": "本轮讨论结束",
     "continue": "再讨论 {{count}} 轮",
-    "removeParticipant": "移除"
+    "removeParticipant": "移除",
+    "addToRoundtable": "加入圆桌",
+    "removeFromRoundtable": "移出圆桌"
   },
   "settings": {
     "title": "设置",

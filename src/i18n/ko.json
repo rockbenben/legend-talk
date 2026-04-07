@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "위대한 사상가와 대화하기",
-    "subtitle": "\"대화\"를 클릭하여 1:1 상담, \"+\"로 원탁 토론 구성",
+    "subtitle": "주제를 입력하여 AI 원탁토론, 또는 직접 캐릭터 선택",
     "search": "이름을 검색하거나 입력...",
     "startChat": "대화",
     "randomRoundtable": "랜덤",
@@ -95,7 +95,9 @@
     "roundProgress": "라운드 {{current}}/{{total}} — {{name}} 발언 중...",
     "discussionComplete": "토론 완료",
     "continue": "+{{count}}라운드 추가",
-    "removeParticipant": "제거"
+    "removeParticipant": "제거",
+    "addToRoundtable": "원탁에 추가",
+    "removeFromRoundtable": "원탁에서 제거"
   },
   "settings": {
     "title": "설정",

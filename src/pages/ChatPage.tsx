@@ -134,15 +134,18 @@ export function ChatPage() {
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
               <form
                 onSubmit={(e) => { e.preventDefault(); handleAutoRoundtable(); }}
-                className="mb-6 flex gap-2"
+                className="mb-6 flex gap-2 items-center"
               >
-                <input
-                  type="text"
-                  value={topicInput}
-                  onChange={(e) => setTopicInput(e.target.value)}
-                  placeholder={t('home.topicPlaceholder')}
-                  className="flex-1 min-w-0 px-4 py-3 sm:py-2.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:border-blue-400"
-                />
+                <div className="flex-1 min-w-0 flex items-center gap-2 px-4 py-3 sm:py-2.5 rounded-lg border-2 border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/20 focus-within:border-blue-400">
+                  <span className="text-blue-400 shrink-0">💡</span>
+                  <input
+                    type="text"
+                    value={topicInput}
+                    onChange={(e) => setTopicInput(e.target.value)}
+                    placeholder={t('home.topicPlaceholder')}
+                    className="flex-1 min-w-0 text-sm bg-transparent focus:outline-none"
+                  />
+                </div>
                 <button
                   type="submit"
                   disabled={!topicInput.trim()}

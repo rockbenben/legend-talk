@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "Talk to Great Minds",
-    "subtitle": "Click Chat to consult one-on-one, or tap + to build a roundtable",
+    "subtitle": "Enter a topic for AI roundtable, or pick characters manually",
     "search": "Search or type any name...",
     "startChat": "Chat",
     "randomRoundtable": "Random",
@@ -95,7 +95,9 @@
     "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
     "discussionComplete": "Discussion complete",
     "continue": "+ {{count}} more rounds",
-    "removeParticipant": "Remove"
+    "removeParticipant": "Remove",
+    "addToRoundtable": "Add to roundtable",
+    "removeFromRoundtable": "Remove from roundtable"
   },
   "settings": {
     "title": "Settings",

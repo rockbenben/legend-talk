@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "สนทนากับนักคิดผู้ยิ่งใหญ่",
-    "subtitle": "คลิก \"แชท\" เพื่อปรึกษาแบบ 1 ต่อ 1 หรือ \"+\" เพื่อสร้างโต๊ะกลม",
+    "subtitle": "ป้อนหัวข้อสำหรับโต๊ะกลม AI หรือเลือกตัวละครด้วยตนเอง",
     "search": "ค้นหาหรือพิมพ์ชื่อ...",
     "startChat": "แชท",
     "randomRoundtable": "สุ่ม",
@@ -95,7 +95,9 @@
     "roundProgress": "รอบ {{current}}/{{total}} — {{name}} กำลังพูด...",
     "discussionComplete": "อภิปรายเสร็จสิ้น",
     "continue": "+{{count}} รอบเพิ่มเติม",
-    "removeParticipant": "ลบ"
+    "removeParticipant": "ลบ",
+    "addToRoundtable": "เพิ่มเข้าโต๊ะกลม",
+    "removeFromRoundtable": "นำออกจากโต๊ะกลม"
   },
   "settings": {
     "title": "ตั้งค่า",

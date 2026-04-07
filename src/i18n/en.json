@@ -556,9 +556,9 @@
       "name": "Zhang Heng",
       "era": "Eastern Han Dynasty",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "I have an idea but don't know if it's feasible",
+        "Are technical work and creative work separate paths?",
+        "How do I tell if a theory is actually sound?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "Which college major should I choose?",
         "How does family background affect career choices?",
         "Is graduate school worth it for ordinary families?"
+      ]
+    },
+    "sam-altman": {
+      "name": "Sam Altman",
+      "era": "Contemporary",
+      "questions": [
+        "When will we reach AGI?",
+        "How should society prepare for AI?",
+        "What makes a great startup founder?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "Jensen Huang",
+      "era": "Contemporary",
+      "questions": [
+        "Why is accelerated computing the future?",
+        "How will AI transform every industry?",
+        "What does it take to build an enduring company?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "Yuval Noah Harari",
+      "era": "Contemporary",
+      "questions": [
+        "What makes humans different from AI?",
+        "Are nations and money just shared fictions?",
+        "What is the biggest threat to humanity?"
+      ]
+    },
+    "lei-jun": {
+      "name": "Lei Jun",
+      "era": "Contemporary",
+      "questions": [
+        "How to build products for the masses?",
+        "What is the internet way of thinking?",
+        "How does efficiency win over competitors?"
       ]
     }
   },

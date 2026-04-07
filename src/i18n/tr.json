@@ -556,9 +556,9 @@
       "name": "Zhang Heng",
       "era": "Eastern Han Dynasty",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "Bir fikrim var ama uygulanabilir mi bilmiyorum",
+        "Teknik ve yaratıcı çalışma ayrı yollar mı?",
+        "Bir teorinin gerçekten sağlam olup olmadığını nasıl anlarım?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "Hangi üniversite bölümünü seçmeli?",
         "Aile geçmişi kariyer seçimlerini nasıl etkiler?",
         "Sıradan aileler için yüksek lisans değer mi?"
+      ]
+    },
+    "sam-altman": {
+      "name": "Sam Altman",
+      "era": "Çağdaş",
+      "questions": [
+        "AGI'ye ne zaman ulaşacağız?",
+        "Toplum yapay zekaya nasıl hazırlanmalı?",
+        "Harika bir kurucu yapan nedir?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "Jensen Huang",
+      "era": "Çağdaş",
+      "questions": [
+        "Hızlandırılmış hesaplama neden gelecek?",
+        "Yapay zeka her sektörü nasıl dönüştürecek?",
+        "Kalıcı bir şirket kurmak için ne gerekir?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "Yuval Noah Harari",
+      "era": "Çağdaş",
+      "questions": [
+        "İnsanları yapay zekadan ayıran nedir?",
+        "Uluslar ve para sadece ortak kurgu mu?",
+        "İnsanlık için en büyük tehdit nedir?"
+      ]
+    },
+    "lei-jun": {
+      "name": "Lei Jun",
+      "era": "Çağdaş",
+      "questions": [
+        "Herkesin alabileceği iyi ürünler nasıl yapılır?",
+        "İnternet düşüncesi nedir?",
+        "Verimlilik rakipleri nasıl yener?"
       ]
     }
   },

@@ -556,9 +556,9 @@
       "name": "Zhang Heng",
       "era": "Eastern Han Dynasty",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "Saya punya ide tapi tidak tahu apakah layak",
+        "Apakah pekerjaan teknis dan kreatif jalur terpisah?",
+        "Bagaimana tahu apakah sebuah teori benar-benar kuat?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "Jurusan kuliah apa yang harus dipilih?",
         "Bagaimana latar belakang keluarga memengaruhi pilihan karier?",
         "Apakah pascasarjana layak untuk keluarga biasa?"
+      ]
+    },
+    "sam-altman": {
+      "name": "Sam Altman",
+      "era": "Kontemporer",
+      "questions": [
+        "Kapan kita mencapai AGI?",
+        "Bagaimana masyarakat harus bersiap menghadapi AI?",
+        "Apa yang membuat pendiri hebat?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "Jensen Huang",
+      "era": "Kontemporer",
+      "questions": [
+        "Mengapa komputasi akselerasi adalah masa depan?",
+        "Bagaimana AI akan mentransformasi setiap industri?",
+        "Apa yang dibutuhkan untuk membangun perusahaan yang bertahan?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "Yuval Noah Harari",
+      "era": "Kontemporer",
+      "questions": [
+        "Apa yang membedakan manusia dari AI?",
+        "Apakah negara dan uang hanyalah fiksi bersama?",
+        "Apa ancaman terbesar bagi umat manusia?"
+      ]
+    },
+    "lei-jun": {
+      "name": "Lei Jun",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana membuat produk bagus yang terjangkau?",
+        "Apa itu pemikiran internet?",
+        "Bagaimana efisiensi mengalahkan kompetitor?"
       ]
     }
   },

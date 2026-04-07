@@ -556,9 +556,9 @@
       "name": "Zhang Heng",
       "era": "Eastern Han Dynasty",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "Tengo una idea pero no sé si es viable",
+        "¿El trabajo técnico y creativo son caminos separados?",
+        "¿Cómo saber si una teoría es realmente sólida?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "¿Qué carrera universitaria elegir?",
         "¿Cómo influye el origen familiar en las decisiones profesionales?",
         "¿Vale la pena un posgrado para familias comunes?"
+      ]
+    },
+    "sam-altman": {
+      "name": "Sam Altman",
+      "era": "Contemporáneo",
+      "questions": [
+        "¿Cuándo llegaremos a la AGI?",
+        "¿Cómo debe la sociedad prepararse para la IA?",
+        "¿Qué hace a un gran fundador?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "Jensen Huang",
+      "era": "Contemporáneo",
+      "questions": [
+        "¿Por qué la computación acelerada es el futuro?",
+        "¿Cómo transformará la IA cada industria?",
+        "¿Qué se necesita para construir una empresa duradera?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "Yuval Noah Harari",
+      "era": "Contemporáneo",
+      "questions": [
+        "¿Qué diferencia a los humanos de la IA?",
+        "¿Son las naciones y el dinero solo ficciones compartidas?",
+        "¿Cuál es la mayor amenaza para la humanidad?"
+      ]
+    },
+    "lei-jun": {
+      "name": "Lei Jun",
+      "era": "Contemporáneo",
+      "questions": [
+        "¿Cómo hacer buenos productos accesibles para todos?",
+        "¿Qué es el pensamiento de internet?",
+        "¿Cómo la eficiencia vence a los competidores?"
       ]
     }
   },

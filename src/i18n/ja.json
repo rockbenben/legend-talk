@@ -556,9 +556,9 @@
       "name": "張衡",
       "era": "後漢",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "アイデアがあるけど実現可能かわからない",
+        "技術と創造は別の道なのか？",
+        "理論が正しいかどう見極める？"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "どの専攻を選ぶべきか？",
         "家庭環境は就職にどう影響するか？",
         "一般家庭に大学院は必要か？"
+      ]
+    },
+    "sam-altman": {
+      "name": "サム・アルトマン",
+      "era": "現代",
+      "questions": [
+        "AGIはいつ来るのか？",
+        "社会はAIにどう備えるべきか？",
+        "優れた起業家の条件は？"
+      ]
+    },
+    "jensen-huang": {
+      "name": "ジェンスン・フアン",
+      "era": "現代",
+      "questions": [
+        "なぜ加速コンピューティングが未来なのか？",
+        "AIはあらゆる産業をどう変えるか？",
+        "長く続く企業をどう作るか？"
+      ]
+    },
+    "yuval-harari": {
+      "name": "ユヴァル・ノア・ハラリ",
+      "era": "現代",
+      "questions": [
+        "人間とAIの本質的な違いは？",
+        "国家や貨幣は共同幻想にすぎないのか？",
+        "人類最大の脅威は何か？"
+      ]
+    },
+    "lei-jun": {
+      "name": "雷軍",
+      "era": "現代",
+      "questions": [
+        "大衆が買える良い製品をどう作るか？",
+        "インターネット思考とは何か？",
+        "効率でどう競合に勝つか？"
       ]
     }
   },

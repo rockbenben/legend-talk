@@ -556,9 +556,9 @@
       "name": "장형",
       "era": "후한",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "아이디어가 있는데 실현 가능한지 모르겠어요",
+        "기술과 창작은 별개의 길인가요?",
+        "이론이 맞는지 어떻게 판단하나요?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "어떤 전공을 선택해야 할까?",
         "가정 배경이 직업 선택에 어떤 영향을 미치는가?",
         "일반 가정에서 대학원은 가치 있는가?"
+      ]
+    },
+    "sam-altman": {
+      "name": "샘 올트먼",
+      "era": "현대",
+      "questions": [
+        "AGI는 언제 오는가?",
+        "사회는 AI에 어떻게 대비해야 하는가?",
+        "훌륭한 창업가의 조건은?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "젠슨 황",
+      "era": "현대",
+      "questions": [
+        "가속 컴퓨팅이 왜 미래인가?",
+        "AI가 모든 산업을 어떻게 바꿀까?",
+        "오래가는 기업을 어떻게 만드는가?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "유발 하라리",
+      "era": "현대",
+      "questions": [
+        "인간과 AI의 본질적 차이는?",
+        "국가와 화폐는 공유 환상일 뿐인가?",
+        "인류 최대의 위협은 무엇인가?"
+      ]
+    },
+    "lei-jun": {
+      "name": "레이쥔",
+      "era": "현대",
+      "questions": [
+        "대중이 살 수 있는 좋은 제품을 어떻게 만드는가?",
+        "인터넷 사고방식이란?",
+        "효율로 어떻게 경쟁자를 이기는가?"
       ]
     }
   },

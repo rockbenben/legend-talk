@@ -556,9 +556,9 @@
       "name": "Zhang Heng",
       "era": "Eastern Han Dynasty",
       "questions": [
-        "How to apply scientific method to everyday decisions?",
-        "How should technology serve society?",
-        "How to turn complex phenomena into measurable metrics?"
+        "Tôi có ý tưởng nhưng không biết có khả thi không",
+        "Kỹ thuật và sáng tạo có phải hai con đường riêng?",
+        "Làm sao biết một lý thuyết có đáng tin không?"
       ]
     },
     "hawking": {
@@ -1558,6 +1558,42 @@
         "Nên chọn ngành nào?",
         "Xuất thân gia đình ảnh hưởng nghề nghiệp thế nào?",
         "Gia đình bình thường có nên học thạc sĩ?"
+      ]
+    },
+    "sam-altman": {
+      "name": "Sam Altman",
+      "era": "Đương đại",
+      "questions": [
+        "Khi nào đạt được AGI?",
+        "Xã hội nên chuẩn bị cho AI thế nào?",
+        "Điều gì tạo nên nhà sáng lập vĩ đại?"
+      ]
+    },
+    "jensen-huang": {
+      "name": "Jensen Huang",
+      "era": "Đương đại",
+      "questions": [
+        "Tại sao tính toán tăng tốc là tương lai?",
+        "AI sẽ biến đổi mọi ngành thế nào?",
+        "Cần gì để xây dựng công ty bền vững?"
+      ]
+    },
+    "yuval-harari": {
+      "name": "Yuval Noah Harari",
+      "era": "Đương đại",
+      "questions": [
+        "Điều gì phân biệt con người với AI?",
+        "Quốc gia và tiền tệ chỉ là hư cấu chung?",
+        "Mối đe dọa lớn nhất với nhân loại là gì?"
+      ]
+    },
+    "lei-jun": {
+      "name": "Lôi Quân",
+      "era": "Đương đại",
+      "questions": [
+        "Làm sao tạo sản phẩm tốt giá phải chăng?",
+        "Tư duy internet là gì?",
+        "Hiệu suất thắng đối thủ thế nào?"
       ]
     }
   },

@@ -82,7 +82,9 @@
     "shareCardLong": "Tarjeta (imagen larga)",
     "generatingCard": "Generando...",
     "cardError": "Error al generar tarjeta",
-    "cardNetworkError": "No se puede conectar con la API — ¿está el servidor activo?"
+    "cardNetworkError": "No se puede conectar con la API — ¿está el servidor activo?",
+    "retry": "Reintentar",
+    "aiPickAndDiscuss": "La IA elige, empieza el debate"
   },
   "moderator": {
     "name": "Moderador",

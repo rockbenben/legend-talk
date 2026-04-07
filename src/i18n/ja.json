@@ -82,7 +82,9 @@
     "shareCardLong": "シェアカード (長画像)",
     "generatingCard": "カード生成中...",
     "cardError": "シェアカードの生成に失敗しました",
-    "cardNetworkError": "シェアカードAPIに接続できません — サーバーは起動していますか？"
+    "cardNetworkError": "シェアカードAPIに接続できません — サーバーは起動していますか？",
+    "retry": "再試行",
+    "aiPickAndDiscuss": "AIが選出、議論開始"
   },
   "moderator": {
     "name": "モデレーター",

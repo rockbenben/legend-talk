@@ -69,7 +69,34 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   // Auto-summon characters and start discussion from topic input
   const [isSummoning, setIsSummoning] = useState(false);
+  const [summonError, setSummonError] = useState<string | null>(null);
+  const [pendingTopic, setPendingTopic] = useState<string | null>(null);
   const summonRef = useRef(false);
+
+  const startSummon = (topic: string) => {
+    const provider = resolveProvider();
+    if (!provider) { setSummonError(null); return; } // Will show isConfigured warning
+
+    setIsSummoning(true);
+    setSummonError(null);
+    const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
+    suggestCharacters(topic, provider, allChars)
+      .then((charIds) => {
+        if (charIds.length >= 2) {
+          useConversationStore.getState().updateCharacters(conversationId, charIds);
+          setPendingTopic(null);
+          roundtable.sendMessage(conversationId, topic, rounds);
+        } else {
+          setSummonError(t('common.error', { message: 'Could not find enough characters for this topic' }));
+        }
+      })
+      .catch((err) => {
+        if (err instanceof DOMException && err.name === 'AbortError') return;
+        setSummonError(err instanceof Error ? err.message : t('common.error', { message: '' }));
+      })
+      .finally(() => setIsSummoning(false));
+  };
+
   useEffect(() => {
     if (summonRef.current) return;
     try {
@@ -79,20 +106,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
       if (convId !== conversationId) return;
       sessionStorage.removeItem('legend-talk-auto-topic');
       summonRef.current = true;
-
-      const provider = resolveProvider();
-      if (!provider) return;
-
-      setIsSummoning(true);
-      const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
-      suggestCharacters(topic, provider, allChars)
-        .then((charIds) => {
-          if (charIds.length >= 2) {
-            useConversationStore.getState().updateCharacters(conversationId, charIds);
-            roundtable.sendMessage(conversationId, topic, rounds);
-          }
-        })
-        .finally(() => setIsSummoning(false));
+      setPendingTopic(topic);
+      startSummon(topic);
     } catch { /* ignore */ }
   }, [conversationId]);
 
@@ -235,13 +250,35 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   return (
     <div className="flex flex-col h-full overflow-hidden relative">
-      {isSummoning && (
+      {pendingTopic && !isMulti && (
         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-auto">
-          <div className="flex items-center gap-2 px-5 py-3 rounded-full bg-white/90 dark:bg-gray-800/90 shadow-lg border border-gray-200 dark:border-gray-700">
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-            <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-            <span className="text-sm text-gray-500 dark:text-gray-400 ms-1">{t('home.suggesting')}</span>
+          <div className="flex flex-col items-center gap-3 px-6 py-5 rounded-xl bg-white/95 dark:bg-gray-800/95 shadow-lg border border-gray-200 dark:border-gray-700 max-w-sm mx-4">
+            {isSummoning ? (
+              <>
+                <div className="flex gap-1.5">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </div>
+                <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
+              </>
+            ) : !isConfigured ? (
+              <>
+                <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
+                <div className="flex gap-2">
+                  <button onClick={() => navigate(lp('/settings'))} className="text-sm px-3 py-1.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600">{t('chat.goSettings')}</button>
+                  <button onClick={() => startSummon(pendingTopic)} className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-400">{t('chat.retry')}</button>
+                </div>
+              </>
+            ) : summonError ? (
+              <>
+                <span className="text-sm text-red-500">{summonError}</span>
+                <div className="flex gap-2">
+                  <button onClick={() => startSummon(pendingTopic)} className="text-sm px-3 py-1.5 rounded-lg bg-blue-500 text-white hover:bg-blue-600">{t('chat.retry')}</button>
+                  <button onClick={() => navigate(lp('/settings'))} className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-400">{t('chat.goSettings')}</button>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       )}
@@ -294,6 +331,20 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
             <button onClick={() => navigate(lp('/settings'))} className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline">
               {t('chat.goSettings')}
+            </button>
+          </div>
+        )}
+        {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && conversation.title && (
+          <div className="flex flex-col items-center justify-center py-16 gap-5">
+            <p className="text-lg font-medium text-gray-700 dark:text-gray-200 max-w-md text-center">"{conversation.title}"</p>
+            <button
+              onClick={() => {
+                setPendingTopic(conversation.title!);
+                startSummon(conversation.title!);
+              }}
+              className="px-6 py-3 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
+            >
+              {t('chat.aiPickAndDiscuss')}
             </button>
           </div>
         )}

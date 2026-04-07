@@ -82,7 +82,9 @@
     "shareCardLong": "শেয়ার কার্ড (লম্বা ছবি)",
     "generatingCard": "তৈরি হচ্ছে...",
     "cardError": "শেয়ার কার্ড তৈরি ব্যর্থ",
-    "cardNetworkError": "API-তে সংযোগ করা যাচ্ছে না — সার্ভার চলছে কি?"
+    "cardNetworkError": "API-তে সংযোগ করা যাচ্ছে না — সার্ভার চলছে কি?",
+    "retry": "পুনরায় চেষ্টা",
+    "aiPickAndDiscuss": "AI বাছাই করবে, আলোচনা শুরু"
   },
   "moderator": {
     "name": "সঞ্চালক",

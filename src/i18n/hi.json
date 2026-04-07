@@ -82,7 +82,9 @@
     "shareCardLong": "शेयर कार्ड (लंबी छवि)",
     "generatingCard": "कार्ड बनाया जा रहा है...",
     "cardError": "शेयर कार्ड बनाने में विफल",
-    "cardNetworkError": "API से कनेक्ट नहीं हो पा रहा — क्या सर्वर चल रहा है?"
+    "cardNetworkError": "API से कनेक्ट नहीं हो पा रहा — क्या सर्वर चल रहा है?",
+    "retry": "पुनः प्रयास",
+    "aiPickAndDiscuss": "AI चुनेगा, चर्चा शुरू"
   },
   "moderator": {
     "name": "मॉडरेटर",

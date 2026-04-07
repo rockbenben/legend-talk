@@ -82,7 +82,9 @@
     "shareCardLong": "공유 카드 (긴 이미지)",
     "generatingCard": "카드 생성 중...",
     "cardError": "공유 카드 생성 실패",
-    "cardNetworkError": "공유 카드 API에 연결할 수 없습니다 — 서버가 실행 중인가요?"
+    "cardNetworkError": "공유 카드 API에 연결할 수 없습니다 — 서버가 실행 중인가요?",
+    "retry": "재시도",
+    "aiPickAndDiscuss": "AI가 선정, 토론 시작"
   },
   "moderator": {
     "name": "진행자",

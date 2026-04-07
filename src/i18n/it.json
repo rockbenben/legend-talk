@@ -82,7 +82,9 @@
     "shareCardLong": "Scheda (immagine lunga)",
     "generatingCard": "Generazione...",
     "cardError": "Errore nella generazione della scheda",
-    "cardNetworkError": "Impossibile connettersi all'API — il server è in esecuzione?"
+    "cardNetworkError": "Impossibile connettersi all'API — il server è in esecuzione?",
+    "retry": "Riprova",
+    "aiPickAndDiscuss": "L'IA sceglie, inizia la discussione"
   },
   "moderator": {
     "name": "Moderatore",

@@ -48,6 +48,8 @@
     "untitled": "未命名对话",
     "noApiKey": "请先配置 API 密钥",
     "goSettings": "前往设置",
+    "retry": "重试",
+    "aiPickAndDiscuss": "AI 选人，开始讨论",
     "regenerate": "重新生成",
     "summarize": "总结对话",
     "summarizing": "正在总结...",

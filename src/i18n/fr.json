@@ -82,7 +82,9 @@
     "shareCardLong": "Carte (image longue)",
     "generatingCard": "Génération...",
     "cardError": "Échec de la génération",
-    "cardNetworkError": "Impossible de se connecter à l'API — le serveur est-il en marche ?"
+    "cardNetworkError": "Impossible de se connecter à l'API — le serveur est-il en marche ?",
+    "retry": "Réessayer",
+    "aiPickAndDiscuss": "L'IA choisit, la discussion commence"
   },
   "moderator": {
     "name": "Modérateur",

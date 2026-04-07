@@ -82,7 +82,9 @@
     "shareCardLong": "Kartu Berbagi (gambar panjang)",
     "generatingCard": "Membuat...",
     "cardError": "Gagal membuat kartu",
-    "cardNetworkError": "Tidak dapat terhubung ke API — apakah server berjalan?"
+    "cardNetworkError": "Tidak dapat terhubung ke API — apakah server berjalan?",
+    "retry": "Coba lagi",
+    "aiPickAndDiscuss": "AI memilih, mulai diskusi"
   },
   "moderator": {
     "name": "Moderator",

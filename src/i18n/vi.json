@@ -82,7 +82,9 @@
     "shareCardLong": "Thẻ chia sẻ (ảnh dài)",
     "generatingCard": "Đang tạo...",
     "cardError": "Tạo thẻ chia sẻ thất bại",
-    "cardNetworkError": "Không thể kết nối API — máy chủ đang chạy chưa?"
+    "cardNetworkError": "Không thể kết nối API — máy chủ đang chạy chưa?",
+    "retry": "Thử lại",
+    "aiPickAndDiscuss": "AI chọn người, bắt đầu thảo luận"
   },
   "moderator": {
     "name": "Người điều phối",

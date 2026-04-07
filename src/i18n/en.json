@@ -48,6 +48,8 @@
     "untitled": "Untitled",
     "noApiKey": "API Key not configured",
     "goSettings": "Go to Settings",
+    "retry": "Retry",
+    "aiPickAndDiscuss": "AI picks the minds, start discussing",
     "regenerate": "Regenerate",
     "summarize": "Summarize",
     "summarizing": "Summarizing...",

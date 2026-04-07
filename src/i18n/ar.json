@@ -82,7 +82,9 @@
     "shareCardLong": "بطاقة (صورة طويلة)",
     "generatingCard": "جارٍ الإنشاء...",
     "cardError": "فشل في إنشاء البطاقة",
-    "cardNetworkError": "تعذر الاتصال بـ API — هل الخادم يعمل؟"
+    "cardNetworkError": "تعذر الاتصال بـ API — هل الخادم يعمل؟",
+    "retry": "إعادة المحاولة",
+    "aiPickAndDiscuss": "الذكاء الاصطناعي يختار، تبدأ المناقشة"
   },
   "moderator": {
     "name": "المُيسِّر",

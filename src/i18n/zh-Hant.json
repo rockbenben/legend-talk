@@ -82,7 +82,9 @@
     "shareCardLong": "分享卡片 (長圖)",
     "generatingCard": "生成中...",
     "cardError": "生成分享卡片失敗",
-    "cardNetworkError": "無法連線分享卡片 API — 服務是否已啟動？"
+    "cardNetworkError": "無法連線分享卡片 API — 服務是否已啟動？",
+    "retry": "重試",
+    "aiPickAndDiscuss": "AI 選人，開始討論"
   },
   "moderator": {
     "name": "主持人",

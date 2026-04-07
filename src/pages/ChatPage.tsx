@@ -10,7 +10,6 @@ import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
-import { resolveProvider } from '../utils/prompt';
 import type { Character } from '../types';
 
 const MAX_PARTICIPANTS = 10;
@@ -75,8 +74,7 @@ export function ChatPage() {
   const handleAutoRoundtable = () => {
     const topic = topicInput.trim();
     if (!topic) return;
-    if (!resolveProvider()) { navigate(lp('/settings')); return; }
-    // Create conversation with empty characters — ChatView handles summoning
+    // Create conversation with empty characters — ChatView handles summoning + errors
     const convId = createConversation('roundtable', [], topic);
     sessionStorage.setItem('legend-talk-auto-topic', JSON.stringify({ convId, topic }));
     setTopicInput('');

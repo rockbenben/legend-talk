@@ -82,7 +82,9 @@
     "shareCardLong": "Kart (uzun görsel)",
     "generatingCard": "Oluşturuluyor...",
     "cardError": "Kart oluşturulamadı",
-    "cardNetworkError": "API'ye bağlanılamıyor — sunucu çalışıyor mu?"
+    "cardNetworkError": "API'ye bağlanılamıyor — sunucu çalışıyor mu?",
+    "retry": "Yeniden dene",
+    "aiPickAndDiscuss": "Yapay zeka seçer, tartışma başlar"
   },
   "moderator": {
     "name": "Moderatör",

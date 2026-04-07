@@ -82,7 +82,9 @@
     "shareCardLong": "Karte (Langbild)",
     "generatingCard": "Wird generiert...",
     "cardError": "Fehler beim Generieren der Karte",
-    "cardNetworkError": "Keine Verbindung zur API — läuft der Server?"
+    "cardNetworkError": "Keine Verbindung zur API — läuft der Server?",
+    "retry": "Wiederholen",
+    "aiPickAndDiscuss": "KI wählt aus, Diskussion starten"
   },
   "moderator": {
     "name": "Moderator",

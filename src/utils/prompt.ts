@@ -169,7 +169,8 @@ export async function streamResponse(
     useConversationStore.getState().updateMessageContent(conversationId, msgId, accumulated);
   }
   // Strip self-referential name tag that models sometimes prepend (e.g. "[拿破仑]: ...")
-  const cleaned = accumulated.replace(/^\[[^\]]+\]:\s*/, '');
+  // Limit bracket content to 1-20 chars to avoid stripping legitimate bracketed text
+  const cleaned = accumulated.replace(/^\[[^\]]{1,20}\]:\s*/, '');
   if (cleaned !== accumulated) {
     useConversationStore.getState().updateMessageContent(conversationId, msgId, cleaned);
   }

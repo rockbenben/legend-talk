@@ -87,12 +87,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
       const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
       suggestCharacters(topic, provider, allChars)
         .then((charIds) => {
-          if (charIds.length < 2) return;
-          useConversationStore.getState().updateCharacters(conversationId, charIds);
-          setIsSummoning(false);
-          roundtable.sendMessage(conversationId, topic, rounds);
+          if (charIds.length >= 2) {
+            useConversationStore.getState().updateCharacters(conversationId, charIds);
+            roundtable.sendMessage(conversationId, topic, rounds);
+          }
         })
-        .catch(() => setIsSummoning(false));
+        .finally(() => setIsSummoning(false));
     } catch { /* ignore */ }
   }, [conversationId]);
 

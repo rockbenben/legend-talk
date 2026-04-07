@@ -161,6 +161,8 @@ export function useRoundtable() {
     abortRef.current = controller;
     setIsGenerating(true);
     setError(null);
+    setCurrentRound(1);
+    setTotalRounds(1);
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
@@ -174,6 +176,7 @@ export function useRoundtable() {
       abortRef.current = null;
       setIsGenerating(false);
       setCurrentSpeaker(null);
+      setCurrentRound(null);
     }
   }
 

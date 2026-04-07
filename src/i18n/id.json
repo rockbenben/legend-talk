@@ -81,6 +81,10 @@
     "cardError": "Gagal membuat kartu",
     "cardNetworkError": "Tidak dapat terhubung ke API — apakah server berjalan?"
   },
+  "moderator": {
+    "name": "Moderator",
+    "synthesizing": "Moderator sedang menyintesis..."
+  },
   "roundtable": {
     "selected": "{{count}} dipilih",
     "start": "Mulai diskusi",

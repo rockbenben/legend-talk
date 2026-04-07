@@ -24,6 +24,7 @@ function isAnalysisMsg(characterId?: string): boolean {
 
 const ANALYSIS_META: Record<string, { emoji: string; labelKey: string }> = {
   '__summarize__': { emoji: '📋', labelKey: 'chat.summarize' },
+  '__moderator__': { emoji: '⚖️', labelKey: 'moderator.name' },
 };
 
 interface ChatViewProps {
@@ -102,6 +103,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
     useConversationStore.getState().removeMessagesFrom(conversationId, messageId);
     if (msg.role === 'user') {
       handleSend(msg.content);
+    } else if (msg.characterId === '__moderator__') {
+      roundtable.retryModerator(conversationId);
     } else if (isAnalysisMsg(msg.characterId)) {
       handleSummarize();
     } else if (isMulti) {
@@ -117,9 +120,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv || conv.messages.length === 0) return;
     const transcript = conv.messages
-      .filter((msg) => msg.role === 'user' || (msg.characterId && !isAnalysisMsg(msg.characterId)))
+      .filter((msg) => msg.role === 'user' || msg.characterId === '__moderator__' || (msg.characterId && !isAnalysisMsg(msg.characterId)))
       .map((msg) => {
         if (msg.role === 'user') return `[User]: ${msg.content}`;
+        if (msg.characterId === '__moderator__') return `[${t('moderator.name')}]: ${msg.content}`;
         const char = presetCharacters.find((c) => c.id === msg.characterId);
         const name = char ? t(`characters.${char.id}.name`) : msg.characterId || 'Unknown';
         return `[${name}]: ${msg.content}`;
@@ -333,9 +337,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </div>
           );
         })}
-        {isGenerating && isMulti && speakerChar && roundtable.currentRound && (
+        {isGenerating && isMulti && roundtable.currentRound && (roundtable.currentSpeaker === '__moderator__' || speakerChar) && (
           <div className="flex items-center gap-1.5 text-sm text-gray-400">
-            <span>{t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: t(`characters.${speakerChar.id}.name`) })}</span>
+            <span>{t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: roundtable.currentSpeaker === '__moderator__' ? t('moderator.synthesizing') : t(`characters.${speakerChar!.id}.name`) })}</span>
             <span className="flex gap-0.5">
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />

@@ -4,7 +4,21 @@ import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
 const DIRECTIVE = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
-export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Engage with their arguments — challenge, refine, or deepen the analysis. Push deeper, raise counterexamples, or connect to broader ideas. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion.';
+export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Focus on the discussion topic — develop your own perspective. Push deeper with counterexamples or broader connections. You may engage with others\' arguments when relevant. Only respond to what has already been said — never predict or guess what someone who hasn\'t spoken will say. Do not repeat arguments already made. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion.';
+
+export const MODERATOR_SYSTEM_PROMPT = `You are the moderator of this roundtable discussion. Your role: guide toward deeper truth, not consensus.
+
+You may see your prior synthesis as context. Track how positions evolved — never repeat prior analysis. Focus on what is NEW.
+
+After each round, provide a brief synthesis (use the same language as the participants, for all labels and content):
+
+1. Identify the core disagreement — but look beyond the surface. Find surprising connections or hidden agreements between seemingly opposed positions.
+2. Note what has shifted or deepened since the last round.
+3. Pose one question that targets the weakest point in the strongest argument, or the strongest point in the weakest argument.
+
+If arguments are becoming circular, break the cycle: challenge an assumption everyone shares, or ask what evidence would change each participant's mind.
+
+Be concise and incisive. Do not take sides.`;
 
 const LANG_NAMES: Record<string, string> = {
   en: 'English', zh: 'Simplified Chinese (简体中文)', 'zh-Hant': 'Traditional Chinese (繁體中文)',
@@ -109,5 +123,10 @@ export async function streamResponse(
   })) {
     accumulated += token;
     useConversationStore.getState().updateMessageContent(conversationId, msgId, accumulated);
+  }
+  // Strip self-referential name tag that models sometimes prepend (e.g. "[拿破仑]: ...")
+  const cleaned = accumulated.replace(/^\[[^\]]+\]:\s*/, '');
+  if (cleaned !== accumulated) {
+    useConversationStore.getState().updateMessageContent(conversationId, msgId, cleaned);
   }
 }

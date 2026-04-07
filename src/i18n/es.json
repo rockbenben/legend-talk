@@ -81,6 +81,10 @@
     "cardError": "Error al generar tarjeta",
     "cardNetworkError": "No se puede conectar con la API — ¿está el servidor activo?"
   },
+  "moderator": {
+    "name": "Moderador",
+    "synthesizing": "El moderador está sintetizando..."
+  },
   "roundtable": {
     "selected": "{{count}} seleccionados",
     "start": "Iniciar discusión",

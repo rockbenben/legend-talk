@@ -81,6 +81,10 @@
     "cardError": "Errore nella generazione della scheda",
     "cardNetworkError": "Impossibile connettersi all'API — il server è in esecuzione?"
   },
+  "moderator": {
+    "name": "Moderatore",
+    "synthesizing": "Il moderatore sta sintetizzando..."
+  },
   "roundtable": {
     "selected": "{{count}} selezionati",
     "start": "Inizia discussione",

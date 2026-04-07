@@ -58,12 +58,12 @@ describe('exportAsJSON', () => {
       ...mockConversation,
       messages: [
         ...mockConversation.messages,
-        { id: 'm3', role: 'character', characterId: '__proscons__', content: 'Pro: ...', timestamp: 0 },
+        { id: 'm3', role: 'character', characterId: '__moderator__', content: 'Synthesis: ...', timestamp: 0 },
       ],
     };
     const json = exportAsJSON(conv, names, title);
     const parsed = JSON.parse(json);
-    expect(parsed.messages[2]).toEqual(['Pro/Con Analysis', 'Pro: ...']);
+    expect(parsed.messages[2]).toEqual(['Moderator', 'Synthesis: ...']);
   });
 });
 

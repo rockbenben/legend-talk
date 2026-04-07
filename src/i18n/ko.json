@@ -81,6 +81,10 @@
     "cardError": "공유 카드 생성 실패",
     "cardNetworkError": "공유 카드 API에 연결할 수 없습니다 — 서버가 실행 중인가요?"
   },
+  "moderator": {
+    "name": "진행자",
+    "synthesizing": "진행자 종합 중..."
+  },
   "roundtable": {
     "selected": "{{count}}명 선택",
     "start": "토론 시작",

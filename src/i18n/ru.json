@@ -81,6 +81,10 @@
     "cardError": "Ошибка генерации карточки",
     "cardNetworkError": "Не удалось подключиться к API — сервер запущен?"
   },
+  "moderator": {
+    "name": "Модератор",
+    "synthesizing": "Модератор подводит итоги..."
+  },
   "roundtable": {
     "selected": "Выбрано: {{count}}",
     "start": "Начать обсуждение",

@@ -81,6 +81,10 @@
     "cardError": "Kart oluşturulamadı",
     "cardNetworkError": "API'ye bağlanılamıyor — sunucu çalışıyor mu?"
   },
+  "moderator": {
+    "name": "Moderatör",
+    "synthesizing": "Moderatör özetliyor..."
+  },
   "roundtable": {
     "selected": "{{count}} seçili",
     "start": "Tartışmayı başlat",

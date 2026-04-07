@@ -27,7 +27,7 @@ function mockAdapter() {
 }
 
 describe('useRoundtable', () => {
-  it('runs multiple rounds of discussion', async () => {
+  it('runs multiple rounds with moderator synthesis', async () => {
     mockAdapter();
     const { result } = renderHook(() => useRoundtable());
 
@@ -40,15 +40,17 @@ describe('useRoundtable', () => {
     });
 
     const conv = useConversationStore.getState().getConversation(convId)!;
-    // 1 user + 2 characters * 2 rounds = 5 messages
-    expect(conv.messages).toHaveLength(5);
+    // 1 user + (2 chars + 1 moderator) * 2 rounds = 7 messages
+    expect(conv.messages).toHaveLength(7);
     expect(conv.messages[0].role).toBe('user');
     // Round 1
     expect(conv.messages[1].characterId).toBe('socrates');
     expect(conv.messages[2].characterId).toBe('munger');
+    expect(conv.messages[3].characterId).toBe('__moderator__');
     // Round 2
-    expect(conv.messages[3].characterId).toBe('socrates');
-    expect(conv.messages[4].characterId).toBe('munger');
+    expect(conv.messages[4].characterId).toBe('socrates');
+    expect(conv.messages[5].characterId).toBe('munger');
+    expect(conv.messages[6].characterId).toBe('__moderator__');
   });
 
   it('defaults to 3 rounds', async () => {
@@ -64,11 +66,11 @@ describe('useRoundtable', () => {
     });
 
     const conv = useConversationStore.getState().getConversation(convId)!;
-    // 1 user + 2 characters * 3 rounds = 7 messages
-    expect(conv.messages).toHaveLength(7);
+    // 1 user + (2 chars + 1 moderator) * 3 rounds = 10 messages
+    expect(conv.messages).toHaveLength(10);
   });
 
-  it('regenerate appends a new message for a specific character', async () => {
+  it('regenerate continues from character with moderator', async () => {
     mockAdapter();
     const { result } = renderHook(() => useRoundtable());
 
@@ -86,10 +88,9 @@ describe('useRoundtable', () => {
     });
 
     const conv = useConversationStore.getState().getConversation(convId)!;
-    // Should have 4 messages: user + socrates + munger + regenerated munger
-    expect(conv.messages).toHaveLength(4);
-    expect(conv.messages[3].role).toBe('character');
+    // 3 existing + regenerated munger + moderator = 5 messages
+    expect(conv.messages).toHaveLength(5);
     expect(conv.messages[3].characterId).toBe('munger');
-    expect(conv.messages[3].content).toBe('Response 1');
+    expect(conv.messages[4].characterId).toBe('__moderator__');
   });
 });

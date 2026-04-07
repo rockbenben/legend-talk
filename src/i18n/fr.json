@@ -81,6 +81,10 @@
     "cardError": "Échec de la génération",
     "cardNetworkError": "Impossible de se connecter à l'API — le serveur est-il en marche ?"
   },
+  "moderator": {
+    "name": "Modérateur",
+    "synthesizing": "Le modérateur synthétise..."
+  },
   "roundtable": {
     "selected": "{{count}} sélectionnés",
     "start": "Démarrer la discussion",

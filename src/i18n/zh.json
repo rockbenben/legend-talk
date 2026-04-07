@@ -81,6 +81,10 @@
     "characterEra": "时代",
     "characterEraPlaceholder": "如 当代、文艺复兴"
   },
+  "moderator": {
+    "name": "主持人",
+    "synthesizing": "主持人综合中..."
+  },
   "roundtable": {
     "selected": "已选 {{count}} 位",
     "start": "开始讨论",

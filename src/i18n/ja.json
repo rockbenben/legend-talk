@@ -81,6 +81,10 @@
     "cardError": "シェアカードの生成に失敗しました",
     "cardNetworkError": "シェアカードAPIに接続できません — サーバーは起動していますか？"
   },
+  "moderator": {
+    "name": "モデレーター",
+    "synthesizing": "モデレーターが総括中..."
+  },
   "roundtable": {
     "selected": "{{count}}人選択",
     "start": "討論開始",

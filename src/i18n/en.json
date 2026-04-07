@@ -81,6 +81,10 @@
     "characterEra": "Era / Period",
     "characterEraPlaceholder": "e.g. Contemporary, Renaissance"
   },
+  "moderator": {
+    "name": "Moderator",
+    "synthesizing": "Moderator synthesizing..."
+  },
   "roundtable": {
     "selected": "{{count}} selected",
     "start": "Start Discussion",

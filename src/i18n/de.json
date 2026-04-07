@@ -81,6 +81,10 @@
     "cardError": "Fehler beim Generieren der Karte",
     "cardNetworkError": "Keine Verbindung zur API — läuft der Server?"
   },
+  "moderator": {
+    "name": "Moderator",
+    "synthesizing": "Moderator fasst zusammen..."
+  },
   "roundtable": {
     "selected": "{{count}} ausgewählt",
     "start": "Diskussion starten",

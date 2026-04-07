@@ -81,6 +81,10 @@
     "cardError": "Tạo thẻ chia sẻ thất bại",
     "cardNetworkError": "Không thể kết nối API — máy chủ đang chạy chưa?"
   },
+  "moderator": {
+    "name": "Người điều phối",
+    "synthesizing": "Người điều phối đang tổng hợp..."
+  },
   "roundtable": {
     "selected": "Đã chọn {{count}}",
     "start": "Bắt đầu thảo luận",

@@ -81,6 +81,10 @@
     "cardError": "शेयर कार्ड बनाने में विफल",
     "cardNetworkError": "API से कनेक्ट नहीं हो पा रहा — क्या सर्वर चल रहा है?"
   },
+  "moderator": {
+    "name": "मॉडरेटर",
+    "synthesizing": "मॉडरेटर संश्लेषण कर रहा है..."
+  },
   "roundtable": {
     "selected": "{{count}} चयनित",
     "start": "चर्चा शुरू करें",

@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
-import { buildSystemPrompt, resolveProvider, streamResponse, distillTopic, ROUNDTABLE_SUFFIX } from '../utils/prompt';
+import { buildSystemPrompt, resolveProvider, streamResponse, distillTopic, ROUNDTABLE_SUFFIX, MODERATOR_SYSTEM_PROMPT } from '../utils/prompt';
 import i18n from '../i18n';
+
+const MODERATOR_ID = '__moderator__';
 
 export function useRoundtable() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -14,6 +16,34 @@ export function useRoundtable() {
 
   function stop() {
     abortRef.current?.abort();
+  }
+
+  /** Run characters + moderator for one round */
+  async function runRound(
+    conversationId: string,
+    provider: NonNullable<ReturnType<typeof resolveProvider>>,
+    signal: AbortSignal,
+    topic: string | undefined,
+    charIds?: string[],
+  ) {
+    const conv = useConversationStore.getState().getConversation(conversationId)!;
+    // Shuffle speaking order each round to vary who sets the frame (skip for partial rounds and ≤2 chars)
+    const baseChars = charIds || conv.characters;
+    const chars = !charIds && baseChars.length > 2 ? [...baseChars].sort(() => Math.random() - 0.5) : baseChars;
+
+    for (const charId of chars) {
+      setCurrentSpeaker(charId);
+      const character = presetCharacters.find((c) => c.id === charId);
+      if (!character) continue;
+      const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
+      await streamResponse(conversationId, charId, messages, provider, signal);
+    }
+
+    if (conv.characters.length > 1) {
+      setCurrentSpeaker(MODERATOR_ID);
+      const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
+      await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, signal);
+    }
   }
 
   async function sendMessage(conversationId: string, content: string, rounds: number = 3) {
@@ -36,16 +66,7 @@ export function useRoundtable() {
 
       for (let round = 1; round <= rounds; round++) {
         setCurrentRound(round);
-        const conv = useConversationStore.getState().getConversation(conversationId)!;
-
-        for (const charId of conv.characters) {
-          setCurrentSpeaker(charId);
-          const character = presetCharacters.find((c) => c.id === charId);
-          if (!character) continue;
-
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
-          await streamResponse(conversationId, charId, messages, provider, controller.signal);
-        }
+        await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -87,24 +108,11 @@ export function useRoundtable() {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
       setCurrentRound(completedRounds + 1);
-      for (let i = startIdx; i < chars.length; i++) {
-        setCurrentSpeaker(chars[i]);
-        const character = presetCharacters.find((c) => c.id === chars[i]);
-        if (!character) continue;
-        const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
-        await streamResponse(conversationId, chars[i], messages, provider, controller.signal);
-      }
+      await runRound(conversationId, provider, controller.signal, topic, chars.slice(startIdx));
 
       for (let r = 0; r < remainingFullRounds; r++) {
         setCurrentRound(completedRounds + 2 + r);
-        const currentConv = useConversationStore.getState().getConversation(conversationId)!;
-        for (const charId of currentConv.characters) {
-          setCurrentSpeaker(charId);
-          const character = presetCharacters.find((c) => c.id === charId);
-          if (!character) continue;
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
-          await streamResponse(conversationId, charId, messages, provider, controller.signal);
-        }
+        await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -132,14 +140,7 @@ export function useRoundtable() {
 
       for (let round = 1; round <= count; round++) {
         setCurrentRound(round);
-        const conv = useConversationStore.getState().getConversation(conversationId)!;
-        for (const charId of conv.characters) {
-          setCurrentSpeaker(charId);
-          const character = presetCharacters.find((c) => c.id === charId);
-          if (!character) continue;
-          const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
-          await streamResponse(conversationId, charId, messages, provider, controller.signal);
-        }
+        await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -152,15 +153,35 @@ export function useRoundtable() {
     }
   }
 
-  return { sendMessage, continueFrom, addRounds, stop, isGenerating, currentSpeaker, currentRound, totalRounds, error };
+  async function retryModerator(conversationId: string) {
+    const provider = resolveProvider();
+    if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
+
+    const controller = new AbortController();
+    abortRef.current = controller;
+    setIsGenerating(true);
+    setError(null);
+
+    try {
+      const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
+      setCurrentSpeaker(MODERATOR_ID);
+      const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
+      await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, controller.signal);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
+      setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
+    } finally {
+      abortRef.current = null;
+      setIsGenerating(false);
+      setCurrentSpeaker(null);
+    }
+  }
+
+  return { sendMessage, continueFrom, addRounds, retryModerator, stop, isGenerating, currentSpeaker, currentRound, totalRounds, error };
 }
 
-/**
- * Resolve the discussion topic for the system prompt.
- * - Single user message: returns undefined (use raw message directly)
- * - Multiple user messages: uses AI to distill the core topic, filtering noise like "continue"
- * - Cached: reuses previous result if no new user messages were added
- */
+// ── Topic resolution ──────────────────────────────────────────────────
+
 const topicCache = new Map<string, { userMsgCount: number; lang: string; topic: string }>();
 
 async function resolveRoundtableTopic(
@@ -182,51 +203,16 @@ async function resolveRoundtableTopic(
     return topic;
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') throw err;
-    return cached?.topic; // reuse stale cache if available, otherwise undefined
+    return cached?.topic;
   }
 }
 
-function buildRoundtableMessages(
-  character: { id: string; systemPrompt: string },
-  conversationId: string,
-  lang: string,
-  topic?: string,
-): Array<{ role: 'system' | 'user' | 'assistant'; content: string }> {
-  const conversation = useConversationStore.getState().getConversation(conversationId)!;
-  const isMulti = conversation.characters.length > 1;
-  let suffix = '';
-  if (isMulti) {
-    const otherNames = conversation.characters
-      .filter((id) => id !== character.id)
-      .map((id) => i18n.t(`characters.${id}.name`))
-      .join(', ');
-    suffix = ROUNDTABLE_SUFFIX + ` Other participants: ${otherNames}.`;
-    const displayTopic = topic || conversation.messages.find((m) => m.role === 'user')?.content;
-    if (displayTopic) {
-      suffix += ` The discussion topic is: "${displayTopic}". Always relate your arguments back to this topic.`;
-    }
-  }
-  const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, suffix);
+// ── Message builders ──────────────────────────────────────────────────
 
-  const raw: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
-    { role: 'system', content: systemPrompt },
-  ];
+type RawMsg = { role: 'system' | 'user' | 'assistant'; content: string };
 
-  for (const msg of conversation.messages) {
-    if (msg.role === 'user') {
-      raw.push({ role: 'user', content: msg.content });
-    } else if (!msg.characterId || msg.characterId.startsWith('__')) {
-      // Skip analysis messages — they shouldn't be in roundtable context
-      continue;
-    } else if (msg.characterId === character.id) {
-      raw.push({ role: 'assistant', content: msg.content });
-    } else {
-      const name = i18n.t(`characters.${msg.characterId}.name`);
-      raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
-    }
-  }
-
-  const merged: typeof raw = [raw[0]];
+function mergeConsecutive(raw: RawMsg[]): RawMsg[] {
+  const merged: RawMsg[] = [raw[0]];
   for (let i = 1; i < raw.length; i++) {
     const last = merged[merged.length - 1];
     if (raw[i].role === last.role) {
@@ -235,6 +221,168 @@ function buildRoundtableMessages(
       merged.push({ ...raw[i] });
     }
   }
-
   return merged;
+}
+
+/**
+ * Build messages for a character.
+ *
+ * Context strategy (when moderator syntheses exist):
+ *   user questions → older syntheses → own older messages → full previous round → last synthesis → current round
+ *   - All moderator syntheses: discussion evolution across rounds (~500 chars each, cheap)
+ *   - Own older messages: stance continuity so character doesn't contradict itself
+ *   - Full previous round: direct engagement with others' specific arguments
+ * Otherwise (round 1 or single char): full history
+ */
+function buildRoundtableMessages(
+  character: { id: string; systemPrompt: string },
+  conversationId: string,
+  lang: string,
+  topic?: string,
+): RawMsg[] {
+  const conversation = useConversationStore.getState().getConversation(conversationId)!;
+  const isMulti = conversation.characters.length > 1;
+  let suffix = '';
+  if (isMulti) {
+    suffix = ROUNDTABLE_SUFFIX;
+    const displayTopic = topic || conversation.messages.find((m) => m.role === 'user')?.content;
+    if (displayTopic) {
+      suffix += ` The discussion topic is: "${displayTopic}". Always relate your arguments back to this topic.`;
+    }
+  }
+  const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, suffix);
+  const raw: RawMsg[] = [{ role: 'system', content: systemPrompt }];
+  const messages = conversation.messages;
+
+  // Find last moderator synthesis for context compression
+  let lastModIdx = -1;
+  if (isMulti) {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].characterId === MODERATOR_ID) { lastModIdx = i; break; }
+    }
+  }
+
+  if (lastModIdx >= 0) {
+    // Compressed context: user + older syntheses + own history + previous round + last synthesis + current round
+    for (const msg of messages) {
+      if (msg.role === 'user') raw.push({ role: 'user', content: msg.content });
+    }
+
+    const modName = i18n.t('moderator.name');
+    let prevModIdx = -1;
+    for (let i = lastModIdx - 1; i >= 0; i--) {
+      if (messages[i].characterId === MODERATOR_ID) { prevModIdx = i; break; }
+    }
+
+    // All older moderator syntheses (preserves discussion evolution across rounds)
+    for (let i = 0; i <= (prevModIdx >= 0 ? prevModIdx : -1); i++) {
+      if (messages[i].characterId === MODERATOR_ID) {
+        raw.push({ role: 'user', content: `[${modName}]: ${messages[i].content}` });
+      }
+    }
+
+    // Own messages from older rounds (stance continuity)
+    const prevRoundStart = prevModIdx >= 0 ? prevModIdx + 1 : 0;
+    for (let i = 0; i < prevRoundStart; i++) {
+      if (messages[i].characterId === character.id) {
+        raw.push({ role: 'assistant', content: messages[i].content });
+      }
+    }
+
+    // Full previous round (between prev moderator and last moderator)
+    for (let i = prevRoundStart; i < lastModIdx; i++) {
+      const msg = messages[i];
+      if (msg.role === 'user') continue;
+      if (!msg.characterId || msg.characterId.startsWith('__')) continue;
+      if (msg.characterId === character.id) {
+        raw.push({ role: 'assistant', content: msg.content });
+      } else {
+        const name = i18n.t(`characters.${msg.characterId}.name`);
+        raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+      }
+    }
+
+    // Last moderator synthesis
+    raw.push({ role: 'user', content: `[${modName}]: ${messages[lastModIdx].content}` });
+
+    // Current round messages after last moderator
+    for (let i = lastModIdx + 1; i < messages.length; i++) {
+      const msg = messages[i];
+      if (msg.role === 'user') continue;
+      if (!msg.characterId || msg.characterId.startsWith('__')) continue;
+      if (msg.characterId === character.id) {
+        raw.push({ role: 'assistant', content: msg.content });
+      } else {
+        const name = i18n.t(`characters.${msg.characterId}.name`);
+        raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+      }
+    }
+  } else {
+    // Full history (round 1 or moderator absent)
+    for (const msg of messages) {
+      if (msg.role === 'user') {
+        raw.push({ role: 'user', content: msg.content });
+      } else if (!msg.characterId || msg.characterId.startsWith('__')) {
+        continue;
+      } else if (msg.characterId === character.id) {
+        raw.push({ role: 'assistant', content: msg.content });
+      } else {
+        const name = i18n.t(`characters.${msg.characterId}.name`);
+        raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+      }
+    }
+  }
+
+  return mergeConsecutive(raw);
+}
+
+/**
+ * Build messages for the moderator.
+ *
+ * Context: user questions + all own prior syntheses + current round messages.
+ */
+function buildModeratorMessages(
+  conversationId: string,
+  lang: string,
+  topic?: string,
+): RawMsg[] {
+  const conversation = useConversationStore.getState().getConversation(conversationId)!;
+  let modSuffix = '';
+  const displayTopic = topic || conversation.messages.find((m) => m.role === 'user')?.content;
+  if (displayTopic) {
+    modSuffix = ` The discussion topic is: "${displayTopic}".`;
+  }
+  const systemPrompt = buildSystemPrompt(MODERATOR_SYSTEM_PROMPT, lang, modSuffix);
+  const raw: RawMsg[] = [{ role: 'system', content: systemPrompt }];
+  const messages = conversation.messages;
+
+  // Find last moderator synthesis
+  let lastModIdx = -1;
+  for (let i = messages.length - 1; i >= 0; i--) {
+    if (messages[i].characterId === MODERATOR_ID) { lastModIdx = i; break; }
+  }
+
+  // User messages
+  for (const msg of messages) {
+    if (msg.role === 'user') raw.push({ role: 'user', content: msg.content });
+  }
+
+  // All own prior syntheses (tracks discussion evolution, avoids repeating analysis)
+  for (const msg of messages) {
+    if (msg.characterId === MODERATOR_ID) {
+      raw.push({ role: 'assistant', content: msg.content });
+    }
+  }
+
+  // Current round messages (after last moderator, or all if first round)
+  const roundStart = lastModIdx >= 0 ? lastModIdx + 1 : 0;
+  for (let i = roundStart; i < messages.length; i++) {
+    const msg = messages[i];
+    if (msg.role === 'user') continue;
+    if (!msg.characterId || msg.characterId.startsWith('__')) continue;
+    const name = i18n.t(`characters.${msg.characterId}.name`);
+    raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+  }
+
+  return mergeConsecutive(raw);
 }

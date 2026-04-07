@@ -81,6 +81,10 @@
     "cardError": "শেয়ার কার্ড তৈরি ব্যর্থ",
     "cardNetworkError": "API-তে সংযোগ করা যাচ্ছে না — সার্ভার চলছে কি?"
   },
+  "moderator": {
+    "name": "সঞ্চালক",
+    "synthesizing": "সঞ্চালক সংশ্লেষণ করছেন..."
+  },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",
     "start": "আলোচনা শুরু",

@@ -81,6 +81,10 @@
     "cardError": "生成分享卡片失敗",
     "cardNetworkError": "無法連線分享卡片 API — 服務是否已啟動？"
   },
+  "moderator": {
+    "name": "主持人",
+    "synthesizing": "主持人綜合中..."
+  },
   "roundtable": {
     "selected": "已選 {{count}} 位",
     "start": "開始討論",

@@ -81,6 +81,10 @@
     "cardError": "فشل في إنشاء البطاقة",
     "cardNetworkError": "تعذر الاتصال بـ API — هل الخادم يعمل؟"
   },
+  "moderator": {
+    "name": "المُيسِّر",
+    "synthesizing": "المُيسِّر يُلخّص..."
+  },
   "roundtable": {
     "selected": "{{count}} مختار",
     "start": "بدء النقاش",

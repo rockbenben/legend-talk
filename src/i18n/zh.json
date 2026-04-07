@@ -1568,7 +1568,11 @@
     },
     "business-strategy": {
       "name": "商业战略",
-      "description": "思维模型 vs 第一性原理 vs 逆向思维"
+      "description": "心智模型 vs 第一性原理 vs 创业 vs 全球化"
+    },
+    "ai-tech": {
+      "name": "AI 与科技",
+      "description": "规模 vs 安全，工程 vs 风险，构建 vs 思考"
     },
     "science-panel": {
       "name": "科学探索",
@@ -1581,10 +1585,6 @@
     "psychology-insights": {
       "name": "心理洞察",
       "description": "本能 vs 行为 vs 偏差 vs 意义"
-    },
-    "literary-salon": {
-      "name": "文学沙龙",
-      "description": "悲喜、道德、荒诞、批判、硬汉"
     }
   }
 }

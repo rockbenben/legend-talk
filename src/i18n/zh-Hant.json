@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "商業戰略",
-      "description": "思維模型 vs 第一性原理 vs 逆向思維"
+      "description": "心智模型 vs 第一性原理 vs 創業 vs 全球化"
     },
     "science-panel": {
       "name": "科學探索",
@@ -1582,9 +1582,9 @@
       "name": "心理洞察",
       "description": "本能 vs 行為 vs 偏差 vs 意義"
     },
-    "literary-salon": {
-      "name": "文學沙龍",
-      "description": "悲喜、道德、荒誕、批判、硬漢"
+    "ai-tech": {
+      "name": "AI 與科技",
+      "description": "規模 vs 安全，工程 vs 風險，構建 vs 思考"
     }
   }
 }

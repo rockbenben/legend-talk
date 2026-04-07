@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Mental models vs first principles vs contrarian"
+      "description": "Zihinsel modeller vs ilk ilkeler vs girişimcilik vs küreselleşme"
     },
     "science-panel": {
       "name": "Science Panel",
@@ -1582,9 +1582,9 @@
       "name": "Psychology Insights",
       "description": "Drives vs behavior vs bias vs meaning"
     },
-    "literary-salon": {
-      "name": "Literary Salon",
-      "description": "Tragedy, morality, absurd, revolt, grit"
+    "ai-tech": {
+      "name": "Yapay Zeka ve Teknoloji",
+      "description": "Ölçek vs güvenlik, mühendislik vs risk, inşa vs düşünce"
     }
   }
 }

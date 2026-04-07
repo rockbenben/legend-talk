@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "ビジネス戦略",
-      "description": "思考モデル vs 第一原理 vs 逆張り"
+      "description": "メンタルモデル vs 第一原理 vs スタートアップ vs グローバル化"
     },
     "science-panel": {
       "name": "科学探究",
@@ -1582,9 +1582,9 @@
       "name": "心理学の洞察",
       "description": "本能 vs 行動 vs バイアス vs 意味"
     },
-    "literary-salon": {
-      "name": "文学サロン",
-      "description": "悲喜劇・道徳・不条理・批判・硬派"
+    "ai-tech": {
+      "name": "AI＆テック",
+      "description": "スケール vs 安全、工学 vs リスク、構築 vs 思考"
     }
   }
 }

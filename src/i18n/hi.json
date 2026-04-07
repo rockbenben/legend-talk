@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Mental models vs first principles vs contrarian"
+      "description": "मानसिक मॉडल vs प्रथम सिद्धांत vs स्टार्टअप vs वैश्वीकरण"
     },
     "science-panel": {
       "name": "Science Panel",
@@ -1582,9 +1582,9 @@
       "name": "Psychology Insights",
       "description": "Drives vs behavior vs bias vs meaning"
     },
-    "literary-salon": {
-      "name": "Literary Salon",
-      "description": "Tragedy, morality, absurd, revolt, grit"
+    "ai-tech": {
+      "name": "AI और तकनीक",
+      "description": "स्केल vs सुरक्षा, इंजीनियरिंग vs जोखिम, निर्माण vs सोच"
     }
   }
 }

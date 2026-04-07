@@ -14,7 +14,7 @@ interface CharacterGridProps {
   selectedIds?: string[];
 }
 
-const CATEGORIES = ['all', 'philosophy', 'strategy', 'business', 'finance', 'history', 'sociology', 'psychology', 'science', 'literature', 'art', 'economics', 'politics', 'technology', 'religion', 'education'];
+const CATEGORIES = ['all', 'philosophy', 'technology', 'business', 'strategy', 'science', 'psychology', 'economics', 'history', 'politics', 'literature', 'art', 'finance', 'education', 'religion', 'sociology'];
 
 export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: CharacterGridProps) {
   const { t } = useTranslation();

@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Mental models vs first principles vs contrarian"
+      "description": "โมเดลคิด vs หลักการแรก vs สตาร์ทอัพ vs โลกาภิวัตน์"
     },
     "science-panel": {
       "name": "Science Panel",
@@ -1582,9 +1582,9 @@
       "name": "Psychology Insights",
       "description": "Drives vs behavior vs bias vs meaning"
     },
-    "literary-salon": {
-      "name": "Literary Salon",
-      "description": "Tragedy, morality, absurd, revolt, grit"
+    "ai-tech": {
+      "name": "AI และเทคโนโลยี",
+      "description": "ขนาด vs ความปลอดภัย, วิศวกรรม vs ความเสี่ยง, สร้าง vs คิด"
     }
   }
 }

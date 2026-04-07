@@ -1568,7 +1568,7 @@
     },
     "business-strategy": {
       "name": "비즈니스 전략",
-      "description": "사고모델 vs 제1원리 vs 역발상"
+      "description": "멘탈모델 vs 제1원리 vs 스타트업 vs 글로벌화"
     },
     "science-panel": {
       "name": "과학 탐구",
@@ -1582,9 +1582,9 @@
       "name": "심리학 통찰",
       "description": "본능 vs 행동 vs 편향 vs 의미"
     },
-    "literary-salon": {
-      "name": "문학 살롱",
-      "description": "비극·도덕·부조리·비판·하드보일드"
+    "ai-tech": {
+      "name": "AI & 기술",
+      "description": "규모 vs 안전, 엔지니어링 vs 리스크, 구축 vs 사고"
     }
   }
 }

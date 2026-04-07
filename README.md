@@ -26,9 +26,11 @@
 
 Put the world's greatest thinkers in a room and let them debate your problem.
 
-Legend Talk is a multi-round AI roundtable — pick 2-10 historical or contemporary figures, throw in a question, and watch them argue across multiple rounds, each responding to what others said. Socrates questions Munger's assumptions while Nietzsche challenges them both.
+Legend Talk is a multi-round AI roundtable — pick 2-10 historical or contemporary figures, throw in a question, and watch them argue across multiple rounds with a moderator synthesizing each round's key disagreements. Socrates questions Munger's assumptions while Nietzsche challenges them both.
 
-Also works as a 1-on-1 thinking tool: consult any of 140+ thinkers through their unique frameworks, not generic AI roleplay.
+Or just enter a topic and let AI assemble the panel — it picks 3-5 thinkers whose perspectives create productive tension.
+
+Also works as a 1-on-1 thinking tool: consult any of 157 thinkers through their unique frameworks, not generic AI roleplay.
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -44,7 +46,11 @@ Also works as a 1-on-1 thinking tool: consult any of 140+ thinkers through their
 
 Click the **Chat** button on any character card to start a private conversation. The thinker responds using their unique framework and perspective.
 
-### Roundtable Discussion
+### Auto Roundtable
+
+Enter a topic in the input bar at the top of the home page — AI selects 3-5 thinkers whose perspectives create productive tension and starts the discussion immediately. No character picking needed.
+
+### Manual Roundtable
 
 Click the **+** button on 2-10 character cards to add them to your lineup. A floating bar appears at the bottom showing your selections:
 
@@ -56,15 +62,16 @@ You can also click **🎲 Random** in the top-right to instantly start a roundta
 
 ### Featured Templates
 
-The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "Philosophy Debate": Socrates vs Confucius vs Nietzsche vs Buddha vs Marcus Aurelius). One click to start.
+The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "AI & Tech": Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). One click to start.
 
 ### During a Conversation
 
+- **Moderator** — after each round, an AI moderator synthesizes the discussion: identifies the core disagreement, tracks what shifted, and poses a targeted question for the next round
 - **Stop** — cancel generation mid-stream (preserves content already generated)
 - **Add/remove participants** anytime via the participants bar — turning a 1-on-1 into a roundtable or vice versa
 - **Set rounds** — configure how many rounds the thinkers should debate before pausing
 - **Continue** — add more rounds after a discussion completes
-- **Restart lineup** — start a fresh conversation with the same characters
+- **Same characters, new chat** — start a fresh conversation with the same characters
 - **Summarize** — one-click AI summary extracting core viewpoints and disagreements
 - **Share chat** — generate a shareable URL containing the full conversation
 - **Export** — save as Markdown or JSON, or generate share cards via [json2card](https://github.com/rockbenben/json2card) (configure API endpoint in Settings)
@@ -91,7 +98,7 @@ You can also use the **Copy lineup link** button in the participants bar or the 
 
 Beyond the usage above:
 
-- **140+ preset thinkers** across 15 domains, sorted by fame, with free input for any name
+- **157 preset thinkers** across 15 domains, sorted by fame, with free input for any name
 - **Conversation search** — search across all conversations by title, character name, or message content
 - **Favorite characters** — star your most-used thinkers for quick access
 - **Settings sync** — share settings to another device via URL (API keys AES-encrypted)

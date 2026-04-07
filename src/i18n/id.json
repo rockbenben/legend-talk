@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Kontemporer",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Seberapa banyak kehidupan sosial saya adalah pertunjukan?",
         "Apa yang terjadi ketika \"topeng\" kita terlepas?",
         "Mengapa kita mengikuti aturan sosial tak tertulis?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Kontemporer",
+      "questions": [
+        "Apakah ide startup saya bagus?",
+        "Apa yang harus saya kerjakan dalam hidup?",
+        "Mengapa menulis adalah cara berpikir terbaik?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana membangun produk global?",
+        "Apa yang membuat organisasi benar-benar efisien?",
+        "Bagaimana melarikan diri dari gravitasi mediokritas?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana memahami batas kemampuan AI?",
+        "Apa arti Software 3.0 bagi pengembang?",
+        "Bagaimana LLM sebenarnya bekerja?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Kontemporer",
+      "questions": [
+        "Apa setelah scaling?",
+        "Bisakah keamanan dan kemampuan AI diselesaikan bersamaan?",
+        "Apa artinya benar-benar memahami bahasa?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana membuat video viral?",
+        "Apa yang membuat orang klik dan terus menonton?",
+        "Bagaimana membangun kerajaan konten dari nol?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana bernegosiasi dari posisi kuat?",
+        "Bagaimana perhatian media menjadi kekuasaan?",
+        "Apa yang membuat kesepakatan hebat?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Kontemporer",
+      "questions": [
+        "Bagaimana menjadi kaya tanpa keberuntungan?",
+        "Apa itu pengetahuan spesifik?",
+        "Bagaimana bahagia tanpa kondisi eksternal?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Kontemporer",
+      "questions": [
+        "Jurusan kuliah apa yang harus dipilih?",
+        "Bagaimana latar belakang keluarga memengaruhi pilihan karier?",
+        "Apakah pascasarjana layak untuk keluarga biasa?"
       ]
     }
   },

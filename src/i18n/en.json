@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Contemporary",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "How much of my social life is performance?",
         "What happens when our \"mask\" slips?",
         "Why do we follow unwritten social rules?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Contemporary",
+      "questions": [
+        "How do I know if my startup idea is good?",
+        "What should I work on in life?",
+        "Why is writing the best way to think?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Contemporary",
+      "questions": [
+        "How to build a global product from China?",
+        "What makes an organization truly effective?",
+        "How to avoid mediocrity's gravity?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Contemporary",
+      "questions": [
+        "How should I think about AI capabilities?",
+        "What does Software 3.0 mean for developers?",
+        "How do LLMs actually work under the hood?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Contemporary",
+      "questions": [
+        "What comes after scaling?",
+        "Can AI safety and capabilities be solved together?",
+        "What does it mean to truly understand language?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Contemporary",
+      "questions": [
+        "How do I make a viral video?",
+        "What makes people click and keep watching?",
+        "How to build a content empire from zero?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Contemporary",
+      "questions": [
+        "How to negotiate from a position of strength?",
+        "How does media attention become power?",
+        "What makes a deal great?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Contemporary",
+      "questions": [
+        "How to get rich without getting lucky?",
+        "What is specific knowledge?",
+        "How to be happy without external conditions?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Contemporary",
+      "questions": [
+        "Which college major should I choose?",
+        "How does family background affect career choices?",
+        "Is graduate school worth it for ordinary families?"
       ]
     }
   },

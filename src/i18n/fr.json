@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Contemporary",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Quelle part de ma vie sociale est une performance ?",
         "Que se passe-t-il quand notre « masque » glisse ?",
         "Pourquoi suivons-nous des règles sociales non écrites ?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Contemporain",
+      "questions": [
+        "Mon idée de startup est-elle bonne ?",
+        "Sur quoi devrais-je travailler dans la vie ?",
+        "Pourquoi écrire est la meilleure façon de penser ?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Contemporain",
+      "questions": [
+        "Comment créer un produit mondial ?",
+        "Qu'est-ce qui rend une organisation vraiment efficace ?",
+        "Comment échapper à la gravité de la médiocrité ?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Contemporain",
+      "questions": [
+        "Comment comprendre les limites de l'IA ?",
+        "Que signifie Software 3.0 pour les développeurs ?",
+        "Comment fonctionnent réellement les LLM ?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Contemporain",
+      "questions": [
+        "Qu'y a-t-il après le scaling ?",
+        "Sécurité et capacité de l'IA peuvent-elles être résolues ensemble ?",
+        "Que signifie vraiment comprendre le langage ?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Contemporain",
+      "questions": [
+        "Comment faire une vidéo virale ?",
+        "Qu'est-ce qui fait cliquer et regarder jusqu'au bout ?",
+        "Comment bâtir un empire de contenu à partir de zéro ?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Contemporain",
+      "questions": [
+        "Comment négocier en position de force ?",
+        "Comment l'attention médiatique devient-elle pouvoir ?",
+        "Qu'est-ce qui fait un bon accord ?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Contemporain",
+      "questions": [
+        "Comment devenir riche sans compter sur la chance ?",
+        "Qu'est-ce que la connaissance spécifique ?",
+        "Comment être heureux sans conditions extérieures ?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Contemporain",
+      "questions": [
+        "Quelle filière universitaire choisir ?",
+        "Comment l'origine familiale influence-t-elle les choix de carrière ?",
+        "Un master vaut-il le coup pour les familles ordinaires ?"
       ]
     }
   },

@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Contemporary",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Quanto da minha vida social é performance?",
         "O que acontece quando nossa \"máscara\" cai?",
         "Por que seguimos regras sociais não escritas?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Contemporâneo",
+      "questions": [
+        "Minha ideia de startup é boa?",
+        "No que devo trabalhar na vida?",
+        "Por que escrever é a melhor forma de pensar?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Contemporâneo",
+      "questions": [
+        "Como criar um produto global?",
+        "O que torna uma organização realmente eficiente?",
+        "Como escapar da gravidade da mediocridade?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Contemporâneo",
+      "questions": [
+        "Como entender os limites da IA?",
+        "O que Software 3.0 significa para desenvolvedores?",
+        "Como os LLMs realmente funcionam?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Contemporâneo",
+      "questions": [
+        "O que vem depois do scaling?",
+        "Segurança e capacidade da IA podem ser resolvidas juntas?",
+        "O que significa realmente entender a linguagem?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Contemporâneo",
+      "questions": [
+        "Como fazer um vídeo viral?",
+        "O que faz as pessoas clicarem e continuarem assistindo?",
+        "Como construir um império de conteúdo do zero?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Contemporâneo",
+      "questions": [
+        "Como negociar de uma posição de força?",
+        "Como atenção da mídia vira poder?",
+        "O que faz um bom acordo?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Contemporâneo",
+      "questions": [
+        "Como enriquecer sem depender da sorte?",
+        "O que é conhecimento específico?",
+        "Como ser feliz sem condições externas?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Contemporâneo",
+      "questions": [
+        "Qual curso universitário escolher?",
+        "Como a origem familiar influencia as escolhas profissionais?",
+        "Pós-graduação vale a pena para famílias comuns?"
       ]
     }
   },

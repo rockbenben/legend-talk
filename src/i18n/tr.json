@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Çağdaş",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Sosyal hayatımın ne kadarı performans?",
         "\"Maskemiz\" düştüğünde ne olur?",
         "Neden yazılmamış sosyal kurallara uyarız?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Çağdaş",
+      "questions": [
+        "Girişim fikrim iyi mi?",
+        "Hayatımda ne üzerinde çalışmalıyım?",
+        "Neden yazmak düşünmenin en iyi yoludur?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Çağdaş",
+      "questions": [
+        "Küresel bir ürün nasıl yaratılır?",
+        "Gerçekten verimli bir organizasyon neyi gerektirir?",
+        "Sıradanlığın çekim gücünden nasıl kurtulunur?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Çağdaş",
+      "questions": [
+        "Yapay zekanın sınırlarını nasıl anlamalı?",
+        "Software 3.0 geliştiriciler için ne anlama geliyor?",
+        "LLM'ler gerçekte nasıl çalışıyor?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Çağdaş",
+      "questions": [
+        "Ölçeklendirmeden sonra ne gelir?",
+        "Yapay zeka güvenliği ve yeteneği birlikte çözülebilir mi?",
+        "Dili gerçekten anlamak ne demektir?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Çağdaş",
+      "questions": [
+        "Viral bir video nasıl yapılır?",
+        "İnsanları tıklatıp izlemeye devam ettiren ne?",
+        "Sıfırdan bir içerik imparatorluğu nasıl kurulur?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Çağdaş",
+      "questions": [
+        "Güçlü bir konumdan nasıl müzakere edilir?",
+        "Medya ilgisi nasıl güce dönüşür?",
+        "İyi bir anlaşmayı ne yapar?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Çağdaş",
+      "questions": [
+        "Şansa bel bağlamadan nasıl zengin olunur?",
+        "Özel bilgi nedir?",
+        "Dış koşullar olmadan nasıl mutlu olunur?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Çağdaş",
+      "questions": [
+        "Hangi üniversite bölümünü seçmeli?",
+        "Aile geçmişi kariyer seçimlerini nasıl etkiler?",
+        "Sıradan aileler için yüksek lisans değer mi?"
       ]
     }
   },

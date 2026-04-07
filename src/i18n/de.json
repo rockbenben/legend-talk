@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Contemporary",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Wie viel meines Soziallebens ist Aufführung?",
         "Was passiert wenn unsere „Maske\" verrutscht?",
         "Warum befolgen wir ungeschriebene soziale Regeln?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Gegenwart",
+      "questions": [
+        "Ist meine Startup-Idee gut?",
+        "Woran sollte ich in meinem Leben arbeiten?",
+        "Warum ist Schreiben die beste Art zu denken?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Zhang Yiming",
+      "era": "Gegenwart",
+      "questions": [
+        "Wie baut man ein globales Produkt?",
+        "Was macht eine Organisation wirklich effizient?",
+        "Wie entkommt man der Schwerkraft der Mittelmäßigkeit?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Gegenwart",
+      "questions": [
+        "Wie versteht man die Grenzen der KI?",
+        "Was bedeutet Software 3.0 für Entwickler?",
+        "Wie funktionieren LLMs wirklich?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Gegenwart",
+      "questions": [
+        "Was kommt nach dem Scaling?",
+        "Können KI-Sicherheit und -Fähigkeit gleichzeitig gelöst werden?",
+        "Was bedeutet es, Sprache wirklich zu verstehen?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Gegenwart",
+      "questions": [
+        "Wie macht man ein virales Video?",
+        "Was bringt Leute zum Klicken und Dranbleiben?",
+        "Wie baut man ein Content-Imperium von Null auf?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Gegenwart",
+      "questions": [
+        "Wie verhandelt man aus einer Position der Stärke?",
+        "Wie wird Medienaufmerksamkeit zu Macht?",
+        "Was macht einen guten Deal aus?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Gegenwart",
+      "questions": [
+        "Wie wird man reich ohne Glück?",
+        "Was ist spezifisches Wissen?",
+        "Wie wird man glücklich ohne äußere Bedingungen?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Zhang Xuefeng",
+      "era": "Gegenwart",
+      "questions": [
+        "Welches Studienfach wählen?",
+        "Wie beeinflusst der familiäre Hintergrund die Berufswahl?",
+        "Lohnt sich ein Masterstudium für normale Familien?"
       ]
     }
   },

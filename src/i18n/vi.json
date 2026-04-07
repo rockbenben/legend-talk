@@ -400,7 +400,7 @@
         "How to find secrets others overlook?"
       ]
     },
-    "jobs": {
+    "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Đương đại",
       "questions": [
@@ -409,7 +409,7 @@
         "How to build something people love?"
       ]
     },
-    "musk": {
+    "elon-musk": {
       "name": "Elon Musk",
       "era": "Đương đại",
       "questions": [
@@ -1478,6 +1478,78 @@
         "Bao nhiêu đời sống xã hội của tôi là diễn kịch?",
         "Chuyện gì xảy ra khi \"mặt nạ\" của chúng ta tuột?",
         "Tại sao chúng ta tuân theo quy tắc xã hội bất thành văn?"
+      ]
+    },
+    "paul-graham": {
+      "name": "Paul Graham",
+      "era": "Đương đại",
+      "questions": [
+        "Ý tưởng startup của tôi có tốt không?",
+        "Tôi nên làm gì trong đời?",
+        "Tại sao viết là cách tư duy tốt nhất?"
+      ]
+    },
+    "zhang-yiming": {
+      "name": "Trương Nhất Minh",
+      "era": "Đương đại",
+      "questions": [
+        "Làm sao xây dựng sản phẩm toàn cầu?",
+        "Điều gì khiến tổ chức thực sự hiệu quả?",
+        "Làm sao thoát khỏi sức hút của sự tầm thường?"
+      ]
+    },
+    "andrej-karpathy": {
+      "name": "Andrej Karpathy",
+      "era": "Đương đại",
+      "questions": [
+        "Hiểu giới hạn năng lực AI thế nào?",
+        "Software 3.0 có ý nghĩa gì với lập trình viên?",
+        "LLM thực sự hoạt động ra sao?"
+      ]
+    },
+    "ilya-sutskever": {
+      "name": "Ilya Sutskever",
+      "era": "Đương đại",
+      "questions": [
+        "Sau scaling là gì?",
+        "An toàn AI và năng lực có thể giải quyết cùng lúc?",
+        "Thực sự hiểu ngôn ngữ nghĩa là gì?"
+      ]
+    },
+    "mrbeast": {
+      "name": "MrBeast",
+      "era": "Đương đại",
+      "questions": [
+        "Làm video viral thế nào?",
+        "Điều gì khiến người ta click và xem hết?",
+        "Xây dựng đế chế nội dung từ số 0 ra sao?"
+      ]
+    },
+    "donald-trump": {
+      "name": "Donald Trump",
+      "era": "Đương đại",
+      "questions": [
+        "Đàm phán từ vị thế mạnh thế nào?",
+        "Sự chú ý truyền thông trở thành quyền lực ra sao?",
+        "Thế nào là một thương vụ tuyệt vời?"
+      ]
+    },
+    "naval-ravikant": {
+      "name": "Naval Ravikant",
+      "era": "Đương đại",
+      "questions": [
+        "Làm giàu không cần may mắn thế nào?",
+        "Kiến thức chuyên biệt là gì?",
+        "Hạnh phúc không điều kiện ra sao?"
+      ]
+    },
+    "zhang-xuefeng": {
+      "name": "Trương Tuyết Phong",
+      "era": "Đương đại",
+      "questions": [
+        "Nên chọn ngành nào?",
+        "Xuất thân gia đình ảnh hưởng nghề nghiệp thế nào?",
+        "Gia đình bình thường có nên học thạc sĩ?"
       ]
     }
   },

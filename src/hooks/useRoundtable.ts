@@ -29,7 +29,7 @@ export function useRoundtable() {
     const conv = useConversationStore.getState().getConversation(conversationId)!;
     // Shuffle speaking order each round to vary who sets the frame (skip for partial rounds and ≤2 chars)
     const baseChars = charIds || conv.characters;
-    const chars = !charIds && baseChars.length > 2 ? [...baseChars].sort(() => Math.random() - 0.5) : baseChars;
+    const chars = !charIds && baseChars.length > 2 ? fisherYatesShuffle([...baseChars]) : baseChars;
 
     for (const charId of chars) {
       setCurrentSpeaker(charId);
@@ -388,4 +388,12 @@ function buildModeratorMessages(
   }
 
   return mergeConsecutive(raw);
+}
+
+function fisherYatesShuffle<T>(arr: T[]): T[] {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }

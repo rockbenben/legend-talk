@@ -73,28 +73,34 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [pendingTopic, setPendingTopic] = useState<string | null>(null);
   const summonRef = useRef(false);
 
+  const summonAbortRef = useRef<AbortController | null>(null);
+
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
     if (!provider) { setSummonError(null); return; } // Will show isConfigured warning
 
+    summonAbortRef.current?.abort();
+    const controller = new AbortController();
+    summonAbortRef.current = controller;
+
     setIsSummoning(true);
     setSummonError(null);
     const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
-    suggestCharacters(topic, provider, allChars)
+    suggestCharacters(topic, provider, allChars, controller.signal)
       .then((charIds) => {
         if (charIds.length >= 2) {
           useConversationStore.getState().updateCharacters(conversationId, charIds);
           setPendingTopic(null);
           roundtable.sendMessage(conversationId, topic, rounds);
         } else {
-          setSummonError(t('common.error', { message: 'Could not find enough characters for this topic' }));
+          setSummonError(t('chat.summonFailed'));
         }
       })
       .catch((err) => {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setSummonError(err instanceof Error ? err.message : t('common.error', { message: '' }));
       })
-      .finally(() => setIsSummoning(false));
+      .finally(() => { setIsSummoning(false); summonAbortRef.current = null; });
   };
 
   useEffect(() => {

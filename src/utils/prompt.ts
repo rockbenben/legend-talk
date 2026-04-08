@@ -4,7 +4,7 @@ import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
 const DIRECTIVE = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
-export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Focus on the discussion topic — develop your own perspective. Push deeper with counterexamples or broader connections. You may engage with others\' arguments when relevant. Only respond to what has already been said — never predict or guess what someone who hasn\'t spoken will say. Do not repeat arguments already made. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion.';
+export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Focus on the discussion topic — develop your own perspective. Push deeper with counterexamples or broader connections. You may engage with others\' arguments when relevant. Only respond to what has already been said — never predict or guess what someone who hasn\'t spoken will say. Do not repeat arguments already made. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion. Keep each response concise — 2 to 4 focused paragraphs. Prioritize depth and sharpness over length.';
 
 export const MODERATOR_SYSTEM_PROMPT = `You are the moderator of this roundtable discussion. Your role: guide toward deeper truth, not consensus.
 

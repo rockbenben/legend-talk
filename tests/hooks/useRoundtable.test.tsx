@@ -70,6 +70,39 @@ describe('useRoundtable', () => {
     expect(conv.messages).toHaveLength(10);
   });
 
+  it('second user message after rounds complete triggers new rounds', async () => {
+    mockAdapter();
+
+    const convId = useConversationStore
+      .getState()
+      .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
+
+    // First message: 1 round
+    await act(async () => {
+      await result.current.sendMessage(convId, 'First topic', 1);
+    });
+
+    const after1 = useConversationStore.getState().getConversation(convId)!;
+    // 1 user + 2 chars + 1 moderator = 4
+    expect(after1.messages).toHaveLength(4);
+    expect(result.current.isGenerating).toBe(false);
+
+    // Second message: 1 round
+    await act(async () => {
+      await result.current.sendMessage(convId, 'Second topic', 1);
+    });
+
+    const after2 = useConversationStore.getState().getConversation(convId)!;
+    // 4 existing + 1 user + 2 chars + 1 moderator = 8
+    expect(after2.messages).toHaveLength(8);
+    expect(after2.messages[4].role).toBe('user');
+    expect(after2.messages[4].content).toBe('Second topic');
+    expect(after2.messages[5].characterId).toBe('socrates');
+    expect(after2.messages[6].characterId).toBe('munger');
+    expect(after2.messages[7].characterId).toBe('__moderator__');
+  });
+
   it('regenerate continues from character with moderator', async () => {
     mockAdapter();
 

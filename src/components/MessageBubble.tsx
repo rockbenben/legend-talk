@@ -10,7 +10,7 @@ interface MessageBubbleProps {
 }
 
 export function MessageBubble({ content, isUser, avatar, color, name }: MessageBubbleProps) {
-  const trimmed = content?.trim() || '...';
+  const trimmed = content?.trim() || '—';
   const isRaw = trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
 

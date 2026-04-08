@@ -111,7 +111,7 @@ export function ChatPage() {
       <ConversationList activeId={validId} />
       <div className="flex-1 min-w-0">
         {validId ? (
-          <ChatView conversationId={validId} />
+          <ChatView key={validId} conversationId={validId} />
         ) : (
           <div className="h-full overflow-y-auto">
             <div className="p-4 sm:p-6 max-w-6xl mx-auto pb-24">

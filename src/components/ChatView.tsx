@@ -435,8 +435,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
         })}
         {isGenerating && (
           <div className="flex items-center gap-1.5 text-sm text-gray-400">
-            <span>{isMulti && roundtable.currentRound && (roundtable.currentSpeaker === '__moderator__' || speakerChar)
-              ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: roundtable.currentSpeaker === '__moderator__' ? t('moderator.synthesizing') : t(`characters.${speakerChar!.id}.name`) })
+            <span>{isMulti && roundtable.currentRound
+              ? (roundtable.currentSpeaker === '__moderator__' || speakerChar)
+                ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: roundtable.currentSpeaker === '__moderator__' ? t('moderator.synthesizing') : t(`characters.${speakerChar!.id}.name`) })
+                : `${roundtable.currentRound}/${roundtable.totalRounds} — ${t('chat.thinking')}`
               : t('chat.thinking')}</span>
             <span className="flex gap-0.5">
               <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />

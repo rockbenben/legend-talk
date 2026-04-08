@@ -81,6 +81,7 @@ export function useRoundtable(activeConversationId: string) {
 
     const controller = new AbortController();
     startGen(conversationId, controller, rounds);
+    updateConv(conversationId, { round: 1 });
 
     useConversationStore.getState().addMessage(conversationId, 'user', content, undefined);
 
@@ -88,7 +89,7 @@ export function useRoundtable(activeConversationId: string) {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
       for (let round = 1; round <= rounds; round++) {
-        updateConv(conversationId, { round });
+        updateConv(conversationId, { round, speaker: null });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
@@ -120,15 +121,15 @@ export function useRoundtable(activeConversationId: string) {
 
     const controller = new AbortController();
     startGen(conversationId, controller, completedRounds + 1 + remainingFullRounds);
+    updateConv(conversationId, { round: completedRounds + 1 });
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
-      updateConv(conversationId, { round: completedRounds + 1 });
       await runRound(conversationId, provider, controller.signal, topic, chars.slice(startIdx));
 
       for (let r = 0; r < remainingFullRounds; r++) {
-        updateConv(conversationId, { round: completedRounds + 2 + r });
+        updateConv(conversationId, { round: completedRounds + 2 + r, speaker: null });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
@@ -145,12 +146,13 @@ export function useRoundtable(activeConversationId: string) {
 
     const controller = new AbortController();
     startGen(conversationId, controller, count);
+    updateConv(conversationId, { round: 1 });
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
       for (let round = 1; round <= count; round++) {
-        updateConv(conversationId, { round });
+        updateConv(conversationId, { round, speaker: null });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {

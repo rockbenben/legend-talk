@@ -63,17 +63,30 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
   const summarizeAbortRef = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [conversation?.messages]);
-
   // Auto-summon characters and start discussion from topic input
   const [isSummoning, setIsSummoning] = useState(false);
   const [summonError, setSummonError] = useState<string | null>(null);
   const [pendingTopic, setPendingTopic] = useState<string | null>(null);
   const summonRef = useRef(false);
-
   const summonAbortRef = useRef<AbortController | null>(null);
+
+  // Reset ephemeral UI state when switching conversations
+  useEffect(() => {
+    setShowPicker(false);
+    setEditingTitle(false);
+    setEditingMsgId(null);
+    setShareStatus('idle');
+    setSummonError(null);
+    setPendingTopic(null);
+    summonRef.current = false;
+    // Abort in-flight summarize from previous conversation
+    summarizeAbortRef.current?.abort();
+    setIsSummarizing(false);
+  }, [conversationId]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [conversation?.messages]);
 
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
@@ -476,7 +489,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
         onSummarize={handleSummarize} onShare={handleShare}
         onStopSummarize={() => summarizeAbortRef.current?.abort()}
       />
-      <ChatInput onSend={handleSend} disabled={isGenerating || isSummarizing} />
+      <ChatInput key={conversationId} onSend={handleSend} disabled={isGenerating || isSummarizing} />
 
       {showPicker && (
         <CharacterPicker

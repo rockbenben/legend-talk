@@ -96,7 +96,9 @@
     "continue": "+{{count}} vòng nữa",
     "addToRoundtable": "Thêm vào bàn tròn",
     "removeFromRoundtable": "Bỏ khỏi bàn tròn",
-    "removeParticipant": "Xóa"
+    "removeParticipant": "Xóa",
+    "roundPreparing": "Vòng {{current}}/{{total}} — đang chuẩn bị...",
+    "moderatorSynthesizing": "Vòng {{current}}/{{total}} — đang tóm tắt..."
   },
   "moderator": {
     "name": "Người điều phối",

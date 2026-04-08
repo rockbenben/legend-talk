@@ -96,7 +96,9 @@
     "continue": "+{{count}} ronde lagi",
     "addToRoundtable": "Tambah ke meja",
     "removeFromRoundtable": "Hapus dari meja",
-    "removeParticipant": "Hapus"
+    "removeParticipant": "Hapus",
+    "roundPreparing": "Ronde {{current}}/{{total}} — mempersiapkan...",
+    "moderatorSynthesizing": "Ronde {{current}}/{{total}} — merangkum..."
   },
   "moderator": {
     "name": "Moderator",

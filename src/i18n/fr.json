@@ -96,7 +96,9 @@
     "continue": "+{{count}} tours",
     "addToRoundtable": "Ajouter à la table",
     "removeFromRoundtable": "Retirer de la table",
-    "removeParticipant": "Retirer"
+    "removeParticipant": "Retirer",
+    "roundPreparing": "Tour {{current}}/{{total}} — préparation...",
+    "moderatorSynthesizing": "Tour {{current}}/{{total}} — synthèse..."
   },
   "moderator": {
     "name": "Modérateur",

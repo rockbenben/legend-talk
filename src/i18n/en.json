@@ -96,7 +96,9 @@
     "continue": "+ {{count}} more rounds",
     "addToRoundtable": "Add to roundtable",
     "removeFromRoundtable": "Remove from roundtable",
-    "removeParticipant": "Remove"
+    "removeParticipant": "Remove",
+    "roundPreparing": "Round {{current}}/{{total}} — preparing...",
+    "moderatorSynthesizing": "Round {{current}}/{{total}} — summarizing..."
   },
   "moderator": {
     "name": "Moderator",

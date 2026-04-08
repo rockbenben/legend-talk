@@ -96,7 +96,9 @@
     "continue": "+{{count}} جولات إضافية",
     "addToRoundtable": "إضافة للطاولة",
     "removeFromRoundtable": "إزالة من الطاولة",
-    "removeParticipant": "إزالة"
+    "removeParticipant": "إزالة",
+    "roundPreparing": "الجولة {{current}}/{{total}} — جارٍ التحضير...",
+    "moderatorSynthesizing": "الجولة {{current}}/{{total}} — جارٍ التلخيص..."
   },
   "moderator": {
     "name": "المُيسِّر",

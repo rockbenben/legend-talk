@@ -96,7 +96,9 @@
     "continue": "+{{count}} রাউন্ড",
     "addToRoundtable": "গোলটেবিলে যোগ করুন",
     "removeFromRoundtable": "গোলটেবিল থেকে সরান",
-    "removeParticipant": "সরান"
+    "removeParticipant": "সরান",
+    "roundPreparing": "রাউন্ড {{current}}/{{total}} — প্রস্তুত হচ্ছে...",
+    "moderatorSynthesizing": "রাউন্ড {{current}}/{{total}} — সারসংক্ষেপ..."
   },
   "moderator": {
     "name": "সঞ্চালক",

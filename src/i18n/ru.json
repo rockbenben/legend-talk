@@ -96,7 +96,9 @@
     "continue": "+{{count}} раундов",
     "addToRoundtable": "Добавить за стол",
     "removeFromRoundtable": "Убрать из-за стола",
-    "removeParticipant": "Удалить"
+    "removeParticipant": "Удалить",
+    "roundPreparing": "Раунд {{current}}/{{total}} — подготовка...",
+    "moderatorSynthesizing": "Раунд {{current}}/{{total}} — подведение итогов..."
   },
   "moderator": {
     "name": "Модератор",

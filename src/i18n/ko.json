@@ -96,7 +96,9 @@
     "continue": "+{{count}}라운드 추가",
     "addToRoundtable": "원탁에 추가",
     "removeFromRoundtable": "원탁에서 제거",
-    "removeParticipant": "제거"
+    "removeParticipant": "제거",
+    "roundPreparing": "라운드 {{current}}/{{total}} — 준비 중...",
+    "moderatorSynthesizing": "라운드 {{current}}/{{total}} — 요약 중..."
   },
   "moderator": {
     "name": "진행자",

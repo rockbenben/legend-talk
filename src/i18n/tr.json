@@ -96,7 +96,9 @@
     "continue": "+{{count}} tur daha",
     "addToRoundtable": "Masaya ekle",
     "removeFromRoundtable": "Masadan çıkar",
-    "removeParticipant": "Kaldır"
+    "removeParticipant": "Kaldır",
+    "roundPreparing": "Tur {{current}}/{{total}} — hazırlanıyor...",
+    "moderatorSynthesizing": "Tur {{current}}/{{total}} — özetleniyor..."
   },
   "moderator": {
     "name": "Moderatör",

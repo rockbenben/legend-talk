@@ -96,7 +96,9 @@
     "continue": "+{{count}} Runden",
     "addToRoundtable": "Zum Roundtable",
     "removeFromRoundtable": "Vom Roundtable entfernen",
-    "removeParticipant": "Entfernen"
+    "removeParticipant": "Entfernen",
+    "roundPreparing": "Runde {{current}}/{{total}} — Vorbereitung...",
+    "moderatorSynthesizing": "Runde {{current}}/{{total}} — Zusammenfassung..."
   },
   "moderator": {
     "name": "Moderator",

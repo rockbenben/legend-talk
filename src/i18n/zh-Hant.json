@@ -96,7 +96,9 @@
     "continue": "再討論 {{count}} 輪",
     "addToRoundtable": "加入圓桌",
     "removeFromRoundtable": "移出圓桌",
-    "removeParticipant": "移除"
+    "removeParticipant": "移除",
+    "roundPreparing": "第 {{current}}/{{total}} 輪 — 準備中...",
+    "moderatorSynthesizing": "第 {{current}}/{{total}} 輪 — 總結中..."
   },
   "moderator": {
     "name": "主持人",

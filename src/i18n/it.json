@@ -96,7 +96,9 @@
     "continue": "+{{count}} turni",
     "addToRoundtable": "Aggiungi alla tavola",
     "removeFromRoundtable": "Rimuovi dalla tavola",
-    "removeParticipant": "Rimuovi"
+    "removeParticipant": "Rimuovi",
+    "roundPreparing": "Turno {{current}}/{{total}} — preparazione...",
+    "moderatorSynthesizing": "Turno {{current}}/{{total}} — riassumendo..."
   },
   "moderator": {
     "name": "Moderatore",

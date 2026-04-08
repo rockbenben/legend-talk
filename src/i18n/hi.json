@@ -96,7 +96,9 @@
     "continue": "+{{count}} राउंड और",
     "addToRoundtable": "गोलमेज में जोड़ें",
     "removeFromRoundtable": "गोलमेज से हटाएं",
-    "removeParticipant": "हटाएं"
+    "removeParticipant": "हटाएं",
+    "roundPreparing": "राउंड {{current}}/{{total}} — तैयारी हो रही है...",
+    "moderatorSynthesizing": "राउंड {{current}}/{{total}} — सारांश..."
   },
   "moderator": {
     "name": "मॉडरेटर",

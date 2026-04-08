@@ -96,7 +96,9 @@
     "continue": "+{{count}} รอบเพิ่มเติม",
     "addToRoundtable": "เพิ่มเข้าโต๊ะกลม",
     "removeFromRoundtable": "นำออกจากโต๊ะกลม",
-    "removeParticipant": "ลบ"
+    "removeParticipant": "ลบ",
+    "roundPreparing": "รอบ {{current}}/{{total}} — กำลังเตรียม...",
+    "moderatorSynthesizing": "รอบ {{current}}/{{total}} — กำลังสรุป..."
   },
   "moderator": {
     "name": "ผู้ดำเนินรายการ",

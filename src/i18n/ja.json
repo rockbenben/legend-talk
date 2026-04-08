@@ -96,7 +96,9 @@
     "continue": "+{{count}}ラウンド追加",
     "addToRoundtable": "円卓に追加",
     "removeFromRoundtable": "円卓から外す",
-    "removeParticipant": "削除"
+    "removeParticipant": "削除",
+    "roundPreparing": "ラウンド{{current}}/{{total}} — 準備中...",
+    "moderatorSynthesizing": "ラウンド{{current}}/{{total}} — まとめ中..."
   },
   "moderator": {
     "name": "モデレーター",

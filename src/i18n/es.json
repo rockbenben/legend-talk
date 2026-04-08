@@ -96,7 +96,9 @@
     "continue": "+{{count}} rondas más",
     "addToRoundtable": "Añadir a la mesa",
     "removeFromRoundtable": "Quitar de la mesa",
-    "removeParticipant": "Eliminar"
+    "removeParticipant": "Eliminar",
+    "roundPreparing": "Ronda {{current}}/{{total}} — preparando...",
+    "moderatorSynthesizing": "Ronda {{current}}/{{total}} — resumiendo..."
   },
   "moderator": {
     "name": "Moderador",

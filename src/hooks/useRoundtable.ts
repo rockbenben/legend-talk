@@ -169,12 +169,12 @@ export function useRoundtable(activeConversationId: string) {
 
     const controller = new AbortController();
     startGen(conversationId, controller, 1);
-    updateConv(conversationId, { round: 1 });
+    updateConv(conversationId, { round: 1, speaker: MODERATOR_ID });
 
     try {
-      const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
-      updateConv(conversationId, { speaker: MODERATOR_ID });
-      const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
+      // Skip topic resolution for retry — topic hasn't changed, buildModeratorMessages
+      // falls back to the first user message which is sufficient for re-synthesis
+      const modMessages = buildModeratorMessages(conversationId, provider.lang);
       await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, controller.signal);
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;

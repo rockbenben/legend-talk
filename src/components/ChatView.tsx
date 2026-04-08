@@ -79,7 +79,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setSummonError(null);
     setPendingTopic(null);
     summonRef.current = false;
-    // Abort in-flight summarize from previous conversation
+    // Abort in-flight operations from previous conversation
+    summonAbortRef.current?.abort();
+    setIsSummoning(false);
     summarizeAbortRef.current?.abort();
     setIsSummarizing(false);
   }, [conversationId]);

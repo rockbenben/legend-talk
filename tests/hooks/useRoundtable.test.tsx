@@ -29,11 +29,11 @@ function mockAdapter() {
 describe('useRoundtable', () => {
   it('runs multiple rounds with moderator synthesis', async () => {
     mockAdapter();
-    const { result } = renderHook(() => useRoundtable());
 
     const convId = useConversationStore
       .getState()
       .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
 
     await act(async () => {
       await result.current.sendMessage(convId, 'How to think clearly?', 2);
@@ -55,11 +55,11 @@ describe('useRoundtable', () => {
 
   it('defaults to 3 rounds', async () => {
     mockAdapter();
-    const { result } = renderHook(() => useRoundtable());
 
     const convId = useConversationStore
       .getState()
       .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
 
     await act(async () => {
       await result.current.sendMessage(convId, 'Topic');
@@ -72,11 +72,11 @@ describe('useRoundtable', () => {
 
   it('regenerate continues from character with moderator', async () => {
     mockAdapter();
-    const { result } = renderHook(() => useRoundtable());
 
     const convId = useConversationStore
       .getState()
       .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
 
     // Pre-populate: user message + one message from each character
     useConversationStore.getState().addMessage(convId, 'user', 'How to think clearly?', undefined);

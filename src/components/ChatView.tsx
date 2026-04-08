@@ -47,8 +47,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
     return !!key && key.trim().length > 0;
   });
 
-  const singleChat = useChat();
-  const roundtable = useRoundtable();
+  const singleChat = useChat(conversationId);
+  const roundtable = useRoundtable(conversationId);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const lang = currentLang();

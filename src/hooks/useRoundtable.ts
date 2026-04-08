@@ -6,16 +6,42 @@ import i18n from '../i18n';
 
 const MODERATOR_ID = '__moderator__';
 
-export function useRoundtable() {
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [currentSpeaker, setCurrentSpeaker] = useState<string | null>(null);
-  const [currentRound, setCurrentRound] = useState<number | null>(null);
-  const [totalRounds, setTotalRounds] = useState<number>(0);
-  const [error, setError] = useState<string | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
+interface ConvState {
+  speaker: string | null;
+  round: number | null;
+  totalRounds: number;
+  error: string | null;
+}
+
+const defaultState: ConvState = { speaker: null, round: null, totalRounds: 0, error: null };
+
+export function useRoundtable(activeConversationId: string) {
+  const abortMap = useRef(new Map<string, AbortController>());
+  const [generatingIds, setGeneratingIds] = useState<Set<string>>(new Set());
+  const [stateMap, setStateMap] = useState(new Map<string, ConvState>());
+
+  function updateConv(convId: string, updates: Partial<ConvState>) {
+    setStateMap(prev => {
+      const next = new Map(prev);
+      next.set(convId, { ...(next.get(convId) ?? defaultState), ...updates });
+      return next;
+    });
+  }
+
+  function startGen(conversationId: string, controller: AbortController, totalRounds: number) {
+    abortMap.current.set(conversationId, controller);
+    setGeneratingIds(prev => new Set(prev).add(conversationId));
+    updateConv(conversationId, { error: null, totalRounds });
+  }
+
+  function finishGen(conversationId: string) {
+    abortMap.current.delete(conversationId);
+    setGeneratingIds(prev => { const next = new Set(prev); next.delete(conversationId); return next; });
+    updateConv(conversationId, { speaker: null, round: null });
+  }
 
   function stop() {
-    abortRef.current?.abort();
+    abortMap.current.get(activeConversationId)?.abort();
   }
 
   /** Run characters + moderator for one round */
@@ -32,7 +58,7 @@ export function useRoundtable() {
     const chars = !charIds && baseChars.length > 2 ? fisherYatesShuffle([...baseChars]) : baseChars;
 
     for (const charId of chars) {
-      setCurrentSpeaker(charId);
+      updateConv(conversationId, { speaker: charId });
       const character = presetCharacters.find((c) => c.id === charId);
       if (!character) continue;
       const messages = buildRoundtableMessages(character, conversationId, provider.lang, topic);
@@ -40,7 +66,7 @@ export function useRoundtable() {
     }
 
     if (conv.characters.length > 1) {
-      setCurrentSpeaker(MODERATOR_ID);
+      updateConv(conversationId, { speaker: MODERATOR_ID });
       const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
       await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, signal);
     }
@@ -48,16 +74,13 @@ export function useRoundtable() {
 
   async function sendMessage(conversationId: string, content: string, rounds: number = 3) {
     const provider = resolveProvider();
-    if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
+    if (!provider) { updateConv(conversationId, { error: i18n.t('chat.noApiKey') }); return; }
 
     const conversation = useConversationStore.getState().getConversation(conversationId);
     if (!conversation) return;
 
     const controller = new AbortController();
-    abortRef.current = controller;
-    setIsGenerating(true);
-    setError(null);
-    setTotalRounds(rounds);
+    startGen(conversationId, controller, rounds);
 
     useConversationStore.getState().addMessage(conversationId, 'user', content, undefined);
 
@@ -65,23 +88,20 @@ export function useRoundtable() {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
       for (let round = 1; round <= rounds; round++) {
-        setCurrentRound(round);
+        updateConv(conversationId, { round });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
-      setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
+      updateConv(conversationId, { error: err instanceof Error ? err.message : i18n.t('common.error', { message: '' }) });
     } finally {
-      abortRef.current = null;
-      setIsGenerating(false);
-      setCurrentSpeaker(null);
-      setCurrentRound(null);
+      finishGen(conversationId);
     }
   }
 
   async function continueFrom(conversationId: string, startCharId: string, rounds: number) {
     const provider = resolveProvider();
-    if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
+    if (!provider) { updateConv(conversationId, { error: i18n.t('chat.noApiKey') }); return; }
 
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv) return;
@@ -99,88 +119,78 @@ export function useRoundtable() {
     const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
 
     const controller = new AbortController();
-    abortRef.current = controller;
-    setIsGenerating(true);
-    setError(null);
-    setTotalRounds(completedRounds + 1 + remainingFullRounds);
+    startGen(conversationId, controller, completedRounds + 1 + remainingFullRounds);
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
-      setCurrentRound(completedRounds + 1);
+      updateConv(conversationId, { round: completedRounds + 1 });
       await runRound(conversationId, provider, controller.signal, topic, chars.slice(startIdx));
 
       for (let r = 0; r < remainingFullRounds; r++) {
-        setCurrentRound(completedRounds + 2 + r);
+        updateConv(conversationId, { round: completedRounds + 2 + r });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
-      setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
+      updateConv(conversationId, { error: err instanceof Error ? err.message : i18n.t('common.error', { message: '' }) });
     } finally {
-      abortRef.current = null;
-      setIsGenerating(false);
-      setCurrentSpeaker(null);
-      setCurrentRound(null);
+      finishGen(conversationId);
     }
   }
 
   async function addRounds(conversationId: string, count: number) {
     const provider = resolveProvider();
-    if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
+    if (!provider) { updateConv(conversationId, { error: i18n.t('chat.noApiKey') }); return; }
 
     const controller = new AbortController();
-    abortRef.current = controller;
-    setIsGenerating(true);
-    setError(null);
-    setTotalRounds(count);
+    startGen(conversationId, controller, count);
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
       for (let round = 1; round <= count; round++) {
-        setCurrentRound(round);
+        updateConv(conversationId, { round });
         await runRound(conversationId, provider, controller.signal, topic);
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
-      setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
+      updateConv(conversationId, { error: err instanceof Error ? err.message : i18n.t('common.error', { message: '' }) });
     } finally {
-      abortRef.current = null;
-      setIsGenerating(false);
-      setCurrentSpeaker(null);
-      setCurrentRound(null);
+      finishGen(conversationId);
     }
   }
 
   async function retryModerator(conversationId: string) {
     const provider = resolveProvider();
-    if (!provider) { setError(i18n.t('chat.noApiKey')); return; }
+    if (!provider) { updateConv(conversationId, { error: i18n.t('chat.noApiKey') }); return; }
 
     const controller = new AbortController();
-    abortRef.current = controller;
-    setIsGenerating(true);
-    setError(null);
-    setCurrentRound(1);
-    setTotalRounds(1);
+    startGen(conversationId, controller, 1);
+    updateConv(conversationId, { round: 1 });
 
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
-      setCurrentSpeaker(MODERATOR_ID);
+      updateConv(conversationId, { speaker: MODERATOR_ID });
       const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
       await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, controller.signal);
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') return;
-      setError(err instanceof Error ? err.message : i18n.t('common.error', { message: '' }));
+      updateConv(conversationId, { error: err instanceof Error ? err.message : i18n.t('common.error', { message: '' }) });
     } finally {
-      abortRef.current = null;
-      setIsGenerating(false);
-      setCurrentSpeaker(null);
-      setCurrentRound(null);
+      finishGen(conversationId);
     }
   }
 
-  return { sendMessage, continueFrom, addRounds, retryModerator, stop, isGenerating, currentSpeaker, currentRound, totalRounds, error };
+  const state = stateMap.get(activeConversationId) ?? defaultState;
+  return {
+    sendMessage, continueFrom, addRounds, retryModerator, stop,
+    isGenerating: generatingIds.has(activeConversationId),
+    currentSpeaker: state.speaker,
+    currentRound: state.round,
+    totalRounds: state.totalRounds,
+    error: state.error,
+  };
 }
 
 // ── Topic resolution ──────────────────────────────────────────────────

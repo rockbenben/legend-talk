@@ -26,9 +26,8 @@ describe('useChat', () => {
 
     useSettingsStore.getState().setApiKey('deepseek', 'sk-test');
 
-    const { result } = renderHook(() => useChat());
-
     const convId = useConversationStore.getState().createConversation('single', ['socrates']);
+    const { result } = renderHook(() => useChat(convId));
 
     await act(async () => {
       await result.current.sendMessage(convId, 'What is truth?');
@@ -63,7 +62,7 @@ describe('useChat', () => {
     useConversationStore.getState().addMessage(convId, 'user', 'What is virtue?', undefined);
     useConversationStore.getState().addMessage(convId, 'character', 'Original answer', 'socrates');
 
-    const { result } = renderHook(() => useChat());
+    const { result } = renderHook(() => useChat(convId));
 
     await act(async () => {
       await result.current.regenerate(convId);

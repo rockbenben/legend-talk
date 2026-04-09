@@ -267,7 +267,7 @@ function buildRoundtableMessages(
   }
   const systemPrompt = buildSystemPrompt(character.systemPrompt, lang, suffix);
   const raw: RawMsg[] = [{ role: 'system', content: systemPrompt }];
-  const messages = conversation.messages;
+  const messages = conversation.messages.filter((m) => m.content.trim());
 
   // Find last moderator synthesis for context compression
   let lastModIdx = -1;
@@ -369,7 +369,7 @@ function buildModeratorMessages(
   }
   const systemPrompt = buildSystemPrompt(MODERATOR_SYSTEM_PROMPT, lang, modSuffix);
   const raw: RawMsg[] = [{ role: 'system', content: systemPrompt }];
-  const messages = conversation.messages;
+  const messages = conversation.messages.filter((m) => m.content.trim());
 
   // Find last moderator synthesis
   let lastModIdx = -1;

@@ -76,7 +76,6 @@ export function ChatPage() {
     if (!topic) return;
     // Create conversation with empty characters — ChatView handles summoning + errors
     const convId = createConversation('roundtable', [], topic);
-    sessionStorage.setItem('legend-talk-auto-topic', JSON.stringify({ convId, topic }));
     setTopicInput('');
     navigate(lp(`/chat/${convId}`));
   };
@@ -159,7 +158,7 @@ export function ChatPage() {
                     <button
                       key={tpl.id}
                       onClick={() => {
-                        const convId = createConversation('roundtable', tpl.characters, t(`templates.${tpl.id}.name`));
+                        const convId = createConversation('roundtable', tpl.characters, t(`templates.${tpl.id}.name`), tpl.id);
                         navigate(lp(`/chat/${convId}`));
                       }}
                       className="flex items-center gap-2 sm:gap-3 px-3 py-3 sm:py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"

@@ -52,6 +52,13 @@ Nhấn **+** trên 2-10 thẻ. Hoặc **🎲 Ngẫu nhiên** để chọn 5 ngư
 
 6 mẫu bàn tròn với quan điểm đối lập.
 
+### Gợi ý chủ đề
+
+Tất cả chế độ bàn tròn đều hiển thị chủ đề gợi ý trước khi bạn gửi tin nhắn đầu tiên:
+
+- **Bàn tròn mẫu** — 3 câu hỏi phù hợp với chủ đề của mỗi mẫu (có sẵn ở cả 18 ngôn ngữ)
+- **Bàn tròn thủ công** — 1 câu hỏi từ mỗi nhân vật đã chọn (tối đa 5). Chủ đề cập nhật khi bạn thêm hoặc xóa nhân vật.
+
 ### Trong cuộc trò chuyện
 
 - **Dừng** — hủy tạo

@@ -50,7 +50,6 @@
     "retry": "Повторить",
     "corsError": "Запрос заблокирован браузером (CORS). Нужен прокси.",
     "useCorsProxy": "Использовать публичный прокси",
-    "aiPickAndDiscuss": "ИИ соберёт панель",
     "summonFailed": "Не удалось найти подходящих персонажей",
     "addParticipant": "Добавить",
     "regenerate": "Перегенерировать",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": [
+        "Существует ли свобода воли на самом деле?",
+        "В чём смысл страдания?",
+        "Как выглядело бы идеальное общество?"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Ментальные модели vs первые принципы vs стартапы vs глобализация"
+      "description": "Ментальные модели vs первые принципы vs стартапы vs глобализация",
+      "questions": [
+        "Что важнее для стартапа: рост или прибыльность?",
+        "Как ИИ изменит традиционные отрасли?",
+        "Какова доля удачи и мастерства в успехе?"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": [
+        "Может ли наука в конечном счёте объяснить всё?",
+        "Что важнее: теория или эксперимент?",
+        "Какая самая важная нерешённая загадка науки?"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": [
+        "Можно ли победить без боя?",
+        "Какое качество лидера самое важное?",
+        "Как слабый может победить сильного?"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": [
+        "Человеческая природа по своей сути добра или зла?",
+        "Можем ли мы принимать действительно рациональные решения?",
+        "Может ли травма стать источником силы?"
+      ]
     },
     "ai-tech": {
       "name": "ИИ и технологии",
-      "description": "Масштаб vs безопасность, инженерия vs риск, строить vs думать"
+      "description": "Масштаб vs безопасность, инженерия vs риск, строить vs думать",
+      "questions": [
+        "Когда мы достигнем AGI и стоит ли к этому стремиться?",
+        "Как сбалансировать безопасность ИИ и прогресс?",
+        "Может ли ИИ быть по-настоящему креативным?"
+      ]
     }
   }
 }

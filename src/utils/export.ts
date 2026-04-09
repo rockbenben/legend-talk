@@ -19,6 +19,7 @@ export function exportAsMarkdown(
   let md = `# ${displayTitle}\n\n`;
 
   for (const msg of conversation.messages) {
+    if (!msg.content.trim()) continue; // skip empty messages
     const name = resolveName(msg, characterNames);
     if (msg.characterId?.startsWith('__')) {
       // Analysis block — use heading
@@ -38,7 +39,7 @@ export function exportAsJSON(
 ): string {
   return JSON.stringify({
     title: displayTitle,
-    messages: conversation.messages.map((msg) => [
+    messages: conversation.messages.filter((msg) => msg.content.trim()).map((msg) => [
       resolveName(msg, characterNames),
       msg.content,
     ]),
@@ -85,7 +86,7 @@ export async function generateShareCard(
   mode: 'zip' | 'long',
   signal?: AbortSignal,
 ): Promise<void> {
-  const messages = conversation.messages.map((msg) => [
+  const messages = conversation.messages.filter((msg) => msg.content.trim()).map((msg) => [
     resolveName(msg, characterNames),
     msg.content,
   ]);

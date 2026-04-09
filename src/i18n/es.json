@@ -50,7 +50,6 @@
     "retry": "Reintentar",
     "corsError": "Solicitud bloqueada por el navegador (CORS). Se necesita un proxy.",
     "useCorsProxy": "Usar proxy público",
-    "aiPickAndDiscuss": "La IA arma el panel",
     "summonFailed": "No se encontraron personajes para este tema",
     "addParticipant": "Añadir",
     "regenerate": "Regenerar",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": [
+        "¿Existe realmente el libre albedrío?",
+        "¿Qué sentido tiene el sufrimiento?",
+        "¿Cómo sería una sociedad ideal?"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Modelos mentales vs primeros principios vs startups vs globalización"
+      "description": "Modelos mentales vs primeros principios vs startups vs globalización",
+      "questions": [
+        "¿Deben las startups priorizar el crecimiento o la rentabilidad?",
+        "¿Cómo transformará la IA las industrias tradicionales?",
+        "¿Cuánto del éxito es suerte y cuánto es habilidad?"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": [
+        "¿Puede la ciencia explicarlo todo?",
+        "¿Qué importa más: la teoría o el experimento?",
+        "¿Cuál es el misterio sin resolver más importante de la ciencia?"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": [
+        "¿Es posible vencer sin luchar?",
+        "¿Cuál es la cualidad más importante de un líder?",
+        "¿Cómo pueden los débiles vencer a los fuertes?"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": [
+        "¿Es la naturaleza humana fundamentalmente buena o mala?",
+        "¿Podemos tomar decisiones verdaderamente racionales?",
+        "¿Puede un trauma convertirse en fuente de fortaleza?"
+      ]
     },
     "ai-tech": {
       "name": "IA y Tecnología",
-      "description": "Escala vs seguridad, ingeniería vs riesgo, construir vs pensar"
+      "description": "Escala vs seguridad, ingeniería vs riesgo, construir vs pensar",
+      "questions": [
+        "¿Cuándo alcanzaremos la AGI y deberíamos hacerlo?",
+        "¿Cómo equilibrar la seguridad de la IA con el progreso?",
+        "¿Puede la IA ser verdaderamente creativa?"
+      ]
     }
   }
 }

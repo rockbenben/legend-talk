@@ -52,6 +52,13 @@ Haz clic en **+** en 2-10 tarjetas. O **🎲 Aleatorio** para 5 pensadores al az
 
 6 plantillas de mesa redonda con pensadores cuyos puntos de vista chocan.
 
+### Sugerencias de temas
+
+Todos los modos de mesa redonda muestran temas recomendados antes de enviar el primer mensaje:
+
+- **Mesas redondas con plantilla** — 3 preguntas adaptadas al tema de cada plantilla (disponibles en los 18 idiomas)
+- **Mesas redondas manuales** — 1 pregunta por personaje seleccionado (máx. 5). Los temas se actualizan al agregar o quitar personajes.
+
 ### Durante una Conversación
 
 - **Detener** — cancelar generación

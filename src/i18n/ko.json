@@ -50,7 +50,6 @@
     "retry": "재시도",
     "corsError": "브라우저에서 차단됨 (CORS). 프록시가 필요합니다",
     "useCorsProxy": "공개 프록시 사용",
-    "aiPickAndDiscuss": "AI가 패널을 구성합니다",
     "summonFailed": "이 주제에 맞는 캐릭터를 찾지 못했습니다",
     "addParticipant": "추가",
     "regenerate": "재생성",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "철학 토론",
-      "description": "탐구·조화·권력·해탈·극기"
+      "description": "탐구·조화·권력·해탈·극기",
+      "questions": [
+        "자유의지는 정말 존재하는가?",
+        "고통에 어떤 의미가 있는가?",
+        "이상적인 사회는 어떤 모습인가?"
+      ]
     },
     "business-strategy": {
       "name": "비즈니스 전략",
-      "description": "멘탈모델 vs 제1원리 vs 스타트업 vs 글로벌화"
+      "description": "멘탈모델 vs 제1원리 vs 스타트업 vs 글로벌화",
+      "questions": [
+        "스타트업은 성장과 수익성 중 무엇을 우선해야 하는가?",
+        "AI는 전통 산업을 어떻게 바꿀 것인가?",
+        "성공에서 운과 실력의 비중은 얼마인가?"
+      ]
     },
     "science-panel": {
       "name": "과학 탐구",
-      "description": "확정 vs 확률, 이론 vs 실험"
+      "description": "확정 vs 확률, 이론 vs 실험",
+      "questions": [
+        "과학은 궁극적으로 모든 것을 설명할 수 있는가?",
+        "이론과 실험 중 더 중요한 것은?",
+        "과학에서 가장 중요한 미해결 수수께끼는 무엇인가?"
+      ]
     },
     "strategic-minds": {
       "name": "전략 대결",
-      "description": "싸우지 않고 이기기 vs 힘으로 vs 절대 항복하지 않기"
+      "description": "싸우지 않고 이기기 vs 힘으로 vs 절대 항복하지 않기",
+      "questions": [
+        "싸우지 않고 이기는 것이 가능한가?",
+        "리더에게 가장 중요한 자질은 무엇인가?",
+        "약자는 어떻게 강자를 이길 수 있는가?"
+      ]
     },
     "psychology-insights": {
       "name": "심리학 통찰",
-      "description": "본능 vs 행동 vs 편향 vs 의미"
+      "description": "본능 vs 행동 vs 편향 vs 의미",
+      "questions": [
+        "인간의 본성은 선한가 악한가?",
+        "진정으로 이성적인 의사결정이 가능한가?",
+        "트라우마는 힘이 될 수 있는가?"
+      ]
     },
     "ai-tech": {
       "name": "AI & 기술",
-      "description": "규모 vs 안전, 엔지니어링 vs 리스크, 구축 vs 사고"
+      "description": "규모 vs 안전, 엔지니어링 vs 리스크, 구축 vs 사고",
+      "questions": [
+        "AGI는 언제 달성될 것인가? 달성해야 하는가?",
+        "AI 안전과 발전의 균형을 어떻게 잡을 것인가?",
+        "AI는 진정한 창의성을 가질 수 있는가?"
+      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 import { useLangPath } from '../hooks/useLangPath';
 import { currentLang } from '../utils/lang';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
@@ -70,6 +70,28 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const summonRef = useRef(false);
   const summonAbortRef = useRef<AbortController | null>(null);
 
+  // Recommended topics for roundtable (stabilized to prevent flicker on re-render)
+  const charKey = conversation?.characters.join(',') ?? '';
+  const templateId = conversation?.templateId;
+  const roundtableTopics = useMemo(() => {
+    if (!conversation || conversation.type !== 'roundtable' || conversation.characters.length === 0) return [];
+    if (templateId) {
+      const q = t(`templates.${templateId}.questions`, { returnObjects: true });
+      return Array.isArray(q) ? q as string[] : [];
+    }
+    // Manual selection: pick 1 random question per character, max 5
+    const chars = [...conversation.characters];
+    for (let i = chars.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
+    return chars.slice(0, 5).map((cid) => {
+      const q = t(`characters.${cid}.questions`, { returnObjects: true });
+      if (!Array.isArray(q) || q.length === 0) return null;
+      return q[Math.floor(Math.random() * q.length)] as string;
+    }).filter((q, i, arr): q is string => q !== null && arr.indexOf(q) === i);
+  }, [charKey, templateId, t]);
+
   // Reset ephemeral UI state when switching conversations
   useEffect(() => {
     setShowPicker(false);
@@ -115,21 +137,22 @@ export function ChatView({ conversationId }: ChatViewProps) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setSummonError(err instanceof Error ? err.message : t('common.error', { message: '' }));
       })
-      .finally(() => { setIsSummoning(false); summonAbortRef.current = null; });
+      .finally(() => {
+        // Guard: only update state if this is still the active summon (avoids StrictMode race)
+        if (summonAbortRef.current === controller) {
+          setIsSummoning(false);
+          summonAbortRef.current = null;
+        }
+      });
   };
 
+  // Auto-summon: conversation has topic but no characters yet → start summoning
   useEffect(() => {
     if (summonRef.current) return;
-    try {
-      const raw = sessionStorage.getItem('legend-talk-auto-topic');
-      if (!raw) return;
-      const { convId, topic } = JSON.parse(raw) as { convId: string; topic: string };
-      if (convId !== conversationId) return;
-      sessionStorage.removeItem('legend-talk-auto-topic');
-      summonRef.current = true;
-      setPendingTopic(topic);
-      startSummon(topic);
-    } catch { /* ignore */ }
+    if (!conversation || conversation.characters.length > 0 || conversation.messages.length > 0 || !conversation.title) return;
+    summonRef.current = true;
+    setPendingTopic(conversation.title);
+    startSummon(conversation.title);
   }, [conversationId]);
 
   if (!conversation) return null;
@@ -185,7 +208,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv || conv.messages.length === 0) return;
     const transcript = conv.messages
-      .filter((msg) => msg.role === 'user' || msg.characterId === '__moderator__' || (msg.characterId && !isAnalysisMsg(msg.characterId)))
+      .filter((msg) => msg.content.trim() && (msg.role === 'user' || msg.characterId === '__moderator__' || (msg.characterId && !isAnalysisMsg(msg.characterId))))
       .map((msg) => {
         if (msg.role === 'user') return `[User]: ${msg.content}`;
         if (msg.characterId === '__moderator__') return `[${t('moderator.name')}]: ${msg.content}`;
@@ -215,7 +238,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       const payload = JSON.stringify({
         title: conversation.title,
         characters: conversation.characters,
-        messages: conversation.messages.map((m) => ({ role: m.role, characterId: m.characterId, content: m.content })),
+        messages: conversation.messages.filter((m) => m.content.trim()).map((m) => ({ role: m.role, characterId: m.characterId, content: m.content })),
       });
       const base64 = await compressToBase64(payload);
       const origin = window.location.origin + window.location.pathname;
@@ -355,18 +378,15 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </button>
           </div>
         )}
-        {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && conversation.title && (
+        {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
           <div className="flex flex-col items-center justify-center py-16 gap-5">
             <p className="text-lg font-medium text-gray-700 dark:text-gray-200 max-w-md text-center">"{conversation.title}"</p>
-            <button
-              onClick={() => {
-                setPendingTopic(conversation.title!);
-                startSummon(conversation.title!);
-              }}
-              className="px-6 py-3 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
-            >
-              {t('chat.aiPickAndDiscuss')}
-            </button>
+            <div className="flex gap-1.5">
+              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
           </div>
         )}
         {conversation.messages.length === 0 && firstChar && !isMulti && (
@@ -381,10 +401,24 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </div>
           </div>
         )}
+        {conversation.messages.length === 0 && isMulti && roundtableTopics.length > 0 && (
+          <div className="text-center py-8">
+            <p className="text-gray-400 mb-4">{t('chat.noMessages')}</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {roundtableTopics.map((q) => (
+                <button key={q} onClick={() => handleSend(q)} className="px-3 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700">
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
         {conversation.messages.map((msg, idx) => {
           const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
           const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
           const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
+          // Hide empty bubble while still generating (status bar already shows who's speaking)
+          if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
           return (
             <div key={msg.id}>
               {showDivider && (

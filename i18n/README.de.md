@@ -52,6 +52,13 @@ Klicken Sie auf **+** bei 2-10 Karten. Oder **🎲 Zufällig** für 5 Denker.
 
 6 Rundtisch-Vorlagen mit widersprüchlichen Perspektiven.
 
+### Themenvorschläge
+
+Alle Rundtisch-Modi zeigen empfohlene Themen an, bevor Sie Ihre erste Nachricht senden:
+
+- **Vorlagen-Rundtische** — 3 Fragen passend zum Thema jeder Vorlage (in allen 18 Sprachen verfügbar)
+- **Manuelle Rundtische** — 1 Frage pro ausgewähltem Charakter (max. 5). Themen aktualisieren sich beim Hinzufügen oder Entfernen von Charakteren.
+
 ### Während des Gesprächs
 
 - **Stopp** — Generierung abbrechen

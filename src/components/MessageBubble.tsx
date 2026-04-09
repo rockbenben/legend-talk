@@ -10,8 +10,9 @@ interface MessageBubbleProps {
 }
 
 export function MessageBubble({ content, isUser, avatar, color, name }: MessageBubbleProps) {
-  const trimmed = content?.trim() || '—';
-  const isRaw = trimmed.length === 1;
+  const trimmed = content?.trim() || '';
+  const isEmpty = !trimmed;
+  const isRaw = !isEmpty && trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
 
   return (
@@ -33,9 +34,11 @@ export function MessageBubble({ content, isUser, avatar, color, name }: MessageB
         {name && !isUser && (
           <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">{name}</div>
         )}
-        <div className="prose dark:prose-invert prose-sm max-w-none break-words">
-          {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
-        </div>
+        {!isEmpty && (
+          <div className="prose dark:prose-invert prose-sm max-w-none break-words">
+            {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
+          </div>
+        )}
       </div>
     </div>
   );

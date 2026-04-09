@@ -52,6 +52,13 @@ Herhangi bir karakter kartındaki **Sohbet** düğmesine tıklayın.
 
 6 hazır şablon ile gerçekten çatışan görüşler.
 
+### Konu Önerileri
+
+Tüm yuvarlak masa modları, ilk mesajınızı göndermeden önce önerilen konuları gösterir:
+
+- **Şablon yuvarlak masalar** — Her şablonun temasına uygun 3 soru (18 dilde mevcut)
+- **Manuel yuvarlak masalar** — Seçilen her karakterden 1 soru (maks. 5). Karakter ekleyip çıkardığınızda konular güncellenir.
+
 ### Konuşma Sırasında
 
 - **Durdur** — üretimi iptal et

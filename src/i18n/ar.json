@@ -50,7 +50,6 @@
     "retry": "إعادة المحاولة",
     "corsError": "الطلب محظور من المتصفح (CORS). مطلوب وكيل.",
     "useCorsProxy": "استخدام الوكيل العام",
-    "aiPickAndDiscuss": "الذكاء الاصطناعي يجمع الفريق",
     "summonFailed": "لم يتم العثور على شخصيات مناسبة لهذا الموضوع",
     "addParticipant": "إضافة",
     "regenerate": "إعادة التوليد",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": [
+        "هل الإرادة الحرة موجودة حقاً؟",
+        "ما المعنى الذي يمنحه المعاناة؟",
+        "كيف سيبدو المجتمع المثالي؟"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "نماذج ذهنية vs مبادئ أولى vs ريادة vs عولمة"
+      "description": "نماذج ذهنية vs مبادئ أولى vs ريادة vs عولمة",
+      "questions": [
+        "هل يجب على الشركات الناشئة إعطاء الأولوية للنمو أم الربحية؟",
+        "كيف سيعيد الذكاء الاصطناعي تشكيل الصناعات التقليدية؟",
+        "ما نسبة الحظ مقابل المهارة في النجاح؟"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": [
+        "هل يمكن للعلم أن يفسر كل شيء في النهاية؟",
+        "أيهما أهم: النظرية أم التجربة؟",
+        "ما أهم لغز لم يُحل في العلم؟"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": [
+        "هل يمكن الانتصار دون قتال؟",
+        "ما أهم صفة في القائد؟",
+        "كيف يمكن للضعيف أن يهزم القوي؟"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": [
+        "هل الطبيعة البشرية خيّرة أم شريرة بالفطرة؟",
+        "هل يمكننا اتخاذ قرارات عقلانية حقاً؟",
+        "هل يمكن للصدمة أن تتحول إلى مصدر قوة؟"
+      ]
     },
     "ai-tech": {
       "name": "الذكاء الاصطناعي والتقنية",
-      "description": "التوسع vs الأمان، الهندسة vs المخاطر، البناء vs التفكير"
+      "description": "التوسع vs الأمان، الهندسة vs المخاطر، البناء vs التفكير",
+      "questions": [
+        "متى سنحقق الذكاء الاصطناعي العام، وهل ينبغي لنا ذلك؟",
+        "كيف نوازن بين سلامة الذكاء الاصطناعي والتقدم؟",
+        "هل يمكن للذكاء الاصطناعي أن يكون مبدعاً حقاً؟"
+      ]
     }
   }
 }

@@ -62,7 +62,14 @@ You can also click **🎲 Random** in the top-right to instantly start a roundta
 
 ### Featured Templates
 
-The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "AI & Tech": Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). One click to start.
+The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "AI & Tech": Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). One click to start, with 3 recommended topic suggestions per template to help you dive in.
+
+### Topic Suggestions
+
+All roundtable modes show recommended topics before you send your first message:
+
+- **Template roundtables** — 3 curated questions tailored to each template's theme (available in all 18 languages)
+- **Manual roundtables** — 1 question drawn from each selected character (max 5), so you see a range of perspectives. Topics update as you add or remove characters.
 
 ### During a Conversation
 

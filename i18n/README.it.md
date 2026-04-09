@@ -52,6 +52,13 @@ Clicca su **+** su 2-10 carte. O **🎲 Casuale** per 5 pensatori.
 
 6 modelli con prospettive in conflitto.
 
+### Suggerimenti di argomenti
+
+Tutte le modalità tavola rotonda mostrano argomenti consigliati prima di inviare il primo messaggio:
+
+- **Tavole rotonde con modello** — 3 domande adattate al tema di ogni modello (disponibili in tutte le 18 lingue)
+- **Tavole rotonde manuali** — 1 domanda per personaggio selezionato (max. 5). Gli argomenti si aggiornano aggiungendo o rimuovendo personaggi.
+
 ### Durante la Conversazione
 
 - **Stop** — annulla

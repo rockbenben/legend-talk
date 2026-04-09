@@ -50,7 +50,6 @@
     "retry": "重试",
     "corsError": "请求被浏览器拦截（CORS），需要配置中转",
     "useCorsProxy": "使用公共中转",
-    "aiPickAndDiscuss": "AI 匹配嘉宾，开始讨论",
     "summonFailed": "未匹配到合适的角色",
     "addParticipant": "加人",
     "regenerate": "重新生成",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "哲学辩论",
-      "description": "追问、和谐、权力、放下、克己"
+      "description": "追问、和谐、权力、放下、克己",
+      "questions": [
+        "自由意志真的存在吗？",
+        "苦难的意义是什么？",
+        "理想社会应该是什么样的？"
+      ]
     },
     "business-strategy": {
       "name": "商业战略",
-      "description": "心智模型 vs 第一性原理 vs 创业 vs 全球化"
+      "description": "心智模型 vs 第一性原理 vs 创业 vs 全球化",
+      "questions": [
+        "创业公司应该追求增长还是盈利？",
+        "AI 将如何重塑传统行业？",
+        "成功中运气和能力各占多少？"
+      ]
     },
     "ai-tech": {
       "name": "AI 与科技",
-      "description": "规模 vs 安全，工程 vs 风险，构建 vs 思考"
+      "description": "规模 vs 安全，工程 vs 风险，构建 vs 思考",
+      "questions": [
+        "我们何时能实现 AGI？应该实现吗？",
+        "如何平衡 AI 安全与发展？",
+        "AI 能真正拥有创造力吗？"
+      ]
     },
     "science-panel": {
       "name": "科学探索",
-      "description": "确定 vs 概率，理论 vs 实验"
+      "description": "确定 vs 概率，理论 vs 实验",
+      "questions": [
+        "科学最终能解释一切吗？",
+        "理论和实验哪个更重要？",
+        "科学中最重要的未解之谜是什么？"
+      ]
     },
     "strategic-minds": {
       "name": "战略博弈",
-      "description": "不战而胜 vs 以力破之 vs 永不投降"
+      "description": "不战而胜 vs 以力破之 vs 永不投降",
+      "questions": [
+        "不战而胜是否可能？",
+        "领导者最重要的品质是什么？",
+        "弱者如何战胜强者？"
+      ]
     },
     "psychology-insights": {
       "name": "心理洞察",
-      "description": "本能 vs 行为 vs 偏差 vs 意义"
+      "description": "本能 vs 行为 vs 偏差 vs 意义",
+      "questions": [
+        "人性本善还是本恶？",
+        "我们能做出真正理性的决策吗？",
+        "创伤能转化为力量吗？"
+      ]
     }
   }
 }

@@ -52,6 +52,13 @@ Clique em **+** em 2-10 cartões. Ou **🎲 Aleatório** para 5 pensadores.
 
 6 modelos de mesa redonda com perspectivas que conflitam.
 
+### Sugestões de temas
+
+Todos os modos de mesa redonda mostram temas recomendados antes de enviar a primeira mensagem:
+
+- **Mesas redondas com modelo** — 3 perguntas adaptadas ao tema de cada modelo (disponíveis nos 18 idiomas)
+- **Mesas redondas manuais** — 1 pergunta por personagem selecionado (máx. 5). Os temas se atualizam ao adicionar ou remover personagens.
+
 ### Durante a Conversa
 
 - **Parar** — cancelar geração

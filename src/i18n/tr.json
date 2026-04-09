@@ -50,7 +50,6 @@
     "retry": "Yeniden dene",
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
     "useCorsProxy": "Genel proxy kullan",
-    "aiPickAndDiscuss": "Yapay zeka paneli oluşturur",
     "summonFailed": "Bu konu için uygun karakter bulunamadı",
     "addParticipant": "Ekle",
     "regenerate": "Yeniden oluştur",
@@ -1602,27 +1601,33 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": ["Özgür irade gerçekten var mı?", "Acı çekmenin anlamı nedir?", "İdeal bir toplum nasıl olurdu?"]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Zihinsel modeller vs ilk ilkeler vs girişimcilik vs küreselleşme"
+      "description": "Zihinsel modeller vs ilk ilkeler vs girişimcilik vs küreselleşme",
+      "questions": ["Girişimler büyümeyi mi yoksa kârlılığı mı önceliklendirmeli?", "Yapay zekâ geleneksel sektörleri nasıl dönüştürecek?", "Başarıda şansın ve yeteneğin payı ne kadardır?"]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": ["Bilim sonunda her şeyi açıklayabilir mi?", "Teori mi deney mi daha önemli?", "Bilimin en önemli çözülmemiş gizemi nedir?"]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": ["Savaşmadan kazanmak mümkün mü?", "Bir liderin en önemli niteliği nedir?", "Zayıf güçlüyü nasıl yenebilir?"]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": ["İnsan doğası temelde iyi mi yoksa kötü mü?", "Gerçekten rasyonel kararlar alabilir miyiz?", "Travma bir güç kaynağına dönüşebilir mi?"]
     },
     "ai-tech": {
       "name": "Yapay Zeka ve Teknoloji",
-      "description": "Ölçek vs güvenlik, mühendislik vs risk, inşa vs düşünce"
+      "description": "Ölçek vs güvenlik, mühendislik vs risk, inşa vs düşünce",
+      "questions": ["AGI'ye ne zaman ulaşacağız ve ulaşmalı mıyız?", "Yapay zekâ güvenliği ile ilerleme arasında nasıl denge kurulur?", "Yapay zekâ gerçekten yaratıcı olabilir mi?"]
     }
   }
 }

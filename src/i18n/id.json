@@ -50,7 +50,6 @@
     "retry": "Coba lagi",
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "useCorsProxy": "Gunakan proxy publik",
-    "aiPickAndDiscuss": "AI menyusun panel",
     "summonFailed": "Tidak ditemukan karakter yang cocok untuk topik ini",
     "addParticipant": "Tambah",
     "regenerate": "Buat ulang",
@@ -1602,27 +1601,33 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": ["Apakah kehendak bebas benar-benar ada?", "Apa makna dari penderitaan?", "Seperti apa masyarakat ideal itu?"]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Model mental vs prinsip dasar vs startup vs globalisasi"
+      "description": "Model mental vs prinsip dasar vs startup vs globalisasi",
+      "questions": ["Haruskah startup memprioritaskan pertumbuhan atau profitabilitas?", "Bagaimana AI akan mengubah industri tradisional?", "Seberapa besar peran keberuntungan vs kemampuan dalam kesuksesan?"]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": ["Bisakah sains menjelaskan segalanya?", "Mana yang lebih penting: teori atau eksperimen?", "Apa misteri terbesar yang belum terpecahkan dalam sains?"]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": ["Mungkinkah menang tanpa berperang?", "Apa kualitas terpenting seorang pemimpin?", "Bagaimana yang lemah bisa mengalahkan yang kuat?"]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": ["Apakah sifat manusia pada dasarnya baik atau jahat?", "Bisakah kita membuat keputusan yang benar-benar rasional?", "Bisakah trauma menjadi sumber kekuatan?"]
     },
     "ai-tech": {
       "name": "AI & Teknologi",
-      "description": "Skala vs keamanan, rekayasa vs risiko, membangun vs berpikir"
+      "description": "Skala vs keamanan, rekayasa vs risiko, membangun vs berpikir",
+      "questions": ["Kapan kita akan mencapai AGI, dan haruskah kita melakukannya?", "Bagaimana menyeimbangkan keamanan AI dengan kemajuan?", "Bisakah AI benar-benar kreatif?"]
     }
   }
 }

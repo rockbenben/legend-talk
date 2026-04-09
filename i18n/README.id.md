@@ -52,6 +52,13 @@ Klik **+** pada 2-10 kartu. Atau **🎲 Acak** untuk 5 pemikir.
 
 6 template meja bundar dengan pandangan yang bertentangan.
 
+### Saran Topik
+
+Semua mode meja bundar menampilkan topik yang disarankan sebelum Anda mengirim pesan pertama:
+
+- **Meja bundar template** — 3 pertanyaan yang disesuaikan dengan tema setiap template (tersedia dalam 18 bahasa)
+- **Meja bundar manual** — 1 pertanyaan dari setiap karakter yang dipilih (maks. 5). Topik diperbarui saat Anda menambah atau menghapus karakter.
+
 ### Selama Percakapan
 
 - **Berhenti** — batalkan generasi

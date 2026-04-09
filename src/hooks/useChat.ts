@@ -16,6 +16,7 @@ export function useChat(activeConversationId: string) {
     ];
     for (const msg of conv.messages) {
       if (msg.role === 'character' && (!msg.characterId || msg.characterId.startsWith('__'))) continue; // skip analysis messages
+      if (!msg.content.trim()) continue; // skip empty messages
       messages.push({ role: msg.role === 'user' ? 'user' : 'assistant', content: msg.content });
     }
     return messages;

@@ -44,6 +44,7 @@ export interface Conversation {
   id: string;
   type: 'single' | 'roundtable';
   title?: string;
+  templateId?: string;
   characters: string[];
   messages: Message[];
   createdAt: number;

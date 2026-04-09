@@ -50,7 +50,6 @@
     "retry": "Retry",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "useCorsProxy": "Use public proxy",
-    "aiPickAndDiscuss": "AI assembles the panel",
     "summonFailed": "No matching characters found for this topic",
     "addParticipant": "Add",
     "regenerate": "Regenerate",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": [
+        "Does free will truly exist?",
+        "What gives suffering its meaning?",
+        "What would an ideal society look like?"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "Mental models vs first principles vs startups vs globalization"
+      "description": "Mental models vs first principles vs startups vs globalization",
+      "questions": [
+        "Should startups prioritize growth or profitability?",
+        "How will AI reshape traditional industries?",
+        "How much of success is luck vs. skill?"
+      ]
     },
     "ai-tech": {
       "name": "AI & Tech",
-      "description": "Scaling vs safety, engineering vs risk, building vs thinking"
+      "description": "Scaling vs safety, engineering vs risk, building vs thinking",
+      "questions": [
+        "When will we achieve AGI, and should we?",
+        "How do we balance AI safety with progress?",
+        "Can AI truly be creative?"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": [
+        "Can science ultimately explain everything?",
+        "Which matters more: theory or experiment?",
+        "What is the most important unsolved mystery in science?"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": [
+        "Is it possible to win without fighting?",
+        "What is the most important quality of a leader?",
+        "How can the weak defeat the strong?"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": [
+        "Is human nature fundamentally good or evil?",
+        "Can we ever make truly rational decisions?",
+        "Can trauma become a source of strength?"
+      ]
     }
   }
 }

@@ -52,6 +52,13 @@ Cliquez sur **+** sur 2-10 cartes. Ou **🎲 Aléatoire** pour 5 penseurs.
 
 6 modèles de table ronde avec des perspectives opposées.
 
+### Suggestions de sujets
+
+Tous les modes table ronde affichent des sujets recommandés avant l'envoi du premier message :
+
+- **Tables rondes modèles** — 3 questions adaptées au thème de chaque modèle (disponibles dans les 18 langues)
+- **Tables rondes manuelles** — 1 question par personnage sélectionné (max. 5). Les sujets se mettent à jour lors de l'ajout ou du retrait de personnages.
+
 ### Pendant la Conversation
 
 - **Arrêter** — annuler la génération

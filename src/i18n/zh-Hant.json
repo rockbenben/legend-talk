@@ -50,7 +50,6 @@
     "retry": "重試",
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
     "useCorsProxy": "使用公共中轉",
-    "aiPickAndDiscuss": "AI 匹配嘉賓，開始討論",
     "summonFailed": "未匹配到合適的角色",
     "addParticipant": "加人",
     "regenerate": "重新生成",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "哲學辯論",
-      "description": "追問、和諧、權力、放下、克己"
+      "description": "追問、和諧、權力、放下、克己",
+      "questions": [
+        "自由意志真的存在嗎？",
+        "苦難的意義是什麼？",
+        "理想社會應該是什麼樣的？"
+      ]
     },
     "business-strategy": {
       "name": "商業戰略",
-      "description": "心智模型 vs 第一性原理 vs 創業 vs 全球化"
+      "description": "心智模型 vs 第一性原理 vs 創業 vs 全球化",
+      "questions": [
+        "創業公司應該追求增長還是盈利？",
+        "AI 將如何重塑傳統行業？",
+        "成功中運氣和能力各佔多少？"
+      ]
     },
     "science-panel": {
       "name": "科學探索",
-      "description": "確定 vs 機率，理論 vs 實驗"
+      "description": "確定 vs 機率，理論 vs 實驗",
+      "questions": [
+        "科學最終能解釋一切嗎？",
+        "理論和實驗哪個更重要？",
+        "科學中最重要的未解之謎是什麼？"
+      ]
     },
     "strategic-minds": {
       "name": "戰略博弈",
-      "description": "不戰而勝 vs 以力破之 vs 永不投降"
+      "description": "不戰而勝 vs 以力破之 vs 永不投降",
+      "questions": [
+        "不戰而勝是否可能？",
+        "領導者最重要的品質是什麼？",
+        "弱者如何戰勝強者？"
+      ]
     },
     "psychology-insights": {
       "name": "心理洞察",
-      "description": "本能 vs 行為 vs 偏差 vs 意義"
+      "description": "本能 vs 行為 vs 偏差 vs 意義",
+      "questions": [
+        "人性本善還是本惡？",
+        "我們能做出真正理性的決策嗎？",
+        "創傷能轉化為力量嗎？"
+      ]
     },
     "ai-tech": {
       "name": "AI 與科技",
-      "description": "規模 vs 安全，工程 vs 風險，構建 vs 思考"
+      "description": "規模 vs 安全，工程 vs 風險，構建 vs 思考",
+      "questions": [
+        "我們何時能實現 AGI？應該實現嗎？",
+        "如何平衡 AI 安全與發展？",
+        "AI 能真正擁有創造力嗎？"
+      ]
     }
   }
 }

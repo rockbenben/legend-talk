@@ -50,7 +50,6 @@
     "retry": "ลองอีกครั้ง",
     "corsError": "คำขอถูกบล็อกโดยเบราว์เซอร์ (CORS) ต้องใช้พร็อกซี",
     "useCorsProxy": "ใช้พร็อกซีสาธารณะ",
-    "aiPickAndDiscuss": "AI จัดทีมให้",
     "summonFailed": "ไม่พบตัวละครที่เหมาะกับหัวข้อนี้",
     "addParticipant": "เพิ่ม",
     "regenerate": "สร้างใหม่",
@@ -1602,27 +1601,33 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": ["เจตจำนงเสรีมีอยู่จริงหรือไม่?", "ความทุกข์มีความหมายอย่างไร?", "สังคมในอุดมคติควรเป็นอย่างไร?"]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "โมเดลคิด vs หลักการแรก vs สตาร์ทอัพ vs โลกาภิวัตน์"
+      "description": "โมเดลคิด vs หลักการแรก vs สตาร์ทอัพ vs โลกาภิวัตน์",
+      "questions": ["สตาร์ทอัพควรให้ความสำคัญกับการเติบโตหรือกำไร?", "AI จะเปลี่ยนแปลงอุตสาหกรรมดั้งเดิมอย่างไร?", "ความสำเร็จเป็นเรื่องของโชคหรือฝีมือมากกว่ากัน?"]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": ["วิทยาศาสตร์สามารถอธิบายทุกสิ่งได้ในที่สุดหรือไม่?", "ทฤษฎีกับการทดลอง อะไรสำคัญกว่า?", "ปริศนาที่ยังไม่ได้ไขที่สำคัญที่สุดในวิทยาศาสตร์คืออะไร?"]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": ["การชนะโดยไม่ต้องรบเป็นไปได้หรือไม่?", "คุณสมบัติที่สำคัญที่สุดของผู้นำคืออะไร?", "ผู้อ่อนแอจะเอาชนะผู้แข็งแกร่งได้อย่างไร?"]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": ["ธรรมชาติของมนุษย์เป็นสิ่งดีหรือชั่วโดยพื้นฐาน?", "เราสามารถตัดสินใจอย่างมีเหตุผลได้จริงหรือ?", "บาดแผลทางใจสามารถกลายเป็นพลังได้หรือไม่?"]
     },
     "ai-tech": {
       "name": "AI และเทคโนโลยี",
-      "description": "ขนาด vs ความปลอดภัย, วิศวกรรม vs ความเสี่ยง, สร้าง vs คิด"
+      "description": "ขนาด vs ความปลอดภัย, วิศวกรรม vs ความเสี่ยง, สร้าง vs คิด",
+      "questions": ["เราจะบรรลุ AGI เมื่อไหร่ และควรทำหรือไม่?", "จะสร้างสมดุลระหว่างความปลอดภัยของ AI กับความก้าวหน้าได้อย่างไร?", "AI สามารถมีความคิดสร้างสรรค์ได้จริงหรือ?"]
     }
   }
 }

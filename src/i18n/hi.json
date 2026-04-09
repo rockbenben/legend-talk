@@ -50,7 +50,6 @@
     "retry": "पुनः प्रयास",
     "corsError": "अनुरोध ब्राउज़र द्वारा अवरुद्ध (CORS)। प्रॉक्सी आवश्यक है।",
     "useCorsProxy": "सार्वजनिक प्रॉक्सी का उपयोग करें",
-    "aiPickAndDiscuss": "AI पैनल बनाएगा",
     "summonFailed": "इस विषय के लिए उपयुक्त किरदार नहीं मिले",
     "addParticipant": "जोड़ें",
     "regenerate": "पुनः उत्पन्न करें",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty"
+      "description": "Inquiry, harmony, power, detachment, duty",
+      "questions": [
+        "क्या स्वतंत्र इच्छा वास्तव में मौजूद है?",
+        "दुख का अर्थ क्या है?",
+        "एक आदर्श समाज कैसा दिखेगा?"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
-      "description": "मानसिक मॉडल vs प्रथम सिद्धांत vs स्टार्टअप vs वैश्वीकरण"
+      "description": "मानसिक मॉडल vs प्रथम सिद्धांत vs स्टार्टअप vs वैश्वीकरण",
+      "questions": [
+        "क्या स्टार्टअप को विकास या लाभप्रदता को प्राथमिकता देनी चाहिए?",
+        "AI पारंपरिक उद्योगों को कैसे बदलेगा?",
+        "सफलता में भाग्य और कौशल का अनुपात क्या है?"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment"
+      "description": "Certainty vs probability, theory vs experiment",
+      "questions": [
+        "क्या विज्ञान अंततः सब कुछ समझा सकता है?",
+        "सिद्धांत और प्रयोग में कौन अधिक महत्वपूर्ण है?",
+        "विज्ञान का सबसे महत्वपूर्ण अनसुलझा रहस्य क्या है?"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast"
+      "description": "Outsmart vs overpower vs outlast",
+      "questions": [
+        "क्या बिना लड़े जीतना संभव है?",
+        "एक नेता का सबसे महत्वपूर्ण गुण क्या है?",
+        "कमज़ोर कैसे ताकतवर को हरा सकता है?"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning"
+      "description": "Drives vs behavior vs bias vs meaning",
+      "questions": [
+        "क्या मानव स्वभाव मूलतः अच्छा है या बुरा?",
+        "क्या हम वास्तव में तर्कसंगत निर्णय ले सकते हैं?",
+        "क्या आघात शक्ति का स्रोत बन सकता है?"
+      ]
     },
     "ai-tech": {
       "name": "AI और तकनीक",
-      "description": "स्केल vs सुरक्षा, इंजीनियरिंग vs जोखिम, निर्माण vs सोच"
+      "description": "स्केल vs सुरक्षा, इंजीनियरिंग vs जोखिम, निर्माण vs सोच",
+      "questions": [
+        "हम AGI कब हासिल करेंगे, और क्या हमें करना चाहिए?",
+        "AI सुरक्षा और प्रगति में संतुलन कैसे बनाएं?",
+        "क्या AI वास्तव में रचनात्मक हो सकता है?"
+      ]
     }
   }
 }

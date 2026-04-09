@@ -50,7 +50,6 @@
     "retry": "再試行",
     "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
     "useCorsProxy": "公開プロキシを使用",
-    "aiPickAndDiscuss": "AIがパネルを編成",
     "summonFailed": "このトピックに合うキャラクターが見つかりません",
     "addParticipant": "追加",
     "regenerate": "再生成",
@@ -1602,27 +1601,57 @@
   "templates": {
     "philosophy-debate": {
       "name": "哲学討論",
-      "description": "探求・調和・権力・解脱・克己"
+      "description": "探求・調和・権力・解脱・克己",
+      "questions": [
+        "自由意志は本当に存在するのか？",
+        "苦しみに意味はあるのか？",
+        "理想の社会とはどのようなものか？"
+      ]
     },
     "business-strategy": {
       "name": "ビジネス戦略",
-      "description": "メンタルモデル vs 第一原理 vs スタートアップ vs グローバル化"
+      "description": "メンタルモデル vs 第一原理 vs スタートアップ vs グローバル化",
+      "questions": [
+        "スタートアップは成長と収益性のどちらを優先すべきか？",
+        "AIは伝統的な産業をどう変えるのか？",
+        "成功における運と実力の割合は？"
+      ]
     },
     "science-panel": {
       "name": "科学探究",
-      "description": "確定 vs 確率、理論 vs 実験"
+      "description": "確定 vs 確率、理論 vs 実験",
+      "questions": [
+        "科学は最終的にすべてを説明できるか？",
+        "理論と実験、より重要なのはどちらか？",
+        "科学における最も重要な未解決の謎は何か？"
+      ]
     },
     "strategic-minds": {
       "name": "戦略対決",
-      "description": "戦わずして勝つ vs 力で圧倒 vs 決して降伏しない"
+      "description": "戦わずして勝つ vs 力で圧倒 vs 決して降伏しない",
+      "questions": [
+        "戦わずして勝つことは可能か？",
+        "リーダーに最も重要な資質とは何か？",
+        "弱者はどうすれば強者に勝てるか？"
+      ]
     },
     "psychology-insights": {
       "name": "心理学の洞察",
-      "description": "本能 vs 行動 vs バイアス vs 意味"
+      "description": "本能 vs 行動 vs バイアス vs 意味",
+      "questions": [
+        "人間の本性は善か悪か？",
+        "本当に理性的な意思決定は可能か？",
+        "トラウマは力に変えられるか？"
+      ]
     },
     "ai-tech": {
       "name": "AI＆テック",
-      "description": "スケール vs 安全、工学 vs リスク、構築 vs 思考"
+      "description": "スケール vs 安全、工学 vs リスク、構築 vs 思考",
+      "questions": [
+        "AGIはいつ実現するのか？そもそも実現すべきか？",
+        "AIの安全性と進歩のバランスをどう取るか？",
+        "AIは本当に創造性を持てるのか？"
+      ]
     }
   }
 }

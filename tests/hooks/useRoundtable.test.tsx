@@ -70,7 +70,7 @@ describe('useRoundtable', () => {
     expect(conv.messages).toHaveLength(10);
   });
 
-  it('second user message after rounds complete triggers new rounds', async () => {
+  it('second user message triggers focus card; chair starts to run rounds', async () => {
     mockAdapter();
 
     const convId = useConversationStore
@@ -78,7 +78,6 @@ describe('useRoundtable', () => {
       .createConversation('roundtable', ['socrates', 'munger']);
     const { result } = renderHook(() => useRoundtable(convId));
 
-    // First message: 1 round
     await act(async () => {
       await result.current.sendMessage(convId, 'First topic', 1);
     });
@@ -88,19 +87,30 @@ describe('useRoundtable', () => {
     expect(after1.messages).toHaveLength(4);
     expect(result.current.isGenerating).toBe(false);
 
-    // Second message: 1 round
+    // Second message: director intervention. sendMessage adds user + focus but does NOT run rounds.
     await act(async () => {
       await result.current.sendMessage(convId, 'Second topic', 1);
     });
 
     const after2 = useConversationStore.getState().getConversation(convId)!;
-    // 4 existing + 1 user + 2 chars + 1 moderator = 8
-    expect(after2.messages).toHaveLength(8);
+    // 4 existing + 1 user + 1 focus marker = 6; rounds not yet run
+    expect(after2.messages).toHaveLength(6);
     expect(after2.messages[4].role).toBe('user');
     expect(after2.messages[4].content).toBe('Second topic');
-    expect(after2.messages[5].characterId).toBe('socrates');
-    expect(after2.messages[6].characterId).toBe('munger');
-    expect(after2.messages[7].characterId).toBe('__moderator__');
+    expect(after2.messages[5].characterId).toBe('__focus__');
+    expect(result.current.isGenerating).toBe(false);
+
+    // Chair confirms; startFromFocus runs rounds using the (possibly edited) focus topic.
+    await act(async () => {
+      await result.current.startFromFocus(convId, 1);
+    });
+
+    const after3 = useConversationStore.getState().getConversation(convId)!;
+    // 6 existing + 2 chars + 1 moderator = 9
+    expect(after3.messages).toHaveLength(9);
+    expect(after3.messages[6].characterId).toBe('socrates');
+    expect(after3.messages[7].characterId).toBe('munger');
+    expect(after3.messages[8].characterId).toBe('__moderator__');
   });
 
   it('regenerate continues from character with moderator', async () => {

@@ -12,6 +12,7 @@ interface ConversationState {
     role: 'user' | 'character',
     content: string,
     characterId: string | undefined,
+    focusSnapshot?: string,
   ) => string;
   updateMessageContent: (conversationId: string, messageId: string, content: string) => void;
   deleteConversation: (id: string) => void;
@@ -19,6 +20,8 @@ interface ConversationState {
   renameConversation: (id: string, title: string) => void;
   updateCharacters: (id: string, characters: string[]) => void;
   removeMessagesFrom: (conversationId: string, messageId: string) => void;
+  removeMessagesAfter: (conversationId: string, messageId: string) => void;
+  removeMessagesByCharacterId: (conversationId: string, characterId: string) => void;
   branchConversation: (conversationId: string, fromMessageId: string) => string;
   importConversations: (conversations: Conversation[]) => number;
 }
@@ -45,7 +48,7 @@ export const useConversationStore = create<ConversationState>()(
         return id;
       },
 
-      addMessage: (conversationId, role, content, characterId) => {
+      addMessage: (conversationId, role, content, characterId, focusSnapshot) => {
         const msgId = nanoid();
         const message: Message = {
           id: msgId,
@@ -53,6 +56,7 @@ export const useConversationStore = create<ConversationState>()(
           content,
           timestamp: Date.now(),
           ...(characterId && { characterId }),
+          ...(focusSnapshot !== undefined && { focusSnapshot }),
         };
         set((s) => ({
           conversations: s.conversations.map((c) => {
@@ -110,6 +114,28 @@ export const useConversationStore = create<ConversationState>()(
             const idx = c.messages.findIndex((m) => m.id === messageId);
             if (idx === -1) return c;
             return { ...c, messages: c.messages.slice(0, idx), updatedAt: Date.now() };
+          }),
+        }));
+      },
+
+      removeMessagesAfter: (conversationId, messageId) => {
+        set((s) => ({
+          conversations: s.conversations.map((c) => {
+            if (c.id !== conversationId) return c;
+            const idx = c.messages.findIndex((m) => m.id === messageId);
+            if (idx === -1) return c;
+            return { ...c, messages: c.messages.slice(0, idx + 1), updatedAt: Date.now() };
+          }),
+        }));
+      },
+
+      removeMessagesByCharacterId: (conversationId, characterId) => {
+        set((s) => ({
+          conversations: s.conversations.map((c) => {
+            if (c.id !== conversationId) return c;
+            const filtered = c.messages.filter((m) => m.characterId !== characterId);
+            if (filtered.length === c.messages.length) return c;
+            return { ...c, messages: filtered, updatedAt: Date.now() };
           }),
         }));
       },

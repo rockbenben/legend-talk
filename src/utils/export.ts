@@ -3,6 +3,7 @@ import type { Conversation } from '../types';
 const ANALYSIS_LABELS: Record<string, string> = {
   '__summarize__': 'Summary',
   '__moderator__': 'Moderator',
+  '__focus__': 'Focus',
 };
 
 function resolveName(msg: { role: string; characterId?: string }, characterNames: Record<string, string>): string {

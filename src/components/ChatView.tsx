@@ -59,9 +59,16 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [titleValue, setTitleValue] = useState('');
   const [editingMsgId, setEditingMsgId] = useState<string | null>(null);
   const [editingMsgValue, setEditingMsgValue] = useState('');
+  // After a user bubble is edited, we surface an inline "Apply edit" button next to
+  // that message so the chair can trigger retry without hunting for the retry icon.
+  // Cleared on any other action (new edit, retry elsewhere, new send, generation).
+  const [pendingRetryMsgId, setPendingRetryMsgId] = useState<string | null>(null);
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
   const summarizeAbortRef = useRef<AbortController | null>(null);
+  // When set true, the next messages-change effect skips auto-scroll — used when the
+  // chair edits an earlier message, so saving doesn't yank the viewport to the bottom.
+  const skipNextScrollRef = useRef(false);
 
   // Auto-summon characters and start discussion from topic input
   const [isSummoning, setIsSummoning] = useState(false);
@@ -109,6 +116,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
   }, [conversationId]);
 
   useEffect(() => {
+    if (skipNextScrollRef.current) {
+      skipNextScrollRef.current = false;
+      return;
+    }
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [conversation?.messages]);
 
@@ -178,16 +189,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
   };
 
   const handleSend = (content: string) => {
+    setPendingRetryMsgId(null);
     if (isMulti) roundtable.sendMessage(conversationId, content, rounds);
     else singleChat.sendMessage(conversationId, content);
   };
 
   const handleRetryFrom = (messageId: string) => {
     if (isGenerating || isSummarizing) return;
+    setPendingRetryMsgId(null);
     const conv = useConversationStore.getState().getConversation(conversationId);
     if (!conv) return;
     const msg = conv.messages.find((m) => m.id === messageId);
     if (!msg) return;
+
+    // Chair intervention (user msg with a focus snapshot): preserve focus edits by
+    // rebuilding focus from snapshot + (possibly edited) content instead of wiping
+    // everything and re-sending.
+    if (isMulti && msg.role === 'user' && msg.focusSnapshot !== undefined) {
+      roundtable.retryFromIntervention(conversationId, messageId);
+      return;
+    }
+
     useConversationStore.getState().removeMessagesFrom(conversationId, messageId);
     if (msg.role === 'user') {
       handleSend(msg.content);
@@ -221,7 +243,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setIsSummarizing(true);
     try {
       await streamResponse(conversationId, '__summarize__', [
-        { role: 'system', content: 'Summarize this discussion. Highlight each viewpoint, key disagreements, and insights worth remembering. Stay neutral. Match summary length to discussion length.' + getLangInstruction(lang) },
+        { role: 'system', content: 'Summarize this roundtable. Distill the moves the discussion actually made — claims advanced, cruxes surfaced, concepts introduced, angles that shifted. Organize primarily by idea (themes, disagreements, insights worth remembering); attribute to speakers only when attribution matters for the idea. Treat the moderator as a process role, not a participant — their syntheses frame the discussion, they do not hold a position. Stay neutral. Match summary length to discussion length.' + getLangInstruction(lang) },
         { role: 'user', content: transcript },
       ], provider, controller.signal);
     } catch (err) {
@@ -419,6 +441,78 @@ export function ChatView({ conversationId }: ChatViewProps) {
           const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
           // Hide empty bubble while still generating (status bar already shows who's speaking)
           if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
+          // Focus marker: inline card shown after user intervention. When it's the last
+          // message and no generation is in flight, the chair can edit and hit Start.
+          if (msg.characterId === '__focus__') {
+            const isLast = idx === conversation.messages.length - 1;
+            const isEditing = editingMsgId === msg.id;
+            const interactive = isLast && !isGenerating && !isSummarizing;
+            return (
+              <div key={msg.id} className="flex justify-center py-2">
+                <div className="w-full max-w-[95%] sm:max-w-[85%] px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 text-sm">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="font-medium text-blue-700 dark:text-blue-300">🎯 {t('roundtable.focus')}</span>
+                    {interactive && !isEditing && (
+                      <button
+                        onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
+                        className="p-1 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  {isEditing ? (
+                    <>
+                      <textarea
+                        value={editingMsgValue}
+                        onChange={(e) => {
+                          setEditingMsgValue(e.target.value);
+                          e.target.style.height = 'auto';
+                          e.target.style.height = `${e.target.scrollHeight}px`;
+                        }}
+                        ref={(el) => {
+                          if (el) { el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; }
+                        }}
+                        className="w-full px-2 py-1 text-sm rounded border border-blue-300 dark:border-blue-700 bg-white dark:bg-gray-800 focus:outline-none resize-none overflow-hidden min-h-[2.5rem] max-h-[60vh]"
+                        autoFocus />
+                      <div className="flex gap-2 mt-2 justify-end">
+                        <button
+                          onClick={() => setEditingMsgId(null)}
+                          className="text-xs px-2 py-1 text-gray-500 hover:text-gray-700">
+                          {t('common.cancel')}
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (editingMsgValue.trim()) {
+                              skipNextScrollRef.current = true;
+                              useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
+                            }
+                            setEditingMsgId(null);
+                          }}
+                          className="text-xs px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">
+                          {t('common.save')}
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-gray-700 dark:text-gray-200 whitespace-pre-wrap">{msg.content}</div>
+                      {interactive && (
+                        <div className="mt-2 flex justify-end">
+                          <button
+                            onClick={() => roundtable.startFromFocus(conversationId, rounds)}
+                            className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium">
+                            {t('roundtable.start')}
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            );
+          }
           return (
             <div key={msg.id}>
               {showDivider && (
@@ -433,10 +527,32 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   <div className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                     <div className="w-8 shrink-0" />
                     <div className="flex-1 max-w-[90%] sm:max-w-[75%]">
-                      <textarea value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)}
-                        className="w-full px-3 py-2 text-sm rounded-lg border border-blue-500 bg-white dark:bg-gray-800 focus:outline-none resize-none" rows={3} autoFocus />
+                      <textarea
+                        value={editingMsgValue}
+                        onChange={(e) => {
+                          setEditingMsgValue(e.target.value);
+                          e.target.style.height = 'auto';
+                          e.target.style.height = `${e.target.scrollHeight}px`;
+                        }}
+                        ref={(el) => {
+                          if (el) { el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; }
+                        }}
+                        className="w-full px-3 py-2 text-sm rounded-lg border border-blue-500 bg-white dark:bg-gray-800 focus:outline-none resize-none overflow-hidden min-h-[4rem] max-h-[60vh]"
+                        autoFocus />
                       <div className="flex gap-2 mt-1">
-                        <button onClick={() => { if (editingMsgValue.trim()) useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim()); setEditingMsgId(null); }}
+                        <button onClick={() => {
+                          const trimmed = editingMsgValue.trim();
+                          if (trimmed && trimmed !== msg.content.trim()) {
+                            skipNextScrollRef.current = true;
+                            useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
+                            // Surface the inline Apply button so the chair can trigger retry
+                            // without hunting for the small retry icon. Works for user,
+                            // character, moderator, and summary messages — each routes to its
+                            // appropriate regeneration in handleRetryFrom.
+                            setPendingRetryMsgId(msg.id);
+                          }
+                          setEditingMsgId(null);
+                        }}
                           className="text-xs px-2 py-0.5 rounded bg-blue-500 text-white">{t('chat.send')}</button>
                         <button onClick={() => setEditingMsgId(null)} className="text-xs px-2 py-0.5 rounded text-gray-500 hover:text-gray-700">✕</button>
                       </div>
@@ -453,13 +569,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
                   <div className={`flex gap-0.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pe-11' : 'ps-11'}`}>
                     <button onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title="Copy">
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title={t('chat.copy')}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                       </svg>
                     </button>
-                    <button onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title="Edit">
+                    <button onClick={() => { setPendingRetryMsgId(null); setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
+                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
+                      title={t('chat.edit')}>
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                       </svg>
@@ -475,6 +592,18 @@ export function ChatView({ conversationId }: ChatViewProps) {
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                         <line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" />
                       </svg>
+                    </button>
+                  </div>
+                )}
+                {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
+                  <div className={`flex mt-1.5 ${msg.role === 'user' ? 'justify-end pe-11' : 'ps-11'}`}>
+                    <button
+                      onClick={() => handleRetryFrom(msg.id)}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-medium shadow-sm transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                        <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                      </svg>
+                      {t('chat.applyEdit')}
                     </button>
                   </div>
                 )}

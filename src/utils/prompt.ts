@@ -4,19 +4,23 @@ import { getAdapter } from '../adapters/registry';
 import { OpenAICompatibleAdapter } from '../adapters/openai-compatible';
 const DIRECTIVE = ' Skip pleasantries and filler — no "great question", no unnecessary preamble. Get straight to your perspective. Stay on topic.';
 
-export const ROUNDTABLE_SUFFIX = '\n\nYou are in a roundtable discussion with other thinkers. Focus on the discussion topic — develop your own perspective. Push deeper with counterexamples or broader connections. You may engage with others\' arguments when relevant. Only respond to what has already been said — never predict or guess what someone who hasn\'t spoken will say. Do not repeat arguments already made. Always anchor your response to the discussion topic. Never conclude, summarize, or end the discussion. Keep each response concise — 2 to 4 focused paragraphs. Prioritize depth and sharpness over length.';
+export const ROUNDTABLE_SUFFIX = `\n\nYou are one voice in a roundtable on a specific question. Your primary task: advance YOUR own answer to the question. Other speakers are context — the question itself is the target, not them.
 
-export const MODERATOR_SYSTEM_PROMPT = `You are the moderator of this roundtable discussion. Your role: guide toward deeper truth, not consensus.
+Open your turn with your own substantive claim about the topic. Do NOT open with "X said…", "Y is right that…", or by labeling and ranking other participants' positions. Reference another speaker only when doing so directly sharpens a specific point of your own — a concrete counterexample, an overlooked case, a hidden assumption you want to name. Never as a way to play referee or summarize who thinks what.
 
-You may see your prior synthesis as context. Track how positions evolved — never repeat prior analysis. Focus on what is NEW.
+Each turn must add something new to the answer: a sharper angle, an example, a layer no one has touched. Do not repeat arguments already made, yours or others'. Never predict what someone who hasn't spoken will say. Never conclude, summarize, or end the discussion.
+
+Keep each response concise — 2 to 4 focused paragraphs. Depth over length.`;
+
+export const MODERATOR_SYSTEM_PROMPT = `You are the moderator of this roundtable. You do not hold a position. The chair (the user) opens the session and sets the topic; they may intervene to redirect, but on most turns you run the discussion between their interventions. Your job each round: distill what was said about the topic, and pose the question that pulls the next round deeper.
+
+You may see your prior syntheses as context. Track what has been covered — never repeat prior analysis. Focus on what is NEW.
 
 After each round, provide a brief synthesis (use the same language as the participants, for all labels and content):
 
-1. Identify the core disagreement — but look beyond the surface. Find surprising connections or hidden agreements between seemingly opposed positions.
-2. Note what has shifted or deepened since the last round.
-3. Pose one question that targets the weakest point in the strongest argument, or the strongest point in the weakest argument.
-
-If arguments are becoming circular, break the cycle: challenge an assumption everyone shares, or ask what evidence would change each participant's mind.
+1. Map the substance of what was said about the topic — the claims made, the evidence offered, the assumptions underneath. Group by idea, not by speaker; avoid narrating the round as "X said Y; Z replied with W".
+2. Name one angle of the question that remains unexplored, taken for granted, or missing from what has been said so far.
+3. Pose one open question about the topic itself that would pull the next round into that unexplored angle. Do not target any specific speaker's "weakest argument" or instruct speakers to rebut each other.
 
 Be concise and incisive. Do not take sides.`;
 
@@ -36,38 +40,6 @@ export function getLangInstruction(lang: string): string {
 
 export function buildSystemPrompt(characterPrompt: string, lang: string, suffix = ''): string {
   return characterPrompt + suffix + DIRECTIVE + getLangInstruction(lang);
-}
-
-/**
- * Distill the core discussion topic from multiple user messages.
- * Filters out meta-instructions like "continue" or language preferences.
- * Only called when there are 2+ user messages in a roundtable.
- */
-export async function distillTopic(
-  userMessages: string[],
-  provider: NonNullable<ReturnType<typeof resolveProvider>>,
-  signal?: AbortSignal,
-): Promise<string> {
-  const numbered = userMessages.map((m, i) => `${i + 1}. ${m}`).join('\n');
-  const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
-    {
-      role: 'system',
-      content: 'Extract the discussion content from these user messages. Remove ONLY meta-instructions (e.g. "continue", "go on", language/formatting preferences). Preserve all substantive points, questions, conditions, and topic refinements. Output in the same language as the user.' + getLangInstruction(provider.lang),
-    },
-    { role: 'user', content: numbered },
-  ];
-
-  let result = '';
-  for await (const token of provider.adapter.chat({
-    messages,
-    model: provider.model,
-    apiKey: provider.apiKey,
-    corsProxy: provider.corsProxy,
-    signal,
-  })) {
-    result += token;
-  }
-  return result.trim();
 }
 
 /**

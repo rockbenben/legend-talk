@@ -38,6 +38,13 @@ export interface Message {
   characterId?: string;
   content: string;
   timestamp: number;
+  /**
+   * For chair intervention messages (role: 'user' past the first), the focus card
+   * content that existed at the moment this message was sent. Retry uses it to
+   * rebuild the focus card as `focusSnapshot + this.content`, preserving the
+   * chair's focus edits up to (but not including) this intervention.
+   */
+  focusSnapshot?: string;
 }
 
 export interface Conversation {

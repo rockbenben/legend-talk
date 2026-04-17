@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Configurações",
     "more": "Mais",
-    "support": "Suporte"
+    "support": "Suporte",
+    "toggleTheme": "Alternar tema",
+    "selectLanguage": "Selecionar idioma"
   },
   "home": {
     "title": "Converse com Grandes Mentes",
@@ -84,7 +86,10 @@
     "characterColor": "Cor",
     "characterPromptPlaceholder": "Descreva como este personagem pensa e responde...",
     "characterEra": "Época",
-    "characterEraPlaceholder": "ex. Contemporâneo, Renascimento"
+    "characterEraPlaceholder": "ex. Contemporâneo, Renascimento",
+    "edit": "Editar",
+    "applyEdit": "Aplicar e tentar novamente",
+    "copy": "Copiar"
   },
   "roundtable": {
     "selected": "{{count}} selecionados",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Remover da mesa",
     "removeParticipant": "Remover",
     "roundPreparing": "Rodada {{current}}/{{total}} — preparando...",
+    "focus": "Foco",
     "moderatorSynthesizing": "Rodada {{current}}/{{total}} — resumindo..."
-  },
-  "moderator": {
-    "name": "Moderador",
-    "synthesizing": "Moderador resumindo..."
   },
   "settings": {
     "title": "Configurações",
@@ -1653,5 +1655,8 @@
         "A IA pode ser verdadeiramente criativa?"
       ]
     }
+  },
+  "moderator": {
+    "name": "Moderador"
   }
 }

@@ -2,7 +2,9 @@
   "nav": {
     "settings": "설정",
     "more": "더보기",
-    "support": "지원"
+    "support": "지원",
+    "toggleTheme": "테마 전환",
+    "selectLanguage": "언어 선택"
   },
   "home": {
     "title": "위대한 사상가와 대화하기",
@@ -84,7 +86,10 @@
     "characterColor": "색상",
     "characterPromptPlaceholder": "이 캐릭터가 어떻게 생각하고 응답하는지 설명...",
     "characterEra": "시대",
-    "characterEraPlaceholder": "예: 현대, 르네상스"
+    "characterEraPlaceholder": "예: 현대, 르네상스",
+    "edit": "편집",
+    "applyEdit": "적용하고 다시 시도",
+    "copy": "복사"
   },
   "roundtable": {
     "selected": "{{count}}명 선택",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "원탁에서 제거",
     "removeParticipant": "제거",
     "roundPreparing": "라운드 {{current}}/{{total}} — 준비 중...",
+    "focus": "초점",
     "moderatorSynthesizing": "라운드 {{current}}/{{total}} — 요약 중..."
-  },
-  "moderator": {
-    "name": "진행자",
-    "synthesizing": "진행자 요약 중..."
   },
   "settings": {
     "title": "설정",
@@ -1653,5 +1655,8 @@
         "AI는 진정한 창의성을 가질 수 있는가?"
       ]
     }
+  },
+  "moderator": {
+    "name": "진행자"
   }
 }

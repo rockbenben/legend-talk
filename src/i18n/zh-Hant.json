@@ -2,7 +2,9 @@
   "nav": {
     "settings": "設定",
     "more": "更多",
-    "support": "支援"
+    "support": "支援",
+    "toggleTheme": "切換主題",
+    "selectLanguage": "選擇語言"
   },
   "home": {
     "title": "與思想大師對話",
@@ -84,7 +86,10 @@
     "characterColor": "顏色",
     "characterPromptPlaceholder": "描述這個角色如何思考和回應...",
     "characterEra": "時代",
-    "characterEraPlaceholder": "如 當代、文藝復興"
+    "characterEraPlaceholder": "如 當代、文藝復興",
+    "edit": "編輯",
+    "applyEdit": "套用並重試",
+    "copy": "複製"
   },
   "roundtable": {
     "selected": "已選 {{count}} 位",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "移出圓桌",
     "removeParticipant": "移除",
     "roundPreparing": "第 {{current}}/{{total}} 輪 — 準備中...",
+    "focus": "討論焦點",
     "moderatorSynthesizing": "第 {{current}}/{{total}} 輪 — 總結中..."
-  },
-  "moderator": {
-    "name": "主持人",
-    "synthesizing": "主持人總結中..."
   },
   "settings": {
     "title": "設定",
@@ -1653,5 +1655,8 @@
         "AI 能真正擁有創造力嗎？"
       ]
     }
+  },
+  "moderator": {
+    "name": "主持人"
   }
 }

@@ -2,7 +2,9 @@
   "nav": {
     "settings": "সেটিংস",
     "more": "আরও",
-    "support": "সহায়তা"
+    "support": "সহায়তা",
+    "toggleTheme": "থিম পরিবর্তন",
+    "selectLanguage": "ভাষা নির্বাচন"
   },
   "home": {
     "title": "মহান চিন্তাবিদদের সাথে কথা বলুন",
@@ -84,7 +86,10 @@
     "characterColor": "রং",
     "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন...",
     "characterEra": "যুগ",
-    "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ"
+    "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ",
+    "edit": "সম্পাদনা",
+    "applyEdit": "প্রয়োগ করুন ও পুনরায় চেষ্টা করুন",
+    "copy": "কপি করুন"
   },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "গোলটেবিল থেকে সরান",
     "removeParticipant": "সরান",
     "roundPreparing": "রাউন্ড {{current}}/{{total}} — প্রস্তুত হচ্ছে...",
+    "focus": "কেন্দ্র",
     "moderatorSynthesizing": "রাউন্ড {{current}}/{{total}} — সারসংক্ষেপ..."
-  },
-  "moderator": {
-    "name": "সঞ্চালক",
-    "synthesizing": "সঞ্চালক সারসংক্ষেপ দিচ্ছেন..."
   },
   "settings": {
     "title": "সেটিংস",
@@ -1653,5 +1655,8 @@
         "AI কি সত্যিই সৃজনশীল হতে পারে?"
       ]
     }
+  },
+  "moderator": {
+    "name": "সঞ্চালক"
   }
 }

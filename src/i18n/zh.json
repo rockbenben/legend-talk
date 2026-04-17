@@ -2,7 +2,9 @@
   "nav": {
     "settings": "设置",
     "more": "更多",
-    "support": "支持"
+    "support": "支持",
+    "toggleTheme": "切换主题",
+    "selectLanguage": "选择语言"
   },
   "home": {
     "title": "与思想大师对话",
@@ -84,7 +86,10 @@
     "characterColor": "颜色",
     "characterPromptPlaceholder": "描述这个角色如何思考和回应...",
     "characterEra": "时代",
-    "characterEraPlaceholder": "如 当代、文艺复兴"
+    "characterEraPlaceholder": "如 当代、文艺复兴",
+    "edit": "编辑",
+    "applyEdit": "应用并重试",
+    "copy": "复制"
   },
   "roundtable": {
     "selected": "已选 {{count}} 位",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "移出圆桌",
     "removeParticipant": "移除",
     "roundPreparing": "第 {{current}}/{{total}} 轮 — 准备中...",
+    "focus": "讨论焦点",
     "moderatorSynthesizing": "第 {{current}}/{{total}} 轮 — 总结中..."
-  },
-  "moderator": {
-    "name": "主持人",
-    "synthesizing": "主持人总结中..."
   },
   "settings": {
     "title": "设置",
@@ -1653,5 +1655,8 @@
         "创伤能转化为力量吗？"
       ]
     }
+  },
+  "moderator": {
+    "name": "主持人"
   }
 }

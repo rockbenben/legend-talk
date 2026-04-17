@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Einstellungen",
     "more": "Mehr",
-    "support": "Hilfe"
+    "support": "Hilfe",
+    "toggleTheme": "Theme wechseln",
+    "selectLanguage": "Sprache wählen"
   },
   "home": {
     "title": "Sprich mit großen Denkern",
@@ -84,7 +86,10 @@
     "characterColor": "Farbe",
     "characterPromptPlaceholder": "Beschreiben Sie, wie dieser Charakter denkt und antwortet...",
     "characterEra": "Epoche",
-    "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance"
+    "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance",
+    "edit": "Bearbeiten",
+    "applyEdit": "Anwenden und wiederholen",
+    "copy": "Kopieren"
   },
   "roundtable": {
     "selected": "{{count}} ausgewählt",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Vom Roundtable entfernen",
     "removeParticipant": "Entfernen",
     "roundPreparing": "Runde {{current}}/{{total}} — Vorbereitung...",
+    "focus": "Fokus",
     "moderatorSynthesizing": "Runde {{current}}/{{total}} — Zusammenfassung..."
-  },
-  "moderator": {
-    "name": "Moderator",
-    "synthesizing": "Moderator fasst zusammen..."
   },
   "settings": {
     "title": "Einstellungen",
@@ -1653,5 +1655,8 @@
         "Kann KI wirklich kreativ sein?"
       ]
     }
+  },
+  "moderator": {
+    "name": "Moderator"
   }
 }

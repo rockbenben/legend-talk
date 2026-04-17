@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Settings",
     "more": "More",
-    "support": "Support"
+    "support": "Support",
+    "toggleTheme": "Toggle theme",
+    "selectLanguage": "Select language"
   },
   "home": {
     "title": "Talk to Great Minds",
@@ -84,7 +86,10 @@
     "characterColor": "Color",
     "characterPromptPlaceholder": "Describe how this character thinks and responds...",
     "characterEra": "Era / Period",
-    "characterEraPlaceholder": "e.g. Contemporary, Renaissance"
+    "characterEraPlaceholder": "e.g. Contemporary, Renaissance",
+    "edit": "Edit",
+    "applyEdit": "Apply & retry",
+    "copy": "Copy"
   },
   "roundtable": {
     "selected": "{{count}} selected",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Remove from roundtable",
     "removeParticipant": "Remove",
     "roundPreparing": "Round {{current}}/{{total}} — preparing...",
+    "focus": "Focus",
     "moderatorSynthesizing": "Round {{current}}/{{total}} — summarizing..."
-  },
-  "moderator": {
-    "name": "Moderator",
-    "synthesizing": "Moderator summarizing..."
   },
   "settings": {
     "title": "Settings",
@@ -1653,5 +1655,8 @@
         "Can trauma become a source of strength?"
       ]
     }
+  },
+  "moderator": {
+    "name": "Moderator"
   }
 }

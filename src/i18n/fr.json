@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Paramètres",
     "more": "Plus",
-    "support": "Support"
+    "support": "Support",
+    "toggleTheme": "Changer de thème",
+    "selectLanguage": "Choisir la langue"
   },
   "home": {
     "title": "Dialoguez avec les Grands Esprits",
@@ -84,7 +86,10 @@
     "characterColor": "Couleur",
     "characterPromptPlaceholder": "Décrivez comment ce personnage pense et répond...",
     "characterEra": "Époque",
-    "characterEraPlaceholder": "ex. Contemporain, Renaissance"
+    "characterEraPlaceholder": "ex. Contemporain, Renaissance",
+    "edit": "Modifier",
+    "applyEdit": "Appliquer et réessayer",
+    "copy": "Copier"
   },
   "roundtable": {
     "selected": "{{count}} sélectionnés",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Retirer de la table",
     "removeParticipant": "Retirer",
     "roundPreparing": "Tour {{current}}/{{total}} — préparation...",
+    "focus": "Focus",
     "moderatorSynthesizing": "Tour {{current}}/{{total}} — synthèse..."
-  },
-  "moderator": {
-    "name": "Modérateur",
-    "synthesizing": "Le modérateur résume..."
   },
   "settings": {
     "title": "Paramètres",
@@ -1653,5 +1655,8 @@
         "L'IA peut-elle être véritablement créative ?"
       ]
     }
+  },
+  "moderator": {
+    "name": "Modérateur"
   }
 }

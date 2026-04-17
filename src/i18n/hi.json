@@ -2,7 +2,9 @@
   "nav": {
     "settings": "सेटिंग्स",
     "more": "और",
-    "support": "सहायता"
+    "support": "सहायता",
+    "toggleTheme": "थीम बदलें",
+    "selectLanguage": "भाषा चुनें"
   },
   "home": {
     "title": "महान विचारकों से बात करें",
@@ -84,7 +86,10 @@
     "characterColor": "रंग",
     "characterPromptPlaceholder": "बताएं कि यह चरित्र कैसे सोचता और जवाब देता है...",
     "characterEra": "काल",
-    "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण"
+    "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण",
+    "edit": "संपादित करें",
+    "applyEdit": "लागू करें और पुनः प्रयास करें",
+    "copy": "कॉपी करें"
   },
   "roundtable": {
     "selected": "{{count}} चयनित",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "गोलमेज से हटाएं",
     "removeParticipant": "हटाएं",
     "roundPreparing": "राउंड {{current}}/{{total}} — तैयारी हो रही है...",
+    "focus": "केंद्र",
     "moderatorSynthesizing": "राउंड {{current}}/{{total}} — सारांश..."
-  },
-  "moderator": {
-    "name": "मॉडरेटर",
-    "synthesizing": "मॉडरेटर सारांश दे रहा है..."
   },
   "settings": {
     "title": "सेटिंग्स",
@@ -1653,5 +1655,8 @@
         "क्या AI वास्तव में रचनात्मक हो सकता है?"
       ]
     }
+  },
+  "moderator": {
+    "name": "मॉडरेटर"
   }
 }

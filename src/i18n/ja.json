@@ -2,7 +2,9 @@
   "nav": {
     "settings": "設定",
     "more": "その他",
-    "support": "サポート"
+    "support": "サポート",
+    "toggleTheme": "テーマを切り替え",
+    "selectLanguage": "言語を選択"
   },
   "home": {
     "title": "偉大な思想家と対話する",
@@ -84,7 +86,10 @@
     "characterColor": "色",
     "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述...",
     "characterEra": "時代",
-    "characterEraPlaceholder": "例: 現代、ルネサンス"
+    "characterEraPlaceholder": "例: 現代、ルネサンス",
+    "edit": "編集",
+    "applyEdit": "適用して再試行",
+    "copy": "コピー"
   },
   "roundtable": {
     "selected": "{{count}}人選択",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "円卓から外す",
     "removeParticipant": "削除",
     "roundPreparing": "ラウンド{{current}}/{{total}} — 準備中...",
+    "focus": "焦点",
     "moderatorSynthesizing": "ラウンド{{current}}/{{total}} — まとめ中..."
-  },
-  "moderator": {
-    "name": "モデレーター",
-    "synthesizing": "モデレーターがまとめ中..."
   },
   "settings": {
     "title": "設定",
@@ -1653,5 +1655,8 @@
         "AIは本当に創造性を持てるのか？"
       ]
     }
+  },
+  "moderator": {
+    "name": "モデレーター"
   }
 }

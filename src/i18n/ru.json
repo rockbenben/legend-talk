@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Настройки",
     "more": "Ещё",
-    "support": "Поддержка"
+    "support": "Поддержка",
+    "toggleTheme": "Сменить тему",
+    "selectLanguage": "Выбрать язык"
   },
   "home": {
     "title": "Беседуйте с великими мыслителями",
@@ -84,7 +86,10 @@
     "characterColor": "Цвет",
     "characterPromptPlaceholder": "Опишите, как этот персонаж думает и отвечает...",
     "characterEra": "Эпоха",
-    "characterEraPlaceholder": "напр. Современность, Ренессанс"
+    "characterEraPlaceholder": "напр. Современность, Ренессанс",
+    "edit": "Изменить",
+    "applyEdit": "Применить и повторить",
+    "copy": "Копировать"
   },
   "roundtable": {
     "selected": "Выбрано: {{count}}",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Убрать из-за стола",
     "removeParticipant": "Удалить",
     "roundPreparing": "Раунд {{current}}/{{total}} — подготовка...",
+    "focus": "Фокус",
     "moderatorSynthesizing": "Раунд {{current}}/{{total}} — подведение итогов..."
-  },
-  "moderator": {
-    "name": "Модератор",
-    "synthesizing": "Модератор подводит итоги..."
   },
   "settings": {
     "title": "Настройки",
@@ -1653,5 +1655,8 @@
         "Может ли ИИ быть по-настоящему креативным?"
       ]
     }
+  },
+  "moderator": {
+    "name": "Модератор"
   }
 }

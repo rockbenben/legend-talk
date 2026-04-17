@@ -2,7 +2,9 @@
   "nav": {
     "settings": "الإعدادات",
     "more": "المزيد",
-    "support": "الدعم"
+    "support": "الدعم",
+    "toggleTheme": "تبديل السمة",
+    "selectLanguage": "اختر اللغة"
   },
   "home": {
     "title": "تحدث مع العقول العظيمة",
@@ -84,7 +86,10 @@
     "characterColor": "اللون",
     "characterPromptPlaceholder": "صف كيف تفكر هذه الشخصية وتستجيب...",
     "characterEra": "العصر",
-    "characterEraPlaceholder": "مثال: معاصر، عصر النهضة"
+    "characterEraPlaceholder": "مثال: معاصر، عصر النهضة",
+    "edit": "تعديل",
+    "applyEdit": "تطبيق وإعادة المحاولة",
+    "copy": "نسخ"
   },
   "roundtable": {
     "selected": "{{count}} مختار",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "إزالة من الطاولة",
     "removeParticipant": "إزالة",
     "roundPreparing": "الجولة {{current}}/{{total}} — جارٍ التحضير...",
+    "focus": "المحور",
     "moderatorSynthesizing": "الجولة {{current}}/{{total}} — جارٍ التلخيص..."
-  },
-  "moderator": {
-    "name": "المُيسِّر",
-    "synthesizing": "المُيسِّر يُلخّص..."
   },
   "settings": {
     "title": "الإعدادات",
@@ -1653,5 +1655,8 @@
         "هل يمكن للذكاء الاصطناعي أن يكون مبدعاً حقاً؟"
       ]
     }
+  },
+  "moderator": {
+    "name": "المنسق"
   }
 }

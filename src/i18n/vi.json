@@ -2,7 +2,9 @@
   "nav": {
     "settings": "Cài đặt",
     "more": "Thêm",
-    "support": "Hỗ trợ"
+    "support": "Hỗ trợ",
+    "toggleTheme": "Đổi chủ đề",
+    "selectLanguage": "Chọn ngôn ngữ"
   },
   "home": {
     "title": "Trò chuyện với Bậc Thầy Tư Tưởng",
@@ -84,7 +86,10 @@
     "characterColor": "Màu",
     "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi...",
     "characterEra": "Thời đại",
-    "characterEraPlaceholder": "VD: Đương đại, Phục hưng"
+    "characterEraPlaceholder": "VD: Đương đại, Phục hưng",
+    "edit": "Chỉnh sửa",
+    "applyEdit": "Áp dụng và thử lại",
+    "copy": "Sao chép"
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",
@@ -97,11 +102,8 @@
     "removeFromRoundtable": "Bỏ khỏi bàn tròn",
     "removeParticipant": "Xóa",
     "roundPreparing": "Vòng {{current}}/{{total}} — đang chuẩn bị...",
+    "focus": "Trọng tâm",
     "moderatorSynthesizing": "Vòng {{current}}/{{total}} — đang tóm tắt..."
-  },
-  "moderator": {
-    "name": "Người điều phối",
-    "synthesizing": "Người điều phối đang tóm tắt..."
   },
   "settings": {
     "title": "Cài đặt",
@@ -1602,32 +1604,59 @@
     "philosophy-debate": {
       "name": "Philosophy Debate",
       "description": "Inquiry, harmony, power, detachment, duty",
-      "questions": ["Ý chí tự do có thực sự tồn tại không?", "Đau khổ mang ý nghĩa gì?", "Một xã hội lý tưởng sẽ như thế nào?"]
+      "questions": [
+        "Ý chí tự do có thực sự tồn tại không?",
+        "Đau khổ mang ý nghĩa gì?",
+        "Một xã hội lý tưởng sẽ như thế nào?"
+      ]
     },
     "business-strategy": {
       "name": "Business Strategy",
       "description": "Mô hình tư duy vs nguyên lý gốc vs khởi nghiệp vs toàn cầu hóa",
-      "questions": ["Startup nên ưu tiên tăng trưởng hay lợi nhuận?", "AI sẽ thay đổi các ngành công nghiệp truyền thống như thế nào?", "Thành công phụ thuộc vào may mắn hay năng lực nhiều hơn?"]
+      "questions": [
+        "Startup nên ưu tiên tăng trưởng hay lợi nhuận?",
+        "AI sẽ thay đổi các ngành công nghiệp truyền thống như thế nào?",
+        "Thành công phụ thuộc vào may mắn hay năng lực nhiều hơn?"
+      ]
     },
     "science-panel": {
       "name": "Science Panel",
       "description": "Certainty vs probability, theory vs experiment",
-      "questions": ["Khoa học có thể giải thích mọi thứ không?", "Lý thuyết hay thực nghiệm quan trọng hơn?", "Bí ẩn chưa được giải đáp quan trọng nhất trong khoa học là gì?"]
+      "questions": [
+        "Khoa học có thể giải thích mọi thứ không?",
+        "Lý thuyết hay thực nghiệm quan trọng hơn?",
+        "Bí ẩn chưa được giải đáp quan trọng nhất trong khoa học là gì?"
+      ]
     },
     "strategic-minds": {
       "name": "Strategic Minds",
       "description": "Outsmart vs overpower vs outlast",
-      "questions": ["Có thể thắng mà không cần chiến đấu không?", "Phẩm chất quan trọng nhất của một nhà lãnh đạo là gì?", "Kẻ yếu làm thế nào để thắng kẻ mạnh?"]
+      "questions": [
+        "Có thể thắng mà không cần chiến đấu không?",
+        "Phẩm chất quan trọng nhất của một nhà lãnh đạo là gì?",
+        "Kẻ yếu làm thế nào để thắng kẻ mạnh?"
+      ]
     },
     "psychology-insights": {
       "name": "Psychology Insights",
       "description": "Drives vs behavior vs bias vs meaning",
-      "questions": ["Bản chất con người vốn thiện hay ác?", "Chúng ta có thể đưa ra quyết định thực sự lý trí không?", "Chấn thương tâm lý có thể trở thành nguồn sức mạnh không?"]
+      "questions": [
+        "Bản chất con người vốn thiện hay ác?",
+        "Chúng ta có thể đưa ra quyết định thực sự lý trí không?",
+        "Chấn thương tâm lý có thể trở thành nguồn sức mạnh không?"
+      ]
     },
     "ai-tech": {
       "name": "AI & Công nghệ",
       "description": "Quy mô vs an toàn, kỹ thuật vs rủi ro, xây dựng vs tư duy",
-      "questions": ["Khi nào chúng ta đạt được AGI, và có nên không?", "Làm thế nào để cân bằng an toàn AI với tiến bộ?", "AI có thể thực sự sáng tạo không?"]
+      "questions": [
+        "Khi nào chúng ta đạt được AGI, và có nên không?",
+        "Làm thế nào để cân bằng an toàn AI với tiến bộ?",
+        "AI có thể thực sự sáng tạo không?"
+      ]
     }
+  },
+  "moderator": {
+    "name": "Người điều phối"
   }
 }

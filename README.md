@@ -73,7 +73,9 @@ All roundtable modes show recommended topics before you send your first message:
 
 ### During a Conversation
 
-- **Moderator** — after each round, an AI moderator synthesizes the discussion: identifies the core disagreement, tracks what shifted, and poses a targeted question for the next round
+- **Moderator** — after each round, an AI moderator synthesizes the discussion: maps claims by idea, names an angle the round left untouched, and poses an open question for the next round
+- **Chair mode: refocus mid-discussion** — send a new message during a roundtable to redirect; instead of auto-running, an editable **focus card** appears. It accumulates on top of any prior focus so earlier interventions aren't lost. Refine it, click **Start** to run the next rounds anchored on it
+- **Apply & retry** — edit any message and click the inline **Apply & retry** button to regenerate from that point. Chair interventions carry a focus snapshot, so retry rebuilds from the exact focus state that was active when the message was originally sent — your focus edits up to that point are preserved
 - **Stop** — cancel generation mid-stream (preserves content already generated)
 - **Add/remove participants** anytime via the participants bar — turning a 1-on-1 into a roundtable or vice versa
 - **Set rounds** — configure how many rounds the thinkers should debate before pausing

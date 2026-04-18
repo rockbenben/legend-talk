@@ -50,6 +50,7 @@
     "noApiKey": "API Key belum dikonfigurasi",
     "goSettings": "Ke Pengaturan",
     "retry": "Coba lagi",
+    "networkError": "Koneksi gagal. Periksa jaringan Anda dan coba lagi.",
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "useCorsProxy": "Gunakan proxy publik",
     "summonFailed": "Tidak ditemukan karakter yang cocok untuk topik ini",

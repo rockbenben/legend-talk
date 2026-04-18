@@ -142,7 +142,7 @@ export function Layout() {
   }, [i18n.language]);
 
   return (
-    <div className="flex flex-col h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
+    <div className="flex flex-col h-dvh bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <header className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700 shrink-0">
         <h1
           className="text-lg font-bold cursor-pointer hover:opacity-80"

@@ -50,6 +50,7 @@
     "noApiKey": "API anahtarı yapılandırılmamış",
     "goSettings": "Ayarlara git",
     "retry": "Yeniden dene",
+    "networkError": "Bağlantı başarısız. Ağınızı kontrol edip tekrar deneyin.",
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
     "useCorsProxy": "Genel proxy kullan",
     "summonFailed": "Bu konu için uygun karakter bulunamadı",

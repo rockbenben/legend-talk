@@ -50,6 +50,7 @@
     "noApiKey": "Chưa cấu hình API Key",
     "goSettings": "Đi đến Cài đặt",
     "retry": "Thử lại",
+    "networkError": "Kết nối thất bại. Kiểm tra mạng và thử lại.",
     "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
     "useCorsProxy": "Sử dụng proxy công cộng",
     "summonFailed": "Không tìm thấy nhân vật phù hợp cho chủ đề này",

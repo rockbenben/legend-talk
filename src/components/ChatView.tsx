@@ -54,6 +54,15 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const lang = currentLang();
   const rounds = useSettingsStore((s) => s.roundtableRounds);
   const setRounds = useSettingsStore((s) => s.setRoundtableRounds);
+  const [roundsDraft, setRoundsDraft] = useState<string>(String(rounds));
+  useEffect(() => { setRoundsDraft(String(rounds)); }, [rounds]);
+  const commitRounds = () => {
+    const n = parseInt(roundsDraft, 10);
+    if (!Number.isFinite(n)) { setRoundsDraft(String(rounds)); return; }
+    const clamped = Math.max(1, Math.min(10, n));
+    setRounds(clamped);
+    setRoundsDraft(String(clamped));
+  };
   const [showPicker, setShowPicker] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleValue, setTitleValue] = useState('');
@@ -368,8 +377,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
           <div className="flex items-center gap-2 ms-auto shrink-0">
             <label className="text-xs text-gray-500 whitespace-nowrap">{t('roundtable.rounds')}</label>
             <input
-              type="number" min={1} max={100} value={rounds}
-              onChange={(e) => setRounds(Math.max(1, Math.min(100, Number(e.target.value))))}
+              type="number" inputMode="numeric" min={1} max={10} value={roundsDraft}
+              onChange={(e) => setRoundsDraft(e.target.value)}
+              onBlur={commitRounds}
+              onKeyDown={(e) => { if (e.key === 'Enter') { commitRounds(); (e.target as HTMLInputElement).blur(); } }}
               disabled={isGenerating}
               className="w-12 px-1 py-0.5 text-sm rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-center"
             />
@@ -630,17 +641,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
         )}
         {error && (() => {
           const s = useSettingsStore.getState();
-          const isCors = !s.corsEnabled[s.defaultProvider] && /Failed to fetch|NetworkError|Load failed/.test(error);
-          return isCors ? (
+          const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
+          const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
+          const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
+          if (isCors) return (
             <div className="flex flex-wrap items-center gap-2 text-sm px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
               <span className="text-amber-700 dark:text-amber-300">{t('chat.corsError')}</span>
-              <button onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); }}
+              <button onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}
                 className="text-xs px-2.5 py-1 rounded bg-amber-500 text-white hover:bg-amber-600">{t('chat.useCorsProxy')}</button>
               <button onClick={() => navigate(lp('/settings'))} className="text-xs px-2 py-1 rounded text-amber-700 dark:text-amber-300 hover:underline">{t('chat.goSettings')}</button>
             </div>
-          ) : (
-            <div className="flex items-center gap-2 text-sm text-red-500">
+          );
+          if (isNetwork) return (
+            <div className="flex flex-wrap items-center gap-2 text-sm px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+              <span className="text-amber-700 dark:text-amber-300">{t('chat.networkError')}</span>
+              <button onClick={retryLast} className="text-xs px-2.5 py-1 rounded bg-amber-500 text-white hover:bg-amber-600">{t('chat.retry')}</button>
+            </div>
+          );
+          return (
+            <div className="flex flex-wrap items-center gap-2 text-sm text-red-500">
               <span>{t('common.error', { message: error })}</span>
+              <button onClick={retryLast} className="shrink-0 text-xs px-2 py-0.5 rounded border border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-900/20">{t('chat.retry')}</button>
               <button onClick={() => navigate(lp('/settings'))} className="shrink-0 text-xs px-2 py-0.5 rounded border border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-900/20">{t('chat.goSettings')}</button>
             </div>
           );

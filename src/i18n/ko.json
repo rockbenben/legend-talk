@@ -50,6 +50,7 @@
     "noApiKey": "API 키가 설정되지 않았습니다",
     "goSettings": "설정으로 이동",
     "retry": "재시도",
+    "networkError": "연결에 실패했습니다. 네트워크를 확인하고 다시 시도하세요",
     "corsError": "브라우저에서 차단됨 (CORS). 프록시가 필요합니다",
     "useCorsProxy": "공개 프록시 사용",
     "summonFailed": "이 주제에 맞는 캐릭터를 찾지 못했습니다",

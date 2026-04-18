@@ -52,7 +52,7 @@ export const useSettingsStore = create<SettingsState>()(
       corsEnabled: { volcengine: true, alibaba: true },
       customBaseUrl: '',
       thinkingLevel: 'off' as const,
-      roundtableRounds: 3,
+      roundtableRounds: 2,
       shareCardEndpoint: '',
       favoriteCharacters: [],
       customCharacters: [],

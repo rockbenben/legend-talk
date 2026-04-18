@@ -50,6 +50,7 @@
     "noApiKey": "Clé API non configurée",
     "goSettings": "Aller aux paramètres",
     "retry": "Réessayer",
+    "networkError": "Échec de la connexion. Vérifiez votre réseau et réessayez.",
     "corsError": "Requête bloquée par le navigateur (CORS). Un proxy est nécessaire.",
     "useCorsProxy": "Utiliser le proxy public",
     "summonFailed": "Aucun personnage trouvé pour ce sujet",

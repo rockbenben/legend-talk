@@ -50,6 +50,7 @@
     "noApiKey": "APIキーが未設定です",
     "goSettings": "設定へ",
     "retry": "再試行",
+    "networkError": "接続に失敗しました。ネットワークを確認して再試行してください",
     "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
     "useCorsProxy": "公開プロキシを使用",
     "summonFailed": "このトピックに合うキャラクターが見つかりません",

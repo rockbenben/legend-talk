@@ -50,6 +50,7 @@
     "noApiKey": "API-Schlüssel nicht konfiguriert",
     "goSettings": "Zu Einstellungen",
     "retry": "Wiederholen",
+    "networkError": "Verbindung fehlgeschlagen. Prüfe dein Netzwerk und versuche es erneut.",
     "corsError": "Anfrage vom Browser blockiert (CORS). Ein Proxy wird benötigt.",
     "useCorsProxy": "Öffentlichen Proxy verwenden",
     "summonFailed": "Keine passenden Charaktere für dieses Thema gefunden",

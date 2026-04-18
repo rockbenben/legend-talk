@@ -46,7 +46,7 @@ export function SettingsView() {
     if (typeof config.language === 'string') { const lng = config.language; s.setLanguage(lng); ensureLanguageLoaded(lng).then(() => i18n.changeLanguage(lng)); }
     if (config.theme === 'light' || config.theme === 'dark') s.setTheme(config.theme);
     if (['off', 'low', 'medium', 'high'].includes(config.thinkingLevel as string)) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
-    if (typeof config.roundtableRounds === 'number' && config.roundtableRounds >= 1) s.setRoundtableRounds(config.roundtableRounds);
+    if (typeof config.roundtableRounds === 'number' && config.roundtableRounds >= 1 && config.roundtableRounds <= 10) s.setRoundtableRounds(config.roundtableRounds);
     if (typeof config.corsProxy === 'string') s.setCorsProxy(config.corsProxy);
     if (typeof config.customBaseUrl === 'string') s.setCustomBaseUrl(config.customBaseUrl);
     if (typeof config.shareCardEndpoint === 'string') s.setShareCardEndpoint(config.shareCardEndpoint);
@@ -86,6 +86,7 @@ export function SettingsView() {
           }
         }
         setShareStatus(t('chat.settingsImported'));
+        navigate(lp('/chat'));
       } catch {
         setShareStatus(t('chat.importError'));
       }

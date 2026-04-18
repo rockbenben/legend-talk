@@ -50,6 +50,7 @@
     "noApiKey": "请先配置 API 密钥",
     "goSettings": "前往设置",
     "retry": "重试",
+    "networkError": "网络连接失败，请检查网络后重试",
     "corsError": "请求被浏览器拦截（CORS），需要配置中转",
     "useCorsProxy": "使用公共中转",
     "summonFailed": "未匹配到合适的角色",

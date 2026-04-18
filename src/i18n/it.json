@@ -50,6 +50,7 @@
     "noApiKey": "Chiave API non configurata",
     "goSettings": "Vai alle impostazioni",
     "retry": "Riprova",
+    "networkError": "Connessione fallita. Controlla la rete e riprova.",
     "corsError": "Richiesta bloccata dal browser (CORS). È necessario un proxy.",
     "useCorsProxy": "Usa proxy pubblico",
     "summonFailed": "Nessun personaggio trovato per questo tema",

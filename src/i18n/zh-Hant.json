@@ -9,6 +9,7 @@
   "home": {
     "title": "與思想大師對話",
     "subtitle": "輸入話題自動開啟圓桌，或手動挑選角色",
+    "apiKeyBanner": "配置 API 金鑰後即可開始討論",
     "topicPlaceholder": "輸入話題，AI 自動匹配討論嘉賓...",
     "autoRoundtable": "開始",
     "suggesting": "正在匹配...",
@@ -64,6 +65,7 @@
     "share": "分享對話",
     "copied": "已複製",
     "shareTooLong": "對話過長，無法透過連結分享",
+    "shareTooLongHint": "改用 Markdown 匯出",
     "copyLineupLink": "複製陣容連結",
     "copyCategoryLink": "複製分類圓桌連結",
     "linkCopied": "已複製",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "如 愛達·洛芙萊斯",
     "characterAvatar": "頭像",
     "characterColor": "顏色",
+    "characterSystemPrompt": "系統提示詞",
     "characterPromptPlaceholder": "描述這個角色如何思考和回應...",
     "characterEra": "時代",
     "characterEraPlaceholder": "如 當代、文藝復興",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "載入中...",
     "error": "出錯了: {{message}}",
+    "somethingWrong": "發生了一些問題",
+    "unexpectedError": "發生了意外錯誤",
     "confirm": "確認",
     "unknown": "未知",
     "cancel": "取消",

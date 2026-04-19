@@ -26,7 +26,10 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
     if (search) {
       const q = search.toLowerCase();
       const name = t(`characters.${c.id}.name`).toLowerCase();
-      return name.includes(q) || c.id.includes(q);
+      const era = t(`characters.${c.id}.era`, { defaultValue: '' }).toLowerCase();
+      const domainEn = c.domain.join(' ').toLowerCase();
+      const domainLocalized = c.domain.map((d) => t(`home.categories.${d}`, { defaultValue: '' }).toLowerCase()).join(' ');
+      return name.includes(q) || c.id.includes(q) || era.includes(q) || domainEn.includes(q) || domainLocalized.includes(q);
     }
     return true;
   });
@@ -91,10 +94,11 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
         </div>
         <div className="flex-1 overflow-y-auto p-2">
           {sorted.map((char) => (
-            <div
+            <button
               key={char.id}
+              type="button"
               onClick={() => handleSelect(char)}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-start hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
               <Avatar emoji={char.avatar} color={char.color} size="sm" />
               <div className="flex-1 min-w-0">
@@ -104,7 +108,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
               {favoriteCharacters.includes(char.id) && (
                 <span className="text-sm text-yellow-500">{'\u2605'}</span>
               )}
-            </div>
+            </button>
           ))}
           {search && filtered.length === 0 && (
             <div className="text-center py-4">

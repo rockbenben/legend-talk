@@ -9,6 +9,7 @@
   "home": {
     "title": "Talk to Great Minds",
     "subtitle": "Enter a topic to start, or pick characters yourself",
+    "apiKeyBanner": "Configure your API key to start chatting",
     "topicPlaceholder": "Enter a topic — AI assembles the panel...",
     "autoRoundtable": "Start",
     "suggesting": "Matching...",
@@ -64,6 +65,7 @@
     "share": "Share chat",
     "copied": "Copied",
     "shareTooLong": "Conversation too long to share via URL",
+    "shareTooLongHint": "try exporting as Markdown instead",
     "copyLineupLink": "Copy lineup link",
     "copyCategoryLink": "Copy category link",
     "linkCopied": "Copied",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "e.g. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Color",
+    "characterSystemPrompt": "System Prompt",
     "characterPromptPlaceholder": "Describe how this character thinks and responds...",
     "characterEra": "Era / Period",
     "characterEraPlaceholder": "e.g. Contemporary, Renaissance",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "Loading...",
     "error": "Error: {{message}}",
+    "somethingWrong": "Something went wrong",
+    "unexpectedError": "An unexpected error occurred",
     "confirm": "Confirm",
     "unknown": "Unknown",
     "cancel": "Cancel",

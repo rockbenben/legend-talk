@@ -44,7 +44,6 @@ export function CharacterCard({
               onToggleFavorite(character.id);
             }}
             className={`p-1 text-lg hover:scale-110 transition-all ${isFavorite ? '' : 'opacity-100 sm:opacity-0 sm:group-hover:opacity-100'}`}
-            title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           >
             {isFavorite ? '\u2605' : '\u2606'}
           </button>

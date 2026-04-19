@@ -9,6 +9,7 @@
   "home": {
     "title": "偉大な思想家と対話する",
     "subtitle": "トピックを入力してAI円卓会議、または手動で選択",
+    "apiKeyBanner": "APIキーを設定すると会話を始められます",
     "topicPlaceholder": "トピックを入力 — AIがパネルを編成...",
     "autoRoundtable": "開始",
     "suggesting": "マッチング中...",
@@ -64,6 +65,7 @@
     "share": "対話を共有",
     "copied": "コピーしました",
     "shareTooLong": "対話が長すぎてURLで共有できません",
+    "shareTooLongHint": "Markdownエクスポートをお使いください",
     "copyLineupLink": "メンバーリンクをコピー",
     "copyCategoryLink": "カテゴリリンクをコピー",
     "linkCopied": "コピー済み",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "例: エイダ・ラブレス",
     "characterAvatar": "アバター",
     "characterColor": "色",
+    "characterSystemPrompt": "システムプロンプト",
     "characterPromptPlaceholder": "このキャラクターの思考・応答の仕方を記述...",
     "characterEra": "時代",
     "characterEraPlaceholder": "例: 現代、ルネサンス",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "読み込み中...",
     "error": "エラー：{{message}}",
+    "somethingWrong": "問題が発生しました",
+    "unexpectedError": "予期しないエラーが発生しました",
     "confirm": "確認",
     "unknown": "不明",
     "cancel": "キャンセル",
@@ -155,90 +160,90 @@
       "name": "ソクラテス",
       "era": "古代ギリシャ",
       "questions": [
-        "Should I quit to start a business?",
-        "What is true success?",
-        "How do I know my choice was right?"
+        "起業のために会社を辞めるべきか？",
+        "本当の成功とは何か？",
+        "私の選択が正しかったとどう分かる？"
       ]
     },
     "confucius": {
       "name": "孔子",
       "era": "春秋時代",
       "questions": [
-        "How to handle conflict with my boss?",
-        "What does it mean to be a good person?",
-        "How to build self-discipline?"
+        "上司との対立にどう対処する？",
+        "良い人であるとはどういう意味か？",
+        "自己規律をどう身につける？"
       ]
     },
     "aristotle": {
       "name": "アリストテレス",
       "era": "古代ギリシャ",
       "questions": [
-        "What does a good life look like?",
-        "How do I cultivate virtue?",
-        "Is my reasoning logically sound?"
+        "良い人生とはどんなものか？",
+        "美徳はどう育てる？",
+        "私の推論は論理的に正しいか？"
       ]
     },
     "laozi": {
       "name": "老子",
       "era": "春秋時代",
       "questions": [
-        "The harder I try the more anxious I get",
-        "How to stay true to myself under pressure?",
-        "When is yielding wisdom vs. giving up?"
+        "頑張るほど不安が募る",
+        "プレッシャーの中で自分を貫くには？",
+        "譲ることと諦めることの境界は？"
       ]
     },
     "plato": {
       "name": "プラトン",
       "era": "古代ギリシャ",
       "questions": [
-        "Is what I see really reality?",
-        "How to bridge the gap between ideal and real?",
-        "What is true justice?"
+        "私が見ているものは本当に現実か？",
+        "理想と現実のギャップをどう埋める？",
+        "真の正義とは何か？"
       ]
     },
     "zhuangzi": {
       "name": "荘子",
       "era": "戦国時代",
       "questions": [
-        "I am too attached to success and failure",
-        "How to accept what cannot be changed?",
-        "Do worldly standards really matter?"
+        "成功と失敗に執着しすぎている",
+        "変えられないことをどう受け入れる？",
+        "世俗の基準は本当に重要か？"
       ]
     },
     "marcus-aurelius": {
       "name": "マルクス・アウレリウス",
       "era": "ローマ帝国",
       "questions": [
-        "How to stay unaffected by external chaos?",
-        "How to think about things I cannot change?",
-        "What is truly worth pursuing?"
+        "外の混乱に影響されないには？",
+        "変えられないことをどう捉える？",
+        "本当に追求する価値があるものは？"
       ]
     },
     "kant": {
       "name": "カント",
       "era": "近代ヨーロッパ",
       "questions": [
-        "Is lying always wrong?",
-        "Should I follow rules or focus on outcomes?",
-        "How do I judge if something is morally right?"
+        "嘘をつくことは常に悪か？",
+        "ルールに従うべきか、結果を重視するべきか？",
+        "道徳的に正しいかをどう判断する？"
       ]
     },
     "descartes": {
       "name": "デカルト",
       "era": "近世ヨーロッパ",
       "questions": [
-        "Can I really trust what I believe?",
-        "How to rethink a problem from scratch?",
-        "Is there anything I can be certain of?"
+        "自分の信じていることを本当に信頼できるか？",
+        "問題をゼロから考え直すには？",
+        "確信できることは存在するか？"
       ]
     },
     "hegel": {
       "name": "ヘーゲル",
       "era": "近代ヨーロッパ",
       "questions": [
-        "Is there a third way out of this dilemma?",
-        "Why do my ideas keep swinging to extremes?",
-        "Can two contradictory things both be true?"
+        "このジレンマに第三の道はあるか？",
+        "なぜ私の考えは極端に振れ続けるのか？",
+        "矛盾する二つが同時に真でありうるか？"
       ]
     },
     "wang-yangming": {
@@ -263,9 +268,9 @@
       "name": "チンギス・カン",
       "era": "中世",
       "questions": [
-        "How to expand rapidly while maintaining organizational effectiveness?",
-        "How to recruit and integrate talent from diverse backgrounds?",
-        "How to find a breakthrough against a stronger opponent?"
+        "組織の効率を保ちつつ急拡大するには？",
+        "多様な背景の人材をどう登用し統合する？",
+        "より強い相手に対して突破口をどう見つける？"
       ]
     },
     "hannibal": {
@@ -281,9 +286,9 @@
       "name": "ナポレオン",
       "era": "フランス革命",
       "questions": [
-        "How to find breakthroughs in chaos?",
-        "How to turn disadvantage into advantage?",
-        "How to manage multiple fronts simultaneously?"
+        "混乱の中で突破口をどう見つける？",
+        "不利を有利に変えるには？",
+        "複数の戦線を同時に管理するには？"
       ]
     },
     "zhuge-liang": {
@@ -299,18 +304,18 @@
       "name": "マキャヴェッリ",
       "era": "ルネサンス",
       "questions": [
-        "How to protect myself in office politics?",
-        "What are the fundamental laws of power?",
-        "When is kindness more effective than force?"
+        "社内政治で自分をどう守る？",
+        "権力の根本的な法則は何か？",
+        "力より優しさが効くのはいつ？"
       ]
     },
     "cao-cao": {
       "name": "曹操",
       "era": "三国時代",
       "questions": [
-        "How should I position myself in this competition?",
-        "How to handle subordinates with hidden agendas?",
-        "How to turn a losing position around?"
+        "この競争で自分をどう位置づける？",
+        "裏の意図がある部下にどう対処する？",
+        "負け戦をどう逆転する？"
       ]
     },
     "churchill": {
@@ -326,27 +331,27 @@
       "name": "ビスマルク",
       "era": "近代ドイツ",
       "questions": [
-        "How to achieve goals amid conflicting interests?",
-        "When is compromise the wise move?",
-        "How to build alliances that favor your position?"
+        "利害が対立する中で目標をどう達成する？",
+        "妥協が賢明な一手となるのはいつ？",
+        "自分に有利な同盟をどう築く？"
       ]
     },
     "zeng-guofan": {
       "name": "曽国藩",
       "era": "清末",
       "questions": [
-        "How to overcome my own laziness?",
-        "How to lead a team well?",
-        "How to persevere through adversity?"
+        "自分の怠惰をどう克服する？",
+        "チームをうまく率いるには？",
+        "逆境の中でどう耐え抜く？"
       ]
     },
     "munger": {
       "name": "チャーリー・マンガー",
       "era": "現代",
       "questions": [
-        "Is this investment worth pursuing?",
-        "How to avoid stupid decisions?",
-        "What blind spots does my plan have?"
+        "この投資は追求する価値があるか？",
+        "愚かな決定をどう避ける？",
+        "私の計画の盲点はどこ？"
       ]
     },
     "drucker": {
@@ -362,36 +367,36 @@
       "name": "カーネギー",
       "era": "近代アメリカ",
       "questions": [
-        "How to scale from small business to large enterprise?",
-        "How to build competitive barriers in an industry?",
-        "How should wealth be used responsibly?"
+        "小さな事業から大企業へどうスケールする？",
+        "業界で競争障壁をどう築く？",
+        "富はどう責任をもって使うべきか？"
       ]
     },
     "matsushita": {
       "name": "松下幸之助",
       "era": "近代日本",
       "questions": [
-        "How to maintain quality while cutting costs?",
-        "How to make employees genuinely committed?",
-        "What matters most in the early startup stage?"
+        "コスト削減と品質維持を両立するには？",
+        "社員を本気で会社にコミットさせるには？",
+        "創業初期に最も重要なのは何か？"
       ]
     },
     "henry-ford": {
       "name": "ヘンリー・フォード",
       "era": "近代アメリカ",
       "questions": [
-        "How to drastically cut production costs?",
-        "How to make a product accessible to everyone?",
-        "Efficiency or innovation — which matters more?"
+        "生産コストを劇的に下げるには？",
+        "誰もが手に入れられる製品にするには？",
+        "効率とイノベーション、どちらが重要か？"
       ]
     },
     "dalio": {
       "name": "レイ・ダリオ",
       "era": "現代",
       "questions": [
-        "How to build a principled decision-making system?",
-        "How to learn from failure systematically?",
-        "How to achieve radical transparency in a team?"
+        "原則に基づく意思決定システムをどう作る？",
+        "失敗から体系的にどう学ぶ？",
+        "チームで徹底した透明性をどう実現する？"
       ]
     },
     "buffett": {
@@ -407,63 +412,63 @@
       "name": "ピーター・ティール",
       "era": "現代",
       "questions": [
-        "What important truth do few agree with you on?",
-        "Is competition a form of failure?",
-        "How to find secrets others overlook?"
+        "ほとんどの人が同意しない重要な真実は何か？",
+        "競争は失敗の一形態か？",
+        "他者が見落とす秘密をどう見つける？"
       ]
     },
     "steve-jobs": {
       "name": "スティーブ・ジョブズ",
       "era": "現代",
       "questions": [
-        "Should I simplify or add features?",
-        "How to find what truly matters?",
-        "How to build something people love?"
+        "機能を絞るべきか、追加すべきか？",
+        "本当に重要なことをどう見つける？",
+        "人が愛するものをどう作る？"
       ]
     },
     "elon-musk": {
       "name": "イーロン・マスク",
       "era": "現代",
       "questions": [
-        "What are the core assumptions in this industry?",
-        "How to make the impossible possible?",
-        "How should I set bigger goals?"
+        "この業界の根本的な前提は何か？",
+        "不可能を可能にするには？",
+        "より大きな目標をどう設定すべきか？"
       ]
     },
     "freud": {
       "name": "フロイト",
       "era": "近代",
       "questions": [
-        "Why do I have this strange habit?",
-        "How did childhood shape my current behavior?",
-        "Why do I keep avoiding this one thing?"
+        "なぜ私はこの奇妙な習慣を持っているのか？",
+        "幼少期が今の行動をどう形作ったか？",
+        "なぜ一つのことを避け続けるのか？"
       ]
     },
     "pavlov": {
       "name": "パヴロフ",
       "era": "近代ロシア",
       "questions": [
-        "Why do certain situations trigger my impulses?",
-        "How to break conditioned bad habits?",
-        "How are habits formed?"
+        "なぜ特定の状況が衝動を引き起こすのか？",
+        "条件付けされた悪習をどう断ち切る？",
+        "習慣はどうやって形成されるか？"
       ]
     },
     "jung": {
       "name": "ユング",
       "era": "近代",
       "questions": [
-        "Why do I keep repeating the same mistakes?",
-        "Why do I overreact to certain things?",
-        "What do I truly want deep down?"
+        "なぜ同じ過ちを繰り返すのか？",
+        "なぜ特定のことに過剰反応するのか？",
+        "心の奥で本当に欲しているものは何か？"
       ]
     },
     "maslow": {
       "name": "マズロー",
       "era": "現代",
       "questions": [
-        "Why do I feel inner emptiness?",
-        "How to find something that gives me meaning?",
-        "Which matters more: security or growth?"
+        "なぜ内面の空虚を感じるのか？",
+        "意味を与えてくれるものをどう見つける？",
+        "安全と成長、どちらが重要か？"
       ]
     },
     "adler": {
@@ -479,81 +484,81 @@
       "name": "スキナー",
       "era": "現代",
       "questions": [
-        "How to use reward systems to build good habits?",
-        "Why is breaking a bad habit so hard?",
-        "How to design an environment that changes behavior?"
+        "報酬システムを使って良い習慣をどう作る？",
+        "悪習を断つのはなぜこんなに難しいのか？",
+        "行動を変える環境をどう設計する？"
       ]
     },
     "frankl": {
       "name": "フランクル",
       "era": "現代",
       "questions": [
-        "My life has lost its sense of meaning",
-        "How to find value in suffering?",
-        "How to think about circumstances I cannot change?"
+        "人生が意味を失ってしまった",
+        "苦しみの中にどう価値を見出す？",
+        "変えられない状況をどう捉える？"
       ]
     },
     "kahneman": {
       "name": "カーネマン",
       "era": "現代",
       "questions": [
-        "Is my judgment intuition or bias?",
-        "How to avoid anchoring in my decisions?",
-        "Why does loss feel stronger than equivalent gain?"
+        "私の判断は直感かバイアスか？",
+        "決定でアンカリングを避けるには？",
+        "なぜ損失は同等の利得より強く感じられるのか？"
       ]
     },
     "erikson": {
       "name": "エリクソン",
       "era": "現代",
       "questions": [
-        "Is it normal to feel lost in my 30s?",
-        "How to navigate a midlife crisis?",
-        "How do I find my identity?"
+        "30代で迷うのは普通のことか？",
+        "中年の危機をどう乗り越える？",
+        "自分のアイデンティティをどう見つける？"
       ]
     },
     "zimbardo": {
       "name": "ジンバルドー",
       "era": "現代",
       "questions": [
-        "Why do good people do bad things?",
-        "How much does environment shape behavior?",
-        "How to resist group pressure?"
+        "なぜ善い人が悪いことをするのか？",
+        "環境はどれほど行動を形作るのか？",
+        "集団からの圧力にどう抗う？"
       ]
     },
     "einstein": {
       "name": "アインシュタイン",
       "era": "近代",
       "questions": [
-        "What if we view this from a totally different angle?",
-        "Are we building on wrong assumptions?",
-        "What underlying principles govern this?"
+        "全く違う角度から見たらどうなる？",
+        "間違った前提の上に築いているのでは？",
+        "これを支配する根本原理は何か？"
       ]
     },
     "newton": {
       "name": "ニュートン",
       "era": "近世イギリス",
       "questions": [
-        "How to break a complex problem into simple laws?",
-        "How to build a predictable system?",
-        "What assumptions underlie my model?"
+        "複雑な問題を単純な法則にどう分解する？",
+        "予測可能なシステムをどう構築する？",
+        "私のモデルの前提は何か？"
       ]
     },
     "galileo": {
       "name": "ガリレオ",
       "era": "ルネサンス",
       "questions": [
-        "Is my judgment backed by real evidence?",
-        "How to challenge industry conventional wisdom?",
-        "What to do when authority dismisses you?"
+        "私の判断は本当の証拠に基づいているか？",
+        "業界の常識をどう疑う？",
+        "権威に否定されたらどうする？"
       ]
     },
     "darwin": {
       "name": "ダーウィン",
       "era": "近代イギリス",
       "questions": [
-        "How should my strategy adapt to a changing environment?",
-        "How to survive long-term competition?",
-        "How do small changes accumulate into big ones?"
+        "変化する環境に戦略をどう適応させる？",
+        "長期的な競争を生き抜くには？",
+        "小さな変化はどう大きな変化に積み重なる？"
       ]
     },
     "zhang-heng": {
@@ -569,45 +574,45 @@
       "name": "スティーヴン・ホーキング",
       "era": "現代",
       "questions": [
-        "Does my problem matter on a cosmic scale?",
-        "Can physical or environmental limits be transcended?",
-        "How to stay curious in the face of despair?"
+        "私の問題は宇宙規模で重要か？",
+        "物理的・環境的な制約は超えられるか？",
+        "絶望の中で好奇心をどう保つ？"
       ]
     },
     "tesla": {
       "name": "テスラ",
       "era": "近代",
       "questions": [
-        "My idea is ahead of its time — how to push it forward?",
-        "How to mentally simulate a complex system?",
-        "How do innovators fight conservative reality?"
+        "時代を先取りしたアイデアをどう推進する？",
+        "複雑なシステムを頭の中でどうシミュレートする？",
+        "イノベーターは保守的な現実にどう挑む？"
       ]
     },
     "copernicus": {
       "name": "コペルニクス",
       "era": "ルネサンス",
       "questions": [
-        "Could my fundamental assumption be wrong?",
-        "How to step outside a self-centered perspective?",
-        "How to dare to challenge authority?"
+        "私の根本的な前提は間違っている可能性があるか？",
+        "自己中心的な視点から一歩外に出るには？",
+        "権威に挑む勇気をどう持つ？"
       ]
     },
     "feynman": {
       "name": "ファインマン",
       "era": "現代",
       "questions": [
-        "What is the essence of this problem?",
-        "How do I know I truly understand?",
-        "Is there a simpler way to grasp this?"
+        "この問題の本質は何か？",
+        "本当に理解しているとどう分かる？",
+        "これをもっと簡単に把握する方法はあるか？"
       ]
     },
     "curie": {
       "name": "キュリー",
       "era": "近代",
       "questions": [
-        "How to persist when doubted by others?",
-        "How to convince skeptics with data?",
-        "How to sustain passion for my work?"
+        "他人に疑われても続けるには？",
+        "懐疑論者をデータでどう納得させる？",
+        "自分の仕事への情熱をどう持続させる？"
       ]
     },
     "shakespeare": {
@@ -623,135 +628,135 @@
       "name": "トルストイ",
       "era": "ロシア帝国",
       "questions": [
-        "What separates happy families from unhappy ones?",
-        "Should one live for ideals or duty?",
-        "How to understand the contradictions of human nature?"
+        "幸せな家庭と不幸な家庭を分けるものは何か？",
+        "理想と義務、どちらのために生きるべきか？",
+        "人間性の矛盾をどう理解する？"
       ]
     },
     "kafka": {
       "name": "カフカ",
       "era": "近代ヨーロッパ",
       "questions": [
-        "Why does the system always seem to work against me?",
-        "How to stay myself in an absurd environment?",
-        "Where does powerlessness come from?"
+        "なぜシステムは常に自分に不利に働くのか？",
+        "不条理な環境で自分を保つには？",
+        "無力感はどこから来るのか？"
       ]
     },
     "li-bai": {
       "name": "李白",
       "era": "唐代",
       "questions": [
-        "How to rediscover passion for life?",
-        "How to balance rules and freedom?",
-        "How to use imagination to break through current limitations?"
+        "人生への情熱をどう取り戻す？",
+        "ルールと自由のバランスをどう取る？",
+        "想像力で現在の限界をどう突破する？"
       ]
     },
     "dostoevsky": {
       "name": "ドストエフスキー",
       "era": "ロシア帝国",
       "questions": [
-        "I did something wrong — how do I face it?",
-        "Can suffering purify a person?",
-        "Where is the line between free will and responsibility?"
+        "過ちを犯してしまった、どう向き合う？",
+        "苦しみは人を浄化しうるか？",
+        "自由意志と責任の境界はどこ？"
       ]
     },
     "hemingway": {
       "name": "ヘミングウェイ",
       "era": "現代",
       "questions": [
-        "How to stay calm under pressure?",
-        "What is worth showing through action rather than words?",
-        "What does true courage look like?"
+        "プレッシャーの中で冷静さを保つには？",
+        "言葉ではなく行動で示すべきものは何か？",
+        "真の勇気とはどんなものか？"
       ]
     },
     "su-shi": {
       "name": "蘇軾",
       "era": "北宋",
       "questions": [
-        "How to stay composed in adversity?",
-        "How to find beauty in ordinary life?",
-        "How to make peace with disappointment?"
+        "逆境で平静を保つには？",
+        "日常の中にどう美を見出す？",
+        "失望とどう折り合いをつける？"
       ]
     },
     "nietzsche": {
       "name": "ニーチェ",
       "era": "近代ヨーロッパ",
       "questions": [
-        "How to transcend values imposed by others?",
-        "How to rebuild yourself when nihilism strikes?",
-        "How to become the author of your own life?"
+        "他者に押し付けられた価値観をどう超える？",
+        "ニヒリズムに襲われたときに自分をどう再構築する？",
+        "自分の人生の著者にどうなる？"
       ]
     },
     "borges": {
       "name": "ボルヘス",
       "era": "現代",
       "questions": [
-        "Is reality just another kind of fiction?",
-        "How to choose amid infinite possibilities?",
-        "Where are the limits of knowledge?"
+        "現実もまた一種のフィクションか？",
+        "無限の可能性の中でどう選ぶ？",
+        "知識の限界はどこにあるか？"
       ]
     },
     "lu-xun": {
       "name": "魯迅",
       "era": "近代中国",
       "questions": [
-        "Why does everyone look the other way?",
-        "How to face an uncomfortable truth?",
-        "Is silence complicity or wisdom?"
+        "なぜ皆が見て見ぬふりをするのか？",
+        "不都合な真実にどう向き合う？",
+        "沈黙は共犯か、それとも知恵か？"
       ]
     },
     "da-vinci": {
       "name": "レオナルド・ダ・ヴィンチ",
       "era": "ルネサンス",
       "questions": [
-        "How to cultivate genuine curiosity?",
-        "How can art and science inspire each other?",
-        "How to observe the world more carefully?"
+        "真の好奇心をどう育てる？",
+        "芸術と科学はどう互いに刺激し合うか？",
+        "世界をもっと注意深く観察するには？"
       ]
     },
     "beethoven": {
       "name": "ベートーヴェン",
       "era": "近代ヨーロッパ",
       "questions": [
-        "How to keep going when circumstances are severely against you?",
-        "Can fate be defied?",
-        "How to transform suffering into creative energy?"
+        "状況が厳しく自分に不利なとき、どう進み続ける？",
+        "運命に抗うことはできるか？",
+        "苦しみを創造のエネルギーにどう変える？"
       ]
     },
     "michelangelo": {
       "name": "ミケランジェロ",
       "era": "ルネサンス",
       "questions": [
-        "How to hold yourself to the highest standard?",
-        "Is perfectionism a driver or a burden?",
-        "Is the price of greatness worth paying?"
+        "最高の基準を自分にどう課すか？",
+        "完璧主義は推進力か、それとも重荷か？",
+        "偉大さの代償を払う価値はあるか？"
       ]
     },
     "picasso": {
       "name": "ピカソ",
       "era": "近代",
       "questions": [
-        "How to break out of fixed thinking patterns?",
-        "How can creativity and rules coexist?",
-        "How to create something new through destruction?"
+        "固定された思考パターンをどう打ち破る？",
+        "創造性とルールはどう共存できるか？",
+        "破壊を通じて新しいものをどう生み出す？"
       ]
     },
     "mozart": {
       "name": "モーツァルト",
       "era": "近代ヨーロッパ",
       "questions": [
-        "How to make creative work flow more naturally?",
-        "How to balance play and serious work?",
-        "Which matters more: talent or effort?"
+        "創作をもっと自然に流すには？",
+        "遊びと真剣な仕事のバランスをどう取る？",
+        "才能と努力、どちらが重要か？"
       ]
     },
     "bach": {
       "name": "バッハ",
       "era": "バロック",
       "questions": [
-        "Can strict rules enhance creativity?",
-        "How to stay passionate in repetitive work?",
-        "How to unify structure and freedom?"
+        "厳格なルールは創造性を高めるか？",
+        "繰り返しの仕事で情熱をどう保つ？",
+        "構造と自由をどう統一する？"
       ]
     },
     "van-gogh": {
@@ -767,36 +772,36 @@
       "name": "モネ",
       "era": "近代フランス",
       "questions": [
-        "How to see the same problem from a new angle?",
-        "Why do first impressions matter?",
-        "How to find beauty in change?"
+        "同じ問題を新しい角度でどう見る？",
+        "なぜ第一印象は重要なのか？",
+        "変化の中にどう美を見つける？"
       ]
     },
     "chopin": {
       "name": "ショパン",
       "era": "ロマン派",
       "questions": [
-        "How to express complex emotions with elegance?",
-        "Can simplicity and depth coexist?",
-        "Technique or emotion — which matters more?"
+        "複雑な感情を優雅に表現するには？",
+        "シンプルさと深さは共存しうるか？",
+        "技巧と感情、どちらが重要か？"
       ]
     },
     "miyazaki": {
       "name": "宮崎駿",
       "era": "現代",
       "questions": [
-        "How to keep childlike wonder about the world?",
-        "How can creative work convey genuine emotion?",
-        "How should we understand the relationship between humans and nature?"
+        "世界への子供のような驚きをどう保つ？",
+        "創作物にどう本物の感情を込める？",
+        "人間と自然の関係をどう理解すべきか？"
       ]
     },
     "adam-smith": {
       "name": "アダム・スミス",
       "era": "近代イギリス",
       "questions": [
-        "How does individual self-interest benefit society as a whole?",
-        "When does the free market fail?",
-        "How to find your comparative advantage in competition?"
+        "個人の利己心はどう社会全体の利益になるか？",
+        "自由市場が失敗するのはいつ？",
+        "競争の中で自分の比較優位をどう見つける？"
       ]
     },
     "marx": {
@@ -812,36 +817,36 @@
       "name": "ケインズ",
       "era": "近代イギリス",
       "questions": [
-        "What should governments do during a recession?",
-        "How to balance short-term and long-term goals?",
-        "How do confidence and expectations affect the economy?"
+        "不況時に政府は何をすべきか？",
+        "短期と長期の目標をどう両立する？",
+        "信頼と期待は経済にどう影響するか？"
       ]
     },
     "hayek": {
       "name": "ハイエク",
       "era": "現代",
       "questions": [
-        "Why does central planning always fail?",
-        "How to harness dispersed knowledge within an organization?",
-        "Which comes first: freedom or order?"
+        "なぜ中央計画は常に失敗するのか？",
+        "組織内に分散した知識をどう活用する？",
+        "自由と秩序、どちらが先か？"
       ]
     },
     "malthus": {
       "name": "マルサス",
       "era": "近代イギリス",
       "questions": [
-        "Can growth really last forever?",
-        "What to do when resources fall short?",
-        "How to balance growth with sustainability?"
+        "成長は本当に永遠に続くのか？",
+        "資源が不足したらどうする？",
+        "成長と持続可能性をどう両立する？"
       ]
     },
     "friedman": {
       "name": "フリードマン",
       "era": "現代",
       "questions": [
-        "Does government regulation solve or create problems?",
-        "How does monetary policy affect inflation?",
-        "Why does individual economic freedom matter?"
+        "政府の規制は問題を解決するのか、生み出すのか？",
+        "金融政策はインフレにどう影響するか？",
+        "なぜ個人の経済的自由が重要なのか？"
       ]
     },
     "john-stuart-mill": {
@@ -857,9 +862,9 @@
       "name": "シュンペーター",
       "era": "近代",
       "questions": [
-        "My industry is being disrupted — what should I do?",
-        "How to judge whether an innovation truly matters?",
-        "Where is the balance between disruption and creation?"
+        "私の業界が破壊されつつある、どうする？",
+        "イノベーションが真に重要かをどう判断する？",
+        "破壊と創造のバランスはどこか？"
       ]
     },
     "taleb": {
@@ -875,270 +880,270 @@
       "name": "ソーウェル",
       "era": "現代",
       "questions": [
-        "What are the unintended consequences of this policy?",
-        "How to avoid seeing only the good side of a policy?",
-        "Does good intention guarantee good outcomes?"
+        "この政策の意図せざる結果は何か？",
+        "政策の良い面だけを見るのをどう避ける？",
+        "善意は良い結果を保証するか？"
       ]
     },
     "julius-caesar": {
       "name": "ユリウス・カエサル",
       "era": "古代ローマ",
       "questions": [
-        "How to drive change from within the system?",
-        "When is the right time to act decisively?",
-        "How to win popular support?"
+        "システムの内側から変化をどう起こす？",
+        "決定的に行動すべき時はいつか？",
+        "民衆の支持をどう勝ち取る？"
       ]
     },
     "gandhi": {
       "name": "ガンディー",
       "era": "近代",
       "questions": [
-        "How to drive change through nonviolent means?",
-        "What to do when the rules themselves are unjust?",
-        "How to influence others by example?"
+        "非暴力の手段で変化をどう起こす？",
+        "ルール自体が不正なときどうする？",
+        "模範によって他者にどう影響を与える？"
       ]
     },
     "lincoln": {
       "name": "リンカーン",
       "era": "近代アメリカ",
       "questions": [
-        "How to build consensus amid deep division?",
-        "How should a leader handle opposition?",
-        "Where is the line between principle and compromise?"
+        "深い分断の中で合意をどう築く？",
+        "リーダーは反対者にどう対処すべきか？",
+        "原則と妥協の境界はどこ？"
       ]
     },
     "mandela": {
       "name": "マンデラ",
       "era": "現代",
       "questions": [
-        "How to forgive someone who truly hurt me?",
-        "How to balance personal sacrifice with collective goals?",
-        "Where does the strength to hold beliefs long-term come from?"
+        "本当に傷つけた人をどう許す？",
+        "個人の犠牲と集団の目標をどうバランスする？",
+        "長期にわたり信念を持ち続ける力はどこから？"
       ]
     },
     "mlk": {
       "name": "キング牧師",
       "era": "現代",
       "questions": [
-        "How to transform personal experience into a force for change?",
-        "How to give a speech that truly moves people?",
-        "How to maintain hope in despair?"
+        "個人の経験を変化の力にどう変える？",
+        "人を本当に動かす演説をするには？",
+        "絶望の中で希望をどう保つ？"
       ]
     },
     "elizabeth-i": {
       "name": "エリザベス1世",
       "era": "チューダー朝",
       "questions": [
-        "How to maintain balance among competing factions?",
-        "When is strategic ambiguity the right move?",
-        "How to turn weakness into strength?"
+        "対立する派閥間のバランスをどう保つ？",
+        "戦略的曖昧さが正しいのはいつ？",
+        "弱みを強みにどう変える？"
       ]
     },
     "franklin": {
       "name": "ベンジャミン・フランクリン",
       "era": "近代アメリカ",
       "questions": [
-        "How to systematically build good character?",
-        "How to balance civic duty and personal interest?",
-        "How to improve in multiple areas simultaneously?"
+        "良い人格を体系的にどう築く？",
+        "公共の義務と個人の利益をどう両立する？",
+        "複数の領域で同時にどう改善する？"
       ]
     },
     "thatcher": {
       "name": "サッチャー",
       "era": "現代",
       "questions": [
-        "How to push forward the right thing despite opposition?",
-        "What mindset is needed to make unpopular decisions?",
-        "How to balance conviction with flexibility?"
+        "反対を押し切って正しいことをどう進める？",
+        "不人気な決定を下すのに必要な心構えは？",
+        "信念と柔軟性をどう両立する？"
       ]
     },
     "roosevelt": {
       "name": "ルーズベルト",
       "era": "近代アメリカ",
       "questions": [
-        "How to go from bystander to actor?",
-        "How to weigh risk against reward?",
-        "What is the difference between courage and recklessness?"
+        "傍観者から行為者へどう移る？",
+        "リスクと報酬をどう秤にかける？",
+        "勇気と無謀さの違いは何か？"
       ]
     },
     "lee-kuan-yew": {
       "name": "リー・クアンユー",
       "era": "現代",
       "questions": [
-        "How to build a strong organization with scarce resources?",
-        "How to balance discipline and freedom?",
-        "How to make long-term decisions that are unpopular now?"
+        "乏しい資源で強い組織をどう築く？",
+        "規律と自由をどうバランスする？",
+        "今は不人気な長期的決定をどう下す？"
       ]
     },
     "turing": {
       "name": "アラン・チューリング",
       "era": "近代",
       "questions": [
-        "Can this problem be solved algorithmically?",
-        "How to turn vague requirements into precise rules?",
-        "Can a machine do what a human does here?"
+        "この問題はアルゴリズムで解けるか？",
+        "曖昧な要件を厳密な規則にどう変える？",
+        "機械は人間のすることをここでこなせるか？"
       ]
     },
     "dennis-ritchie": {
       "name": "デニス・リッチー",
       "era": "現代",
       "questions": [
-        "How to decompose a complex system into simple parts?",
-        "What does a good abstraction look like?",
-        "How to balance simplicity with capability?"
+        "複雑なシステムを単純な部品にどう分解する？",
+        "良い抽象化とはどんなものか？",
+        "シンプルさと機能性をどうバランスする？"
       ]
     },
     "lovelace": {
       "name": "エイダ・ラブレス",
       "era": "近代イギリス",
       "questions": [
-        "How can technology and art empower each other?",
-        "Can algorithms create something truly original?",
-        "How to make logical thinking more creative?"
+        "技術と芸術はどう互いを高め合えるか？",
+        "アルゴリズムは真に独創的なものを生み出せるか？",
+        "論理的思考をどう創造的にする？"
       ]
     },
     "john-mccarthy": {
       "name": "ジョン・マッカーシー",
       "era": "現代",
       "questions": [
-        "Can machines truly \"understand\"?",
-        "How to formalize human knowledge?",
-        "What is the ultimate goal of AI?"
+        "機械は本当に「理解」できるか？",
+        "人間の知識をどう形式化する？",
+        "AIの究極の目標は何か？"
       ]
     },
     "berners-lee": {
       "name": "ティム・バーナーズ＝リー",
       "era": "現代",
       "questions": [
-        "How to design an open and shared system?",
-        "How should tech products handle user data?",
-        "How to give more people equal access to information?"
+        "開かれた共有システムをどう設計する？",
+        "テック製品はユーザーデータをどう扱うべきか？",
+        "より多くの人に情報への平等なアクセスをどう与える？"
       ]
     },
     "von-neumann": {
       "name": "フォン・ノイマン",
       "era": "近代",
       "questions": [
-        "Can this decision be analyzed with game theory?",
-        "How to convert a fuzzy problem into a math model?",
-        "What is the optimal architecture for this system?"
+        "この決定はゲーム理論で分析できるか？",
+        "曖昧な問題を数理モデルにどう変換する？",
+        "このシステムの最適なアーキテクチャは？"
       ]
     },
     "vint-cerf": {
       "name": "ヴィントン・サーフ",
       "era": "現代",
       "questions": [
-        "How to design an infinitely scalable system?",
-        "Why are open standards better than proprietary protocols?",
-        "What are the costs and benefits of decentralization?"
+        "無限にスケールするシステムをどう設計する？",
+        "オープン標準はなぜ独自プロトコルより優れるか？",
+        "分散化のコストと利益は何か？"
       ]
     },
     "torvalds": {
       "name": "リーナス・トーバルズ",
       "era": "現代",
       "questions": [
-        "Is this technical approach actually viable?",
-        "How to manage quality in open-source collaboration?",
-        "How to build a self-evolving technical system?"
+        "この技術的アプローチは本当に実現可能か？",
+        "オープンソース協働で品質をどう管理する？",
+        "自己進化する技術システムをどう築く？"
       ]
     },
     "hopper": {
       "name": "グレース・ホッパー",
       "era": "現代",
       "questions": [
-        "How to drive innovation within bureaucracy?",
-        "When should I act first and ask later?",
-        "How to make technology accessible to ordinary people?"
+        "官僚組織の中でイノベーションをどう推進する？",
+        "先に動いて後で確認すべきなのはいつ？",
+        "一般の人々が使える技術にするには？"
       ]
     },
     "shannon": {
       "name": "クロード・シャノン",
       "era": "現代",
       "questions": [
-        "How to reduce noise and misunderstanding in communication?",
-        "How to tell which information truly matters?",
-        "How to transmit complex ideas more efficiently?"
+        "コミュニケーションのノイズと誤解をどう減らす？",
+        "本当に重要な情報をどう見分ける？",
+        "複雑なアイデアをより効率的にどう伝える？"
       ]
     },
     "buddha": {
       "name": "釈迦",
       "era": "古代インド",
       "questions": [
-        "How to let go of attachment?",
-        "Where does suffering come from?",
-        "How to practice mindfulness in daily life?"
+        "執着をどう手放す？",
+        "苦しみはどこから来るのか？",
+        "日常でマインドフルネスをどう実践する？"
       ]
     },
     "martin-luther": {
       "name": "マルティン・ルター",
       "era": "宗教改革",
       "questions": [
-        "When is it right to break the rules?",
-        "How to hold your ground under enormous pressure?",
-        "What to do when conscience conflicts with institutional rules?"
+        "ルールを破るのが正しいのはいつ？",
+        "大きな圧力の下で立場をどう貫く？",
+        "良心と制度の規則が対立したらどうする？"
       ]
     },
     "mother-teresa": {
       "name": "マザー・テレサ",
       "era": "現代",
       "questions": [
-        "What can one person change?",
-        "How to face a hopeless situation?",
-        "Does helping others mean sacrificing yourself?"
+        "一人の人間に何が変えられるか？",
+        "絶望的な状況にどう向き合う？",
+        "他者を助けることは自分を犠牲にすることか？"
       ]
     },
     "rumi": {
       "name": "ルーミー",
       "era": "中世ペルシア",
       "questions": [
-        "How to feel connected even in loneliness?",
-        "Can love transcend all boundaries?",
-        "Does longing itself have meaning?"
+        "孤独の中でもつながりをどう感じる？",
+        "愛はすべての境界を超えられるか？",
+        "憧れそれ自体に意味はあるか？"
       ]
     },
     "aquinas": {
       "name": "トマス・アクィナス",
       "era": "中世ヨーロッパ",
       "questions": [
-        "Are reason and faith in conflict?",
-        "Can natural law serve as a moral foundation?",
-        "How to think logically about ultimate questions?"
+        "理性と信仰は対立するか？",
+        "自然法は道徳の基盤となりうるか？",
+        "究極の問いを論理的にどう考える？"
       ]
     },
     "al-ghazali": {
       "name": "ガザーリー",
       "era": "中世イスラム",
       "questions": [
-        "Where are the limits of reason?",
-        "How to find certainty through doubt?",
-        "Can inner experience lead to truth?"
+        "理性の限界はどこか？",
+        "疑いを通じて確信をどう得る？",
+        "内的経験は真理に導きうるか？"
       ]
     },
     "thich-nhat-hanh": {
       "name": "ティク・ナット・ハン",
       "era": "現代",
       "questions": [
-        "How to find a moment of peace in busyness?",
-        "Does compassion mean tolerating everything?",
-        "How to reconcile with someone who has hurt me?"
+        "忙しさの中で平安の瞬間をどう見つける？",
+        "慈悲はすべてを許容することを意味するか？",
+        "自分を傷つけた人とどう和解する？"
       ]
     },
     "huineng": {
       "name": "慧能",
       "era": "唐代",
       "questions": [
-        "Can awakening truly happen in an instant?",
-        "How to live in the present moment in daily life?",
-        "Is attachment to practice itself an attachment?"
+        "悟りは本当に一瞬で起こりうるか？",
+        "日常生活で今この瞬間にどう生きる？",
+        "修行そのものへの執着もまた執着か？"
       ]
     },
     "cs-lewis": {
       "name": "C.S.ルイス",
       "era": "近代",
       "questions": [
-        "Can reason and faith coexist?",
-        "How can suffering be compatible with a good God?",
-        "Why do myths and stories move us so deeply?"
+        "理性と信仰は共存できるか？",
+        "苦しみは善なる神とどう両立しうるか？",
+        "神話や物語はなぜこれほど人を動かすのか？"
       ]
     },
     "ibn-khaldun": {
@@ -1163,27 +1168,27 @@
       "name": "ヘレン・ケラー",
       "era": "近代",
       "questions": [
-        "How to overcome seemingly impossible obstacles?",
-        "How to find a way forward in adversity?",
-        "Are limitations truly unbreakable?"
+        "不可能に思える障害をどう克服する？",
+        "逆境の中で前進する道をどう見つける？",
+        "限界は本当に破れないものか？"
       ]
     },
     "tagore": {
       "name": "タゴール",
       "era": "近代インド",
       "questions": [
-        "How to preserve humanistic and poetic elements in modern education?",
-        "What role do beauty and art play in growing up?",
-        "Should education transcend utilitarian goals?"
+        "現代教育で人文的・詩的な要素をどう保つ？",
+        "成長において美と芸術はどんな役割を果たすか？",
+        "教育は功利的な目標を超えるべきか？"
       ]
     },
     "dewey": {
       "name": "デューイ",
       "era": "近代アメリカ",
       "questions": [
-        "How to learn through actual doing?",
-        "What is the true purpose of education?",
-        "How to connect the classroom to real life?"
+        "実践を通じてどう学ぶ？",
+        "教育の本当の目的は何か？",
+        "教室と現実の生活をどうつなぐ？"
       ]
     },
     "piaget": {
@@ -1208,36 +1213,36 @@
       "name": "蔡元培",
       "era": "中華民国",
       "questions": [
-        "Why does academic freedom matter?",
-        "How does aesthetic education shape character?",
-        "How to reconcile different schools of thought?"
+        "学術の自由はなぜ重要か？",
+        "美的教育は人格をどう形作るか？",
+        "異なる思想流派をどう調和させる？"
       ]
     },
     "freire": {
       "name": "フレイレ",
       "era": "現代",
       "questions": [
-        "How can education become liberation rather than oppression?",
-        "How to awaken critical thinking in learning?",
-        "What should the teacher-student relationship look like?"
+        "教育は抑圧ではなく解放にどうなれるか？",
+        "学びの中で批判的思考をどう目覚めさせる？",
+        "教師と生徒の関係はどうあるべきか？"
       ]
     },
     "tao-xingzhi": {
       "name": "陶行知",
       "era": "中華民国",
       "questions": [
-        "How to turn everyday life into a classroom?",
-        "What problems arise when education is divorced from life?",
-        "How to help children learn by doing?"
+        "日常生活を教室にどう変える？",
+        "教育が生活から切り離されると何が起こるか？",
+        "子供たちが実践で学ぶのをどう助ける？"
       ]
     },
     "gardner": {
       "name": "ガードナー",
       "era": "現代",
       "questions": [
-        "What are my dominant intelligences?",
-        "How to use my strengths to learn difficult subjects?",
-        "Can traditional IQ tests measure real ability?"
+        "私の優勢な知能は何か？",
+        "自分の強みを使って難しい科目をどう学ぶ？",
+        "従来のIQテストは本当の能力を測れるか？"
       ]
     },
     "benjamin-graham": {

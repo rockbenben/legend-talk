@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
+import i18n from '../i18n';
 
 interface Props {
   children: ReactNode;
@@ -28,15 +29,15 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex flex-col items-center justify-center h-full gap-4 p-8 text-center">
           <div className="text-4xl">⚠️</div>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Something went wrong</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{i18n.t('common.somethingWrong')}</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-            {this.state.error?.message || 'An unexpected error occurred'}
+            {this.state.error?.message || i18n.t('common.unexpectedError')}
           </p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
             className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600"
           >
-            Try again
+            {i18n.t('chat.retry')}
           </button>
         </div>
       );

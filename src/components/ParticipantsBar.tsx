@@ -10,39 +10,59 @@ interface ParticipantsBarProps {
   isMulti: boolean;
   isGenerating: boolean;
   currentSpeaker: string | null;
+  currentRound?: number | null;
+  totalRounds?: number | null;
   onAdd: () => void;
   onRemove: (charId: string) => void;
 }
 
 export function ParticipantsBar({
-  characters, conversationCharIds, isMulti, isGenerating, currentSpeaker, onAdd, onRemove,
+  characters, conversationCharIds, isMulti, isGenerating, currentSpeaker, currentRound, totalRounds, onAdd, onRemove,
 }: ParticipantsBarProps) {
   const { t } = useTranslation();
   const lp = useLangPath();
   const [linkCopied, setLinkCopied] = useState(false);
+  const showProgress = isMulti && isGenerating && !!currentRound && !!totalRounds;
 
   return (
     <div className="flex flex-wrap items-center gap-1 px-2 sm:px-4 py-1.5 border-b border-gray-200 dark:border-gray-700">
-      {characters.map((char) => (
-        <div
-          key={char.id}
-          className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-sm ${
-            isMulti && currentSpeaker === char.id ? 'bg-blue-100 dark:bg-blue-900/30' : ''
-          }`}
-        >
-          <Avatar emoji={char.avatar} color={char.color} size="sm" />
-          <span className="text-xs">{t(`characters.${char.id}.name`)}</span>
-          {isMulti && !isGenerating && conversationCharIds.length > 2 && (
-            <button
-              onClick={() => onRemove(char.id)}
-              className="text-gray-400 hover:text-red-500 text-xs ms-0.5"
-              title={t('roundtable.removeParticipant')}
-            >
-              ✕
-            </button>
-          )}
-        </div>
-      ))}
+      {characters.map((char) => {
+        const speaking = isMulti && currentSpeaker === char.id;
+        return (
+          <div
+            key={char.id}
+            className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-sm transition-colors ${
+              speaking ? 'bg-blue-100 dark:bg-blue-900/30' : ''
+            }`}
+          >
+            <span className={`relative inline-flex ${speaking ? 'ring-2 ring-blue-500 rounded-full' : ''}`}>
+              <Avatar emoji={char.avatar} color={char.color} size="sm" />
+              {speaking && (
+                <span className="absolute -top-0.5 -end-0.5 flex h-2 w-2">
+                  <span className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
+                </span>
+              )}
+            </span>
+            <span className="text-xs">{t(`characters.${char.id}.name`)}</span>
+            {isMulti && !isGenerating && conversationCharIds.length > 2 && (
+              <button
+                onClick={() => onRemove(char.id)}
+                className="text-gray-400 hover:text-red-500 text-xs ms-0.5"
+                title={t('roundtable.removeParticipant')}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        );
+      })}
+      {showProgress && (
+        <span className="ms-auto flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-xs text-blue-600 dark:text-blue-400 font-medium">
+          {currentSpeaker === '__moderator__' && <span aria-hidden>⚖️</span>}
+          <span>{currentRound}/{totalRounds}</span>
+        </span>
+      )}
       {!isGenerating && (
         <>
           <button

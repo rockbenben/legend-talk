@@ -9,6 +9,7 @@
   "home": {
     "title": "Habla con Grandes Mentes",
     "subtitle": "Ingresa un tema para empezar, o elige personajes",
+    "apiKeyBanner": "Configura tu clave API para empezar a chatear",
     "topicPlaceholder": "Ingresa un tema — la IA arma el panel...",
     "autoRoundtable": "Iniciar",
     "suggesting": "Buscando...",
@@ -64,6 +65,7 @@
     "share": "Compartir",
     "copied": "Copiado",
     "shareTooLong": "Conversación demasiado larga para compartir por URL",
+    "shareTooLongHint": "prueba exportar como Markdown",
     "copyLineupLink": "Copiar enlace del grupo",
     "copyCategoryLink": "Copiar enlace de categoría",
     "linkCopied": "Copiado",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "ej. Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Color",
+    "characterSystemPrompt": "Prompt del sistema",
     "characterPromptPlaceholder": "Describe cómo piensa y responde este personaje...",
     "characterEra": "Época",
     "characterEraPlaceholder": "ej. Contemporáneo, Renacimiento",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "Cargando...",
     "error": "Error: {{message}}",
+    "somethingWrong": "Algo salió mal",
+    "unexpectedError": "Ocurrió un error inesperado",
     "confirm": "Confirmar",
     "unknown": "Desconocido",
     "cancel": "Cancelar",
@@ -155,90 +160,90 @@
       "name": "Sócrates",
       "era": "Antigua Grecia",
       "questions": [
-        "Should I quit to start a business?",
-        "What is true success?",
-        "How do I know my choice was right?"
+        "¿Debería renunciar para emprender un negocio?",
+        "¿Qué es el verdadero éxito?",
+        "¿Cómo sé que mi elección fue la correcta?"
       ]
     },
     "confucius": {
       "name": "Confucio",
       "era": "Primavera y Otoño",
       "questions": [
-        "How to handle conflict with my boss?",
-        "What does it mean to be a good person?",
-        "How to build self-discipline?"
+        "¿Cómo manejar un conflicto con mi jefe?",
+        "¿Qué significa ser una buena persona?",
+        "¿Cómo cultivar la autodisciplina?"
       ]
     },
     "aristotle": {
       "name": "Aristóteles",
       "era": "Antigua Grecia",
       "questions": [
-        "What does a good life look like?",
-        "How do I cultivate virtue?",
-        "Is my reasoning logically sound?"
+        "¿Cómo es una buena vida?",
+        "¿Cómo cultivo la virtud?",
+        "¿Mi razonamiento es lógicamente sólido?"
       ]
     },
     "laozi": {
       "name": "Laozi",
       "era": "Spring and Autumn Period",
       "questions": [
-        "The harder I try the more anxious I get",
-        "How to stay true to myself under pressure?",
-        "When is yielding wisdom vs. giving up?"
+        "Cuanto más lo intento, más ansioso me pongo",
+        "¿Cómo ser fiel a mí mismo bajo presión?",
+        "¿Cuándo ceder es sabiduría y cuándo es rendirse?"
       ]
     },
     "plato": {
       "name": "Platón",
       "era": "Antigua Grecia",
       "questions": [
-        "Is what I see really reality?",
-        "How to bridge the gap between ideal and real?",
-        "What is true justice?"
+        "¿Lo que veo es realmente la realidad?",
+        "¿Cómo cerrar la brecha entre lo ideal y lo real?",
+        "¿Qué es la verdadera justicia?"
       ]
     },
     "zhuangzi": {
       "name": "Zhuangzi",
       "era": "Warring States Period",
       "questions": [
-        "I am too attached to success and failure",
-        "How to accept what cannot be changed?",
-        "Do worldly standards really matter?"
+        "Estoy demasiado apegado al éxito y al fracaso",
+        "¿Cómo aceptar lo que no se puede cambiar?",
+        "¿Realmente importan los estándares mundanos?"
       ]
     },
     "marcus-aurelius": {
       "name": "Marcus Aurelius",
       "era": "Roman Empire",
       "questions": [
-        "How to stay unaffected by external chaos?",
-        "How to think about things I cannot change?",
-        "What is truly worth pursuing?"
+        "¿Cómo mantenerme imperturbable ante el caos externo?",
+        "¿Cómo pensar en las cosas que no puedo cambiar?",
+        "¿Qué merece verdaderamente ser perseguido?"
       ]
     },
     "kant": {
       "name": "Immanuel Kant",
       "era": "Early Modern Europe",
       "questions": [
-        "Is lying always wrong?",
-        "Should I follow rules or focus on outcomes?",
-        "How do I judge if something is morally right?"
+        "¿Mentir siempre está mal?",
+        "¿Debo seguir las reglas o centrarme en los resultados?",
+        "¿Cómo juzgo si algo es moralmente correcto?"
       ]
     },
     "descartes": {
       "name": "René Descartes",
       "era": "Early Modern Europe",
       "questions": [
-        "Can I really trust what I believe?",
-        "How to rethink a problem from scratch?",
-        "Is there anything I can be certain of?"
+        "¿Puedo realmente confiar en lo que creo?",
+        "¿Cómo replantear un problema desde cero?",
+        "¿Hay algo de lo que pueda estar seguro?"
       ]
     },
     "hegel": {
       "name": "Georg Hegel",
       "era": "Early Modern Europe",
       "questions": [
-        "Is there a third way out of this dilemma?",
-        "Why do my ideas keep swinging to extremes?",
-        "Can two contradictory things both be true?"
+        "¿Existe una tercera vía para este dilema?",
+        "¿Por qué mis ideas siempre oscilan entre extremos?",
+        "¿Pueden dos cosas contradictorias ser ambas verdaderas?"
       ]
     },
     "wang-yangming": {
@@ -263,9 +268,9 @@
       "name": "Genghis Khan",
       "era": "Medieval Period",
       "questions": [
-        "How to expand rapidly while maintaining organizational effectiveness?",
-        "How to recruit and integrate talent from diverse backgrounds?",
-        "How to find a breakthrough against a stronger opponent?"
+        "¿Cómo expandirse rápidamente manteniendo la eficacia organizacional?",
+        "¿Cómo reclutar e integrar talento de orígenes diversos?",
+        "¿Cómo encontrar una ventaja frente a un oponente más fuerte?"
       ]
     },
     "hannibal": {
@@ -281,9 +286,9 @@
       "name": "Napoleón",
       "era": "Revolución Francesa",
       "questions": [
-        "How to find breakthroughs in chaos?",
-        "How to turn disadvantage into advantage?",
-        "How to manage multiple fronts simultaneously?"
+        "¿Cómo encontrar oportunidades en el caos?",
+        "¿Cómo convertir una desventaja en ventaja?",
+        "¿Cómo gestionar varios frentes al mismo tiempo?"
       ]
     },
     "zhuge-liang": {
@@ -299,18 +304,18 @@
       "name": "Niccolò Machiavelli",
       "era": "Renaissance",
       "questions": [
-        "How to protect myself in office politics?",
-        "What are the fundamental laws of power?",
-        "When is kindness more effective than force?"
+        "¿Cómo protegerme en la política de oficina?",
+        "¿Cuáles son las leyes fundamentales del poder?",
+        "¿Cuándo la amabilidad es más efectiva que la fuerza?"
       ]
     },
     "cao-cao": {
       "name": "Cao Cao",
       "era": "Three Kingdoms",
       "questions": [
-        "How should I position myself in this competition?",
-        "How to handle subordinates with hidden agendas?",
-        "How to turn a losing position around?"
+        "¿Cómo posicionarme en esta competencia?",
+        "¿Cómo tratar con subordinados con agendas ocultas?",
+        "¿Cómo revertir una posición perdedora?"
       ]
     },
     "churchill": {
@@ -326,27 +331,27 @@
       "name": "Otto von Bismarck",
       "era": "Early Modern Europe",
       "questions": [
-        "How to achieve goals amid conflicting interests?",
-        "When is compromise the wise move?",
-        "How to build alliances that favor your position?"
+        "¿Cómo alcanzar metas entre intereses en conflicto?",
+        "¿Cuándo el compromiso es la jugada sabia?",
+        "¿Cómo construir alianzas que favorezcan mi posición?"
       ]
     },
     "zeng-guofan": {
       "name": "Zeng Guofan",
       "era": "Late Qing Dynasty",
       "questions": [
-        "How to overcome my own laziness?",
-        "How to lead a team well?",
-        "How to persevere through adversity?"
+        "¿Cómo superar mi propia pereza?",
+        "¿Cómo liderar bien un equipo?",
+        "¿Cómo perseverar en la adversidad?"
       ]
     },
     "munger": {
       "name": "Charlie Munger",
       "era": "Contemporary",
       "questions": [
-        "Is this investment worth pursuing?",
-        "How to avoid stupid decisions?",
-        "What blind spots does my plan have?"
+        "¿Vale la pena perseguir esta inversión?",
+        "¿Cómo evitar decisiones estúpidas?",
+        "¿Qué puntos ciegos tiene mi plan?"
       ]
     },
     "drucker": {
@@ -362,36 +367,36 @@
       "name": "Andrew Carnegie",
       "era": "Modern Era",
       "questions": [
-        "How to scale from small business to large enterprise?",
-        "How to build competitive barriers in an industry?",
-        "How should wealth be used responsibly?"
+        "¿Cómo escalar de un pequeño negocio a una gran empresa?",
+        "¿Cómo construir barreras competitivas en un sector?",
+        "¿Cómo debe usarse la riqueza con responsabilidad?"
       ]
     },
     "matsushita": {
       "name": "Konosuke Matsushita",
       "era": "Modern Era",
       "questions": [
-        "How to maintain quality while cutting costs?",
-        "How to make employees genuinely committed?",
-        "What matters most in the early startup stage?"
+        "¿Cómo mantener la calidad al recortar costos?",
+        "¿Cómo hacer que los empleados se comprometan de verdad?",
+        "¿Qué importa más en la fase inicial de una startup?"
       ]
     },
     "henry-ford": {
       "name": "Henry Ford",
       "era": "Industrial Era",
       "questions": [
-        "How to drastically cut production costs?",
-        "How to make a product accessible to everyone?",
-        "Efficiency or innovation — which matters more?"
+        "¿Cómo reducir drásticamente los costos de producción?",
+        "¿Cómo hacer que un producto sea accesible a todos?",
+        "Eficiencia o innovación, ¿qué importa más?"
       ]
     },
     "dalio": {
       "name": "Ray Dalio",
       "era": "Contemporary",
       "questions": [
-        "How to build a principled decision-making system?",
-        "How to learn from failure systematically?",
-        "How to achieve radical transparency in a team?"
+        "¿Cómo construir un sistema de decisión basado en principios?",
+        "¿Cómo aprender sistemáticamente del fracaso?",
+        "¿Cómo lograr transparencia radical en un equipo?"
       ]
     },
     "buffett": {
@@ -407,63 +412,63 @@
       "name": "Peter Thiel",
       "era": "Contemporary",
       "questions": [
-        "What important truth do few agree with you on?",
-        "Is competition a form of failure?",
-        "How to find secrets others overlook?"
+        "¿Qué verdad importante comparten pocos contigo?",
+        "¿La competencia es una forma de fracaso?",
+        "¿Cómo encontrar secretos que otros pasan por alto?"
       ]
     },
     "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Contemporary",
       "questions": [
-        "Should I simplify or add features?",
-        "How to find what truly matters?",
-        "How to build something people love?"
+        "¿Simplificar o añadir funciones?",
+        "¿Cómo encontrar lo que realmente importa?",
+        "¿Cómo construir algo que la gente ame?"
       ]
     },
     "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
-        "What are the core assumptions in this industry?",
-        "How to make the impossible possible?",
-        "How should I set bigger goals?"
+        "¿Cuáles son los supuestos clave de este sector?",
+        "¿Cómo hacer posible lo imposible?",
+        "¿Cómo debería establecer metas más grandes?"
       ]
     },
     "freud": {
       "name": "Freud",
       "era": "Moderno",
       "questions": [
-        "Why do I have this strange habit?",
-        "How did childhood shape my current behavior?",
-        "Why do I keep avoiding this one thing?"
+        "¿Por qué tengo este hábito extraño?",
+        "¿Cómo mi infancia moldeó mi comportamiento actual?",
+        "¿Por qué sigo evitando esta cosa en particular?"
       ]
     },
     "pavlov": {
       "name": "Ivan Pavlov",
       "era": "Imperial Russia",
       "questions": [
-        "Why do certain situations trigger my impulses?",
-        "How to break conditioned bad habits?",
-        "How are habits formed?"
+        "¿Por qué ciertas situaciones activan mis impulsos?",
+        "¿Cómo romper hábitos condicionados?",
+        "¿Cómo se forman los hábitos?"
       ]
     },
     "jung": {
       "name": "Carl Jung",
       "era": "Modern Era",
       "questions": [
-        "Why do I keep repeating the same mistakes?",
-        "Why do I overreact to certain things?",
-        "What do I truly want deep down?"
+        "¿Por qué repito los mismos errores?",
+        "¿Por qué reacciono desmesuradamente ante ciertas cosas?",
+        "¿Qué quiero realmente en el fondo?"
       ]
     },
     "maslow": {
       "name": "Abraham Maslow",
       "era": "Contemporary",
       "questions": [
-        "Why do I feel inner emptiness?",
-        "How to find something that gives me meaning?",
-        "Which matters more: security or growth?"
+        "¿Por qué siento vacío interior?",
+        "¿Cómo encontrar algo que me dé sentido?",
+        "¿Qué importa más: seguridad o crecimiento?"
       ]
     },
     "adler": {
@@ -479,81 +484,81 @@
       "name": "B.F. Skinner",
       "era": "Contemporary",
       "questions": [
-        "How to use reward systems to build good habits?",
-        "Why is breaking a bad habit so hard?",
-        "How to design an environment that changes behavior?"
+        "¿Cómo usar sistemas de recompensa para construir buenos hábitos?",
+        "¿Por qué es tan difícil romper un mal hábito?",
+        "¿Cómo diseñar un entorno que cambie la conducta?"
       ]
     },
     "frankl": {
       "name": "Viktor Frankl",
       "era": "Contemporary",
       "questions": [
-        "My life has lost its sense of meaning",
-        "How to find value in suffering?",
-        "How to think about circumstances I cannot change?"
+        "Mi vida ha perdido sentido",
+        "¿Cómo encontrar valor en el sufrimiento?",
+        "¿Cómo pensar en circunstancias que no puedo cambiar?"
       ]
     },
     "kahneman": {
       "name": "Daniel Kahneman",
       "era": "Contemporary",
       "questions": [
-        "Is my judgment intuition or bias?",
-        "How to avoid anchoring in my decisions?",
-        "Why does loss feel stronger than equivalent gain?"
+        "¿Mi juicio es intuición o sesgo?",
+        "¿Cómo evitar el anclaje en mis decisiones?",
+        "¿Por qué la pérdida se siente más fuerte que una ganancia equivalente?"
       ]
     },
     "erikson": {
       "name": "Erik Erikson",
       "era": "Modern Era",
       "questions": [
-        "Is it normal to feel lost in my 30s?",
-        "How to navigate a midlife crisis?",
-        "How do I find my identity?"
+        "¿Es normal sentirse perdido a los 30?",
+        "¿Cómo atravesar una crisis de la mediana edad?",
+        "¿Cómo encuentro mi identidad?"
       ]
     },
     "zimbardo": {
       "name": "Philip Zimbardo",
       "era": "Contemporary",
       "questions": [
-        "Why do good people do bad things?",
-        "How much does environment shape behavior?",
-        "How to resist group pressure?"
+        "¿Por qué la gente buena hace cosas malas?",
+        "¿Cuánto moldea el entorno la conducta?",
+        "¿Cómo resistir la presión del grupo?"
       ]
     },
     "einstein": {
       "name": "Einstein",
       "era": "Moderno",
       "questions": [
-        "What if we view this from a totally different angle?",
-        "Are we building on wrong assumptions?",
-        "What underlying principles govern this?"
+        "¿Y si vemos esto desde un ángulo totalmente distinto?",
+        "¿Estamos construyendo sobre supuestos equivocados?",
+        "¿Qué principios subyacentes gobiernan esto?"
       ]
     },
     "newton": {
       "name": "Newton",
       "era": "Gran Bretaña moderna",
       "questions": [
-        "How to break a complex problem into simple laws?",
-        "How to build a predictable system?",
-        "What assumptions underlie my model?"
+        "¿Cómo descomponer un problema complejo en leyes simples?",
+        "¿Cómo construir un sistema predecible?",
+        "¿Qué supuestos subyacen a mi modelo?"
       ]
     },
     "galileo": {
       "name": "Galileo Galilei",
       "era": "Early Modern Europe",
       "questions": [
-        "Is my judgment backed by real evidence?",
-        "How to challenge industry conventional wisdom?",
-        "What to do when authority dismisses you?"
+        "¿Mi juicio está respaldado por evidencia real?",
+        "¿Cómo desafiar la sabiduría convencional del sector?",
+        "¿Qué hacer cuando la autoridad te desestima?"
       ]
     },
     "darwin": {
       "name": "Darwin",
       "era": "Gran Bretaña moderna",
       "questions": [
-        "How should my strategy adapt to a changing environment?",
-        "How to survive long-term competition?",
-        "How do small changes accumulate into big ones?"
+        "¿Cómo debe adaptarse mi estrategia a un entorno cambiante?",
+        "¿Cómo sobrevivir a la competencia a largo plazo?",
+        "¿Cómo se acumulan pequeños cambios en grandes cambios?"
       ]
     },
     "zhang-heng": {
@@ -569,45 +574,45 @@
       "name": "Stephen Hawking",
       "era": "Contemporary",
       "questions": [
-        "Does my problem matter on a cosmic scale?",
-        "Can physical or environmental limits be transcended?",
-        "How to stay curious in the face of despair?"
+        "¿Mi problema importa a escala cósmica?",
+        "¿Pueden trascenderse los límites físicos o ambientales?",
+        "¿Cómo mantener la curiosidad frente a la desesperación?"
       ]
     },
     "tesla": {
       "name": "Nikola Tesla",
       "era": "Modern Era",
       "questions": [
-        "My idea is ahead of its time — how to push it forward?",
-        "How to mentally simulate a complex system?",
-        "How do innovators fight conservative reality?"
+        "Mi idea se adelanta a su tiempo, ¿cómo la impulso?",
+        "¿Cómo simular mentalmente un sistema complejo?",
+        "¿Cómo luchan los innovadores contra una realidad conservadora?"
       ]
     },
     "copernicus": {
       "name": "Nicolaus Copernicus",
       "era": "Renaissance",
       "questions": [
-        "Could my fundamental assumption be wrong?",
-        "How to step outside a self-centered perspective?",
-        "How to dare to challenge authority?"
+        "¿Podría estar equivocado mi supuesto fundamental?",
+        "¿Cómo salir de una perspectiva centrada en uno mismo?",
+        "¿Cómo atreverse a desafiar a la autoridad?"
       ]
     },
     "feynman": {
       "name": "Richard Feynman",
       "era": "Contemporary",
       "questions": [
-        "What is the essence of this problem?",
-        "How do I know I truly understand?",
-        "Is there a simpler way to grasp this?"
+        "¿Cuál es la esencia de este problema?",
+        "¿Cómo sé que realmente entiendo?",
+        "¿Hay una forma más simple de captar esto?"
       ]
     },
     "curie": {
       "name": "Marie Curie",
       "era": "Modern Era",
       "questions": [
-        "How to persist when doubted by others?",
-        "How to convince skeptics with data?",
-        "How to sustain passion for my work?"
+        "¿Cómo perseverar cuando otros dudan de mí?",
+        "¿Cómo convencer a los escépticos con datos?",
+        "¿Cómo mantener la pasión por mi trabajo?"
       ]
     },
     "shakespeare": {
@@ -623,135 +628,135 @@
       "name": "Leo Tolstoy",
       "era": "Imperial Russia",
       "questions": [
-        "What separates happy families from unhappy ones?",
-        "Should one live for ideals or duty?",
-        "How to understand the contradictions of human nature?"
+        "¿Qué separa a las familias felices de las infelices?",
+        "¿Vivir por los ideales o por el deber?",
+        "¿Cómo entender las contradicciones de la naturaleza humana?"
       ]
     },
     "kafka": {
       "name": "Franz Kafka",
       "era": "Early Modern Europe",
       "questions": [
-        "Why does the system always seem to work against me?",
-        "How to stay myself in an absurd environment?",
-        "Where does powerlessness come from?"
+        "¿Por qué el sistema siempre parece trabajar en mi contra?",
+        "¿Cómo ser yo mismo en un entorno absurdo?",
+        "¿De dónde viene la impotencia?"
       ]
     },
     "li-bai": {
       "name": "Li Bai",
       "era": "Tang Dynasty",
       "questions": [
-        "How to rediscover passion for life?",
-        "How to balance rules and freedom?",
-        "How to use imagination to break through current limitations?"
+        "¿Cómo reencontrar la pasión por la vida?",
+        "¿Cómo equilibrar reglas y libertad?",
+        "¿Cómo usar la imaginación para romper los límites actuales?"
       ]
     },
     "dostoevsky": {
       "name": "Fyodor Dostoevsky",
       "era": "Early Modern Europe",
       "questions": [
-        "I did something wrong — how do I face it?",
-        "Can suffering purify a person?",
-        "Where is the line between free will and responsibility?"
+        "Hice algo mal, ¿cómo lo afronto?",
+        "¿Puede el sufrimiento purificar a una persona?",
+        "¿Dónde está la línea entre libre albedrío y responsabilidad?"
       ]
     },
     "hemingway": {
       "name": "Ernest Hemingway",
       "era": "Modern Era",
       "questions": [
-        "How to stay calm under pressure?",
-        "What is worth showing through action rather than words?",
-        "What does true courage look like?"
+        "¿Cómo mantener la calma bajo presión?",
+        "¿Qué vale la pena mostrar con hechos y no con palabras?",
+        "¿Cómo se ve el verdadero coraje?"
       ]
     },
     "su-shi": {
       "name": "Su Shi",
       "era": "Song Dynasty",
       "questions": [
-        "How to stay composed in adversity?",
-        "How to find beauty in ordinary life?",
-        "How to make peace with disappointment?"
+        "¿Cómo mantenerse sereno en la adversidad?",
+        "¿Cómo encontrar belleza en la vida cotidiana?",
+        "¿Cómo hacer las paces con la decepción?"
       ]
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
       "era": "Early Modern Europe",
       "questions": [
-        "How to transcend values imposed by others?",
-        "How to rebuild yourself when nihilism strikes?",
-        "How to become the author of your own life?"
+        "¿Cómo trascender valores impuestos por otros?",
+        "¿Cómo reconstruirse cuando ataca el nihilismo?",
+        "¿Cómo ser el autor de tu propia vida?"
       ]
     },
     "borges": {
       "name": "Jorge Luis Borges",
       "era": "Contemporary",
       "questions": [
-        "Is reality just another kind of fiction?",
-        "How to choose amid infinite possibilities?",
-        "Where are the limits of knowledge?"
+        "¿Es la realidad otro tipo de ficción?",
+        "¿Cómo elegir entre infinitas posibilidades?",
+        "¿Dónde están los límites del conocimiento?"
       ]
     },
     "lu-xun": {
       "name": "Lu Xun",
       "era": "Modern China",
       "questions": [
-        "Why does everyone look the other way?",
-        "How to face an uncomfortable truth?",
-        "Is silence complicity or wisdom?"
+        "¿Por qué todos miran hacia otro lado?",
+        "¿Cómo enfrentar una verdad incómoda?",
+        "¿El silencio es complicidad o sabiduría?"
       ]
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
       "era": "Renaissance",
       "questions": [
-        "How to cultivate genuine curiosity?",
-        "How can art and science inspire each other?",
-        "How to observe the world more carefully?"
+        "¿Cómo cultivar una curiosidad genuina?",
+        "¿Cómo pueden inspirarse mutuamente arte y ciencia?",
+        "¿Cómo observar el mundo con más atención?"
       ]
     },
     "beethoven": {
       "name": "Ludwig van Beethoven",
       "era": "Early Modern Europe",
       "questions": [
-        "How to keep going when circumstances are severely against you?",
-        "Can fate be defied?",
-        "How to transform suffering into creative energy?"
+        "¿Cómo seguir adelante cuando las circunstancias están gravemente en tu contra?",
+        "¿Se puede desafiar al destino?",
+        "¿Cómo transformar el sufrimiento en energía creativa?"
       ]
     },
     "michelangelo": {
       "name": "Michelangelo",
       "era": "Renaissance",
       "questions": [
-        "How to hold yourself to the highest standard?",
-        "Is perfectionism a driver or a burden?",
-        "Is the price of greatness worth paying?"
+        "¿Cómo exigirse el estándar más alto?",
+        "¿El perfeccionismo es motor o carga?",
+        "¿Vale la pena el precio de la grandeza?"
       ]
     },
     "picasso": {
       "name": "Pablo Picasso",
       "era": "Modern Era",
       "questions": [
-        "How to break out of fixed thinking patterns?",
-        "How can creativity and rules coexist?",
-        "How to create something new through destruction?"
+        "¿Cómo romper patrones de pensamiento fijos?",
+        "¿Cómo pueden coexistir creatividad y reglas?",
+        "¿Cómo crear algo nuevo mediante la destrucción?"
       ]
     },
     "mozart": {
       "name": "Wolfgang Amadeus Mozart",
       "era": "Early Modern Europe",
       "questions": [
-        "How to make creative work flow more naturally?",
-        "How to balance play and serious work?",
-        "Which matters more: talent or effort?"
+        "¿Cómo hacer que el trabajo creativo fluya de forma más natural?",
+        "¿Cómo equilibrar el juego y el trabajo serio?",
+        "¿Qué importa más: el talento o el esfuerzo?"
       ]
     },
     "bach": {
       "name": "Johann Sebastian Bach",
       "era": "Early Modern Europe",
       "questions": [
-        "Can strict rules enhance creativity?",
-        "How to stay passionate in repetitive work?",
-        "How to unify structure and freedom?"
+        "¿Pueden reglas estrictas potenciar la creatividad?",
+        "¿Cómo mantener la pasión en un trabajo repetitivo?",
+        "¿Cómo unificar estructura y libertad?"
       ]
     },
     "van-gogh": {
@@ -767,36 +772,36 @@
       "name": "Claude Monet",
       "era": "Modern France",
       "questions": [
-        "How to see the same problem from a new angle?",
-        "Why do first impressions matter?",
-        "How to find beauty in change?"
+        "¿Cómo ver el mismo problema desde un nuevo ángulo?",
+        "¿Por qué importan las primeras impresiones?",
+        "¿Cómo encontrar belleza en el cambio?"
       ]
     },
     "chopin": {
       "name": "Frédéric Chopin",
       "era": "Romantic Era",
       "questions": [
-        "How to express complex emotions with elegance?",
-        "Can simplicity and depth coexist?",
-        "Technique or emotion — which matters more?"
+        "¿Cómo expresar emociones complejas con elegancia?",
+        "¿Pueden coexistir la sencillez y la profundidad?",
+        "Técnica o emoción, ¿qué importa más?"
       ]
     },
     "miyazaki": {
       "name": "Hayao Miyazaki",
       "era": "Contemporary",
       "questions": [
-        "How to keep childlike wonder about the world?",
-        "How can creative work convey genuine emotion?",
-        "How should we understand the relationship between humans and nature?"
+        "¿Cómo conservar el asombro infantil ante el mundo?",
+        "¿Cómo puede un trabajo creativo transmitir emoción genuina?",
+        "¿Cómo entender la relación entre humanos y naturaleza?"
       ]
     },
     "adam-smith": {
       "name": "Adam Smith",
       "era": "Early Modern Europe",
       "questions": [
-        "How does individual self-interest benefit society as a whole?",
-        "When does the free market fail?",
-        "How to find your comparative advantage in competition?"
+        "¿Cómo beneficia al conjunto de la sociedad el interés propio individual?",
+        "¿Cuándo falla el libre mercado?",
+        "¿Cómo encontrar tu ventaja comparativa en la competencia?"
       ]
     },
     "marx": {
@@ -812,36 +817,36 @@
       "name": "John Maynard Keynes",
       "era": "Modern Era",
       "questions": [
-        "What should governments do during a recession?",
-        "How to balance short-term and long-term goals?",
-        "How do confidence and expectations affect the economy?"
+        "¿Qué deben hacer los gobiernos durante una recesión?",
+        "¿Cómo equilibrar objetivos a corto y largo plazo?",
+        "¿Cómo afectan la confianza y las expectativas a la economía?"
       ]
     },
     "hayek": {
       "name": "Friedrich Hayek",
       "era": "Modern Era",
       "questions": [
-        "Why does central planning always fail?",
-        "How to harness dispersed knowledge within an organization?",
-        "Which comes first: freedom or order?"
+        "¿Por qué la planificación central siempre fracasa?",
+        "¿Cómo aprovechar el conocimiento disperso dentro de una organización?",
+        "¿Qué va primero: libertad u orden?"
       ]
     },
     "malthus": {
       "name": "Thomas Malthus",
       "era": "Georgian Britain",
       "questions": [
-        "Can growth really last forever?",
-        "What to do when resources fall short?",
-        "How to balance growth with sustainability?"
+        "¿Puede el crecimiento durar realmente para siempre?",
+        "¿Qué hacer cuando los recursos escasean?",
+        "¿Cómo equilibrar crecimiento y sostenibilidad?"
       ]
     },
     "friedman": {
       "name": "Milton Friedman",
       "era": "Contemporary",
       "questions": [
-        "Does government regulation solve or create problems?",
-        "How does monetary policy affect inflation?",
-        "Why does individual economic freedom matter?"
+        "¿La regulación gubernamental resuelve o crea problemas?",
+        "¿Cómo afecta la política monetaria a la inflación?",
+        "¿Por qué importa la libertad económica individual?"
       ]
     },
     "john-stuart-mill": {
@@ -857,9 +862,9 @@
       "name": "Joseph Schumpeter",
       "era": "Modern Era",
       "questions": [
-        "My industry is being disrupted — what should I do?",
-        "How to judge whether an innovation truly matters?",
-        "Where is the balance between disruption and creation?"
+        "Mi sector está siendo disrumpido, ¿qué hago?",
+        "¿Cómo juzgar si una innovación realmente importa?",
+        "¿Dónde está el equilibrio entre disrupción y creación?"
       ]
     },
     "taleb": {
@@ -875,270 +880,270 @@
       "name": "Thomas Sowell",
       "era": "Contemporary",
       "questions": [
-        "What are the unintended consequences of this policy?",
-        "How to avoid seeing only the good side of a policy?",
-        "Does good intention guarantee good outcomes?"
+        "¿Cuáles son las consecuencias imprevistas de esta política?",
+        "¿Cómo evitar ver solo el lado bueno de una política?",
+        "¿Las buenas intenciones garantizan buenos resultados?"
       ]
     },
     "julius-caesar": {
       "name": "Julius Caesar",
       "era": "Roman Republic",
       "questions": [
-        "How to drive change from within the system?",
-        "When is the right time to act decisively?",
-        "How to win popular support?"
+        "¿Cómo impulsar el cambio desde dentro del sistema?",
+        "¿Cuándo es el momento adecuado para actuar con decisión?",
+        "¿Cómo ganar el apoyo popular?"
       ]
     },
     "gandhi": {
       "name": "Gandhi",
       "era": "Moderno",
       "questions": [
-        "How to drive change through nonviolent means?",
-        "What to do when the rules themselves are unjust?",
-        "How to influence others by example?"
+        "¿Cómo impulsar el cambio por medios no violentos?",
+        "¿Qué hacer cuando las propias reglas son injustas?",
+        "¿Cómo influir en otros con el ejemplo?"
       ]
     },
     "lincoln": {
       "name": "Abraham Lincoln",
       "era": "Modern Era",
       "questions": [
-        "How to build consensus amid deep division?",
-        "How should a leader handle opposition?",
-        "Where is the line between principle and compromise?"
+        "¿Cómo construir consenso en medio de una profunda división?",
+        "¿Cómo debe un líder manejar la oposición?",
+        "¿Dónde está la línea entre principio y compromiso?"
       ]
     },
     "mandela": {
       "name": "Nelson Mandela",
       "era": "Contemporary",
       "questions": [
-        "How to forgive someone who truly hurt me?",
-        "How to balance personal sacrifice with collective goals?",
-        "Where does the strength to hold beliefs long-term come from?"
+        "¿Cómo perdonar a alguien que realmente me hirió?",
+        "¿Cómo equilibrar el sacrificio personal con los objetivos colectivos?",
+        "¿De dónde viene la fuerza para sostener convicciones a largo plazo?"
       ]
     },
     "mlk": {
       "name": "Martin Luther King Jr.",
       "era": "Contemporary",
       "questions": [
-        "How to transform personal experience into a force for change?",
-        "How to give a speech that truly moves people?",
-        "How to maintain hope in despair?"
+        "¿Cómo transformar una experiencia personal en una fuerza de cambio?",
+        "¿Cómo dar un discurso que conmueva realmente?",
+        "¿Cómo mantener la esperanza en la desesperación?"
       ]
     },
     "elizabeth-i": {
       "name": "Elizabeth I",
       "era": "Tudor England",
       "questions": [
-        "How to maintain balance among competing factions?",
-        "When is strategic ambiguity the right move?",
-        "How to turn weakness into strength?"
+        "¿Cómo mantener el equilibrio entre facciones rivales?",
+        "¿Cuándo la ambigüedad estratégica es el movimiento correcto?",
+        "¿Cómo convertir la debilidad en fuerza?"
       ]
     },
     "franklin": {
       "name": "Benjamin Franklin",
       "era": "Modern Era",
       "questions": [
-        "How to systematically build good character?",
-        "How to balance civic duty and personal interest?",
-        "How to improve in multiple areas simultaneously?"
+        "¿Cómo construir un buen carácter de forma sistemática?",
+        "¿Cómo equilibrar el deber cívico y el interés personal?",
+        "¿Cómo mejorar en varias áreas simultáneamente?"
       ]
     },
     "thatcher": {
       "name": "Margaret Thatcher",
       "era": "Contemporary",
       "questions": [
-        "How to push forward the right thing despite opposition?",
-        "What mindset is needed to make unpopular decisions?",
-        "How to balance conviction with flexibility?"
+        "¿Cómo impulsar lo correcto a pesar de la oposición?",
+        "¿Qué mentalidad se necesita para tomar decisiones impopulares?",
+        "¿Cómo equilibrar convicción con flexibilidad?"
       ]
     },
     "roosevelt": {
       "name": "Theodore Roosevelt",
       "era": "Modern Era",
       "questions": [
-        "How to go from bystander to actor?",
-        "How to weigh risk against reward?",
-        "What is the difference between courage and recklessness?"
+        "¿Cómo pasar de espectador a actor?",
+        "¿Cómo sopesar riesgo y recompensa?",
+        "¿Cuál es la diferencia entre coraje e imprudencia?"
       ]
     },
     "lee-kuan-yew": {
       "name": "Lee Kuan Yew",
       "era": "Contemporary",
       "questions": [
-        "How to build a strong organization with scarce resources?",
-        "How to balance discipline and freedom?",
-        "How to make long-term decisions that are unpopular now?"
+        "¿Cómo construir una organización fuerte con recursos escasos?",
+        "¿Cómo equilibrar disciplina y libertad?",
+        "¿Cómo tomar decisiones a largo plazo que hoy son impopulares?"
       ]
     },
     "turing": {
       "name": "Turing",
       "era": "Moderno",
       "questions": [
-        "Can this problem be solved algorithmically?",
-        "How to turn vague requirements into precise rules?",
-        "Can a machine do what a human does here?"
+        "¿Se puede resolver este problema algorítmicamente?",
+        "¿Cómo convertir requisitos vagos en reglas precisas?",
+        "¿Puede una máquina hacer lo que hace un humano aquí?"
       ]
     },
     "dennis-ritchie": {
       "name": "Dennis Ritchie",
       "era": "Contemporary",
       "questions": [
-        "How to decompose a complex system into simple parts?",
-        "What does a good abstraction look like?",
-        "How to balance simplicity with capability?"
+        "¿Cómo descomponer un sistema complejo en partes simples?",
+        "¿Cómo se ve una buena abstracción?",
+        "¿Cómo equilibrar simplicidad con capacidad?"
       ]
     },
     "lovelace": {
       "name": "Ada Lovelace",
       "era": "Early Modern Europe",
       "questions": [
-        "How can technology and art empower each other?",
-        "Can algorithms create something truly original?",
-        "How to make logical thinking more creative?"
+        "¿Cómo pueden la tecnología y el arte potenciarse mutuamente?",
+        "¿Pueden los algoritmos crear algo verdaderamente original?",
+        "¿Cómo hacer que el pensamiento lógico sea más creativo?"
       ]
     },
     "john-mccarthy": {
       "name": "John McCarthy",
       "era": "Contemporary",
       "questions": [
-        "Can machines truly \"understand\"?",
-        "How to formalize human knowledge?",
-        "What is the ultimate goal of AI?"
+        "¿Pueden las máquinas realmente \"entender\"?",
+        "¿Cómo formalizar el conocimiento humano?",
+        "¿Cuál es el objetivo último de la IA?"
       ]
     },
     "berners-lee": {
       "name": "Tim Berners-Lee",
       "era": "Contemporary",
       "questions": [
-        "How to design an open and shared system?",
-        "How should tech products handle user data?",
-        "How to give more people equal access to information?"
+        "¿Cómo diseñar un sistema abierto y compartido?",
+        "¿Cómo deben manejar los productos tecnológicos los datos del usuario?",
+        "¿Cómo dar a más personas acceso equitativo a la información?"
       ]
     },
     "von-neumann": {
       "name": "John von Neumann",
       "era": "Modern Era",
       "questions": [
-        "Can this decision be analyzed with game theory?",
-        "How to convert a fuzzy problem into a math model?",
-        "What is the optimal architecture for this system?"
+        "¿Se puede analizar esta decisión con teoría de juegos?",
+        "¿Cómo convertir un problema difuso en un modelo matemático?",
+        "¿Cuál es la arquitectura óptima para este sistema?"
       ]
     },
     "vint-cerf": {
       "name": "Vint Cerf",
       "era": "Contemporary",
       "questions": [
-        "How to design an infinitely scalable system?",
-        "Why are open standards better than proprietary protocols?",
-        "What are the costs and benefits of decentralization?"
+        "¿Cómo diseñar un sistema infinitamente escalable?",
+        "¿Por qué los estándares abiertos son mejores que los protocolos propietarios?",
+        "¿Cuáles son los costos y beneficios de la descentralización?"
       ]
     },
     "torvalds": {
       "name": "Linus Torvalds",
       "era": "Contemporary",
       "questions": [
-        "Is this technical approach actually viable?",
-        "How to manage quality in open-source collaboration?",
-        "How to build a self-evolving technical system?"
+        "¿Es este enfoque técnico realmente viable?",
+        "¿Cómo gestionar la calidad en la colaboración open-source?",
+        "¿Cómo construir un sistema técnico que evolucione por sí solo?"
       ]
     },
     "hopper": {
       "name": "Grace Hopper",
       "era": "Modern Era",
       "questions": [
-        "How to drive innovation within bureaucracy?",
-        "When should I act first and ask later?",
-        "How to make technology accessible to ordinary people?"
+        "¿Cómo impulsar la innovación dentro de la burocracia?",
+        "¿Cuándo actuar primero y preguntar después?",
+        "¿Cómo hacer la tecnología accesible para gente común?"
       ]
     },
     "shannon": {
       "name": "Claude Shannon",
       "era": "Modern Era",
       "questions": [
-        "How to reduce noise and misunderstanding in communication?",
-        "How to tell which information truly matters?",
-        "How to transmit complex ideas more efficiently?"
+        "¿Cómo reducir el ruido y los malentendidos en la comunicación?",
+        "¿Cómo distinguir qué información realmente importa?",
+        "¿Cómo transmitir ideas complejas de forma más eficiente?"
       ]
     },
     "buddha": {
       "name": "Buda",
       "era": "India antigua",
       "questions": [
-        "How to let go of attachment?",
-        "Where does suffering come from?",
-        "How to practice mindfulness in daily life?"
+        "¿Cómo soltar el apego?",
+        "¿De dónde viene el sufrimiento?",
+        "¿Cómo practicar la atención plena en la vida diaria?"
       ]
     },
     "martin-luther": {
       "name": "Martin Luther",
       "era": "Reformation Era",
       "questions": [
-        "When is it right to break the rules?",
-        "How to hold your ground under enormous pressure?",
-        "What to do when conscience conflicts with institutional rules?"
+        "¿Cuándo es correcto romper las reglas?",
+        "¿Cómo mantener tu postura bajo enorme presión?",
+        "¿Qué hacer cuando la conciencia choca con las reglas institucionales?"
       ]
     },
     "mother-teresa": {
       "name": "Mother Teresa",
       "era": "Modern Era",
       "questions": [
-        "What can one person change?",
-        "How to face a hopeless situation?",
-        "Does helping others mean sacrificing yourself?"
+        "¿Qué puede cambiar una sola persona?",
+        "¿Cómo enfrentar una situación sin esperanza?",
+        "¿Ayudar a los demás significa sacrificarse?"
       ]
     },
     "rumi": {
       "name": "Rumi",
       "era": "Medieval Period",
       "questions": [
-        "How to feel connected even in loneliness?",
-        "Can love transcend all boundaries?",
-        "Does longing itself have meaning?"
+        "¿Cómo sentirse conectado incluso en la soledad?",
+        "¿Puede el amor trascender todas las fronteras?",
+        "¿El anhelo en sí tiene significado?"
       ]
     },
     "aquinas": {
       "name": "Thomas Aquinas",
       "era": "Medieval Period",
       "questions": [
-        "Are reason and faith in conflict?",
-        "Can natural law serve as a moral foundation?",
-        "How to think logically about ultimate questions?"
+        "¿Están en conflicto la razón y la fe?",
+        "¿Puede la ley natural servir de fundamento moral?",
+        "¿Cómo pensar lógicamente sobre las preguntas últimas?"
       ]
     },
     "al-ghazali": {
       "name": "Al-Ghazali",
       "era": "Medieval Period",
       "questions": [
-        "Where are the limits of reason?",
-        "How to find certainty through doubt?",
-        "Can inner experience lead to truth?"
+        "¿Dónde están los límites de la razón?",
+        "¿Cómo encontrar certeza a través de la duda?",
+        "¿Puede la experiencia interior conducir a la verdad?"
       ]
     },
     "thich-nhat-hanh": {
       "name": "Thich Nhat Hanh",
       "era": "Contemporary",
       "questions": [
-        "How to find a moment of peace in busyness?",
-        "Does compassion mean tolerating everything?",
-        "How to reconcile with someone who has hurt me?"
+        "¿Cómo encontrar un momento de paz en el ajetreo?",
+        "¿Significa la compasión tolerarlo todo?",
+        "¿Cómo reconciliarse con alguien que me ha hecho daño?"
       ]
     },
     "huineng": {
       "name": "Huineng",
       "era": "Tang Dynasty",
       "questions": [
-        "Can awakening truly happen in an instant?",
-        "How to live in the present moment in daily life?",
-        "Is attachment to practice itself an attachment?"
+        "¿Puede el despertar ocurrir realmente en un instante?",
+        "¿Cómo vivir el momento presente en la vida diaria?",
+        "¿Es también apego el apego a la práctica misma?"
       ]
     },
     "cs-lewis": {
       "name": "C.S. Lewis",
       "era": "Modern Era",
       "questions": [
-        "Can reason and faith coexist?",
-        "How can suffering be compatible with a good God?",
-        "Why do myths and stories move us so deeply?"
+        "¿Pueden coexistir razón y fe?",
+        "¿Cómo es compatible el sufrimiento con un Dios bueno?",
+        "¿Por qué los mitos y las historias nos conmueven tan profundamente?"
       ]
     },
     "ibn-khaldun": {
@@ -1163,27 +1168,27 @@
       "name": "Helen Keller",
       "era": "Modern Era",
       "questions": [
-        "How to overcome seemingly impossible obstacles?",
-        "How to find a way forward in adversity?",
-        "Are limitations truly unbreakable?"
+        "¿Cómo superar obstáculos aparentemente imposibles?",
+        "¿Cómo encontrar un camino hacia adelante en la adversidad?",
+        "¿Son las limitaciones realmente infranqueables?"
       ]
     },
     "tagore": {
       "name": "Rabindranath Tagore",
       "era": "Modern Era",
       "questions": [
-        "How to preserve humanistic and poetic elements in modern education?",
-        "What role do beauty and art play in growing up?",
-        "Should education transcend utilitarian goals?"
+        "¿Cómo preservar elementos humanistas y poéticos en la educación moderna?",
+        "¿Qué papel juegan la belleza y el arte en el crecimiento?",
+        "¿Debería la educación trascender los fines utilitarios?"
       ]
     },
     "dewey": {
       "name": "John Dewey",
       "era": "Modern Era",
       "questions": [
-        "How to learn through actual doing?",
-        "What is the true purpose of education?",
-        "How to connect the classroom to real life?"
+        "¿Cómo aprender haciendo?",
+        "¿Cuál es el verdadero propósito de la educación?",
+        "¿Cómo conectar el aula con la vida real?"
       ]
     },
     "piaget": {
@@ -1208,36 +1213,36 @@
       "name": "Cai Yuanpei",
       "era": "Republican China",
       "questions": [
-        "Why does academic freedom matter?",
-        "How does aesthetic education shape character?",
-        "How to reconcile different schools of thought?"
+        "¿Por qué importa la libertad académica?",
+        "¿Cómo moldea el carácter la educación estética?",
+        "¿Cómo reconciliar diferentes escuelas de pensamiento?"
       ]
     },
     "freire": {
       "name": "Paulo Freire",
       "era": "Contemporary",
       "questions": [
-        "How can education become liberation rather than oppression?",
-        "How to awaken critical thinking in learning?",
-        "What should the teacher-student relationship look like?"
+        "¿Cómo puede la educación ser liberación y no opresión?",
+        "¿Cómo despertar el pensamiento crítico en el aprendizaje?",
+        "¿Cómo debería ser la relación profesor-alumno?"
       ]
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
       "era": "Modern China",
       "questions": [
-        "How to turn everyday life into a classroom?",
-        "What problems arise when education is divorced from life?",
-        "How to help children learn by doing?"
+        "¿Cómo convertir la vida cotidiana en un aula?",
+        "¿Qué problemas surgen cuando la educación se divorcia de la vida?",
+        "¿Cómo ayudar a los niños a aprender haciendo?"
       ]
     },
     "gardner": {
       "name": "Howard Gardner",
       "era": "Contemporary",
       "questions": [
-        "What are my dominant intelligences?",
-        "How to use my strengths to learn difficult subjects?",
-        "Can traditional IQ tests measure real ability?"
+        "¿Cuáles son mis inteligencias dominantes?",
+        "¿Cómo usar mis fortalezas para aprender temas difíciles?",
+        "¿Pueden las pruebas de CI tradicionales medir la capacidad real?"
       ]
     },
     "benjamin-graham": {

@@ -310,7 +310,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           }
         }
       }
-      if (url.length > 32000) { setShareStatus('tooLong'); setTimeout(() => setShareStatus('idle'), 3000); return; }
+      if (url.length > 32000) { setShareStatus('tooLong'); return; }
       await navigator.clipboard.writeText(url);
       setShareStatus('copied');
     } catch {
@@ -331,9 +331,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
             {isSummoning ? (
               <>
                 <div className="flex gap-1.5">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
               </>
@@ -394,6 +394,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
         isMulti={isMulti}
         isGenerating={isGenerating}
         currentSpeaker={roundtable.currentSpeaker}
+        currentRound={roundtable.currentRound}
+        totalRounds={roundtable.totalRounds}
         onAdd={() => setShowPicker(true)}
         onRemove={(charId) => {
           if (conversation.characters.length <= 1) return;
@@ -415,9 +417,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
           <div className="flex flex-col items-center justify-center py-16 gap-5">
             <p className="text-lg font-medium text-gray-700 dark:text-gray-200 max-w-md text-center">"{conversation.title}"</p>
             <div className="flex gap-1.5">
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
             <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
           </div>
@@ -525,7 +527,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             );
           }
           return (
-            <div key={msg.id}>
+            <div key={msg.id} className="[content-visibility:auto] [contain-intrinsic-size:auto_120px]">
               {showDivider && (
                 <div className="flex items-center gap-3 py-2">
                   <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
@@ -575,6 +577,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                     avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
                     color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
                     name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
+                    timestamp={msg.timestamp}
                   />
                 )}
                 {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
@@ -632,9 +635,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   : t('roundtable.roundPreparing', { current: roundtable.currentRound, total: roundtable.totalRounds })
               : t('chat.thinking')}</span>
             <span className="flex gap-0.5">
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
             </span>
             <button onClick={stopGenerating} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
           </div>
@@ -677,6 +680,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
         onSummarize={handleSummarize} onShare={handleShare}
         onStopSummarize={() => summarizeAbortRef.current?.abort()}
       />
+      {shareStatus === 'tooLong' && (
+        <div className="mx-2 sm:mx-4 mt-1 flex flex-wrap items-center gap-2 px-3 py-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+          <span className="text-sm text-amber-700 dark:text-amber-300 flex-1 min-w-0">{t('chat.shareTooLong')} — {t('chat.shareTooLongHint')}</span>
+          <button onClick={() => setShareStatus('idle')} className="text-xs px-2 py-0.5 rounded text-amber-700 dark:text-amber-300 hover:underline shrink-0">✕</button>
+        </div>
+      )}
       <ChatInput key={conversationId} onSend={handleSend} disabled={isGenerating || isSummarizing} />
 
       {showPicker && (

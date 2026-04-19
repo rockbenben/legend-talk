@@ -7,6 +7,7 @@ import { ChatView } from '../components/ChatView';
 import { CharacterGrid } from '../components/CharacterGrid';
 import { Avatar } from '../components/Avatar';
 import { useConversationStore } from '../stores/conversations';
+import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
@@ -20,6 +21,11 @@ export function ChatPage() {
   const navigate = useNavigate();
   const lp = useLangPath();
   const createConversation = useConversationStore((s) => s.createConversation);
+  const isConfigured = useSettingsStore((s) => {
+    if (s.defaultProvider === 'custom') return !!s.customBaseUrl;
+    const key = s.apiKeys[s.defaultProvider];
+    return !!key && key.trim().length > 0;
+  });
   const [searchParams] = useSearchParams();
 
   const charsParam = searchParams.get('chars');
@@ -129,6 +135,17 @@ export function ChatPage() {
                 </button>
               </div>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
+              {!isConfigured && (
+                <div className="mb-4 flex flex-wrap items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                  <span className="text-sm text-amber-700 dark:text-amber-300 flex-1 min-w-0">{t('home.apiKeyBanner')}</span>
+                  <button
+                    onClick={() => navigate(lp('/settings'))}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600 active:bg-amber-700 shrink-0"
+                  >
+                    {t('chat.goSettings')}
+                  </button>
+                </div>
+              )}
               <form
                 onSubmit={(e) => { e.preventDefault(); handleAutoRoundtable(); }}
                 className="mb-6 flex gap-2 items-center"

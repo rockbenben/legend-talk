@@ -113,9 +113,7 @@ export function ActionBar({
               ? '...'
               : shareStatus === 'copied'
                 ? t('chat.copied')
-                : shareStatus === 'tooLong'
-                  ? t('chat.shareTooLong')
-                  : t('chat.share')}
+                : t('chat.share')}
           </button>
           <div className="relative">
             <button
@@ -127,7 +125,7 @@ export function ActionBar({
             {showExportMenu && (
               <>
                 <div className="fixed inset-0 z-10" onClick={() => setShowExportMenu(false)} />
-                <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[120px] whitespace-nowrap rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
+                <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[140px] whitespace-nowrap rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
                   <button
                     onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
                     className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"

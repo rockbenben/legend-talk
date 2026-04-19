@@ -129,7 +129,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
 
           {/* System Prompt */}
           <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">System Prompt</label>
+            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterSystemPrompt')}</label>
             <textarea
               value={prompt} onChange={(e) => { setPrompt(e.target.value); setSaved(false); }}
               placeholder={t('chat.characterPromptPlaceholder')}

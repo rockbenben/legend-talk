@@ -9,6 +9,7 @@
   "home": {
     "title": "Trò chuyện với Bậc Thầy Tư Tưởng",
     "subtitle": "Nhập chủ đề để bắt đầu, hoặc tự chọn nhân vật",
+    "apiKeyBanner": "Cấu hình API Key để bắt đầu trò chuyện",
     "topicPlaceholder": "Nhập chủ đề — AI tập hợp ban thảo luận...",
     "autoRoundtable": "Bắt đầu",
     "suggesting": "Đang tìm...",
@@ -64,6 +65,7 @@
     "share": "Chia sẻ",
     "copied": "Đã sao chép",
     "shareTooLong": "Cuộc trò chuyện quá dài để chia sẻ qua URL",
+    "shareTooLongHint": "thử xuất dưới dạng Markdown",
     "copyLineupLink": "Sao chép liên kết nhóm",
     "copyCategoryLink": "Sao chép liên kết danh mục",
     "linkCopied": "Đã sao chép",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "VD: Ada Lovelace",
     "characterAvatar": "Avatar",
     "characterColor": "Màu",
+    "characterSystemPrompt": "Lời nhắc hệ thống",
     "characterPromptPlaceholder": "Mô tả cách nhân vật này suy nghĩ và phản hồi...",
     "characterEra": "Thời đại",
     "characterEraPlaceholder": "VD: Đương đại, Phục hưng",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "Đang tải...",
     "error": "Lỗi: {{message}}",
+    "somethingWrong": "Đã xảy ra lỗi",
+    "unexpectedError": "Đã xảy ra lỗi không mong muốn",
     "confirm": "Xác nhận",
     "unknown": "Không rõ",
     "cancel": "Hủy",
@@ -155,90 +160,90 @@
       "name": "Socrates",
       "era": "Hy Lạp cổ đại",
       "questions": [
-        "Should I quit to start a business?",
-        "What is true success?",
-        "How do I know my choice was right?"
+        "Tôi có nên nghỉ việc để khởi nghiệp không?",
+        "Thành công thực sự là gì?",
+        "Làm sao biết lựa chọn của tôi là đúng?"
       ]
     },
     "confucius": {
       "name": "Khổng Tử",
       "era": "Xuân Thu",
       "questions": [
-        "How to handle conflict with my boss?",
-        "What does it mean to be a good person?",
-        "How to build self-discipline?"
+        "Làm sao xử lý xung đột với sếp?",
+        "Làm người tốt nghĩa là gì?",
+        "Làm sao rèn luyện tự kỷ luật?"
       ]
     },
     "aristotle": {
       "name": "Aristotle",
       "era": "Hy Lạp cổ đại",
       "questions": [
-        "What does a good life look like?",
-        "How do I cultivate virtue?",
-        "Is my reasoning logically sound?"
+        "Một cuộc sống tốt trông thế nào?",
+        "Làm sao tôi nuôi dưỡng đức hạnh?",
+        "Lập luận của tôi có logic không?"
       ]
     },
     "laozi": {
       "name": "Lão Tử",
       "era": "Xuân Thu",
       "questions": [
-        "The harder I try the more anxious I get",
-        "How to stay true to myself under pressure?",
-        "When is yielding wisdom vs. giving up?"
+        "Càng cố gắng tôi càng lo lắng",
+        "Làm sao giữ được chính mình dưới áp lực?",
+        "Khi nào nhượng bộ là khôn ngoan và khi nào là đầu hàng?"
       ]
     },
     "plato": {
       "name": "Plato",
       "era": "Hy Lạp cổ đại",
       "questions": [
-        "Is what I see really reality?",
-        "How to bridge the gap between ideal and real?",
-        "What is true justice?"
+        "Điều tôi thấy có thực sự là thực tại?",
+        "Làm sao thu hẹp khoảng cách giữa lý tưởng và thực tế?",
+        "Công lý thực sự là gì?"
       ]
     },
     "zhuangzi": {
       "name": "Zhuangzi",
       "era": "Warring States Period",
       "questions": [
-        "I am too attached to success and failure",
-        "How to accept what cannot be changed?",
-        "Do worldly standards really matter?"
+        "Tôi quá bám víu vào thành công và thất bại",
+        "Làm sao chấp nhận những gì không thể thay đổi?",
+        "Các chuẩn mực thế tục có thực sự quan trọng?"
       ]
     },
     "marcus-aurelius": {
       "name": "Marcus Aurelius",
       "era": "Roman Empire",
       "questions": [
-        "How to stay unaffected by external chaos?",
-        "How to think about things I cannot change?",
-        "What is truly worth pursuing?"
+        "Làm sao không bị ảnh hưởng bởi hỗn loạn bên ngoài?",
+        "Làm sao suy nghĩ về những điều tôi không thể thay đổi?",
+        "Điều gì thực sự đáng theo đuổi?"
       ]
     },
     "kant": {
       "name": "Immanuel Kant",
       "era": "Early Modern Europe",
       "questions": [
-        "Is lying always wrong?",
-        "Should I follow rules or focus on outcomes?",
-        "How do I judge if something is morally right?"
+        "Nói dối có phải lúc nào cũng sai?",
+        "Tôi nên tuân theo quy tắc hay tập trung vào kết quả?",
+        "Làm sao đánh giá một việc có đúng về mặt đạo đức?"
       ]
     },
     "descartes": {
       "name": "René Descartes",
       "era": "Early Modern Europe",
       "questions": [
-        "Can I really trust what I believe?",
-        "How to rethink a problem from scratch?",
-        "Is there anything I can be certain of?"
+        "Tôi có thể thực sự tin vào những gì mình tin?",
+        "Làm sao suy nghĩ lại vấn đề từ đầu?",
+        "Có điều gì tôi có thể chắc chắn?"
       ]
     },
     "hegel": {
       "name": "Georg Hegel",
       "era": "Early Modern Europe",
       "questions": [
-        "Is there a third way out of this dilemma?",
-        "Why do my ideas keep swinging to extremes?",
-        "Can two contradictory things both be true?"
+        "Có con đường thứ ba cho tình thế tiến thoái lưỡng nan này?",
+        "Tại sao ý tưởng của tôi luôn dao động đến cực đoan?",
+        "Hai điều mâu thuẫn có thể cùng đúng không?"
       ]
     },
     "wang-yangming": {
@@ -263,9 +268,9 @@
       "name": "Genghis Khan",
       "era": "Medieval Period",
       "questions": [
-        "How to expand rapidly while maintaining organizational effectiveness?",
-        "How to recruit and integrate talent from diverse backgrounds?",
-        "How to find a breakthrough against a stronger opponent?"
+        "Làm sao mở rộng nhanh nhưng vẫn giữ hiệu quả tổ chức?",
+        "Làm sao tuyển và tích hợp nhân tài từ nhiều nền tảng?",
+        "Làm sao tìm được đột phá trước đối thủ mạnh hơn?"
       ]
     },
     "hannibal": {
@@ -281,9 +286,9 @@
       "name": "Napoléon",
       "era": "Cách mạng Pháp",
       "questions": [
-        "How to find breakthroughs in chaos?",
-        "How to turn disadvantage into advantage?",
-        "How to manage multiple fronts simultaneously?"
+        "Làm sao tìm đột phá trong hỗn loạn?",
+        "Làm sao biến bất lợi thành lợi thế?",
+        "Làm sao quản lý nhiều mặt trận cùng lúc?"
       ]
     },
     "zhuge-liang": {
@@ -299,18 +304,18 @@
       "name": "Niccolò Machiavelli",
       "era": "Renaissance",
       "questions": [
-        "How to protect myself in office politics?",
-        "What are the fundamental laws of power?",
-        "When is kindness more effective than force?"
+        "Làm sao bảo vệ mình trong chính trị nơi công sở?",
+        "Những quy luật cơ bản của quyền lực là gì?",
+        "Khi nào lòng tốt hiệu quả hơn sức mạnh?"
       ]
     },
     "cao-cao": {
       "name": "Tào Tháo",
       "era": "Tam Quốc",
       "questions": [
-        "How should I position myself in this competition?",
-        "How to handle subordinates with hidden agendas?",
-        "How to turn a losing position around?"
+        "Làm sao định vị bản thân trong cuộc cạnh tranh này?",
+        "Làm sao xử lý cấp dưới có mưu đồ ẩn?",
+        "Làm sao lật ngược thế thua?"
       ]
     },
     "churchill": {
@@ -326,27 +331,27 @@
       "name": "Otto von Bismarck",
       "era": "Early Modern Europe",
       "questions": [
-        "How to achieve goals amid conflicting interests?",
-        "When is compromise the wise move?",
-        "How to build alliances that favor your position?"
+        "Làm sao đạt mục tiêu giữa các lợi ích xung đột?",
+        "Khi nào thoả hiệp là nước đi khôn ngoan?",
+        "Làm sao xây dựng liên minh có lợi cho vị thế của mình?"
       ]
     },
     "zeng-guofan": {
       "name": "Zeng Guofan",
       "era": "Late Qing Dynasty",
       "questions": [
-        "How to overcome my own laziness?",
-        "How to lead a team well?",
-        "How to persevere through adversity?"
+        "Làm sao vượt qua sự lười biếng của bản thân?",
+        "Làm sao lãnh đạo một đội tốt?",
+        "Làm sao kiên trì trong nghịch cảnh?"
       ]
     },
     "munger": {
       "name": "Charlie Munger",
       "era": "Contemporary",
       "questions": [
-        "Is this investment worth pursuing?",
-        "How to avoid stupid decisions?",
-        "What blind spots does my plan have?"
+        "Khoản đầu tư này có đáng theo đuổi không?",
+        "Làm sao tránh những quyết định ngu ngốc?",
+        "Kế hoạch của tôi có những điểm mù nào?"
       ]
     },
     "drucker": {
@@ -362,36 +367,36 @@
       "name": "Andrew Carnegie",
       "era": "Modern Era",
       "questions": [
-        "How to scale from small business to large enterprise?",
-        "How to build competitive barriers in an industry?",
-        "How should wealth be used responsibly?"
+        "Làm sao mở rộng từ doanh nghiệp nhỏ lên tập đoàn lớn?",
+        "Làm sao xây dựng rào cản cạnh tranh trong ngành?",
+        "Của cải nên được sử dụng có trách nhiệm như thế nào?"
       ]
     },
     "matsushita": {
       "name": "Konosuke Matsushita",
       "era": "Modern Era",
       "questions": [
-        "How to maintain quality while cutting costs?",
-        "How to make employees genuinely committed?",
-        "What matters most in the early startup stage?"
+        "Làm sao duy trì chất lượng khi cắt giảm chi phí?",
+        "Làm sao khiến nhân viên thực sự cam kết?",
+        "Điều gì quan trọng nhất ở giai đoạn khởi nghiệp sớm?"
       ]
     },
     "henry-ford": {
       "name": "Henry Ford",
       "era": "Industrial Era",
       "questions": [
-        "How to drastically cut production costs?",
-        "How to make a product accessible to everyone?",
-        "Efficiency or innovation — which matters more?"
+        "Làm sao giảm chi phí sản xuất đáng kể?",
+        "Làm sao biến sản phẩm trở nên tiếp cận được với mọi người?",
+        "Hiệu quả hay đổi mới — cái nào quan trọng hơn?"
       ]
     },
     "dalio": {
       "name": "Ray Dalio",
       "era": "Contemporary",
       "questions": [
-        "How to build a principled decision-making system?",
-        "How to learn from failure systematically?",
-        "How to achieve radical transparency in a team?"
+        "Làm sao xây dựng hệ thống ra quyết định dựa trên nguyên tắc?",
+        "Làm sao học hỏi một cách có hệ thống từ thất bại?",
+        "Làm sao đạt được sự minh bạch tuyệt đối trong nhóm?"
       ]
     },
     "buffett": {
@@ -407,63 +412,63 @@
       "name": "Peter Thiel",
       "era": "Contemporary",
       "questions": [
-        "What important truth do few agree with you on?",
-        "Is competition a form of failure?",
-        "How to find secrets others overlook?"
+        "Có sự thật quan trọng nào mà ít người đồng ý với bạn?",
+        "Cạnh tranh có phải là một dạng thất bại?",
+        "Làm sao tìm ra những bí mật người khác bỏ qua?"
       ]
     },
     "steve-jobs": {
       "name": "Steve Jobs",
       "era": "Đương đại",
       "questions": [
-        "Should I simplify or add features?",
-        "How to find what truly matters?",
-        "How to build something people love?"
+        "Đơn giản hoá hay thêm tính năng?",
+        "Làm sao tìm ra điều thực sự quan trọng?",
+        "Làm sao xây dựng thứ mà người ta yêu thích?"
       ]
     },
     "elon-musk": {
       "name": "Elon Musk",
       "era": "Đương đại",
       "questions": [
-        "What are the core assumptions in this industry?",
-        "How to make the impossible possible?",
-        "How should I set bigger goals?"
+        "Những giả định cốt lõi của ngành này là gì?",
+        "Làm sao biến điều không thể thành có thể?",
+        "Tôi nên đặt những mục tiêu lớn hơn thế nào?"
       ]
     },
     "freud": {
       "name": "Freud",
       "era": "Hiện đại",
       "questions": [
-        "Why do I have this strange habit?",
-        "How did childhood shape my current behavior?",
-        "Why do I keep avoiding this one thing?"
+        "Tại sao tôi có thói quen kỳ lạ này?",
+        "Tuổi thơ đã định hình hành vi hiện tại của tôi như thế nào?",
+        "Tại sao tôi cứ né tránh chính điều này?"
       ]
     },
     "pavlov": {
       "name": "Ivan Pavlov",
       "era": "Imperial Russia",
       "questions": [
-        "Why do certain situations trigger my impulses?",
-        "How to break conditioned bad habits?",
-        "How are habits formed?"
+        "Tại sao những tình huống nhất định kích hoạt cơn bốc đồng của tôi?",
+        "Làm sao phá bỏ thói quen xấu có điều kiện?",
+        "Thói quen được hình thành như thế nào?"
       ]
     },
     "jung": {
       "name": "Carl Jung",
       "era": "Modern Era",
       "questions": [
-        "Why do I keep repeating the same mistakes?",
-        "Why do I overreact to certain things?",
-        "What do I truly want deep down?"
+        "Tại sao tôi lặp lại cùng những sai lầm?",
+        "Tại sao tôi phản ứng thái quá với một số thứ?",
+        "Thực sự tôi muốn điều gì ở tận đáy lòng?"
       ]
     },
     "maslow": {
       "name": "Abraham Maslow",
       "era": "Contemporary",
       "questions": [
-        "Why do I feel inner emptiness?",
-        "How to find something that gives me meaning?",
-        "Which matters more: security or growth?"
+        "Tại sao tôi cảm thấy trống rỗng bên trong?",
+        "Làm sao tìm thứ gì đó cho tôi ý nghĩa?",
+        "Điều nào quan trọng hơn: an toàn hay phát triển?"
       ]
     },
     "adler": {
@@ -479,81 +484,81 @@
       "name": "B.F. Skinner",
       "era": "Contemporary",
       "questions": [
-        "How to use reward systems to build good habits?",
-        "Why is breaking a bad habit so hard?",
-        "How to design an environment that changes behavior?"
+        "Làm sao dùng hệ thống phần thưởng để xây dựng thói quen tốt?",
+        "Vì sao phá vỡ một thói quen xấu lại khó đến vậy?",
+        "Làm sao thiết kế một môi trường thay đổi hành vi?"
       ]
     },
     "frankl": {
       "name": "Viktor Frankl",
       "era": "Contemporary",
       "questions": [
-        "My life has lost its sense of meaning",
-        "How to find value in suffering?",
-        "How to think about circumstances I cannot change?"
+        "Cuộc sống của tôi đã mất đi ý nghĩa",
+        "Làm sao tìm giá trị trong đau khổ?",
+        "Làm sao suy nghĩ về hoàn cảnh mà tôi không thể thay đổi?"
       ]
     },
     "kahneman": {
       "name": "Daniel Kahneman",
       "era": "Contemporary",
       "questions": [
-        "Is my judgment intuition or bias?",
-        "How to avoid anchoring in my decisions?",
-        "Why does loss feel stronger than equivalent gain?"
+        "Phán đoán của tôi là trực giác hay thiên kiến?",
+        "Làm sao tránh hiệu ứng neo trong quyết định?",
+        "Tại sao mất mát cảm thấy mạnh hơn một khoản lợi tương đương?"
       ]
     },
     "erikson": {
       "name": "Erik Erikson",
       "era": "Modern Era",
       "questions": [
-        "Is it normal to feel lost in my 30s?",
-        "How to navigate a midlife crisis?",
-        "How do I find my identity?"
+        "Cảm thấy lạc lối ở tuổi 30 có bình thường không?",
+        "Làm sao vượt qua khủng hoảng tuổi trung niên?",
+        "Làm sao tìm thấy bản sắc của mình?"
       ]
     },
     "zimbardo": {
       "name": "Philip Zimbardo",
       "era": "Contemporary",
       "questions": [
-        "Why do good people do bad things?",
-        "How much does environment shape behavior?",
-        "How to resist group pressure?"
+        "Tại sao người tốt lại làm điều xấu?",
+        "Môi trường định hình hành vi đến mức nào?",
+        "Làm sao kháng lại áp lực nhóm?"
       ]
     },
     "einstein": {
       "name": "Einstein",
       "era": "Hiện đại",
       "questions": [
-        "What if we view this from a totally different angle?",
-        "Are we building on wrong assumptions?",
-        "What underlying principles govern this?"
+        "Nếu ta nhìn vấn đề này từ một góc hoàn toàn khác thì sao?",
+        "Chúng ta có đang xây dựng trên giả định sai không?",
+        "Những nguyên lý nền tảng nào chi phối điều này?"
       ]
     },
     "newton": {
       "name": "Newton",
       "era": "Anh hiện đại",
       "questions": [
-        "How to break a complex problem into simple laws?",
-        "How to build a predictable system?",
-        "What assumptions underlie my model?"
+        "Làm sao phân tách vấn đề phức tạp thành các quy luật đơn giản?",
+        "Làm sao xây dựng một hệ thống có thể dự đoán?",
+        "Những giả định nào làm nền cho mô hình của tôi?"
       ]
     },
     "galileo": {
       "name": "Galileo Galilei",
       "era": "Early Modern Europe",
       "questions": [
-        "Is my judgment backed by real evidence?",
-        "How to challenge industry conventional wisdom?",
-        "What to do when authority dismisses you?"
+        "Phán đoán của tôi có được bằng chứng thật sự củng cố?",
+        "Làm sao thách thức tri thức thường quy của ngành?",
+        "Làm gì khi quyền uy phớt lờ bạn?"
       ]
     },
     "darwin": {
       "name": "Darwin",
       "era": "Anh hiện đại",
       "questions": [
-        "How should my strategy adapt to a changing environment?",
-        "How to survive long-term competition?",
-        "How do small changes accumulate into big ones?"
+        "Chiến lược của tôi nên thích ứng thế nào với môi trường đang thay đổi?",
+        "Làm sao sống sót trong cạnh tranh dài hạn?",
+        "Những thay đổi nhỏ tích lũy thành thay đổi lớn như thế nào?"
       ]
     },
     "zhang-heng": {
@@ -569,45 +574,45 @@
       "name": "Stephen Hawking",
       "era": "Contemporary",
       "questions": [
-        "Does my problem matter on a cosmic scale?",
-        "Can physical or environmental limits be transcended?",
-        "How to stay curious in the face of despair?"
+        "Vấn đề của tôi có quan trọng trên quy mô vũ trụ?",
+        "Giới hạn vật lý hay môi trường có thể được vượt qua không?",
+        "Làm sao giữ sự tò mò trước tuyệt vọng?"
       ]
     },
     "tesla": {
       "name": "Nikola Tesla",
       "era": "Modern Era",
       "questions": [
-        "My idea is ahead of its time — how to push it forward?",
-        "How to mentally simulate a complex system?",
-        "How do innovators fight conservative reality?"
+        "Ý tưởng của tôi vượt thời đại — làm sao đẩy nó tiến lên?",
+        "Làm sao mô phỏng một hệ thống phức tạp trong đầu?",
+        "Những nhà đổi mới chống lại thực tại bảo thủ như thế nào?"
       ]
     },
     "copernicus": {
       "name": "Nicolaus Copernicus",
       "era": "Renaissance",
       "questions": [
-        "Could my fundamental assumption be wrong?",
-        "How to step outside a self-centered perspective?",
-        "How to dare to challenge authority?"
+        "Giả định cơ bản của tôi có thể sai không?",
+        "Làm sao bước ra khỏi góc nhìn lấy bản thân làm trung tâm?",
+        "Làm sao có đủ can đảm thách thức quyền uy?"
       ]
     },
     "feynman": {
       "name": "Richard Feynman",
       "era": "Contemporary",
       "questions": [
-        "What is the essence of this problem?",
-        "How do I know I truly understand?",
-        "Is there a simpler way to grasp this?"
+        "Bản chất của vấn đề này là gì?",
+        "Làm sao tôi biết mình thực sự hiểu?",
+        "Có cách đơn giản hơn để nắm bắt điều này không?"
       ]
     },
     "curie": {
       "name": "Marie Curie",
       "era": "Modern Era",
       "questions": [
-        "How to persist when doubted by others?",
-        "How to convince skeptics with data?",
-        "How to sustain passion for my work?"
+        "Làm sao kiên trì khi người khác nghi ngờ mình?",
+        "Làm sao thuyết phục người hoài nghi bằng dữ liệu?",
+        "Làm sao duy trì đam mê với công việc của mình?"
       ]
     },
     "shakespeare": {
@@ -623,135 +628,135 @@
       "name": "Tolstoy",
       "era": "Đế quốc Nga",
       "questions": [
-        "What separates happy families from unhappy ones?",
-        "Should one live for ideals or duty?",
-        "How to understand the contradictions of human nature?"
+        "Điều gì phân biệt gia đình hạnh phúc với bất hạnh?",
+        "Nên sống vì lý tưởng hay vì nghĩa vụ?",
+        "Làm sao hiểu những mâu thuẫn của bản tính con người?"
       ]
     },
     "kafka": {
       "name": "Kafka",
       "era": "Châu Âu hiện đại",
       "questions": [
-        "Why does the system always seem to work against me?",
-        "How to stay myself in an absurd environment?",
-        "Where does powerlessness come from?"
+        "Tại sao hệ thống dường như luôn chống lại tôi?",
+        "Làm sao giữ chính mình trong một môi trường phi lý?",
+        "Sự bất lực đến từ đâu?"
       ]
     },
     "li-bai": {
       "name": "Lý Bạch",
       "era": "Nhà Đường",
       "questions": [
-        "How to rediscover passion for life?",
-        "How to balance rules and freedom?",
-        "How to use imagination to break through current limitations?"
+        "Làm sao khám phá lại niềm đam mê sống?",
+        "Làm sao cân bằng giữa quy tắc và tự do?",
+        "Làm sao dùng trí tưởng tượng phá bỏ những giới hạn hiện tại?"
       ]
     },
     "dostoevsky": {
       "name": "Fyodor Dostoevsky",
       "era": "Early Modern Europe",
       "questions": [
-        "I did something wrong — how do I face it?",
-        "Can suffering purify a person?",
-        "Where is the line between free will and responsibility?"
+        "Tôi đã làm điều sai — làm sao đối diện?",
+        "Đau khổ có thể thanh tẩy một người không?",
+        "Đâu là ranh giới giữa tự do ý chí và trách nhiệm?"
       ]
     },
     "hemingway": {
       "name": "Ernest Hemingway",
       "era": "Modern Era",
       "questions": [
-        "How to stay calm under pressure?",
-        "What is worth showing through action rather than words?",
-        "What does true courage look like?"
+        "Làm sao giữ bình tĩnh dưới áp lực?",
+        "Điều gì đáng được thể hiện bằng hành động thay vì lời nói?",
+        "Lòng can đảm thực sự trông như thế nào?"
       ]
     },
     "su-shi": {
       "name": "Tô Thức",
       "era": "Bắc Tống",
       "questions": [
-        "How to stay composed in adversity?",
-        "How to find beauty in ordinary life?",
-        "How to make peace with disappointment?"
+        "Làm sao giữ điềm tĩnh trong nghịch cảnh?",
+        "Làm sao tìm cái đẹp trong đời sống thường nhật?",
+        "Làm sao hoà giải với sự thất vọng?"
       ]
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
       "era": "Early Modern Europe",
       "questions": [
-        "How to transcend values imposed by others?",
-        "How to rebuild yourself when nihilism strikes?",
-        "How to become the author of your own life?"
+        "Làm sao vượt qua những giá trị do người khác áp đặt?",
+        "Làm sao tái dựng bản thân khi chủ nghĩa hư vô ập đến?",
+        "Làm sao trở thành tác giả của cuộc đời mình?"
       ]
     },
     "borges": {
       "name": "Jorge Luis Borges",
       "era": "Contemporary",
       "questions": [
-        "Is reality just another kind of fiction?",
-        "How to choose amid infinite possibilities?",
-        "Where are the limits of knowledge?"
+        "Thực tại có phải chỉ là một dạng hư cấu khác?",
+        "Làm sao chọn giữa vô số khả năng?",
+        "Giới hạn của tri thức ở đâu?"
       ]
     },
     "lu-xun": {
       "name": "Lu Xun",
       "era": "Modern China",
       "questions": [
-        "Why does everyone look the other way?",
-        "How to face an uncomfortable truth?",
-        "Is silence complicity or wisdom?"
+        "Tại sao mọi người quay mặt đi?",
+        "Làm sao đối diện một sự thật khó chịu?",
+        "Im lặng là đồng loã hay khôn ngoan?"
       ]
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
       "era": "Phục Hưng",
       "questions": [
-        "How to cultivate genuine curiosity?",
-        "How can art and science inspire each other?",
-        "How to observe the world more carefully?"
+        "Làm sao nuôi dưỡng sự tò mò chân thật?",
+        "Làm sao nghệ thuật và khoa học có thể truyền cảm hứng cho nhau?",
+        "Làm sao quan sát thế giới cẩn thận hơn?"
       ]
     },
     "beethoven": {
       "name": "Beethoven",
       "era": "Châu Âu hiện đại",
       "questions": [
-        "How to keep going when circumstances are severely against you?",
-        "Can fate be defied?",
-        "How to transform suffering into creative energy?"
+        "Làm sao tiếp tục khi hoàn cảnh nghiêm trọng chống lại bạn?",
+        "Có thể thách thức số phận không?",
+        "Làm sao biến đau khổ thành năng lượng sáng tạo?"
       ]
     },
     "michelangelo": {
       "name": "Michelangelo",
       "era": "Renaissance",
       "questions": [
-        "How to hold yourself to the highest standard?",
-        "Is perfectionism a driver or a burden?",
-        "Is the price of greatness worth paying?"
+        "Làm sao tự đặt cho mình tiêu chuẩn cao nhất?",
+        "Chủ nghĩa hoàn hảo là động lực hay gánh nặng?",
+        "Cái giá của sự vĩ đại có đáng trả?"
       ]
     },
     "picasso": {
       "name": "Picasso",
       "era": "Hiện đại",
       "questions": [
-        "How to break out of fixed thinking patterns?",
-        "How can creativity and rules coexist?",
-        "How to create something new through destruction?"
+        "Làm sao phá vỡ những khuôn suy nghĩ cố định?",
+        "Sáng tạo và quy tắc có thể cùng tồn tại thế nào?",
+        "Làm sao tạo ra cái mới thông qua sự phá hủy?"
       ]
     },
     "mozart": {
       "name": "Wolfgang Amadeus Mozart",
       "era": "Early Modern Europe",
       "questions": [
-        "How to make creative work flow more naturally?",
-        "How to balance play and serious work?",
-        "Which matters more: talent or effort?"
+        "Làm sao để công việc sáng tạo tuôn chảy tự nhiên hơn?",
+        "Làm sao cân bằng giữa chơi và làm việc nghiêm túc?",
+        "Điều nào quan trọng hơn: tài năng hay nỗ lực?"
       ]
     },
     "bach": {
       "name": "Johann Sebastian Bach",
       "era": "Early Modern Europe",
       "questions": [
-        "Can strict rules enhance creativity?",
-        "How to stay passionate in repetitive work?",
-        "How to unify structure and freedom?"
+        "Những quy tắc nghiêm ngặt có thể nâng cao sáng tạo không?",
+        "Làm sao giữ đam mê trong công việc lặp lại?",
+        "Làm sao hợp nhất cấu trúc và tự do?"
       ]
     },
     "van-gogh": {
@@ -767,36 +772,36 @@
       "name": "Claude Monet",
       "era": "Modern France",
       "questions": [
-        "How to see the same problem from a new angle?",
-        "Why do first impressions matter?",
-        "How to find beauty in change?"
+        "Làm sao nhìn vấn đề cũ từ một góc mới?",
+        "Vì sao ấn tượng đầu tiên quan trọng?",
+        "Làm sao tìm cái đẹp trong thay đổi?"
       ]
     },
     "chopin": {
       "name": "Frédéric Chopin",
       "era": "Romantic Era",
       "questions": [
-        "How to express complex emotions with elegance?",
-        "Can simplicity and depth coexist?",
-        "Technique or emotion — which matters more?"
+        "Làm sao biểu đạt cảm xúc phức tạp một cách tinh tế?",
+        "Sự đơn giản và chiều sâu có thể cùng tồn tại?",
+        "Kỹ thuật hay cảm xúc — điều gì quan trọng hơn?"
       ]
     },
     "miyazaki": {
       "name": "Hayao Miyazaki",
       "era": "Contemporary",
       "questions": [
-        "How to keep childlike wonder about the world?",
-        "How can creative work convey genuine emotion?",
-        "How should we understand the relationship between humans and nature?"
+        "Làm sao giữ sự kinh ngạc trẻ thơ với thế giới?",
+        "Làm sao tác phẩm sáng tạo có thể truyền cảm xúc chân thật?",
+        "Làm sao hiểu mối quan hệ giữa con người và thiên nhiên?"
       ]
     },
     "adam-smith": {
       "name": "Adam Smith",
       "era": "Early Modern Europe",
       "questions": [
-        "How does individual self-interest benefit society as a whole?",
-        "When does the free market fail?",
-        "How to find your comparative advantage in competition?"
+        "Lợi ích cá nhân của mỗi người mang lại lợi ích cho toàn xã hội như thế nào?",
+        "Thị trường tự do thất bại khi nào?",
+        "Làm sao tìm lợi thế so sánh trong cạnh tranh?"
       ]
     },
     "marx": {
@@ -812,36 +817,36 @@
       "name": "John Maynard Keynes",
       "era": "Modern Era",
       "questions": [
-        "What should governments do during a recession?",
-        "How to balance short-term and long-term goals?",
-        "How do confidence and expectations affect the economy?"
+        "Chính phủ nên làm gì khi suy thoái?",
+        "Làm sao cân bằng mục tiêu ngắn hạn và dài hạn?",
+        "Niềm tin và kỳ vọng ảnh hưởng đến nền kinh tế thế nào?"
       ]
     },
     "hayek": {
       "name": "Friedrich Hayek",
       "era": "Modern Era",
       "questions": [
-        "Why does central planning always fail?",
-        "How to harness dispersed knowledge within an organization?",
-        "Which comes first: freedom or order?"
+        "Vì sao kế hoạch tập trung luôn thất bại?",
+        "Làm sao khai thác tri thức phân tán trong tổ chức?",
+        "Cái nào có trước: tự do hay trật tự?"
       ]
     },
     "malthus": {
       "name": "Thomas Malthus",
       "era": "Georgian Britain",
       "questions": [
-        "Can growth really last forever?",
-        "What to do when resources fall short?",
-        "How to balance growth with sustainability?"
+        "Tăng trưởng có thực sự kéo dài mãi mãi không?",
+        "Phải làm gì khi nguồn lực thiếu hụt?",
+        "Làm sao cân bằng tăng trưởng và bền vững?"
       ]
     },
     "friedman": {
       "name": "Milton Friedman",
       "era": "Contemporary",
       "questions": [
-        "Does government regulation solve or create problems?",
-        "How does monetary policy affect inflation?",
-        "Why does individual economic freedom matter?"
+        "Quy định của chính phủ giải quyết hay tạo ra vấn đề?",
+        "Chính sách tiền tệ ảnh hưởng đến lạm phát thế nào?",
+        "Vì sao tự do kinh tế cá nhân quan trọng?"
       ]
     },
     "john-stuart-mill": {
@@ -857,9 +862,9 @@
       "name": "Joseph Schumpeter",
       "era": "Modern Era",
       "questions": [
-        "My industry is being disrupted — what should I do?",
-        "How to judge whether an innovation truly matters?",
-        "Where is the balance between disruption and creation?"
+        "Ngành của tôi đang bị phá vỡ — tôi nên làm gì?",
+        "Làm sao đánh giá một đổi mới có thật sự quan trọng?",
+        "Đâu là cân bằng giữa phá vỡ và sáng tạo?"
       ]
     },
     "taleb": {
@@ -875,270 +880,270 @@
       "name": "Thomas Sowell",
       "era": "Contemporary",
       "questions": [
-        "What are the unintended consequences of this policy?",
-        "How to avoid seeing only the good side of a policy?",
-        "Does good intention guarantee good outcomes?"
+        "Những hậu quả ngoài ý muốn của chính sách này là gì?",
+        "Làm sao tránh chỉ nhìn mặt tốt của một chính sách?",
+        "Thiện ý có đảm bảo kết quả tốt?"
       ]
     },
     "julius-caesar": {
       "name": "Julius Caesar",
       "era": "Roman Republic",
       "questions": [
-        "How to drive change from within the system?",
-        "When is the right time to act decisively?",
-        "How to win popular support?"
+        "Làm sao thúc đẩy thay đổi từ bên trong hệ thống?",
+        "Khi nào là thời điểm thích hợp để hành động quyết đoán?",
+        "Làm sao giành được sự ủng hộ của công chúng?"
       ]
     },
     "gandhi": {
       "name": "Gandhi",
       "era": "Hiện đại",
       "questions": [
-        "How to drive change through nonviolent means?",
-        "What to do when the rules themselves are unjust?",
-        "How to influence others by example?"
+        "Làm sao thúc đẩy thay đổi bằng phương tiện phi bạo lực?",
+        "Phải làm gì khi chính các quy tắc là bất công?",
+        "Làm sao ảnh hưởng đến người khác bằng tấm gương?"
       ]
     },
     "lincoln": {
       "name": "Abraham Lincoln",
       "era": "Modern Era",
       "questions": [
-        "How to build consensus amid deep division?",
-        "How should a leader handle opposition?",
-        "Where is the line between principle and compromise?"
+        "Làm sao xây dựng đồng thuận giữa sự chia rẽ sâu sắc?",
+        "Một người lãnh đạo nên xử lý phe đối lập thế nào?",
+        "Ranh giới giữa nguyên tắc và nhượng bộ ở đâu?"
       ]
     },
     "mandela": {
       "name": "Nelson Mandela",
       "era": "Contemporary",
       "questions": [
-        "How to forgive someone who truly hurt me?",
-        "How to balance personal sacrifice with collective goals?",
-        "Where does the strength to hold beliefs long-term come from?"
+        "Làm sao tha thứ cho người đã thực sự làm tôi tổn thương?",
+        "Làm sao cân bằng hy sinh cá nhân với mục tiêu tập thể?",
+        "Sức mạnh để giữ vững niềm tin lâu dài đến từ đâu?"
       ]
     },
     "mlk": {
       "name": "Martin Luther King Jr.",
       "era": "Contemporary",
       "questions": [
-        "How to transform personal experience into a force for change?",
-        "How to give a speech that truly moves people?",
-        "How to maintain hope in despair?"
+        "Làm sao biến trải nghiệm cá nhân thành sức mạnh thay đổi?",
+        "Làm sao có bài phát biểu thực sự lay động lòng người?",
+        "Làm sao giữ hy vọng trong tuyệt vọng?"
       ]
     },
     "elizabeth-i": {
       "name": "Elizabeth I",
       "era": "Tudor England",
       "questions": [
-        "How to maintain balance among competing factions?",
-        "When is strategic ambiguity the right move?",
-        "How to turn weakness into strength?"
+        "Làm sao giữ cân bằng giữa các phe phái đối nghịch?",
+        "Khi nào sự mơ hồ chiến lược là nước đi đúng?",
+        "Làm sao biến điểm yếu thành sức mạnh?"
       ]
     },
     "franklin": {
       "name": "Benjamin Franklin",
       "era": "Modern Era",
       "questions": [
-        "How to systematically build good character?",
-        "How to balance civic duty and personal interest?",
-        "How to improve in multiple areas simultaneously?"
+        "Làm sao xây dựng phẩm chất tốt một cách hệ thống?",
+        "Làm sao cân bằng nghĩa vụ công dân và lợi ích cá nhân?",
+        "Làm sao cải thiện nhiều lĩnh vực cùng lúc?"
       ]
     },
     "thatcher": {
       "name": "Margaret Thatcher",
       "era": "Contemporary",
       "questions": [
-        "How to push forward the right thing despite opposition?",
-        "What mindset is needed to make unpopular decisions?",
-        "How to balance conviction with flexibility?"
+        "Làm sao thúc đẩy điều đúng bất chấp phản đối?",
+        "Cần tâm thế nào để đưa ra quyết định không được ưa chuộng?",
+        "Làm sao cân bằng niềm tin và sự linh hoạt?"
       ]
     },
     "roosevelt": {
       "name": "Theodore Roosevelt",
       "era": "Modern Era",
       "questions": [
-        "How to go from bystander to actor?",
-        "How to weigh risk against reward?",
-        "What is the difference between courage and recklessness?"
+        "Làm sao đi từ khán giả sang người hành động?",
+        "Làm sao cân nhắc rủi ro và phần thưởng?",
+        "Đâu là khác biệt giữa dũng cảm và liều lĩnh?"
       ]
     },
     "lee-kuan-yew": {
       "name": "Lee Kuan Yew",
       "era": "Contemporary",
       "questions": [
-        "How to build a strong organization with scarce resources?",
-        "How to balance discipline and freedom?",
-        "How to make long-term decisions that are unpopular now?"
+        "Làm sao xây dựng tổ chức mạnh với nguồn lực khan hiếm?",
+        "Làm sao cân bằng kỷ luật và tự do?",
+        "Làm sao đưa ra quyết định dài hạn không được ủng hộ ngay bây giờ?"
       ]
     },
     "turing": {
       "name": "Turing",
       "era": "Hiện đại",
       "questions": [
-        "Can this problem be solved algorithmically?",
-        "How to turn vague requirements into precise rules?",
-        "Can a machine do what a human does here?"
+        "Vấn đề này có thể giải bằng thuật toán?",
+        "Làm sao biến yêu cầu mơ hồ thành quy tắc chính xác?",
+        "Máy có thể làm được điều con người làm ở đây không?"
       ]
     },
     "dennis-ritchie": {
       "name": "Dennis Ritchie",
       "era": "Contemporary",
       "questions": [
-        "How to decompose a complex system into simple parts?",
-        "What does a good abstraction look like?",
-        "How to balance simplicity with capability?"
+        "Làm sao phân rã một hệ thống phức tạp thành các phần đơn giản?",
+        "Một trừu tượng hoá tốt trông thế nào?",
+        "Làm sao cân bằng đơn giản và năng lực?"
       ]
     },
     "lovelace": {
       "name": "Ada Lovelace",
       "era": "Early Modern Europe",
       "questions": [
-        "How can technology and art empower each other?",
-        "Can algorithms create something truly original?",
-        "How to make logical thinking more creative?"
+        "Công nghệ và nghệ thuật có thể tăng sức mạnh cho nhau thế nào?",
+        "Thuật toán có thể tạo ra thứ thực sự nguyên bản không?",
+        "Làm sao biến tư duy logic trở nên sáng tạo hơn?"
       ]
     },
     "john-mccarthy": {
       "name": "John McCarthy",
       "era": "Contemporary",
       "questions": [
-        "Can machines truly \"understand\"?",
-        "How to formalize human knowledge?",
-        "What is the ultimate goal of AI?"
+        "Máy móc có thể thực sự \"hiểu\" không?",
+        "Làm sao hình thức hóa tri thức con người?",
+        "Mục tiêu tối hậu của AI là gì?"
       ]
     },
     "berners-lee": {
       "name": "Tim Berners-Lee",
       "era": "Contemporary",
       "questions": [
-        "How to design an open and shared system?",
-        "How should tech products handle user data?",
-        "How to give more people equal access to information?"
+        "Làm sao thiết kế một hệ thống mở và chia sẻ?",
+        "Sản phẩm công nghệ nên xử lý dữ liệu người dùng thế nào?",
+        "Làm sao cho nhiều người hơn tiếp cận thông tin một cách công bằng?"
       ]
     },
     "von-neumann": {
       "name": "John von Neumann",
       "era": "Modern Era",
       "questions": [
-        "Can this decision be analyzed with game theory?",
-        "How to convert a fuzzy problem into a math model?",
-        "What is the optimal architecture for this system?"
+        "Quyết định này có thể phân tích bằng lý thuyết trò chơi không?",
+        "Làm sao chuyển vấn đề mờ nhạt thành mô hình toán học?",
+        "Kiến trúc tối ưu cho hệ thống này là gì?"
       ]
     },
     "vint-cerf": {
       "name": "Vint Cerf",
       "era": "Contemporary",
       "questions": [
-        "How to design an infinitely scalable system?",
-        "Why are open standards better than proprietary protocols?",
-        "What are the costs and benefits of decentralization?"
+        "Làm sao thiết kế hệ thống mở rộng vô hạn?",
+        "Vì sao tiêu chuẩn mở tốt hơn giao thức độc quyền?",
+        "Chi phí và lợi ích của phân cấp là gì?"
       ]
     },
     "torvalds": {
       "name": "Linus Torvalds",
       "era": "Contemporary",
       "questions": [
-        "Is this technical approach actually viable?",
-        "How to manage quality in open-source collaboration?",
-        "How to build a self-evolving technical system?"
+        "Cách tiếp cận kỹ thuật này có thực sự khả thi?",
+        "Làm sao quản lý chất lượng trong hợp tác mã nguồn mở?",
+        "Làm sao xây dựng hệ thống kỹ thuật tự tiến hoá?"
       ]
     },
     "hopper": {
       "name": "Grace Hopper",
       "era": "Modern Era",
       "questions": [
-        "How to drive innovation within bureaucracy?",
-        "When should I act first and ask later?",
-        "How to make technology accessible to ordinary people?"
+        "Làm sao thúc đẩy đổi mới trong bộ máy quan liêu?",
+        "Khi nào nên hành động trước, hỏi sau?",
+        "Làm sao biến công nghệ trở nên dễ tiếp cận với người bình thường?"
       ]
     },
     "shannon": {
       "name": "Claude Shannon",
       "era": "Modern Era",
       "questions": [
-        "How to reduce noise and misunderstanding in communication?",
-        "How to tell which information truly matters?",
-        "How to transmit complex ideas more efficiently?"
+        "Làm sao giảm nhiễu và hiểu nhầm trong giao tiếp?",
+        "Làm sao phân biệt thông tin nào thực sự quan trọng?",
+        "Làm sao truyền đạt ý tưởng phức tạp hiệu quả hơn?"
       ]
     },
     "buddha": {
       "name": "Đức Phật",
       "era": "Ấn Độ cổ đại",
       "questions": [
-        "How to let go of attachment?",
-        "Where does suffering come from?",
-        "How to practice mindfulness in daily life?"
+        "Làm sao buông bỏ chấp niệm?",
+        "Đau khổ đến từ đâu?",
+        "Làm sao thực hành chánh niệm trong đời sống hàng ngày?"
       ]
     },
     "martin-luther": {
       "name": "Martin Luther",
       "era": "Reformation Era",
       "questions": [
-        "When is it right to break the rules?",
-        "How to hold your ground under enormous pressure?",
-        "What to do when conscience conflicts with institutional rules?"
+        "Khi nào phá luật là đúng?",
+        "Làm sao giữ vững lập trường dưới áp lực khổng lồ?",
+        "Phải làm gì khi lương tâm xung đột với quy định thể chế?"
       ]
     },
     "mother-teresa": {
       "name": "Mother Teresa",
       "era": "Modern Era",
       "questions": [
-        "What can one person change?",
-        "How to face a hopeless situation?",
-        "Does helping others mean sacrificing yourself?"
+        "Một người có thể thay đổi điều gì?",
+        "Làm sao đối diện một tình huống tuyệt vọng?",
+        "Giúp đỡ người khác có nghĩa là hy sinh chính mình?"
       ]
     },
     "rumi": {
       "name": "Rumi",
       "era": "Medieval Period",
       "questions": [
-        "How to feel connected even in loneliness?",
-        "Can love transcend all boundaries?",
-        "Does longing itself have meaning?"
+        "Làm sao cảm thấy kết nối ngay cả trong cô đơn?",
+        "Tình yêu có thể vượt qua mọi ranh giới không?",
+        "Bản thân nỗi khao khát có ý nghĩa gì không?"
       ]
     },
     "aquinas": {
       "name": "Thomas Aquinas",
       "era": "Medieval Period",
       "questions": [
-        "Are reason and faith in conflict?",
-        "Can natural law serve as a moral foundation?",
-        "How to think logically about ultimate questions?"
+        "Lý trí và đức tin có xung đột không?",
+        "Luật tự nhiên có thể là nền tảng đạo đức?",
+        "Làm sao tư duy logic về những câu hỏi tối hậu?"
       ]
     },
     "al-ghazali": {
       "name": "Al-Ghazali",
       "era": "Medieval Period",
       "questions": [
-        "Where are the limits of reason?",
-        "How to find certainty through doubt?",
-        "Can inner experience lead to truth?"
+        "Giới hạn của lý trí ở đâu?",
+        "Làm sao tìm chắc chắn qua hoài nghi?",
+        "Trải nghiệm nội tâm có thể dẫn tới sự thật không?"
       ]
     },
     "thich-nhat-hanh": {
       "name": "Thích Nhất Hạnh",
       "era": "Hiện đại",
       "questions": [
-        "How to find a moment of peace in busyness?",
-        "Does compassion mean tolerating everything?",
-        "How to reconcile with someone who has hurt me?"
+        "Làm sao tìm khoảnh khắc bình yên giữa bộn bề?",
+        "Lòng trắc ẩn có nghĩa là khoan dung tất cả?",
+        "Làm sao hoà giải với người đã làm tôi tổn thương?"
       ]
     },
     "huineng": {
       "name": "Huineng",
       "era": "Tang Dynasty",
       "questions": [
-        "Can awakening truly happen in an instant?",
-        "How to live in the present moment in daily life?",
-        "Is attachment to practice itself an attachment?"
+        "Giác ngộ có thật sự xảy ra trong một khoảnh khắc không?",
+        "Làm sao sống ở khoảnh khắc hiện tại trong đời sống?",
+        "Sự chấp vào chính việc tu tập có phải cũng là chấp?"
       ]
     },
     "cs-lewis": {
       "name": "C.S. Lewis",
       "era": "Modern Era",
       "questions": [
-        "Can reason and faith coexist?",
-        "How can suffering be compatible with a good God?",
-        "Why do myths and stories move us so deeply?"
+        "Lý trí và đức tin có thể cùng tồn tại?",
+        "Đau khổ tương thích thế nào với một vị Thượng đế tốt lành?",
+        "Vì sao thần thoại và câu chuyện lay động chúng ta sâu sắc đến vậy?"
       ]
     },
     "ibn-khaldun": {
@@ -1163,27 +1168,27 @@
       "name": "Helen Keller",
       "era": "Modern Era",
       "questions": [
-        "How to overcome seemingly impossible obstacles?",
-        "How to find a way forward in adversity?",
-        "Are limitations truly unbreakable?"
+        "Làm sao vượt qua những trở ngại tưởng như không thể?",
+        "Làm sao tìm lối đi phía trước trong nghịch cảnh?",
+        "Giới hạn có thực sự không thể phá vỡ?"
       ]
     },
     "tagore": {
       "name": "Rabindranath Tagore",
       "era": "Modern Era",
       "questions": [
-        "How to preserve humanistic and poetic elements in modern education?",
-        "What role do beauty and art play in growing up?",
-        "Should education transcend utilitarian goals?"
+        "Làm sao bảo tồn yếu tố nhân văn và chất thơ trong giáo dục hiện đại?",
+        "Vai trò của cái đẹp và nghệ thuật trong sự trưởng thành là gì?",
+        "Giáo dục có nên vượt lên trên mục tiêu thực dụng?"
       ]
     },
     "dewey": {
       "name": "John Dewey",
       "era": "Modern Era",
       "questions": [
-        "How to learn through actual doing?",
-        "What is the true purpose of education?",
-        "How to connect the classroom to real life?"
+        "Làm sao học bằng cách làm thực tế?",
+        "Mục đích thật sự của giáo dục là gì?",
+        "Làm sao kết nối lớp học với đời thực?"
       ]
     },
     "piaget": {
@@ -1208,36 +1213,36 @@
       "name": "Cai Yuanpei",
       "era": "Republican China",
       "questions": [
-        "Why does academic freedom matter?",
-        "How does aesthetic education shape character?",
-        "How to reconcile different schools of thought?"
+        "Vì sao tự do học thuật quan trọng?",
+        "Giáo dục thẩm mỹ định hình nhân cách như thế nào?",
+        "Làm sao hoà hợp các trường phái tư tưởng khác nhau?"
       ]
     },
     "freire": {
       "name": "Paulo Freire",
       "era": "Contemporary",
       "questions": [
-        "How can education become liberation rather than oppression?",
-        "How to awaken critical thinking in learning?",
-        "What should the teacher-student relationship look like?"
+        "Làm sao để giáo dục trở thành giải phóng chứ không áp bức?",
+        "Làm sao đánh thức tư duy phê phán trong học tập?",
+        "Mối quan hệ thầy-trò nên thế nào?"
       ]
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
       "era": "Modern China",
       "questions": [
-        "How to turn everyday life into a classroom?",
-        "What problems arise when education is divorced from life?",
-        "How to help children learn by doing?"
+        "Làm sao biến đời sống thường ngày thành lớp học?",
+        "Những vấn đề nào nảy sinh khi giáo dục tách rời cuộc sống?",
+        "Làm sao giúp trẻ em học qua hành động?"
       ]
     },
     "gardner": {
       "name": "Howard Gardner",
       "era": "Contemporary",
       "questions": [
-        "What are my dominant intelligences?",
-        "How to use my strengths to learn difficult subjects?",
-        "Can traditional IQ tests measure real ability?"
+        "Các loại trí thông minh trội của tôi là gì?",
+        "Làm sao tận dụng thế mạnh để học môn khó?",
+        "Các bài kiểm tra IQ truyền thống có đo được năng lực thực sự không?"
       ]
     },
     "benjamin-graham": {

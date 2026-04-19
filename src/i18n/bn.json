@@ -9,6 +9,7 @@
   "home": {
     "title": "মহান চিন্তাবিদদের সাথে কথা বলুন",
     "subtitle": "শুরু করতে বিষয় লিখুন, অথবা নিজে চরিত্র বাছুন",
+    "apiKeyBanner": "চ্যাট শুরু করতে আপনার API কী কনফিগার করুন",
     "topicPlaceholder": "বিষয় লিখুন — AI প্যানেল তৈরি করবে...",
     "autoRoundtable": "শুরু",
     "suggesting": "খুঁজছি...",
@@ -64,6 +65,7 @@
     "share": "শেয়ার করুন",
     "copied": "কপি হয়েছে",
     "shareTooLong": "কথোপকথন URL দিয়ে শেয়ার করার জন্য খুব দীর্ঘ",
+    "shareTooLongHint": "এর পরিবর্তে Markdown হিসেবে রপ্তানি করুন",
     "copyLineupLink": "গ্রুপ লিঙ্ক কপি করুন",
     "copyCategoryLink": "বিভাগ লিঙ্ক কপি করুন",
     "linkCopied": "কপি সম্পন্ন",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "যেমন Ada Lovelace",
     "characterAvatar": "অবতার",
     "characterColor": "রং",
+    "characterSystemPrompt": "সিস্টেম প্রম্পট",
     "characterPromptPlaceholder": "এই চরিত্র কীভাবে চিন্তা করে এবং সাড়া দেয় তা বর্ণনা করুন...",
     "characterEra": "যুগ",
     "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "লোড হচ্ছে...",
     "error": "ত্রুটি: {{message}}",
+    "somethingWrong": "কিছু একটা গড়বড় হয়েছে",
+    "unexpectedError": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে",
     "confirm": "নিশ্চিত করুন",
     "unknown": "অজানা",
     "cancel": "বাতিল",
@@ -155,90 +160,90 @@
       "name": "সক্রেটিস",
       "era": "প্রাচীন গ্রীস",
       "questions": [
-        "Should I quit to start a business?",
-        "What is true success?",
-        "How do I know my choice was right?"
+        "ব্যবসা শুরু করার জন্য কি চাকরি ছাড়া উচিত?",
+        "প্রকৃত সাফল্য কী?",
+        "আমার পছন্দ সঠিক ছিল কিনা তা কীভাবে বুঝব?"
       ]
     },
     "confucius": {
       "name": "কনফুসিয়াস",
       "era": "বসন্ত ও শরৎ",
       "questions": [
-        "How to handle conflict with my boss?",
-        "What does it mean to be a good person?",
-        "How to build self-discipline?"
+        "বসের সঙ্গে দ্বন্দ্ব কীভাবে সামলাব?",
+        "ভালো মানুষ হওয়ার অর্থ কী?",
+        "কীভাবে আত্ম-শৃঙ্খলা গড়ে তুলব?"
       ]
     },
     "aristotle": {
       "name": "অ্যারিস্টটল",
       "era": "প্রাচীন গ্রীস",
       "questions": [
-        "What does a good life look like?",
-        "How do I cultivate virtue?",
-        "Is my reasoning logically sound?"
+        "ভালো জীবন কেমন দেখতে?",
+        "আমি কীভাবে সদ্‌গুণ চাষ করব?",
+        "আমার যুক্তি কি যৌক্তিকভাবে সঠিক?"
       ]
     },
     "laozi": {
       "name": "Laozi",
       "era": "Spring and Autumn Period",
       "questions": [
-        "The harder I try the more anxious I get",
-        "How to stay true to myself under pressure?",
-        "When is yielding wisdom vs. giving up?"
+        "যত চেষ্টা করি তত বেশি উদ্বিগ্ন হই",
+        "চাপের মধ্যেও কীভাবে নিজের প্রতি সত্য থাকব?",
+        "কখন নতি স্বীকার জ্ঞান, আর কখন হার মানা?"
       ]
     },
     "plato": {
       "name": "প্লেটো",
       "era": "প্রাচীন গ্রীস",
       "questions": [
-        "Is what I see really reality?",
-        "How to bridge the gap between ideal and real?",
-        "What is true justice?"
+        "আমি যা দেখছি সেটা কি সত্যিই বাস্তবতা?",
+        "আদর্শ ও বাস্তবের ফারাক কীভাবে মেটাব?",
+        "প্রকৃত ন্যায় কী?"
       ]
     },
     "zhuangzi": {
       "name": "Zhuangzi",
       "era": "Warring States Period",
       "questions": [
-        "I am too attached to success and failure",
-        "How to accept what cannot be changed?",
-        "Do worldly standards really matter?"
+        "আমি সাফল্য ও ব্যর্থতায় বড্ড আটকে আছি",
+        "যা বদলানো যায় না তা কীভাবে মেনে নেব?",
+        "জাগতিক মাপকাঠি কি আদৌ গুরুত্বপূর্ণ?"
       ]
     },
     "marcus-aurelius": {
       "name": "Marcus Aurelius",
       "era": "Roman Empire",
       "questions": [
-        "How to stay unaffected by external chaos?",
-        "How to think about things I cannot change?",
-        "What is truly worth pursuing?"
+        "বাইরের বিশৃঙ্খলায় কীভাবে অবিচলিত থাকব?",
+        "যা বদলানো যায় না, তা নিয়ে কীভাবে ভাবব?",
+        "সত্যিই অনুধাবনযোগ্য কী?"
       ]
     },
     "kant": {
       "name": "Immanuel Kant",
       "era": "Early Modern Europe",
       "questions": [
-        "Is lying always wrong?",
-        "Should I follow rules or focus on outcomes?",
-        "How do I judge if something is morally right?"
+        "মিথ্যা বলা কি সর্বদা ভুল?",
+        "নিয়ম মানব নাকি ফলাফলের দিকে নজর দেব?",
+        "কোনো কিছু নৈতিকভাবে সঠিক কিনা কীভাবে বিচার করব?"
       ]
     },
     "descartes": {
       "name": "René Descartes",
       "era": "Early Modern Europe",
       "questions": [
-        "Can I really trust what I believe?",
-        "How to rethink a problem from scratch?",
-        "Is there anything I can be certain of?"
+        "আমি যা বিশ্বাস করি, তাতে কি আসলে ভরসা করা যায়?",
+        "সমস্যাকে শূন্য থেকে নতুনভাবে কীভাবে ভাবব?",
+        "এমন কিছু কি আছে যা আমি নিশ্চিত?"
       ]
     },
     "hegel": {
       "name": "Georg Hegel",
       "era": "Early Modern Europe",
       "questions": [
-        "Is there a third way out of this dilemma?",
-        "Why do my ideas keep swinging to extremes?",
-        "Can two contradictory things both be true?"
+        "এই দ্বন্দ্বের কি তৃতীয় পথ আছে?",
+        "আমার ধারণা সর্বদা চরমে দোল খায় কেন?",
+        "দুটি বিপরীত ব্যাপার কি একসঙ্গে সত্য হতে পারে?"
       ]
     },
     "wang-yangming": {
@@ -263,9 +268,9 @@
       "name": "Genghis Khan",
       "era": "Medieval Period",
       "questions": [
-        "How to expand rapidly while maintaining organizational effectiveness?",
-        "How to recruit and integrate talent from diverse backgrounds?",
-        "How to find a breakthrough against a stronger opponent?"
+        "সাংগঠনিক কার্যকারিতা বজায় রেখে দ্রুত বিস্তার কীভাবে করব?",
+        "বিভিন্ন পটভূমির প্রতিভা কীভাবে নিয়োগ ও সংহত করব?",
+        "শক্তিশালী প্রতিদ্বন্দ্বীর বিরুদ্ধে সাফল্য কীভাবে খুঁজে পাব?"
       ]
     },
     "hannibal": {
@@ -281,9 +286,9 @@
       "name": "নেপোলিয়ন",
       "era": "ফরাসি বিপ্লব",
       "questions": [
-        "How to find breakthroughs in chaos?",
-        "How to turn disadvantage into advantage?",
-        "How to manage multiple fronts simultaneously?"
+        "বিশৃঙ্খলার মধ্যে কীভাবে যুগান্তকারী পথ খুঁজে পাব?",
+        "অসুবিধাকে সুবিধায় কীভাবে বদলাব?",
+        "একাধিক ফ্রন্ট একসঙ্গে কীভাবে সামলাব?"
       ]
     },
     "zhuge-liang": {
@@ -299,18 +304,18 @@
       "name": "Niccolò Machiavelli",
       "era": "Renaissance",
       "questions": [
-        "How to protect myself in office politics?",
-        "What are the fundamental laws of power?",
-        "When is kindness more effective than force?"
+        "অফিস পলিটিক্সে নিজেকে কীভাবে রক্ষা করব?",
+        "ক্ষমতার মূল নিয়মগুলো কী?",
+        "শক্তির চেয়ে কখন দয়া বেশি কার্যকর?"
       ]
     },
     "cao-cao": {
       "name": "Cao Cao",
       "era": "Three Kingdoms",
       "questions": [
-        "How should I position myself in this competition?",
-        "How to handle subordinates with hidden agendas?",
-        "How to turn a losing position around?"
+        "এই প্রতিযোগিতায় নিজেকে কীভাবে সাজাব?",
+        "লুকানো উদ্দেশ্যের অধীনস্থদের সঙ্গে কীভাবে কাজ করব?",
+        "হারতে থাকা অবস্থা কীভাবে উল্টে দেব?"
       ]
     },
     "churchill": {
@@ -326,27 +331,27 @@
       "name": "Otto von Bismarck",
       "era": "Early Modern Europe",
       "questions": [
-        "How to achieve goals amid conflicting interests?",
-        "When is compromise the wise move?",
-        "How to build alliances that favor your position?"
+        "স্বার্থের সংঘর্ষের মাঝে লক্ষ্য কীভাবে অর্জন করব?",
+        "কখন সমঝোতা বুদ্ধিমানের পদক্ষেপ?",
+        "নিজের অবস্থানকে সহায়ক জোট কীভাবে গড়ব?"
       ]
     },
     "zeng-guofan": {
       "name": "Zeng Guofan",
       "era": "Late Qing Dynasty",
       "questions": [
-        "How to overcome my own laziness?",
-        "How to lead a team well?",
-        "How to persevere through adversity?"
+        "নিজের আলসেমি কীভাবে জয় করব?",
+        "একটি দলকে ভালোভাবে কীভাবে নেতৃত্ব দেব?",
+        "বিপদে কীভাবে অটল থাকব?"
       ]
     },
     "munger": {
       "name": "Charlie Munger",
       "era": "Contemporary",
       "questions": [
-        "Is this investment worth pursuing?",
-        "How to avoid stupid decisions?",
-        "What blind spots does my plan have?"
+        "এই বিনিয়োগ কি অনুসরণের যোগ্য?",
+        "বোকার মতো সিদ্ধান্ত কীভাবে এড়াব?",
+        "আমার পরিকল্পনায় কোন অন্ধবিন্দু আছে?"
       ]
     },
     "drucker": {
@@ -362,36 +367,36 @@
       "name": "Andrew Carnegie",
       "era": "Modern Era",
       "questions": [
-        "How to scale from small business to large enterprise?",
-        "How to build competitive barriers in an industry?",
-        "How should wealth be used responsibly?"
+        "ছোট ব্যবসা থেকে বড় প্রতিষ্ঠানে কীভাবে রূপান্তরিত হব?",
+        "শিল্পে প্রতিযোগিতামূলক বাধা কীভাবে গড়ে তুলব?",
+        "সম্পদ কীভাবে দায়িত্বশীলভাবে ব্যবহার করা উচিত?"
       ]
     },
     "matsushita": {
       "name": "Konosuke Matsushita",
       "era": "Modern Era",
       "questions": [
-        "How to maintain quality while cutting costs?",
-        "How to make employees genuinely committed?",
-        "What matters most in the early startup stage?"
+        "খরচ কমিয়েও কীভাবে মান বজায় রাখব?",
+        "কর্মচারীদের কীভাবে সত্যিকারের প্রতিশ্রুতিবদ্ধ করব?",
+        "স্টার্টআপের প্রাথমিক পর্যায়ে সবচেয়ে গুরুত্বপূর্ণ কী?"
       ]
     },
     "henry-ford": {
       "name": "Henry Ford",
       "era": "Industrial Era",
       "questions": [
-        "How to drastically cut production costs?",
-        "How to make a product accessible to everyone?",
-        "Efficiency or innovation — which matters more?"
+        "উৎপাদন খরচ তীব্রভাবে কীভাবে কমাব?",
+        "সবাই যেন ব্যবহার করতে পারে এমন পণ্য কীভাবে বানাব?",
+        "দক্ষতা না উদ্ভাবন — কোনটি বেশি গুরুত্বপূর্ণ?"
       ]
     },
     "dalio": {
       "name": "Ray Dalio",
       "era": "Contemporary",
       "questions": [
-        "How to build a principled decision-making system?",
-        "How to learn from failure systematically?",
-        "How to achieve radical transparency in a team?"
+        "নীতিভিত্তিক সিদ্ধান্তব্যবস্থা কীভাবে গড়ব?",
+        "ব্যর্থতা থেকে ব্যবস্থিতভাবে কীভাবে শিখব?",
+        "দলে প্রকৃত স্বচ্ছতা কীভাবে অর্জন করব?"
       ]
     },
     "buffett": {
@@ -407,63 +412,63 @@
       "name": "Peter Thiel",
       "era": "Contemporary",
       "questions": [
-        "What important truth do few agree with you on?",
-        "Is competition a form of failure?",
-        "How to find secrets others overlook?"
+        "আপনার সঙ্গে অল্প লোকই কোন গুরুত্বপূর্ণ সত্যে একমত?",
+        "প্রতিযোগিতা কি ব্যর্থতার একরূপ?",
+        "অন্যরা যা উপেক্ষা করে, সেসব গোপন তথ্য কীভাবে খুঁজে পাব?"
       ]
     },
     "steve-jobs": {
       "name": "স্টিভ জবস",
       "era": "সমসাময়িক",
       "questions": [
-        "Should I simplify or add features?",
-        "How to find what truly matters?",
-        "How to build something people love?"
+        "সহজ করব নাকি ফিচার যোগ করব?",
+        "আসলেই কী গুরুত্বপূর্ণ তা কীভাবে খুঁজে পাব?",
+        "মানুষ যা ভালোবাসবে তেমন কিছু কীভাবে গড়ব?"
       ]
     },
     "elon-musk": {
       "name": "Elon Musk",
       "era": "Contemporary",
       "questions": [
-        "What are the core assumptions in this industry?",
-        "How to make the impossible possible?",
-        "How should I set bigger goals?"
+        "এই শিল্পের মূল অনুমান কী কী?",
+        "অসম্ভবকে সম্ভব কীভাবে করব?",
+        "আরও বড় লক্ষ্য কীভাবে স্থির করব?"
       ]
     },
     "freud": {
       "name": "ফ্রয়েড",
       "era": "আধুনিক",
       "questions": [
-        "Why do I have this strange habit?",
-        "How did childhood shape my current behavior?",
-        "Why do I keep avoiding this one thing?"
+        "আমার কেন এই অদ্ভুত অভ্যাস?",
+        "শৈশব কীভাবে আমার বর্তমান আচরণ গঠন করেছে?",
+        "এই একটি বিষয় কেন বারবার এড়িয়ে চলি?"
       ]
     },
     "pavlov": {
       "name": "Ivan Pavlov",
       "era": "Imperial Russia",
       "questions": [
-        "Why do certain situations trigger my impulses?",
-        "How to break conditioned bad habits?",
-        "How are habits formed?"
+        "কিছু পরিস্থিতিতে আমার প্রবৃত্তি জাগে কেন?",
+        "শর্তযুক্ত খারাপ অভ্যাস কীভাবে ভাঙব?",
+        "অভ্যাস কীভাবে তৈরি হয়?"
       ]
     },
     "jung": {
       "name": "Carl Jung",
       "era": "Modern Era",
       "questions": [
-        "Why do I keep repeating the same mistakes?",
-        "Why do I overreact to certain things?",
-        "What do I truly want deep down?"
+        "একই ভুল কেন বারবার করি?",
+        "কিছু বিষয়ে অতিরিক্ত প্রতিক্রিয়া দেখাই কেন?",
+        "গভীরে আসলে আমি কী চাই?"
       ]
     },
     "maslow": {
       "name": "Abraham Maslow",
       "era": "Contemporary",
       "questions": [
-        "Why do I feel inner emptiness?",
-        "How to find something that gives me meaning?",
-        "Which matters more: security or growth?"
+        "ভেতরে খালি লাগে কেন?",
+        "এমন কিছু কীভাবে পাব যা আমাকে অর্থ দেয়?",
+        "নিরাপত্তা না বিকাশ — কোনটি বেশি গুরুত্বপূর্ণ?"
       ]
     },
     "adler": {
@@ -479,81 +484,81 @@
       "name": "B.F. Skinner",
       "era": "Contemporary",
       "questions": [
-        "How to use reward systems to build good habits?",
-        "Why is breaking a bad habit so hard?",
-        "How to design an environment that changes behavior?"
+        "ভালো অভ্যাস গড়তে পুরস্কার-ব্যবস্থা কীভাবে ব্যবহার করব?",
+        "খারাপ অভ্যাস ভাঙা এত কঠিন কেন?",
+        "আচরণ বদলানোর পরিবেশ কীভাবে ডিজাইন করব?"
       ]
     },
     "frankl": {
       "name": "Viktor Frankl",
       "era": "Contemporary",
       "questions": [
-        "My life has lost its sense of meaning",
-        "How to find value in suffering?",
-        "How to think about circumstances I cannot change?"
+        "আমার জীবনের অর্থ হারিয়ে গেছে",
+        "কষ্টে কীভাবে মূল্য খুঁজে পাব?",
+        "যে পরিস্থিতি বদলানো যাবে না তা নিয়ে কীভাবে ভাবব?"
       ]
     },
     "kahneman": {
       "name": "Daniel Kahneman",
       "era": "Contemporary",
       "questions": [
-        "Is my judgment intuition or bias?",
-        "How to avoid anchoring in my decisions?",
-        "Why does loss feel stronger than equivalent gain?"
+        "আমার বিচার কি অন্তর্দৃষ্টি না পক্ষপাত?",
+        "সিদ্ধান্তে অ্যাংকরিং কীভাবে এড়াব?",
+        "ক্ষতি সম-পরিমাণ লাভের চেয়ে বেশি তীব্র অনুভূত হয় কেন?"
       ]
     },
     "erikson": {
       "name": "Erik Erikson",
       "era": "Modern Era",
       "questions": [
-        "Is it normal to feel lost in my 30s?",
-        "How to navigate a midlife crisis?",
-        "How do I find my identity?"
+        "৩০-এর কোঠায় পথ হারানো কি স্বাভাবিক?",
+        "মধ্যবয়সের সংকট কীভাবে পাড়ি দেব?",
+        "নিজ পরিচয় কীভাবে খুঁজে পাব?"
       ]
     },
     "zimbardo": {
       "name": "Philip Zimbardo",
       "era": "Contemporary",
       "questions": [
-        "Why do good people do bad things?",
-        "How much does environment shape behavior?",
-        "How to resist group pressure?"
+        "ভালো মানুষ কেন খারাপ কাজ করে?",
+        "পরিবেশ কতটা আচরণ গড়ে তোলে?",
+        "দলগত চাপে কীভাবে দাঁড়াব?"
       ]
     },
     "einstein": {
       "name": "আইনস্টাইন",
       "era": "আধুনিক",
       "questions": [
-        "What if we view this from a totally different angle?",
-        "Are we building on wrong assumptions?",
-        "What underlying principles govern this?"
+        "সম্পূর্ণ ভিন্ন দৃষ্টিকোণ থেকে দেখলে কেমন হয়?",
+        "আমরা কি ভুল অনুমানের ওপর গড়ে তুলছি?",
+        "এর নিচে কোন মৌল নীতি কাজ করছে?"
       ]
     },
     "newton": {
       "name": "নিউটন",
       "era": "আধুনিক ব্রিটেন",
       "questions": [
-        "How to break a complex problem into simple laws?",
-        "How to build a predictable system?",
-        "What assumptions underlie my model?"
+        "জটিল সমস্যাকে সহজ নিয়মে কীভাবে ভাঙব?",
+        "পূর্বানুমানযোগ্য সিস্টেম কীভাবে গড়ব?",
+        "আমার মডেলের পেছনে কোন অনুমান আছে?"
       ]
     },
     "galileo": {
       "name": "Galileo Galilei",
       "era": "Early Modern Europe",
       "questions": [
-        "Is my judgment backed by real evidence?",
-        "How to challenge industry conventional wisdom?",
-        "What to do when authority dismisses you?"
+        "আমার বিচার কি সত্যিকারের প্রমাণে সমর্থিত?",
+        "শিল্পের প্রচলিত জ্ঞান কীভাবে চ্যালেঞ্জ করব?",
+        "কর্তৃত্ব তোমাকে খারিজ করলে কী করব?"
       ]
     },
     "darwin": {
       "name": "ডারউইন",
       "era": "আধুনিক ব্রিটেন",
       "questions": [
-        "How should my strategy adapt to a changing environment?",
-        "How to survive long-term competition?",
-        "How do small changes accumulate into big ones?"
+        "বদলে যাওয়া পরিবেশের সঙ্গে আমার কৌশল কীভাবে খাপ খাবে?",
+        "দীর্ঘমেয়াদি প্রতিযোগিতায় কীভাবে টিকে থাকব?",
+        "ছোট ছোট পরিবর্তন কীভাবে বড় হয়ে ওঠে?"
       ]
     },
     "zhang-heng": {
@@ -569,45 +574,45 @@
       "name": "Stephen Hawking",
       "era": "Contemporary",
       "questions": [
-        "Does my problem matter on a cosmic scale?",
-        "Can physical or environmental limits be transcended?",
-        "How to stay curious in the face of despair?"
+        "আমার সমস্যা কি মহাজাগতিক স্কেলে গুরুত্বপূর্ণ?",
+        "শারীরিক বা পরিবেশগত সীমা কি অতিক্রম করা যায়?",
+        "হতাশার সামনে কৌতূহল কীভাবে ধরে রাখব?"
       ]
     },
     "tesla": {
       "name": "Nikola Tesla",
       "era": "Modern Era",
       "questions": [
-        "My idea is ahead of its time — how to push it forward?",
-        "How to mentally simulate a complex system?",
-        "How do innovators fight conservative reality?"
+        "আমার ভাবনা সময়ের আগে — এটি এগিয়ে নেব কীভাবে?",
+        "মনে মনে জটিল সিস্টেম কীভাবে অনুকরণ করব?",
+        "উদ্ভাবকেরা রক্ষণশীল বাস্তবতার সঙ্গে কীভাবে লড়েন?"
       ]
     },
     "copernicus": {
       "name": "Nicolaus Copernicus",
       "era": "Renaissance",
       "questions": [
-        "Could my fundamental assumption be wrong?",
-        "How to step outside a self-centered perspective?",
-        "How to dare to challenge authority?"
+        "আমার মৌল অনুমান কি ভুল হতে পারে?",
+        "আত্মকেন্দ্রিক দৃষ্টিভঙ্গি থেকে কীভাবে বেরিয়ে আসব?",
+        "কর্তৃত্বকে চ্যালেঞ্জ করার সাহস কীভাবে পাব?"
       ]
     },
     "feynman": {
       "name": "Richard Feynman",
       "era": "Contemporary",
       "questions": [
-        "What is the essence of this problem?",
-        "How do I know I truly understand?",
-        "Is there a simpler way to grasp this?"
+        "এই সমস্যার সারকথা কী?",
+        "আমি সত্যিই বুঝেছি কিনা তা কীভাবে বুঝব?",
+        "এটি বোঝার সহজতর উপায় আছে কি?"
       ]
     },
     "curie": {
       "name": "Marie Curie",
       "era": "Modern Era",
       "questions": [
-        "How to persist when doubted by others?",
-        "How to convince skeptics with data?",
-        "How to sustain passion for my work?"
+        "অন্যরা যখন সন্দেহ করে, তখন কীভাবে চালিয়ে যাব?",
+        "সংশয়বাদীদের ডেটা দিয়ে কীভাবে রাজি করাব?",
+        "নিজ কাজে আবেগ কীভাবে ধরে রাখব?"
       ]
     },
     "shakespeare": {
@@ -623,135 +628,135 @@
       "name": "তলস্তয়",
       "era": "রুশ সাম্রাজ্য",
       "questions": [
-        "What separates happy families from unhappy ones?",
-        "Should one live for ideals or duty?",
-        "How to understand the contradictions of human nature?"
+        "সুখী পরিবার আর অসুখী পরিবারের পার্থক্য কী?",
+        "আদর্শের জন্য বাঁচব নাকি কর্তব্যের জন্য?",
+        "মানব-স্বভাবের দ্বন্দ্ব কীভাবে বুঝব?"
       ]
     },
     "kafka": {
       "name": "কাফকা",
       "era": "আধুনিক ইউরোপ",
       "questions": [
-        "Why does the system always seem to work against me?",
-        "How to stay myself in an absurd environment?",
-        "Where does powerlessness come from?"
+        "সিস্টেম সবসময় আমার বিরুদ্ধেই কাজ করে মনে হয় কেন?",
+        "অযৌক্তিক পরিবেশেও কীভাবে নিজ সত্তায় টিকব?",
+        "অসহায়তা আসে কোথা থেকে?"
       ]
     },
     "li-bai": {
       "name": "Li Bai",
       "era": "Tang Dynasty",
       "questions": [
-        "How to rediscover passion for life?",
-        "How to balance rules and freedom?",
-        "How to use imagination to break through current limitations?"
+        "জীবনের আবেগ কীভাবে আবার খুঁজে পাব?",
+        "নিয়ম ও স্বাধীনতার ভারসাম্য কীভাবে রাখব?",
+        "কল্পনা দিয়ে বর্তমান সীমা কীভাবে অতিক্রম করব?"
       ]
     },
     "dostoevsky": {
       "name": "Fyodor Dostoevsky",
       "era": "Early Modern Europe",
       "questions": [
-        "I did something wrong — how do I face it?",
-        "Can suffering purify a person?",
-        "Where is the line between free will and responsibility?"
+        "আমি ভুল করেছি — কীভাবে মুখোমুখি হব?",
+        "কষ্ট কি মানুষকে বিশুদ্ধ করতে পারে?",
+        "স্বাধীন ইচ্ছা ও দায়বদ্ধতার রেখা কোথায়?"
       ]
     },
     "hemingway": {
       "name": "Ernest Hemingway",
       "era": "Modern Era",
       "questions": [
-        "How to stay calm under pressure?",
-        "What is worth showing through action rather than words?",
-        "What does true courage look like?"
+        "চাপে শান্ত কীভাবে থাকব?",
+        "কথার বদলে কাজে দেখানোর মতো কী মূল্যবান?",
+        "প্রকৃত সাহস কেমন?"
       ]
     },
     "su-shi": {
       "name": "Su Shi",
       "era": "Song Dynasty",
       "questions": [
-        "How to stay composed in adversity?",
-        "How to find beauty in ordinary life?",
-        "How to make peace with disappointment?"
+        "বিপদে কীভাবে শান্ত থাকব?",
+        "সাধারণ জীবনে সৌন্দর্য কীভাবে খুঁজে পাব?",
+        "হতাশার সঙ্গে কীভাবে শান্তি করব?"
       ]
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
       "era": "Early Modern Europe",
       "questions": [
-        "How to transcend values imposed by others?",
-        "How to rebuild yourself when nihilism strikes?",
-        "How to become the author of your own life?"
+        "অন্যদের চাপিয়ে দেওয়া মূল্যবোধ কীভাবে অতিক্রম করব?",
+        "নিহিলিজম আঘাত করলে নিজেকে কীভাবে পুনর্নির্মাণ করব?",
+        "নিজের জীবনের লেখক কীভাবে হব?"
       ]
     },
     "borges": {
       "name": "Jorge Luis Borges",
       "era": "Contemporary",
       "questions": [
-        "Is reality just another kind of fiction?",
-        "How to choose amid infinite possibilities?",
-        "Where are the limits of knowledge?"
+        "বাস্তবতা কি আরেক ধরনের কল্পকাহিনী?",
+        "অসীম সম্ভাবনার মধ্যে কীভাবে বাছাই করব?",
+        "জ্ঞানের সীমা কোথায়?"
       ]
     },
     "lu-xun": {
       "name": "Lu Xun",
       "era": "Modern China",
       "questions": [
-        "Why does everyone look the other way?",
-        "How to face an uncomfortable truth?",
-        "Is silence complicity or wisdom?"
+        "সবাই কেন অন্যদিকে তাকায়?",
+        "অস্বস্তিকর সত্যের মুখোমুখি কীভাবে হব?",
+        "নীরবতা কি অপরাধে সহযোগিতা, নাকি বিজ্ঞতা?"
       ]
     },
     "da-vinci": {
       "name": "লিওনার্দো দা ভিঞ্চি",
       "era": "রেনেসাঁ",
       "questions": [
-        "How to cultivate genuine curiosity?",
-        "How can art and science inspire each other?",
-        "How to observe the world more carefully?"
+        "প্রকৃত কৌতূহল কীভাবে গড়ে তুলব?",
+        "শিল্প ও বিজ্ঞান একে অপরকে কীভাবে অনুপ্রেরণা দিতে পারে?",
+        "জগৎকে আরও মনোযোগ দিয়ে কীভাবে পর্যবেক্ষণ করব?"
       ]
     },
     "beethoven": {
       "name": "বিটোভেন",
       "era": "আধুনিক ইউরোপ",
       "questions": [
-        "How to keep going when circumstances are severely against you?",
-        "Can fate be defied?",
-        "How to transform suffering into creative energy?"
+        "পরিস্থিতি প্রবলভাবে বিরুদ্ধে গেলে কীভাবে চলতে থাকব?",
+        "ভাগ্যকে কি চ্যালেঞ্জ করা যায়?",
+        "দুর্ভোগকে সৃজনশীল শক্তিতে কীভাবে পরিণত করব?"
       ]
     },
     "michelangelo": {
       "name": "Michelangelo",
       "era": "Renaissance",
       "questions": [
-        "How to hold yourself to the highest standard?",
-        "Is perfectionism a driver or a burden?",
-        "Is the price of greatness worth paying?"
+        "নিজের ওপর সর্বোচ্চ মান কীভাবে আরোপ করব?",
+        "পারফেকশনিজম কি চালিকা শক্তি নাকি বোঝা?",
+        "মহত্ত্বের মূল্য দেওয়া কি সার্থক?"
       ]
     },
     "picasso": {
       "name": "পিকাসো",
       "era": "আধুনিক",
       "questions": [
-        "How to break out of fixed thinking patterns?",
-        "How can creativity and rules coexist?",
-        "How to create something new through destruction?"
+        "স্থির চিন্তাধারা কীভাবে ভাঙব?",
+        "সৃজনশীলতা ও নিয়ম কীভাবে একসঙ্গে চলতে পারে?",
+        "ধ্বংসের মধ্য দিয়ে নতুন কিছু কীভাবে তৈরি করব?"
       ]
     },
     "mozart": {
       "name": "Wolfgang Amadeus Mozart",
       "era": "Early Modern Europe",
       "questions": [
-        "How to make creative work flow more naturally?",
-        "How to balance play and serious work?",
-        "Which matters more: talent or effort?"
+        "সৃজনশীল কাজ আরও স্বাভাবিকভাবে কীভাবে প্রবাহিত করব?",
+        "খেলা ও গুরুতর কাজের ভারসাম্য কীভাবে রাখব?",
+        "কোনটি বেশি গুরুত্বপূর্ণ: প্রতিভা নাকি চেষ্টা?"
       ]
     },
     "bach": {
       "name": "Johann Sebastian Bach",
       "era": "Early Modern Europe",
       "questions": [
-        "Can strict rules enhance creativity?",
-        "How to stay passionate in repetitive work?",
-        "How to unify structure and freedom?"
+        "কঠোর নিয়ম কি সৃজনশীলতা বাড়াতে পারে?",
+        "পুনরাবৃত্তিময় কাজে উৎসাহ কীভাবে ধরে রাখব?",
+        "কাঠামো ও স্বাধীনতা কীভাবে একত্র করব?"
       ]
     },
     "van-gogh": {
@@ -767,36 +772,36 @@
       "name": "Claude Monet",
       "era": "Modern France",
       "questions": [
-        "How to see the same problem from a new angle?",
-        "Why do first impressions matter?",
-        "How to find beauty in change?"
+        "একই সমস্যাকে নতুন দৃষ্টিকোণ থেকে কীভাবে দেখব?",
+        "প্রথম ধারণা কেন গুরুত্বপূর্ণ?",
+        "পরিবর্তনে সৌন্দর্য কীভাবে খুঁজে পাব?"
       ]
     },
     "chopin": {
       "name": "Frédéric Chopin",
       "era": "Romantic Era",
       "questions": [
-        "How to express complex emotions with elegance?",
-        "Can simplicity and depth coexist?",
-        "Technique or emotion — which matters more?"
+        "জটিল অনুভূতি কীভাবে মার্জিতভাবে প্রকাশ করব?",
+        "সরলতা ও গভীরতা কি একসঙ্গে থাকতে পারে?",
+        "কৌশল নাকি অনুভূতি — কোনটি বেশি গুরুত্বপূর্ণ?"
       ]
     },
     "miyazaki": {
       "name": "Hayao Miyazaki",
       "era": "Contemporary",
       "questions": [
-        "How to keep childlike wonder about the world?",
-        "How can creative work convey genuine emotion?",
-        "How should we understand the relationship between humans and nature?"
+        "বিশ্বজগতের প্রতি শিশুর মতো বিস্ময় কীভাবে ধরে রাখব?",
+        "সৃজনশীল কাজ কীভাবে প্রকৃত অনুভূতি প্রকাশ করতে পারে?",
+        "মানুষ ও প্রকৃতির সম্পর্ক কীভাবে বুঝব?"
       ]
     },
     "adam-smith": {
       "name": "Adam Smith",
       "era": "Early Modern Europe",
       "questions": [
-        "How does individual self-interest benefit society as a whole?",
-        "When does the free market fail?",
-        "How to find your comparative advantage in competition?"
+        "ব্যক্তিগত স্বার্থ কীভাবে সামগ্রিক সমাজের কল্যাণ করে?",
+        "মুক্ত বাজার কখন ব্যর্থ হয়?",
+        "প্রতিযোগিতায় আপনার তুলনামূলক সুবিধা কীভাবে খুঁজবেন?"
       ]
     },
     "marx": {
@@ -812,36 +817,36 @@
       "name": "John Maynard Keynes",
       "era": "Modern Era",
       "questions": [
-        "What should governments do during a recession?",
-        "How to balance short-term and long-term goals?",
-        "How do confidence and expectations affect the economy?"
+        "মন্দার সময় সরকারের কী করা উচিত?",
+        "স্বল্পমেয়াদি ও দীর্ঘমেয়াদি লক্ষ্যের ভারসাম্য কীভাবে রাখব?",
+        "আস্থা ও প্রত্যাশা অর্থনীতিকে কীভাবে প্রভাবিত করে?"
       ]
     },
     "hayek": {
       "name": "Friedrich Hayek",
       "era": "Modern Era",
       "questions": [
-        "Why does central planning always fail?",
-        "How to harness dispersed knowledge within an organization?",
-        "Which comes first: freedom or order?"
+        "কেন্দ্রিক পরিকল্পনা সর্বদা ব্যর্থ হয় কেন?",
+        "প্রতিষ্ঠানের ছড়িয়ে থাকা জ্ঞান কীভাবে কাজে লাগাব?",
+        "প্রথমে কোনটি আসে: স্বাধীনতা নাকি শৃঙ্খলা?"
       ]
     },
     "malthus": {
       "name": "Thomas Malthus",
       "era": "Georgian Britain",
       "questions": [
-        "Can growth really last forever?",
-        "What to do when resources fall short?",
-        "How to balance growth with sustainability?"
+        "বৃদ্ধি কি আসলেই চিরকাল চলতে পারে?",
+        "সম্পদ ঘাটতি হলে কী করব?",
+        "বৃদ্ধি ও টেকসইতার ভারসাম্য কীভাবে রাখব?"
       ]
     },
     "friedman": {
       "name": "Milton Friedman",
       "era": "Contemporary",
       "questions": [
-        "Does government regulation solve or create problems?",
-        "How does monetary policy affect inflation?",
-        "Why does individual economic freedom matter?"
+        "সরকারি নিয়ন্ত্রণ সমস্যা সমাধান করে, নাকি সৃষ্টি করে?",
+        "মুদ্রানীতি মুদ্রাস্ফীতিকে কীভাবে প্রভাবিত করে?",
+        "ব্যক্তির অর্থনৈতিক স্বাধীনতা কেন গুরুত্বপূর্ণ?"
       ]
     },
     "john-stuart-mill": {
@@ -857,9 +862,9 @@
       "name": "Joseph Schumpeter",
       "era": "Modern Era",
       "questions": [
-        "My industry is being disrupted — what should I do?",
-        "How to judge whether an innovation truly matters?",
-        "Where is the balance between disruption and creation?"
+        "আমার শিল্প বিঘ্নিত হচ্ছে — কী করব?",
+        "কোনো উদ্ভাবন সত্যিই গুরুত্বপূর্ণ কিনা কীভাবে বুঝব?",
+        "বিঘ্ন ও সৃষ্টির ভারসাম্য কোথায়?"
       ]
     },
     "taleb": {
@@ -875,270 +880,270 @@
       "name": "Thomas Sowell",
       "era": "Contemporary",
       "questions": [
-        "What are the unintended consequences of this policy?",
-        "How to avoid seeing only the good side of a policy?",
-        "Does good intention guarantee good outcomes?"
+        "এই নীতির অপ্রত্যাশিত পরিণতি কী?",
+        "নীতির শুধুই ভালো দিক দেখা কীভাবে এড়াব?",
+        "ভালো উদ্দেশ্য কি ভালো ফল নিশ্চিত করে?"
       ]
     },
     "julius-caesar": {
       "name": "Julius Caesar",
       "era": "Roman Republic",
       "questions": [
-        "How to drive change from within the system?",
-        "When is the right time to act decisively?",
-        "How to win popular support?"
+        "সিস্টেমের ভেতর থেকে পরিবর্তন কীভাবে আনব?",
+        "কঠোর সিদ্ধান্ত নেওয়ার উপযুক্ত সময় কখন?",
+        "জনসমর্থন কীভাবে জেতা যায়?"
       ]
     },
     "gandhi": {
       "name": "মহাত্মা গান্ধী",
       "era": "আধুনিক",
       "questions": [
-        "How to drive change through nonviolent means?",
-        "What to do when the rules themselves are unjust?",
-        "How to influence others by example?"
+        "অহিংস পন্থায় পরিবর্তন কীভাবে আনব?",
+        "যখন নিয়মগুলো নিজেই অন্যায্য, তখন কী করব?",
+        "উদাহরণ দিয়ে অন্যদের কীভাবে প্রভাবিত করব?"
       ]
     },
     "lincoln": {
       "name": "লিংকন",
       "era": "আধুনিক আমেরিকা",
       "questions": [
-        "How to build consensus amid deep division?",
-        "How should a leader handle opposition?",
-        "Where is the line between principle and compromise?"
+        "গভীর বিভাজনের মাঝে কীভাবে ঐকমত্য গড়ব?",
+        "একজন নেতা বিরোধিতা কীভাবে সামলাবেন?",
+        "নীতি ও আপোষের রেখা কোথায়?"
       ]
     },
     "mandela": {
       "name": "ম্যান্ডেলা",
       "era": "সমসাময়িক",
       "questions": [
-        "How to forgive someone who truly hurt me?",
-        "How to balance personal sacrifice with collective goals?",
-        "Where does the strength to hold beliefs long-term come from?"
+        "যে সত্যিই আমাকে আঘাত করেছে, তাকে কীভাবে ক্ষমা করব?",
+        "ব্যক্তিগত ত্যাগ ও সমষ্টিগত লক্ষ্যের ভারসাম্য কীভাবে রাখব?",
+        "দীর্ঘমেয়াদে বিশ্বাসে অটল থাকার শক্তি কোথা থেকে আসে?"
       ]
     },
     "mlk": {
       "name": "Martin Luther King Jr.",
       "era": "Contemporary",
       "questions": [
-        "How to transform personal experience into a force for change?",
-        "How to give a speech that truly moves people?",
-        "How to maintain hope in despair?"
+        "ব্যক্তিগত অভিজ্ঞতা পরিবর্তনের শক্তিতে কীভাবে রূপান্তরিত করব?",
+        "মানুষকে সত্যিই আন্দোলিত করে এমন ভাষণ কীভাবে দেব?",
+        "নৈরাশ্যে আশাকে কীভাবে ধরে রাখব?"
       ]
     },
     "elizabeth-i": {
       "name": "Elizabeth I",
       "era": "Tudor England",
       "questions": [
-        "How to maintain balance among competing factions?",
-        "When is strategic ambiguity the right move?",
-        "How to turn weakness into strength?"
+        "প্রতিদ্বন্দ্বী দলগুলোর মধ্যে ভারসাম্য কীভাবে রাখব?",
+        "কৌশলগত অস্পষ্টতা কখন সঠিক পদক্ষেপ?",
+        "দুর্বলতাকে শক্তিতে কীভাবে রূপান্তর করব?"
       ]
     },
     "franklin": {
       "name": "Benjamin Franklin",
       "era": "Modern Era",
       "questions": [
-        "How to systematically build good character?",
-        "How to balance civic duty and personal interest?",
-        "How to improve in multiple areas simultaneously?"
+        "সুষ্ঠু চরিত্র পদ্ধতিগতভাবে কীভাবে গড়ব?",
+        "নাগরিক কর্তব্য ও ব্যক্তিগত স্বার্থের ভারসাম্য কীভাবে রাখব?",
+        "একসঙ্গে একাধিক ক্ষেত্রে কীভাবে উন্নতি করব?"
       ]
     },
     "thatcher": {
       "name": "Margaret Thatcher",
       "era": "Contemporary",
       "questions": [
-        "How to push forward the right thing despite opposition?",
-        "What mindset is needed to make unpopular decisions?",
-        "How to balance conviction with flexibility?"
+        "বিরোধিতা সত্ত্বেও সঠিক কাজ কীভাবে এগিয়ে নেব?",
+        "অপ্রিয় সিদ্ধান্ত নিতে কোন মানসিকতা দরকার?",
+        "দৃঢ় বিশ্বাস ও নমনীয়তার ভারসাম্য কীভাবে রাখব?"
       ]
     },
     "roosevelt": {
       "name": "Theodore Roosevelt",
       "era": "Modern Era",
       "questions": [
-        "How to go from bystander to actor?",
-        "How to weigh risk against reward?",
-        "What is the difference between courage and recklessness?"
+        "দর্শক থেকে সক্রিয় কর্তা কীভাবে হব?",
+        "ঝুঁকি ও পুরস্কার কীভাবে ভারসাম্য করব?",
+        "সাহস ও বেপরোয়াপনার পার্থক্য কী?"
       ]
     },
     "lee-kuan-yew": {
       "name": "Lee Kuan Yew",
       "era": "Contemporary",
       "questions": [
-        "How to build a strong organization with scarce resources?",
-        "How to balance discipline and freedom?",
-        "How to make long-term decisions that are unpopular now?"
+        "স্বল্প সম্পদ দিয়েও শক্তিশালী সংগঠন কীভাবে গড়ব?",
+        "শৃঙ্খলা ও স্বাধীনতার ভারসাম্য কীভাবে রাখব?",
+        "এখন অপ্রিয় দীর্ঘমেয়াদি সিদ্ধান্ত কীভাবে নেব?"
       ]
     },
     "turing": {
       "name": "টুরিং",
       "era": "আধুনিক",
       "questions": [
-        "Can this problem be solved algorithmically?",
-        "How to turn vague requirements into precise rules?",
-        "Can a machine do what a human does here?"
+        "এই সমস্যা কি অ্যালগরিদমিকভাবে সমাধান করা যায়?",
+        "অস্পষ্ট প্রয়োজনীয়তাকে সুনির্দিষ্ট নিয়মে কীভাবে রূপান্তর করব?",
+        "এখানে মানুষ যা করে, মেশিনও কি তা করতে পারে?"
       ]
     },
     "dennis-ritchie": {
       "name": "Dennis Ritchie",
       "era": "Contemporary",
       "questions": [
-        "How to decompose a complex system into simple parts?",
-        "What does a good abstraction look like?",
-        "How to balance simplicity with capability?"
+        "জটিল সিস্টেমকে সরল অংশে কীভাবে ভাঙব?",
+        "ভালো বিমূর্তকরণ কেমন?",
+        "সরলতা ও সক্ষমতার ভারসাম্য কীভাবে রাখব?"
       ]
     },
     "lovelace": {
       "name": "Ada Lovelace",
       "era": "Early Modern Europe",
       "questions": [
-        "How can technology and art empower each other?",
-        "Can algorithms create something truly original?",
-        "How to make logical thinking more creative?"
+        "প্রযুক্তি ও শিল্প কীভাবে পরস্পরকে ক্ষমতায়ন করতে পারে?",
+        "অ্যালগরিদম কি সত্যিকারের মৌলিক কিছু সৃষ্টি করতে পারে?",
+        "যৌক্তিক চিন্তাকে আরও সৃজনশীল কীভাবে করব?"
       ]
     },
     "john-mccarthy": {
       "name": "John McCarthy",
       "era": "Contemporary",
       "questions": [
-        "Can machines truly \"understand\"?",
-        "How to formalize human knowledge?",
-        "What is the ultimate goal of AI?"
+        "যন্ত্রগুলো কি সত্যিই \"বুঝতে\" পারে?",
+        "মানবিক জ্ঞানকে কীভাবে আনুষ্ঠানিক করা যায়?",
+        "AI-এর চূড়ান্ত লক্ষ্য কী?"
       ]
     },
     "berners-lee": {
       "name": "Tim Berners-Lee",
       "era": "Contemporary",
       "questions": [
-        "How to design an open and shared system?",
-        "How should tech products handle user data?",
-        "How to give more people equal access to information?"
+        "উন্মুক্ত ও ভাগ করে নেওয়া সিস্টেম কীভাবে ডিজাইন করব?",
+        "প্রযুক্তি-পণ্য ব্যবহারকারীর ডেটা কীভাবে পরিচালনা করবে?",
+        "আরও বেশি মানুষের তথ্যে সমান প্রবেশাধিকার কীভাবে দেব?"
       ]
     },
     "von-neumann": {
       "name": "John von Neumann",
       "era": "Modern Era",
       "questions": [
-        "Can this decision be analyzed with game theory?",
-        "How to convert a fuzzy problem into a math model?",
-        "What is the optimal architecture for this system?"
+        "এই সিদ্ধান্ত কি গেম থিওরি দিয়ে বিশ্লেষণ করা যায়?",
+        "অস্পষ্ট সমস্যাকে গাণিতিক মডেলে কীভাবে রূপান্তর করব?",
+        "এই সিস্টেমের সর্বোত্তম আর্কিটেকচার কী?"
       ]
     },
     "vint-cerf": {
       "name": "Vint Cerf",
       "era": "Contemporary",
       "questions": [
-        "How to design an infinitely scalable system?",
-        "Why are open standards better than proprietary protocols?",
-        "What are the costs and benefits of decentralization?"
+        "অসীমভাবে মাপনযোগ্য সিস্টেম কীভাবে ডিজাইন করব?",
+        "মালিকানাধীন প্রোটোকলের চেয়ে ওপেন স্ট্যান্ডার্ড ভালো কেন?",
+        "বিকেন্দ্রীকরণের খরচ ও সুবিধা কী?"
       ]
     },
     "torvalds": {
       "name": "Linus Torvalds",
       "era": "Contemporary",
       "questions": [
-        "Is this technical approach actually viable?",
-        "How to manage quality in open-source collaboration?",
-        "How to build a self-evolving technical system?"
+        "এই প্রযুক্তিগত পদ্ধতি কি আসলেই কার্যকর?",
+        "ওপেন-সোর্স সহযোগিতায় গুণমান কীভাবে ব্যবস্থাপনা করব?",
+        "স্বতঃবিকশিত প্রযুক্তি-সিস্টেম কীভাবে গড়ব?"
       ]
     },
     "hopper": {
       "name": "Grace Hopper",
       "era": "Modern Era",
       "questions": [
-        "How to drive innovation within bureaucracy?",
-        "When should I act first and ask later?",
-        "How to make technology accessible to ordinary people?"
+        "আমলাতন্ত্রের মধ্যেই উদ্ভাবন কীভাবে এগিয়ে নেব?",
+        "আগে কাজ করে পরে জিজ্ঞেস করা কখন ঠিক?",
+        "সাধারণ মানুষের জন্য প্রযুক্তি সহজলভ্য কীভাবে করব?"
       ]
     },
     "shannon": {
       "name": "Claude Shannon",
       "era": "Modern Era",
       "questions": [
-        "How to reduce noise and misunderstanding in communication?",
-        "How to tell which information truly matters?",
-        "How to transmit complex ideas more efficiently?"
+        "যোগাযোগে গোলমাল ও ভুল বোঝাবুঝি কীভাবে কমাব?",
+        "কোন তথ্যটি আসলে গুরুত্বপূর্ণ তা কীভাবে চিনব?",
+        "জটিল ধারণা আরও দক্ষতার সঙ্গে কীভাবে পৌঁছে দেব?"
       ]
     },
     "buddha": {
       "name": "গৌতম বুদ্ধ",
       "era": "প্রাচীন ভারত",
       "questions": [
-        "How to let go of attachment?",
-        "Where does suffering come from?",
-        "How to practice mindfulness in daily life?"
+        "আসক্তি কীভাবে ছেড়ে দেব?",
+        "দুর্ভোগ কোথা থেকে আসে?",
+        "দৈনন্দিন জীবনে সচেতনতা কীভাবে অনুশীলন করব?"
       ]
     },
     "martin-luther": {
       "name": "Martin Luther",
       "era": "Reformation Era",
       "questions": [
-        "When is it right to break the rules?",
-        "How to hold your ground under enormous pressure?",
-        "What to do when conscience conflicts with institutional rules?"
+        "নিয়ম ভাঙা কখন সঠিক?",
+        "বিপুল চাপে নিজের অবস্থান কীভাবে ধরে রাখব?",
+        "বিবেক যখন প্রতিষ্ঠানিক নিয়মের সঙ্গে সংঘাত করে, তখন কী করব?"
       ]
     },
     "mother-teresa": {
       "name": "Mother Teresa",
       "era": "Modern Era",
       "questions": [
-        "What can one person change?",
-        "How to face a hopeless situation?",
-        "Does helping others mean sacrificing yourself?"
+        "একজন মানুষ কী পরিবর্তন করতে পারে?",
+        "আশাহীন পরিস্থিতির মুখোমুখি কীভাবে হব?",
+        "অন্যদের সাহায্য করার মানে কি নিজেকে উৎসর্গ করা?"
       ]
     },
     "rumi": {
       "name": "Rumi",
       "era": "Medieval Period",
       "questions": [
-        "How to feel connected even in loneliness?",
-        "Can love transcend all boundaries?",
-        "Does longing itself have meaning?"
+        "একাকীত্বেও সংযোগ কীভাবে অনুভব করব?",
+        "প্রেম কি সব সীমা অতিক্রম করতে পারে?",
+        "আকাঙ্ক্ষার নিজেরই কি কোনো অর্থ আছে?"
       ]
     },
     "aquinas": {
       "name": "Thomas Aquinas",
       "era": "Medieval Period",
       "questions": [
-        "Are reason and faith in conflict?",
-        "Can natural law serve as a moral foundation?",
-        "How to think logically about ultimate questions?"
+        "যুক্তি ও বিশ্বাস কি সংঘাতে?",
+        "প্রাকৃতিক আইন কি নৈতিক ভিত্তি হতে পারে?",
+        "চরম প্রশ্ন নিয়ে যৌক্তিকভাবে কীভাবে ভাবব?"
       ]
     },
     "al-ghazali": {
       "name": "Al-Ghazali",
       "era": "Medieval Period",
       "questions": [
-        "Where are the limits of reason?",
-        "How to find certainty through doubt?",
-        "Can inner experience lead to truth?"
+        "যুক্তির সীমা কোথায়?",
+        "সন্দেহের মধ্য দিয়ে নিশ্চয়তা কীভাবে খুঁজে পাব?",
+        "অন্তর-অভিজ্ঞতা কি সত্যের দিকে নিয়ে যেতে পারে?"
       ]
     },
     "thich-nhat-hanh": {
       "name": "Thich Nhat Hanh",
       "era": "Contemporary",
       "questions": [
-        "How to find a moment of peace in busyness?",
-        "Does compassion mean tolerating everything?",
-        "How to reconcile with someone who has hurt me?"
+        "ব্যস্ততার মধ্যে শান্তির মুহূর্ত কীভাবে খুঁজে পাব?",
+        "করুণা মানে কি সবকিছু সহ্য করা?",
+        "যে আমাকে আঘাত করেছে তার সঙ্গে কীভাবে মিটমাট করব?"
       ]
     },
     "huineng": {
       "name": "Huineng",
       "era": "Tang Dynasty",
       "questions": [
-        "Can awakening truly happen in an instant?",
-        "How to live in the present moment in daily life?",
-        "Is attachment to practice itself an attachment?"
+        "জাগরণ কি সত্যিই এক মুহূর্তে ঘটতে পারে?",
+        "দৈনন্দিন জীবনে বর্তমান মুহূর্তে কীভাবে বাস করব?",
+        "অনুশীলনের প্রতি আসক্তিও কি আসক্তি?"
       ]
     },
     "cs-lewis": {
       "name": "C.S. Lewis",
       "era": "Modern Era",
       "questions": [
-        "Can reason and faith coexist?",
-        "How can suffering be compatible with a good God?",
-        "Why do myths and stories move us so deeply?"
+        "যুক্তি ও বিশ্বাস কি একসঙ্গে থাকতে পারে?",
+        "সুদর্শন ঈশ্বরের সঙ্গে দুঃখকষ্ট কীভাবে সঙ্গতিপূর্ণ?",
+        "পুরাণ ও গল্প আমাদের এত গভীরভাবে স্পর্শ করে কেন?"
       ]
     },
     "ibn-khaldun": {
@@ -1163,27 +1168,27 @@
       "name": "Helen Keller",
       "era": "Modern Era",
       "questions": [
-        "How to overcome seemingly impossible obstacles?",
-        "How to find a way forward in adversity?",
-        "Are limitations truly unbreakable?"
+        "মনে হওয়া অসম্ভব বাধা কীভাবে অতিক্রম করব?",
+        "বিপদে এগিয়ে যাওয়ার পথ কীভাবে খুঁজে পাব?",
+        "সীমা কি সত্যিই অলঙ্ঘনীয়?"
       ]
     },
     "tagore": {
       "name": "রবীন্দ্রনাথ ঠাকুর",
       "era": "আধুনিক ভারত",
       "questions": [
-        "How to preserve humanistic and poetic elements in modern education?",
-        "What role do beauty and art play in growing up?",
-        "Should education transcend utilitarian goals?"
+        "আধুনিক শিক্ষায় মানবিক ও কাব্যিক উপাদান কীভাবে সংরক্ষণ করব?",
+        "বড় হওয়ায় সৌন্দর্য ও শিল্পের ভূমিকা কী?",
+        "শিক্ষা কি উপযোগী লক্ষ্যকে অতিক্রম করা উচিত?"
       ]
     },
     "dewey": {
       "name": "John Dewey",
       "era": "Modern Era",
       "questions": [
-        "How to learn through actual doing?",
-        "What is the true purpose of education?",
-        "How to connect the classroom to real life?"
+        "প্রকৃত কাজের মধ্য দিয়ে কীভাবে শিখব?",
+        "শিক্ষার প্রকৃত উদ্দেশ্য কী?",
+        "ক্লাসরুমকে বাস্তব জীবনের সঙ্গে কীভাবে সংযুক্ত করব?"
       ]
     },
     "piaget": {
@@ -1208,36 +1213,36 @@
       "name": "Cai Yuanpei",
       "era": "Republican China",
       "questions": [
-        "Why does academic freedom matter?",
-        "How does aesthetic education shape character?",
-        "How to reconcile different schools of thought?"
+        "একাডেমিক স্বাধীনতা কেন গুরুত্বপূর্ণ?",
+        "নান্দনিক শিক্ষা চরিত্র কীভাবে গড়ে তোলে?",
+        "বিভিন্ন চিন্তাধারা কীভাবে মিলিয়ে আনব?"
       ]
     },
     "freire": {
       "name": "Paulo Freire",
       "era": "Contemporary",
       "questions": [
-        "How can education become liberation rather than oppression?",
-        "How to awaken critical thinking in learning?",
-        "What should the teacher-student relationship look like?"
+        "শিক্ষা কীভাবে দমন না হয়ে মুক্তি হতে পারে?",
+        "শেখার মধ্যে সমালোচনামূলক চিন্তা কীভাবে জাগিয়ে তুলব?",
+        "শিক্ষক-ছাত্র সম্পর্ক কেমন হওয়া উচিত?"
       ]
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
       "era": "Modern China",
       "questions": [
-        "How to turn everyday life into a classroom?",
-        "What problems arise when education is divorced from life?",
-        "How to help children learn by doing?"
+        "দৈনন্দিন জীবনকে ক্লাসরুমে কীভাবে পরিণত করব?",
+        "শিক্ষা যখন জীবন থেকে বিচ্ছিন্ন হয়, তখন কী সমস্যা সৃষ্টি হয়?",
+        "শিশুদের কাজ করে শিখতে কীভাবে সাহায্য করব?"
       ]
     },
     "gardner": {
       "name": "Howard Gardner",
       "era": "Contemporary",
       "questions": [
-        "What are my dominant intelligences?",
-        "How to use my strengths to learn difficult subjects?",
-        "Can traditional IQ tests measure real ability?"
+        "আমার প্রভাবশালী বুদ্ধিমত্তা কী?",
+        "কঠিন বিষয় শিখতে আমার শক্তি কীভাবে কাজে লাগাব?",
+        "প্রচলিত আইকিউ পরীক্ষা কি প্রকৃত ক্ষমতা পরিমাপ করতে পারে?"
       ]
     },
     "benjamin-graham": {

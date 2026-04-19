@@ -9,6 +9,7 @@
   "home": {
     "title": "与思想大师对话",
     "subtitle": "输入话题自动开启圆桌，或手动挑选角色",
+    "apiKeyBanner": "配置 API 密钥后即可开始讨论",
     "topicPlaceholder": "输入话题，AI 自动匹配讨论嘉宾...",
     "autoRoundtable": "开始",
     "suggesting": "正在匹配...",
@@ -64,6 +65,7 @@
     "share": "分享对话",
     "copied": "已复制",
     "shareTooLong": "对话过长，无法通过链接分享",
+    "shareTooLongHint": "改用 Markdown 导出",
     "copyLineupLink": "复制阵容链接",
     "copyCategoryLink": "复制分类圆桌链接",
     "linkCopied": "已复制",
@@ -85,6 +87,7 @@
     "characterNamePlaceholder": "如 爱达·洛芙莱斯",
     "characterAvatar": "头像",
     "characterColor": "颜色",
+    "characterSystemPrompt": "系统提示词",
     "characterPromptPlaceholder": "描述这个角色如何思考和回应...",
     "characterEra": "时代",
     "characterEraPlaceholder": "如 当代、文艺复兴",
@@ -143,6 +146,8 @@
   "common": {
     "loading": "加载中...",
     "error": "出错了: {{message}}",
+    "somethingWrong": "出了点问题",
+    "unexpectedError": "发生了意外错误",
     "confirm": "确认",
     "unknown": "未知",
     "cancel": "取消",

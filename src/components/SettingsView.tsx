@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSettingsStore } from '../stores/settings';
-import { getAllAdapters, getAdapter } from '../adapters/registry';
+import { getAllAdapters, getAdapter, PROVIDER_GROUPS } from '../adapters/registry';
 import { getStorageUsage } from '../utils/storage';
 import { downloadFile } from '../utils/export';
 import { compressToBase64, decompressFromBase64 } from '../utils/compress';
@@ -173,7 +173,15 @@ export function SettingsView() {
       <section className="space-y-4">
         <h3 className="text-lg font-semibold">{t('settings.defaultProvider')}</h3>
         <select value={settings.defaultProvider} onChange={(e) => handleProviderChange(e.target.value)} className={selectClass}>
-          {adapters.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
+          {PROVIDER_GROUPS.map((g) => {
+            const inGroup = adapters.filter((a) => (a.group || 'custom') === g.id);
+            if (inGroup.length === 0) return null;
+            return (
+              <optgroup key={g.id} label={t(g.labelKey)}>
+                {inGroup.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
+              </optgroup>
+            );
+          })}
         </select>
 
         <div>

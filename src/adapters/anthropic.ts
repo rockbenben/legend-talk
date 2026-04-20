@@ -11,6 +11,7 @@ export class AnthropicAdapter implements LLMAdapter {
   ];
   docsUrl = 'https://docs.anthropic.com/en/api/messages';
   apiKeyUrl = 'https://console.anthropic.com/settings/keys';
+  group = 'international';
 
   private baseUrl = 'https://api.anthropic.com/v1';
 

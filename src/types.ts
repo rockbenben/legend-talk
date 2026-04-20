@@ -28,6 +28,7 @@ export interface LLMAdapter {
   models: ModelOption[];
   docsUrl?: string;
   apiKeyUrl?: string;
+  group?: string;
   validateKey(key: string, corsProxy?: string): Promise<boolean>;
   chat(params: ChatParams): AsyncGenerator<string>;
 }

@@ -6,11 +6,13 @@ type ThinkingMapper = (level: ThinkingLevel) => Record<string, unknown>;
 const THINKING_MAPPERS: Record<string, ThinkingMapper> = {
   reasoning_effort: (level) => ({ reasoning_effort: level }),
   enable_thinking: () => ({ enable_thinking: true }),
+  thinking_type: () => ({ thinking: { type: 'enabled' } }),
 };
 
 export class OpenAICompatibleAdapter implements LLMAdapter {
   docsUrl?: string;
   apiKeyUrl?: string;
+  group?: string;
   private thinkingMapper?: ThinkingMapper;
 
   constructor(
@@ -18,10 +20,11 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
     public name: string,
     public baseUrl: string,
     public models: ModelOption[],
-    opts?: { docsUrl?: string; apiKeyUrl?: string; thinkingStyle?: string },
+    opts?: { docsUrl?: string; apiKeyUrl?: string; thinkingStyle?: string; group?: string },
   ) {
     this.docsUrl = opts?.docsUrl;
     this.apiKeyUrl = opts?.apiKeyUrl;
+    this.group = opts?.group;
     if (opts?.thinkingStyle) this.thinkingMapper = THINKING_MAPPERS[opts.thinkingStyle];
   }
 

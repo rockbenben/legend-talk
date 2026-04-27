@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
+import { Input, Button, Spin, Alert, InputNumber, Typography, Divider, Space, Card } from 'antd';
+import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
 import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
@@ -17,7 +19,8 @@ import { ParticipantsBar } from './ParticipantsBar';
 import { ActionBar } from './ActionBar';
 import type { Character } from '../types';
 
-/** Check if a characterId is an analysis marker (not a real character) */
+const { Text, Title } = Typography;
+
 function isAnalysisMsg(characterId?: string): boolean {
   return !!characterId?.startsWith('__') && !!characterId?.endsWith('__');
 }
@@ -54,39 +57,23 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const lang = currentLang();
   const rounds = useSettingsStore((s) => s.roundtableRounds);
   const setRounds = useSettingsStore((s) => s.setRoundtableRounds);
-  const [roundsDraft, setRoundsDraft] = useState<string>(String(rounds));
-  useEffect(() => { setRoundsDraft(String(rounds)); }, [rounds]);
-  const commitRounds = () => {
-    const n = parseInt(roundsDraft, 10);
-    if (!Number.isFinite(n)) { setRoundsDraft(String(rounds)); return; }
-    const clamped = Math.max(1, Math.min(10, n));
-    setRounds(clamped);
-    setRoundsDraft(String(clamped));
-  };
   const [showPicker, setShowPicker] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleValue, setTitleValue] = useState('');
   const [editingMsgId, setEditingMsgId] = useState<string | null>(null);
   const [editingMsgValue, setEditingMsgValue] = useState('');
-  // After a user bubble is edited, we surface an inline "Apply edit" button next to
-  // that message so the chair can trigger retry without hunting for the retry icon.
-  // Cleared on any other action (new edit, retry elsewhere, new send, generation).
   const [pendingRetryMsgId, setPendingRetryMsgId] = useState<string | null>(null);
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
   const summarizeAbortRef = useRef<AbortController | null>(null);
-  // When set true, the next messages-change effect skips auto-scroll — used when the
-  // chair edits an earlier message, so saving doesn't yank the viewport to the bottom.
   const skipNextScrollRef = useRef(false);
 
-  // Auto-summon characters and start discussion from topic input
   const [isSummoning, setIsSummoning] = useState(false);
   const [summonError, setSummonError] = useState<string | null>(null);
   const [pendingTopic, setPendingTopic] = useState<string | null>(null);
   const summonRef = useRef(false);
   const summonAbortRef = useRef<AbortController | null>(null);
 
-  // Recommended topics for roundtable (stabilized to prevent flicker on re-render)
   const charKey = conversation?.characters.join(',') ?? '';
   const templateId = conversation?.templateId;
   const roundtableTopics = useMemo(() => {
@@ -95,7 +82,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
       const q = t(`templates.${templateId}.questions`, { returnObjects: true });
       return Array.isArray(q) ? q as string[] : [];
     }
-    // Manual selection: pick 1 random question per character, max 5
     const chars = [...conversation.characters];
     for (let i = chars.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -106,9 +92,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
       if (!Array.isArray(q) || q.length === 0) return null;
       return q[Math.floor(Math.random() * q.length)] as string;
     }).filter((q, i, arr): q is string => q !== null && arr.indexOf(q) === i);
-  }, [charKey, templateId, t]);
+  }, [charKey, templateId, t]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Reset ephemeral UI state when switching conversations
   useEffect(() => {
     setShowPicker(false);
     setEditingTitle(false);
@@ -117,7 +102,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setSummonError(null);
     setPendingTopic(null);
     summonRef.current = false;
-    // Abort in-flight operations from previous conversation
     summonAbortRef.current?.abort();
     setIsSummoning(false);
     summarizeAbortRef.current?.abort();
@@ -134,7 +118,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
-    if (!provider) { setSummonError(null); return; } // Will show isConfigured warning
+    if (!provider) { setSummonError(null); return; }
 
     summonAbortRef.current?.abort();
     const controller = new AbortController();
@@ -158,7 +142,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
         setSummonError(err instanceof Error ? err.message : t('common.error', { message: '' }));
       })
       .finally(() => {
-        // Guard: only update state if this is still the active summon (avoids StrictMode race)
         if (summonAbortRef.current === controller) {
           setIsSummoning(false);
           summonAbortRef.current = null;
@@ -166,14 +149,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
       });
   };
 
-  // Auto-summon: conversation has topic but no characters yet → start summoning
   useEffect(() => {
     if (summonRef.current) return;
     if (!conversation || conversation.characters.length > 0 || conversation.messages.length > 0 || !conversation.title) return;
     summonRef.current = true;
     setPendingTopic(conversation.title);
     startSummon(conversation.title);
-  }, [conversationId]);
+  }, [conversationId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!conversation) return null;
 
@@ -211,9 +193,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const msg = conv.messages.find((m) => m.id === messageId);
     if (!msg) return;
 
-    // Chair intervention (user msg with a focus snapshot): preserve focus edits by
-    // rebuilding focus from snapshot + (possibly edited) content instead of wiping
-    // everything and re-sending.
     if (isMulti && msg.role === 'user' && msg.focusSnapshot !== undefined) {
       roundtable.retryFromIntervention(conversationId, messageId);
       return;
@@ -324,67 +303,84 @@ export function ChatView({ conversationId }: ChatViewProps) {
     ? presetCharacters.find((c) => c.id === roundtable.currentSpeaker) : null;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden relative">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', position: 'relative' }}>
       {pendingTopic && !isMulti && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-auto">
-          <div className="flex flex-col items-center gap-3 px-6 py-5 rounded-xl bg-white/95 dark:bg-gray-800/95 shadow-lg border border-gray-200 dark:border-gray-700 max-w-sm mx-4">
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 20,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'color-mix(in srgb, currentColor 6%, transparent)',
+            backdropFilter: 'blur(2px)',
+          }}
+        >
+          <Space direction="vertical" align="center" size="middle" style={{ padding: 24, background: 'var(--ant-color-bg-elevated)', border: '1px solid var(--ant-color-border)', borderRadius: 'var(--ant-border-radius-lg)', maxWidth: 360 }}>
             {isSummoning ? (
               <>
-                <div className="flex gap-1.5">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
-                </div>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
+                <Spin />
+                <Text type="secondary">{t('home.suggesting')}</Text>
               </>
             ) : !isConfigured ? (
               <>
-                <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
-                <div className="flex gap-2">
-                  <button onClick={() => navigate(lp('/settings'))} className="text-sm px-3 py-1.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600">{t('chat.goSettings')}</button>
-                  <button onClick={() => startSummon(pendingTopic)} className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-400">{t('chat.retry')}</button>
-                </div>
+                <Text>{t('chat.noApiKey')}</Text>
+                <Space>
+                  <Button type="primary" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                  <Button onClick={() => startSummon(pendingTopic)}>{t('chat.retry')}</Button>
+                </Space>
               </>
             ) : summonError ? (
               <>
-                <span className="text-sm text-red-500">{summonError}</span>
-                <div className="flex gap-2">
-                  <button onClick={() => startSummon(pendingTopic)} className="text-sm px-3 py-1.5 rounded-lg bg-blue-500 text-white hover:bg-blue-600">{t('chat.retry')}</button>
-                  <button onClick={() => navigate(lp('/settings'))} className="text-sm px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-gray-400">{t('chat.goSettings')}</button>
-                </div>
+                <Text type="danger">{summonError}</Text>
+                <Space>
+                  <Button type="primary" onClick={() => startSummon(pendingTopic)}>{t('chat.retry')}</Button>
+                  <Button onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                </Space>
               </>
             ) : null}
-          </div>
+          </Space>
         </div>
       )}
+
       {/* Title bar */}
-      <div className="flex flex-wrap items-center gap-2 px-2 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, padding: '10px 20px', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
         {editingTitle ? (
-          <input
-            type="text" value={titleValue}
+          <Input
+            autoFocus
+            value={titleValue}
             onChange={(e) => setTitleValue(e.target.value)}
             onBlur={finishEditTitle}
-            onKeyDown={(e) => { if (e.key === 'Enter') finishEditTitle(); if (e.key === 'Escape') setEditingTitle(false); }}
-            autoFocus
-            className="flex-1 min-w-0 text-sm font-semibold px-1 py-0 border border-blue-500 rounded bg-white dark:bg-gray-800 focus:outline-none"
+            onPressEnter={finishEditTitle}
+            onKeyDown={(e) => { if (e.key === 'Escape') setEditingTitle(false); }}
+            style={{ flex: 1, minWidth: 0 }}
           />
         ) : (
-          <span className="font-semibold cursor-pointer hover:opacity-70 truncate min-w-0 flex-1" onClick={startEditTitle} title={t('chat.rename')}>
+          <Title
+            level={5}
+            className="display-serif"
+            ellipsis
+            onClick={startEditTitle}
+            title={t('chat.rename')}
+            style={{ flex: 1, minWidth: 0, margin: 0, fontWeight: 500, cursor: 'pointer' }}
+          >
             {displayTitle}
-          </span>
+          </Title>
         )}
         {isMulti && (
-          <div className="flex items-center gap-2 ms-auto shrink-0">
-            <label className="text-xs text-gray-500 whitespace-nowrap">{t('roundtable.rounds')}</label>
-            <input
-              type="number" inputMode="numeric" min={1} max={10} value={roundsDraft}
-              onChange={(e) => setRoundsDraft(e.target.value)}
-              onBlur={commitRounds}
-              onKeyDown={(e) => { if (e.key === 'Enter') { commitRounds(); (e.target as HTMLInputElement).blur(); } }}
+          <Space size={6} style={{ marginInlineStart: 'auto' }}>
+            <Text type="secondary" style={{ fontSize: 12 }}>{t('roundtable.rounds')}</Text>
+            <InputNumber
+              size="small"
+              min={1}
+              max={10}
+              value={rounds}
+              onChange={(v) => { if (typeof v === 'number') setRounds(Math.max(1, Math.min(10, v))); }}
               disabled={isGenerating}
-              className="w-12 px-1 py-0.5 text-sm rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-center"
+              style={{ width: 64 }}
             />
-          </div>
+          </Space>
         )}
       </div>
 
@@ -404,287 +400,292 @@ export function ChatView({ conversationId }: ChatViewProps) {
       />
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-2 sm:px-4 py-4 space-y-4">
-        {!isConfigured && (
-          <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-            <span className="text-sm text-amber-700 dark:text-amber-300">{t('chat.noApiKey')}</span>
-            <button onClick={() => navigate(lp('/settings'))} className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline">
-              {t('chat.goSettings')}
-            </button>
-          </div>
-        )}
-        {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
-          <div className="flex flex-col items-center justify-center py-16 gap-5">
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-200 max-w-md text-center">"{conversation.title}"</p>
-            <div className="flex gap-1.5">
-              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 bg-blue-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
-            </div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">{t('home.suggesting')}</span>
-          </div>
-        )}
-        {conversation.messages.length === 0 && firstChar && !isMulti && (
-          <div className="text-center py-8">
-            <p className="text-gray-400 mb-4">{t('chat.noMessages')}</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {(t(`characters.${firstChar.id}.questions`, { returnObjects: true }) as string[]).map((q) => (
-                <button key={q} onClick={() => handleSend(q)} className="px-3 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700">
-                  {q}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-        {conversation.messages.length === 0 && isMulti && roundtableTopics.length > 0 && (
-          <div className="text-center py-8">
-            <p className="text-gray-400 mb-4">{t('chat.noMessages')}</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {roundtableTopics.map((q) => (
-                <button key={q} onClick={() => handleSend(q)} className="px-3 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700">
-                  {q}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-        {conversation.messages.map((msg, idx) => {
-          const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
-          const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
-          const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
-          // Hide empty bubble while still generating (status bar already shows who's speaking)
-          if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
-          // Focus marker: inline card shown after user intervention. When it's the last
-          // message and no generation is in flight, the chair can edit and hit Start.
-          if (msg.characterId === '__focus__') {
-            const isLast = idx === conversation.messages.length - 1;
-            const isEditing = editingMsgId === msg.id;
-            const interactive = isLast && !isGenerating && !isSummarizing;
+      <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
+        <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+          {!isConfigured && (
+            <Alert
+              type="warning"
+              showIcon
+              message={t('chat.noApiKey')}
+              action={<Button type="link" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
+              style={{ marginBottom: 12 }}
+            />
+          )}
+          {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
+            <Space direction="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
+              <Title level={3} className="display-serif-italic" style={{ margin: 0, textAlign: 'center', maxWidth: 480 }}>
+                "{conversation.title}"
+              </Title>
+              <Spin />
+              <Text type="secondary">{t('home.suggesting')}</Text>
+            </Space>
+          )}
+          {conversation.messages.length === 0 && (firstChar && !isMulti || (isMulti && roundtableTopics.length > 0)) && (() => {
+            const questions = !isMulti && firstChar
+              ? (t(`characters.${firstChar.id}.questions`, { returnObjects: true }) as string[])
+              : roundtableTopics;
             return (
-              <div key={msg.id} className="flex justify-center py-2">
-                <div className="w-full max-w-[95%] sm:max-w-[85%] px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 text-sm">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="font-medium text-blue-700 dark:text-blue-300">🎯 {t('roundtable.focus')}</span>
-                    {interactive && !isEditing && (
-                      <button
-                        onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
-                        className="p-1 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                  {isEditing ? (
-                    <>
-                      <textarea
-                        value={editingMsgValue}
-                        onChange={(e) => {
-                          setEditingMsgValue(e.target.value);
-                          e.target.style.height = 'auto';
-                          e.target.style.height = `${e.target.scrollHeight}px`;
-                        }}
-                        ref={(el) => {
-                          if (el) { el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; }
-                        }}
-                        className="w-full px-2 py-1 text-sm rounded border border-blue-300 dark:border-blue-700 bg-white dark:bg-gray-800 focus:outline-none resize-none overflow-hidden min-h-[2.5rem] max-h-[60vh]"
-                        autoFocus />
-                      <div className="flex gap-2 mt-2 justify-end">
-                        <button
-                          onClick={() => setEditingMsgId(null)}
-                          className="text-xs px-2 py-1 text-gray-500 hover:text-gray-700">
-                          {t('common.cancel')}
-                        </button>
-                        <button
+              <div style={{ padding: '40px 0' }}>
+                <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
+                  {t('chat.noMessages')}
+                </Text>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                    gap: 12,
+                  }}
+                >
+                  {questions.map((q) => (
+                    <Card
+                      key={q}
+                      size="small"
+                      hoverable
+                      onClick={() => handleSend(q)}
+                      styles={{ body: { padding: 14 } }}
+                    >
+                      <Text style={{ fontSize: 14, lineHeight: 1.5 }}>{q}</Text>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+          {conversation.messages.map((msg, idx) => {
+            const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
+            const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
+            const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
+            if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
+
+            if (msg.characterId === '__focus__') {
+              const isLast = idx === conversation.messages.length - 1;
+              const isEditing = editingMsgId === msg.id;
+              const interactive = isLast && !isGenerating && !isSummarizing;
+              return (
+                <Alert
+                  key={msg.id}
+                  type="info"
+                  icon={<AimOutlined />}
+                  showIcon
+                  style={{ margin: '12px 0' }}
+                  message={
+                    <Space direction="vertical" style={{ width: '100%' }}>
+                      <Space style={{ width: '100%', justifyContent: 'space-between' }}>
+                        <Text strong>{t('roundtable.focus')}</Text>
+                        {interactive && !isEditing && (
+                          <Button type="text" size="small" icon={<EditOutlined />} onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} />
+                        )}
+                      </Space>
+                      {isEditing ? (
+                        <>
+                          <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
+                          <Space style={{ justifyContent: 'flex-end', width: '100%' }}>
+                            <Button size="small" onClick={() => setEditingMsgId(null)}>{t('common.cancel')}</Button>
+                            <Button
+                              size="small"
+                              type="primary"
+                              onClick={() => {
+                                if (editingMsgValue.trim()) {
+                                  skipNextScrollRef.current = true;
+                                  useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
+                                }
+                                setEditingMsgId(null);
+                              }}
+                            >
+                              {t('common.save')}
+                            </Button>
+                          </Space>
+                        </>
+                      ) : (
+                        <>
+                          <Text style={{ whiteSpace: 'pre-wrap' }}>{msg.content}</Text>
+                          {interactive && (
+                            <div style={{ textAlign: 'end' }}>
+                              <Button
+                                size="small"
+                                type="primary"
+                                icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
+                                iconPosition="end"
+                                onClick={() => roundtable.startFromFocus(conversationId, rounds)}
+                              >
+                                {t('roundtable.start')}
+                              </Button>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </Space>
+                  }
+                />
+              );
+            }
+
+            return (
+              <div key={msg.id} style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 120px' } as React.CSSProperties}>
+                {showDivider && (
+                  <Divider plain>
+                    <Text type="secondary" className="display-serif-italic" style={{ fontSize: 12 }}>
+                      {t('roundtable.discussionComplete')}
+                    </Text>
+                  </Divider>
+                )}
+                <div className="group">
+                  {editingMsgId === msg.id ? (
+                    <div style={{ padding: '12px 0' }}>
+                      <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
+                      <Space style={{ marginTop: 6 }}>
+                        <Button
+                          size="small"
+                          type="primary"
                           onClick={() => {
-                            if (editingMsgValue.trim()) {
+                            const trimmed = editingMsgValue.trim();
+                            if (trimmed && trimmed !== msg.content.trim()) {
                               skipNextScrollRef.current = true;
-                              useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
+                              useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
+                              setPendingRetryMsgId(msg.id);
                             }
                             setEditingMsgId(null);
                           }}
-                          className="text-xs px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white">
-                          {t('common.save')}
-                        </button>
-                      </div>
-                    </>
+                        >
+                          {t('chat.send')}
+                        </Button>
+                        <Button size="small" onClick={() => setEditingMsgId(null)}>✕</Button>
+                      </Space>
+                    </div>
                   ) : (
-                    <>
-                      <div className="text-gray-700 dark:text-gray-200 whitespace-pre-wrap">{msg.content}</div>
-                      {interactive && (
-                        <div className="mt-2 flex justify-end">
-                          <button
-                            onClick={() => roundtable.startFromFocus(conversationId, rounds)}
-                            className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium">
-                            {t('roundtable.start')}
-                          </button>
-                        </div>
-                      )}
-                    </>
+                    <MessageBubble
+                      content={msg.content}
+                      isUser={msg.role === 'user'}
+                      avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
+                      color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
+                      name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
+                      timestamp={msg.timestamp}
+                    />
+                  )}
+                  {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
+                    <div
+                      className="group-hover:!opacity-100"
+                      style={{
+                        display: 'flex',
+                        gap: 0,
+                        opacity: 0,
+                        transition: 'opacity 0.18s',
+                        marginTop: 4,
+                        ...(msg.role === 'user'
+                          ? { justifyContent: 'flex-end' }
+                          : { paddingInlineStart: 54 }),
+                      }}
+                    >
+                      <Button type="text" size="small" icon={<CopyOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})} title={t('chat.copy')} />
+                      <Button type="text" size="small" icon={<EditOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { setPendingRetryMsgId(null); setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} title={t('chat.edit')} />
+                      <Button type="text" size="small" icon={<ReloadOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => handleRetryFrom(msg.id)} title={t('chat.regenerate')} />
+                      <Button type="text" size="small" icon={<BranchesOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { const newId = branchConversation(conversationId, msg.id); if (newId) navigate(lp(`/chat/${newId}`)); }} title={t('chat.branch')} />
+                    </div>
+                  )}
+                  {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
+                    <div
+                      style={{
+                        marginTop: 4,
+                        display: 'flex',
+                        ...(msg.role === 'user'
+                          ? { justifyContent: 'flex-end' }
+                          : { paddingInlineStart: 54 }),
+                      }}
+                    >
+                      <Button size="small" type="primary" icon={<ReloadOutlined />} onClick={() => handleRetryFrom(msg.id)}>
+                        {t('chat.applyEdit')}
+                      </Button>
+                    </div>
                   )}
                 </div>
               </div>
             );
-          }
-          return (
-            <div key={msg.id} className="[content-visibility:auto] [contain-intrinsic-size:auto_120px]">
-              {showDivider && (
-                <div className="flex items-center gap-3 py-2">
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
-                  <span className="text-xs text-gray-400">{t('roundtable.discussionComplete')}</span>
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
-                </div>
-              )}
-              <div className="group">
-                {editingMsgId === msg.id ? (
-                  <div className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                    <div className="w-8 shrink-0" />
-                    <div className="flex-1 max-w-[90%] sm:max-w-[75%]">
-                      <textarea
-                        value={editingMsgValue}
-                        onChange={(e) => {
-                          setEditingMsgValue(e.target.value);
-                          e.target.style.height = 'auto';
-                          e.target.style.height = `${e.target.scrollHeight}px`;
-                        }}
-                        ref={(el) => {
-                          if (el) { el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; }
-                        }}
-                        className="w-full px-3 py-2 text-sm rounded-lg border border-blue-500 bg-white dark:bg-gray-800 focus:outline-none resize-none overflow-hidden min-h-[4rem] max-h-[60vh]"
-                        autoFocus />
-                      <div className="flex gap-2 mt-1">
-                        <button onClick={() => {
-                          const trimmed = editingMsgValue.trim();
-                          if (trimmed && trimmed !== msg.content.trim()) {
-                            skipNextScrollRef.current = true;
-                            useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
-                            // Surface the inline Apply button so the chair can trigger retry
-                            // without hunting for the small retry icon. Works for user,
-                            // character, moderator, and summary messages — each routes to its
-                            // appropriate regeneration in handleRetryFrom.
-                            setPendingRetryMsgId(msg.id);
-                          }
-                          setEditingMsgId(null);
-                        }}
-                          className="text-xs px-2 py-0.5 rounded bg-blue-500 text-white">{t('chat.send')}</button>
-                        <button onClick={() => setEditingMsgId(null)} className="text-xs px-2 py-0.5 rounded text-gray-500 hover:text-gray-700">✕</button>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <MessageBubble
-                    content={msg.content} isUser={msg.role === 'user'}
-                    avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
-                    color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
-                    name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
-                    timestamp={msg.timestamp}
-                  />
-                )}
-                {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                  <div className={`flex gap-0.5 mt-0.5 md:opacity-0 md:group-hover:opacity-100 transition-opacity ${msg.role === 'user' ? 'justify-end pe-11' : 'ps-11'}`}>
-                    <button onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title={t('chat.copy')}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                      </svg>
-                    </button>
-                    <button onClick={() => { setPendingRetryMsgId(null); setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800"
-                      title={t('chat.edit')}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                    </button>
-                    <button onClick={() => handleRetryFrom(msg.id)}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title={t('chat.regenerate')}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                        <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
-                      </svg>
-                    </button>
-                    <button onClick={() => { const newId = branchConversation(conversationId, msg.id); if (newId) navigate(lp(`/chat/${newId}`)); }}
-                      className="p-2 sm:p-1.5 text-gray-400 hover:text-blue-500 rounded-md active:bg-gray-100 dark:active:bg-gray-800" title={t('chat.branch')}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                        <line x1="6" y1="3" x2="6" y2="15" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" />
-                      </svg>
-                    </button>
-                  </div>
-                )}
-                {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                  <div className={`flex mt-1.5 ${msg.role === 'user' ? 'justify-end pe-11' : 'ps-11'}`}>
-                    <button
-                      onClick={() => handleRetryFrom(msg.id)}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-medium shadow-sm transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-                        <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
-                      </svg>
-                      {t('chat.applyEdit')}
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-        {isGenerating && (
-          <div className="flex items-center gap-1.5 text-sm text-gray-400">
-            <span>{isMulti && roundtable.currentRound
-              ? roundtable.currentSpeaker === '__moderator__'
-                ? t('roundtable.moderatorSynthesizing', { current: roundtable.currentRound, total: roundtable.totalRounds })
-                : speakerChar
-                  ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: t(`characters.${speakerChar.id}.name`) })
-                  : t('roundtable.roundPreparing', { current: roundtable.currentRound, total: roundtable.totalRounds })
-              : t('chat.thinking')}</span>
-            <span className="flex gap-0.5">
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-1.5 h-1.5 bg-gray-400 rounded-full motion-safe:animate-bounce" style={{ animationDelay: '300ms' }} />
-            </span>
-            <button onClick={stopGenerating} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
-          </div>
-        )}
-        {error && (() => {
-          const s = useSettingsStore.getState();
-          const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
-          const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
-          const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
-          if (isCors) return (
-            <div className="flex flex-wrap items-center gap-2 text-sm px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-              <span className="text-amber-700 dark:text-amber-300">{t('chat.corsError')}</span>
-              <button onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}
-                className="text-xs px-2.5 py-1 rounded bg-amber-500 text-white hover:bg-amber-600">{t('chat.useCorsProxy')}</button>
-              <button onClick={() => navigate(lp('/settings'))} className="text-xs px-2 py-1 rounded text-amber-700 dark:text-amber-300 hover:underline">{t('chat.goSettings')}</button>
-            </div>
-          );
-          if (isNetwork) return (
-            <div className="flex flex-wrap items-center gap-2 text-sm px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-              <span className="text-amber-700 dark:text-amber-300">{t('chat.networkError')}</span>
-              <button onClick={retryLast} className="text-xs px-2.5 py-1 rounded bg-amber-500 text-white hover:bg-amber-600">{t('chat.retry')}</button>
-            </div>
-          );
-          return (
-            <div className="flex flex-wrap items-center gap-2 text-sm text-red-500">
-              <span>{t('common.error', { message: error })}</span>
-              <button onClick={retryLast} className="shrink-0 text-xs px-2 py-0.5 rounded border border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-900/20">{t('chat.retry')}</button>
-              <button onClick={() => navigate(lp('/settings'))} className="shrink-0 text-xs px-2 py-0.5 rounded border border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-900/20">{t('chat.goSettings')}</button>
-            </div>
-          );
-        })()}
-        <div ref={bottomRef} />
+          })}
+          {isGenerating && (
+            <Space size="small" style={{ padding: '12px 0' }}>
+              <Spin size="small" />
+              <Text type="secondary">
+                {isMulti && roundtable.currentRound
+                  ? roundtable.currentSpeaker === '__moderator__'
+                    ? t('roundtable.moderatorSynthesizing', { current: roundtable.currentRound, total: roundtable.totalRounds })
+                    : speakerChar
+                      ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: t(`characters.${speakerChar.id}.name`) })
+                      : t('roundtable.roundPreparing', { current: roundtable.currentRound, total: roundtable.totalRounds })
+                  : t('chat.thinking')}
+              </Text>
+              <Button danger size="small" onClick={stopGenerating}>{t('chat.stop')}</Button>
+            </Space>
+          )}
+          {error && (() => {
+            const s = useSettingsStore.getState();
+            const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
+            const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
+            const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
+            if (isCors) return (
+              <Alert
+                type="warning"
+                showIcon
+                style={{ marginTop: 8 }}
+                message={t('chat.corsError')}
+                action={
+                  <Space>
+                    <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}>{t('chat.useCorsProxy')}</Button>
+                    <Button size="small" type="link" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                  </Space>
+                }
+              />
+            );
+            if (isNetwork) return (
+              <Alert
+                type="warning"
+                showIcon
+                style={{ marginTop: 8 }}
+                message={t('chat.networkError')}
+                action={<Button size="small" type="primary" onClick={retryLast}>{t('chat.retry')}</Button>}
+              />
+            );
+            return (
+              <Alert
+                type="error"
+                showIcon
+                style={{ marginTop: 8 }}
+                message={t('common.error', { message: error })}
+                action={
+                  <Space>
+                    <Button size="small" onClick={retryLast}>{t('chat.retry')}</Button>
+                    <Button size="small" type="link" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                  </Space>
+                }
+              />
+            );
+          })()}
+          <div ref={bottomRef} />
+        </div>
       </div>
 
       <ActionBar
-        conversation={conversation} characters={characters} displayTitle={displayTitle}
-        isMulti={isMulti} isGenerating={isGenerating} isSummarizing={isSummarizing}
-        rounds={rounds} shareStatus={shareStatus}
+        conversation={conversation}
+        characters={characters}
+        displayTitle={displayTitle}
+        isMulti={isMulti}
+        isGenerating={isGenerating}
+        isSummarizing={isSummarizing}
+        rounds={rounds}
+        shareStatus={shareStatus}
         onContinue={() => roundtable.addRounds(conversationId, rounds)}
-        onSummarize={handleSummarize} onShare={handleShare}
+        onSummarize={handleSummarize}
+        onShare={handleShare}
         onStopSummarize={() => summarizeAbortRef.current?.abort()}
       />
       {shareStatus === 'tooLong' && (
-        <div className="mx-2 sm:mx-4 mt-1 flex flex-wrap items-center gap-2 px-3 py-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-          <span className="text-sm text-amber-700 dark:text-amber-300 flex-1 min-w-0">{t('chat.shareTooLong')} — {t('chat.shareTooLongHint')}</span>
-          <button onClick={() => setShareStatus('idle')} className="text-xs px-2 py-0.5 rounded text-amber-700 dark:text-amber-300 hover:underline shrink-0">✕</button>
-        </div>
+        <Alert
+          type="warning"
+          showIcon
+          closable
+          onClose={() => setShareStatus('idle')}
+          message={`${t('chat.shareTooLong')} — ${t('chat.shareTooLongHint')}`}
+          style={{ margin: '4px 16px' }}
+        />
       )}
       <ChatInput key={conversationId} onSend={handleSend} disabled={isGenerating || isSummarizing} />
 

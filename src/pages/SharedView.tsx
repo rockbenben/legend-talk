@@ -1,11 +1,15 @@
-import { useLangPath } from "../hooks/useLangPath";
+import { useLangPath } from '../hooks/useLangPath';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button, Spin, Typography, Space } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { MessageBubble } from '../components/MessageBubble';
 import { presetCharacters } from '../characters/presets';
 import { decompressFromBase64 } from '../utils/compress';
 import { useSettingsStore } from '../stores/settings';
+
+const { Title, Text } = Typography;
 
 interface SharedMessage {
   role: 'user' | 'character';
@@ -29,7 +33,6 @@ export function SharedView() {
   useEffect(() => {
     if (!data) return;
 
-    // s:<proxyBase64>:<id> → fetch from the sharer's proxy
     if (data.startsWith('s:')) {
       const parts = data.slice(2).split(':');
       let proxy = useSettingsStore.getState().corsProxy;
@@ -43,30 +46,28 @@ export function SharedView() {
       return;
     }
 
-    // Inline compressed data
     decompressFromBase64(data)
       .then((json) => setShared(JSON.parse(json)))
       .catch(() => setError(t('common.error', { message: '' })));
-  }, [data]);
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-full gap-4">
-        <p className="text-red-500">{error}</p>
-        <Link
-          to={lp("/chat")}
-          className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
-        >
-          {t('shared.startOwn')}
+      <Space direction="vertical" align="center" size="middle" style={{ width: '100%', height: '100%', justifyContent: 'center', display: 'flex' }}>
+        <Text type="danger">{error}</Text>
+        <Link to={lp('/chat')}>
+          <Button type="primary" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPosition="end">
+            {t('shared.startOwn')}
+          </Button>
         </Link>
-      </div>
+      </Space>
     );
   }
 
   if (!shared) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-gray-400">{t('common.loading')}</p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <Spin />
       </div>
     );
   }
@@ -82,36 +83,37 @@ export function SharedView() {
     || t('shared.title');
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="px-2 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-        <h2 className="font-semibold">{displayTitle}</h2>
-        <p className="text-xs text-gray-400">{t('shared.title')}</p>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
+        <Text type="secondary" style={{ fontSize: 12 }}>{t('shared.title')}</Text>
+        <Title level={4} className="display-serif" style={{ margin: 0, fontWeight: 500 }}>
+          {displayTitle}
+        </Title>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2 sm:px-4 py-4 space-y-4">
-        {shared.messages.map((msg, idx) => {
-          const msgChar = msg.characterId
-            ? presetCharacters.find((c) => c.id === msg.characterId)
-            : undefined;
-          return (
-            <MessageBubble
-              key={idx}
-              content={msg.content}
-              isUser={msg.role === 'user'}
-              avatar={msgChar?.avatar}
-              color={msgChar?.color}
-              name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
-            />
-          );
-        })}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
+        <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+          {shared.messages.map((msg, idx) => {
+            const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
+            return (
+              <MessageBubble
+                key={idx}
+                content={msg.content}
+                isUser={msg.role === 'user'}
+                avatar={msgChar?.avatar}
+                color={msgChar?.color}
+                name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
+              />
+            );
+          })}
+        </div>
       </div>
 
-      <div className="flex justify-center px-4 py-4 border-t border-gray-200 dark:border-gray-700">
-        <Link
-          to={lp("/chat")}
-          className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 text-sm font-medium"
-        >
-          {t('shared.startOwn')}
+      <div style={{ display: 'flex', justifyContent: 'center', padding: 16, borderTop: '1px solid var(--ant-color-border-secondary)' }}>
+        <Link to={lp('/chat')}>
+          <Button type="primary" size="large" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPosition="end">
+            {t('shared.startOwn')}
+          </Button>
         </Link>
       </div>
     </div>

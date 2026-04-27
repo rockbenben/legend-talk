@@ -4,6 +4,7 @@ import i18n, { ensureLanguageLoaded, resolveSupported } from './i18n';
 import { useSettingsStore } from './stores/settings';
 import { presetCharacters } from './characters/presets';
 import App from './App';
+import { ThemeProvider } from './components/ThemeProvider';
 import './index.css';
 
 // Inject saved custom characters into runtime
@@ -39,6 +40,8 @@ useSettingsStore.persist.onFinishHydration((state) => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </StrictMode>,
 );

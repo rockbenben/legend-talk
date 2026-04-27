@@ -2,6 +2,8 @@ import { useLangPath } from '../hooks/useLangPath';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Input, Button, Alert, Typography, Card, App, Space } from 'antd';
+import { ArrowRightOutlined, ThunderboltOutlined, CloseOutlined, LinkOutlined } from '@ant-design/icons';
 import { ConversationList } from '../components/ConversationList';
 import { ChatView } from '../components/ChatView';
 import { CharacterGrid } from '../components/CharacterGrid';
@@ -13,6 +15,8 @@ import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
 import type { Character } from '../types';
 
+const { Title, Paragraph, Text } = Typography;
+
 const MAX_PARTICIPANTS = 10;
 
 export function ChatPage() {
@@ -20,6 +24,7 @@ export function ChatPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const lp = useLangPath();
+  const { message } = App.useApp();
   const createConversation = useConversationStore((s) => s.createConversation);
   const isConfigured = useSettingsStore((s) => {
     if (s.defaultProvider === 'custom') return !!s.customBaseUrl;
@@ -65,7 +70,7 @@ export function ChatPage() {
     const type = charIds.length === 1 ? 'single' : 'roundtable';
     const convId = createConversation(type, charIds);
     navigate(lp(`/chat/${convId}`), { replace: true });
-  }, [id, charsParam, categoryParam, createConversation, navigate]);
+  }, [id, charsParam, categoryParam, createConversation, navigate]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const conversation = useConversationStore((s) =>
     id ? s.conversations.find((c) => c.id === id) : undefined,
@@ -74,13 +79,11 @@ export function ChatPage() {
   const validId = id && conversation ? id : undefined;
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [linkCopied, setLinkCopied] = useState(false);
   const [topicInput, setTopicInput] = useState('');
 
   const handleAutoRoundtable = () => {
     const topic = topicInput.trim();
     if (!topic) return;
-    // Create conversation with empty characters — ChatView handles summoning + errors
     const convId = createConversation('roundtable', [], topic);
     setTopicInput('');
     navigate(lp(`/chat/${convId}`));
@@ -112,98 +115,152 @@ export function ChatPage() {
   };
 
   return (
-    <div className="flex h-full overflow-hidden">
+    <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
       <ConversationList activeId={validId} />
-      <div className="flex-1 min-w-0">
+      <div style={{ flex: 1, minWidth: 0 }}>
         {validId ? (
           <ChatView conversationId={validId} />
         ) : (
-          <div className="h-full overflow-y-auto">
-            <div className="p-4 sm:p-6 max-w-6xl mx-auto pb-24">
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <h2 className="text-xl sm:text-2xl font-bold min-w-0 truncate">{t('home.title')}</h2>
-                <button
-                  onClick={() => {
-                    const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
-                    const charIds = shuffled.slice(0, 5).map((c) => c.id);
-                    const convId = createConversation('roundtable', charIds);
-                    navigate(lp(`/chat/${convId}`));
-                  }}
-                  className="px-2.5 py-2 sm:py-1.5 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-300 dark:active:bg-gray-600 transition-colors shrink-0 whitespace-nowrap"
-                >
-                  🎲 {t('home.randomRoundtable')}
-                </button>
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('home.subtitle')}</p>
-              {!isConfigured && (
-                <div className="mb-4 flex flex-wrap items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-                  <span className="text-sm text-amber-700 dark:text-amber-300 flex-1 min-w-0">{t('home.apiKeyBanner')}</span>
-                  <button
-                    onClick={() => navigate(lp('/settings'))}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600 active:bg-amber-700 shrink-0"
+          <div style={{ height: '100%', overflowY: 'auto' }}>
+            <div style={{ padding: 'clamp(20px, 5vw, 96px)', maxWidth: 1200, margin: '0 auto', paddingBottom: 96 }}>
+              {/* Masthead */}
+              <div style={{ marginBottom: 32 }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+                  <Title
+                    className="display-serif"
+                    level={1}
+                    style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', fontWeight: 500, lineHeight: 1.15 }}
                   >
-                    {t('chat.goSettings')}
-                  </button>
+                    {t('home.title')}
+                  </Title>
+                  <Button
+                    icon={<ThunderboltOutlined />}
+                    onClick={() => {
+                      const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
+                      const charIds = shuffled.slice(0, 5).map((c) => c.id);
+                      const convId = createConversation('roundtable', charIds);
+                      navigate(lp(`/chat/${convId}`));
+                    }}
+                    style={{ flexShrink: 0, marginTop: 4 }}
+                  >
+                    {t('home.randomRoundtable')}
+                  </Button>
                 </div>
+                <Paragraph type="secondary" style={{ marginTop: 12, fontSize: 16, maxWidth: 640 }}>
+                  {t('home.subtitle')}
+                </Paragraph>
+              </div>
+
+              {!isConfigured && (
+                <Alert
+                  type="warning"
+                  showIcon
+                  message={t('home.apiKeyBanner')}
+                  action={<Button type="primary" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
+                  style={{ marginBottom: 24 }}
+                />
               )}
-              <form
-                onSubmit={(e) => { e.preventDefault(); handleAutoRoundtable(); }}
-                className="mb-6 flex gap-2 items-center"
-              >
-                <div className="flex-1 min-w-0 flex items-center gap-2 px-4 py-3 sm:py-2.5 rounded-lg border-2 border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/20 focus-within:border-blue-400">
-                  <span className="text-blue-400 shrink-0">💡</span>
-                  <input
-                    type="text"
+
+              {/* Topic question */}
+              <Card title={<span className="display-serif" style={{ fontSize: 17, fontWeight: 500 }}>{t('home.autoRoundtable')}</span>} style={{ marginBottom: 24 }} size="small">
+                <Space.Compact style={{ width: '100%' }}>
+                  <Input
+                    size="large"
                     value={topicInput}
                     onChange={(e) => setTopicInput(e.target.value)}
+                    onPressEnter={handleAutoRoundtable}
                     placeholder={t('home.topicPlaceholder')}
-                    className="flex-1 min-w-0 text-sm bg-transparent focus:outline-none"
                   />
-                </div>
-                <button
-                  type="submit"
-                  disabled={!topicInput.trim()}
-                  className="px-4 py-3 sm:py-2.5 text-sm rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600 shrink-0 whitespace-nowrap"
-                >
-                  {t('home.autoRoundtable')}
-                </button>
-              </form>
-              <div className="mb-6">
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">{t('home.templates')}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={handleAutoRoundtable}
+                    disabled={!topicInput.trim()}
+                    icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
+                    iconPosition="end"
+                  >
+                    {t('home.autoRoundtable')}
+                  </Button>
+                </Space.Compact>
+              </Card>
+
+              {/* Templates */}
+              <div style={{ marginBottom: 32 }}>
+                <Title level={5} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                  {t('home.templates')}
+                </Title>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
                   {roundtableTemplates.map((tpl) => (
-                    <button
+                    <Card
                       key={tpl.id}
+                      size="small"
+                      hoverable
                       onClick={() => {
                         const convId = createConversation('roundtable', tpl.characters, t(`templates.${tpl.id}.name`), tpl.id);
                         navigate(lp(`/chat/${convId}`));
                       }}
-                      className="flex items-center gap-2 sm:gap-3 px-3 py-3 sm:py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors text-start"
+                      styles={{ body: { padding: 12 } }}
                     >
-                      <div className="flex -space-x-1 rtl:space-x-reverse shrink-0">
-                        {tpl.characters.slice(0, 3).map((cid) => {
-                          const char = presetCharacters.find((c) => c.id === cid);
-                          return char ? <Avatar key={cid} emoji={char.avatar} color={char.color} size="sm" /> : null;
-                        })}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <div style={{ display: 'flex', flexShrink: 0 }}>
+                          {tpl.characters.slice(0, 3).map((cid, j) => {
+                            const char = presetCharacters.find((c) => c.id === cid);
+                            return char ? (
+                              <div
+                                key={cid}
+                                style={{
+                                  marginInlineStart: j > 0 ? -10 : 0,
+                                  // Later DOM children paint on top of earlier ones (default).
+                                  // First avatar = bottom, last = front.
+                                  position: 'relative',
+                                  zIndex: j + 1,
+                                }}
+                              >
+                                <Avatar emoji={char.avatar} color={char.color} size="sm" />
+                              </div>
+                            ) : null;
+                          })}
+                        </div>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <Text className="display-serif" ellipsis style={{ display: 'block', fontSize: 15, fontWeight: 500 }}>
+                            {t(`templates.${tpl.id}.name`)}
+                          </Text>
+                          <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>
+                            {t(`templates.${tpl.id}.description`)}
+                          </Text>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <div className="text-sm font-medium truncate">{t(`templates.${tpl.id}.name`)}</div>
-                        <div className="text-xs text-gray-400 truncate">{t(`templates.${tpl.id}.description`)}</div>
-                      </div>
-                    </button>
+                    </Card>
                   ))}
                 </div>
               </div>
-              <CharacterGrid
-                onStartChat={handleStartChat}
-                onSelect={handleSelect}
-                selectedIds={selectedIds}
-              />
+
+              {/* Registry */}
+              <div>
+                <Title level={5} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                  {t('home.title')}
+                </Title>
+                <CharacterGrid
+                  onStartChat={handleStartChat}
+                  onSelect={handleSelect}
+                  selectedIds={selectedIds}
+                />
+              </div>
             </div>
+
             {selectedIds.length > 0 && (
-              <div className="sticky bottom-0 z-10 border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-                <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center gap-2 sm:gap-3">
-                  <div className="flex items-center gap-1 overflow-x-auto shrink min-w-0">
+              <div
+                style={{
+                  position: 'sticky',
+                  bottom: 0,
+                  zIndex: 10,
+                  borderTop: '1px solid var(--ant-color-border-secondary)',
+                  background: 'var(--ant-color-bg-elevated)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <div style={{ maxWidth: 1200, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 6, overflowX: 'auto', minWidth: 0, flex: '1 1 auto' }}>
                     {selectedIds.map((cid) => {
                       const char = presetCharacters.find((c) => c.id === cid);
                       if (!char) return null;
@@ -212,42 +269,42 @@ export function ChatPage() {
                           key={cid}
                           onClick={() => setSelectedIds((prev) => prev.filter((x) => x !== cid))}
                           title={t(`characters.${char.id}.name`)}
-                          className="shrink-0 hover:opacity-70 active:opacity-50 transition-opacity"
+                          style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0, flexShrink: 0 }}
                         >
                           <Avatar emoji={char.avatar} color={char.color} size="sm" />
                         </button>
                       );
                     })}
                   </div>
-                  <span className="text-sm text-gray-500 shrink-0">{t('roundtable.selected', { count: selectedIds.length })}</span>
-                  <div className="flex items-center gap-2 ms-auto shrink-0">
-                    <button
+                  <Text type="secondary">
+                    {t('roundtable.selected', { count: selectedIds.length })}
+                  </Text>
+                  <Space style={{ marginInlineStart: 'auto' }}>
+                    <Button
+                      type="primary"
+                      size="large"
                       onClick={startRoundtable}
                       disabled={selectedIds.length < 2}
-                      className="px-4 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg bg-blue-500 text-white disabled:opacity-50 active:bg-blue-600"
+                      icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
+                      iconPosition="end"
                     >
                       {t('roundtable.start')}
-                    </button>
+                    </Button>
                     {selectedIds.length >= 2 && (
-                      <button
+                      <Button
+                        className="hidden sm:inline-flex"
+                        icon={<LinkOutlined />}
                         onClick={() => {
                           const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${selectedIds.join(',')}`;
                           navigator.clipboard.writeText(url).catch(() => {});
-                          setLinkCopied(true);
-                          setTimeout(() => setLinkCopied(false), 2000);
+                          message.success(t('chat.linkCopied'));
                         }}
-                        className="hidden sm:block px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
                       >
-                        {linkCopied ? t('chat.linkCopied') : t('chat.copyLineupLink')}
-                      </button>
+                        {t('chat.copyLineupLink')}
+                      </Button>
                     )}
-                    <button
-                      onClick={() => setSelectedIds([])}
-                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 active:text-gray-800"
-                    >
-                      ✕
-                    </button>
-                  </div>
+                    <Button type="text" icon={<CloseOutlined />} onClick={() => setSelectedIds([])} />
+                  </Space>
                 </div>
               </div>
             )}

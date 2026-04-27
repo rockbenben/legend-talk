@@ -1,41 +1,58 @@
+import { Avatar as AntAvatar } from 'antd';
+
 interface AvatarProps {
   emoji: string;
   color: string;
   size?: 'sm' | 'md' | 'lg';
 }
 
-const sizes = { sm: 'w-8 h-8 text-sm', md: 'w-10 h-10 text-lg', lg: 'w-14 h-14 text-2xl' };
+const sizes = { sm: 32, md: 40, lg: 56 };
+const fontSizes = { sm: 16, md: 20, lg: 28 };
 
-// Static map so Tailwind can detect all class names at build time.
-// Dynamic `bg-${color}-100` won't be compiled by Tailwind's JIT.
-const colorClasses: Record<string, string> = {
-  blue: 'bg-blue-100 dark:bg-blue-900/30',
-  red: 'bg-red-100 dark:bg-red-900/30',
-  green: 'bg-green-100 dark:bg-green-900/30',
-  emerald: 'bg-emerald-100 dark:bg-emerald-900/30',
-  teal: 'bg-teal-100 dark:bg-teal-900/30',
-  cyan: 'bg-cyan-100 dark:bg-cyan-900/30',
-  indigo: 'bg-indigo-100 dark:bg-indigo-900/30',
-  violet: 'bg-violet-100 dark:bg-violet-900/30',
-  purple: 'bg-purple-100 dark:bg-purple-900/30',
-  amber: 'bg-amber-100 dark:bg-amber-900/30',
-  orange: 'bg-orange-100 dark:bg-orange-900/30',
-  pink: 'bg-pink-100 dark:bg-pink-900/30',
-  gray: 'bg-gray-100 dark:bg-gray-900/30',
-  stone: 'bg-stone-100 dark:bg-stone-900/30',
-  slate: 'bg-slate-100 dark:bg-slate-900/30',
-  sky: 'bg-sky-100 dark:bg-sky-900/30',
-  zinc: 'bg-zinc-100 dark:bg-zinc-900/30',
-  rose: 'bg-rose-100 dark:bg-rose-900/30',
-  yellow: 'bg-yellow-100 dark:bg-yellow-900/30',
+/**
+ * Solid base RGBs per character color. We mix these with the active container
+ * bg (light or dark) using color-mix() so the result is always OPAQUE.
+ * That makes stacked avatars occlude correctly — the front one fully hides
+ * any rear sibling, no see-through layers.
+ */
+const tintRgb: Record<string, string> = {
+  blue: '96, 165, 250',
+  red: '248, 113, 113',
+  green: '74, 222, 128',
+  emerald: '52, 211, 153',
+  teal: '45, 212, 191',
+  cyan: '34, 211, 238',
+  indigo: '129, 140, 248',
+  violet: '167, 139, 250',
+  purple: '192, 132, 252',
+  amber: '251, 191, 36',
+  orange: '251, 146, 60',
+  pink: '244, 114, 182',
+  gray: '168, 162, 152',
+  stone: '168, 162, 152',
+  slate: '148, 163, 184',
+  sky: '56, 189, 248',
+  zinc: '161, 161, 170',
+  rose: '251, 113, 133',
+  yellow: '250, 204, 21',
 };
 
 export function Avatar({ emoji, color, size = 'md' }: AvatarProps) {
+  const rgb = tintRgb[color] || tintRgb.gray;
+  // 22% saturated tint mixed into the container bg → opaque, theme-aware
+  const opaqueBg = `color-mix(in srgb, rgb(${rgb}) 22%, var(--ant-color-bg-container))`;
   return (
-    <div
-      className={`${sizes[size]} rounded-full flex items-center justify-center ${colorClasses[color] || colorClasses.gray}`}
+    <AntAvatar
+      shape="square"
+      size={sizes[size]}
+      style={{
+        background: opaqueBg,
+        fontSize: fontSizes[size],
+        // Container-color ring → when stacked, separates the layers cleanly
+        boxShadow: '0 0 0 2px var(--ant-color-bg-container)',
+      }}
     >
       {emoji}
-    </div>
+    </AntAvatar>
   );
 }

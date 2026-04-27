@@ -2,10 +2,14 @@ import { useState, useRef } from 'react';
 import { useLangPath } from '../hooks/useLangPath';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Button, Dropdown, Space, Typography } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { useConversationStore } from '../stores/conversations';
 import { useSettingsStore } from '../stores/settings';
 import { exportAsMarkdown, exportAsJSON, downloadFile, generateShareCard } from '../utils/export';
 import type { Conversation, Character } from '../types';
+
+const { Text } = Typography;
 
 interface ActionBarProps {
   conversation: Conversation;
@@ -31,7 +35,6 @@ export function ActionBar({
   const lp = useLangPath();
   const createConversation = useConversationStore((s) => s.createConversation);
   const shareCardEndpoint = useSettingsStore((s) => s.shareCardEndpoint);
-  const [showExportMenu, setShowExportMenu] = useState(false);
   const [cardStatus, setCardStatus] = useState<'idle' | 'generating' | 'error' | 'network-error'>('idle');
   const cardAbortRef = useRef<AbortController | null>(null);
   const cardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,7 +61,6 @@ export function ActionBar({
     const controller = new AbortController();
     cardAbortRef.current = controller;
     setCardStatus('generating');
-    setShowExportMenu(false);
     try {
       await generateShareCard(shareCardEndpoint, conversation, charNames, displayTitle, mode, controller.signal);
       setCardStatus('idle');
@@ -72,111 +74,64 @@ export function ActionBar({
     }
   };
 
-  const handleCancelCard = () => {
-    cardAbortRef.current?.abort();
-  };
+  const handleCancelCard = () => cardAbortRef.current?.abort();
+
+  const exportItems = [
+    { key: 'md', label: 'Markdown', onClick: handleExportMarkdown },
+    { key: 'json', label: 'JSON', onClick: handleExportJSON },
+    ...(shareCardEndpoint ? [
+      { type: 'divider' as const },
+      { key: 'zip', label: t('chat.shareCardZip'), onClick: () => handleShareCard('zip'), disabled: cardStatus === 'generating' },
+      { key: 'long', label: t('chat.shareCardLong'), onClick: () => handleShareCard('long'), disabled: cardStatus === 'generating' },
+    ] : []),
+  ];
+
+  if (!hasMessages || isGenerating) {
+    if (isSummarizing) {
+      return (
+        <div style={{ padding: '8px 16px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Text type="secondary">{t('chat.summarizing')}</Text>
+          <Button danger size="small" onClick={onStopSummarize}>{t('chat.stop')}</Button>
+        </div>
+      );
+    }
+    return null;
+  }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 px-2 sm:px-4 pt-1">
-      {hasMessages && !isGenerating && !isSummarizing && (
-        <>
-          {isMulti && (
-            <button
-              onClick={onContinue}
-              className="text-xs px-3 py-2 rounded-full border border-blue-400 dark:border-blue-500 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:bg-blue-100 dark:active:bg-blue-900/30 transition-colors"
-            >
-              {t('roundtable.continue', { count: rounds })}
-            </button>
-          )}
-          <button
-            onClick={onSummarize}
-            className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-          >
-            {t('chat.summarize')}
-          </button>
-          <button
-            onClick={() => {
-              const type = conversation.characters.length > 1 ? 'roundtable' : 'single';
-              const convId = createConversation(type, conversation.characters);
-              navigate(lp(`/chat/${convId}`));
-            }}
-            className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-          >
-            {t('chat.newWithSame')}
-          </button>
-          <button
-            onClick={onShare}
-            disabled={shareStatus === 'sharing'}
-            className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 disabled:opacity-50 transition-colors"
-          >
-            {shareStatus === 'sharing'
-              ? '...'
-              : shareStatus === 'copied'
-                ? t('chat.copied')
-                : t('chat.share')}
-          </button>
-          <div className="relative">
-            <button
-              onClick={() => setShowExportMenu(!showExportMenu)}
-              className="text-xs px-3 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
-            >
-              {t('chat.export')} ▾
-            </button>
-            {showExportMenu && (
-              <>
-                <div className="fixed inset-0 z-10" onClick={() => setShowExportMenu(false)} />
-                <div className="absolute bottom-full start-0 mb-1 py-1 min-w-[140px] whitespace-nowrap rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-20">
-                  <button
-                    onClick={() => { handleExportMarkdown(); setShowExportMenu(false); }}
-                    className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
-                  >
-                    Markdown
-                  </button>
-                  <button
-                    onClick={() => { handleExportJSON(); setShowExportMenu(false); }}
-                    className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
-                  >
-                    JSON
-                  </button>
-                  {shareCardEndpoint && (
-                    <>
-                      <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
-                      <button
-                        onClick={() => handleShareCard('zip')}
-                        disabled={cardStatus === 'generating'}
-                        className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 disabled:opacity-40"
-                      >
-                        {t('chat.shareCardZip')}
-                      </button>
-                      <button
-                        onClick={() => handleShareCard('long')}
-                        disabled={cardStatus === 'generating'}
-                        className="block w-full text-start px-4 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 disabled:opacity-40"
-                      >
-                        {t('chat.shareCardLong')}
-                      </button>
-                    </>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-          {cardStatus === 'generating' && (
-            <span className="text-xs text-gray-400">
-              {t('chat.generatingCard')}
-              <button onClick={handleCancelCard} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
-            </span>
-          )}
-          {cardStatus === 'network-error' && <span className="text-xs text-red-500">{t('chat.cardNetworkError')}</span>}
-          {cardStatus === 'error' && <span className="text-xs text-red-500">{t('chat.cardError')}</span>}
-        </>
-      )}
-      {isSummarizing && (
-        <span className="text-xs text-gray-400">
-          {t('chat.summarizing')}
-          <button onClick={onStopSummarize} className="ms-2 text-xs px-2.5 py-1 rounded-full border border-red-300 dark:border-red-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100">{t('chat.stop')}</button>
-        </span>
-      )}
+    <div style={{ padding: '8px 16px 0', borderTop: '1px solid var(--ant-color-border-secondary)' }}>
+      <Space size="small" wrap>
+        {isMulti && (
+          <Button size="small" type="primary" ghost onClick={onContinue}>
+            {t('roundtable.continue', { count: rounds })}
+          </Button>
+        )}
+        <Button size="small" onClick={onSummarize}>{t('chat.summarize')}</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            const type = conversation.characters.length > 1 ? 'roundtable' : 'single';
+            const convId = createConversation(type, conversation.characters);
+            navigate(lp(`/chat/${convId}`));
+          }}
+        >
+          {t('chat.newWithSame')}
+        </Button>
+        <Button size="small" onClick={onShare} disabled={shareStatus === 'sharing'}>
+          {shareStatus === 'sharing' ? '…' : shareStatus === 'copied' ? t('chat.copied') : t('chat.share')}
+        </Button>
+        <Dropdown menu={{ items: exportItems }} trigger={['click']}>
+          <Button size="small">{t('chat.export')} <DownOutlined style={{ fontSize: 10 }} /></Button>
+        </Dropdown>
+        {cardStatus === 'generating' && (
+          <Space size="small">
+            <Text type="secondary">{t('chat.generatingCard')}</Text>
+            <Button danger size="small" onClick={handleCancelCard}>{t('chat.stop')}</Button>
+          </Space>
+        )}
+        {cardStatus === 'network-error' && <Text type="danger">{t('chat.cardNetworkError')}</Text>}
+        {cardStatus === 'error' && <Text type="danger">{t('chat.cardError')}</Text>}
+      </Space>
     </div>
   );
 }

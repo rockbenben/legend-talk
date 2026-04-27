@@ -2,9 +2,20 @@ import { useLangPath } from '../hooks/useLangPath';
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Drawer, Input, List, Button, Empty, Typography, theme as antTheme } from 'antd';
+import {
+  PlusOutlined,
+  MenuOutlined,
+  SettingOutlined,
+  CloseOutlined,
+  MenuFoldOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 
+const { Text } = Typography;
+const { useToken } = antTheme;
 
 interface ConversationListProps {
   activeId?: string;
@@ -24,6 +35,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const lp = useLangPath();
+  const { token } = useToken();
   const conversations = useConversationStore((s) => s.conversations);
   const deleteConversation = useConversationStore((s) => s.deleteConversation);
   const renameConversation = useConversationStore((s) => s.renameConversation);
@@ -62,7 +74,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
       if (charNames.includes(q)) return true;
       return conv.messages.some((m) => m.content.toLowerCase().includes(q));
     });
-  }, [conversations, searchQuery, t]);
+  }, [conversations, searchQuery, t]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const startEditing = (conv: typeof conversations[0]) => {
     setEditingId(conv.id);
@@ -70,152 +82,174 @@ export function ConversationList({ activeId }: ConversationListProps) {
   };
 
   const finishEditing = () => {
-    if (editingId && editValue.trim()) {
-      renameConversation(editingId, editValue.trim());
-    }
+    if (editingId && editValue.trim()) renameConversation(editingId, editValue.trim());
     setEditingId(null);
   };
 
-  if (collapsed) {
-    return (
-      <div className="border-e border-gray-200 dark:border-gray-700 h-full flex flex-col items-center py-2 px-1 shrink-0">
-        <button
-          onClick={() => setCollapsed(false)}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
-        <div className="flex-1" />
-        <button
-          onClick={() => navigate(lp('/settings'))}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
-          title={t('nav.settings')}
-        >
-          ⚙️
-        </button>
-      </div>
-    );
-  }
-
-  const sidebarPanel = (
-    <div className="w-64 max-w-[80vw] border-e border-gray-200 dark:border-gray-700 h-full flex flex-col shrink-0 bg-white dark:bg-gray-900">
-      <div className="p-3 border-b border-gray-200 dark:border-gray-700 flex gap-2">
-        <button
+  const renderListBody = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ padding: '12px 12px 8px', display: 'flex', gap: 8 }}>
+        <Button
+          icon={<PlusOutlined />}
           onClick={() => { navigate(lp('/chat')); if (isMobile) setCollapsed(true); }}
-          className="flex-1 py-2 sm:py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
+          block
         >
-          + {t('chat.newChat')}
-        </button>
-        <button
-          onClick={() => setCollapsed(true)}
-          className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 rtl:-scale-x-100">
-            <polyline points="11 17 6 12 11 7" />
-            <polyline points="18 17 13 12 18 7" />
-          </svg>
-        </button>
-      </div>
-      <div className="px-3 py-2">
-        <div className="relative">
-          <input
+          {t('chat.newChat')}
+        </Button>
+        {!isMobile && (
+          <Button
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t('chat.searchConversations')}
-            className="w-full text-sm px-2 py-2 sm:py-1.5 pe-7 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            icon={<MenuFoldOutlined className="rtl:-scale-x-100" />}
+            onClick={() => setCollapsed(true)}
           />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute end-1 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xs p-1.5"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-      </div>
-      <div className="flex-1 overflow-y-auto">
-        {filteredConversations.length === 0 && (
-          <p className="p-4 text-sm text-gray-400 text-center">{t('chat.noConversations')}</p>
         )}
-        {filteredConversations.map((conv) => {
-          return (
-            <div
-              key={conv.id}
-              onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
-              onDoubleClick={(e) => {
-                e.stopPropagation();
-                startEditing(conv);
-              }}
-              className={`flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 ${
-                activeId === conv.id ? 'bg-gray-100 dark:bg-gray-800' : ''
-              }`}
-            >
-              <div className="flex-1 min-w-0">
-                {editingId === conv.id ? (
-                  <input
-                    type="text"
-                    value={editValue}
-                    onChange={(e) => setEditValue(e.target.value)}
-                    onBlur={finishEditing}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') finishEditing();
-                      if (e.key === 'Escape') setEditingId(null);
-                    }}
-                    autoFocus
-                    className="w-full text-sm px-1 py-0 border border-blue-500 rounded bg-white dark:bg-gray-800 focus:outline-none"
-                    onClick={(e) => e.stopPropagation()}
-                  />
-                ) : (
-                  <div className="text-sm font-medium truncate">{getDisplayTitle(conv)}</div>
-                )}
-                <div className="text-xs text-gray-400 truncate">
-                  {conv.messages.length > 0
-                    ? conv.messages[conv.messages.length - 1].content.slice(0, 30)
-                    : t('chat.noMessages')}
-                </div>
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteConversation(conv.id);
-                  if (activeId === conv.id) navigate(lp('/chat'));
-                }}
-                className="p-1.5 text-gray-400 hover:text-red-500 active:text-red-600 text-xs shrink-0"
-              >
-                ✕
-              </button>
-            </div>
-          );
-        })}
       </div>
-      <div className="p-3 border-t border-gray-200 dark:border-gray-700">
-        <button
+      <div style={{ padding: '0 12px 8px' }}>
+        <Input
+          allowClear
+          placeholder={t('chat.searchConversations')}
+          prefix={<SearchOutlined />}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto' }}>
+        {filteredConversations.length === 0 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t('chat.noConversations')} style={{ padding: 24 }} />
+        ) : (
+          <List
+            dataSource={filteredConversations}
+            renderItem={(conv) => {
+              const isActive = activeId === conv.id;
+              const last = conv.messages.length > 0
+                ? conv.messages[conv.messages.length - 1].content.slice(0, 38)
+                : t('chat.noMessages');
+              return (
+                <List.Item
+                  onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
+                  onDoubleClick={(e) => { e.stopPropagation(); startEditing(conv); }}
+                  style={{
+                    padding: '10px 16px',
+                    cursor: 'pointer',
+                    background: isActive ? `color-mix(in srgb, ${token.colorPrimary} 6%, transparent)` : undefined,
+                    borderInlineStart: isActive ? `2px solid ${token.colorPrimary}` : '2px solid transparent',
+                  }}
+                  actions={[
+                    <Button
+                      key="del"
+                      type="text"
+                      size="small"
+                      icon={<CloseOutlined />}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteConversation(conv.id);
+                        if (activeId === conv.id) navigate(lp('/chat'));
+                      }}
+                    />,
+                  ]}
+                >
+                  <List.Item.Meta
+                    title={
+                      editingId === conv.id ? (
+                        <Input
+                          size="small"
+                          autoFocus
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onBlur={finishEditing}
+                          onPressEnter={finishEditing}
+                          onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <Text className="display-serif" ellipsis style={{ fontSize: 15, fontWeight: 500 }}>
+                          {getDisplayTitle(conv)}
+                        </Text>
+                      )
+                    }
+                    description={<Text type="secondary" ellipsis style={{ fontSize: 12 }}>{last}</Text>}
+                  />
+                </List.Item>
+              );
+            }}
+          />
+        )}
+      </div>
+      <div style={{ padding: 12, borderTop: `1px solid ${token.colorBorderSecondary}` }}>
+        <Button
+          type="text"
+          icon={<SettingOutlined />}
           onClick={() => { navigate(lp('/settings')); if (isMobile) setCollapsed(true); }}
-          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+          block
+          style={{ textAlign: 'start', justifyContent: 'flex-start' }}
         >
-          <span>⚙️</span>
-          <span>{t('nav.settings')}</span>
-        </button>
+          {t('nav.settings')}
+        </Button>
       </div>
     </div>
   );
 
+  if (!isMobile && collapsed) {
+    return (
+      <div
+        style={{
+          width: 44,
+          borderInlineEnd: `1px solid ${token.colorBorderSecondary}`,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '8px 0',
+          gap: 4,
+        }}
+      >
+        <Button type="text" icon={<MenuOutlined />} onClick={() => setCollapsed(false)} />
+        <div style={{ flex: 1 }} />
+        <Button type="text" icon={<SettingOutlined />} onClick={() => navigate(lp('/settings'))} title={t('nav.settings')} />
+      </div>
+    );
+  }
+
   if (isMobile) {
     return (
       <>
-        <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setCollapsed(true)} />
-        <div className="fixed inset-y-0 start-0 z-50">
-          {sidebarPanel}
+        <div
+          style={{
+            width: 44,
+            borderInlineEnd: `1px solid ${token.colorBorderSecondary}`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '8px 0',
+          }}
+        >
+          <Button type="text" icon={<MenuOutlined />} onClick={() => setCollapsed(false)} />
+          <div style={{ flex: 1 }} />
+          <Button type="text" icon={<SettingOutlined />} onClick={() => navigate(lp('/settings'))} />
         </div>
+        <Drawer
+          placement="left"
+          open={!collapsed}
+          onClose={() => setCollapsed(true)}
+          width="80vw"
+          styles={{ body: { padding: 0 }, header: { display: 'none' } }}
+        >
+          {renderListBody()}
+        </Drawer>
       </>
     );
   }
 
-  return sidebarPanel;
+  return (
+    <aside
+      style={{
+        width: 272,
+        flexShrink: 0,
+        height: '100%',
+        borderInlineEnd: `1px solid ${token.colorBorderSecondary}`,
+        background: token.colorBgContainer,
+      }}
+    >
+      {renderListBody()}
+    </aside>
+  );
 }

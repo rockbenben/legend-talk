@@ -1,7 +1,7 @@
 {
   "name": "legend-talk",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "antd": "^6.3.7",
+    "dayjs": "^1.11.20",
     "i18next": "^24.0.0",
     "i18next-browser-languagedetector": "^8.0.0",
     "idb-keyval": "^6.2.2",

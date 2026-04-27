@@ -1,24 +1,20 @@
-import { useSettingsStore } from '../stores/settings';
-import { useEffect } from 'react';
+import { Button } from 'antd';
+import { SunOutlined, MoonOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { useSettingsStore } from '../stores/settings';
 
 export function ThemeToggle() {
   const { t } = useTranslation();
   const theme = useSettingsStore((s) => s.theme);
   const setTheme = useSettingsStore((s) => s.setTheme);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
-
   return (
-    <button
+    <Button
+      type="text"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+      icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
       aria-label={t('nav.toggleTheme')}
       title={t('nav.toggleTheme')}
-    >
-      {theme === 'light' ? '🌙' : '☀️'}
-    </button>
+    />
   );
 }

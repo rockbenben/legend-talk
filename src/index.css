@@ -1,13 +1,39 @@
+/* Display serif (Fraunces) for headings + character names — must precede tailwindcss */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap');
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-chat-user: #3b82f6;
-  --color-chat-bg: #f9fafb;
-  --color-chat-bg-dark: #111827;
+/*
+ * Body uses antd's default font stack (system sans). The display serif is
+ * applied case-by-case via .display-serif on the masthead, section titles,
+ * and character names — never globally.
+ */
+
+html, body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Background + color are applied by ThemeProvider via JS so they follow
+   the active antd theme tokens (light / dark) without scope issues. */
+
+/* Used on: masthead wordmark, page titles, character/speaker names. */
+.display-serif {
+  font-family: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  letter-spacing: -0.005em;
+}
+.display-serif-italic {
+  font-family: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* Dropdown / Menu — selected state uses color only, no heavy bg block.
+   Token overrides in ThemeProvider should cover this; this is a CSS
+   fallback for any antd internal style we cannot reach via tokens. */
+.ant-dropdown-menu-item-selected,
+.ant-dropdown-menu-item-active,
+.ant-menu-item-selected {
+  background: transparent !important;
 }

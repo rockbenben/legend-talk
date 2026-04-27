@@ -1,15 +1,17 @@
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect } from 'react';
+import { Layout as AntLayout, Dropdown, Button, theme as antTheme } from 'antd';
+import { GithubOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { ensureLanguageLoaded } from '../i18n';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
 
-interface NavLink {
-  label: string;
-  url: string;
-}
+const { Header, Content } = AntLayout;
+const { useToken } = antTheme;
+
+interface NavLink { label: string; url: string }
 
 function getLangPath(lng: string): string {
   if (lng === 'zh') return '';
@@ -38,53 +40,11 @@ function getSupportLinks(lng: string): NavLink[] {
   return links;
 }
 
-function Dropdown({ label, children }: { label: string; children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
-  return (
-    <div className="relative" ref={ref}>
-      <button
-        onClick={() => setOpen(!open)}
-        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
-      >
-        {label}
-      </button>
-      {open && (
-        <div className="absolute end-0 mt-1 w-48 py-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-50">
-          {children}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function NavLinks({ links }: { links: NavLink[] }) {
-  return (
-    <>
-      {links.map((link) => (
-        link.url ? (
-          <a
-            key={link.label}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block px-3 py-2 sm:py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700"
-          >
-            {link.label}
-          </a>
-        ) : null
-      ))}
-    </>
-  );
+function linksToItems(links: NavLink[]) {
+  return links.map((l, i) => ({
+    key: `${l.label}-${i}`,
+    label: <a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a>,
+  }));
 }
 
 export function Layout() {
@@ -92,8 +52,8 @@ export function Layout() {
   const { t, i18n } = useTranslation();
   const { lang } = useParams<{ lang?: string }>();
   const setLanguage = useSettingsStore((s) => s.setLanguage);
+  const { token } = useToken();
 
-  // Sync language from URL path prefix (e.g., /#/ja/chat)
   useEffect(() => {
     if (!lang) return;
     const supported = i18n.options.supportedLngs;
@@ -105,12 +65,10 @@ export function Layout() {
         });
       }
     } else {
-      // Invalid lang code — redirect without prefix
       navigate('/chat', { replace: true });
     }
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Sync document attributes with current language
   useEffect(() => {
     const lng = i18n.language;
     document.documentElement.lang = lng;
@@ -142,42 +100,59 @@ export function Layout() {
   }, [i18n.language]);
 
   return (
-    <div className="flex flex-col h-dvh bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
-      <header className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700 shrink-0">
+    <AntLayout
+      style={{
+        height: '100dvh',
+        paddingTop: 'env(safe-area-inset-top)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
+    >
+      <Header
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 16px',
+          borderBottom: `1px solid ${token.colorBorderSecondary}`,
+        }}
+      >
         <h1
-          className="text-lg font-bold cursor-pointer hover:opacity-80"
+          className="display-serif"
           onClick={() => navigate(lang ? `/${lang}/chat` : '/chat')}
+          style={{
+            margin: 0,
+            fontSize: 22,
+            fontWeight: 500,
+            lineHeight: 1,
+            cursor: 'pointer',
+            userSelect: 'none',
+            color: token.colorText,
+          }}
         >
-          Legend Talk
+          Legend <span className="display-serif-italic" style={{ fontWeight: 400 }}>Talk</span>
         </h1>
-        <div className="flex items-center gap-1">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <LanguageToggle />
           <ThemeToggle />
-          <div className="hidden sm:block">
-            <Dropdown label={t('nav.more')}>
-              <NavLinks links={getProjectLinks(i18n.language)} />
-            </Dropdown>
-          </div>
-          <div className="hidden sm:block">
-            <Dropdown label={t('nav.support')}>
-              <NavLinks links={getSupportLinks(i18n.language)} />
-            </Dropdown>
-          </div>
-          <a
+          <Dropdown menu={{ items: linksToItems(getProjectLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
+            <Button type="text" className="hidden sm:inline-flex">{t('nav.more')}</Button>
+          </Dropdown>
+          <Dropdown menu={{ items: linksToItems(getSupportLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
+            <Button type="text" className="hidden sm:inline-flex">{t('nav.support')}</Button>
+          </Dropdown>
+          <Button
+            type="text"
             href="https://github.com/rockbenben/legend-talk"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-            </svg>
-          </a>
+            icon={<GithubOutlined />}
+            aria-label="GitHub"
+          />
         </div>
-      </header>
-      <main className="flex-1 min-w-0 overflow-hidden">
+      </Header>
+      <Content style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
         <Outlet />
-      </main>
-    </div>
+      </Content>
+    </AntLayout>
   );
 }

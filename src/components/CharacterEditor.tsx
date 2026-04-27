@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Modal, Form, Input, Button, Space, Typography } from 'antd';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { Avatar } from './Avatar';
 import i18n from '../i18n';
 import type { CustomCharacter } from '../stores/settings';
 
+const { Text } = Typography;
+
 const COLORS = ['blue', 'emerald', 'red', 'purple', 'amber', 'teal', 'orange', 'indigo', 'cyan', 'rose', 'violet', 'green', 'slate', 'stone', 'pink', 'sky'];
 const EMOJIS = ['👤', '🧠', '💡', '🎓', '🔬', '📚', '🎭', '🎨', '⚡', '🌟', '🔥', '🌊', '🏔️', '🦉', '🐉', '🤖'];
 
 const COLOR_CSS: Record<string, string> = {
-  blue: 'bg-blue-400', emerald: 'bg-emerald-400', red: 'bg-red-400', purple: 'bg-purple-400',
-  amber: 'bg-amber-400', teal: 'bg-teal-400', orange: 'bg-orange-400', indigo: 'bg-indigo-400',
-  cyan: 'bg-cyan-400', rose: 'bg-rose-400', violet: 'bg-violet-400', green: 'bg-green-400',
-  slate: 'bg-slate-400', stone: 'bg-stone-400', pink: 'bg-pink-400', sky: 'bg-sky-400',
+  blue: '#60a5fa', emerald: '#34d399', red: '#f87171', purple: '#c084fc',
+  amber: '#fbbf24', teal: '#2dd4bf', orange: '#fb923c', indigo: '#818cf8',
+  cyan: '#22d3ee', rose: '#fb7185', violet: '#a78bfa', green: '#4ade80',
+  slate: '#94a3b8', stone: '#a8a29e', pink: '#f472b6', sky: '#38bdf8',
 };
 
 interface CharacterEditorProps {
@@ -46,7 +49,6 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
     };
     saveCustomCharacter(char);
 
-    // Inject into presetCharacters array (runtime)
     const existing = presetCharacters.find((c) => c.id === id);
     if (existing) {
       Object.assign(existing, { avatar, color, systemPrompt: prompt.trim() });
@@ -54,7 +56,6 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
       presetCharacters.push({ id, domain: ['custom'], avatar, color, systemPrompt: prompt.trim() });
     }
 
-    // Inject i18n translations
     for (const lng of Object.keys(i18n.store.data)) {
       i18n.addResourceBundle(lng, 'translation', {
         characters: { [id]: { name: trimmed, era: era.trim() || i18n.t('common.unknown', { lng }), questions: [] } },
@@ -69,93 +70,90 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-end sm:items-center justify-center z-50 sm:p-4" onClick={onClose}>
-      <div className="bg-white dark:bg-gray-900 rounded-t-xl sm:rounded-xl shadow-xl w-full sm:max-w-md max-h-[85vh] sm:max-h-[80vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
-        <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-          <h3 className="font-semibold">{isEdit ? t('chat.editCharacter') : t('chat.createCharacter')}</h3>
-          <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600">✕</button>
-        </div>
-        <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4">
-          {/* Name */}
-          <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterName')}</label>
-            <input
-              type="text" value={name} onChange={(e) => { setName(e.target.value); setSaved(false); }}
-              placeholder={t('chat.characterNamePlaceholder')}
-              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Era */}
-          <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterEra')}</label>
-            <input
-              type="text" value={era} onChange={(e) => { setEra(e.target.value); setSaved(false); }}
-              placeholder={t('chat.characterEraPlaceholder')}
-              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Avatar */}
-          <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterAvatar')}</label>
-            <div className="flex flex-wrap gap-2">
-              {EMOJIS.map((e) => (
-                <button key={e} onClick={() => { setAvatar(e); setSaved(false); }}
-                  className={`w-10 h-10 sm:w-9 sm:h-9 rounded-lg text-lg flex items-center justify-center transition-colors ${avatar === e ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-800'}`}>
-                  {e}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Color */}
-          <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterColor')}</label>
-            <div className="flex flex-wrap gap-2">
-              {COLORS.map((c) => (
-                <button key={c} onClick={() => { setColor(c); setSaved(false); }}
-                  className={`w-8 h-8 sm:w-7 sm:h-7 rounded-full ${COLOR_CSS[c] || 'bg-gray-400'} transition-shadow ${color === c ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-900' : 'hover:ring-1 hover:ring-gray-300 active:ring-1 active:ring-gray-400'}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Preview */}
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+    <Modal
+      open
+      onCancel={onClose}
+      title={<span className="display-serif" style={{ fontSize: 18, fontWeight: 500 }}>{isEdit ? t('chat.editCharacter') : t('chat.createCharacter')}</span>}
+      width={520}
+      footer={[
+        <Button key="cancel" onClick={onClose}>{t('common.cancel')}</Button>,
+        saved && onStartChat ? (
+          <Button key="start" type="primary" onClick={() => { onStartChat(savedId); onClose(); }}>
+            {t('home.startChat')}
+          </Button>
+        ) : (
+          <Button key="save" type="primary" onClick={handleSave} disabled={!name.trim() || !prompt.trim()}>
+            {t('common.save')}
+          </Button>
+        ),
+      ]}
+    >
+      <Form layout="vertical">
+        <Form.Item label={t('chat.characterName')}>
+          <Input
+            value={name}
+            onChange={(e) => { setName(e.target.value); setSaved(false); }}
+            placeholder={t('chat.characterNamePlaceholder')}
+          />
+        </Form.Item>
+        <Form.Item label={t('chat.characterEra')}>
+          <Input
+            value={era}
+            onChange={(e) => { setEra(e.target.value); setSaved(false); }}
+            placeholder={t('chat.characterEraPlaceholder')}
+          />
+        </Form.Item>
+        <Form.Item label={t('chat.characterAvatar')}>
+          <Space wrap size={[6, 6]}>
+            {EMOJIS.map((e) => (
+              <Button
+                key={e}
+                type={avatar === e ? 'primary' : 'default'}
+                onClick={() => { setAvatar(e); setSaved(false); }}
+                style={{ width: 40, height: 40, padding: 0, fontSize: 18 }}
+              >
+                {e}
+              </Button>
+            ))}
+          </Space>
+        </Form.Item>
+        <Form.Item label={t('chat.characterColor')}>
+          <Space wrap size={[6, 6]}>
+            {COLORS.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => { setColor(c); setSaved(false); }}
+                aria-label={c}
+                style={{
+                  width: 28,
+                  height: 28,
+                  background: COLOR_CSS[c],
+                  border: 'none',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                  outline: color === c ? '2px solid var(--ant-color-primary)' : 'none',
+                  outlineOffset: 2,
+                }}
+              />
+            ))}
+          </Space>
+        </Form.Item>
+        <Form.Item>
+          <Space>
             <Avatar emoji={avatar} color={color} size="sm" />
-            <span className="text-sm font-medium">{name || '...'}</span>
-          </div>
-
-          {/* System Prompt */}
-          <div>
-            <label className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 block">{t('chat.characterSystemPrompt')}</label>
-            <textarea
-              value={prompt} onChange={(e) => { setPrompt(e.target.value); setSaved(false); }}
-              placeholder={t('chat.characterPromptPlaceholder')}
-              className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              rows={4}
-            />
-          </div>
-        </div>
-
-        <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 flex gap-2 justify-end">
-          <button onClick={onClose} className="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
-            {t('common.cancel')}
-          </button>
-          {saved && onStartChat ? (
-            <button onClick={() => { onStartChat(savedId); onClose(); }}
-              className="px-4 py-2 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:opacity-90">
-              {t('home.startChat')}
-            </button>
-          ) : (
-            <button onClick={handleSave} disabled={!name.trim() || !prompt.trim()}
-              className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">
-              {t('common.save')}
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
+            <Text className="display-serif" style={{ fontSize: 15, fontWeight: 500 }}>{name || '...'}</Text>
+          </Space>
+        </Form.Item>
+        <Form.Item label={t('chat.characterSystemPrompt')}>
+          <Input.TextArea
+            value={prompt}
+            onChange={(e) => { setPrompt(e.target.value); setSaved(false); }}
+            placeholder={t('chat.characterPromptPlaceholder')}
+            rows={5}
+          />
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 }

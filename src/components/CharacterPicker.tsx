@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Modal, Input, List, Button, Tag, Typography, Space } from 'antd';
+
+const { CheckableTag } = Tag;
+import { StarFilled } from '@ant-design/icons';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { Avatar } from './Avatar';
-import { useState } from 'react';
 import { useSettingsStore } from '../stores/settings';
 import type { Character } from '../types';
+
+const { Text } = Typography;
 
 const CATEGORIES = ['all', 'philosophy', 'strategy', 'business', 'finance', 'history', 'sociology', 'psychology', 'science', 'literature', 'art', 'economics', 'politics', 'technology', 'religion', 'education'];
 
@@ -57,71 +63,65 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-end sm:items-center justify-center z-50 sm:p-4" onClick={onClose}>
-      <div
-        className="bg-white dark:bg-gray-900 rounded-t-xl sm:rounded-xl shadow-xl w-full sm:max-w-md max-h-[85vh] sm:max-h-[80vh] flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold">{t('chat.addParticipant')}</h3>
-            <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 active:text-gray-800">✕</button>
-          </div>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && filtered.length === 0 && handleCustom()}
-            placeholder={t('home.search')}
-            autoFocus
-            className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategory(cat)}
-                className={`px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm rounded-full ${
-                  category === cat
-                    ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-700'
-                }`}
-              >
-                {t(`home.categories.${cat}`)}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto p-2">
-          {sorted.map((char) => (
-            <button
-              key={char.id}
-              type="button"
-              onClick={() => handleSelect(char)}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-start hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+    <Modal
+      open
+      onCancel={onClose}
+      footer={null}
+      title={<span className="display-serif" style={{ fontSize: 18, fontWeight: 500 }}>{t('chat.addParticipant')}</span>}
+      width={520}
+      styles={{ body: { padding: 0 } }}
+    >
+      <Space direction="vertical" style={{ width: '100%', padding: '0 24px 16px' }} size="middle">
+        <Input
+          autoFocus
+          allowClear
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onPressEnter={() => filtered.length === 0 && handleCustom()}
+          placeholder={t('home.search')}
+        />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, width: '100%' }}>
+          {CATEGORIES.map((c) => (
+            <CheckableTag
+              key={c}
+              checked={category === c}
+              onChange={() => setCategory(c)}
+              style={{ margin: 0, fontSize: 13, padding: '2px 10px' }}
             >
-              <Avatar emoji={char.avatar} color={char.color} size="sm" />
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium">{t(`characters.${char.id}.name`)}</div>
-                <div className="text-xs text-gray-400">{t(`characters.${char.id}.era`)}</div>
-              </div>
-              {favoriteCharacters.includes(char.id) && (
-                <span className="text-sm text-yellow-500">{'\u2605'}</span>
-              )}
-            </button>
+              {t(`home.categories.${c}`)}
+            </CheckableTag>
           ))}
-          {search && filtered.length === 0 && (
-            <div className="text-center py-4">
-              <button
-                onClick={handleCustom}
-                className="px-4 py-2 text-sm rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900"
-              >
-                {t('home.startChat')} — {search}
-              </button>
-            </div>
-          )}
         </div>
+      </Space>
+      <div style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+        <List
+          dataSource={sorted}
+          locale={{
+            emptyText: search ? (
+              <div style={{ padding: 24, textAlign: 'center' }}>
+                <Button type="primary" onClick={handleCustom}>{t('home.startChat')} — {search}</Button>
+              </div>
+            ) : t('chat.noConversations'),
+          }}
+          renderItem={(char) => (
+            <List.Item
+              style={{ padding: '10px 24px', cursor: 'pointer' }}
+              onClick={() => handleSelect(char)}
+              extra={favoriteCharacters.includes(char.id) ? <StarFilled style={{ color: 'var(--ant-color-primary)' }} /> : null}
+            >
+              <List.Item.Meta
+                avatar={<Avatar emoji={char.avatar} color={char.color} size="sm" />}
+                title={
+                  <Text className="display-serif" style={{ fontSize: 15, fontWeight: 500 }}>
+                    {t(`characters.${char.id}.name`)}
+                  </Text>
+                }
+                description={<Text type="secondary" style={{ fontSize: 12 }}>{t(`characters.${char.id}.era`)}</Text>}
+              />
+            </List.Item>
+          )}
+        />
       </div>
-    </div>
+    </Modal>
   );
 }

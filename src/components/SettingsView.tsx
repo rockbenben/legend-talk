@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Form, Input, Select, Button, Switch, App, Typography, Space, Divider, Flex } from 'antd';
+import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter, PROVIDER_GROUPS } from '../adapters/registry';
 import { getStorageUsage } from '../utils/storage';
@@ -16,6 +18,8 @@ import { Avatar } from './Avatar';
 import { presetCharacters } from '../characters/presets';
 import type { CustomCharacter } from '../stores/settings';
 
+const { Title, Text, Paragraph } = Typography;
+
 const LANG_DISPLAY: Record<string, string> = {
   en: 'English', zh: '中文', 'zh-Hant': '繁體中文', ja: '日本語', ko: '한국어',
   es: 'Español', pt: 'Português', fr: 'Français', de: 'Deutsch', it: 'Italiano',
@@ -27,18 +31,16 @@ export function SettingsView() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const lp = useLangPath();
+  const { modal, message } = App.useApp();
   const [searchParams, setSearchParams] = useSearchParams();
   const settings = useSettingsStore();
   const conversations = useConversationStore((s) => s.conversations);
   const importConversations = useConversationStore((s) => s.importConversations);
   const adapters = getAllAdapters();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [importStatus, setImportStatus] = useState<string | null>(null);
-  const [shareStatus, setShareStatus] = useState<string | null>(null);
 
   const currentAdapter = getAdapter(settings.defaultProvider);
 
-  // ── Settings import from URL ────────────────────────────────────────────
   function applyConfig(config: Record<string, unknown>) {
     const s = useSettingsStore.getState();
     if (typeof config.defaultProvider === 'string') s.setDefaultProvider(config.defaultProvider);
@@ -76,243 +78,282 @@ export function SettingsView() {
           _encrypted && 'API Keys (encrypted)',
           config.customCharacters?.length && `${config.customCharacters.length} custom characters`,
         ].filter(Boolean).join('\n');
-        if (!confirm(`${t('chat.settingsImported')}?\n\n${summary}`)) return;
-        applyConfig(config);
-        if (_encrypted) {
-          const password = prompt(t('chat.enterDecryptPassword'));
-          if (password) {
-            const keys = JSON.parse(await decrypt(_encrypted, password));
-            Object.entries(keys).forEach(([k, v]) => useSettingsStore.getState().setApiKey(k, v as string));
-          }
-        }
-        setShareStatus(t('chat.settingsImported'));
-        navigate(lp('/chat'));
+        modal.confirm({
+          title: t('chat.settingsImported'),
+          content: <pre style={{ fontSize: 13, whiteSpace: 'pre-wrap', margin: 0 }}>{summary}</pre>,
+          onOk: async () => {
+            applyConfig(config);
+            if (_encrypted) {
+              const password = window.prompt(t('chat.enterDecryptPassword'));
+              if (password) {
+                try {
+                  const keys = JSON.parse(await decrypt(_encrypted, password));
+                  Object.entries(keys).forEach(([k, v]) => useSettingsStore.getState().setApiKey(k, v as string));
+                } catch {
+                  message.error(t('chat.importError'));
+                  return;
+                }
+              }
+            }
+            message.success(t('chat.settingsImported'));
+            navigate(lp('/chat'));
+          },
+        });
       } catch {
-        setShareStatus(t('chat.importError'));
+        message.error(t('chat.importError'));
       }
-      setTimeout(() => setShareStatus(null), 5000);
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ── Handlers ────────────────────────────────────────────────────────────
   const handleShareSettings = async () => {
     const config: Record<string, unknown> = {
       defaultProvider: settings.defaultProvider,
       defaultModel: settings.defaultModel,
       language: settings.language,
       theme: settings.theme,
-      corsProxy: settings.corsProxy,
-      corsEnabled: settings.corsEnabled,
-      customBaseUrl: settings.customBaseUrl,
-      shareCardEndpoint: settings.shareCardEndpoint,
       thinkingLevel: settings.thinkingLevel,
       roundtableRounds: settings.roundtableRounds,
-      customCharacters: settings.customCharacters.length > 0 ? settings.customCharacters : undefined,
+      corsProxy: settings.corsProxy,
+      customBaseUrl: settings.customBaseUrl,
+      shareCardEndpoint: settings.shareCardEndpoint,
+      corsEnabled: settings.corsEnabled,
+      customCharacters: settings.customCharacters,
     };
-    const password = prompt(t('chat.enterPassword'));
-    if (password) config._encrypted = await encrypt(JSON.stringify(settings.apiKeys), password);
-    const base64 = await compressToBase64(JSON.stringify(config));
-    const url = `${window.location.origin}${window.location.pathname}#${lp('/settings')}?config=${base64}`;
-    try { await navigator.clipboard.writeText(url); setShareStatus(t('chat.copied')); }
-    catch { prompt(t('chat.copied'), url); }
-    setTimeout(() => setShareStatus(null), 2000);
+
+    const hasKeys = Object.values(settings.apiKeys).some((k) => k && k.trim());
+    if (hasKeys) {
+      const password = window.prompt(t('chat.enterEncryptPassword'));
+      if (password === null) return;
+      if (password) {
+        try {
+          config._encrypted = await encrypt(JSON.stringify(settings.apiKeys), password);
+        } catch {
+          message.error(t('chat.exportError'));
+          return;
+        }
+      }
+    }
+
+    try {
+      const base64 = await compressToBase64(JSON.stringify(config));
+      const url = `${window.location.origin}${window.location.pathname}#${lp('/settings')}?config=${base64}`;
+      await navigator.clipboard.writeText(url);
+      message.success(t('chat.linkCopied'));
+    } catch {
+      message.error(t('chat.exportError'));
+    }
   };
 
   const handleExportAll = () => {
-    downloadFile(JSON.stringify(conversations, null, 2), 'legend-talk-conversations.json', 'application/json');
+    const data = JSON.stringify(conversations, null, 2);
+    downloadFile(data, `legend-talk-conversations-${new Date().toISOString().slice(0, 10)}.json`, 'application/json');
   };
 
-  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const data = JSON.parse(reader.result as string);
-        const arr = Array.isArray(data) ? data : [];
-        const valid = arr.filter((c: unknown) =>
-          c && typeof c === 'object' && 'id' in c && 'messages' in c && Array.isArray((c as { messages: unknown }).messages));
-        if (valid.length === 0) throw new Error('invalid');
-        setImportStatus(t('chat.importSuccess', { count: importConversations(valid) }));
-      } catch { setImportStatus(t('chat.importError')); }
-      setTimeout(() => setImportStatus(null), 3000);
-    };
-    reader.readAsText(file);
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text);
+      if (Array.isArray(parsed)) {
+        const ok = importConversations(parsed);
+        message.success(t('chat.importedCount', { count: ok }));
+      } else {
+        message.error(t('chat.importError'));
+      }
+    } catch {
+      message.error(t('chat.importError'));
+    }
     e.target.value = '';
   };
 
-  const handleProviderChange = (next: string) => {
-    const prev = settings.defaultProvider;
-    let modelMap: Record<string, string> = {};
-    try { modelMap = JSON.parse(localStorage.getItem('legend-talk-provider-models') || '{}'); } catch { /* ok */ }
-    modelMap[prev] = settings.defaultModel;
-    try { localStorage.setItem('legend-talk-provider-models', JSON.stringify(modelMap)); } catch { /* ok */ }
-    settings.setDefaultProvider(next);
-    const saved = modelMap[next];
-    if (saved) { settings.setDefaultModel(saved); }
-    else { const a = getAdapter(next); settings.setDefaultModel(a?.models[0]?.id || ''); }
+  const handleProviderChange = (v: string) => {
+    settings.setDefaultProvider(v);
+    const adapter = getAdapter(v);
+    const firstModel = adapter?.models?.[0]?.id;
+    if (firstModel) settings.setDefaultModel(firstModel);
   };
 
-  // ── Render ──────────────────────────────────────────────────────────────
-  const btnClass = 'px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 dark:active:bg-gray-700';
-  const inputClass = 'w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500';
-  const selectClass = 'w-full px-3 py-2.5 sm:py-2 text-sm sm:text-base rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800';
-  const labelClass = 'text-sm font-medium text-gray-600 dark:text-gray-400';
+  const providerOptions = PROVIDER_GROUPS.flatMap((g) => {
+    const inGroup = adapters.filter((a) => (a.group || 'custom') === g.id);
+    if (inGroup.length === 0) return [];
+    return [{
+      label: t(g.labelKey),
+      title: t(g.labelKey),
+      options: inGroup.map((a) => ({ value: a.id, label: a.name })),
+    }];
+  });
 
   return (
-    <div className="max-w-2xl mx-auto p-4 sm:p-6 space-y-8">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="p-2 sm:p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 rtl:-scale-x-100"><polyline points="15 18 9 12 15 6" /></svg>
-        </button>
-        <h2 className="text-2xl font-bold">{t('settings.title')}</h2>
-      </div>
+    <div style={{ height: '100%', overflowY: 'auto' }}>
+      <div style={{ maxWidth: 880, margin: '0 auto', padding: 'clamp(16px, 5vw, 64px)' }}>
+        <Space size="middle" style={{ marginBottom: 24 }}>
+          <Button type="text" icon={<ArrowLeftOutlined className="rtl:-scale-x-100" />} onClick={() => navigate(-1)} />
+          <Title className="display-serif" level={2} style={{ margin: 0, fontWeight: 500 }}>
+            {t('settings.title')}
+          </Title>
+        </Space>
+        <Divider />
 
-      {/* ① API Provider */}
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold">{t('settings.defaultProvider')}</h3>
-        <select value={settings.defaultProvider} onChange={(e) => handleProviderChange(e.target.value)} className={selectClass}>
-          {PROVIDER_GROUPS.map((g) => {
-            const inGroup = adapters.filter((a) => (a.group || 'custom') === g.id);
-            if (inGroup.length === 0) return null;
-            return (
-              <optgroup key={g.id} label={t(g.labelKey)}>
-                {inGroup.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
-              </optgroup>
-            );
-          })}
-        </select>
-
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <label className={labelClass}>API Key</label>
-            {currentAdapter?.apiKeyUrl && <a href={currentAdapter.apiKeyUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">Get Key ↗</a>}
-          </div>
-          <input type="password" value={settings.apiKeys[settings.defaultProvider] || ''} onChange={(e) => settings.setApiKey(settings.defaultProvider, e.target.value)}
-            placeholder={t('settings.apiKeyPlaceholder', { provider: currentAdapter?.name || '' })} className={inputClass} />
-        </div>
-
-        {settings.defaultProvider === 'custom' && (
-          <div>
-            <label className={labelClass}>API Base URL</label>
-            <p className="text-xs text-gray-400 mb-1">{t('settings.customBaseUrlHint')}</p>
-            <input type="text" value={settings.customBaseUrl} onChange={(e) => settings.setCustomBaseUrl(e.target.value)} placeholder="https://api.example.com/v1" className={inputClass} />
-          </div>
-        )}
-
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <label className={labelClass}>{t('settings.defaultModel')}</label>
-            {currentAdapter?.docsUrl && <a href={currentAdapter.docsUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600">Docs ↗</a>}
-          </div>
-          <select value={(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) ? settings.defaultModel : '__custom__'}
-            onChange={(e) => settings.setDefaultModel(e.target.value === '__custom__' ? '' : e.target.value)} className={selectClass}>
-            {(currentAdapter?.models || []).map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
-            <option value="__custom__">{t('settings.customModel')}</option>
-          </select>
-          {!(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) && (
-            <input type="text" value={settings.defaultModel} onChange={(e) => settings.setDefaultModel(e.target.value)} placeholder="model-id" className={`${inputClass} mt-2`} />
+        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+          {t('settings.defaultProvider')}
+        </Title>
+        <Form layout="vertical">
+          <Form.Item label="Provider">
+            <Select value={settings.defaultProvider} onChange={handleProviderChange} options={providerOptions} />
+          </Form.Item>
+          <Form.Item
+            label={
+              <Space>
+                <span>API Key</span>
+                {currentAdapter?.apiKeyUrl && <a href={currentAdapter.apiKeyUrl} target="_blank" rel="noopener noreferrer">Get Key ↗</a>}
+              </Space>
+            }
+          >
+            <Input.Password
+              value={settings.apiKeys[settings.defaultProvider] || ''}
+              onChange={(e) => settings.setApiKey(settings.defaultProvider, e.target.value)}
+              placeholder={t('settings.apiKeyPlaceholder', { provider: currentAdapter?.name || '' })}
+            />
+          </Form.Item>
+          {settings.defaultProvider === 'custom' && (
+            <Form.Item label="API Base URL" extra={t('settings.customBaseUrlHint')}>
+              <Input value={settings.customBaseUrl} onChange={(e) => settings.setCustomBaseUrl(e.target.value)} placeholder="https://api.example.com/v1" />
+            </Form.Item>
           )}
-        </div>
-
-        {/* Thinking Level — under model */}
-        <div>
-          <label className={`${labelClass} mb-1 block`}>{t('settings.thinkingLevel')}</label>
-          <p className="text-xs text-gray-400 mb-1">{t('settings.thinkingLevelHint')}</p>
-          <select value={settings.thinkingLevel} onChange={(e) => settings.setThinkingLevel(e.target.value as 'off' | 'low' | 'medium' | 'high')} className={selectClass}>
-            <option value="off">{t('settings.thinkingOff')}</option>
-            <option value="low">{t('settings.thinkingLow')}</option>
-            <option value="medium">{t('settings.thinkingMedium')}</option>
-            <option value="high">{t('settings.thinkingHigh')}</option>
-          </select>
-        </div>
-
-        {/* CORS Proxy — under thinking level */}
-        {settings.defaultProvider !== 'custom' && (
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className={labelClass}>CORS Proxy</label>
-              <button onClick={() => settings.setCorsEnabled(settings.defaultProvider, !settings.corsEnabled[settings.defaultProvider])}
-                className={`relative w-11 h-6 rounded-full transition-colors ${settings.corsEnabled[settings.defaultProvider] ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
-                <span className={`absolute top-0.5 start-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.corsEnabled[settings.defaultProvider] ? 'ltr:translate-x-5 rtl:-translate-x-5' : ''}`} />
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mb-1">{t('settings.corsProxyHint')}</p>
-            {settings.corsEnabled[settings.defaultProvider] && (
-              <input type="text" value={settings.corsProxy} onChange={(e) => settings.setCorsProxy(e.target.value)} placeholder="https://cors.api2026.workers.dev" className={inputClass} />
+          <Form.Item
+            label={
+              <Space>
+                <span>{t('settings.defaultModel')}</span>
+                {currentAdapter?.docsUrl && <a href={currentAdapter.docsUrl} target="_blank" rel="noopener noreferrer">Docs ↗</a>}
+              </Space>
+            }
+          >
+            <Select
+              value={(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) ? settings.defaultModel : '__custom__'}
+              onChange={(v) => settings.setDefaultModel(v === '__custom__' ? '' : v)}
+              options={[
+                ...(currentAdapter?.models || []).map((m) => ({ value: m.id, label: m.name })),
+                { value: '__custom__', label: t('settings.customModel') },
+              ]}
+            />
+            {!(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) && (
+              <Input value={settings.defaultModel} onChange={(e) => settings.setDefaultModel(e.target.value)} placeholder="model-id" style={{ marginTop: 8 }} />
             )}
-          </div>
-        )}
-      </section>
+          </Form.Item>
+          <Form.Item label={t('settings.thinkingLevel')} extra={t('settings.thinkingLevelHint')}>
+            <Select
+              value={settings.thinkingLevel}
+              onChange={(v) => settings.setThinkingLevel(v as 'off' | 'low' | 'medium' | 'high')}
+              options={[
+                { value: 'off', label: t('settings.thinkingOff') },
+                { value: 'low', label: t('settings.thinkingLow') },
+                { value: 'medium', label: t('settings.thinkingMedium') },
+                { value: 'high', label: t('settings.thinkingHigh') },
+              ]}
+            />
+          </Form.Item>
+          {settings.defaultProvider !== 'custom' && (
+            <div style={{ marginBottom: 24 }}>
+              <Flex justify="space-between" align="center" gap={16} style={{ marginBottom: 4 }}>
+                <Text strong style={{ fontSize: 14 }}>CORS Proxy</Text>
+                <Switch
+                  checked={!!settings.corsEnabled[settings.defaultProvider]}
+                  onChange={(v) => settings.setCorsEnabled(settings.defaultProvider, v)}
+                />
+              </Flex>
+              <Text type="secondary" style={{ fontSize: 12, display: 'block', marginBottom: 8 }}>
+                {t('settings.corsProxyHint')}
+              </Text>
+              {settings.corsEnabled[settings.defaultProvider] && (
+                <Input value={settings.corsProxy} onChange={(e) => settings.setCorsProxy(e.target.value)} placeholder="https://cors.api2026.workers.dev" />
+              )}
+            </div>
+          )}
+        </Form>
 
-      {/* ② General Preferences */}
-      <section>
-        <h3 className="text-lg font-semibold mb-3">{t('settings.general')}</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className={`${labelClass} mb-1 block`}>{t('settings.language')}</label>
-            <select value={i18n.language} onChange={(e) => { const lng = e.target.value; ensureLanguageLoaded(lng).then(() => { i18n.changeLanguage(lng); settings.setLanguage(lng); }); }} className={selectClass}>
-              {((i18n.options.supportedLngs || []) as string[]).filter((l) => l !== 'cimode').map((lng) => (
-                <option key={lng} value={lng}>{LANG_DISPLAY[lng] || lng}</option>
-              ))}
-            </select>
+        <Divider />
+
+        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+          {t('settings.general')}
+        </Title>
+        <Form layout="vertical">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <Form.Item label={t('settings.language')}>
+              <Select
+                value={i18n.language}
+                onChange={(lng) => { ensureLanguageLoaded(lng).then(() => { i18n.changeLanguage(lng); settings.setLanguage(lng); }); }}
+                options={((i18n.options.supportedLngs || []) as string[]).filter((l) => l !== 'cimode').map((lng) => ({ value: lng, label: LANG_DISPLAY[lng] || lng }))}
+              />
+            </Form.Item>
+            <Form.Item label={t('settings.theme')}>
+              <Select
+                value={settings.theme}
+                onChange={(v) => settings.setTheme(v as 'light' | 'dark')}
+                options={[
+                  { value: 'light', label: t('settings.themeLight') },
+                  { value: 'dark', label: t('settings.themeDark') },
+                ]}
+              />
+            </Form.Item>
           </div>
-          <div>
-            <label className={`${labelClass} mb-1 block`}>{t('settings.theme')}</label>
-            <select value={settings.theme} onChange={(e) => settings.setTheme(e.target.value as 'light' | 'dark')} className={selectClass}>
-              <option value="light">{t('settings.themeLight')}</option>
-              <option value="dark">{t('settings.themeDark')}</option>
-            </select>
-          </div>
+          <Form.Item
+            label={
+              <Space>
+                <span>{t('settings.shareCardEndpoint')}</span>
+                <a href="https://github.com/rockbenben/json2card" target="_blank" rel="noopener noreferrer">json2card ↗</a>
+              </Space>
+            }
+            extra={t('settings.shareCardEndpointHint')}
+          >
+            <Input value={settings.shareCardEndpoint} onChange={(e) => settings.setShareCardEndpoint(e.target.value)} placeholder="http://localhost:3000" />
+          </Form.Item>
+        </Form>
+
+        <Divider />
+        <CustomCharactersSection />
+
+        <Divider />
+
+        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+          {t('settings.dataManagement')}
+        </Title>
+        <div style={{ marginBottom: 24 }}>
+          <Flex justify="space-between" align="center" gap={16} style={{ marginBottom: 8 }}>
+            <Text strong style={{ fontSize: 14 }}>{t('settings.conversations')}</Text>
+            <Text type="secondary" style={{ fontSize: 12 }}>{getStorageUsage()}</Text>
+          </Flex>
+          <Space wrap>
+            <Button icon={<ExportOutlined />} onClick={handleExportAll}>{t('settings.exportAll')}</Button>
+            <Button icon={<ImportOutlined />} onClick={() => fileInputRef.current?.click()}>{t('chat.importConversations')}</Button>
+            <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} style={{ display: 'none' }} />
+          </Space>
         </div>
-        <div className="mt-4">
-          <div className="flex items-center gap-2 mb-1">
-            <label className={labelClass}>{t('settings.shareCardEndpoint')}</label>
-            <a href="https://github.com/rockbenben/json2card" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">json2card ↗</a>
-          </div>
-          <p className="text-xs text-gray-400 mb-1">{t('settings.shareCardEndpointHint')}</p>
-          <input type="text" value={settings.shareCardEndpoint} onChange={(e) => settings.setShareCardEndpoint(e.target.value)} placeholder="http://localhost:3000" className={inputClass} />
-        </div>
-      </section>
-
-      {/* ③ Custom Characters */}
-      <CustomCharactersSection />
-
-      {/* ⑤ Data Management */}
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold">{t('settings.dataManagement')}</h3>
-
-        {/* Conversations */}
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className={labelClass}>{t('settings.conversations')}</label>
-            <span className="text-xs text-gray-400">{getStorageUsage()}</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <button onClick={handleExportAll} className={btnClass}>{t('settings.exportAll')}</button>
-            <button onClick={() => fileInputRef.current?.click()} className={btnClass}>{t('chat.importConversations')}</button>
-            <input ref={fileInputRef} type="file" accept=".json" onChange={handleImport} className="hidden" />
-          </div>
-          {importStatus && <p className={`mt-2 text-sm ${importStatus.includes(t('chat.importError')) ? 'text-red-500' : 'text-green-600 dark:text-green-400'}`}>{importStatus}</p>}
+          <Text strong style={{ fontSize: 14, display: 'block', marginBottom: 4 }}>{t('settings.settingsSync')}</Text>
+          <Text type="secondary" style={{ fontSize: 12, display: 'block', marginBottom: 8 }}>
+            {t('settings.settingsSyncHint')}
+          </Text>
+          <Button icon={<ShareAltOutlined />} onClick={handleShareSettings}>{t('chat.shareSettings')}</Button>
         </div>
 
-        {/* Settings Sync */}
-        <div>
-          <label className={`${labelClass} mb-1 block`}>{t('settings.settingsSync')}</label>
-          <p className="text-xs text-gray-400 mb-2">{t('settings.settingsSyncHint')}</p>
-          <button onClick={handleShareSettings} className={btnClass}>{t('chat.shareSettings')}</button>
-          {shareStatus && <p className="mt-2 text-sm text-green-600 dark:text-green-400">{shareStatus}</p>}
-        </div>
-      </section>
+        <Divider />
 
-      {/* ⑥ Danger Zone */}
-      <section className="pt-4 border-t border-gray-200 dark:border-gray-700">
-        <button onClick={async () => { if (confirm(t('common.confirm'))) { await clearAllStorage(); window.location.reload(); } }}
-          className="px-4 py-2 text-sm rounded-lg text-red-500 border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 active:bg-red-100 dark:active:bg-red-900/30">
+        <Button
+          danger
+          onClick={() => {
+            modal.confirm({
+              title: t('common.confirm'),
+              onOk: async () => {
+                await clearAllStorage();
+                window.location.reload();
+              },
+            });
+          }}
+        >
           {t('settings.clearData')}
-        </button>
-      </section>
+        </Button>
+      </div>
     </div>
   );
 }
@@ -338,46 +379,43 @@ function CustomCharactersSection() {
     : customCharacters.slice(0, COLLAPSE_THRESHOLD);
 
   return (
-    <section>
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold">
+    <>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+        <Title level={5} className="display-serif" style={{ fontWeight: 500, margin: 0 }}>
           {t('settings.customCharacters')}
-          {customCharacters.length > 0 && <span className="text-sm font-normal text-gray-400 ms-1">({customCharacters.length})</span>}
-        </h3>
-        <button onClick={() => { setEditingChar(undefined); setShowEditor(true); }}
-          className="text-xs sm:text-sm px-3 py-2 sm:py-1.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 hover:border-blue-400 hover:text-blue-500 active:border-blue-400 active:text-blue-500 transition-colors">
-          + {t('chat.createCharacter')}
-        </button>
+          {customCharacters.length > 0 && (
+            <Text type="secondary" style={{ fontSize: 13, fontWeight: 400, marginInlineStart: 8 }}>
+              ({customCharacters.length})
+            </Text>
+          )}
+        </Title>
+        <Button icon={<PlusOutlined />} onClick={() => { setEditingChar(undefined); setShowEditor(true); }} style={{ borderStyle: 'dashed' }}>
+          {t('chat.createCharacter')}
+        </Button>
       </div>
       {customCharacters.length === 0 ? (
-        <p className="text-sm text-gray-400">{t('settings.noCustomCharacters')}</p>
+        <Paragraph type="secondary">{t('settings.noCustomCharacters')}</Paragraph>
       ) : (
-        <div className="space-y-2">
+        <div>
           {visible.map((c) => (
-            <div key={c.id} className="flex items-center gap-3 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+            <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
               <Avatar emoji={c.avatar} color={c.color} size="sm" />
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium truncate">{c.displayName}</div>
-                <div className="text-xs text-gray-400 truncate">{c.era || c.systemPrompt.slice(0, 60)}</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <Text className="display-serif" ellipsis style={{ display: 'block', fontWeight: 500 }}>{c.displayName}</Text>
+                <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>{c.era || c.systemPrompt.slice(0, 60)}</Text>
               </div>
-              <button onClick={() => { setEditingChar(c); setShowEditor(true); }}
-                className="p-2 text-gray-400 hover:text-blue-500 shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                </svg>
-              </button>
-              <button onClick={() => handleDelete(c.id)} className="p-2 text-gray-400 hover:text-red-500 shrink-0">✕</button>
+              <Button type="text" size="small" icon={<EditOutlined />} onClick={() => { setEditingChar(c); setShowEditor(true); }} />
+              <Button type="text" size="small" icon={<CloseOutlined />} onClick={() => handleDelete(c.id)} />
             </div>
           ))}
           {customCharacters.length > COLLAPSE_THRESHOLD && (
-            <button onClick={() => setExpanded(!expanded)}
-              className="w-full py-1.5 text-xs text-gray-400 hover:text-blue-500 transition-colors">
+            <Button type="link" block onClick={() => setExpanded(!expanded)} style={{ marginTop: 8 }}>
               {expanded ? t('common.collapse') : t('common.showAll', { count: customCharacters.length })}
-            </button>
+            </Button>
           )}
         </div>
       )}
       {showEditor && <CharacterEditor character={editingChar} onClose={() => setShowEditor(false)} />}
-    </section>
+    </>
   );
 }

@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "örn. Çağdaş, Rönesans",
     "edit": "Düzenle",
     "applyEdit": "Uygula ve yeniden dene",
-    "copy": "Kopyala"
+    "copy": "Kopyala",
+    "theChair": "Başkan"
   },
   "roundtable": {
     "selected": "{{count}} seçili",

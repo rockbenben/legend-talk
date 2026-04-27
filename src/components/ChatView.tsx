@@ -442,9 +442,24 @@ export function ChatView({ conversationId }: ChatViewProps) {
                       size="small"
                       hoverable
                       onClick={() => handleSend(q)}
-                      styles={{ body: { padding: 14 } }}
+                      styles={{ body: { padding: '14px 16px' } }}
                     >
-                      <Text style={{ fontSize: 14, lineHeight: 1.5 }}>{q}</Text>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                        <span
+                          aria-hidden
+                          className="display-serif-italic"
+                          style={{
+                            fontSize: 28,
+                            lineHeight: 0.7,
+                            color: 'var(--ant-color-primary)',
+                            flexShrink: 0,
+                            paddingTop: 8,
+                          }}
+                        >
+                          “
+                        </span>
+                        <Text style={{ fontSize: 14, lineHeight: 1.55 }}>{q}</Text>
+                      </div>
                     </Card>
                   ))}
                 </div>

@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "如 当代、文艺复兴",
     "edit": "编辑",
     "applyEdit": "应用并重试",
-    "copy": "复制"
+    "copy": "复制",
+    "theChair": "主持人"
   },
   "roundtable": {
     "selected": "已选 {{count}} 位",

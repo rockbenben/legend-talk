@@ -13,6 +13,20 @@ import {
 } from '@ant-design/icons';
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
+import { Avatar } from './Avatar';
+
+/** Short relative time: "5m", "3h", "Yesterday", or "Mar 14". */
+function formatRelative(ts: number, lng: string): string {
+  const diff = Date.now() - ts;
+  const min = Math.floor(diff / 60000);
+  if (min < 1) return '·';
+  if (min < 60) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(-min, 'minute');
+  const hr = Math.floor(diff / 3600000);
+  if (hr < 24) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(-hr, 'hour');
+  const day = Math.floor(diff / 86400000);
+  if (day < 7) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(-day, 'day');
+  return new Intl.DateTimeFormat(lng, { month: 'short', day: 'numeric' }).format(ts);
+}
 
 const { Text } = Typography;
 const { useToken } = antTheme;
@@ -32,7 +46,7 @@ function useIsMobile() {
 }
 
 export function ConversationList({ activeId }: ConversationListProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const lp = useLangPath();
   const { token } = useToken();
@@ -121,54 +135,105 @@ export function ConversationList({ activeId }: ConversationListProps) {
             dataSource={filteredConversations}
             renderItem={(conv) => {
               const isActive = activeId === conv.id;
-              const last = conv.messages.length > 0
-                ? conv.messages[conv.messages.length - 1].content.slice(0, 38)
-                : t('chat.noMessages');
+              const chars = conv.characters
+                .map((id) => presetCharacters.find((p) => p.id === id))
+                .filter((c): c is NonNullable<typeof c> => !!c);
+              const visibleChars = chars.slice(0, 3);
+              const extraChars = chars.length - visibleChars.length;
+              const time = formatRelative(conv.updatedAt || conv.createdAt, i18n.language);
               return (
                 <List.Item
+                  className="group"
                   onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
                   onDoubleClick={(e) => { e.stopPropagation(); startEditing(conv); }}
                   style={{
-                    padding: '10px 16px',
+                    padding: '12px 14px',
                     cursor: 'pointer',
                     background: isActive ? `color-mix(in srgb, ${token.colorPrimary} 6%, transparent)` : undefined,
                     borderInlineStart: isActive ? `2px solid ${token.colorPrimary}` : '2px solid transparent',
                   }}
-                  actions={[
-                    <Button
-                      key="del"
-                      type="text"
-                      size="small"
-                      icon={<CloseOutlined />}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteConversation(conv.id);
-                        if (activeId === conv.id) navigate(lp('/chat'));
-                      }}
-                    />,
-                  ]}
                 >
-                  <List.Item.Meta
-                    title={
-                      editingId === conv.id ? (
-                        <Input
-                          size="small"
-                          autoFocus
-                          value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
-                          onBlur={finishEditing}
-                          onPressEnter={finishEditing}
-                          onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      ) : (
-                        <Text className="display-serif" ellipsis style={{ fontSize: 15, fontWeight: 500 }}>
-                          {getDisplayTitle(conv)}
+                  <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {/* Title row: title + delete on hover */}
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        {editingId === conv.id ? (
+                          <Input
+                            size="small"
+                            autoFocus
+                            value={editValue}
+                            onChange={(e) => setEditValue(e.target.value)}
+                            onBlur={finishEditing}
+                            onPressEnter={finishEditing}
+                            onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        ) : (
+                          <Text
+                            className="display-serif"
+                            ellipsis
+                            style={{
+                              fontSize: 15,
+                              fontWeight: isActive ? 600 : 500,
+                              color: isActive ? token.colorPrimary : token.colorText,
+                              display: 'block',
+                            }}
+                          >
+                            {getDisplayTitle(conv)}
+                          </Text>
+                        )}
+                      </div>
+                      <Button
+                        type="text"
+                        size="small"
+                        icon={<CloseOutlined style={{ fontSize: 11 }} />}
+                        className="opacity-0 group-hover:!opacity-100"
+                        style={{ color: token.colorTextTertiary, transition: 'opacity 0.18s', flexShrink: 0 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteConversation(conv.id);
+                          if (activeId === conv.id) navigate(lp('/chat'));
+                        }}
+                      />
+                    </div>
+                    {/* Meta row: stacked participant avatars + relative time */}
+                    {chars.length > 0 ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                        <div style={{ display: 'flex', flexShrink: 0 }}>
+                          {visibleChars.map((c, j) => (
+                            <div
+                              key={c.id}
+                              style={{
+                                marginInlineStart: j > 0 ? -6 : 0,
+                                position: 'relative',
+                                zIndex: j + 1,
+                              }}
+                            >
+                              <Avatar emoji={c.avatar} color={c.color} size="xs" />
+                            </div>
+                          ))}
+                        </div>
+                        {extraChars > 0 && (
+                          <Text type="secondary" style={{ fontSize: 11, flexShrink: 0 }}>+{extraChars}</Text>
+                        )}
+                        <Text
+                          type="secondary"
+                          style={{
+                            fontSize: 11,
+                            fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
+                            marginInlineStart: 'auto',
+                            flexShrink: 0,
+                          }}
+                        >
+                          {time}
                         </Text>
-                      )
-                    }
-                    description={<Text type="secondary" ellipsis style={{ fontSize: 12 }}>{last}</Text>}
-                  />
+                      </div>
+                    ) : (
+                      <Text type="secondary" style={{ fontSize: 11 }}>
+                        {time}
+                      </Text>
+                    )}
+                  </div>
                 </List.Item>
               );
             }}

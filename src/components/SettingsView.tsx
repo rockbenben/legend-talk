@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Form, Input, Select, Button, Switch, App, Typography, Space, Divider, Flex } from 'antd';
-import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined, ApiOutlined, SettingOutlined, UsergroupAddOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter, PROVIDER_GROUPS } from '../adapters/registry';
 import { getStorageUsage } from '../utils/storage';
@@ -195,7 +195,8 @@ export function SettingsView() {
         </Space>
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <ApiOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.defaultProvider')}
         </Title>
         <Form layout="vertical">
@@ -274,7 +275,8 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <SettingOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.general')}
         </Title>
         <Form layout="vertical">
@@ -315,7 +317,8 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500 }}>
+        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <DatabaseOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.dataManagement')}
         </Title>
         <div style={{ marginBottom: 24 }}>
@@ -381,7 +384,8 @@ function CustomCharactersSection() {
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <Title level={5} className="display-serif" style={{ fontWeight: 500, margin: 0 }}>
+        <Title level={5} className="display-serif" style={{ fontWeight: 500, margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <UsergroupAddOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.customCharacters')}
           {customCharacters.length > 0 && (
             <Text type="secondary" style={{ fontSize: 13, fontWeight: 400, marginInlineStart: 8 }}>

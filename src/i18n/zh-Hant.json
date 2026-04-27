@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "如 當代、文藝復興",
     "edit": "編輯",
     "applyEdit": "套用並重試",
-    "copy": "複製"
+    "copy": "複製",
+    "theChair": "主持人"
   },
   "roundtable": {
     "selected": "已選 {{count}} 位",

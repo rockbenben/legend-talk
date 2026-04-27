@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "z.B. Zeitgenössisch, Renaissance",
     "edit": "Bearbeiten",
     "applyEdit": "Anwenden und wiederholen",
-    "copy": "Kopieren"
+    "copy": "Kopieren",
+    "theChair": "Vorsitz"
   },
   "roundtable": {
     "selected": "{{count}} ausgewählt",

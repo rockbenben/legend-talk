@@ -3,11 +3,11 @@ import { Avatar as AntAvatar } from 'antd';
 interface AvatarProps {
   emoji: string;
   color: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
-const sizes = { sm: 32, md: 40, lg: 56 };
-const fontSizes = { sm: 16, md: 20, lg: 28 };
+const sizes = { xs: 22, sm: 32, md: 40, lg: 56 };
+const fontSizes = { xs: 12, sm: 16, md: 20, lg: 28 };
 
 /**
  * Solid base RGBs per character color. We mix these with the active container

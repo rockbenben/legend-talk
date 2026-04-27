@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "เช่น ร่วมสมัย, เรอเนสซองส์",
     "edit": "แก้ไข",
     "applyEdit": "ใช้และลองใหม่",
-    "copy": "คัดลอก"
+    "copy": "คัดลอก",
+    "theChair": "ประธาน"
   },
   "roundtable": {
     "selected": "เลือก {{count}} คน",

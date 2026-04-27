@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "जैसे समकालीन, पुनर्जागरण",
     "edit": "संपादित करें",
     "applyEdit": "लागू करें और पुनः प्रयास करें",
-    "copy": "कॉपी करें"
+    "copy": "कॉपी करें",
+    "theChair": "सभापति"
   },
   "roundtable": {
     "selected": "{{count}} चयनित",

@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "VD: Đương đại, Phục hưng",
     "edit": "Chỉnh sửa",
     "applyEdit": "Áp dụng và thử lại",
-    "copy": "Sao chép"
+    "copy": "Sao chép",
+    "theChair": "Chủ tọa"
   },
   "roundtable": {
     "selected": "Đã chọn {{count}}",

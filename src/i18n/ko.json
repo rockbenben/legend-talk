@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "예: 현대, 르네상스",
     "edit": "편집",
     "applyEdit": "적용하고 다시 시도",
-    "copy": "복사"
+    "copy": "복사",
+    "theChair": "의장"
   },
   "roundtable": {
     "selected": "{{count}}명 선택",

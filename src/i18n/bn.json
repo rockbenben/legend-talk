@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "যেমন সমসাময়িক, রেনেসাঁ",
     "edit": "সম্পাদনা",
     "applyEdit": "প্রয়োগ করুন ও পুনরায় চেষ্টা করুন",
-    "copy": "কপি করুন"
+    "copy": "কপি করুন",
+    "theChair": "সভাপতি"
   },
   "roundtable": {
     "selected": "{{count}} জন নির্বাচিত",

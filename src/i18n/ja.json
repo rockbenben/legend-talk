@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "例: 現代、ルネサンス",
     "edit": "編集",
     "applyEdit": "適用して再試行",
-    "copy": "コピー"
+    "copy": "コピー",
+    "theChair": "議長"
   },
   "roundtable": {
     "selected": "{{count}}人選択",

@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "ex. Contemporâneo, Renascimento",
     "edit": "Editar",
     "applyEdit": "Aplicar e tentar novamente",
-    "copy": "Copiar"
+    "copy": "Copiar",
+    "theChair": "A Presidência"
   },
   "roundtable": {
     "selected": "{{count}} selecionados",

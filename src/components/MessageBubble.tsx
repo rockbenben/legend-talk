@@ -18,18 +18,18 @@ interface MessageBubbleProps {
 
 const MODERATOR_RE = /moderator|⚖|主持|裁判|모더레이터|moderador|moderatore|moderateur|модератор|वार्ताकार|moderator|kıdemli/i;
 
-const FRAUNCES = '"Fraunces", ui-serif, Georgia, "Times New Roman", serif';
+const SERIF_BODY_SIZE = 'clamp(15px, 0.6vw + 13.4px, 16.5px)';
 
 /**
  * Three semantic registers, three visual languages:
  *
  *   Character → portrait + bold serif name + serif body. The "voice" form.
  *   Chair (user) → right-aligned, accent-edged. The "intervention" form.
- *   Moderator (⚖️) → centered, italic, framed by hairline rules. The
- *                    "synthesis" form — not a voice but a frame around voices.
+ *   Moderator (⚖️) → hairline-framed italic synthesis. The "frame around
+ *                    voices", not a voice itself.
  */
 function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: MessageBubbleProps) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { token } = useToken();
   const trimmed = content?.trim() || '';
   const isEmpty = !trimmed;
@@ -46,6 +46,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
 
   // ── Moderator: hairline-framed synthesis (left-aligned for readability) ──
   if (isModerator) {
+    const moderatorLabel = name || t('moderator.name');
     return (
       <div style={{ margin: '28px 0' }}>
         <div
@@ -62,16 +63,14 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
           }}
         >
           <span aria-hidden style={{ width: 24, height: 1, background: token.colorBorderSecondary, flexShrink: 0 }} />
-          <span>⚖ {name || 'Moderator'}{timeLabel ? ` · ${timeLabel}` : ''}</span>
+          <span>⚖ {moderatorLabel}{timeLabel ? ` · ${timeLabel}` : ''}</span>
           <span style={{ flex: 1, height: 1, background: token.colorBorderSecondary }} />
         </div>
         {!isEmpty && (
           <div
-            className="prose dark:prose-invert prose-sm max-w-none"
+            className="display-serif-italic prose dark:prose-invert prose-sm max-w-none"
             style={{
-              fontFamily: FRAUNCES,
-              fontStyle: 'italic',
-              fontSize: 'clamp(15px, 0.6vw + 13.4px, 16.5px)',
+              fontSize: SERIF_BODY_SIZE,
               lineHeight: 1.7,
               color: token.colorTextSecondary,
               wordBreak: 'break-word',
@@ -103,16 +102,16 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
             }}
             title={fullDate}
           >
-            The Chair{timeLabel ? ` · ${timeLabel}` : ''}
+            {t('chat.theChair')}{timeLabel ? ` · ${timeLabel}` : ''}
           </div>
           {!isEmpty && (
             <div
+              className="display-serif"
               style={{
                 padding: '10px 14px',
                 borderInlineEnd: `2px solid ${token.colorPrimary}`,
                 background: `color-mix(in srgb, ${token.colorPrimary} 7%, transparent)`,
-                fontFamily: FRAUNCES,
-                fontSize: 'clamp(15px, 0.6vw + 13.4px, 16.5px)',
+                fontSize: SERIF_BODY_SIZE,
                 lineHeight: 1.65,
                 color: token.colorText,
                 wordBreak: 'break-word',
@@ -138,11 +137,10 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap', marginBottom: 8 }}>
           {name && (
             <Text
+              className="display-serif"
               style={{
-                fontFamily: FRAUNCES,
                 fontSize: 17,
                 fontWeight: 600,
-                letterSpacing: '-0.005em',
                 color: token.colorText,
                 lineHeight: 1.2,
               }}
@@ -166,10 +164,9 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
         </div>
         {!isEmpty && (
           <div
-            className="prose dark:prose-invert prose-sm max-w-none"
+            className="display-serif prose dark:prose-invert prose-sm max-w-none"
             style={{
-              fontFamily: FRAUNCES,
-              fontSize: 'clamp(15px, 0.6vw + 13.4px, 16.5px)',
+              fontSize: SERIF_BODY_SIZE,
               lineHeight: 1.7,
               color: token.colorText,
               wordBreak: 'break-word',

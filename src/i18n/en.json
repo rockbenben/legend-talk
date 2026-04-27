@@ -93,7 +93,8 @@
     "characterEraPlaceholder": "e.g. Contemporary, Renaissance",
     "edit": "Edit",
     "applyEdit": "Apply & retry",
-    "copy": "Copy"
+    "copy": "Copy",
+    "theChair": "The Chair"
   },
   "roundtable": {
     "selected": "{{count}} selected",

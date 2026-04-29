@@ -10,7 +10,7 @@ describe('settingsStore', () => {
     const state = useSettingsStore.getState();
     expect(state.apiKeys).toEqual({});
     expect(state.defaultProvider).toBe('deepseek');
-    expect(state.defaultModel).toBe('deepseek-chat');
+    expect(state.defaultModel).toBe('deepseek-v4-flash');
     expect(state.theme).toBe('light');
     expect(state.corsProxy).toBe('https://cors.api2026.workers.dev');
   });

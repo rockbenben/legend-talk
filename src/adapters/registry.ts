@@ -97,8 +97,8 @@ const adapters: LLMAdapter[] = [
 
   // ── China ──
   new OpenAICompatibleAdapter('deepseek', 'DeepSeek', 'https://api.deepseek.com', [
-    { id: 'deepseek-chat', name: 'DeepSeek Chat' },
-    { id: 'deepseek-reasoner', name: 'DeepSeek Reasoner' },
+    { id: 'deepseek-v4-flash', name: 'DeepSeek V4 Flash' },
+    { id: 'deepseek-v4-pro', name: 'DeepSeek V4 Pro' },
   ], {
     docsUrl: 'https://api-docs.deepseek.com/zh-cn/',
     apiKeyUrl: 'https://platform.deepseek.com/api_keys',

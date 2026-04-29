@@ -45,7 +45,7 @@ export const useSettingsStore = create<SettingsState>()(
     (set) => ({
       apiKeys: {},
       defaultProvider: 'deepseek',
-      defaultModel: 'deepseek-chat',
+      defaultModel: 'deepseek-v4-flash',
       language: navigator.language || 'en',
       theme: 'light',
       corsProxy: 'https://cors.api2026.workers.dev',

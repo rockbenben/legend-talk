@@ -51,7 +51,10 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
     };
     if (params.model) body.model = params.model;
     if (params.thinkingLevel && this.thinkingMapper) {
-      Object.assign(body, this.thinkingMapper(params.thinkingLevel));
+      const modelOpt = this.models.find((m) => m.id === params.model);
+      if (modelOpt?.thinking !== false) {
+        Object.assign(body, this.thinkingMapper(params.thinkingLevel));
+      }
     }
 
     const response = await fetch(url, {

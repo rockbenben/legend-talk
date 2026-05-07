@@ -9,6 +9,9 @@ export interface Character {
 export interface ModelOption {
   id: string;
   name: string;
+  // Set to false to opt out of provider-level thinkingStyle injection (e.g. for
+  // non-reasoning chat models in mixed-catalog providers like GitHub Models).
+  thinking?: boolean;
 }
 
 export type ThinkingLevel = 'off' | 'low' | 'medium' | 'high';

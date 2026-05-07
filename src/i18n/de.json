@@ -55,6 +55,8 @@
     "corsError": "Anfrage vom Browser blockiert (CORS). Ein Proxy wird benötigt.",
     "useCorsProxy": "Öffentlichen Proxy verwenden",
     "summonFailed": "Keine passenden Charaktere für dieses Thema gefunden",
+    "thinkingUnsupported": "Dieses Modell unterstützt den Denkmodus nicht. Deaktivieren Sie ihn oder wählen Sie ein Reasoning-Modell.",
+    "disableThinking": "Deaktivieren und erneut versuchen",
     "addParticipant": "Hinzufügen",
     "regenerate": "Neu generieren",
     "summarize": "Zusammenfassen",

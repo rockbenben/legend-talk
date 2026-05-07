@@ -55,6 +55,8 @@
     "corsError": "ブラウザにブロックされました（CORS）。プロキシが必要です",
     "useCorsProxy": "公開プロキシを使用",
     "summonFailed": "このトピックに合うキャラクターが見つかりません",
+    "thinkingUnsupported": "このモデルは思考モードに対応していません。思考をオフにするか、推論対応モデルを選択してください。",
+    "disableThinking": "思考をオフにして再試行",
     "addParticipant": "追加",
     "regenerate": "再生成",
     "summarize": "要約",

@@ -55,6 +55,8 @@
     "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
     "useCorsProxy": "Sử dụng proxy công cộng",
     "summonFailed": "Không tìm thấy nhân vật phù hợp cho chủ đề này",
+    "thinkingUnsupported": "Mô hình này không hỗ trợ chế độ suy nghĩ. Hãy tắt nó hoặc chọn mô hình suy luận.",
+    "disableThinking": "Tắt suy nghĩ và thử lại",
     "addParticipant": "Thêm",
     "regenerate": "Tạo lại",
     "summarize": "Tóm tắt",

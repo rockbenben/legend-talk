@@ -55,6 +55,8 @@
     "corsError": "Requête bloquée par le navigateur (CORS). Un proxy est nécessaire.",
     "useCorsProxy": "Utiliser le proxy public",
     "summonFailed": "Aucun personnage trouvé pour ce sujet",
+    "thinkingUnsupported": "Ce modèle ne prend pas en charge le mode réflexion. Désactivez-le ou choisissez un modèle de raisonnement.",
+    "disableThinking": "Désactiver et réessayer",
     "addParticipant": "Ajouter",
     "regenerate": "Régénérer",
     "summarize": "Résumer",

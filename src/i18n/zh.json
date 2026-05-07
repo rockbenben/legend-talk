@@ -55,6 +55,8 @@
     "corsError": "请求被浏览器拦截（CORS），需要配置中转",
     "useCorsProxy": "使用公共中转",
     "summonFailed": "未匹配到合适的角色",
+    "thinkingUnsupported": "此模型不支持思考模式，请关闭思考强度，或换一个支持推理的模型",
+    "disableThinking": "关闭思考并重试",
     "addParticipant": "加人",
     "regenerate": "重新生成",
     "summarize": "总结对话",

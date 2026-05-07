@@ -55,6 +55,8 @@
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
     "useCorsProxy": "Genel proxy kullan",
     "summonFailed": "Bu konu için uygun karakter bulunamadı",
+    "thinkingUnsupported": "Bu model düşünme modunu desteklemiyor. Devre dışı bırakın veya bir akıl yürütme modeli seçin.",
+    "disableThinking": "Düşünmeyi kapat ve yeniden dene",
     "addParticipant": "Ekle",
     "regenerate": "Yeniden oluştur",
     "summarize": "Özetle",

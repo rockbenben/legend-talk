@@ -55,6 +55,8 @@
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "useCorsProxy": "Use public proxy",
     "summonFailed": "No matching characters found for this topic",
+    "thinkingUnsupported": "This model doesn't support thinking mode. Disable thinking or pick a reasoning model.",
+    "disableThinking": "Disable thinking and retry",
     "addParticipant": "Add",
     "regenerate": "Regenerate",
     "summarize": "Summarize",

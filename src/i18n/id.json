@@ -55,6 +55,8 @@
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "useCorsProxy": "Gunakan proxy publik",
     "summonFailed": "Tidak ditemukan karakter yang cocok untuk topik ini",
+    "thinkingUnsupported": "Model ini tidak mendukung mode berpikir. Nonaktifkan atau pilih model penalaran.",
+    "disableThinking": "Nonaktifkan dan coba lagi",
     "addParticipant": "Tambah",
     "regenerate": "Buat ulang",
     "summarize": "Ringkas",

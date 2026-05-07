@@ -55,6 +55,8 @@
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
     "useCorsProxy": "使用公共中轉",
     "summonFailed": "未匹配到合適的角色",
+    "thinkingUnsupported": "此模型不支援思考模式，請關閉思考強度，或換一個支援推理的模型",
+    "disableThinking": "關閉思考並重試",
     "addParticipant": "加人",
     "regenerate": "重新生成",
     "summarize": "總結對話",

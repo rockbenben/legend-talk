@@ -67,7 +67,8 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
         const body = await response.json();
         detail = body.error?.message || JSON.stringify(body);
       } catch { /* ignore */ }
-      throw new Error(detail);
+      // Some providers mistranslate "insufficient balance" as "平衡不足" (equilibrium) instead of "余额不足" (account balance).
+      throw new Error(detail.replace(/平衡不足/g, '余额不足'));
     }
 
     for await (const data of parseSSE(response)) {

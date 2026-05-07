@@ -635,6 +635,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             const s = useSettingsStore.getState();
             const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
             const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
+            const isThinkingError = !isNetwork && s.thinkingLevel !== 'off' && /\b(reasoning_effort|enable_thinking|thinking)\b/i.test(error);
             const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
             if (isCors) return (
               <Alert
@@ -657,6 +658,20 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 style={{ marginTop: 8 }}
                 message={t('chat.networkError')}
                 action={<Button size="small" type="primary" onClick={retryLast}>{t('chat.retry')}</Button>}
+              />
+            );
+            if (isThinkingError) return (
+              <Alert
+                type="warning"
+                showIcon
+                style={{ marginTop: 8 }}
+                message={t('chat.thinkingUnsupported')}
+                action={
+                  <Space>
+                    <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setThinkingLevel('off'); retryLast(); }}>{t('chat.disableThinking')}</Button>
+                    <Button size="small" type="link" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                  </Space>
+                }
               />
             );
             return (

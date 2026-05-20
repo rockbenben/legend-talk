@@ -128,17 +128,36 @@ export async function streamResponse(
   const store = useConversationStore.getState();
   const msgId = store.addMessage(conversationId, 'character', '', characterId);
 
+  // Throttle token flushes: writing to the store every token triggers a full
+  // conversations array clone + persist serialization (LS + IDB). Batching to
+  // ~50ms (≈ 20 fps perceived streaming) keeps text fluid while cutting
+  // serialization work by 4-10× at typical LLM token rates.
   let accumulated = '';
-  for await (const token of provider.adapter.chat({
-    messages,
-    model: provider.model,
-    apiKey: provider.apiKey,
-    corsProxy: provider.corsProxy,
-    thinkingLevel: provider.thinkingLevel !== 'off' ? provider.thinkingLevel : undefined,
-    signal,
-  })) {
-    accumulated += token;
+  let lastFlushed = '';
+  let lastFlushAt = 0;
+  const FLUSH_MS = 50;
+  const flush = () => {
+    if (accumulated === lastFlushed) return;
     useConversationStore.getState().updateMessageContent(conversationId, msgId, accumulated);
+    lastFlushed = accumulated;
+    lastFlushAt = Date.now();
+  };
+  try {
+    for await (const token of provider.adapter.chat({
+      messages,
+      model: provider.model,
+      apiKey: provider.apiKey,
+      corsProxy: provider.corsProxy,
+      thinkingLevel: provider.thinkingLevel !== 'off' ? provider.thinkingLevel : undefined,
+      signal,
+    })) {
+      accumulated += token;
+      if (Date.now() - lastFlushAt >= FLUSH_MS) flush();
+    }
+  } finally {
+    // Always flush pending tokens — on success, abort, or error — so partial
+    // output is preserved (matches prior "save what you got" semantics).
+    flush();
   }
   // Strip self-referential name tag that models sometimes prepend (e.g. "[拿破仑]: ...")
   // Limit bracket content to 1-20 chars to avoid stripping legitimate bracketed text

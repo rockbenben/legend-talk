@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import { Typography, theme as antTheme } from 'antd';
@@ -36,6 +36,17 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
   const isRaw = !isEmpty && trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
   const isModerator = !!name && MODERATOR_RE.test(name);
+
+  // Cache the parsed-markdown element. Without this, ReactMarkdown re-parses
+  // the whole accumulated text on every render — during streaming the last
+  // message's `content` grows every ~50ms (token flush throttle), and parsing
+  // a 500-char message costs ~200μs each time. The element identity stays
+  // stable across renders of unrelated state (hover, focus), so React skips
+  // re-rendering its subtree entirely.
+  const renderedBody = useMemo(
+    () => (isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>),
+    [displayText, isRaw],
+  );
 
   const timeLabel = timestamp
     ? new Intl.DateTimeFormat(i18n.language, { hour: '2-digit', minute: '2-digit' }).format(timestamp)
@@ -78,7 +89,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
               borderInlineStart: `2px solid ${token.colorBorderSecondary}`,
             }}
           >
-            {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
+            {renderedBody}
           </div>
         )}
       </div>
@@ -118,7 +129,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
               }}
             >
               <div className="prose dark:prose-invert prose-sm max-w-none">
-                {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
+                {renderedBody}
               </div>
             </div>
           )}
@@ -172,7 +183,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: 
               wordBreak: 'break-word',
             }}
           >
-            {isRaw ? <span>{displayText}</span> : <ReactMarkdown>{displayText}</ReactMarkdown>}
+            {renderedBody}
           </div>
         )}
       </div>

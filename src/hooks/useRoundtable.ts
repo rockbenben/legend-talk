@@ -7,6 +7,24 @@ import i18n from '../i18n';
 const MODERATOR_ID = '__moderator__';
 const FOCUS_ID = '__focus__';
 
+/**
+ * Cached character-name lookup. `buildRoundtableMessages` is called per
+ * character per round, and each call iterates the conversation history,
+ * resolving the speaker's name via `i18n.t()` for every prior message. In a
+ * long roundtable that's tens of thousands of t() calls per debate — each
+ * cheap, but they add up to tens of ms cumulative work on the main thread.
+ * The translation result is stable per (language, characterId), so we cache.
+ */
+const nameCache = new Map<string, string>();
+function getCharName(charId: string): string {
+  const key = `${i18n.language}:${charId}`;
+  const cached = nameCache.get(key);
+  if (cached !== undefined) return cached;
+  const name = i18n.t(`characters.${charId}.name`);
+  nameCache.set(key, name);
+  return name;
+}
+
 interface ConvState {
   speaker: string | null;
   round: number | null;
@@ -418,8 +436,7 @@ function buildRoundtableMessages(
       if (isOwn) {
         raw.push({ role: 'assistant', content: msg.content });
       } else {
-        const name = i18n.t(`characters.${msg.characterId}.name`);
-        raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+        raw.push({ role: 'user', content: `[${getCharName(msg.characterId)}]: ${msg.content}` });
       }
     } else if (isOwn) {
       // Older rounds: preserve only own messages for stance continuity
@@ -488,8 +505,7 @@ function buildModeratorMessages(
     const msg = messages[i];
     if (msg.role === 'user') continue;
     if (!msg.characterId || msg.characterId.startsWith('__')) continue;
-    const name = i18n.t(`characters.${msg.characterId}.name`);
-    raw.push({ role: 'user', content: `[${name}]: ${msg.content}` });
+    raw.push({ role: 'user', content: `[${getCharName(msg.characterId)}]: ${msg.content}` });
   }
 
   return mergeConsecutive(raw);

@@ -6,6 +6,7 @@ import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
 import { Input, Button, Spin, Alert, InputNumber, Typography, Divider, Space, Card } from 'antd';
 import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
+import { Virtuoso } from 'react-virtuoso';
 import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
@@ -17,7 +18,7 @@ import { ChatInput } from './ChatInput';
 import { CharacterPicker } from './CharacterPicker';
 import { ParticipantsBar } from './ParticipantsBar';
 import { ActionBar } from './ActionBar';
-import type { Character } from '../types';
+import type { Character, Message } from '../types';
 
 const { Text, Title } = Typography;
 
@@ -74,6 +75,22 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const summonRef = useRef(false);
   const summonAbortRef = useRef<AbortController | null>(null);
 
+  // Scroll-container DOM ref (callback form so Virtuoso re-mounts once it's
+  // attached). Virtuoso virtualizes the messages list while leaving the hero,
+  // generating spinner, and error banners as plain inline children of this same
+  // scroll container.
+  const [scrollEl, setScrollEl] = useState<HTMLDivElement | null>(null);
+
+  // O(1) character lookup. Without this, `presetCharacters.find()` runs once
+  // per message per re-render — O(messages × characters) = 200 × 161 ≈ 32k
+  // string comparisons per render during streaming. presetCharacters is
+  // mutable (custom characters are pushed), so the Map rebuilds when length
+  // changes.
+  const charMap = useMemo(
+    () => new Map(presetCharacters.map((c) => [c.id, c])),
+    [presetCharacters.length], // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
   const charKey = conversation?.characters.join(',') ?? '';
   const templateId = conversation?.templateId;
   const roundtableTopics = useMemo(() => {
@@ -108,13 +125,18 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setIsSummarizing(false);
   }, [conversationId]);
 
+  // Scroll on new-message events only — Virtuoso's `followOutput` handles
+  // "stay at bottom while the last message streams in." Depending on
+  // `conversation?.messages` (the array reference) would fire 20Hz during
+  // streaming and restart the smooth-scroll animation every flush, racing
+  // Virtuoso's own resize observer.
   useEffect(() => {
     if (skipNextScrollRef.current) {
       skipNextScrollRef.current = false;
       return;
     }
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [conversation?.messages]);
+  }, [conversationId, conversation?.messages.length]);
 
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
@@ -299,8 +321,161 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setTimeout(() => setShareStatus('idle'), 2000);
   };
 
-  const speakerChar = roundtable.currentSpeaker
-    ? presetCharacters.find((c) => c.id === roundtable.currentSpeaker) : null;
+  const speakerChar = roundtable.currentSpeaker ? charMap.get(roundtable.currentSpeaker) ?? null : null;
+
+  // Single-item renderer for Virtuoso. Lives inside the component so it closes
+  // over editing state, conversation data, and handlers. Returning null (for
+  // the empty trailing stub during streaming) is fine — Virtuoso just measures
+  // a zero-height slot.
+  const renderMessage = (idx: number, msg: Message): React.ReactNode => {
+    const msgChar = msg.characterId ? charMap.get(msg.characterId) : undefined;
+    const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
+    const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
+    if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
+
+    if (msg.characterId === '__focus__') {
+      const isLast = idx === conversation.messages.length - 1;
+      const isEditing = editingMsgId === msg.id;
+      const interactive = isLast && !isGenerating && !isSummarizing;
+      return (
+        <Alert
+          type="info"
+          icon={<AimOutlined />}
+          showIcon
+          style={{ margin: '12px 0' }}
+          message={
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
+                <Text strong>{t('roundtable.focus')}</Text>
+                {interactive && !isEditing && (
+                  <Button type="text" size="small" icon={<EditOutlined />} onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} />
+                )}
+              </Space>
+              {isEditing ? (
+                <>
+                  <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
+                  <Space style={{ justifyContent: 'flex-end', width: '100%' }}>
+                    <Button size="small" onClick={() => setEditingMsgId(null)}>{t('common.cancel')}</Button>
+                    <Button
+                      size="small"
+                      type="primary"
+                      onClick={() => {
+                        if (editingMsgValue.trim()) {
+                          skipNextScrollRef.current = true;
+                          useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
+                        }
+                        setEditingMsgId(null);
+                      }}
+                    >
+                      {t('common.save')}
+                    </Button>
+                  </Space>
+                </>
+              ) : (
+                <>
+                  <Text style={{ whiteSpace: 'pre-wrap' }}>{msg.content}</Text>
+                  {interactive && (
+                    <div style={{ textAlign: 'end' }}>
+                      <Button
+                        size="small"
+                        type="primary"
+                        icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
+                        iconPosition="end"
+                        onClick={() => roundtable.startFromFocus(conversationId, rounds)}
+                      >
+                        {t('roundtable.start')}
+                      </Button>
+                    </div>
+                  )}
+                </>
+              )}
+            </Space>
+          }
+        />
+      );
+    }
+
+    return (
+      <div>
+        {showDivider && (
+          <Divider plain>
+            <Text type="secondary" className="display-serif-italic" style={{ fontSize: 12 }}>
+              {t('roundtable.discussionComplete')}
+            </Text>
+          </Divider>
+        )}
+        <div className="group">
+          {editingMsgId === msg.id ? (
+            <div style={{ padding: '12px 0' }}>
+              <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
+              <Space style={{ marginTop: 6 }}>
+                <Button
+                  size="small"
+                  type="primary"
+                  onClick={() => {
+                    const trimmed = editingMsgValue.trim();
+                    if (trimmed && trimmed !== msg.content.trim()) {
+                      skipNextScrollRef.current = true;
+                      useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
+                      setPendingRetryMsgId(msg.id);
+                    }
+                    setEditingMsgId(null);
+                  }}
+                >
+                  {t('chat.send')}
+                </Button>
+                <Button size="small" onClick={() => setEditingMsgId(null)}>✕</Button>
+              </Space>
+            </div>
+          ) : (
+            <MessageBubble
+              content={msg.content}
+              isUser={msg.role === 'user'}
+              avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
+              color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
+              name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
+              timestamp={msg.timestamp}
+            />
+          )}
+          {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
+            <div
+              className="group-hover:!opacity-100"
+              style={{
+                display: 'flex',
+                gap: 0,
+                opacity: 0,
+                transition: 'opacity 0.18s',
+                marginTop: 4,
+                ...(msg.role === 'user'
+                  ? { justifyContent: 'flex-end' }
+                  : { paddingInlineStart: 54 }),
+              }}
+            >
+              <Button type="text" size="small" icon={<CopyOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})} title={t('chat.copy')} />
+              <Button type="text" size="small" icon={<EditOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { setPendingRetryMsgId(null); setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} title={t('chat.edit')} />
+              <Button type="text" size="small" icon={<ReloadOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => handleRetryFrom(msg.id)} title={t('chat.regenerate')} />
+              <Button type="text" size="small" icon={<BranchesOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { const newId = branchConversation(conversationId, msg.id); if (newId) navigate(lp(`/chat/${newId}`)); }} title={t('chat.branch')} />
+            </div>
+          )}
+          {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
+            <div
+              style={{
+                marginTop: 4,
+                display: 'flex',
+                ...(msg.role === 'user'
+                  ? { justifyContent: 'flex-end' }
+                  : { paddingInlineStart: 54 }),
+              }}
+            >
+              <Button size="small" type="primary" icon={<ReloadOutlined />} onClick={() => handleRetryFrom(msg.id)}>
+                {t('chat.applyEdit')}
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', position: 'relative' }}>
@@ -400,7 +575,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       />
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
+      <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
         <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
           {!isConfigured && (
             <Alert
@@ -466,156 +641,20 @@ export function ChatView({ conversationId }: ChatViewProps) {
               </div>
             );
           })()}
-          {conversation.messages.map((msg, idx) => {
-            const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
-            const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
-            const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
-            if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
-
-            if (msg.characterId === '__focus__') {
-              const isLast = idx === conversation.messages.length - 1;
-              const isEditing = editingMsgId === msg.id;
-              const interactive = isLast && !isGenerating && !isSummarizing;
-              return (
-                <Alert
-                  key={msg.id}
-                  type="info"
-                  icon={<AimOutlined />}
-                  showIcon
-                  style={{ margin: '12px 0' }}
-                  message={
-                    <Space direction="vertical" style={{ width: '100%' }}>
-                      <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                        <Text strong>{t('roundtable.focus')}</Text>
-                        {interactive && !isEditing && (
-                          <Button type="text" size="small" icon={<EditOutlined />} onClick={() => { setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} />
-                        )}
-                      </Space>
-                      {isEditing ? (
-                        <>
-                          <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
-                          <Space style={{ justifyContent: 'flex-end', width: '100%' }}>
-                            <Button size="small" onClick={() => setEditingMsgId(null)}>{t('common.cancel')}</Button>
-                            <Button
-                              size="small"
-                              type="primary"
-                              onClick={() => {
-                                if (editingMsgValue.trim()) {
-                                  skipNextScrollRef.current = true;
-                                  useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
-                                }
-                                setEditingMsgId(null);
-                              }}
-                            >
-                              {t('common.save')}
-                            </Button>
-                          </Space>
-                        </>
-                      ) : (
-                        <>
-                          <Text style={{ whiteSpace: 'pre-wrap' }}>{msg.content}</Text>
-                          {interactive && (
-                            <div style={{ textAlign: 'end' }}>
-                              <Button
-                                size="small"
-                                type="primary"
-                                icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
-                                iconPosition="end"
-                                onClick={() => roundtable.startFromFocus(conversationId, rounds)}
-                              >
-                                {t('roundtable.start')}
-                              </Button>
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </Space>
-                  }
-                />
-              );
-            }
-
-            return (
-              <div key={msg.id} style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 120px' } as React.CSSProperties}>
-                {showDivider && (
-                  <Divider plain>
-                    <Text type="secondary" className="display-serif-italic" style={{ fontSize: 12 }}>
-                      {t('roundtable.discussionComplete')}
-                    </Text>
-                  </Divider>
-                )}
-                <div className="group">
-                  {editingMsgId === msg.id ? (
-                    <div style={{ padding: '12px 0' }}>
-                      <Input.TextArea autoFocus autoSize={{ minRows: 2 }} value={editingMsgValue} onChange={(e) => setEditingMsgValue(e.target.value)} />
-                      <Space style={{ marginTop: 6 }}>
-                        <Button
-                          size="small"
-                          type="primary"
-                          onClick={() => {
-                            const trimmed = editingMsgValue.trim();
-                            if (trimmed && trimmed !== msg.content.trim()) {
-                              skipNextScrollRef.current = true;
-                              useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
-                              setPendingRetryMsgId(msg.id);
-                            }
-                            setEditingMsgId(null);
-                          }}
-                        >
-                          {t('chat.send')}
-                        </Button>
-                        <Button size="small" onClick={() => setEditingMsgId(null)}>✕</Button>
-                      </Space>
-                    </div>
-                  ) : (
-                    <MessageBubble
-                      content={msg.content}
-                      isUser={msg.role === 'user'}
-                      avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
-                      color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
-                      name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
-                      timestamp={msg.timestamp}
-                    />
-                  )}
-                  {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                    <div
-                      className="group-hover:!opacity-100"
-                      style={{
-                        display: 'flex',
-                        gap: 0,
-                        opacity: 0,
-                        transition: 'opacity 0.18s',
-                        marginTop: 4,
-                        ...(msg.role === 'user'
-                          ? { justifyContent: 'flex-end' }
-                          : { paddingInlineStart: 54 }),
-                      }}
-                    >
-                      <Button type="text" size="small" icon={<CopyOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})} title={t('chat.copy')} />
-                      <Button type="text" size="small" icon={<EditOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { setPendingRetryMsgId(null); setEditingMsgId(msg.id); setEditingMsgValue(msg.content); }} title={t('chat.edit')} />
-                      <Button type="text" size="small" icon={<ReloadOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => handleRetryFrom(msg.id)} title={t('chat.regenerate')} />
-                      <Button type="text" size="small" icon={<BranchesOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => { const newId = branchConversation(conversationId, msg.id); if (newId) navigate(lp(`/chat/${newId}`)); }} title={t('chat.branch')} />
-                    </div>
-                  )}
-                  {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
-                    <div
-                      style={{
-                        marginTop: 4,
-                        display: 'flex',
-                        ...(msg.role === 'user'
-                          ? { justifyContent: 'flex-end' }
-                          : { paddingInlineStart: 54 }),
-                      }}
-                    >
-                      <Button size="small" type="primary" icon={<ReloadOutlined />} onClick={() => handleRetryFrom(msg.id)}>
-                        {t('chat.applyEdit')}
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {scrollEl && conversation.messages.length > 0 && (
+            <Virtuoso
+              customScrollParent={scrollEl}
+              data={conversation.messages}
+              computeItemKey={(_, msg) => msg.id}
+              itemContent={renderMessage}
+              increaseViewportBy={{ top: 240, bottom: 240 }}
+              // Virtuoso tracks scroll-at-bottom internally — if the user
+              // scrolls up while generating, it stops following and resumes
+              // only once they scroll back down. No need to gate this on
+              // `isGenerating`.
+              followOutput="smooth"
+            />
+          )}
           {isGenerating && (
             <Space size="small" style={{ padding: '12px 0' }}>
               <Spin size="small" />

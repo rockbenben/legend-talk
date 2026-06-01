@@ -5,11 +5,9 @@ import { AnthropicAdapter } from './anthropic';
 const adapters: LLMAdapter[] = [
   // ── Overseas ──
   new OpenAICompatibleAdapter('openai', 'OpenAI', 'https://api.openai.com/v1', [
-    { id: 'gpt-5.5-pro', name: 'GPT-5.5 Pro' },
     { id: 'gpt-5.5', name: 'GPT-5.5' },
     { id: 'gpt-5.4', name: 'GPT-5.4' },
     { id: 'gpt-5.4-mini', name: 'GPT-5.4 Mini' },
-    { id: 'gpt-5.4-nano', name: 'GPT-5.4 Nano' },
   ], {
     docsUrl: 'https://platform.openai.com/docs/api-reference/chat',
     apiKeyUrl: 'https://platform.openai.com/api-keys',
@@ -25,11 +23,8 @@ const adapters: LLMAdapter[] = [
     'https://generativelanguage.googleapis.com/v1beta/openai',
     [
       { id: 'gemini-3.1-pro-preview', name: 'Gemini 3.1 Pro' },
-      { id: 'gemini-3-flash-preview', name: 'Gemini 3 Flash' },
-      { id: 'gemini-3.1-flash-lite-preview', name: 'Gemini 3.1 Flash Lite' },
-      { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro' },
-      { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
-      { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
+      { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash' },
+      { id: 'gemini-3.1-flash-lite', name: 'Gemini 3.1 Flash Lite' },
     ],
     {
       docsUrl: 'https://ai.google.dev/gemini-api/docs/openai',
@@ -62,14 +57,11 @@ const adapters: LLMAdapter[] = [
     'Mistral',
     'https://api.mistral.ai/v1',
     [
-      { id: 'mistral-large-latest', name: 'Mistral Large' },
-      { id: 'mistral-medium-latest', name: 'Mistral Medium' },
-      { id: 'mistral-small-latest', name: 'Mistral Small' },
-      { id: 'magistral-medium-latest', name: 'Magistral Medium (reasoning)' },
-      { id: 'magistral-small-latest', name: 'Magistral Small (reasoning)' },
-      { id: 'codestral-latest', name: 'Codestral' },
-      { id: 'ministral-8b-latest', name: 'Ministral 8B' },
-      { id: 'ministral-3b-latest', name: 'Ministral 3B' },
+      { id: 'mistral-medium-3-5', name: 'Mistral Medium 3.5' },
+      { id: 'mistral-small-4', name: 'Mistral Small 4' },
+      { id: 'mistral-large-3', name: 'Mistral Large 3' },
+      { id: 'ministral-3-14b', name: 'Ministral 3 14B' },
+      { id: 'magistral-medium-1-2', name: 'Magistral Medium 1.2 (reasoning)' },
     ],
     {
       docsUrl: 'https://docs.mistral.ai/api/',
@@ -83,11 +75,9 @@ const adapters: LLMAdapter[] = [
     'Cohere',
     'https://api.cohere.ai/compatibility/v1',
     [
+      { id: 'command-a-plus-05-2026', name: 'Command A Plus' },
       { id: 'command-a-03-2025', name: 'Command A' },
       { id: 'command-a-reasoning-08-2025', name: 'Command A Reasoning' },
-      { id: 'command-r-plus-08-2024', name: 'Command R+' },
-      { id: 'command-r-08-2024', name: 'Command R' },
-      { id: 'command-r7b-12-2024', name: 'Command R7B' },
     ],
     {
       docsUrl: 'https://docs.cohere.com/docs/compatibility-api',
@@ -113,11 +103,7 @@ const adapters: LLMAdapter[] = [
     [
       { id: 'kimi-k2.6', name: 'Kimi K2.6' },
       { id: 'kimi-k2.5', name: 'Kimi K2.5' },
-      { id: 'kimi-k2-0905-preview', name: 'Kimi K2' },
-      { id: 'kimi-thinking-preview', name: 'Kimi Thinking' },
       { id: 'kimi-latest', name: 'Kimi Latest' },
-      { id: 'moonshot-v1-auto', name: 'Moonshot V1 Auto' },
-      { id: 'moonshot-v1-128k', name: 'Moonshot V1 128K' },
     ],
     {
       docsUrl: 'https://platform.kimi.com/docs',
@@ -133,14 +119,15 @@ const adapters: LLMAdapter[] = [
     [
       { id: 'glm-5.1', name: 'GLM-5.1' },
       { id: 'glm-5', name: 'GLM-5' },
-      { id: 'glm-5-turbo', name: 'GLM-5 Turbo' },
       { id: 'glm-4.7', name: 'GLM-4.7' },
-      { id: 'glm-4.7-flashx', name: 'GLM-4.7 FlashX' },
-      { id: 'glm-4.7-flash', name: 'GLM-4.7 Flash (free)' },
+      { id: 'glm-4.7-flashx', name: 'GLM-4.7 FlashX', thinking: false },
       { id: 'glm-4.6', name: 'GLM-4.6' },
-      { id: 'glm-4.5-air', name: 'GLM-4.5 Air' },
-      { id: 'glm-4.5-airx', name: 'GLM-4.5 AirX' },
-      { id: 'glm-4-long', name: 'GLM-4 Long (1M ctx)' },
+      { id: 'glm-4.5-air', name: 'GLM-4.5 Air', thinking: false },
+      { id: 'glm-4.5-airx', name: 'GLM-4.5 AirX', thinking: false },
+      { id: 'glm-4-long', name: 'GLM-4 Long (1M ctx)', thinking: false },
+      { id: 'glm-4.7-flash', name: 'GLM-4.7 Flash (free)', thinking: false },
+      { id: 'glm-4-flashx-250414', name: 'GLM-4 FlashX', thinking: false },
+      { id: 'glm-4-flash-250414', name: 'GLM-4 Flash', thinking: false },
     ],
     {
       docsUrl: 'https://open.bigmodel.cn/dev/api',
@@ -156,6 +143,9 @@ const adapters: LLMAdapter[] = [
     'https://api.minimax.io/v1',
     [
       { id: 'MiniMax-M2.7', name: 'MiniMax M2.7' },
+      { id: 'MiniMax-M2.7-highspeed', name: 'MiniMax M2.7 High-Speed' },
+      { id: 'MiniMax-M2.5', name: 'MiniMax M2.5' },
+      { id: 'MiniMax-M2.1', name: 'MiniMax M2.1' },
     ],
     {
       docsUrl: 'https://platform.minimax.io/docs/api-reference/text-chat',
@@ -170,7 +160,10 @@ const adapters: LLMAdapter[] = [
     'https://api.hunyuan.cloud.tencent.com/v1',
     [
       { id: 'hunyuan-turbos-latest', name: 'Hunyuan TurboS' },
+      { id: 'hunyuan-2.0-thinking-20251109', name: 'Hunyuan 2.0 Thinking (reasoning)' },
+      { id: 'hunyuan-2.0-instruct-20251111', name: 'Hunyuan 2.0 Instruct' },
       { id: 'hunyuan-t1-latest', name: 'Hunyuan T1 (reasoning)' },
+      { id: 'hunyuan-a13b', name: 'Hunyuan A13B' },
       { id: 'hunyuan-lite', name: 'Hunyuan Lite (free)' },
     ],
     {
@@ -185,14 +178,11 @@ const adapters: LLMAdapter[] = [
     '百度千帆',
     'https://qianfan.baidubce.com/v2',
     [
+      { id: 'ernie-5.1', name: 'ERNIE 5.1' },
       { id: 'ernie-5.0', name: 'ERNIE 5.0' },
-      { id: 'ernie-x1.1', name: 'ERNIE X1.1 (reasoning)' },
-      { id: 'ernie-x1-turbo-32k', name: 'ERNIE X1 Turbo (reasoning)' },
+      { id: 'ernie-5.0-thinking-latest', name: 'ERNIE 5.0 Thinking (reasoning)' },
       { id: 'ernie-4.5-turbo-128k', name: 'ERNIE 4.5 Turbo 128K' },
       { id: 'ernie-4.5-turbo-32k', name: 'ERNIE 4.5 Turbo 32K' },
-      { id: 'ernie-4.5-8k', name: 'ERNIE 4.5 8K' },
-      { id: 'ernie-speed-pro-128k', name: 'ERNIE Speed Pro 128K' },
-      { id: 'ernie-lite-pro-128k', name: 'ERNIE Lite Pro 128K' },
     ],
     {
       docsUrl: 'https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya',
@@ -260,8 +250,6 @@ const adapters: LLMAdapter[] = [
       { id: 'deepseek/deepseek-v4-flash', name: 'DeepSeek V4 Flash' },
       { id: 'google/gemini-3.1-pro-preview', name: 'Gemini 3.1 Pro' },
       { id: 'google/gemini-3.1-flash-lite-preview', name: 'Gemini 3.1 Flash Lite' },
-      { id: 'google/gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
-      { id: 'google/gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
       { id: 'minimax/minimax-m2.7', name: 'MiniMax M2.7' },
       { id: 'x-ai/grok-4.3', name: 'Grok 4.3' },
       { id: 'x-ai/grok-4.20', name: 'Grok 4.20' },
@@ -280,15 +268,12 @@ const adapters: LLMAdapter[] = [
     'SiliconFlow',
     'https://api.siliconflow.cn/v1',
     [
-      { id: 'deepseek-ai/DeepSeek-V4', name: 'DeepSeek V4' },
-      { id: 'deepseek-ai/DeepSeek-R1', name: 'DeepSeek R1' },
-      { id: 'Pro/deepseek-ai/DeepSeek-V4', name: 'DeepSeek V4 Pro' },
-      { id: 'Qwen/Qwen3.5-397B-A17B', name: 'Qwen3.5 397B' },
-      { id: 'Qwen/Qwen3.5-122B-A10B', name: 'Qwen3.5 122B' },
-      { id: 'Pro/moonshotai/Kimi-K2.5', name: 'Kimi K2.5 Pro' },
-      { id: 'Pro/zai-org/GLM-5.1', name: 'GLM-5.1 Pro' },
-      { id: 'Pro/zai-org/GLM-4.7', name: 'GLM-4.7 Pro' },
-      { id: 'Pro/MiniMaxAI/MiniMax-M2.5', name: 'MiniMax M2.5 Pro' },
+      { id: 'deepseek-ai/DeepSeek-V4-Flash', name: 'DeepSeek V4 Flash' },
+      { id: 'deepseek-ai/DeepSeek-V4-Pro', name: 'DeepSeek V4 Pro' },
+      { id: 'moonshotai/Kimi-K2.6', name: 'Kimi K2.6' },
+      { id: 'minimax/MiniMax-M2.5', name: 'MiniMax M2.5' },
+      { id: 'zai-org/GLM-5.1', name: 'GLM-5.1' },
+      { id: 'zai-org/GLM-4.7', name: 'GLM-4.7' },
     ],
     {
       docsUrl: 'https://docs.siliconflow.cn/api-reference/chat-completions/chat-completions',
@@ -308,8 +293,6 @@ const adapters: LLMAdapter[] = [
       { id: 'openai/gpt-oss-20b', name: 'GPT OSS 20B' },
       { id: 'groq/compound', name: 'Groq Compound' },
       { id: 'groq/compound-mini', name: 'Groq Compound Mini' },
-      { id: 'qwen/qwen3-32b', name: 'Qwen3 32B (preview)' },
-      { id: 'meta-llama/llama-4-scout-17b-16e-instruct', name: 'Llama 4 Scout (preview)', thinking: false },
     ],
     {
       docsUrl: 'https://console.groq.com/docs/models',
@@ -409,14 +392,17 @@ const adapters: LLMAdapter[] = [
     'NVIDIA NIM',
     'https://integrate.api.nvidia.com/v1',
     [
-      { id: 'nvidia/llama-3.3-nemotron-super-49b-v1', name: 'Llama 3.3 Nemotron Super 49B' },
-      { id: 'nvidia/llama-3.1-nemotron-ultra-253b-v1', name: 'Llama 3.1 Nemotron Ultra 253B' },
-      { id: 'deepseek-ai/deepseek-r1', name: 'DeepSeek R1' },
-      { id: 'deepseek-ai/deepseek-v4', name: 'DeepSeek V4', thinking: false },
-      { id: 'meta/llama-3.3-70b-instruct', name: 'Llama 3.3 70B', thinking: false },
-      { id: 'meta/llama-4-maverick-17b-128e-instruct', name: 'Llama 4 Maverick 17B', thinking: false },
-      { id: 'qwen/qwen2.5-coder-32b-instruct', name: 'Qwen2.5 Coder 32B', thinking: false },
-      { id: 'qwen/qwq-32b', name: 'QwQ 32B' },
+      // reasoning_effort 留空(thinking:false)— NVIDIA NIM 对 DeepSeek 思考用的是
+      // chat_template_kwargs 嵌套而非顶层 reasoning_effort(参 web-tools nvidia 实现),
+      // legend-talk 这套适配器没实现该协议,故全部标 false 避免发不被接受的参数。
+      { id: 'deepseek-ai/deepseek-v4-flash', name: 'DeepSeek V4 Flash', thinking: false },
+      { id: 'deepseek-ai/deepseek-v4-pro', name: 'DeepSeek V4 Pro', thinking: false },
+      { id: 'z-ai/glm-5.1', name: 'GLM-5.1', thinking: false },
+      { id: 'google/gemma-4-31b-it', name: 'Gemma 4 31B', thinking: false },
+      { id: 'nvidia/nemotron-3-super-120b-a12b', name: 'Nemotron 3 Super 120B', thinking: false },
+      { id: 'meta/llama-3.1-70b-instruct', name: 'Llama 3.1 70B', thinking: false },
+      { id: 'meta/llama-3.1-8b-instruct', name: 'Llama 3.1 8B', thinking: false },
+      { id: 'qwen/qwen3-coder-480b-a35b-instruct', name: 'Qwen3 Coder 480B', thinking: false },
     ],
     {
       docsUrl: 'https://docs.api.nvidia.com/nim/reference/llm-apis',

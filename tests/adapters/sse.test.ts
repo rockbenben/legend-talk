@@ -58,4 +58,41 @@ describe('parseSSE', () => {
     }
     expect(results).toEqual(['{"type":"start"}', '{"type":"delta"}']);
   });
+
+  it('joins multi-line data fields into one event', async () => {
+    const response = makeStream(['data: line one\ndata: line two\n\n']);
+    const results: string[] = [];
+    for await (const data of parseSSE(response)) {
+      results.push(data);
+    }
+    expect(results).toEqual(['line one\nline two']);
+  });
+
+  it('flushes a final event with no trailing blank line', async () => {
+    const response = makeStream(['data: {"text":"tail"}']);
+    const results: string[] = [];
+    for await (const data of parseSSE(response)) {
+      results.push(data);
+    }
+    expect(results).toEqual(['{"text":"tail"}']);
+  });
+
+  it('decodes a multibyte char split across reads with no trailing newline', async () => {
+    // "你" is 3 UTF-8 bytes; split them across two reads so the decoder must hold the
+    // partial sequence and flush it at end-of-stream.
+    const bytes = new TextEncoder().encode('data: 你');
+    const splitAt = bytes.length - 1;
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(bytes.slice(0, splitAt));
+        controller.enqueue(bytes.slice(splitAt));
+        controller.close();
+      },
+    });
+    const results: string[] = [];
+    for await (const data of parseSSE({ body: stream } as Response)) {
+      results.push(data);
+    }
+    expect(results).toEqual(['你']);
+  });
 });

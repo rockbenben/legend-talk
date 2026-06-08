@@ -55,6 +55,9 @@ export function ChatPage() {
         } else {
           const custom = generateCharacter(name);
           if (!presetCharacters.find((c) => c.id === custom.id)) presetCharacters.push(custom);
+          // Persist so a deep-linked custom character survives a reload instead of
+          // being dropped from the conversation (keeps its name/avatar attribution).
+          useSettingsStore.getState().saveCustomCharacter({ ...custom, displayName: name });
           if (!charIds.includes(custom.id)) charIds.push(custom.id);
         }
       }

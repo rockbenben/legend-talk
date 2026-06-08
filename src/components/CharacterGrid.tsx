@@ -52,6 +52,9 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
   const handleSearchSubmit = () => {
     if (search && filtered.length === 0) {
       const custom = generateCharacter(search);
+      // Persist so the character survives a reload (same reason as CharacterPicker) —
+      // otherwise the conversation keeps only the id and the definition is lost.
+      useSettingsStore.getState().saveCustomCharacter({ ...custom, displayName: search.trim() });
       onStartChat(custom);
     }
   };

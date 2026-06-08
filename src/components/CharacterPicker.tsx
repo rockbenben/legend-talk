@@ -52,14 +52,18 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
   };
 
   const handleCustom = () => {
-    if (search.trim()) {
-      const custom = generateCharacter(search.trim());
-      if (!presetCharacters.find((c) => c.id === custom.id)) {
-        presetCharacters.push(custom);
-      }
-      onSelect(custom);
-      onClose();
+    const trimmed = search.trim();
+    if (!trimmed) return;
+    const custom = generateCharacter(trimmed);
+    if (!presetCharacters.find((c) => c.id === custom.id)) {
+      presetCharacters.push(custom);
     }
+    // Persist so the definition (name/avatar/prompt) survives a reload. Without this
+    // the conversation keeps only the character id, and on reload the participant is
+    // dropped and its past messages render anonymously (no name/avatar).
+    useSettingsStore.getState().saveCustomCharacter({ ...custom, displayName: trimmed });
+    onSelect(custom);
+    onClose();
   };
 
   return (

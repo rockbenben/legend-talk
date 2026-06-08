@@ -596,9 +596,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </Space>
           )}
           {conversation.messages.length === 0 && (firstChar && !isMulti || (isMulti && roundtableTopics.length > 0)) && (() => {
-            const questions = !isMulti && firstChar
-              ? (t(`characters.${firstChar.id}.questions`, { returnObjects: true }) as string[])
+            const rawQuestions = !isMulti && firstChar
+              ? t(`characters.${firstChar.id}.questions`, { returnObjects: true })
               : roundtableTopics;
+            // returnObjects can yield the key string if the bundle is missing the
+            // key — guard so .map() below can't throw (matches the sibling paths above).
+            const questions = Array.isArray(rawQuestions) ? (rawQuestions as string[]) : [];
             return (
               <div style={{ padding: '40px 0' }}>
                 <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>

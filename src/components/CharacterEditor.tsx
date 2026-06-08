@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Modal, Form, Input, Button, Space, Typography } from 'antd';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
+import { customCharacterId } from '../characters/generator';
 import { Avatar } from './Avatar';
+import { clearNameCache } from '../hooks/useRoundtable';
 import i18n from '../i18n';
 import type { CustomCharacter } from '../stores/settings';
 
@@ -41,7 +43,9 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
   const handleSave = () => {
     const trimmed = name.trim();
     if (!trimmed || !prompt.trim()) return;
-    const id = character?.id || 'custom-' + Date.now().toString(36);
+    // New characters get a deterministic name-based id (shared with deep links and
+    // registry search); existing ones keep their id so persisted data is untouched.
+    const id = character?.id || customCharacterId(trimmed);
     setSavedId(id);
 
     const char: CustomCharacter = {
@@ -61,6 +65,9 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
         characters: { [id]: { name: trimmed, era: era.trim() || i18n.t('common.unknown', { lng }), questions: [] } },
       }, true, true);
     }
+    // The roundtable name cache is keyed by (language, charId); drop it so an
+    // edited name isn't shown with its stale value in later context labels.
+    clearNameCache();
 
     if (onStartChat) {
       setSaved(true);

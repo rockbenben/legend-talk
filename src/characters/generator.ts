@@ -3,9 +3,31 @@ import i18n from '../i18n';
 
 const COLORS = ['blue', 'emerald', 'red', 'purple', 'amber', 'teal', 'orange', 'indigo'];
 
+/**
+ * Deterministic id for a custom character, derived from its name. The SAME helper
+ * is used everywhere a custom character can be created — deep links (`?chars=`),
+ * registry search, and the editor — so a given name always maps to one id and the
+ * three paths resolve to the same character instead of three different ones.
+ *
+ * Normalization: trim → lowercase → collapse any run of non-letter/non-number
+ * characters into a single hyphen → strip edge hyphens. Unicode letters/numbers
+ * are preserved (so "苏格拉底" → "custom-苏格拉底"); an all-punctuation name falls
+ * back to "custom-unnamed".
+ */
+export function customCharacterId(name: string): string {
+  const trimmed = name.trim();
+  const slug = trimmed
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '');
+  // Slug can be empty for symbol/emoji-only names; fall back to a deterministic hash
+  // so two different such names don't collide onto one id.
+  return 'custom-' + (slug || Math.abs(hashCode(trimmed)).toString(36));
+}
+
 export function generateCharacter(name: string): Character {
   const trimmed = name.trim();
-  const id = 'custom-' + trimmed.toLowerCase().replace(/\s+/g, '-');
+  const id = customCharacterId(trimmed);
   const colorIndex = Math.abs(hashCode(trimmed)) % COLORS.length;
 
   // Inject translations for this custom character into all loaded languages

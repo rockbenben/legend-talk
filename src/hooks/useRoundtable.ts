@@ -16,6 +16,10 @@ const FOCUS_ID = '__focus__';
  * The translation result is stable per (language, characterId), so we cache.
  */
 const nameCache = new Map<string, string>();
+/** Drop cached names so a renamed custom character isn't shown with its old name. */
+export function clearNameCache() {
+  nameCache.clear();
+}
 function getCharName(charId: string): string {
   const key = `${i18n.language}:${charId}`;
   const cached = nameCache.get(key);

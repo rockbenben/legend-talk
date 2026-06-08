@@ -1,4 +1,5 @@
 import { presetCharacters } from '../../src/characters/presets';
+import { roundtableTemplates } from '../../src/characters/templates';
 import i18n from '../../src/i18n';
 
 describe('presetCharacters', () => {
@@ -22,6 +23,17 @@ describe('presetCharacters', () => {
   it('has unique ids', () => {
     const ids = presetCharacters.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('every roundtable template references existing characters', () => {
+    const ids = new Set(presetCharacters.map((c) => c.id));
+    for (const tpl of roundtableTemplates) {
+      expect(tpl.characters.length).toBeGreaterThan(0);
+      for (const cid of tpl.characters) {
+        expect(ids.has(cid)).toBe(true);
+        expect(i18n.t(`characters.${cid}.name`)).toBeTruthy();
+      }
+    }
   });
 
   it('covers all categories', () => {

@@ -3,8 +3,12 @@ export async function compressToBase64(text: string): Promise<string> {
   const encoded = new TextEncoder().encode(text);
   const cs = new CompressionStream('gzip');
   const writer = cs.writable.getWriter();
-  writer.write(encoded);
-  writer.close();
+  // Don't await write/close: a CompressionStream's writable backpressure is driven
+  // by the readable side, so awaiting before we start reading can deadlock on large
+  // inputs. The reader loop below drives the transform; .catch keeps a (never-hit in
+  // practice) rejection from going unhandled.
+  writer.write(encoded).catch(() => {});
+  writer.close().catch(() => {});
   const reader = cs.readable.getReader();
   const chunks: Uint8Array[] = [];
   for (;;) {
@@ -31,8 +35,9 @@ export async function decompressFromBase64(base64: string): Promise<string> {
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
   const ds = new DecompressionStream('gzip');
   const writer = ds.writable.getWriter();
-  writer.write(bytes);
-  writer.close();
+  // See compressToBase64: never await write/close here — the reader drives the stream.
+  writer.write(bytes).catch(() => {});
+  writer.close().catch(() => {});
   const reader = ds.readable.getReader();
   const chunks: Uint8Array[] = [];
   for (;;) {

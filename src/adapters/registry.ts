@@ -113,6 +113,23 @@ const adapters: LLMAdapter[] = [
   ),
 
   new OpenAICompatibleAdapter(
+    'mimo',
+    '小米 MiMo',
+    'https://api.xiaomimimo.com/v1',
+    [
+      // Thinking via binary `thinking: {type: 'enabled'|'disabled'}` (thinking_type style).
+      { id: 'mimo-v2.5', name: 'MiMo V2.5' },
+      { id: 'mimo-v2.5-pro', name: 'MiMo V2.5 Pro' },
+    ],
+    {
+      docsUrl: 'https://platform.xiaomimimo.com/docs/zh-CN/api/chat/openai-api',
+      apiKeyUrl: 'https://platform.xiaomimimo.com/#/console/api-keys',
+      thinkingStyle: 'thinking_type',
+      group: 'china',
+    },
+  ),
+
+  new OpenAICompatibleAdapter(
     'zhipu',
     '智谱 GLM',
     'https://open.bigmodel.cn/api/paas/v4',

@@ -39,6 +39,7 @@ export class AnthropicAdapter implements LLMAdapter {
   }
 
   async *chat(params: ChatParams): AsyncGenerator<string> {
+    if (!params.apiKey) throw new Error('Missing API key');
     const url = this.buildUrl('/messages', params.corsProxy);
 
     let system: string | undefined;
@@ -66,7 +67,8 @@ export class AnthropicAdapter implements LLMAdapter {
         ...(params.thinkingLevel && {
           thinking: {
             type: 'enabled',
-            budget_tokens: { low: 10000, medium: 50000, high: 100000 }[params.thinkingLevel as 'low' | 'medium' | 'high'],
+            budget_tokens:
+              { low: 10000, medium: 50000, high: 100000 }[params.thinkingLevel as 'low' | 'medium' | 'high'] ?? 50000,
           },
         }),
         messages,

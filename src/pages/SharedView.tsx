@@ -33,6 +33,16 @@ export function SharedView() {
   useEffect(() => {
     if (!data) return;
 
+    // Successful JSON.parse doesn't guarantee a well-formed payload (old or
+    // tampered links). Validate the shape so render-time .map() can't throw.
+    const accept = (json: string) => {
+      const obj = JSON.parse(json);
+      if (!Array.isArray(obj?.messages) || !Array.isArray(obj?.characters)) {
+        throw new Error('Malformed share payload');
+      }
+      setShared(obj);
+    };
+
     if (data.startsWith('s:')) {
       const parts = data.slice(2).split(':');
       let proxy = useSettingsStore.getState().corsProxy;
@@ -41,13 +51,13 @@ export function SharedView() {
       fetch(`${proxy}/s/${id}`)
         .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })
         .then((base64) => decompressFromBase64(base64))
-        .then((json) => setShared(JSON.parse(json)))
+        .then(accept)
         .catch(() => setError(t('common.error', { message: '' })));
       return;
     }
 
     decompressFromBase64(data)
-      .then((json) => setShared(JSON.parse(json)))
+      .then(accept)
       .catch(() => setError(t('common.error', { message: '' })));
   }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -94,6 +104,9 @@ export function SharedView() {
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
         <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
           {shared.messages.map((msg, idx) => {
+            // Share data comes from a URL and may be tampered — skip malformed items
+            // so a single bad entry can't crash the whole view.
+            if (!msg || typeof msg.content !== 'string') return null;
             const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
             return (
               <MessageBubble

@@ -54,7 +54,11 @@ export function exportAsJSONFull(conversation: Conversation): string {
 
 export function importFromJSON(json: string): Conversation {
   const parsed = JSON.parse(json);
-  if (!parsed.id || !parsed.messages || !parsed.type) {
+  if (
+    typeof parsed?.id !== 'string' ||
+    !Array.isArray(parsed.messages) ||
+    (parsed.type !== 'single' && parsed.type !== 'roundtable')
+  ) {
     throw new Error('Invalid conversation format');
   }
   return parsed as Conversation;

@@ -182,7 +182,15 @@ export const useConversationStore = create<ConversationState>()(
       importConversations: (imported) => {
         const existing = get().conversations;
         const existingIds = new Set(existing.map((c) => c.id));
-        const newConvs = imported.filter((c) => !existingIds.has(c.id));
+        const valid = (Array.isArray(imported) ? imported : []).filter(
+          (c): c is Conversation =>
+            !!c &&
+            typeof c.id === 'string' &&
+            Array.isArray(c.messages) &&
+            Array.isArray(c.characters) &&
+            (c.type === 'single' || c.type === 'roundtable'),
+        );
+        const newConvs = valid.filter((c) => !existingIds.has(c.id));
         if (newConvs.length > 0) {
           set({ conversations: [...newConvs, ...existing] });
         }

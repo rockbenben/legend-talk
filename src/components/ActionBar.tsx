@@ -86,15 +86,20 @@ export function ActionBar({
     ] : []),
   ];
 
+  // Summarize runs independently of the generation hooks (isGenerating stays false),
+  // so this must be checked before the isGenerating gate — otherwise the "Summarizing…
+  // / Stop" affordance is unreachable and the full action bar stays live, letting the
+  // user re-trigger Summarize (re-entrant, spawns a second stream + orphans the abort).
+  if (isSummarizing) {
+    return (
+      <div style={{ padding: '8px 16px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Text type="secondary">{t('chat.summarizing')}</Text>
+        <Button danger size="small" onClick={onStopSummarize}>{t('chat.stop')}</Button>
+      </div>
+    );
+  }
+
   if (!hasMessages || isGenerating) {
-    if (isSummarizing) {
-      return (
-        <div style={{ padding: '8px 16px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Text type="secondary">{t('chat.summarizing')}</Text>
-          <Button danger size="small" onClick={onStopSummarize}>{t('chat.stop')}</Button>
-        </div>
-      );
-    }
     return null;
   }
 

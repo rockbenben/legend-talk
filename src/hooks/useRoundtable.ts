@@ -75,12 +75,15 @@ export function useRoundtable(activeConversationId: string) {
     topic: string | undefined,
     charIds?: string[],
   ) {
-    const conv = useConversationStore.getState().getConversation(conversationId)!;
+    const conv = useConversationStore.getState().getConversation(conversationId);
+    if (!conv) return; // conversation deleted before the round started
     // Shuffle speaking order each round to vary who sets the frame (skip for partial rounds and ≤2 chars)
     const baseChars = charIds || conv.characters;
     const chars = !charIds && baseChars.length > 2 ? fisherYatesShuffle([...baseChars]) : baseChars;
 
     for (const charId of chars) {
+      // Bail if the conversation was deleted mid-round (deletion doesn't abort the signal).
+      if (!useConversationStore.getState().getConversation(conversationId)) return;
       updateConv(conversationId, { speaker: charId });
       const character = presetCharacters.find((c) => c.id === charId);
       if (!character) continue;
@@ -88,7 +91,7 @@ export function useRoundtable(activeConversationId: string) {
       await streamResponse(conversationId, charId, messages, provider, signal);
     }
 
-    if (conv.characters.length > 1) {
+    if (conv.characters.length > 1 && useConversationStore.getState().getConversation(conversationId)) {
       updateConv(conversationId, { speaker: MODERATOR_ID });
       const modMessages = buildModeratorMessages(conversationId, provider.lang, topic);
       await streamResponse(conversationId, MODERATOR_ID, modMessages, provider, signal);
@@ -119,7 +122,8 @@ export function useRoundtable(activeConversationId: string) {
         // preserving the chair's focus edits made before this intervention.
         const store = useConversationStore.getState();
         let snapshot = '';
-        const before = store.getConversation(conversationId)!;
+        const before = store.getConversation(conversationId);
+        if (!before) return;
         for (let i = before.messages.length - 1; i >= 0; i--) {
           const m = before.messages[i];
           if (m.characterId === FOCUS_ID && m.content.trim()) { snapshot = m.content.trim(); break; }
@@ -322,8 +326,8 @@ async function resolveRoundtableTopic(
   _provider: NonNullable<ReturnType<typeof resolveProvider>>,
   _signal?: AbortSignal,
 ): Promise<string | undefined> {
-  const conv = useConversationStore.getState().getConversation(conversationId)!;
-  if (conv.characters.length <= 1) return undefined;
+  const conv = useConversationStore.getState().getConversation(conversationId);
+  if (!conv || conv.characters.length <= 1) return undefined;
   for (let i = conv.messages.length - 1; i >= 0; i--) {
     if (conv.messages[i].characterId === FOCUS_ID) {
       const content = conv.messages[i].content.trim();
@@ -338,6 +342,7 @@ async function resolveRoundtableTopic(
 type RawMsg = { role: 'system' | 'user' | 'assistant'; content: string };
 
 function mergeConsecutive(raw: RawMsg[]): RawMsg[] {
+  if (raw.length === 0) return [];
   const merged: RawMsg[] = [raw[0]];
   for (let i = 1; i < raw.length; i++) {
     const last = merged[merged.length - 1];
@@ -371,7 +376,8 @@ function buildRoundtableMessages(
   lang: string,
   topic?: string,
 ): RawMsg[] {
-  const conversation = useConversationStore.getState().getConversation(conversationId)!;
+  const conversation = useConversationStore.getState().getConversation(conversationId);
+  if (!conversation) return [];
   const isMulti = conversation.characters.length > 1;
   const messages = conversation.messages.filter((m) => m.content.trim());
 
@@ -463,7 +469,8 @@ function buildModeratorMessages(
   lang: string,
   topic?: string,
 ): RawMsg[] {
-  const conversation = useConversationStore.getState().getConversation(conversationId)!;
+  const conversation = useConversationStore.getState().getConversation(conversationId);
+  if (!conversation) return [];
   const messages = conversation.messages.filter((m) => m.content.trim());
 
   let lastModIdx = -1;

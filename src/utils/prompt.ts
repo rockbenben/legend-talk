@@ -125,6 +125,10 @@ export async function streamResponse(
   provider: NonNullable<ReturnType<typeof resolveProvider>>,
   signal?: AbortSignal,
 ): Promise<void> {
+  // Builders return [] when the conversation vanished mid-flight (e.g. deleted during
+  // a roundtable). Nothing to send — don't create a phantom bubble or POST empty messages.
+  if (messages.length === 0) return;
+
   const store = useConversationStore.getState();
   const msgId = store.addMessage(conversationId, 'character', '', characterId);
 

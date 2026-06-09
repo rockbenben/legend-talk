@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://talk.newzone.top/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://talk.newzone.top/#/en/chat"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://talk.newzone.top/#/zh/chat"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://talk.newzone.top/#/zh-Hant/chat"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://talk.newzone.top/#/ja/chat"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://talk.newzone.top/#/ko/chat"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://talk.newzone.top/#/es/chat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://talk.newzone.top/#/fr/chat"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://talk.newzone.top/#/de/chat"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://talk.newzone.top/#/pt/chat"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://talk.newzone.top/#/it/chat"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://talk.newzone.top/#/ru/chat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://talk.newzone.top/#/ar/chat"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://talk.newzone.top/#/tr/chat"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://talk.newzone.top/#/hi/chat"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://talk.newzone.top/#/id/chat"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://talk.newzone.top/#/vi/chat"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://talk.newzone.top/#/th/chat"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://talk.newzone.top/#/bn/chat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://talk.newzone.top/"/>
+  </url>
+</urlset>

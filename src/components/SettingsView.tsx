@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Form, Input, Select, Button, Switch, App, Typography, Space, Divider, Flex } from 'antd';
+import { Form, Input, Select, AutoComplete, Button, Switch, App, Typography, Space, Divider, Flex } from 'antd';
 import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined, ApiOutlined, SettingOutlined, UsergroupAddOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter, PROVIDER_GROUPS } from '../adapters/registry';
@@ -201,7 +201,13 @@ export function SettingsView() {
         </Title>
         <Form layout="vertical">
           <Form.Item label="Provider">
-            <Select value={settings.defaultProvider} onChange={handleProviderChange} options={providerOptions} />
+            <Select
+              value={settings.defaultProvider}
+              onChange={handleProviderChange}
+              options={providerOptions}
+              showSearch
+              optionFilterProp="label"
+            />
           </Form.Item>
           <Form.Item
             label={
@@ -230,17 +236,38 @@ export function SettingsView() {
               </Space>
             }
           >
-            <Select
-              value={(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) ? settings.defaultModel : '__custom__'}
-              onChange={(v) => settings.setDefaultModel(v === '__custom__' ? '' : v)}
-              options={[
-                ...(currentAdapter?.models || []).map((m) => ({ value: m.id, label: m.name })),
-                { value: '__custom__', label: t('settings.customModel') },
-              ]}
+            <AutoComplete
+              style={{ width: '100%' }}
+              value={settings.defaultModel}
+              onChange={(v) => settings.setDefaultModel(v ?? '')}
+              options={(currentAdapter?.models || []).map((m) => ({ value: m.id, label: m.name }))}
+              allowClear
+              placeholder={t('settings.customModel')}
+              // 搜索匹配模型名(label)或 SKU(value)。当输入恰好等于某个 SKU 时,
+              // 说明用户已选中它,只是想浏览其它选项 —— 显示全部而非只剩自己。
+              filterOption={(input, option) => {
+                if (!input) return true;
+                const q = input.toLowerCase();
+                const value = String(option?.value ?? '').toLowerCase();
+                const label = String(option?.label ?? '').toLowerCase();
+                if (value === q) return true;
+                return value.includes(q) || label.includes(q);
+              }}
+              // 双行渲染:上行友好名,下行灰色小字 SKU —— 弥合下拉显示("Claude
+              // Sonnet 4.6")与落入输入框的值("claude-sonnet-4-6")之间的视觉差。
+              optionRender={(option) => {
+                const value = String(option.value ?? '');
+                const label = String(option.label ?? value);
+                return (
+                  <div style={{ paddingBlock: 2 }}>
+                    <div style={{ fontWeight: 500 }}>{label}</div>
+                    {label !== value && (
+                      <Text type="secondary" style={{ fontSize: 12 }}>{value}</Text>
+                    )}
+                  </div>
+                );
+              }}
             />
-            {!(currentAdapter?.models || []).some((m) => m.id === settings.defaultModel) && (
-              <Input value={settings.defaultModel} onChange={(e) => settings.setDefaultModel(e.target.value)} placeholder="model-id" style={{ marginTop: 8 }} />
-            )}
           </Form.Item>
           <Form.Item label={t('settings.thinkingLevel')} extra={t('settings.thinkingLevelHint')}>
             <Select

@@ -116,6 +116,7 @@ export function SharedView() {
                 avatar={msgChar?.avatar}
                 color={msgChar?.color}
                 name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
+                isModerator={msg.characterId === '__moderator__'}
               />
             );
           })}

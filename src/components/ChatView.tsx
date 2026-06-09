@@ -434,6 +434,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
               color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
               name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
+              isModerator={msg.characterId === '__moderator__'}
               timestamp={msg.timestamp}
             />
           )}

@@ -14,9 +14,8 @@ interface MessageBubbleProps {
   color?: string;
   name?: string;
   timestamp?: number;
+  isModerator?: boolean;
 }
-
-const MODERATOR_RE = /moderator|⚖|主持|裁判|모더레이터|moderador|moderatore|moderateur|модератор|वार्ताकार|moderator|kıdemli/i;
 
 const SERIF_BODY_SIZE = 'clamp(15px, 0.6vw + 13.4px, 16.5px)';
 
@@ -28,14 +27,13 @@ const SERIF_BODY_SIZE = 'clamp(15px, 0.6vw + 13.4px, 16.5px)';
  *   Moderator (⚖️) → hairline-framed italic synthesis. The "frame around
  *                    voices", not a voice itself.
  */
-function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp }: MessageBubbleProps) {
+function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp, isModerator = false }: MessageBubbleProps) {
   const { t, i18n } = useTranslation();
   const { token } = useToken();
   const trimmed = content?.trim() || '';
   const isEmpty = !trimmed;
   const isRaw = !isEmpty && trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
-  const isModerator = !!name && MODERATOR_RE.test(name);
 
   // Cache the parsed-markdown element. Without this, ReactMarkdown re-parses
   // the whole accumulated text on every render — during streaming the last

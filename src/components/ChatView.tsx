@@ -451,6 +451,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
               color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
               name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
               era={isMulti && msgChar ? t(`characters.${msgChar.id}.era`) : undefined}
+              dropCap={isMulti && !!msgChar && (
+                prevMsg?.role === 'user' || prevMsg?.characterId === '__moderator__' || prevMsg?.characterId === '__focus__'
+              )}
               isModerator={msg.characterId === '__moderator__'}
               timestamp={msg.timestamp}
             />

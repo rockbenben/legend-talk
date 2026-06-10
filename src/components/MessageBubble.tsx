@@ -11,6 +11,12 @@ interface MessageBubbleProps {
   name?: string;
   /** Speaker's era/domain note, shown under the marginal name (e.g. "古希腊") */
   era?: string;
+  /**
+   * Enlarged opening character. The caller grants this to ONE speech per round
+   * (the round opener) — with a drop cap on every speech, rounds where several
+   * speakers open with the same word ("你…/你…/你…") read as a typo.
+   */
+  dropCap?: boolean;
   timestamp?: number;
   isModerator?: boolean;
 }
@@ -26,7 +32,7 @@ interface MessageBubbleProps {
  * Visual layer lives in index.css (.lt-speech / .lt-chair / .lt-synthesis);
  * this component only decides which register applies.
  */
-function MessageBubbleImpl({ content, isUser, avatar, color, name, era, timestamp, isModerator = false }: MessageBubbleProps) {
+function MessageBubbleImpl({ content, isUser, avatar, color, name, era, dropCap = false, timestamp, isModerator = false }: MessageBubbleProps) {
   const { t, i18n } = useTranslation();
   const trimmed = content?.trim() || '';
   const isEmpty = !trimmed;
@@ -92,7 +98,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, era, timestam
         )}
       </div>
       {!isEmpty && (
-        <div className={`lt-speech-body${name && !isRaw ? ' lt-dropcap' : ''}`}>
+        <div className={`lt-speech-body${dropCap && !isRaw ? ' lt-dropcap' : ''}`}>
           {renderedBody}
         </div>
       )}

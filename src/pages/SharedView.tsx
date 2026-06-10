@@ -110,6 +110,7 @@ export function SharedView() {
             // so a single bad entry can't crash the whole view.
             if (!msg || typeof msg.content !== 'string') return null;
             const msgChar = msg.characterId ? presetCharacters.find((c) => c.id === msg.characterId) : undefined;
+            const prev = idx > 0 ? shared.messages[idx - 1] : null;
             return (
               <MessageBubble
                 key={idx}
@@ -118,6 +119,10 @@ export function SharedView() {
                 avatar={msgChar?.avatar}
                 color={msgChar?.color}
                 name={isMulti && msgChar ? (t(`characters.${msgChar.id}.name`)) : undefined}
+                era={isMulti && msgChar ? t(`characters.${msgChar.id}.era`) : undefined}
+                dropCap={isMulti && !!msgChar && (
+                  !prev || prev.role === 'user' || prev.characterId === '__moderator__' || prev.characterId === '__focus__'
+                )}
                 isModerator={msg.characterId === '__moderator__'}
               />
             );

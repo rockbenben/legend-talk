@@ -42,8 +42,10 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* Background + color are applied by ThemeProvider via JS so they follow
-   the active antd theme tokens (light / dark) without scope issues. */
+/* First-paint background from CSS variables — the inline script in index.html
+   sets `.dark` before render, so dark users don't get a white flash while
+   waiting for React. ThemeBodyBg then re-applies the exact antd tokens. */
+html { background: var(--lt-paper); }
 
 /* Paper grain — fixed overlay, never intercepts input */
 body::before {

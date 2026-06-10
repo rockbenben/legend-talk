@@ -100,7 +100,13 @@ export function useRoundtable(activeConversationId: string) {
 
   async function sendMessage(conversationId: string, content: string, rounds: number = 3) {
     const provider = resolveProvider();
-    if (!provider) { updateConv(conversationId, { error: i18n.t('chat.noApiKey') }); return; }
+    if (!provider) {
+      // Persist the message so the error Alert's Retry (remove + re-send) can't
+      // destroy typed content when the re-send errors out again.
+      useConversationStore.getState().addMessage(conversationId, 'user', content, undefined);
+      updateConv(conversationId, { error: i18n.t('chat.noApiKey') });
+      return;
+    }
 
     const conversation = useConversationStore.getState().getConversation(conversationId);
     if (!conversation) return;
@@ -227,15 +233,19 @@ export function useRoundtable(activeConversationId: string) {
     if (!conv) return;
 
     const chars = conv.characters;
-    const startIdx = chars.indexOf(startCharId);
-    if (startIdx === -1) return;
+    if (!chars.includes(startCharId)) return;
 
     let lastUserIdx = -1;
     for (let i = conv.messages.length - 1; i >= 0; i--) {
       if (conv.messages[i].role === 'user') { lastUserIdx = i; break; }
     }
-    const charsSoFar = conv.messages.slice(lastUserIdx + 1).filter((m) => m.role === 'character' && m.characterId && !m.characterId.startsWith('__')).length;
+    const charMsgs = conv.messages.slice(lastUserIdx + 1).filter((m) => m.role === 'character' && m.characterId && !m.characterId.startsWith('__'));
+    const charsSoFar = charMsgs.length;
     const completedRounds = Math.floor(charsSoFar / chars.length);
+    // Speaking order is shuffled per round, so conv.characters order can't tell us
+    // who still owes a turn — derive the partial round from who actually spoke.
+    const spokenThisRound = new Set(charMsgs.slice(completedRounds * chars.length).map((m) => m.characterId));
+    const partialChars = [startCharId, ...chars.filter((c) => c !== startCharId && !spokenThisRound.has(c))];
     const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
 
     const controller = new AbortController();
@@ -245,7 +255,7 @@ export function useRoundtable(activeConversationId: string) {
     try {
       const topic = await resolveRoundtableTopic(conversationId, provider, controller.signal);
 
-      await runRound(conversationId, provider, controller.signal, topic, chars.slice(startIdx));
+      await runRound(conversationId, provider, controller.signal, topic, partialChars);
 
       for (let r = 0; r < remainingFullRounds; r++) {
         updateConv(conversationId, { round: completedRounds + 2 + r, speaker: null });

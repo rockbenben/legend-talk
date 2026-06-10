@@ -78,4 +78,21 @@ describe('useChat', () => {
     expect(conv.messages[2].content).toBe('Regenerated answer');
     expect(conv.messages[2].characterId).toBe('socrates');
   });
+
+  it('persists the user message and surfaces an error when no API key is configured', async () => {
+    // No API key set — resolveProvider() returns null
+    const convId = useConversationStore.getState().createConversation('single', ['socrates']);
+    const { result } = renderHook(() => useChat(convId));
+
+    await act(async () => {
+      await result.current.sendMessage(convId, 'What is truth?');
+    });
+
+    const conv = useConversationStore.getState().getConversation(convId)!;
+    // The typed message must not be swallowed — Retry removes it and re-sends,
+    // relying on the re-add to not destroy content.
+    expect(conv.messages).toHaveLength(1);
+    expect(conv.messages[0].content).toBe('What is truth?');
+    expect(result.current.error).toBeTruthy();
+  });
 });

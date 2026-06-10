@@ -156,17 +156,23 @@ export async function streamResponse(
       signal,
     })) {
       accumulated += token;
-      if (Date.now() - lastFlushAt >= FLUSH_MS) flush();
+      if (Date.now() - lastFlushAt >= FLUSH_MS) {
+        // Conversation deleted mid-stream — stop consuming so the underlying
+        // connection is cancelled instead of billing tokens into the void.
+        if (!useConversationStore.getState().getConversation(conversationId)) return;
+        flush();
+      }
     }
   } finally {
     // Always flush pending tokens — on success, abort, or error — so partial
     // output is preserved (matches prior "save what you got" semantics).
     flush();
-  }
-  // Strip self-referential name tag that models sometimes prepend (e.g. "[拿破仑]: ...")
-  // Limit bracket content to 1-20 chars to avoid stripping legitimate bracketed text
-  const cleaned = accumulated.replace(/^\[[^\]]{1,20}\]:\s*/, '');
-  if (cleaned !== accumulated) {
-    useConversationStore.getState().updateMessageContent(conversationId, msgId, cleaned);
+    // Strip self-referential name tag that models sometimes prepend (e.g. "[拿破仑]: ...")
+    // Limit bracket content to 1-20 chars to avoid stripping legitimate bracketed text.
+    // Runs in finally so a stopped/aborted partial message is cleaned too.
+    const cleaned = accumulated.replace(/^\[[^\]]{1,20}\]:\s*/, '');
+    if (cleaned !== accumulated) {
+      useConversationStore.getState().updateMessageContent(conversationId, msgId, cleaned);
+    }
   }
 }

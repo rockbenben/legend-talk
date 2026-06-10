@@ -26,9 +26,21 @@ export function useChat(activeConversationId: string) {
     const conversation = useConversationStore.getState().getConversation(conversationId);
     if (!conversation) return;
 
+    // Persist the user message before the failure-prone checks below. The error
+    // Alert's Retry removes the message and re-sends, relying on this re-add —
+    // erroring out before the add would make Retry destroy typed content.
+    if (addUserMessage) {
+      useConversationStore.getState().addMessage(conversationId, 'user', addUserMessage, undefined);
+    }
+
     const characterId = conversation.characters[0];
     const character = presetCharacters.find((c) => c.id === characterId);
-    if (!character) return;
+    if (!character) {
+      // Character no longer exists (e.g. a deleted custom character) — surface an
+      // error instead of silently swallowing the user's message.
+      setErrorMap(prev => new Map(prev).set(conversationId, i18n.t('common.somethingWrong')));
+      return;
+    }
 
     const provider = resolveProvider();
     if (!provider) {
@@ -40,10 +52,6 @@ export function useChat(activeConversationId: string) {
     abortMap.current.set(conversationId, controller);
     setGeneratingIds(prev => new Set(prev).add(conversationId));
     setErrorMap(prev => { const next = new Map(prev); next.delete(conversationId); return next; });
-
-    if (addUserMessage) {
-      useConversationStore.getState().addMessage(conversationId, 'user', addUserMessage, undefined);
-    }
 
     try {
       const messages = buildMessages(conversationId, character.systemPrompt, provider.lang);

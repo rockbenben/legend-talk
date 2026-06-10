@@ -121,19 +121,64 @@ describe('useRoundtable', () => {
       .createConversation('roundtable', ['socrates', 'munger']);
     const { result } = renderHook(() => useRoundtable(convId));
 
-    // Pre-populate: user message + one message from each character
+    // Pre-populate: user message + one message from each character, then retry
+    // munger (ChatView removes the retried message before calling continueFrom)
     useConversationStore.getState().addMessage(convId, 'user', 'How to think clearly?', undefined);
     useConversationStore.getState().addMessage(convId, 'character', 'Socrates says...', 'socrates');
-    useConversationStore.getState().addMessage(convId, 'character', 'Munger says...', 'munger');
+    const mungerMsgId = useConversationStore.getState().addMessage(convId, 'character', 'Munger says...', 'munger');
+    useConversationStore.getState().removeMessagesFrom(convId, mungerMsgId);
 
     await act(async () => {
       await result.current.continueFrom(convId, 'munger', 1);
     });
 
     const conv = useConversationStore.getState().getConversation(convId)!;
-    // 3 existing + regenerated munger + moderator = 5 messages
-    expect(conv.messages).toHaveLength(5);
-    expect(conv.messages[3].characterId).toBe('munger');
-    expect(conv.messages[4].characterId).toBe('__moderator__');
+    // user + socrates + regenerated munger + moderator = 4 messages
+    expect(conv.messages).toHaveLength(4);
+    expect(conv.messages[2].characterId).toBe('munger');
+    expect(conv.messages[3].characterId).toBe('__moderator__');
+  });
+
+  it('retry mid-round respects shuffled speaking order (no duplicate or skipped speakers)', async () => {
+    mockAdapter();
+
+    // conv.characters order is [socrates, munger, taleb], but the round was
+    // shuffled to [taleb, socrates, munger]. Retrying socrates must regenerate
+    // socrates + munger — not re-run taleb (duplicate) or skip munger.
+    const convId = useConversationStore
+      .getState()
+      .createConversation('roundtable', ['socrates', 'munger', 'taleb']);
+    const { result } = renderHook(() => useRoundtable(convId));
+
+    useConversationStore.getState().addMessage(convId, 'user', 'Topic', undefined);
+    useConversationStore.getState().addMessage(convId, 'character', 'Taleb spoke first...', 'taleb');
+    const socMsgId = useConversationStore.getState().addMessage(convId, 'character', 'Socrates...', 'socrates');
+    useConversationStore.getState().removeMessagesFrom(convId, socMsgId);
+
+    await act(async () => {
+      await result.current.continueFrom(convId, 'socrates', 1);
+    });
+
+    const conv = useConversationStore.getState().getConversation(convId)!;
+    const speakers = conv.messages.filter((m) => m.role === 'character').map((m) => m.characterId);
+    // taleb (kept) + socrates + munger + moderator — each speaker exactly once
+    expect(speakers).toEqual(['taleb', 'socrates', 'munger', '__moderator__']);
+  });
+
+  it('persists the user message and surfaces an error when no API key is configured', async () => {
+    // No mockAdapter / API key — resolveProvider() returns null
+    const convId = useConversationStore
+      .getState()
+      .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
+
+    await act(async () => {
+      await result.current.sendMessage(convId, 'Topic', 1);
+    });
+
+    const conv = useConversationStore.getState().getConversation(convId)!;
+    expect(conv.messages).toHaveLength(1);
+    expect(conv.messages[0].content).toBe('Topic');
+    expect(result.current.error).toBeTruthy();
   });
 });

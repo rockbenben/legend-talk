@@ -37,7 +37,14 @@ export const persistStorage: StateStorage = {
     }
   },
   setItem: async (name, value) => {
-    tryLS('set', name, value);
+    try {
+      localStorage.setItem(name, value);
+    } catch {
+      // Write failed (quota exceeded / restricted) — drop any stale copy so
+      // reads fall through to IndexedDB instead of silently returning the
+      // outdated localStorage value after a reload.
+      tryLS('remove', name);
+    }
     try { await set(name, value, store); } catch { /* ok */ }
   },
   removeItem: async (name) => {

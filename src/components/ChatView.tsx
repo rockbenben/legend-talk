@@ -333,6 +333,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const msgChar = msg.characterId ? charMap.get(msg.characterId) : undefined;
     const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
     const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
+    // A character speech right after a moderator synthesis opens a new round —
+    // typeset a「第 N 轮」rule like the printed proceedings.
+    const showRoundRule = isMulti && msg.role === 'character' && msg.characterId && !msg.characterId.startsWith('__')
+      && prevMsg?.characterId === '__moderator__';
+    const roundNo = showRoundRule
+      ? conversation.messages.slice(0, idx).filter((m) => m.characterId === '__moderator__').length + 1
+      : 0;
     if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
 
     if (msg.characterId === '__focus__') {
@@ -406,6 +413,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
             </Text>
           </Divider>
         )}
+        {showRoundRule && (
+          <Divider plain style={{ marginTop: 36 }}>
+            <Text type="secondary" className="display-serif lt-round-rule">
+              {t('roundtable.roundLabel', { n: roundNo })}
+            </Text>
+          </Divider>
+        )}
         <div className="group">
           {editingMsgId === msg.id ? (
             <div style={{ padding: '12px 0' }}>
@@ -436,6 +450,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
               avatar={msgChar?.avatar || (isAnalysisMsg(msg.characterId) ? (ANALYSIS_META[msg.characterId!]?.emoji || '📋') : undefined)}
               color={msgChar?.color || (isAnalysisMsg(msg.characterId) ? 'blue' : undefined)}
               name={isMulti && msgChar ? t(`characters.${msgChar.id}.name`) : (isAnalysisMsg(msg.characterId) ? t(ANALYSIS_META[msg.characterId!]?.labelKey || 'chat.summarize') : undefined)}
+              era={isMulti && msgChar ? t(`characters.${msgChar.id}.era`) : undefined}
               isModerator={msg.characterId === '__moderator__'}
               timestamp={msg.timestamp}
             />
@@ -538,7 +553,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             ellipsis
             onClick={startEditTitle}
             title={t('chat.rename')}
-            style={{ flex: 1, minWidth: 0, margin: 0, fontWeight: 500, cursor: 'pointer' }}
+            style={{ flex: 1, minWidth: 0, margin: 0, fontSize: 20, fontWeight: 600, cursor: 'pointer' }}
           >
             {displayTitle}
           </Title>

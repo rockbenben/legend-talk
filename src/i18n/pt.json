@@ -110,7 +110,8 @@
     "removeParticipant": "Remover",
     "roundPreparing": "Rodada {{current}}/{{total}} — preparando...",
     "focus": "Foco",
-    "moderatorSynthesizing": "Rodada {{current}}/{{total}} — resumindo..."
+    "moderatorSynthesizing": "Rodada {{current}}/{{total}} — resumindo...",
+    "roundLabel": "Rodada {{n}}"
   },
   "settings": {
     "title": "Configurações",

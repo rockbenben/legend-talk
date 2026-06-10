@@ -110,7 +110,8 @@
     "removeParticipant": "ลบ",
     "roundPreparing": "รอบ {{current}}/{{total}} — กำลังเตรียม...",
     "focus": "ประเด็น",
-    "moderatorSynthesizing": "รอบ {{current}}/{{total}} — กำลังสรุป..."
+    "moderatorSynthesizing": "รอบ {{current}}/{{total}} — กำลังสรุป...",
+    "roundLabel": "รอบที่ {{n}}"
   },
   "settings": {
     "title": "ตั้งค่า",

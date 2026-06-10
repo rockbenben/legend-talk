@@ -110,7 +110,8 @@
     "removeParticipant": "Entfernen",
     "roundPreparing": "Runde {{current}}/{{total}} — Vorbereitung...",
     "focus": "Fokus",
-    "moderatorSynthesizing": "Runde {{current}}/{{total}} — Zusammenfassung..."
+    "moderatorSynthesizing": "Runde {{current}}/{{total}} — Zusammenfassung...",
+    "roundLabel": "Runde {{n}}"
   },
   "settings": {
     "title": "Einstellungen",

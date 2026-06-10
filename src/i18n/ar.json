@@ -110,7 +110,8 @@
     "removeParticipant": "إزالة",
     "roundPreparing": "الجولة {{current}}/{{total}} — جارٍ التحضير...",
     "focus": "المحور",
-    "moderatorSynthesizing": "الجولة {{current}}/{{total}} — جارٍ التلخيص..."
+    "moderatorSynthesizing": "الجولة {{current}}/{{total}} — جارٍ التلخيص...",
+    "roundLabel": "الجولة {{n}}"
   },
   "settings": {
     "title": "الإعدادات",

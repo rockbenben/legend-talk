@@ -110,7 +110,8 @@
     "removeParticipant": "Hapus",
     "roundPreparing": "Ronde {{current}}/{{total}} — mempersiapkan...",
     "focus": "Fokus",
-    "moderatorSynthesizing": "Ronde {{current}}/{{total}} — merangkum..."
+    "moderatorSynthesizing": "Ronde {{current}}/{{total}} — merangkum...",
+    "roundLabel": "Ronde {{n}}"
   },
   "settings": {
     "title": "Pengaturan",

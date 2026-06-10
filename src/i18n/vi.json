@@ -110,7 +110,8 @@
     "removeParticipant": "Xóa",
     "roundPreparing": "Vòng {{current}}/{{total}} — đang chuẩn bị...",
     "focus": "Trọng tâm",
-    "moderatorSynthesizing": "Vòng {{current}}/{{total}} — đang tóm tắt..."
+    "moderatorSynthesizing": "Vòng {{current}}/{{total}} — đang tóm tắt...",
+    "roundLabel": "Vòng {{n}}"
   },
   "settings": {
     "title": "Cài đặt",

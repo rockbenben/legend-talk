@@ -110,7 +110,8 @@
     "removeParticipant": "Kaldır",
     "roundPreparing": "Tur {{current}}/{{total}} — hazırlanıyor...",
     "focus": "Odak",
-    "moderatorSynthesizing": "Tur {{current}}/{{total}} — özetleniyor..."
+    "moderatorSynthesizing": "Tur {{current}}/{{total}} — özetleniyor...",
+    "roundLabel": "{{n}}. Tur"
   },
   "settings": {
     "title": "Ayarlar",

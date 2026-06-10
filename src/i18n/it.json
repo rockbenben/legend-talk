@@ -110,7 +110,8 @@
     "removeParticipant": "Rimuovi",
     "roundPreparing": "Turno {{current}}/{{total}} — preparazione...",
     "focus": "Focus",
-    "moderatorSynthesizing": "Turno {{current}}/{{total}} — riassumendo..."
+    "moderatorSynthesizing": "Turno {{current}}/{{total}} — riassumendo...",
+    "roundLabel": "Turno {{n}}"
   },
   "settings": {
     "title": "Impostazioni",

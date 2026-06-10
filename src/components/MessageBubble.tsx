@@ -9,6 +9,8 @@ interface MessageBubbleProps {
   avatar?: string;
   color?: string;
   name?: string;
+  /** Speaker's era/domain note, shown under the marginal name (e.g. "古希腊") */
+  era?: string;
   timestamp?: number;
   isModerator?: boolean;
 }
@@ -24,7 +26,7 @@ interface MessageBubbleProps {
  * Visual layer lives in index.css (.lt-speech / .lt-chair / .lt-synthesis);
  * this component only decides which register applies.
  */
-function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp, isModerator = false }: MessageBubbleProps) {
+function MessageBubbleImpl({ content, isUser, avatar, color, name, era, timestamp, isModerator = false }: MessageBubbleProps) {
   const { t, i18n } = useTranslation();
   const trimmed = content?.trim() || '';
   const isEmpty = !trimmed;
@@ -84,6 +86,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp, is
           <Avatar emoji={avatar || '👤'} color={color || 'gray'} size="xs" />
         </span>
         {name && <div className="lt-speech-name">{name}</div>}
+        {era && <span className="lt-speech-meta">{era}</span>}
         {timeLabel && (
           <span className="lt-speech-meta" title={fullDate}>{timeLabel}</span>
         )}

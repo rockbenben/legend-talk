@@ -110,7 +110,8 @@
     "removeParticipant": "Eliminar",
     "roundPreparing": "Ronda {{current}}/{{total}} — preparando...",
     "focus": "Enfoque",
-    "moderatorSynthesizing": "Ronda {{current}}/{{total}} — resumiendo..."
+    "moderatorSynthesizing": "Ronda {{current}}/{{total}} — resumiendo...",
+    "roundLabel": "Ronda {{n}}"
   },
   "settings": {
     "title": "Configuración",

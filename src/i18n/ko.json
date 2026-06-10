@@ -110,7 +110,8 @@
     "removeParticipant": "제거",
     "roundPreparing": "라운드 {{current}}/{{total}} — 준비 중...",
     "focus": "초점",
-    "moderatorSynthesizing": "라운드 {{current}}/{{total}} — 요약 중..."
+    "moderatorSynthesizing": "라운드 {{current}}/{{total}} — 요약 중...",
+    "roundLabel": "라운드 {{n}}"
   },
   "settings": {
     "title": "설정",

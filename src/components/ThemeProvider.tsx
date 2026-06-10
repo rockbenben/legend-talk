@@ -34,13 +34,13 @@ const PROCEEDINGS = {
     paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
     ink: '#211F19', inkSoft: '#5C584C',
     madder: '#8C2F39',
-    rule: '#D9D3C2', ruleDark: '#B9B19B',
+    rule: '#D9D3C2', ruleFaint: '#E7E2D3',
   },
   dark: {
     paper: '#1A1813', paperDeep: '#141310', elevated: '#23201A',
     ink: '#E7E1D0', inkSoft: '#A89F8B',
     madder: '#BE6A72',
-    rule: '#35311F', ruleDark: '#4A4435',
+    rule: '#35312A', ruleFaint: '#27241D',
   },
 };
 
@@ -109,8 +109,9 @@ export function ThemeProvider({ children }: Props) {
         colorBgLayout: p.paperDeep,
         colorBgContainer: p.paper,
         colorBgElevated: p.elevated,
-        colorBorder: p.ruleDark,
-        colorBorderSecondary: p.rule,
+        colorBorder: p.rule,
+        colorBorderSecondary: p.ruleFaint,
+        colorSplit: p.ruleFaint,
         borderRadius: 2,                // print artifacts have corners, not pills
         fontFamily: SERIF_BODY,
         fontSize: 15,

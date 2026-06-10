@@ -110,7 +110,8 @@
     "removeParticipant": "削除",
     "roundPreparing": "ラウンド{{current}}/{{total}} — 準備中...",
     "focus": "焦点",
-    "moderatorSynthesizing": "ラウンド{{current}}/{{total}} — まとめ中..."
+    "moderatorSynthesizing": "ラウンド{{current}}/{{total}} — まとめ中...",
+    "roundLabel": "第{{n}}ラウンド"
   },
   "settings": {
     "title": "設定",

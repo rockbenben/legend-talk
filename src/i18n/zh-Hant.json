@@ -110,7 +110,8 @@
     "removeParticipant": "移除",
     "roundPreparing": "第 {{current}}/{{total}} 輪 — 準備中...",
     "focus": "討論焦點",
-    "moderatorSynthesizing": "第 {{current}}/{{total}} 輪 — 總結中..."
+    "moderatorSynthesizing": "第 {{current}}/{{total}} 輪 — 總結中...",
+    "roundLabel": "第 {{n}} 輪"
   },
   "settings": {
     "title": "設定",

@@ -110,7 +110,8 @@
     "removeParticipant": "हटाएं",
     "roundPreparing": "राउंड {{current}}/{{total}} — तैयारी हो रही है...",
     "focus": "केंद्र",
-    "moderatorSynthesizing": "राउंड {{current}}/{{total}} — सारांश..."
+    "moderatorSynthesizing": "राउंड {{current}}/{{total}} — सारांश...",
+    "roundLabel": "राउंड {{n}}"
   },
   "settings": {
     "title": "सेटिंग्स",

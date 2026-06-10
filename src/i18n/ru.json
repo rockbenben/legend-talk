@@ -110,7 +110,8 @@
     "removeParticipant": "Удалить",
     "roundPreparing": "Раунд {{current}}/{{total}} — подготовка...",
     "focus": "Фокус",
-    "moderatorSynthesizing": "Раунд {{current}}/{{total}} — подведение итогов..."
+    "moderatorSynthesizing": "Раунд {{current}}/{{total}} — подведение итогов...",
+    "roundLabel": "Раунд {{n}}"
   },
   "settings": {
     "title": "Настройки",

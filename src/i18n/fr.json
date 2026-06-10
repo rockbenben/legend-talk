@@ -110,7 +110,8 @@
     "removeParticipant": "Retirer",
     "roundPreparing": "Tour {{current}}/{{total}} — préparation...",
     "focus": "Focus",
-    "moderatorSynthesizing": "Tour {{current}}/{{total}} — synthèse..."
+    "moderatorSynthesizing": "Tour {{current}}/{{total}} — synthèse...",
+    "roundLabel": "Tour {{n}}"
   },
   "settings": {
     "title": "Paramètres",

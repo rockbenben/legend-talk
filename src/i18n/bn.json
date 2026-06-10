@@ -110,7 +110,8 @@
     "removeParticipant": "সরান",
     "roundPreparing": "রাউন্ড {{current}}/{{total}} — প্রস্তুত হচ্ছে...",
     "focus": "কেন্দ্র",
-    "moderatorSynthesizing": "রাউন্ড {{current}}/{{total}} — সারসংক্ষেপ..."
+    "moderatorSynthesizing": "রাউন্ড {{current}}/{{total}} — সারসংক্ষেপ...",
+    "roundLabel": "রাউন্ড {{n}}"
   },
   "settings": {
     "title": "সেটিংস",

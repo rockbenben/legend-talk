@@ -121,7 +121,7 @@ export function Layout() {
           onClick={() => navigate(lang ? `/${lang}/chat` : '/chat')}
           style={{
             margin: 0,
-            fontSize: 16,
+            fontSize: 23,
             lineHeight: 1,
             cursor: 'pointer',
             userSelect: 'none',

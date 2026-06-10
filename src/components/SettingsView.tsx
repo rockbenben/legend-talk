@@ -16,6 +16,7 @@ import { useLangPath } from '../hooks/useLangPath';
 import { CharacterEditor } from './CharacterEditor';
 import { Avatar } from './Avatar';
 import { presetCharacters } from '../characters/presets';
+import { clearNameCache } from '../hooks/useRoundtable';
 import type { CustomCharacter } from '../stores/settings';
 
 const { Title, Text, Paragraph } = Typography;
@@ -55,8 +56,24 @@ export function SettingsView() {
     if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
     if (Array.isArray(config.customCharacters)) {
       for (const c of config.customCharacters as CustomCharacter[]) {
-        if (c.id && c.displayName && c.systemPrompt) s.saveCustomCharacter(c);
+        if (!c.id || !c.displayName || !c.systemPrompt) continue;
+        const domain = Array.isArray(c.domain) && c.domain.length > 0 ? c.domain : ['custom'];
+        s.saveCustomCharacter({ ...c, domain });
+        // Inject into the runtime registry + i18n now — without this, imported
+        // characters stay invisible (and their names unresolvable) until reload.
+        const existing = presetCharacters.find((p) => p.id === c.id);
+        if (existing) {
+          Object.assign(existing, { avatar: c.avatar, color: c.color, systemPrompt: c.systemPrompt });
+        } else {
+          presetCharacters.push({ id: c.id, domain, avatar: c.avatar || '👤', color: c.color || 'blue', systemPrompt: c.systemPrompt });
+        }
+        for (const lng of Object.keys(i18n.store.data)) {
+          i18n.addResourceBundle(lng, 'translation', {
+            characters: { [c.id]: { name: c.displayName, era: c.era || i18n.t('common.unknown', { lng }), questions: [] } },
+          }, true, true);
+        }
       }
+      clearNameCache();
     }
   }
 

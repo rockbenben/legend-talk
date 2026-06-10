@@ -104,8 +104,9 @@ export function ParticipantsBar({
               icon={<LinkOutlined />}
               onClick={() => {
                 const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${conversationCharIds.join(',')}`;
-                navigator.clipboard.writeText(url).catch(() => {});
-                message.success(t('chat.linkCopied'));
+                // Toast only on success — writeText fails in WeChat/restricted
+                // WebViews, and a false "copied" there is worse than silence.
+                navigator.clipboard.writeText(url).then(() => message.success(t('chat.linkCopied'))).catch(() => {});
               }}
             />
           </Tooltip>

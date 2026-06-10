@@ -1,5 +1,6 @@
 import { presetCharacters } from '../../src/characters/presets';
 import { roundtableTemplates } from '../../src/characters/templates';
+import { tintRgb } from '../../src/components/Avatar';
 import i18n from '../../src/i18n';
 
 describe('presetCharacters', () => {
@@ -33,6 +34,12 @@ describe('presetCharacters', () => {
         expect(ids.has(cid)).toBe(true);
         expect(i18n.t(`characters.${cid}.name`)).toBeTruthy();
       }
+    }
+  });
+
+  it('every preset color has an Avatar tint mapping (no silent gray fallback)', () => {
+    for (const char of presetCharacters) {
+      expect(tintRgb[char.color], `color "${char.color}" of ${char.id} missing in tintRgb`).toBeTruthy();
     }
   });
 

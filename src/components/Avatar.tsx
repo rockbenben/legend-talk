@@ -15,7 +15,7 @@ const fontSizes = { xs: 12, sm: 16, md: 20, lg: 28 };
  * That makes stacked avatars occlude correctly — the front one fully hides
  * any rear sibling, no see-through layers.
  */
-const tintRgb: Record<string, string> = {
+export const tintRgb: Record<string, string> = {
   blue: '96, 165, 250',
   red: '248, 113, 113',
   green: '74, 222, 128',
@@ -35,6 +35,7 @@ const tintRgb: Record<string, string> = {
   zinc: '161, 161, 170',
   rose: '251, 113, 133',
   yellow: '250, 204, 21',
+  lime: '163, 230, 53',
 };
 
 export function Avatar({ emoji, color, size = 'md' }: AvatarProps) {

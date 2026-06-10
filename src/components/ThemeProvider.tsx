@@ -32,15 +32,15 @@ function ThemeBodyBg() {
 const PROCEEDINGS = {
   light: {
     paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
-    ink: '#211F19', inkSoft: '#5C584C',
+    ink: '#211F19', inkSoft: '#5C584C', inkFaint: '#8E887A',
     madder: '#8C2F39',
     rule: '#CCC5AE', ruleFaint: '#DFD9C6',
   },
   dark: {
-    paper: '#1A1813', paperDeep: '#141310', elevated: '#23201A',
-    ink: '#E7E1D0', inkSoft: '#A89F8B',
-    madder: '#BE6A72',
-    rule: '#3E3930', ruleFaint: '#2C2921',
+    paper: '#201D17', paperDeep: '#191713', elevated: '#2B271E',
+    ink: '#F1EBDC', inkSoft: '#C4BBA6', inkFaint: '#988F79',
+    madder: '#CB7B84',
+    rule: '#494334', ruleFaint: '#353026',
   },
 };
 
@@ -106,6 +106,10 @@ export function ThemeProvider({ children }: Props) {
         colorError: '#A1392F',
         colorBgBase: p.paper,
         colorTextBase: p.ink,
+        // Explicit secondary/tertiary text — the algorithm's alpha-derived greys
+        // sink into the warm dark paper and become unreadable.
+        colorTextSecondary: p.inkSoft,
+        colorTextTertiary: p.inkFaint,
         colorBgLayout: p.paperDeep,
         colorBgContainer: p.paper,
         colorBgElevated: p.elevated,

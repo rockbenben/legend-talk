@@ -27,15 +27,15 @@
   --lt-serif-body: 'Spectral', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif;
 }
 .dark {
-  --lt-paper: #1A1813;
-  --lt-paper-deep: #141310;
-  --lt-ink: #E7E1D0;
-  --lt-ink-soft: #A89F8B;
-  --lt-ink-faint: #7A7263;
-  --lt-madder: #BE6A72;
-  --lt-rule: #3E3930;
-  --lt-rule-faint: #2C2921;
-  --lt-rule-dark: #4A4435;
+  --lt-paper: #201D17;
+  --lt-paper-deep: #191713;
+  --lt-ink: #F1EBDC;
+  --lt-ink-soft: #C4BBA6;
+  --lt-ink-faint: #988F79;
+  --lt-madder: #CB7B84;
+  --lt-rule: #494334;
+  --lt-rule-faint: #353026;
+  --lt-rule-dark: #5C5443;
 }
 
 html, body {
@@ -89,12 +89,12 @@ body::before {
 }
 .lt-brand {
   font-family: var(--lt-serif-display);
-  font-weight: 600;
-  letter-spacing: .3em;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .04em;
 }
 .lt-brand .lt-brand-talk {
   font-style: italic;
+  font-weight: 600;
   color: var(--lt-madder);
 }
 

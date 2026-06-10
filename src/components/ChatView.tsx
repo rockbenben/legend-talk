@@ -326,9 +326,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const speakerChar = roundtable.currentSpeaker ? charMap.get(roundtable.currentSpeaker) ?? null : null;
 
   // Single-item renderer for Virtuoso. Lives inside the component so it closes
-  // over editing state, conversation data, and handlers. Returning null (for
-  // the empty trailing stub during streaming) is fine — Virtuoso just measures
-  // a zero-height slot.
+  // over editing state, conversation data, and handlers. Every item must render
+  // with a non-zero size (Virtuoso errors on zero-sized elements) — the empty
+  // trailing stub during streaming renders as a 1px spacer, never null.
   const renderMessage = (idx: number, msg: Message): React.ReactNode => {
     const msgChar = msg.characterId ? charMap.get(msg.characterId) : undefined;
     const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
@@ -340,7 +340,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const roundNo = showRoundRule
       ? conversation.messages.slice(0, idx).filter((m) => m.characterId === '__moderator__').length + 1
       : 0;
-    if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
+    // Hide the trailing empty message while it streams in — but give Virtuoso a
+    // measurable 1px box: returning null produces zero-sized items, which the
+    // library flags as an error on every flush and which destabilises scroll math.
+    if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) {
+      return <div style={{ height: 1 }} aria-hidden />;
+    }
     // Align action rows with the speech text column — except the moderator
     // synthesis, which is full-width (no margin column) so an indent reads as
     // misalignment.

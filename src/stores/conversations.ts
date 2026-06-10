@@ -67,7 +67,9 @@ export const useConversationStore = create<ConversationState>()(
               updatedAt: Date.now(),
             };
             if (!c.title && role === 'user' && content) {
-              updated.title = content.slice(0, 29);
+              // Code-point-safe truncation — .slice() on UTF-16 units can split a
+              // surrogate pair (emoji) and leave a lone surrogate (renders as �).
+              updated.title = [...content].slice(0, 29).join('');
             }
             return updated;
           }),

@@ -10,6 +10,15 @@ describe('conversationStore', () => {
     expect(useConversationStore.getState().conversations).toEqual([]);
   });
 
+  it('auto-title truncation does not split a surrogate pair (no lone � at the cut)', () => {
+    const id = useConversationStore.getState().createConversation('single', ['socrates']);
+    const content = '问'.repeat(28) + '😀后续内容';
+    useConversationStore.getState().addMessage(id, 'user', content, undefined);
+    const title = useConversationStore.getState().getConversation(id)!.title!;
+    expect([...title].length).toBe(29);
+    expect(title.endsWith('😀')).toBe(true);
+  });
+
   it('creates a single conversation', () => {
     const { createConversation } = useConversationStore.getState();
     const id = createConversation('single', ['socrates']);

@@ -73,4 +73,49 @@ describe('AnthropicAdapter', () => {
 
     globalThis.fetch = originalFetch;
   });
+
+  async function chatBody(model: string, thinkingLevel?: 'low' | 'medium' | 'high') {
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = mockFetchStream([
+      'event: message_stop\ndata: {"type":"message_stop"}\n\n',
+    ]);
+    for await (const _ of adapter.chat({
+      messages: [{ role: 'user', content: 'hi' }],
+      model,
+      apiKey: 'sk-ant-test',
+      thinkingLevel,
+    })) { /* consume */ }
+    const body = JSON.parse(
+      (globalThis.fetch as ReturnType<typeof vi.fn>).mock.calls[0][1].body,
+    );
+    globalThis.fetch = originalFetch;
+    return body;
+  }
+
+  it('uses adaptive thinking on Opus 4.7 (budget_tokens 400s there)', async () => {
+    const body = await chatBody('claude-opus-4-7', 'high');
+    expect(body.thinking).toEqual({ type: 'adaptive' });
+    expect(body.output_config).toEqual({ effort: 'high' });
+    expect(body.max_tokens).toBe(128000);
+  });
+
+  it('caps max_tokens at 64K for Sonnet with thinking', async () => {
+    const body = await chatBody('claude-sonnet-4-6', 'medium');
+    expect(body.thinking).toEqual({ type: 'adaptive' });
+    expect(body.max_tokens).toBe(64000);
+  });
+
+  it('keeps budget-style thinking on Haiku, below its 64K output cap', async () => {
+    const body = await chatBody('claude-haiku-4-5-20251001', 'high');
+    expect(body.thinking).toEqual({ type: 'enabled', budget_tokens: 50000 });
+    expect(body.max_tokens).toBe(64000);
+    expect(body.thinking.budget_tokens).toBeLessThan(body.max_tokens);
+  });
+
+  it('omits thinking entirely when no thinking level set', async () => {
+    const body = await chatBody('claude-opus-4-7');
+    expect(body.thinking).toBeUndefined();
+    expect(body.output_config).toBeUndefined();
+    expect(body.max_tokens).toBe(16384);
+  });
 });

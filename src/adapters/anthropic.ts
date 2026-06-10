@@ -51,6 +51,15 @@ export class AnthropicAdapter implements LLMAdapter {
       return true;
     });
 
+    const model = params.model || '';
+    // Output caps: Opus 4.6+ supports 128K output tokens; Sonnet 4.6 / Haiku 4.5 cap at 64K.
+    const maxTokens = params.thinkingLevel ? (model.includes('opus') ? 128000 : 64000) : 16384;
+    // Opus 4.7+ removed `thinking: enabled` (400) and Sonnet 4.6 deprecated it —
+    // both use adaptive thinking + effort. Haiku 4.5 still uses the budget style
+    // (budget must stay below its 64K max_tokens).
+    const isHaiku = model.includes('haiku');
+    const level = params.thinkingLevel as 'low' | 'medium' | 'high';
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -61,16 +70,20 @@ export class AnthropicAdapter implements LLMAdapter {
       },
       body: JSON.stringify({
         model: params.model,
-        max_tokens: params.thinkingLevel ? 128000 : 16384,
+        max_tokens: maxTokens,
         stream: true,
         ...(system && { system }),
-        ...(params.thinkingLevel && {
-          thinking: {
-            type: 'enabled',
-            budget_tokens:
-              { low: 10000, medium: 50000, high: 100000 }[params.thinkingLevel as 'low' | 'medium' | 'high'] ?? 50000,
-          },
-        }),
+        ...(params.thinkingLevel && (isHaiku
+          ? {
+              thinking: {
+                type: 'enabled',
+                budget_tokens: { low: 10000, medium: 25000, high: 50000 }[level] ?? 25000,
+              },
+            }
+          : {
+              thinking: { type: 'adaptive' },
+              ...(['low', 'medium', 'high'].includes(level) && { output_config: { effort: level } }),
+            })),
         messages,
       }),
       signal: params.signal,

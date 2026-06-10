@@ -30,7 +30,7 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2-10 位历史或当�
 
 也可以直接输入话题，AI 自动匹配 3-5 位观点形成张力的思想家，一键开启讨论。
 
-一对一同样可用：从 157 位思想家中选一位，用他们独特的思维框架分析你的问题。
+一对一同样可用：从 161 位思想家中选一位，用他们独特的思维框架分析你的问题。
 
 **在线体验：** [talk.newzone.top](https://talk.newzone.top)
 
@@ -107,30 +107,34 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2-10 位历史或当�
 
 除上述用法外，还支持：
 
-- **157 位预设思想家** — 覆盖 15 大领域，按知名度排序，支持自由输入任意名字
+- **161 位预设思想家** — 覆盖 15 大领域，按知名度排序，支持自由输入任意名字
 - **对话搜索** — 按标题、角色名或消息内容搜索历史对话
 - **角色收藏** — 星标常用角色，置顶显示
 - **设置同步** — 通过 URL 将设置同步到其他设备（密钥 AES 加密保护）
 - **思考强度** — 配置模型思考深度（关闭/低/中/高）
 - **自定义模型** — 手动输入任意模型 ID
 - **自定义 LLM** — 接入任意 OpenAI 兼容 API
-- **多 API 支持** — OpenAI、Anthropic、DeepSeek、字节方舟、阿里百炼、硅基流动、Groq、OpenRouter
+- **多 API 支持** — 24 家服务商：国际（OpenAI、Anthropic、Gemini、xAI、Mistral、Cohere）、国内（DeepSeek、Kimi、智谱 GLM、MiniMax、混元、文心、小米 MiMo、字节方舟、阿里百炼）、聚合（OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models）
 - **18 种语言** · **深色模式** · **响应式布局** · **本地优先**（IndexedDB + localStorage 双写，兼容微信等受限 WebView）
 
 ## 支持的 API
 
 | 服务商 | 模型 |
 |--------|------|
-| OpenAI | GPT-5.4、GPT-5.4 Mini/Nano、o4 Mini、o3、GPT-4.1 系列 |
-| Anthropic | Claude Opus 4.6、Claude Sonnet 4.6、Claude Haiku 4.5 |
-| DeepSeek | DeepSeek Chat、DeepSeek Reasoner |
-| 字节方舟 | Doubao Seed 2.0 Pro、Doubao 1.5 系列、DeepSeek R1/V3 |
-| 阿里百炼 | Qwen 3.5 Plus、Kimi K2.5、GLM-5、MiniMax M2.5 等 |
-| 硅基流动 | DeepSeek V3/R1、Qwen 2.5 系列 |
-| Groq | LLaMA 4 Scout/Maverick、DeepSeek R1 |
-| OpenRouter | 通过 OpenRouter 目录接入任意模型 |
+| OpenAI | GPT-5.5、GPT-5.4、GPT-5.4 Mini |
+| Anthropic | Claude Opus 4.7、Claude Sonnet 4.6、Claude Haiku 4.5 |
+| Google Gemini | Gemini 3.1 Pro、Gemini 3.5 Flash |
+| xAI Grok | Grok 4.3、Grok 4.20 系列 |
+| Mistral / Cohere | Mistral Medium 3.5 / Large 3、Command A 系列 |
+| DeepSeek | DeepSeek V4 Flash、V4 Pro |
+| 月之暗面 Kimi | Kimi K2.6、K2.5 |
+| 智谱 GLM | GLM-5.1、GLM-5、GLM-4.7 系列 |
+| MiniMax / 混元 / 千帆 / 小米 MiMo | MiniMax M2.7、混元 2.0、文心 5.1、MiMo V2.5 |
+| 字节方舟 Coding Plan | Doubao Seed 2.0、Kimi K2.5、GLM-4.7、DeepSeek V4 |
+| 阿里百炼 Coding Plan | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5 |
+| 聚合平台 | OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
 
-所有服务商均支持自定义模型 ID。默认：DeepSeek Chat。也可通过「Custom」选项接入任意 OpenAI 兼容 API。
+所有服务商均支持自定义模型 ID。默认：DeepSeek V4 Flash。也可通过「Custom」选项接入任意 OpenAI 兼容 API。
 
 ## 快速开始
 

@@ -28,7 +28,7 @@
 
 Legend Talk 是一個多輪 AI 圓桌討論工具——選 2-10 位歷史或當代名人，拋出一個問題，他們會自動展開多輪辯論，每個人回應其他人的觀點。蘇格拉底追問芒格的假設，尼采同時挑戰兩人。
 
-也可以一對一：從 140+ 位思想家中選一位，用他們獨特的思維框架分析你的問題。
+也可以一對一：從 160+ 位思想家中選一位，用他們獨特的思維框架分析你的問題。
 
 **在線體驗:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -98,7 +98,7 @@ Legend Talk 是一個多輪 AI 圓桌討論工具——選 2-10 位歷史或當�
 
 除上述用法外，還支援：
 
-- **140+ 位預設思想家** — 覆蓋 15 大領域，按知名度排序，支援自由輸入任意名字
+- **160+ 位預設思想家** — 覆蓋 15 大領域，按知名度排序，支援自由輸入任意名字
 - **自建角色** — 自訂名稱、頭像、系統提示詞
 - **對話搜尋** — 按標題、角色名或訊息內容搜尋
 - **角色收藏** — 星標常用角色
@@ -106,23 +106,25 @@ Legend Talk 是一個多輪 AI 圓桌討論工具——選 2-10 位歷史或當�
 - **思考強度** — 配置模型思考深度
 - **自訂模型** — 手動輸入任意模型 ID
 - **自訂 LLM** — 接入任意 OpenAI 相容 API
-- **多 API 支援** — OpenAI、Anthropic、DeepSeek、字節方舟、阿里百煉、矽基流動、Groq、OpenRouter
+- **多 API 支援** — 24 家服務商：國際（OpenAI、Anthropic、Gemini、xAI、Mistral、Cohere）、國內（DeepSeek、Kimi、智譜 GLM、MiniMax、混元、文心、小米 MiMo、字節方舟、阿里百煉）、聚合（OpenRouter、矽基流動、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models）
 - **18 種語言** · **深色模式** · **響應式布局** · **本地優先**
 
 ## 支援的 API
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | GPT-5.4, GPT-5.4 Mini/Nano, o4 Mini, o3, GPT-4.1 series |
-| Anthropic | Claude Opus 4.6, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek Chat, DeepSeek Reasoner |
-| Volcengine | Doubao Seed 2.0 Pro, Doubao 1.5 series, DeepSeek R1/V3 |
-| Alibaba Bailian | Qwen 3.5 Plus, Kimi K2.5, GLM-5, MiniMax M2.5, etc. |
-| SiliconFlow | DeepSeek V3/R1, Qwen 2.5 series |
-| Groq | LLaMA 4 Scout/Maverick, DeepSeek R1 |
-| OpenRouter | Any model via OpenRouter catalog |
+| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
+| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
+| xAI Grok | Grok 4.3, Grok 4.20 series |
+| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-所有服務商均支援自訂模型 ID。預設：DeepSeek Chat。也可通過「Custom」選項接入任意 OpenAI 相容 API。
+所有服務商均支援自訂模型 ID。預設：DeepSeek V4 Flash。也可通過「Custom」選項接入任意 OpenAI 相容 API。
 
 ## 快速開始
 

@@ -30,7 +30,7 @@ Legend Talk is a multi-round AI roundtable — pick 2-10 historical or contempor
 
 Or just enter a topic and let AI assemble the panel — it picks 3-5 thinkers whose perspectives create productive tension.
 
-Also works as a 1-on-1 thinking tool: consult any of 157 thinkers through their unique frameworks, not generic AI roleplay.
+Also works as a 1-on-1 thinking tool: consult any of 161 thinkers through their unique frameworks, not generic AI roleplay.
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -107,30 +107,34 @@ You can also use the **Copy lineup link** button in the participants bar or the 
 
 Beyond the usage above:
 
-- **157 preset thinkers** across 15 domains, sorted by fame, with free input for any name
+- **161 preset thinkers** across 15 domains, sorted by fame, with free input for any name
 - **Conversation search** — search across all conversations by title, character name, or message content
 - **Favorite characters** — star your most-used thinkers for quick access
 - **Settings sync** — share settings to another device via URL (API keys AES-encrypted)
 - **Thinking level** — configure model thinking depth (off/low/medium/high)
 - **Custom models** — manually enter any model ID
 - **Custom LLM** — connect any OpenAI-compatible API
-- **Multi-API support** — OpenAI, Anthropic, DeepSeek, Volcengine, Alibaba Bailian, SiliconFlow, Groq, OpenRouter
+- **Multi-API support** — 24 providers: international (OpenAI, Anthropic, Gemini, xAI, Mistral, Cohere), China (DeepSeek, Kimi, GLM, MiniMax, Hunyuan, ERNIE, MiMo, Volcengine, Alibaba Bailian), aggregators (OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models)
 - **18 languages** · **Dark mode** · **Responsive** · **Local-first** (IndexedDB + localStorage dual-write, compatible with WeChat and restricted WebViews)
 
 ## Supported APIs
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | GPT-5.4, GPT-5.4 Mini/Nano, o4 Mini, o3, GPT-4.1 series |
-| Anthropic | Claude Opus 4.6, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek Chat, DeepSeek Reasoner |
-| Volcengine | Doubao Seed 2.0 Pro, Doubao 1.5 series, DeepSeek R1/V3 |
-| Alibaba Bailian | Qwen 3.5 Plus, Kimi K2.5, GLM-5, MiniMax M2.5, etc. |
-| SiliconFlow | DeepSeek V3/R1, Qwen 2.5 series |
-| Groq | LLaMA 4 Scout/Maverick, DeepSeek R1 |
-| OpenRouter | Any model via OpenRouter catalog |
+| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
+| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
+| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
+| xAI Grok | Grok 4.3, Grok 4.20 series |
+| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
+| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-All providers support custom model IDs. Default: DeepSeek Chat. You can also add any OpenAI-compatible API via the "Custom" provider option.
+All providers support custom model IDs. Default: DeepSeek V4 Flash. You can also add any OpenAI-compatible API via the "Custom" provider option.
 
 ## Quick Start
 

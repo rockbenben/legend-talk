@@ -28,7 +28,7 @@ Réunissez les plus grands penseurs du monde et laissez-les débattre de votre p
 
 Legend Talk est un outil de table ronde IA multi-tours — choisissez 2 à 10 figures et regardez-les débattre.
 
-Fonctionne aussi en 1 à 1 : consultez plus de 140 penseurs.
+Fonctionne aussi en 1 à 1 : consultez plus de 160 penseurs.
 
 **Démo:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -92,27 +92,29 @@ Générez aussi des liens depuis l'interface.
 
 En plus de ce qui précède :
 
-- **140+ penseurs** dans 15 domaines
+- **160+ penseurs** dans 15 domaines
 - **Personnages personnalisés**
 - **Recherche** · **Favoris** · **Synchronisation** (AES)
 - **Niveau de réflexion** · **Modèles personnalisés** · **LLM personnalisé**
-- **Multi-API** : OpenAI, Anthropic, DeepSeek + 5 autres
+- **Multi-API** : OpenAI, Anthropic, DeepSeek + 21 autres
 - **18 langues** · **Mode sombre** · **Responsive** · **Local-first**
 
 ## APIs Supportées
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | GPT-5.4, GPT-5.4 Mini/Nano, o4 Mini, o3, GPT-4.1 series |
-| Anthropic | Claude Opus 4.6, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek Chat, DeepSeek Reasoner |
-| Volcengine | Doubao Seed 2.0 Pro, Doubao 1.5 series, DeepSeek R1/V3 |
-| Alibaba Bailian | Qwen 3.5 Plus, Kimi K2.5, GLM-5, MiniMax M2.5, etc. |
-| SiliconFlow | DeepSeek V3/R1, Qwen 2.5 series |
-| Groq | LLaMA 4 Scout/Maverick, DeepSeek R1 |
-| OpenRouter | Any model via OpenRouter catalog |
+| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
+| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
+| xAI Grok | Grok 4.3, Grok 4.20 series |
+| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-Tous supportent les IDs personnalisés. Par défaut : DeepSeek Chat.
+Tous supportent les IDs personnalisés. Par défaut : DeepSeek V4 Flash.
 
 ## Démarrage Rapide
 

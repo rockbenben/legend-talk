@@ -28,7 +28,7 @@
 
 Legend Talk は複数ラウンドのAI円卓討論ツールです。2〜10人の歴史的・現代的人物を選び、質問を投げかけると、互いの意見に応答しながら複数ラウンドにわたって議論します。
 
-1対1の思考ツールとしても使えます：140人以上の思想家から一人を選んで相談できます。
+1対1の思考ツールとしても使えます：160人以上の思想家から一人を選んで相談できます。
 
 **デモ:** [talk.newzone.top](https://talk.newzone.top)
 
@@ -98,27 +98,29 @@ UIからもリンクを生成できます。
 
 上記に加えて：
 
-- **140+のプリセット思想家** — 15分野、知名度順
+- **160+のプリセット思想家** — 15分野、知名度順
 - **カスタムキャラクター** — 名前・アバター・プロンプトを自由設定
 - **会話検索** · **お気に入り** · **設定同期**（AES暗号化）
 - **思考レベル** · **カスタムモデル** · **カスタムLLM**
-- **マルチAPI対応** — OpenAI、Anthropic、DeepSeek等8社
+- **マルチAPI対応** — OpenAI、Anthropic、DeepSeek等24社
 - **18言語** · **ダークモード** · **レスポンシブ** · **ローカルファースト**
 
 ## 対応API
 
 | Provider | Models |
 |----------|--------|
-| OpenAI | GPT-5.4, GPT-5.4 Mini/Nano, o4 Mini, o3, GPT-4.1 series |
-| Anthropic | Claude Opus 4.6, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek Chat, DeepSeek Reasoner |
-| Volcengine | Doubao Seed 2.0 Pro, Doubao 1.5 series, DeepSeek R1/V3 |
-| Alibaba Bailian | Qwen 3.5 Plus, Kimi K2.5, GLM-5, MiniMax M2.5, etc. |
-| SiliconFlow | DeepSeek V3/R1, Qwen 2.5 series |
-| Groq | LLaMA 4 Scout/Maverick, DeepSeek R1 |
-| OpenRouter | Any model via OpenRouter catalog |
+| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
+| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
+| xAI Grok | Grok 4.3, Grok 4.20 series |
+| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-全プロバイダーでカスタムモデルIDに対応。デフォルト：DeepSeek Chat。「Custom」オプションで任意のOpenAI互換APIも接続可能。
+全プロバイダーでカスタムモデルIDに対応。デフォルト：DeepSeek V4 Flash。「Custom」オプションで任意のOpenAI互換APIも接続可能。
 
 ## クイックスタート
 

@@ -341,6 +341,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
       ? conversation.messages.slice(0, idx).filter((m) => m.characterId === '__moderator__').length + 1
       : 0;
     if (!msg.content.trim() && isGenerating && idx === conversation.messages.length - 1) return null;
+    // Align action rows with the speech text column — except the moderator
+    // synthesis, which is full-width (no margin column) so an indent reads as
+    // misalignment.
+    const afterSpeech = msg.role === 'user' || msg.characterId === '__moderator__' ? '' : ' lt-after-speech';
 
     if (msg.characterId === '__focus__') {
       const isLast = idx === conversation.messages.length - 1;
@@ -460,7 +464,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           )}
           {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
             <div
-              className={`group-hover:!opacity-100${msg.role === 'user' ? '' : ' lt-after-speech'}`}
+              className={`group-hover:!opacity-100${afterSpeech}`}
               style={{
                 display: 'flex',
                 gap: 0,
@@ -478,7 +482,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           )}
           {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
             <div
-              className={msg.role === 'user' ? undefined : 'lt-after-speech'}
+              className={afterSpeech.trim() || undefined}
               style={{
                 marginTop: 4,
                 display: 'flex',

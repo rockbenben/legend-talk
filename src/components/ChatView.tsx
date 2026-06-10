@@ -357,7 +357,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           showIcon
           style={{ margin: '12px 0' }}
           title={
-            <Space direction="vertical" style={{ width: '100%' }}>
+            <Space orientation="vertical" style={{ width: '100%' }}>
               <Space style={{ width: '100%', justifyContent: 'space-between' }}>
                 <Text strong>{t('roundtable.focus')}</Text>
                 {interactive && !isEditing && (
@@ -514,7 +514,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             backdropFilter: 'blur(2px)',
           }}
         >
-          <Space direction="vertical" align="center" size="middle" style={{ padding: 24, background: 'var(--ant-color-bg-elevated)', border: '1px solid var(--ant-color-border)', borderRadius: 'var(--ant-border-radius-lg)', maxWidth: 360 }}>
+          <Space orientation="vertical" align="center" size="middle" style={{ padding: 24, background: 'var(--ant-color-bg-elevated)', border: '1px solid var(--ant-color-border)', borderRadius: 'var(--ant-border-radius-lg)', maxWidth: 360 }}>
             {isSummoning ? (
               <>
                 <Spin />
@@ -609,7 +609,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             />
           )}
           {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
-            <Space direction="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
+            <Space orientation="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
               <Title level={3} className="display-serif-italic" style={{ margin: 0, textAlign: 'center', maxWidth: 480 }}>
                 "{conversation.title}"
               </Title>

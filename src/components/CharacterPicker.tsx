@@ -75,7 +75,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
       width={520}
       styles={{ body: { padding: 0 } }}
     >
-      <Space direction="vertical" style={{ width: '100%', padding: '0 24px 16px' }} size="middle">
+      <Space orientation="vertical" style={{ width: '100%', padding: '0 24px 16px' }} size="middle">
         <Input
           autoFocus
           allowClear

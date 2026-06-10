@@ -233,7 +233,6 @@ export function useRoundtable(activeConversationId: string) {
     if (!conv) return;
 
     const chars = conv.characters;
-    if (!chars.includes(startCharId)) return;
 
     let lastUserIdx = -1;
     for (let i = conv.messages.length - 1; i >= 0; i--) {
@@ -245,7 +244,13 @@ export function useRoundtable(activeConversationId: string) {
     // Speaking order is shuffled per round, so conv.characters order can't tell us
     // who still owes a turn — derive the partial round from who actually spoke.
     const spokenThisRound = new Set(charMsgs.slice(completedRounds * chars.length).map((m) => m.characterId));
-    const partialChars = [startCharId, ...chars.filter((c) => c !== startCharId && !spokenThisRound.has(c))];
+    // The retried speaker may have been removed from the roundtable after they
+    // spoke. The caller has already deleted their message — regenerate the rest
+    // of the round (and the synthesis) instead of silently doing nothing.
+    const partialChars = [
+      ...(chars.includes(startCharId) ? [startCharId] : []),
+      ...chars.filter((c) => c !== startCharId && !spokenThisRound.has(c)),
+    ];
     const remainingFullRounds = Math.max(0, rounds - completedRounds - 1);
 
     const controller = new AbortController();

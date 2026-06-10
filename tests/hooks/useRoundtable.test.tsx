@@ -165,6 +165,32 @@ describe('useRoundtable', () => {
     expect(speakers).toEqual(['taleb', 'socrates', 'munger', '__moderator__']);
   });
 
+  it('retrying a removed participant regenerates the rest of the round instead of doing nothing', async () => {
+    mockAdapter();
+
+    // taleb spoke in round 1, then was removed from the roundtable. ChatView
+    // deletes the retried message before calling continueFrom — a silent early
+    // return here would leave the conversation truncated with no regeneration.
+    const convId = useConversationStore
+      .getState()
+      .createConversation('roundtable', ['socrates', 'munger']);
+    const { result } = renderHook(() => useRoundtable(convId));
+
+    useConversationStore.getState().addMessage(convId, 'user', 'Topic', undefined);
+    useConversationStore.getState().addMessage(convId, 'character', 'Socrates...', 'socrates');
+    const talebMsgId = useConversationStore.getState().addMessage(convId, 'character', 'Taleb...', 'taleb');
+    useConversationStore.getState().removeMessagesFrom(convId, talebMsgId);
+
+    await act(async () => {
+      await result.current.continueFrom(convId, 'taleb', 1);
+    });
+
+    const conv = useConversationStore.getState().getConversation(convId)!;
+    const speakers = conv.messages.filter((m) => m.role === 'character').map((m) => m.characterId);
+    // socrates (kept) + munger (regenerated) + moderator — round completed
+    expect(speakers).toEqual(['socrates', 'munger', '__moderator__']);
+  });
+
   it('persists the user message and surfaces an error when no API key is configured', async () => {
     // No mockAdapter / API key — resolveProvider() returns null
     const convId = useConversationStore

@@ -3,19 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="AI roundtable with 140+ historical and contemporary thinkers. Pick 2-10 figures, ask a question, watch them debate. 18 languages supported." />
+    <meta name="description" content="AI roundtable with 160+ historical and contemporary thinkers. Pick 2-10 figures, ask a question, watch them debate in multiple rounds. 18 languages supported." />
     <meta name="keywords" content="AI roundtable, Socrates, Confucius, debate, philosophy, historical thinkers, Legend Talk" />
     <meta property="og:title" content="Legend Talk — AI Roundtable with History's Greatest Thinkers" />
-    <meta property="og:description" content="Put 140+ thinkers in a room and let them debate your problem. Multi-round AI roundtable discussion tool." />
+    <meta property="og:description" content="Put 160+ thinkers in a room and let them debate your problem. Multi-round AI roundtable discussion tool. 18 languages." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://talk.newzone.top/" />
-    <meta property="og:image" content="https://talk.newzone.top/favicon.svg" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://talk.newzone.top/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Legend Talk — AI Roundtable" />
-    <meta name="twitter:description" content="140+ historical and contemporary thinkers debate your questions in real-time." />
+    <meta name="twitter:description" content="160+ historical and contemporary thinkers debate your questions in multiple rounds. 18 languages." />
+    <meta name="twitter:image" content="https://talk.newzone.top/og-image.png" />
+    <!-- hreflang: all language variants (hash-routing SPA) -->
+    <link rel="alternate" hreflang="en" href="https://talk.newzone.top/#/en/chat" />
+    <link rel="alternate" hreflang="zh" href="https://talk.newzone.top/#/zh/chat" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://talk.newzone.top/#/zh-Hant/chat" />
+    <link rel="alternate" hreflang="ja" href="https://talk.newzone.top/#/ja/chat" />
+    <link rel="alternate" hreflang="ko" href="https://talk.newzone.top/#/ko/chat" />
+    <link rel="alternate" hreflang="es" href="https://talk.newzone.top/#/es/chat" />
+    <link rel="alternate" hreflang="fr" href="https://talk.newzone.top/#/fr/chat" />
+    <link rel="alternate" hreflang="de" href="https://talk.newzone.top/#/de/chat" />
+    <link rel="alternate" hreflang="pt" href="https://talk.newzone.top/#/pt/chat" />
+    <link rel="alternate" hreflang="it" href="https://talk.newzone.top/#/it/chat" />
+    <link rel="alternate" hreflang="ru" href="https://talk.newzone.top/#/ru/chat" />
+    <link rel="alternate" hreflang="ar" href="https://talk.newzone.top/#/ar/chat" />
+    <link rel="alternate" hreflang="tr" href="https://talk.newzone.top/#/tr/chat" />
+    <link rel="alternate" hreflang="hi" href="https://talk.newzone.top/#/hi/chat" />
+    <link rel="alternate" hreflang="id" href="https://talk.newzone.top/#/id/chat" />
+    <link rel="alternate" hreflang="vi" href="https://talk.newzone.top/#/vi/chat" />
+    <link rel="alternate" hreflang="th" href="https://talk.newzone.top/#/th/chat" />
+    <link rel="alternate" hreflang="bn" href="https://talk.newzone.top/#/bn/chat" />
+    <link rel="alternate" hreflang="x-default" href="https://talk.newzone.top/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://talk.newzone.top/" />
     <title>Legend Talk — AI Roundtable with History's Greatest Thinkers</title>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://talk.newzone.top/#organization",
+      "name": "Legend Talk",
+      "url": "https://talk.newzone.top/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://talk.newzone.top/favicon.svg"
+      },
+      "sameAs": ["https://github.com/rockbenben/legend-talk"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://talk.newzone.top/#website",
+      "url": "https://talk.newzone.top/",
+      "name": "Legend Talk",
+      "publisher": { "@id": "https://talk.newzone.top/#organization" }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://talk.newzone.top/#webapp",
+      "name": "Legend Talk",
+      "alternateName": ["AI Roundtable", "Legend Talk AI Roundtable"],
+      "description": "AI roundtable with 160+ historical and contemporary thinkers. Pick 2-10 figures, ask a question, watch them debate in multiple rounds. 18 languages supported.",
+      "url": "https://talk.newzone.top/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "isAccessibleForFree": true,
+      "dateModified": "2026-06-10",
+      "isPartOf": { "@id": "https://talk.newzone.top/#website" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": {
+        "@type": "Person",
+        "name": "rockbenben",
+        "url": "https://github.com/rockbenben"
+      },
+      "publisher": { "@id": "https://talk.newzone.top/#organization" },
+      "featureList": [
+        "160+ historical and contemporary thinkers",
+        "Multi-round AI debate with moderator synthesis",
+        "18 language support",
+        "Custom character creation",
+        "6 roundtable templates",
+        "Conversation export and sharing"
+      ]
+    }
+  ]
+}
+    </script>
     <script>
       try {
         var d = JSON.parse(localStorage.getItem('legend-talk-settings'));
@@ -23,11 +98,11 @@
       } catch(e) {}
     </script>
     <script defer src="https://s.newzone.top/tracker.js" data-website-id="1700bead-b72c-4cce-9d7b-1f28189a13e5"></script>
-    <script type="module" crossorigin src="/assets/index-C5fa6-qM.js"></script>
+    <script type="module" crossorigin src="/assets/index-BwSAWs-D.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-Bo-7HS_-.js">
     <link rel="modulepreload" crossorigin href="/assets/markdown-r8brt9WX.js">
     <link rel="modulepreload" crossorigin href="/assets/antd-JnfPyvxt.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BAisAzM1.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-M7IsH_Q9.css">
   </head>
   <body>
     <div id="root"></div>

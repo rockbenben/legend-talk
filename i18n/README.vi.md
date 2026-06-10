@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+</p>
+
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
@@ -24,13 +28,17 @@
   <a href="README.bn.md">বাংলা</a>
 </p>
 
-Tập hợp những bộ óc vĩ đại nhất thế giới và để họ tranh luận về vấn đề của bạn.
+> **Đặt những bộ óc vĩ đại nhất lịch sử vào cùng một bàn và để họ tranh luận về câu hỏi của bạn.**
 
-Legend Talk là công cụ thảo luận bàn tròn AI nhiều vòng — chọn 2-10 nhân vật và xem cuộc tranh luận.
+Legend Talk tập hợp 2–10 nhà tư tưởng lịch sử hoặc đương đại vào một cuộc tranh luận nhiều vòng. Mỗi vòng, mọi tiếng nói đều lập luận từ khung tư duy riêng của mình; sau đó một người điều phối sẽ vạch ra những bất đồng và mở ra vòng tiếp theo. Socrates chất vấn các giả định của Munger trong khi Nietzsche thách thức cả hai.
 
-Cũng hoạt động như công cụ 1-1: tham vấn hơn 160 nhà tư tưởng.
+**Ba cách bắt đầu:**
 
-**Demo:** [talk.newzone.top](https://talk.newzone.top)
+- **Đặt một câu hỏi** — nhập một chủ đề và AI sẽ lập ra một hội đồng 3–5 nhà tư tưởng được xây dựng để tạo nên sự đối lập hiệu quả.
+- **Sắp xếp bàn tròn** — tự tay chọn 2–10 nhà tư tưởng, hoặc gieo ngẫu nhiên 5 người.
+- **Tham vấn một bộ óc** — trò chuyện 1-1 với bất kỳ ai trong số 161 nhà tư tưởng, mỗi người lập luận qua khung tư duy riêng của mình, không phải kiểu nhập vai AI chung chung.
+
+**Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 ngôn ngữ · miễn phí · ưu tiên cục bộ · không cần đăng ký.
 
 ## Ảnh chụp
 
@@ -38,83 +46,89 @@ Cũng hoạt động như công cụ 1-1: tham vấn hơn 160 nhà tư tưởng.
 |:-:|:-:|
 | ![Trang chủ](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
 
-## Cách dùng
+## Bắt đầu một cuộc trò chuyện
 
-### Chat 1-1
+**Bàn tròn tự động** — nhập một chủ đề vào thanh nhập liệu trên trang chủ. AI chọn 3–5 nhà tư tưởng có quan điểm thực sự xung đột và bắt đầu tranh luận ngay lập tức, không cần chọn nhân vật.
 
-Nhấn nút **Chat** trên bất kỳ thẻ nào.
+**Bàn tròn thủ công** — nhấn **+** trên 2–10 thẻ nhân vật để lập đội hình. Một thanh nổi hiển thị các lựa chọn của bạn:
 
-### Bàn Tròn
+- Nhấn vào ảnh đại diện để xóa
+- **Bắt đầu thảo luận** để khởi động
+- **Sao chép liên kết đội hình** để chia sẻ đội hình chính xác dưới dạng URL
 
-Nhấn **+** trên 2-10 thẻ. Hoặc **🎲 Ngẫu nhiên** để chọn 5 người.
+Hoặc nhấn **🎲 Ngẫu nhiên** (góc trên bên phải) để bắt đầu ngay với 5 nhà tư tưởng ngẫu nhiên.
 
-### Mẫu
+**Mẫu nổi bật** — 6 đội hình tuyển chọn với những góc nhìn thực sự va chạm (ví dụ *AI & Công nghệ*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Một cú nhấn để bắt đầu, mỗi mẫu kèm 3 chủ đề gợi ý.
 
-6 mẫu bàn tròn với quan điểm đối lập.
+**Chat 1-1** — nhấn **Chat** trên bất kỳ thẻ nhân vật nào để trò chuyện riêng tư trong giọng nói và khung tư duy của nhà tư tưởng đó.
 
-### Gợi ý chủ đề
+**Gợi ý chủ đề** — trước tin nhắn đầu tiên của bạn, mọi chế độ đều đề xuất chủ đề để bạn khởi đầu: 3 câu hỏi tuyển chọn cho mỗi mẫu (ở cả 18 ngôn ngữ), hoặc 1 câu hỏi rút ra từ mỗi nhà tư tưởng đã chọn trong đội hình thủ công (cập nhật khi bạn thêm hoặc xóa người).
 
-Tất cả chế độ bàn tròn đều hiển thị chủ đề gợi ý trước khi bạn gửi tin nhắn đầu tiên:
+## Định hướng cuộc thảo luận
 
-- **Bàn tròn mẫu** — 3 câu hỏi phù hợp với chủ đề của mỗi mẫu (có sẵn ở cả 18 ngôn ngữ)
-- **Bàn tròn thủ công** — 1 câu hỏi từ mỗi nhân vật đã chọn (tối đa 5). Chủ đề cập nhật khi bạn thêm hoặc xóa nhân vật.
+Bạn ngồi ở vị trí đầu bàn với vai trò **chủ tịch** — cuộc tranh luận diễn ra theo điều kiện của bạn.
 
-### Trong cuộc trò chuyện
+- **Người điều phối** — sau mỗi vòng, một người điều phối AI tổng hợp lại: nhóm các luận điểm theo ý tưởng, nêu tên một góc độ mà vòng vừa rồi chưa chạm tới, và đặt ra một câu hỏi mở cho vòng tiếp theo.
+- **Tái tập trung giữa cuộc tranh luận** — gửi một tin nhắn trong lúc bàn tròn đang diễn ra để chuyển hướng nó. Thay vì tự động chạy, một **thẻ tiêu điểm** có thể chỉnh sửa sẽ xuất hiện; nó xếp chồng lên bất kỳ tiêu điểm trước đó nên những lần định hướng trước không bị mất. Tinh chỉnh nó, rồi **Bắt đầu** các vòng tiếp theo neo vào đó.
+- **Áp dụng & thử lại** — chỉnh sửa bất kỳ tin nhắn nào và tạo lại từ điểm đó. Các lần định hướng của chủ tịch mang theo một ảnh chụp tiêu điểm, nên việc thử lại sẽ xây dựng lại từ đúng trạng thái tiêu điểm đang hoạt động khi tin nhắn được gửi.
+- **Đặt số vòng** — chọn số vòng mà các nhà tư tưởng tranh luận trước khi tạm dừng, và **Tiếp tục** để thêm vòng khi họ kết thúc.
+- **Thêm hoặc xóa người tham gia** bất cứ lúc nào — biến một cuộc chat 1-1 thành bàn tròn, hoặc ngược lại.
+- **Dừng** — hủy việc tạo giữa chừng; những gì đã được viết ra vẫn được giữ lại.
+- **Nhánh** — tách ra một cuộc trò chuyện mới từ bất kỳ tin nhắn nào, mang theo ngữ cảnh trước đó.
 
-- **Dừng** — hủy tạo
-- **Thêm/xóa người tham gia**
-- **Đặt số vòng**
-- **Tiếp tục**
-- **Bắt đầu lại**
-- **Tóm tắt** — tóm tắt AI
-- **Chia sẻ**
-- **Xuất** — Markdown, JSON hoặc tạo thẻ chia sẻ qua [json2card](https://github.com/rockbenben/json2card) (cấu hình endpoint API trong Cài đặt)
-- **Nhập**
-- **Nhánh**
+## Lưu, tìm kiếm & chia sẻ
 
-### Liên kết trực tiếp
+- **Tóm tắt** — bản tóm tắt AI một cú nhấn, rút ra các quan điểm cốt lõi và những bất đồng.
+- **Tìm kiếm** — tìm bất cứ điều gì trong tất cả các cuộc trò chuyện theo tiêu đề, tên nhà tư tưởng, hoặc nội dung tin nhắn.
+- **Yêu thích** — đánh dấu sao những nhà tư tưởng bạn dùng nhiều nhất để truy cập nhanh.
+- **Chia sẻ cuộc trò chuyện** — tạo một URL chứa toàn bộ cuộc trò chuyện.
+- **Xuất / Nhập** — lưu dưới dạng Markdown hoặc JSON và khôi phục từ JSON (trong Cài đặt), hoặc tạo thẻ chia sẻ qua [json2card](https://github.com/rockbenben/json2card) (đặt endpoint API trong Cài đặt).
+- **Đồng bộ cài đặt** — chuyển thiết lập của bạn sang thiết bị khác qua URL; khóa API được mã hóa AES.
 
-Bắt đầu qua URL:
+## Nhà tư tưởng, mô hình & nền tảng
 
-- **Theo tên:** `/#/chat?chars=Socrates,Confucius`
+**161 nhà tư tưởng có sẵn** trải khắp 15 lĩnh vực, sắp xếp theo độ nổi tiếng — gõ bất kỳ tên nào để tạo nhân vật tùy chỉnh ngay lập tức.
+
+**Mô hình** — đặt **mức suy nghĩ** (tắt / thấp / trung bình / cao), nhập **ID mô hình tùy chỉnh**, hoặc kết nối bất kỳ **API tương thích OpenAI** nào làm nhà cung cấp tùy chỉnh. Mặc định: DeepSeek V4 Flash.
+
+**Nền tảng** — 18 ngôn ngữ · chế độ tối · responsive · **ưu tiên cục bộ** (ghi kép IndexedDB + localStorage, hoạt động trong WeChat và các WebView bị hạn chế) · **không CDN** (font tự lưu trữ và đóng gói sẵn, nên hoạt động ngoại tuyến và sau tường lửa).
+
+## Liên kết trực tiếp
+
+Bắt đầu một cuộc trò chuyện thẳng từ một URL:
+
+- **Theo tên:** `/#/chat?chars=苏格拉底,孔子` hoặc `/#/chat?chars=Socrates,Confucius`
 - **Theo ID:** `/#/chat?chars=socrates,confucius`
-- **Theo danh mục:** `/#/chat?category=philosophy`
+- **Theo danh mục:** `/#/chat?category=philosophy` (bàn tròn gồm mọi nhà tư tưởng trong danh mục đó, giới hạn tối đa 10)
 - **Chat đơn:** `/#/chat?chars=socrates`
-- **Tên tùy chỉnh:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (tên không nhận diện được tự động tạo nhân vật)
+- **Tên tùy chỉnh:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (những tên không nhận diện được sẽ trở thành nhân vật tùy chỉnh)
 
-Danh mục có sẵn: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`
+Danh mục: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
 
-Cũng có thể tạo liên kết từ giao diện.
+Các nút **Sao chép liên kết đội hình** (thanh người tham gia) và **Sao chép liên kết danh mục** (bộ lọc danh mục) tạo ra các URL này từ giao diện.
 
-**Định tuyến ngôn ngữ:** Tiền tố ngôn ngữ trong URL. 18 ngôn ngữ.
-
-## Tính năng khác
-
-Ngoài những điều trên:
-
-- **160+ nhà tư tưởng** trong 15 lĩnh vực
-- **Nhân vật tùy chỉnh**
-- **Tìm kiếm** · **Yêu thích** · **Đồng bộ** (AES)
-- **Mức suy nghĩ** · **Mô hình tùy chỉnh** · **LLM tùy chỉnh**
-- **Đa API**: OpenAI, Anthropic, DeepSeek + 21 khác
-- **18 ngôn ngữ** · **Chế độ tối** · **Responsive** · **Ưu tiên cục bộ**
+**Định tuyến ngôn ngữ** — thêm tiền tố ngôn ngữ vào URL để đặt ngôn ngữ giao diện, ví dụ `/#/ja/chat`, `/#/ko/chat?chars=socrates`, hoặc dùng `?lang=zh`. Hỗ trợ tất cả 18 ngôn ngữ.
 
 ## API hỗ trợ
 
-| Provider | Models |
+24 nhà cung cấp ngay khi cài đặt — quốc tế, đặt tại Trung Quốc, và các bộ tổng hợp:
+
+| Nhà cung cấp | Mô hình |
 |----------|--------|
 | OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
 | Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
 | Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
 | xAI Grok | Grok 4.3, Grok 4.20 series |
+| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
 | Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-Tất cả hỗ trợ ID mô hình tùy chỉnh. Mặc định: DeepSeek V4 Flash.
+Mọi nhà cung cấp đều chấp nhận ID mô hình tùy chỉnh, và tùy chọn **Custom** kết nối bất kỳ API tương thích OpenAI nào.
 
 ## Bắt đầu nhanh
 
@@ -123,13 +137,13 @@ npm install
 npm run dev
 ```
 
-Mở http://localhost:5173, vào Cài đặt, nhập khóa API.
+Mở http://localhost:5173, vào Cài đặt, nhập khóa API của bạn, và bắt đầu trò chuyện. Nếu bạn gặp lỗi CORS, ứng dụng sẽ đề nghị bật một proxy công khai chỉ với một cú nhấn.
 
 ## Proxy CORS
 
-Một số nhà cung cấp chặn yêu cầu trực tiếp. Cấu hình proxy CORS theo nhà cung cấp.
+Một số nhà cung cấp chặn các yêu cầu trực tiếp từ trình duyệt. Proxy CORS được cấu hình theo từng nhà cung cấp trong Cài đặt — bật nó lên. Một proxy công khai (`https://cors.api2026.workers.dev`) được dùng theo mặc định.
 
-Để triển khai riêng, tạo [Cloudflare Worker](https://dash.cloudflare.com):
+Để chạy proxy của riêng bạn, triển khai một [Cloudflare Worker](https://dash.cloudflare.com) với đoạn mã này:
 
 <details>
 <summary>Worker code</summary>
@@ -166,11 +180,11 @@ export default {
 
 </details>
 
-## Cấu trúc dự án
+## Phát triển
 
 ```
 src/
-  adapters/       # LLM API adapters (OpenAI, Anthropic, etc.)
+  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
@@ -180,34 +194,28 @@ src/
   types.ts        # Type definitions
 ```
 
-## Công nghệ
-
-React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
-
-## Script
+**Công nghệ:** React 19 · antd 6 (giao diện dùng biến CSS, tùy biến sâu) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
 | Lệnh | Mô tả |
-|------|-------|
-| `npm run dev` | Server phát triển |
-| `npm run build` | Kiểm tra kiểu + build |
+|---------|-------------|
+| `npm run dev` | Khởi động server phát triển |
+| `npm run build` | Kiểm tra kiểu và build cho production |
 | `npm run test` | Chạy test |
-| `npm run preview` | Xem trước build |
+| `npm run preview` | Xem trước bản build production |
 
 ## Triển khai
 
-Build và triển khai `dist/` lên hosting tĩnh bất kỳ:
+Build và lưu trữ thư mục `dist/` trên bất kỳ hosting tĩnh nào (Vercel, Netlify, GitHub Pages, …):
 
 ```bash
 npm run build
 ```
 
-Dùng hash routing (`/#/chat/...`), không cần cấu hình server.
+Định tuyến dựa trên hash (`/#/chat/...`, `/#/ja/chat/...`), nên không cần cấu hình định tuyến phía server.
 
-## Về Kế hoạch 365
+## Về Kế hoạch Mã nguồn mở 365
 
-Đây là dự án #002 của [Kế hoạch Mã nguồn mở 365](https://github.com/rockbenben/365opensource).
-
-1 người + AI, 300+ dự án mã nguồn mở trong một năm. [Gửi ý tưởng →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
+Đây là dự án #002 của [Kế hoạch Mã nguồn mở 365](https://github.com/rockbenben/365opensource) — một người + AI, 300+ dự án mã nguồn mở trong một năm. [Gửi ý tưởng của bạn →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
 
 ## License
 

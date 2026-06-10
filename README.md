@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+</p>
+
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
@@ -24,15 +28,17 @@
   <a href="./i18n/README.bn.md">বাংলা</a>
 </p>
 
-Put the world's greatest thinkers in a room and let them debate your problem.
+> **Put history's greatest minds at one table and let them debate your question.**
 
-Legend Talk is a multi-round AI roundtable — pick 2-10 historical or contemporary figures, throw in a question, and watch them argue across multiple rounds with a moderator synthesizing each round's key disagreements. Socrates questions Munger's assumptions while Nietzsche challenges them both.
+Legend Talk convenes 2–10 historical or contemporary thinkers into a multi-round debate. Each round, every voice argues from its own framework; a moderator then maps the disagreements and opens the next round. Socrates presses Munger's assumptions while Nietzsche challenges them both.
 
-Or just enter a topic and let AI assemble the panel — it picks 3-5 thinkers whose perspectives create productive tension.
+**Three ways in:**
 
-Also works as a 1-on-1 thinking tool: consult any of 161 thinkers through their unique frameworks, not generic AI roleplay.
+- **Ask a question** — type a topic and AI assembles a 3–5 thinker panel built for productive tension.
+- **Set the table** — hand-pick 2–10 thinkers yourself, or roll 5 at random.
+- **Consult one mind** — go 1-on-1 with any of 161 thinkers, each reasoning through their own framework, not generic AI roleplay.
 
-**Demo:** [talk.newzone.top](https://talk.newzone.top)
+**Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 languages · free · local-first · no sign-up.
 
 ## Screenshots
 
@@ -40,84 +46,72 @@ Also works as a 1-on-1 thinking tool: consult any of 161 thinkers through their 
 |:-:|:-:|
 | ![Home](docs/images/home-chat.png) | ![Chat](docs/images/chat-view.png) |
 
-## Usage
+## Start a conversation
 
-### 1-on-1 Chat
+**Auto roundtable** — enter a topic in the input bar on the home page. AI picks 3–5 thinkers whose views genuinely conflict and starts the debate immediately, no character picking needed.
 
-Click the **Chat** button on any character card to start a private conversation. The thinker responds using their unique framework and perspective.
+**Manual roundtable** — click **+** on 2–10 character cards to build a lineup. A floating bar shows your picks:
 
-### Auto Roundtable
+- Click an avatar to remove it
+- **Start Discussion** to launch
+- **Copy lineup link** to share the exact lineup as a URL
 
-Enter a topic in the input bar at the top of the home page — AI selects 3-5 thinkers whose perspectives create productive tension and starts the discussion immediately. No character picking needed.
+Or hit **🎲 Random** (top-right) to start instantly with 5 random thinkers.
 
-### Manual Roundtable
+**Featured templates** — 6 curated lineups whose perspectives genuinely clash (e.g. *AI & Tech*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). One click to start, each with 3 suggested topics.
 
-Click the **+** button on 2-10 character cards to add them to your lineup. A floating bar appears at the bottom showing your selections:
+**1-on-1 chat** — click **Chat** on any character card for a private conversation in that thinker's voice and framework.
 
-- Click a character's avatar in the bar to remove them
-- Click **Start Discussion** to launch the roundtable
-- Click **Copy lineup link** to share this exact lineup as a URL
+**Topic suggestions** — before your first message, every mode proposes topics to get you started: 3 curated questions per template (in all 18 languages), or 1 question drawn from each selected thinker in a manual lineup (updates as you add or remove people).
 
-You can also click **🎲 Random** in the top-right to instantly start a roundtable with 5 random thinkers.
+## Steer the discussion
 
-### Featured Templates
+You sit at the head of the table as the **chair** — the debate runs on your terms.
 
-The home page shows 6 curated roundtable templates — pre-built lineups with thinkers whose perspectives genuinely conflict (e.g., "AI & Tech": Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). One click to start, with 3 recommended topic suggestions per template to help you dive in.
+- **Moderator** — after each round, an AI moderator synthesizes it: groups claims by idea, names an angle the round left untouched, and poses an open question for the next one.
+- **Refocus mid-debate** — send a message during a roundtable to redirect it. Instead of auto-running, an editable **focus card** appears; it stacks on top of any prior focus so earlier steers aren't lost. Refine it, then **Start** the next rounds anchored on it.
+- **Apply & retry** — edit any message and regenerate from that point. Chair steers carry a focus snapshot, so a retry rebuilds from the exact focus state that was active when the message was sent.
+- **Set rounds** — choose how many rounds the thinkers debate before pausing, and **Continue** to add more once they finish.
+- **Add or remove participants** anytime — turn a 1-on-1 into a roundtable, or the reverse.
+- **Stop** — cancel generation mid-stream; whatever was already written is kept.
+- **Branch** — fork a new conversation from any message, carrying the prior context with it.
 
-### Topic Suggestions
+## Save, search & share
 
-All roundtable modes show recommended topics before you send your first message:
+- **Summarize** — one-click AI summary extracting the core viewpoints and disagreements.
+- **Search** — find anything across all conversations by title, thinker name, or message content.
+- **Favorites** — star your most-used thinkers for quick access.
+- **Share chat** — generate a URL containing the full conversation.
+- **Export / Import** — save as Markdown or JSON and restore from JSON (in Settings), or generate share cards via [json2card](https://github.com/rockbenben/json2card) (set the API endpoint in Settings).
+- **Settings sync** — move your setup to another device via URL; API keys are AES-encrypted.
 
-- **Template roundtables** — 3 curated questions tailored to each template's theme (available in all 18 languages)
-- **Manual roundtables** — 1 question drawn from each selected character (max 5), so you see a range of perspectives. Topics update as you add or remove characters.
+## Thinkers, models & platform
 
-### During a Conversation
+**161 preset thinkers** across 15 domains, sorted by fame — type any name to create a custom character on the fly.
 
-- **Moderator** — after each round, an AI moderator synthesizes the discussion: maps claims by idea, names an angle the round left untouched, and poses an open question for the next round
-- **Chair mode: refocus mid-discussion** — send a new message during a roundtable to redirect; instead of auto-running, an editable **focus card** appears. It accumulates on top of any prior focus so earlier interventions aren't lost. Refine it, click **Start** to run the next rounds anchored on it
-- **Apply & retry** — edit any message and click the inline **Apply & retry** button to regenerate from that point. Chair interventions carry a focus snapshot, so retry rebuilds from the exact focus state that was active when the message was originally sent — your focus edits up to that point are preserved
-- **Stop** — cancel generation mid-stream (preserves content already generated)
-- **Add/remove participants** anytime via the participants bar — turning a 1-on-1 into a roundtable or vice versa
-- **Set rounds** — configure how many rounds the thinkers should debate before pausing
-- **Continue** — add more rounds after a discussion completes
-- **Same characters, new chat** — start a fresh conversation with the same characters
-- **Summarize** — one-click AI summary extracting core viewpoints and disagreements
-- **Share chat** — generate a shareable URL containing the full conversation
-- **Export** — save as Markdown or JSON, or generate share cards via [json2card](https://github.com/rockbenben/json2card) (configure API endpoint in Settings)
-- **Import** — restore conversations from a previously exported JSON file (in Settings)
-- **Branch** — fork a new conversation from any message, preserving prior context
+**Models** — set the **thinking level** (off / low / medium / high), enter a **custom model ID**, or connect any **OpenAI-compatible API** as a custom provider. Default: DeepSeek V4 Flash.
 
-### Deep Links
+**Platform** — 18 languages · dark mode · responsive · **local-first** (IndexedDB + localStorage dual-write, works in WeChat and restricted WebViews) · **zero CDN** (fonts self-hosted and bundled, so it works offline and behind firewalls).
 
-Start a conversation directly via URL:
+## Deep links
+
+Start a conversation straight from a URL:
 
 - **By name:** `/#/chat?chars=苏格拉底,孔子` or `/#/chat?chars=Socrates,Confucius`
 - **By ID:** `/#/chat?chars=socrates,confucius`
-- **By category:** `/#/chat?category=philosophy` (starts a roundtable with all thinkers in that category, capped at 10)
+- **By category:** `/#/chat?category=philosophy` (roundtable of every thinker in that category, capped at 10)
 - **Single chat:** `/#/chat?chars=socrates`
-- **Custom names:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (unrecognized names auto-create custom characters)
+- **Custom names:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (unrecognized names become custom characters)
 
-Available categories: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
+Categories: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
 
-You can also use the **Copy lineup link** button in the participants bar or the **Copy category link** button in the category filter to generate these URLs from the UI.
+The **Copy lineup link** (participants bar) and **Copy category link** (category filter) buttons generate these URLs from the UI.
 
-**Language routing:** Use a language prefix in the URL to set the UI language, e.g. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. You can also use `?lang=zh` as a query parameter. Supports all 18 languages.
-
-## More Features
-
-Beyond the usage above:
-
-- **161 preset thinkers** across 15 domains, sorted by fame, with free input for any name
-- **Conversation search** — search across all conversations by title, character name, or message content
-- **Favorite characters** — star your most-used thinkers for quick access
-- **Settings sync** — share settings to another device via URL (API keys AES-encrypted)
-- **Thinking level** — configure model thinking depth (off/low/medium/high)
-- **Custom models** — manually enter any model ID
-- **Custom LLM** — connect any OpenAI-compatible API
-- **Multi-API support** — 24 providers: international (OpenAI, Anthropic, Gemini, xAI, Mistral, Cohere), China (DeepSeek, Kimi, GLM, MiniMax, Hunyuan, ERNIE, MiMo, Volcengine, Alibaba Bailian), aggregators (OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models)
-- **18 languages** · **Dark mode** · **Responsive** · **Local-first** (IndexedDB + localStorage dual-write, compatible with WeChat and restricted WebViews)
+**Language routing** — prefix the URL with a language to set the UI language, e.g. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, or use `?lang=zh`. All 18 languages supported.
 
 ## Supported APIs
+
+24 providers out of the box — international, China-based, and aggregators:
 
 | Provider | Models |
 |----------|--------|
@@ -134,22 +128,22 @@ Beyond the usage above:
 | Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
 | Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-All providers support custom model IDs. Default: DeepSeek V4 Flash. You can also add any OpenAI-compatible API via the "Custom" provider option.
+Every provider accepts custom model IDs, and the **Custom** option connects any OpenAI-compatible API.
 
-## Quick Start
+## Quick start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173, go to Settings, enter your API key, then start chatting. If you hit a CORS error, the app will prompt you to enable a public proxy with one click.
+Open http://localhost:5173, go to Settings, enter your API key, and start chatting. If you hit a CORS error, the app offers to enable a public proxy with one click.
 
-## CORS Proxy
+## CORS proxy
 
-Some API providers block direct browser requests. CORS proxy is configured per provider in Settings — toggle the switch to enable it. A public proxy (`https://cors.api2026.workers.dev`) is used by default.
+Some providers block direct browser requests. The CORS proxy is configured per provider in Settings — toggle it on. A public proxy (`https://cors.api2026.workers.dev`) is used by default.
 
-To deploy your own, create a [Cloudflare Worker](https://dash.cloudflare.com) with this code:
+To run your own, deploy a [Cloudflare Worker](https://dash.cloudflare.com) with this code:
 
 <details>
 <summary>Worker code</summary>
@@ -186,11 +180,11 @@ export default {
 
 </details>
 
-## Project Structure
+## Development
 
 ```
 src/
-  adapters/       # LLM API adapters (OpenAI, Anthropic, etc.)
+  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
@@ -200,11 +194,7 @@ src/
   types.ts        # Type definitions
 ```
 
-## Tech Stack
-
-React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
-
-## Scripts
+**Stack:** React 19 · antd 6 (CSS-variables theme, deeply customized) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
 | Command | Description |
 |---------|-------------|
@@ -215,19 +205,17 @@ React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
 
 ## Deploy
 
-Build and deploy the `dist/` folder to any static hosting (Vercel, Netlify, GitHub Pages, etc.):
+Build and host the `dist/` folder on any static host (Vercel, Netlify, GitHub Pages, …):
 
 ```bash
 npm run build
 ```
 
-Uses hash-based routing (`/#/chat/...`, `/#/ja/chat/...`) so no server-side routing config needed.
+Routing is hash-based (`/#/chat/...`, `/#/ja/chat/...`), so no server-side routing config is needed.
 
 ## About 365 Open Source Plan
 
-This is project #002 of the [365 Open Source Plan](https://github.com/rockbenben/365opensource).
-
-One person + AI, 300+ open source projects in a year. [Submit your idea →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
+This is project #002 of the [365 Open Source Plan](https://github.com/rockbenben/365opensource) — one person + AI, 300+ open source projects in a year. [Submit your idea →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
 
 ## License
 

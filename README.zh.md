@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+</p>
+
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
@@ -24,15 +28,17 @@
   <a href="./i18n/README.bn.md">বাংলা</a>
 </p>
 
-把最伟大的思想家们请到一张桌上，让他们围绕你的问题展开辩论。
+> **把历史上最伟大的头脑请到同一张桌前，让他们围绕你的问题展开辩论。**
 
-Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2-10 位历史或当代名人，抛出一个问题，他们会自动展开多轮辩论，每轮结束后主持人综合分歧并追问。苏格拉底追问芒格的假设，尼采同时挑战两人。
+Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或当代名人，抛出一个问题，他们会展开多轮辩论：每轮里每个人都从自己的思维框架出发，主持人随后梳理分歧、开启下一轮。苏格拉底追问芒格的假设，尼采同时挑战两人。
 
-也可以直接输入话题，AI 自动匹配 3-5 位观点形成张力的思想家，一键开启讨论。
+**三种开场方式：**
 
-一对一同样可用：从 161 位思想家中选一位，用他们独特的思维框架分析你的问题。
+- **抛出问题** — 输入一个话题，AI 自动组一桌 3–5 位观点形成张力的思想家。
+- **自定阵容** — 自己挑 2–10 位，或随机来 5 位。
+- **单独请教** — 与 161 位思想家中的任意一位一对一，用他们独有的思维框架分析，而非泛泛的 AI 扮演。
 
-**在线体验：** [talk.newzone.top](https://talk.newzone.top)
+**在线体验：** [talk.newzone.top](https://talk.newzone.top) —— 18 种语言 · 免费 · 本地优先 · 无需注册。
 
 ## 截图
 
@@ -40,84 +46,72 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2-10 位历史或当�
 |:-:|:-:|
 | ![首页](docs/images/home-chat.png) | ![对话](docs/images/chat-view.png) |
 
-## 用法
+## 发起对话
 
-### 一对一对话
+**自动圆桌** — 在首页顶部输入框输入话题，AI 自动匹配 3–5 位观点真正冲突的思想家，立即开始辩论，无需手动选人。
 
-点击角色卡片上的 **对话** 按钮，直接开始一对一聊天。思想家会用其独特的思维框架回应你。
+**手动圆桌** — 点击角色卡片上的加人图标，组建 2–10 人阵容。底部浮出选人栏：
 
-### 自动圆桌
+- 点击头像即可移除该角色
+- **开始讨论** 发起圆桌
+- **复制阵容链接** 把该阵容生成分享 URL
 
-在首页顶部的输入框输入话题——AI 自动匹配 3-5 位观点形成张力的思想家，立即开始讨论。无需手动选人。
+也可以点右上角 **🎲 随机圆桌**，一键随机 5 位思想家开场。
 
-### 手动圆桌
+**推荐圆桌** — 首页提供 6 个精选模板，阵容观点真正冲突（如「AI 与科技」：Karpathy vs Ilya vs 费曼 vs 塔勒布 vs Paul Graham）。一键开桌，每个模板附 3 个推荐话题。
 
-点击角色卡片上的加人图标，将 2-10 位角色加入圆桌候选。底部会浮出选人栏：
+**一对一对话** — 点击任意角色卡片上的 **对话** 按钮，即可与该思想家用其语气与框架私聊。
 
-- 点击栏中的头像可移除该角色
-- 点击 **开始讨论** 发起圆桌辩论
-- 点击 **复制阵容链接** 生成该阵容的分享 URL
+**推荐话题** — 发送第一条消息前，每种模式都会给出话题：模板圆桌每个 3 个定制问题（支持全部 18 种语言）；手动圆桌则从每位所选角色各取 1 个问题（加减角色时自动更新）。
 
-也可以点击右上角的 **🎲 随机圆桌**，一键随机 5 位思想家开始讨论。
+## 引导讨论
 
-### 推荐圆桌
+你坐在桌子的主位，是这场辩论的 **主席**，讨论按你的节奏走。
 
-首页展示 6 个精选圆桌模板——预选观点真正冲突的思想家阵容（如「AI 与科技」：Karpathy vs Ilya vs 费曼 vs 塔勒布 vs Paul Graham）。一键开桌，每个模板提供 3 个推荐话题帮你快速开聊。
+- **主持人** — 每轮结束后，AI 主持人综合本轮：按议题归类发言、指出本轮未触及的角度、抛出下一轮的开放问题。
+- **中途改向** — 讨论途中发条消息即可调整方向。它不会立刻跑轮次，而是弹出一张可编辑的 **讨论焦点卡**；新焦点会叠加在上一次之上，先前的精修不丢。改好后点 **开始讨论**，下一轮在新焦点上展开。
+- **应用并重试** — 编辑任意消息后从该处重新生成。主席的改向会带上焦点快照，重试时会还原消息发送当时的焦点状态。
+- **设置轮数** — 配置每次辩论的轮数，结束后暂停；**继续讨论** 可再追加几轮。
+- **加人 / 移人** — 随时通过参与者栏调整，一对一与圆桌自由互换。
+- **停止生成** — 生成中随时取消，已写出的内容保留。
+- **分支** — 从任意消息处分叉出新对话，并带上之前的上下文。
 
-### 推荐话题
+## 保存、搜索与分享
 
-所有圆桌模式在你发送第一条消息前都会显示推荐话题：
+- **总结对话** — 一键让 AI 提炼核心观点与分歧。
+- **搜索** — 按标题、角色名或消息内容检索全部历史对话。
+- **收藏** — 星标常用思想家，快速取用。
+- **分享对话** — 生成包含完整对话内容的链接。
+- **导出 / 导入** — 导出为 Markdown 或 JSON、从 JSON 恢复（设置页），或通过 [json2card](https://github.com/rockbenben/json2card) 生成分享卡片（需在设置中配置 API 端点）。
+- **设置同步** — 通过 URL 把配置同步到其他设备，密钥经 AES 加密。
 
-- **模板圆桌** — 每个模板 3 个针对主题定制的问题（支持全部 18 种语言）
-- **手动选人圆桌** — 每位角色贡献 1 个问题（最多显示 5 个），让你看到不同视角。加减角色时话题自动更新。
+## 思想家、模型与平台
 
-### 对话中
+**161 位预设思想家**，覆盖 15 大领域、按知名度排序——直接输入任意名字即可即时创建自定义角色。
 
-- **主持人** — 每轮结束后，AI 主持人综合讨论：按议题归类发言、指出本轮未触及的角度、抛出下一轮的开放问题
-- **中途介入（主席模式）** — 讨论中途发新消息即可调整方向，不会立刻跑轮次，而是弹出一张可编辑的**讨论焦点卡**。新焦点会在上一次焦点基础上叠加，前面的精修不丢。改好后点 **开始讨论** 让下一轮在新焦点上展开
-- **应用并重试** — 编辑任何消息后，气泡下方会出现蓝色 **应用并重试** 按钮，一键从此处重新生成。主席介入消息会带 focus snapshot，重试时会还原当时的焦点状态，此前对焦点卡的精修完整保留
-- **停止生成** — 生成中随时取消，已生成内容保留
-- **加人 / 移人** — 随时通过参与者栏调整，一对一和圆桌可自由切换
-- **设置轮数** — 配置每次讨论的轮数，讨论完毕后暂停等待你追问
-- **继续讨论** — 讨论结束后可追加更多轮
-- **同角色新开** — 以相同角色重新开始一个新对话
-- **总结对话** — 一键让 AI 提炼核心观点、分歧和结论
-- **分享对话** — 生成包含完整对话内容的分享链接
-- **导出** — 对话可导出为 Markdown、JSON，或通过 [json2card](https://github.com/rockbenben/json2card) 生成分享卡片（需在设置中配置 API 端点）
-- **导入** — 在设置页从 JSON 文件恢复对话（支持去重合并）
-- **分支** — 从任意消息处分叉出新对话，保留之前的上下文
+**模型** — 可设 **思考强度**（关闭 / 低 / 中 / 高）、手动填入 **自定义模型 ID**，或以自定义服务商接入任意 **OpenAI 兼容 API**。默认：DeepSeek V4 Flash。
 
-### 链接直达对话
+**平台** — 18 种语言 · 深色模式 · 响应式 · **本地优先**（IndexedDB + localStorage 双写，兼容微信等受限 WebView）· **零 CDN**（字体全部自托管打包，离线与内网环境开箱即用）。
+
+## 链接直达对话
 
 通过 URL 直接发起对话：
 
 - **按名字：** `/#/chat?chars=苏格拉底,孔子` 或 `/#/chat?chars=Socrates,Confucius`
 - **按 ID：** `/#/chat?chars=socrates,confucius`
-- **按分类：** `/#/chat?category=philosophy`（以该分类下的所有角色开始圆桌讨论，上限 10 人）
+- **按分类：** `/#/chat?category=philosophy`（以该分类下所有角色开圆桌，上限 10 人）
 - **单人对话：** `/#/chat?chars=苏格拉底`
 - **自定义名字：** `/#/chat?chars=张三,李四`（未识别的名字会自动创建自定义角色）
 
 可用分类：`philosophy`、`strategy`、`business`、`finance`、`history`、`sociology`、`psychology`、`science`、`literature`、`art`、`economics`、`politics`、`technology`、`religion`、`education`。
 
-也可以在参与者栏点 **复制阵容链接** 或在分类筛选栏点 **复制分类圆桌链接** 直接从界面生成这些 URL，无需手动拼接。
+参与者栏的 **复制阵容链接** 与分类筛选栏的 **复制分类圆桌链接** 可直接从界面生成这些 URL。
 
-**语言路由：** URL 中使用语言前缀可切换界面语言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`。也支持查询参数 `?lang=zh`。支持全部 18 种语言。
-
-## 更多特性
-
-除上述用法外，还支持：
-
-- **161 位预设思想家** — 覆盖 15 大领域，按知名度排序，支持自由输入任意名字
-- **对话搜索** — 按标题、角色名或消息内容搜索历史对话
-- **角色收藏** — 星标常用角色，置顶显示
-- **设置同步** — 通过 URL 将设置同步到其他设备（密钥 AES 加密保护）
-- **思考强度** — 配置模型思考深度（关闭/低/中/高）
-- **自定义模型** — 手动输入任意模型 ID
-- **自定义 LLM** — 接入任意 OpenAI 兼容 API
-- **多 API 支持** — 24 家服务商：国际（OpenAI、Anthropic、Gemini、xAI、Mistral、Cohere）、国内（DeepSeek、Kimi、智谱 GLM、MiniMax、混元、文心、小米 MiMo、字节方舟、阿里百炼）、聚合（OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models）
-- **18 种语言** · **深色模式** · **响应式布局** · **本地优先**（IndexedDB + localStorage 双写，兼容微信等受限 WebView）
+**语言路由** — URL 加语言前缀即可切换界面语言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`，也支持 `?lang=zh`。支持全部 18 种语言。
 
 ## 支持的 API
+
+开箱即用 24 家服务商——国际、国内与聚合平台：
 
 | 服务商 | 模型 |
 |--------|------|
@@ -134,7 +128,7 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2-10 位历史或当�
 | 阿里百炼 Coding Plan | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5 |
 | 聚合平台 | OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
 
-所有服务商均支持自定义模型 ID。默认：DeepSeek V4 Flash。也可通过「Custom」选项接入任意 OpenAI 兼容 API。
+所有服务商均支持自定义模型 ID，「Custom」选项可接入任意 OpenAI 兼容 API。
 
 ## 快速开始
 
@@ -143,13 +137,13 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:5173，进入设置页面填入 API Key，即可开始对话。遇到 CORS 错误时，应用会提示一键启用公共中转。
+打开 http://localhost:5173，进入设置页填入 API Key，即可开始对话。遇到 CORS 错误时，应用会提示一键启用公共中转。
 
 ## CORS 中转
 
-部分 API 不允许浏览器直接调用。在设置页按服务商开关 CORS 中转，默认使用公共节点（`https://cors.api2026.workers.dev`）。
+部分服务商不允许浏览器直接调用。在设置页按服务商开关 CORS 中转即可，默认使用公共节点（`https://cors.api2026.workers.dev`）。
 
-如需自建中转，创建 [Cloudflare Worker](https://dash.cloudflare.com) 并部署以下代码：
+如需自建，部署一个 [Cloudflare Worker](https://dash.cloudflare.com) 并填入以下代码：
 
 <details>
 <summary>Worker 代码</summary>
@@ -186,12 +180,11 @@ export default {
 
 </details>
 
-
-## 项目结构
+## 开发
 
 ```
 src/
-  adapters/       # LLM API 适配器（OpenAI、Anthropic 等）
+  adapters/       # LLM API 适配器（OpenAI 兼容、Anthropic）
   characters/     # 角色预设和自定义角色生成
   components/     # React 组件
   hooks/          # useChat、useRoundtable
@@ -201,11 +194,7 @@ src/
   types.ts        # 类型定义
 ```
 
-## 技术栈
-
-React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
-
-## 脚本
+**技术栈：** React 19 · antd 6（CSS 变量主题深度定制）· Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
 | 命令 | 说明 |
 |------|------|
@@ -216,7 +205,7 @@ React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
 
 ## 部署
 
-构建后将 `dist/` 目录部署到任意静态托管平台（Vercel、Netlify、GitHub Pages 等）：
+构建后将 `dist/` 部署到任意静态托管（Vercel、Netlify、GitHub Pages 等）：
 
 ```bash
 npm run build
@@ -226,9 +215,7 @@ npm run build
 
 ## 关于 365 开源计划
 
-本项目是 [365 开源计划](https://github.com/rockbenben/365opensource) 的第 002 个项目。
-
-一个人 + AI，一年 300+ 个开源项目。[提交你的需求 →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
+本项目是 [365 开源计划](https://github.com/rockbenben/365opensource) 的第 002 个项目——一个人 + AI，一年 300+ 个开源项目。[提交你的需求 →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
 
 ## License
 

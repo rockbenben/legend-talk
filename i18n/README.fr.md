@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+</p>
+
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
@@ -24,13 +28,17 @@
   <a href="README.bn.md">বাংলা</a>
 </p>
 
-Réunissez les plus grands penseurs du monde et laissez-les débattre de votre problème.
+> **Réunissez les plus grands esprits de l'histoire autour d'une même table et laissez-les débattre de votre question.**
 
-Legend Talk est un outil de table ronde IA multi-tours — choisissez 2 à 10 figures et regardez-les débattre.
+Legend Talk réunit 2 à 10 penseurs historiques ou contemporains dans un débat multi-tours. À chaque tour, chaque voix argumente selon son propre cadre de pensée ; un modérateur cartographie ensuite les désaccords et ouvre le tour suivant. Socrate met à l'épreuve les présupposés de Munger pendant que Nietzsche les conteste tous les deux.
 
-Fonctionne aussi en 1 à 1 : consultez plus de 160 penseurs.
+**Trois façons de commencer :**
 
-**Démo:** [talk.newzone.top](https://talk.newzone.top)
+- **Poser une question** — saisissez un sujet et l'IA assemble un panel de 3 à 5 penseurs conçu pour une tension productive.
+- **Dresser la table** — choisissez vous-même 2 à 10 penseurs, ou tirez-en 5 au hasard.
+- **Consulter un seul esprit** — un échange en tête-à-tête avec l'un des 161 penseurs, chacun raisonnant selon son propre cadre, et non un jeu de rôle IA générique.
+
+**Démo :** [talk.newzone.top](https://talk.newzone.top) — 18 langues · gratuit · local-first · sans inscription.
 
 ## Captures
 
@@ -38,83 +46,89 @@ Fonctionne aussi en 1 à 1 : consultez plus de 160 penseurs.
 |:-:|:-:|
 | ![Accueil](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
 
-## Utilisation
+## Démarrer une conversation
 
-### Chat 1 à 1
+**Table ronde automatique** — saisissez un sujet dans la barre de saisie de la page d'accueil. L'IA choisit 3 à 5 penseurs dont les points de vue s'opposent réellement et lance le débat immédiatement, sans avoir à choisir de personnages.
 
-Cliquez sur **Chat** sur n'importe quelle carte.
+**Table ronde manuelle** — cliquez sur **+** sur 2 à 10 cartes de personnages pour composer votre équipe. Une barre flottante affiche vos choix :
 
-### Table Ronde
+- Cliquez sur un avatar pour le retirer
+- **Démarrer la discussion** pour lancer
+- **Copier le lien de l'équipe** pour partager la composition exacte sous forme d'URL
 
-Cliquez sur **+** sur 2-10 cartes. Ou **🎲 Aléatoire** pour 5 penseurs.
+Ou cliquez sur **🎲 Aléatoire** (en haut à droite) pour démarrer instantanément avec 5 penseurs au hasard.
 
-### Modèles
+**Modèles en vedette** — 6 compositions soigneusement sélectionnées dont les perspectives s'affrontent réellement (par ex. *IA & Tech* : Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Un clic pour démarrer, chacune avec 3 sujets suggérés.
 
-6 modèles de table ronde avec des perspectives opposées.
+**Chat 1 à 1** — cliquez sur **Chat** sur n'importe quelle carte de personnage pour une conversation privée dans la voix et le cadre de pensée de ce penseur.
 
-### Suggestions de sujets
+**Suggestions de sujets** — avant votre premier message, chaque mode propose des sujets pour vous lancer : 3 questions sélectionnées par modèle (dans les 18 langues), ou 1 question tirée de chaque penseur choisi dans une composition manuelle (mise à jour à mesure que vous ajoutez ou retirez des personnes).
 
-Tous les modes table ronde affichent des sujets recommandés avant l'envoi du premier message :
+## Orienter la discussion
 
-- **Tables rondes modèles** — 3 questions adaptées au thème de chaque modèle (disponibles dans les 18 langues)
-- **Tables rondes manuelles** — 1 question par personnage sélectionné (max. 5). Les sujets se mettent à jour lors de l'ajout ou du retrait de personnages.
+Vous siégez en bout de table en tant que **président** — le débat se déroule selon vos règles.
 
-### Pendant la Conversation
+- **Modérateur** — après chaque tour, un modérateur IA en fait la synthèse : il regroupe les arguments par idée, nomme un angle que le tour a laissé inexploré et pose une question ouverte pour le suivant.
+- **Recentrer en cours de débat** — envoyez un message pendant une table ronde pour la réorienter. Au lieu de s'exécuter automatiquement, une **carte de focus** modifiable apparaît ; elle s'empile sur tout focus antérieur afin que les orientations précédentes ne soient pas perdues. Affinez-la, puis **Démarrez** les tours suivants en l'ancrant dessus.
+- **Appliquer et recommencer** — modifiez n'importe quel message et régénérez à partir de ce point. Les orientations du président portent un instantané du focus, de sorte qu'un nouvel essai se reconstruit à partir de l'état exact du focus actif au moment de l'envoi du message.
+- **Configurer les tours** — choisissez combien de tours les penseurs débattent avant de marquer une pause, et **Continuez** pour en ajouter d'autres une fois qu'ils ont terminé.
+- **Ajouter ou retirer des participants** à tout moment — transformez un tête-à-tête en table ronde, ou l'inverse.
+- **Arrêter** — annulez la génération en cours ; tout ce qui a déjà été écrit est conservé.
+- **Bifurquer** — créez une nouvelle conversation à partir de n'importe quel message, en emportant le contexte antérieur avec elle.
 
-- **Arrêter** — annuler la génération
-- **Ajouter/supprimer des participants**
-- **Configurer les tours**
-- **Continuer**
-- **Recommencer**
-- **Résumer** — résumé IA
-- **Partager**
-- **Exporter** — Markdown, JSON ou générer des cartes de partage via [json2card](https://github.com/rockbenben/json2card) (configurer le point d'accès dans les Paramètres)
-- **Importer** — restaurer depuis JSON
-- **Bifurquer**
+## Enregistrer, rechercher et partager
 
-### Liens Directs
+- **Résumer** — un résumé IA en un clic qui extrait les points de vue essentiels et les désaccords.
+- **Recherche** — retrouvez n'importe quoi dans toutes les conversations par titre, nom de penseur ou contenu de message.
+- **Favoris** — épinglez vos penseurs les plus utilisés pour un accès rapide.
+- **Partager une conversation** — générez une URL contenant la conversation complète.
+- **Exporter / Importer** — enregistrez en Markdown ou JSON et restaurez depuis JSON (dans les Paramètres), ou générez des cartes de partage via [json2card](https://github.com/rockbenben/json2card) (configurez le point d'accès API dans les Paramètres).
+- **Synchronisation des paramètres** — transférez votre configuration vers un autre appareil via une URL ; les clés API sont chiffrées en AES.
 
-Démarrez via URL :
+## Penseurs, modèles et plateforme
 
-- **Par nom:** `/#/chat?chars=Socrates,Confucius`
-- **Par ID:** `/#/chat?chars=socrates,confucius`
-- **Par catégorie:** `/#/chat?category=philosophy`
-- **Chat individuel:** `/#/chat?chars=socrates`
-- **Noms personnalisés:** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (les noms non reconnus créent des personnages automatiquement)
+**161 penseurs prédéfinis** répartis dans 15 domaines, classés par notoriété — saisissez n'importe quel nom pour créer un personnage personnalisé à la volée.
 
-Catégories disponibles: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`
+**Modèles** — réglez le **niveau de réflexion** (désactivé / faible / moyen / élevé), saisissez un **ID de modèle personnalisé**, ou connectez n'importe quelle **API compatible OpenAI** en tant que fournisseur personnalisé. Par défaut : DeepSeek V4 Flash.
 
-Générez aussi des liens depuis l'interface.
+**Plateforme** — 18 langues · mode sombre · responsive · **local-first** (double écriture IndexedDB + localStorage, fonctionne dans WeChat et les WebViews restreintes) · **zéro CDN** (polices auto-hébergées et intégrées, donc fonctionne hors ligne et derrière des pare-feu).
 
-**Routage linguistique :** Préfixe de langue dans l'URL. 18 langues.
+## Liens directs
 
-## Plus de Fonctionnalités
+Démarrez une conversation directement depuis une URL :
 
-En plus de ce qui précède :
+- **Par nom :** `/#/chat?chars=苏格拉底,孔子` ou `/#/chat?chars=Socrates,Confucius`
+- **Par ID :** `/#/chat?chars=socrates,confucius`
+- **Par catégorie :** `/#/chat?category=philosophy` (table ronde de tous les penseurs de cette catégorie, plafonnée à 10)
+- **Chat individuel :** `/#/chat?chars=socrates`
+- **Noms personnalisés :** `/#/chat?chars=Ada Lovelace,Linus Torvalds` (les noms non reconnus deviennent des personnages personnalisés)
 
-- **160+ penseurs** dans 15 domaines
-- **Personnages personnalisés**
-- **Recherche** · **Favoris** · **Synchronisation** (AES)
-- **Niveau de réflexion** · **Modèles personnalisés** · **LLM personnalisé**
-- **Multi-API** : OpenAI, Anthropic, DeepSeek + 21 autres
-- **18 langues** · **Mode sombre** · **Responsive** · **Local-first**
+Catégories : `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology`, `psychology`, `science`, `literature`, `art`, `economics`, `politics`, `technology`, `religion`, `education`.
+
+Les boutons **Copier le lien de l'équipe** (barre des participants) et **Copier le lien de catégorie** (filtre de catégorie) génèrent ces URL depuis l'interface.
+
+**Routage linguistique** — préfixez l'URL avec une langue pour définir la langue de l'interface, par ex. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, ou utilisez `?lang=zh`. Les 18 langues sont prises en charge.
 
 ## APIs Supportées
+
+24 fournisseurs prêts à l'emploi — internationaux, basés en Chine et agrégateurs :
 
 | Provider | Models |
 |----------|--------|
 | OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
 | Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
 | Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
 | xAI Grok | Grok 4.3, Grok 4.20 series |
+| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
+| DeepSeek | DeepSeek V4 Flash, V4 Pro |
+| Moonshot / Kimi | Kimi K2.6, K2.5 |
+| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
+| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
+| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
 | Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
-Tous supportent les IDs personnalisés. Par défaut : DeepSeek V4 Flash.
+Chaque fournisseur accepte des IDs de modèle personnalisés, et l'option **Custom** connecte n'importe quelle API compatible OpenAI.
 
 ## Démarrage Rapide
 
@@ -123,13 +137,13 @@ npm install
 npm run dev
 ```
 
-Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API.
+Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API et commencez à discuter. Si vous rencontrez une erreur CORS, l'application propose d'activer un proxy public en un clic.
 
 ## Proxy CORS
 
-Certains fournisseurs bloquent les requêtes directes. Configurez le proxy CORS par fournisseur.
+Certains fournisseurs bloquent les requêtes directes depuis le navigateur. Le proxy CORS se configure par fournisseur dans les Paramètres — activez-le. Un proxy public (`https://cors.api2026.workers.dev`) est utilisé par défaut.
 
-Pour déployer le vôtre, créez un [Cloudflare Worker](https://dash.cloudflare.com) :
+Pour exécuter le vôtre, déployez un [Cloudflare Worker](https://dash.cloudflare.com) avec ce code :
 
 <details>
 <summary>Worker code</summary>
@@ -166,11 +180,11 @@ export default {
 
 </details>
 
-## Structure du Projet
+## Développement
 
 ```
 src/
-  adapters/       # LLM API adapters (OpenAI, Anthropic, etc.)
+  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
@@ -180,34 +194,28 @@ src/
   types.ts        # Type definitions
 ```
 
-## Stack Technique
-
-React 19, Vite, Tailwind CSS v4, Zustand, i18next, React Router, TypeScript
-
-## Scripts
+**Stack :** React 19 · antd 6 (thème en variables CSS, profondément personnalisé) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
 | Commande | Description |
 |----------|-------------|
 | `npm run dev` | Serveur de développement |
-| `npm run build` | Vérification + compilation |
+| `npm run build` | Vérification de types et compilation pour la production |
 | `npm run test` | Exécuter les tests |
-| `npm run preview` | Aperçu production |
+| `npm run preview` | Aperçu de la version de production |
 
 ## Déploiement
 
-Compilez et déployez `dist/` sur n'importe quel hébergement statique :
+Compilez et hébergez le dossier `dist/` sur n'importe quel hébergement statique (Vercel, Netlify, GitHub Pages, …) :
 
 ```bash
 npm run build
 ```
 
-Routage hash (`/#/chat/...`), aucune configuration serveur nécessaire.
+Le routage est basé sur le hash (`/#/chat/...`, `/#/ja/chat/...`), aucune configuration de routage côté serveur n'est donc nécessaire.
 
-## À propos du Plan 365
+## À propos du Plan Open Source 365
 
-Projet #002 du [Plan Open Source 365](https://github.com/rockbenben/365opensource).
-
-1 personne + IA, 300+ projets open source en un an. [Soumettez votre idée →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
+Ceci est le projet #002 du [Plan Open Source 365](https://github.com/rockbenben/365opensource) — une personne + IA, plus de 300 projets open source en un an. [Soumettez votre idée →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
 
 ## License
 

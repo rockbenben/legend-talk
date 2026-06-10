@@ -1,5 +1,4 @@
-/* Display + body serifs for the「议事录」(Proceedings) theme — must precede tailwindcss */
-@import url('https://fonts.googleapis.cn/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;600&display=swap');
+/* Fonts are self-hosted via @fontsource imports in main.tsx — no CDN dependency. */
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
@@ -88,9 +87,9 @@ body::before {
   border-bottom: 1px solid var(--lt-rule) !important;
 }
 .lt-brand {
-  font-family: var(--lt-serif-display);
+  font-family: 'Fraunces', var(--lt-serif-display);
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: .015em;
 }
 .lt-brand .lt-brand-talk {
   font-style: italic;

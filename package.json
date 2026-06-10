@@ -11,6 +11,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@fontsource/cormorant": "^5.2.8",
+    "@fontsource/fraunces": "^5.2.9",
+    "@fontsource/noto-serif-sc": "^5.2.8",
+    "@fontsource/spectral": "^5.2.8",
     "antd": "^6.4.3",
     "dayjs": "^1.11.20",
     "i18next": "^24.0.0",

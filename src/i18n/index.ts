@@ -65,8 +65,15 @@ export async function ensureLanguageLoaded(lng: string): Promise<void> {
   if (i18n.hasResourceBundle(resolved, 'translation')) return;
   const loader = loaders[resolved];
   if (!loader) return;
-  const mod = await loader();
-  i18n.addResourceBundle(resolved, 'translation', mod.default, true, true);
+  try {
+    const mod = await loader();
+    i18n.addResourceBundle(resolved, 'translation', mod.default, true, true);
+  } catch {
+    // Chunk fetch failed — typically a stale deploy (old hashed chunk deleted) or
+    // offline. Swallow so callers still switch language: i18n falls back to en
+    // strings until the next reload picks up the new build. Rejecting here would
+    // leave the language switch silently dead (no caller catches).
+  }
 }
 
 // Normalize detected language to closest supported (e.g., zh-CN → zh, en-US → en)

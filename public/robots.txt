@@ -1,4 +1,63 @@
+# Legend Talk robots.txt — 2026 AI-aware
+# Goal: maximize AI citations + traditional SEO; block training-only crawlers
+
+# Default: allow all crawlers (no private routes on this SPA)
 User-agent: *
 Allow: /
+
+# Search & citation bots — allow (these drive traffic and AI citations)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: OAI-AdsBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Googlebot
+User-agent: bingbot
+User-agent: Applebot
+User-agent: YouBot
+User-agent: Baiduspider
+User-agent: Bytespider
+User-agent: Doubaobot
+User-agent: Kimi-SearchBot
+User-agent: Kimi-User
+User-agent: MoonshotBot
+User-agent: DeepSeekBot
+User-agent: ChatGLM-Spider
+User-agent: ZhipuBot
+User-agent: Qwen
+User-agent: QwenBot
+User-agent: AliyunBot
+User-agent: HunyuanBot
+User-agent: Yuanbaobot
+User-agent: PetalBot
+User-agent: Amazonbot
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Training-only bots — block (consume bandwidth, no referral value)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
 
 Sitemap: https://talk.newzone.top/sitemap.xml

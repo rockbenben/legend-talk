@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #07111f 0%, #0b1c36 100%);
+  font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+  position: relative;
+}
+
+/* ── Background texture ── */
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #0e2240 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.55;
+}
+
+/* ── Panel divider ── */
+.divider {
+  position: absolute;
+  left: 597px;
+  top: 40px;
+  bottom: 40px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #1a3a60 30%, #1a3a60 70%, transparent);
+  opacity: 0.5;
+}
+
+/* ── Right panel glow ── */
+.right-glow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 620px;
+  height: 630px;
+  background: radial-gradient(ellipse at 50% 50%, #0d2848 0%, transparent 70%);
+}
+
+/* ══════════════════════════════════════
+   LEFT PANEL
+══════════════════════════════════════ */
+.left-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 597px;
+  height: 630px;
+  padding: 0 0 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gold-bar {
+  position: absolute;
+  left: 80px;
+  top: 160px;
+  width: 6px;
+  height: 220px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #eacb6a, #c89018);
+}
+
+.label-tag {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  color: #c89020;
+  margin-bottom: 22px;
+  margin-left: 33px;
+}
+
+.title-legend {
+  font-size: 106px;
+  font-weight: 700;
+  color: #edf2f8;
+  letter-spacing: -5px;
+  line-height: 1;
+  margin-left: 30px;
+  text-shadow: 0 2px 40px rgba(10, 40, 80, 0.8);
+}
+
+.title-talk {
+  font-size: 106px;
+  font-weight: 400;
+  font-style: italic;
+  color: #e0b840;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin-left: 32px;
+  margin-top: 4px;
+  text-shadow: 0 0 60px rgba(220, 160, 20, 0.25), 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.separator {
+  width: 380px;
+  height: 2px;
+  background: linear-gradient(to right, #e0b840, #c89018, transparent);
+  margin: 16px 0 16px 32px;
+  opacity: 0.55;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #5a7a90;
+  letter-spacing: 2px;
+  margin-left: 32px;
+  margin-bottom: 14px;
+}
+
+.stats {
+  font-size: 18px;
+  color: #7a96aa;
+  margin-left: 32px;
+}
+
+.stats span {
+  color: #d4a428;
+}
+
+.domain {
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 15px;
+  color: #304a60;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 36px;
+  left: 112px;
+}
+
+/* ══════════════════════════════════════
+   RIGHT PANEL – SVG roundtable
+══════════════════════════════════════ */
+.right-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 603px;
+  height: 630px;
+}
+
+.right-panel svg {
+  width: 603px;
+  height: 630px;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-dots"></div>
+<div class="right-glow"></div>
+<div class="divider"></div>
+
+<!-- ── LEFT PANEL ── -->
+<div class="left-panel">
+  <div class="gold-bar"></div>
+  <div class="label-tag">AI ROUNDTABLE DISCUSSION</div>
+  <div class="title-legend">LEGEND</div>
+  <div class="title-talk">Talk</div>
+  <div class="separator"></div>
+  <div class="subtitle">WITH HISTORY'S GREATEST THINKERS</div>
+  <div class="stats"><span>157</span> Thinkers &nbsp;·&nbsp; <span>18</span> Languages &nbsp;·&nbsp; Free</div>
+  <div class="domain">talk.newzone.top</div>
+</div>
+
+<!-- ── RIGHT PANEL: Roundtable SVG ── -->
+<!-- SVG viewport: 603×630, center: (303, 315), node radius from center: 210 -->
+<!-- Node positions (r=210): -->
+<!--   top:          (303, 105)           -->
+<!--   top-right:    (303+148, 315-148) = (451, 167) -->
+<!--   right:        (513, 315)           -->
+<!--   bottom-right: (451, 463)           -->
+<!--   bottom:       (303, 525)           -->
+<!--   bottom-left:  (155, 463)           -->
+<!--   left:         (93, 315)            -->
+<!--   top-left:     (155, 167)           -->
+<div class="right-panel">
+<svg viewBox="0 0 603 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="panelGlow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#0d2848" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#07111f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tableGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a4878" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#07111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0b840" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#c89018" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#e0b840" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.1  0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0.6 0" result="colored"/>
+      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="talkGlow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.85  0 0 0 0 0.60  0 0 0 0 0.10  0 0 0 0.4 0" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer dashed decorative ring -->
+  <circle cx="303" cy="315" r="265" fill="none" stroke="#0c2240" stroke-width="2"
+          stroke-dasharray="6 11" opacity="0.8"/>
+
+  <!-- Orbit ring (where nodes sit) -->
+  <circle cx="303" cy="315" r="210" fill="none" stroke="#122840" stroke-width="1" opacity="0.6"/>
+
+  <!-- Spoke lines: center → each node -->
+  <g stroke="#162e50" stroke-width="1.5" opacity="0.75">
+    <line x1="303" y1="315" x2="303" y2="105"/>
+    <line x1="303" y1="315" x2="451" y2="167"/>
+    <line x1="303" y1="315" x2="513" y2="315"/>
+    <line x1="303" y1="315" x2="451" y2="463"/>
+    <line x1="303" y1="315" x2="303" y2="525"/>
+    <line x1="303" y1="315" x2="155" y2="463"/>
+    <line x1="303" y1="315" x2="93"  y2="315"/>
+    <line x1="303" y1="315" x2="155" y2="167"/>
+  </g>
+
+  <!-- Table center glow -->
+  <circle cx="303" cy="315" r="100" fill="url(#tableGlow)"/>
+
+  <!-- Central table circle -->
+  <circle cx="303" cy="315" r="78" fill="#06101e" stroke="#2a5888" stroke-width="2.5"/>
+  <circle cx="303" cy="315" r="70" fill="none" stroke="#1a4068" stroke-width="1" opacity="0.5"/>
+  <!-- AI text -->
+  <text x="303" y="304" font-family="Georgia, 'Times New Roman', serif"
+        font-size="32" font-weight="700" fill="#3a8ccf" text-anchor="middle">AI</text>
+  <text x="303" y="330" font-family="Arial, Helvetica, sans-serif"
+        font-size="9" fill="#1e5070" text-anchor="middle" letter-spacing="5">DEBATE</text>
+
+  <!-- ── 8 Thinker Nodes ──
+       Node: r=26, fill=#081628, stroke=#3a70a0, stroke-width=2
+       Initial: 11px italic fill=#5a8cb0
+       Name: 13px Georgia fill=#90b8cc -->
+
+  <!-- Reusable style for node labels -->
+  <style>
+    .node-name { font-family: Georgia, 'Times New Roman', serif; font-size: 13px; fill: #90b8cc; }
+    .node-init { font-family: Georgia, serif; font-size: 12px; fill: #5a8cb0; font-style: italic; }
+  </style>
+
+  <!-- 1. Socrates — top (303, 105) -->
+  <circle cx="303" cy="105" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="303" y="109" class="node-init" text-anchor="middle">S</text>
+  <text x="303" y="68"  class="node-name" text-anchor="middle">Socrates</text>
+
+  <!-- 2. Einstein — top-right (451, 167) -->
+  <circle cx="451" cy="167" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="451" y="171" class="node-init" text-anchor="middle">E</text>
+  <text x="484" y="160" class="node-name" text-anchor="start">Einstein</text>
+
+  <!-- 3. Confucius — right (513, 315) -->
+  <circle cx="513" cy="315" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="513" y="319" class="node-init" text-anchor="middle">C</text>
+  <text x="546" y="319" class="node-name" text-anchor="start">Confucius</text>
+
+  <!-- 4. Newton — bottom-right (451, 463) -->
+  <circle cx="451" cy="463" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="451" y="467" class="node-init" text-anchor="middle">N</text>
+  <text x="484" y="468" class="node-name" text-anchor="start">Newton</text>
+
+  <!-- 5. Aristotle — bottom (303, 525) -->
+  <circle cx="303" cy="525" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="303" y="529" class="node-init" text-anchor="middle">A</text>
+  <text x="303" y="565" class="node-name" text-anchor="middle">Aristotle</text>
+
+  <!-- 6. Marx — bottom-left (155, 463) -->
+  <circle cx="155" cy="463" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="155" y="467" class="node-init" text-anchor="middle">M</text>
+  <text x="120" y="468" class="node-name" text-anchor="end">Marx</text>
+
+  <!-- 7. Plato — left (93, 315) -->
+  <circle cx="93"  cy="315" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="93"  y="319" class="node-init" text-anchor="middle">P</text>
+  <text x="58"  y="319" class="node-name" text-anchor="end">Plato</text>
+
+  <!-- 8. Darwin — top-left (155, 167) -->
+  <circle cx="155" cy="167" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
+  <text x="155" y="171" class="node-init" text-anchor="middle">D</text>
+  <text x="120" y="160" class="node-name" text-anchor="end">Darwin</text>
+
+</svg>
+</div>
+
+</body>
+</html>

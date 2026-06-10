@@ -22,12 +22,29 @@ function ThemeBodyBg() {
 }
 
 /**
- * Minimal antd 6 theme. Trust antd defaults — only the primary color is ours.
- * The display serif (Fraunces) is applied case-by-case via the `.display-serif`
- * helper class, never via global font tokens.
+ * 「议事录」(Proceedings) theme — paper + ink + a single madder accent.
+ * antd components are the interaction/a11y base; the entire visual layer is
+ * carried by these seed tokens plus the --lt-* CSS variables in index.css
+ * (keep both palettes in sync). Spectral serif is the global body face;
+ * Cormorant display serif is applied via `.display-serif`.
  */
 
-const PRIMARY = '#0F766E'; // Teal 700 — sober, scholarly, warm-cool neutral
+const PROCEEDINGS = {
+  light: {
+    paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
+    ink: '#211F19', inkSoft: '#5C584C',
+    madder: '#8C2F39',
+    rule: '#D9D3C2', ruleDark: '#B9B19B',
+  },
+  dark: {
+    paper: '#1A1813', paperDeep: '#141310', elevated: '#23201A',
+    ink: '#E7E1D0', inkSoft: '#A89F8B',
+    madder: '#BE6A72',
+    rule: '#35311F', ruleDark: '#4A4435',
+  },
+};
+
+const SERIF_BODY = "'Spectral', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif";
 
 const LOCALE_LOADERS: Record<string, () => Promise<{ default: Locale }>> = {
   en: () => import('antd/locale/en_US'),
@@ -74,36 +91,60 @@ export function ThemeProvider({ children }: Props) {
     return () => { cancelled = true; };
   }, [lang]);
 
-  const config = useMemo(() => ({
-    algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
-    cssVar: { key: 'lt' },
-    hashed: false,
-    token: {
-      colorPrimary: PRIMARY,
-    },
-    components: {
-      // antd Layout defaults to a dark navy header / sider.
-      // Override so they sit on the page background — text stays readable
-      // and the editorial chrome doesn't fight the antd defaults.
-      Layout: {
-        headerBg: 'transparent',
-        siderBg: 'transparent',
-        bodyBg: 'transparent',
-        headerHeight: 56,
-        headerPadding: '0 16px',
+  const config = useMemo(() => {
+    const p = isDark ? PROCEEDINGS.dark : PROCEEDINGS.light;
+    return {
+      algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      cssVar: { key: 'lt' },
+      hashed: false,
+      token: {
+        colorPrimary: p.madder,
+        colorInfo: p.madder,            // focus card & info surfaces stay in-palette
+        colorLink: p.madder,
+        colorSuccess: '#5F7355',        // muted olive / ochre / brick — print-ink semantics
+        colorWarning: '#9A6B2F',
+        colorError: '#A1392F',
+        colorBgBase: p.paper,
+        colorTextBase: p.ink,
+        colorBgLayout: p.paperDeep,
+        colorBgContainer: p.paper,
+        colorBgElevated: p.elevated,
+        colorBorder: p.ruleDark,
+        colorBorderSecondary: p.rule,
+        borderRadius: 2,                // print artifacts have corners, not pills
+        fontFamily: SERIF_BODY,
+        fontSize: 15,
       },
-      // Kill the heavy selected-item bg in dropdowns / language toggle.
-      // Selection is communicated by primary text color only — no bg block.
-      Menu: {
-        itemSelectedBg: 'transparent',
-        itemActiveBg: 'transparent',
+      components: {
+        // antd Layout defaults to a dark navy header / sider.
+        // Override so they sit on the page background — text stays readable
+        // and the editorial chrome doesn't fight the antd defaults.
+        Layout: {
+          headerBg: 'transparent',
+          siderBg: 'transparent',
+          bodyBg: 'transparent',
+          headerHeight: 56,
+          headerPadding: '0 16px',
+        },
+        // Kill the heavy selected-item bg in dropdowns / language toggle.
+        // Selection is communicated by primary text color only — no bg block.
+        Menu: {
+          itemSelectedBg: 'transparent',
+          itemActiveBg: 'transparent',
+        },
+        Dropdown: {
+          controlItemBgActive: 'transparent',
+          controlItemBgActiveHover: 'transparent',
+        },
+        // Flat ink — no tinted button shadows on paper.
+        Button: {
+          primaryShadow: 'none',
+          defaultShadow: 'none',
+          dangerShadow: 'none',
+        },
       },
-      Dropdown: {
-        controlItemBgActive: 'transparent',
-        controlItemBgActiveHover: 'transparent',
-      },
-    },
-  }), [isDark]);
+    };
+  }, [isDark]);
 
   return (
     <ConfigProvider theme={config} locale={locale} direction={isRtl ? 'rtl' : 'ltr'}>

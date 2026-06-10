@@ -53,7 +53,7 @@ export function CharacterCard({
       </div>
       <Space size={[4, 4]} wrap style={{ marginBottom: 10, minHeight: 22 }}>
         {character.domain.map((d) => (
-          <Tag key={d} bordered={false}>{t(`home.categories.${d}`, d)}</Tag>
+          <Tag key={d} variant="filled">{t(`home.categories.${d}`, d)}</Tag>
         ))}
       </Space>
       <Space.Compact block>

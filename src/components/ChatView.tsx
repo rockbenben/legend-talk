@@ -345,7 +345,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           icon={<AimOutlined />}
           showIcon
           style={{ margin: '12px 0' }}
-          message={
+          title={
             <Space direction="vertical" style={{ width: '100%' }}>
               <Space style={{ width: '100%', justifyContent: 'space-between' }}>
                 <Text strong>{t('roundtable.focus')}</Text>
@@ -382,7 +382,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                         size="small"
                         type="primary"
                         icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
-                        iconPosition="end"
+                        iconPlacement="end"
                         onClick={() => roundtable.startFromFocus(conversationId, rounds)}
                       >
                         {t('roundtable.start')}
@@ -401,7 +401,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       <div>
         {showDivider && (
           <Divider plain>
-            <Text type="secondary" className="display-serif-italic" style={{ fontSize: 12 }}>
+            <Text type="secondary" className="display-serif lt-round-rule">
               {t('roundtable.discussionComplete')}
             </Text>
           </Divider>
@@ -442,16 +442,14 @@ export function ChatView({ conversationId }: ChatViewProps) {
           )}
           {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
             <div
-              className="group-hover:!opacity-100"
+              className={`group-hover:!opacity-100${msg.role === 'user' ? '' : ' lt-after-speech'}`}
               style={{
                 display: 'flex',
                 gap: 0,
                 opacity: 0,
                 transition: 'opacity 0.18s',
                 marginTop: 4,
-                ...(msg.role === 'user'
-                  ? { justifyContent: 'flex-end' }
-                  : { paddingInlineStart: 54 }),
+                ...(msg.role === 'user' ? { justifyContent: 'flex-end' } : {}),
               }}
             >
               <Button type="text" size="small" icon={<CopyOutlined />} style={{ color: 'var(--ant-color-text-tertiary)' }} onClick={() => navigator.clipboard.writeText(msg.content).catch(() => {})} title={t('chat.copy')} />
@@ -462,12 +460,11 @@ export function ChatView({ conversationId }: ChatViewProps) {
           )}
           {pendingRetryMsgId === msg.id && !isGenerating && !isSummarizing && editingMsgId !== msg.id && (
             <div
+              className={msg.role === 'user' ? undefined : 'lt-after-speech'}
               style={{
                 marginTop: 4,
                 display: 'flex',
-                ...(msg.role === 'user'
-                  ? { justifyContent: 'flex-end' }
-                  : { paddingInlineStart: 54 }),
+                ...(msg.role === 'user' ? { justifyContent: 'flex-end' } : {}),
               }}
             >
               <Button size="small" type="primary" icon={<ReloadOutlined />} onClick={() => handleRetryFrom(msg.id)}>
@@ -584,7 +581,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             <Alert
               type="warning"
               showIcon
-              message={t('chat.noApiKey')}
+              title={t('chat.noApiKey')}
               action={<Button type="link" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
               style={{ marginBottom: 12 }}
             />
@@ -687,7 +684,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 type="warning"
                 showIcon
                 style={{ marginTop: 8 }}
-                message={t('chat.corsError')}
+                title={t('chat.corsError')}
                 action={
                   <Space>
                     <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}>{t('chat.useCorsProxy')}</Button>
@@ -701,7 +698,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 type="warning"
                 showIcon
                 style={{ marginTop: 8 }}
-                message={t('chat.networkError')}
+                title={t('chat.networkError')}
                 action={<Button size="small" type="primary" onClick={retryLast}>{t('chat.retry')}</Button>}
               />
             );
@@ -710,7 +707,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 type="warning"
                 showIcon
                 style={{ marginTop: 8 }}
-                message={t('chat.thinkingUnsupported')}
+                title={t('chat.thinkingUnsupported')}
                 action={
                   <Space>
                     <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setThinkingLevel('off'); retryLast(); }}>{t('chat.disableThinking')}</Button>
@@ -724,7 +721,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 type="error"
                 showIcon
                 style={{ marginTop: 8 }}
-                message={t('common.error', { message: error })}
+                title={t('common.error', { message: error })}
                 action={
                   <Space>
                     <Button size="small" onClick={retryLast}>{t('chat.retry')}</Button>
@@ -758,7 +755,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           showIcon
           closable
           onClose={() => setShareStatus('idle')}
-          message={`${t('chat.shareTooLong')} — ${t('chat.shareTooLongHint')}`}
+          title={`${t('chat.shareTooLong')} — ${t('chat.shareTooLongHint')}`}
           style={{ margin: '4px 16px' }}
         />
       )}

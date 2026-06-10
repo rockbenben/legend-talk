@@ -1,13 +1,40 @@
-/* Display serif (Fraunces) for headings + character names — must precede tailwindcss */
-@import url('https://fonts.googleapis.cn/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap');
+/* Display + body serifs for the「议事录」(Proceedings) theme — must precede tailwindcss */
+@import url('https://fonts.googleapis.cn/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;600&display=swap');
 @import "tailwindcss";
 @variant dark (&:where(.dark, .dark *));
 
 /*
- * Body uses antd's default font stack (system sans). The display serif is
- * applied case-by-case via .display-serif on the masthead, section titles,
- * and character names — never globally.
+ * ── 议事录 The Proceedings ─────────────────────────────────────────
+ * The conversation is typeset as the printed proceedings of a learned
+ * society: paper + ink + a single madder-red accent. antd handles
+ * interaction/a11y; these variables + the token theme in ThemeProvider
+ * carry the entire visual layer.
+ *
+ * --lt-* variables are the design source of truth. antd tokens are
+ * seeded from the same palette in ThemeProvider.tsx — keep in sync.
  */
+:root {
+  --lt-paper: #F6F4EC;
+  --lt-paper-deep: #EFECDF;
+  --lt-ink: #211F19;
+  --lt-ink-soft: #5C584C;
+  --lt-ink-faint: #8E887A;
+  --lt-madder: #8C2F39;
+  --lt-rule: #D9D3C2;
+  --lt-rule-dark: #B9B19B;
+  --lt-serif-display: 'Cormorant', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif;
+  --lt-serif-body: 'Spectral', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif;
+}
+.dark {
+  --lt-paper: #1A1813;
+  --lt-paper-deep: #141310;
+  --lt-ink: #E7E1D0;
+  --lt-ink-soft: #A89F8B;
+  --lt-ink-faint: #7A7263;
+  --lt-madder: #BE6A72;
+  --lt-rule: #35311F;
+  --lt-rule-dark: #4A4435;
+}
 
 html, body {
   margin: 0;
@@ -17,16 +44,228 @@ html, body {
 /* Background + color are applied by ThemeProvider via JS so they follow
    the active antd theme tokens (light / dark) without scope issues. */
 
+/* Paper grain — fixed overlay, never intercepts input */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.52 0 0 0 0 0.42 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark body::before { opacity: .5; }
+#root { position: relative; z-index: 1; }
+
+::selection { background: var(--lt-madder); color: var(--lt-paper); }
+
+/* Quiet print-like scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--lt-rule-dark) transparent; }
+
 /* Used on: masthead wordmark, page titles, character/speaker names. */
 .display-serif {
-  font-family: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  font-family: var(--lt-serif-display);
   font-feature-settings: 'kern' 1, 'liga' 1;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.01em;
 }
 .display-serif-italic {
-  font-family: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  font-family: var(--lt-serif-display);
   font-style: italic;
   font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* Letterspaced small-caps label — roles, actions, metadata */
+.lt-caps {
+  font-size: 11px;
+  letter-spacing: .32em;
+  text-indent: .32em;
+  text-transform: uppercase;
+}
+
+/* ── Masthead (Layout header) ── */
+.lt-masthead {
+  border-bottom: 4px double var(--lt-ink) !important;
+}
+.lt-brand {
+  font-family: var(--lt-serif-display);
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+.lt-brand .lt-brand-talk {
+  font-style: italic;
+  color: var(--lt-madder);
+}
+
+/* ── Character speech: marginal speaker label + transcript body ── */
+.lt-speech {
+  display: grid;
+  grid-template-columns: 116px 1fr;
+  gap: 24px;
+  margin: 30px 0 4px;
+}
+.lt-speech-margin {
+  text-align: end;
+  padding-top: 5px;
+  min-width: 0;
+}
+.lt-speech-margin .lt-speech-name {
+  font-family: var(--lt-serif-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--lt-ink);
+  overflow-wrap: break-word;
+}
+.lt-speech-margin .lt-speech-name::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--lt-madder);
+  margin: 8px 0 7px;
+  margin-inline-start: auto;
+}
+.lt-speech-margin .lt-speech-meta {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--lt-ink-faint);
+  line-height: 1.8;
+}
+.lt-speech-margin .lt-speech-avatar {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.lt-speech-body {
+  font-family: var(--lt-serif-body);
+  font-size: 16px;
+  line-height: 1.98;
+  color: var(--lt-ink);
+  word-break: break-word;
+  min-width: 0;
+}
+.lt-speech-body p + p,
+.lt-synthesis-body p + p,
+.lt-chair-text p + p { margin-top: .9em; }
+/* Drop cap on the opening paragraph of a roundtable speech */
+.lt-dropcap > p:first-of-type::first-letter {
+  font-family: var(--lt-serif-display);
+  font-size: 2.9em;
+  font-weight: 600;
+  float: left;
+  line-height: .82;
+  padding: 5px 9px 0 0;
+  color: var(--lt-madder);
+}
+/* Action buttons under a speech align with the text column */
+.lt-after-speech { padding-inline-start: 140px; }
+
+/* ── Chair (user) message: double madder rule on the outer edge ── */
+.lt-chair {
+  position: relative;
+  border-inline-end: 1px solid var(--lt-madder);
+  padding-inline-end: 18px;
+}
+.lt-chair::after {
+  content: '';
+  position: absolute;
+  inset-block: 2px;
+  inset-inline-end: 4px;
+  width: 1px;
+  background: var(--lt-madder);
+}
+.lt-chair-label {
+  font-size: 10.5px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--lt-madder);
+  text-align: end;
+  margin-bottom: 8px;
+}
+.lt-chair-text {
+  font-family: var(--lt-serif-body);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--lt-ink);
+  word-break: break-word;
+}
+
+/* ── Moderator synthesis: double-framed memorandum ── */
+.lt-synthesis {
+  border: 1px solid var(--lt-ink-soft);
+  outline: 1px solid var(--lt-rule-dark);
+  outline-offset: 4px;
+  padding: 26px 30px 28px;
+  margin: 44px 5px 18px;
+}
+.lt-synthesis-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.lt-synthesis-head::before,
+.lt-synthesis-head::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--lt-rule-dark);
+}
+.lt-synthesis-head > span {
+  font-family: var(--lt-serif-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .38em;
+  text-indent: .38em;
+  color: var(--lt-madder);
+  white-space: nowrap;
+}
+.lt-synthesis-body {
+  font-family: var(--lt-serif-body);
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--lt-ink-soft);
+  word-break: break-word;
+}
+.lt-synthesis-body strong, .lt-synthesis-body b { color: var(--lt-ink); }
+
+/* ── Ledger-line input (ChatInput) ── */
+.lt-ledger {
+  border-bottom: 1px solid var(--lt-ink);
+  transition: border-color .25s, box-shadow .25s;
+}
+.lt-ledger:focus-within {
+  border-bottom-color: var(--lt-madder);
+  box-shadow: 0 1px 0 0 var(--lt-madder);
+}
+.lt-ledger textarea {
+  font-family: var(--lt-serif-body) !important;
+  font-size: 16px !important;
+}
+.lt-ledger textarea::placeholder {
+  font-style: italic;
+  color: var(--lt-ink-faint) !important;
+}
+.lt-send.ant-btn {
+  letter-spacing: .22em;
+  text-indent: .22em;
+  font-weight: 600;
+}
+
+/* ── Proceedings action row (ActionBar) ── */
+.lt-actions .ant-btn {
+  letter-spacing: .2em;
+  text-indent: .2em;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* Round divider text */
+.lt-round-rule {
+  letter-spacing: .4em;
+  text-indent: .4em;
+  font-size: 11px;
 }
 
 /* Dropdown / Menu — selected state uses color only, no heavy bg block.
@@ -36,4 +275,18 @@ html, body {
 .ant-dropdown-menu-item-active,
 .ant-menu-item-selected {
   background: transparent !important;
+}
+
+@media (max-width: 640px) {
+  .lt-speech { grid-template-columns: 1fr; gap: 10px; }
+  .lt-speech-margin {
+    text-align: start;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-top: 0;
+  }
+  .lt-speech-margin .lt-speech-name::after { display: none; }
+  .lt-speech-margin .lt-speech-avatar { margin-bottom: 0; }
+  .lt-after-speech { padding-inline-start: 0; }
 }

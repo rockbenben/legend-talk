@@ -108,28 +108,27 @@ export function Layout() {
       }}
     >
       <Header
+        className="lt-masthead"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 16px',
-          borderBottom: `1px solid ${token.colorBorderSecondary}`,
         }}
       >
         <h1
-          className="display-serif"
+          className="lt-brand"
           onClick={() => navigate(lang ? `/${lang}/chat` : '/chat')}
           style={{
             margin: 0,
-            fontSize: 22,
-            fontWeight: 500,
+            fontSize: 16,
             lineHeight: 1,
             cursor: 'pointer',
             userSelect: 'none',
             color: token.colorText,
           }}
         >
-          Legend <span className="display-serif-italic" style={{ fontWeight: 400 }}>Talk</span>
+          Legend <span className="lt-brand-talk">Talk</span>
         </h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <LanguageToggle />

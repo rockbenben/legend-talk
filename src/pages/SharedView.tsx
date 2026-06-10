@@ -68,7 +68,7 @@ export function SharedView() {
       <Space direction="vertical" align="center" size="middle" style={{ width: '100%', height: '100%', justifyContent: 'center', display: 'flex' }}>
         <Text type="danger">{error}</Text>
         <Link to={lp('/chat')}>
-          <Button type="primary" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPosition="end">
+          <Button type="primary" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPlacement="end">
             {t('shared.startOwn')}
           </Button>
         </Link>
@@ -127,7 +127,7 @@ export function SharedView() {
 
       <div style={{ display: 'flex', justifyContent: 'center', padding: 16, borderTop: '1px solid var(--ant-color-border-secondary)' }}>
         <Link to={lp('/chat')}>
-          <Button type="primary" size="large" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPosition="end">
+          <Button type="primary" size="large" icon={<ArrowRightOutlined className="rtl:-scale-x-100" />} iconPlacement="end">
             {t('shared.startOwn')}
           </Button>
         </Link>

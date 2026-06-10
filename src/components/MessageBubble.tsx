@@ -1,11 +1,7 @@
 import { memo, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
-import { Typography, theme as antTheme } from 'antd';
 import { Avatar } from './Avatar';
-
-const { Text } = Typography;
-const { useToken } = antTheme;
 
 interface MessageBubbleProps {
   content: string;
@@ -17,19 +13,19 @@ interface MessageBubbleProps {
   isModerator?: boolean;
 }
 
-const SERIF_BODY_SIZE = 'clamp(15px, 0.6vw + 13.4px, 16.5px)';
-
 /**
- * Three semantic registers, three visual languages:
+ * Three semantic registers, typeset as printed proceedings (议事录):
  *
- *   Character → portrait + bold serif name + serif body. The "voice" form.
- *   Chair (user) → right-aligned, accent-edged. The "intervention" form.
- *   Moderator (⚖️) → hairline-framed italic synthesis. The "frame around
- *                    voices", not a voice itself.
+ *   Character → marginal speaker label (name + madder rule + time) beside
+ *               the transcript body, drop cap on the opening paragraph.
+ *   Chair (user) → end-aligned block carried by a double madder rule.
+ *   Moderator → double-framed memorandum with a centered letterspaced head.
+ *
+ * Visual layer lives in index.css (.lt-speech / .lt-chair / .lt-synthesis);
+ * this component only decides which register applies.
  */
 function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp, isModerator = false }: MessageBubbleProps) {
   const { t, i18n } = useTranslation();
-  const { token } = useToken();
   const trimmed = content?.trim() || '';
   const isEmpty = !trimmed;
   const isRaw = !isEmpty && trimmed.length === 1;
@@ -53,138 +49,50 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, timestamp, is
     ? new Intl.DateTimeFormat(i18n.language, { dateStyle: 'medium', timeStyle: 'short' }).format(timestamp)
     : undefined;
 
-  // ── Moderator: hairline-framed synthesis (left-aligned for readability) ──
+  // ── Moderator: double-framed memorandum ──────────────────────────────
   if (isModerator) {
     const moderatorLabel = name || t('moderator.name');
     return (
-      <div style={{ margin: '28px 0' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            color: token.colorTextTertiary,
-            fontSize: 12,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            marginBottom: 12,
-            fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
-          }}
-        >
-          <span aria-hidden style={{ width: 24, height: 1, background: token.colorBorderSecondary, flexShrink: 0 }} />
-          <span>⚖ {moderatorLabel}{timeLabel ? ` · ${timeLabel}` : ''}</span>
-          <span style={{ flex: 1, height: 1, background: token.colorBorderSecondary }} />
+      <div className="lt-synthesis">
+        <div className="lt-synthesis-head">
+          <span title={fullDate}>⚖ {moderatorLabel}{timeLabel ? ` · ${timeLabel}` : ''}</span>
         </div>
-        {!isEmpty && (
-          <div
-            className="display-serif-italic prose dark:prose-invert prose-sm max-w-none"
-            style={{
-              fontSize: SERIF_BODY_SIZE,
-              lineHeight: 1.7,
-              color: token.colorTextSecondary,
-              wordBreak: 'break-word',
-              paddingInlineStart: 12,
-              borderInlineStart: `2px solid ${token.colorBorderSecondary}`,
-            }}
-          >
-            {renderedBody}
-          </div>
-        )}
+        {!isEmpty && <div className="lt-synthesis-body">{renderedBody}</div>}
       </div>
     );
   }
 
-  // ── Chair (user): right-aligned intervention ─────────────────────────
+  // ── Chair (user): end-aligned, double madder rule ────────────────────
   if (isUser) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '20px 0' }}>
-        <div style={{ maxWidth: '80%' }}>
-          <div
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: token.colorPrimary,
-              marginBottom: 6,
-              textAlign: 'end',
-              fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
-            }}
-            title={fullDate}
-          >
+      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '34px 0 10px' }}>
+        <div className="lt-chair" style={{ maxWidth: '78%' }}>
+          <div className="lt-chair-label" title={fullDate}>
             {t('chat.theChair')}{timeLabel ? ` · ${timeLabel}` : ''}
           </div>
-          {!isEmpty && (
-            <div
-              className="display-serif"
-              style={{
-                padding: '10px 14px',
-                borderInlineEnd: `2px solid ${token.colorPrimary}`,
-                background: `color-mix(in srgb, ${token.colorPrimary} 7%, transparent)`,
-                fontSize: SERIF_BODY_SIZE,
-                lineHeight: 1.65,
-                color: token.colorText,
-                wordBreak: 'break-word',
-              }}
-            >
-              <div className="prose dark:prose-invert prose-sm max-w-none">
-                {renderedBody}
-              </div>
-            </div>
-          )}
+          {!isEmpty && <div className="lt-chair-text">{renderedBody}</div>}
         </div>
       </div>
     );
   }
 
-  // ── Character: portrait + name header + serif body ───────────────────
+  // ── Character: marginal speaker label + transcript body ──────────────
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, margin: '24px 0' }}>
-      <div style={{ flexShrink: 0, paddingTop: 2 }}>
-        <Avatar emoji={avatar || '👤'} color={color || 'gray'} size="md" />
-      </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap', marginBottom: 8 }}>
-          {name && (
-            <Text
-              className="display-serif"
-              style={{
-                fontSize: 17,
-                fontWeight: 600,
-                color: token.colorText,
-                lineHeight: 1.2,
-              }}
-            >
-              {name}
-            </Text>
-          )}
-          {timeLabel && (
-            <span
-              style={{
-                fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
-                fontSize: 11,
-                letterSpacing: '0.06em',
-                color: token.colorTextTertiary,
-              }}
-              title={fullDate}
-            >
-              {timeLabel}
-            </span>
-          )}
-        </div>
-        {!isEmpty && (
-          <div
-            className="display-serif prose dark:prose-invert prose-sm max-w-none"
-            style={{
-              fontSize: SERIF_BODY_SIZE,
-              lineHeight: 1.7,
-              color: token.colorText,
-              wordBreak: 'break-word',
-            }}
-          >
-            {renderedBody}
-          </div>
+    <div className="lt-speech">
+      <div className="lt-speech-margin">
+        <span className="lt-speech-avatar">
+          <Avatar emoji={avatar || '👤'} color={color || 'gray'} size="xs" />
+        </span>
+        {name && <div className="lt-speech-name">{name}</div>}
+        {timeLabel && (
+          <span className="lt-speech-meta" title={fullDate}>{timeLabel}</span>
         )}
       </div>
+      {!isEmpty && (
+        <div className={`lt-speech-body${name && !isRaw ? ' lt-dropcap' : ''}`}>
+          {renderedBody}
+        </div>
+      )}
     </div>
   );
 }

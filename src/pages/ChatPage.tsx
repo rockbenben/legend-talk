@@ -158,7 +158,7 @@ export function ChatPage() {
                 <Alert
                   type="warning"
                   showIcon
-                  message={t('home.apiKeyBanner')}
+                  title={t('home.apiKeyBanner')}
                   action={<Button type="primary" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
                   style={{ marginBottom: 24 }}
                 />
@@ -180,7 +180,7 @@ export function ChatPage() {
                     onClick={handleAutoRoundtable}
                     disabled={!topicInput.trim()}
                     icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
-                    iconPosition="end"
+                    iconPlacement="end"
                   >
                     {t('home.autoRoundtable')}
                   </Button>
@@ -289,7 +289,7 @@ export function ChatPage() {
                       onClick={startRoundtable}
                       disabled={selectedIds.length < 2}
                       icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
-                      iconPosition="end"
+                      iconPlacement="end"
                     >
                       {t('roundtable.start')}
                     </Button>

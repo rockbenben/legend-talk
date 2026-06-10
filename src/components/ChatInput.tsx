@@ -23,32 +23,36 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
     <div
       style={{
         display: 'flex',
-        gap: 8,
-        padding: '12px 16px',
+        gap: 12,
+        alignItems: 'flex-end',
+        padding: '14px 16px 16px',
         borderTop: '1px solid var(--ant-color-border-secondary)',
       }}
     >
-      <Input.TextArea
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onPressEnter={(e) => {
-          if (!e.shiftKey) {
-            e.preventDefault();
-            handleSubmit();
-          }
-        }}
-        placeholder={t('chat.inputPlaceholder')}
-        disabled={disabled}
-        autoSize={{ minRows: 1, maxRows: 6 }}
-        style={{ flex: 1 }}
-      />
+      <div className="lt-ledger" style={{ flex: 1, minWidth: 0 }}>
+        <Input.TextArea
+          variant="borderless"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onPressEnter={(e) => {
+            if (!e.shiftKey) {
+              e.preventDefault();
+              handleSubmit();
+            }
+          }}
+          placeholder={t('chat.inputPlaceholder')}
+          disabled={disabled}
+          autoSize={{ minRows: 1, maxRows: 6 }}
+          style={{ paddingInlineStart: 0 }}
+        />
+      </div>
       <Button
+        className="lt-send"
         type="primary"
         size="large"
         onClick={handleSubmit}
         disabled={disabled || !value.trim()}
-        icon={<SendOutlined />}
-        style={{ alignSelf: 'flex-end' }}
+        icon={<SendOutlined className="rtl:-scale-x-100" />}
       >
         {t('chat.send')}
       </Button>

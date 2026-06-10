@@ -67,7 +67,8 @@ export function resolveProvider() {
 
   const DEFAULT_CORS_PROXY = 'https://cors.api2026.workers.dev';
   const useCors = !isCustom && settings.corsEnabled[settings.defaultProvider];
-  const corsProxy = useCors ? (settings.corsProxy || DEFAULT_CORS_PROXY) : undefined;
+  // Strip trailing slashes — the proxy rejects "proxy.com//https://..." with a 400.
+  const corsProxy = useCors ? (settings.corsProxy || DEFAULT_CORS_PROXY).replace(/\/+$/, '') : undefined;
   return { adapter, apiKey, model, lang: settings.language, corsProxy, thinkingLevel: settings.thinkingLevel };
 }
 

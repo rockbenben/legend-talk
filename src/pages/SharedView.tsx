@@ -47,6 +47,8 @@ export function SharedView() {
       const parts = data.slice(2).split(':');
       let proxy = useSettingsStore.getState().corsProxy;
       try { if (parts.length >= 2) proxy = atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')); } catch { /* use default */ }
+      // Old links may carry a trailing-slash proxy in the tag — "proxy.com//s/id" 400s.
+      proxy = proxy.replace(/\/+$/, '');
       const id = parts.length >= 2 ? parts[1] : parts[0];
       fetch(`${proxy}/s/${id}`)
         .then((res) => { if (!res.ok) throw new Error('Not found'); return res.text(); })

@@ -275,7 +275,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
       const base64 = await compressToBase64(payload);
       const origin = window.location.origin + window.location.pathname;
       let url = `${origin}#/shared/${base64}`;
-      const corsProxy = useSettingsStore.getState().corsProxy;
+      // Strip trailing slashes — "proxy.com//shorten" 404s, and the proxyTag baked
+      // into the share URL must be the canonical form for receivers.
+      const corsProxy = useSettingsStore.getState().corsProxy.replace(/\/+$/, '');
       const noShortKey = 'legend-talk-no-shorten';
       let noShortList: string[] = [];
       try { noShortList = JSON.parse(sessionStorage.getItem(noShortKey) || '[]'); } catch { /* ok */ }

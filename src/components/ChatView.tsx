@@ -519,8 +519,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
         </div>
       )}
 
-      {/* Title bar */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, padding: '10px 20px', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
+      {/* Title bar — no own border; the participants bar below carries the single hairline */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, padding: '10px 20px 2px' }}>
         {editingTitle ? (
           <Input
             autoFocus

@@ -81,9 +81,9 @@ body::before {
   text-transform: uppercase;
 }
 
-/* ── Masthead (Layout header) ── */
+/* ── Masthead (Layout header) — one quiet hairline ── */
 .lt-masthead {
-  border-bottom: 4px double var(--lt-ink) !important;
+  border-bottom: 1px solid var(--lt-rule-dark) !important;
 }
 .lt-brand {
   font-family: var(--lt-serif-display);
@@ -161,19 +161,10 @@ body::before {
 /* Action buttons under a speech align with the text column */
 .lt-after-speech { padding-inline-start: 140px; }
 
-/* ── Chair (user) message: double madder rule on the outer edge ── */
+/* ── Chair (user) message: single madder rule on the outer edge ── */
 .lt-chair {
-  position: relative;
-  border-inline-end: 1px solid var(--lt-madder);
-  padding-inline-end: 18px;
-}
-.lt-chair::after {
-  content: '';
-  position: absolute;
-  inset-block: 2px;
-  inset-inline-end: 4px;
-  width: 1px;
-  background: var(--lt-madder);
+  border-inline-end: 2px solid var(--lt-madder);
+  padding-inline-end: 16px;
 }
 .lt-chair-label {
   font-size: 10.5px;
@@ -192,13 +183,11 @@ body::before {
   word-break: break-word;
 }
 
-/* ── Moderator synthesis: double-framed memorandum ── */
+/* ── Moderator synthesis: hairline memorandum (top/bottom rules only) ── */
 .lt-synthesis {
-  border: 1px solid var(--lt-ink-soft);
-  outline: 1px solid var(--lt-rule-dark);
-  outline-offset: 4px;
-  padding: 26px 30px 28px;
-  margin: 44px 5px 18px;
+  border-block: 1px solid var(--lt-rule-dark);
+  padding: 24px 8px 26px;
+  margin: 44px 0 18px;
 }
 .lt-synthesis-head {
   display: flex;
@@ -232,12 +221,11 @@ body::before {
 
 /* ── Ledger-line input (ChatInput) ── */
 .lt-ledger {
-  border-bottom: 1px solid var(--lt-ink);
-  transition: border-color .25s, box-shadow .25s;
+  border-bottom: 1px solid var(--lt-rule-dark);
+  transition: border-color .25s;
 }
 .lt-ledger:focus-within {
   border-bottom-color: var(--lt-madder);
-  box-shadow: 0 1px 0 0 var(--lt-madder);
 }
 .lt-ledger textarea {
   font-family: var(--lt-serif-body) !important;
@@ -253,13 +241,21 @@ body::before {
   font-weight: 600;
 }
 
-/* ── Proceedings action row (ActionBar) ── */
+/* ── Proceedings action row (ActionBar) — quiet text actions, no boxes ── */
 .lt-actions .ant-btn {
   letter-spacing: .2em;
   text-indent: .2em;
   font-size: 12px;
   text-transform: uppercase;
 }
+.lt-actions .ant-btn-default,
+.lt-actions .ant-btn-background-ghost {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.lt-actions .ant-btn-default { color: var(--lt-ink-soft); }
+.lt-actions .ant-btn-default:hover { color: var(--lt-madder); border-color: transparent; }
 
 /* Round divider text */
 .lt-round-rule {

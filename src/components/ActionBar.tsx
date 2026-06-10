@@ -104,7 +104,7 @@ export function ActionBar({
   }
 
   return (
-    <div className="lt-actions" style={{ padding: '8px 16px 0', borderTop: '1px solid var(--ant-color-border-secondary)' }}>
+    <div className="lt-actions" style={{ padding: '8px 16px 0' }}>
       <Space size="small" wrap>
         {isMulti && (
           <Button size="small" type="primary" ghost onClick={onContinue}>

@@ -165,7 +165,7 @@ export function ChatPage() {
               )}
 
               {/* Topic question */}
-              <Card title={<span className="display-serif" style={{ fontSize: 17, fontWeight: 500 }}>{t('home.autoRoundtable')}</span>} style={{ marginBottom: 24 }} size="small">
+              <Card title={<span className="display-serif" style={{ fontSize: 17, fontWeight: 500 }}>{t('home.autoRoundtableTitle')}</span>} style={{ marginBottom: 24 }} size="small">
                 <Space.Compact style={{ width: '100%' }}>
                   <Input
                     size="large"

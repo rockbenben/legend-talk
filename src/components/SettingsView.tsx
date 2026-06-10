@@ -217,7 +217,7 @@ export function SettingsView() {
           {t('settings.defaultProvider')}
         </Title>
         <Form layout="vertical">
-          <Form.Item label="Provider">
+          <Form.Item label={t('settings.provider')}>
             <Select
               value={settings.defaultProvider}
               onChange={handleProviderChange}
@@ -230,7 +230,7 @@ export function SettingsView() {
             label={
               <Space>
                 <span>API Key</span>
-                {currentAdapter?.apiKeyUrl && <a href={currentAdapter.apiKeyUrl} target="_blank" rel="noopener noreferrer">Get Key ↗</a>}
+                {currentAdapter?.apiKeyUrl && <a href={currentAdapter.apiKeyUrl} target="_blank" rel="noopener noreferrer">{t('settings.getKey')}</a>}
               </Space>
             }
           >
@@ -249,7 +249,7 @@ export function SettingsView() {
             label={
               <Space>
                 <span>{t('settings.defaultModel')}</span>
-                {currentAdapter?.docsUrl && <a href={currentAdapter.docsUrl} target="_blank" rel="noopener noreferrer">Docs ↗</a>}
+                {currentAdapter?.docsUrl && <a href={currentAdapter.docsUrl} target="_blank" rel="noopener noreferrer">{t('settings.docs')}</a>}
               </Space>
             }
           >

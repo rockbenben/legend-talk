@@ -34,13 +34,13 @@ const PROCEEDINGS = {
     paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
     ink: '#211F19', inkSoft: '#5C584C',
     madder: '#8C2F39',
-    rule: '#D9D3C2', ruleFaint: '#E7E2D3',
+    rule: '#CCC5AE', ruleFaint: '#DFD9C6',
   },
   dark: {
     paper: '#1A1813', paperDeep: '#141310', elevated: '#23201A',
     ink: '#E7E1D0', inkSoft: '#A89F8B',
     madder: '#BE6A72',
-    rule: '#35312A', ruleFaint: '#27241D',
+    rule: '#3E3930', ruleFaint: '#2C2921',
   },
 };
 

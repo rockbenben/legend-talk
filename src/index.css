@@ -20,8 +20,8 @@
   --lt-ink-soft: #5C584C;
   --lt-ink-faint: #8E887A;
   --lt-madder: #8C2F39;
-  --lt-rule: #D9D3C2;
-  --lt-rule-faint: #E7E2D3;
+  --lt-rule: #CCC5AE;
+  --lt-rule-faint: #DFD9C6;
   --lt-rule-dark: #B9B19B;
   --lt-serif-display: 'Cormorant', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif;
   --lt-serif-body: 'Spectral', 'Noto Serif SC', 'Songti SC', 'SimSun', ui-serif, Georgia, serif;
@@ -33,8 +33,8 @@
   --lt-ink-soft: #A89F8B;
   --lt-ink-faint: #7A7263;
   --lt-madder: #BE6A72;
-  --lt-rule: #35312A;
-  --lt-rule-faint: #27241D;
+  --lt-rule: #3E3930;
+  --lt-rule-faint: #2C2921;
   --lt-rule-dark: #4A4435;
 }
 

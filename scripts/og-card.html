@@ -1,302 +1,149 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<!--
+  Social card source for public/og-image.png.
+  Concept: "The Round Table of Legends" — the product itself, not the app's UI.
+  A ring of real legendary thinkers (spanning eras + cultures) seated around one
+  central question, faint madder threads showing them in debate across the table.
+  Brand palette/type only: paper · ink · madder + Fraunces / Cormorant / Spectral.
+
+  Render (renders at 2× → public/og-image.png is 2400×1260, ratio 1.91:1):
+    chrome --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+      --window-size=1200,630 --virtual-time-budget=4000 \
+      --screenshot=public/og-image.png scripts/og-card.html
+
+  Keep the 161/18 counts in sync with presets.ts (see CLAUDE.md "Marketing copy").
+  The logo (public/logo.svg) distils the same emblem: a round table with seats
+  converging on the madder question dot.
+-->
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Cormorant:ital,wght@0,500;0,600;0,700;1,600&family=Spectral:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --paper:#F6F4EC; --paper-deep:#EFECDF;
+    --ink:#211F19; --ink-soft:#5C584C; --ink-faint:#8E887A;
+    --madder:#8C2F39; --rule:#CCC5AE; --rule-faint:#DFD9C6;
+    --display:'Cormorant','Noto Serif SC',serif;
+    --body:'Spectral','Noto Serif SC',serif;
+    --brand:'Fraunces',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1200px;height:630px;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);
+       -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;}
+  .card{position:relative;width:1200px;height:630px;overflow:hidden;}
 
-body {
-  width: 1200px;
-  height: 630px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #07111f 0%, #0b1c36 100%);
-  font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
-  position: relative;
-}
+  /* faint page hairlines */
+  .pl{position:absolute;left:64px;right:64px;height:1px;background:var(--rule-faint);}
+  .pl.top{top:30px;} .pl.bot{bottom:28px;}
 
-/* ── Background texture ── */
-.bg-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, #0e2240 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.55;
-}
+  /* ── left identity ── */
+  .rail{position:absolute;left:70px;top:0;bottom:0;width:430px;
+        display:flex;flex-direction:column;justify-content:center;}
+  .eyebrow{font-family:var(--display);font-size:16px;font-weight:600;
+           letter-spacing:.34em;text-transform:uppercase;color:var(--ink-faint);}
+  .eyebrow .zh{font-family:'Noto Serif SC',serif;letter-spacing:.2em;color:var(--ink-soft);}
+  .wm{margin-top:22px;}
+  .wm .legend{display:block;font-family:var(--brand);font-weight:700;font-size:90px;
+              line-height:.9;letter-spacing:.004em;color:var(--ink);}
+  .wm .talk{display:block;font-family:var(--brand);font-weight:600;font-style:italic;
+            font-size:94px;line-height:.96;color:var(--madder);margin-top:2px;}
+  .mrule{width:64px;height:2px;background:var(--madder);margin-top:24px;}
+  .tag{font-family:var(--display);font-style:italic;font-weight:600;font-size:28px;
+       line-height:1.26;color:var(--ink-soft);margin-top:22px;max-width:360px;}
+  .stats{font-family:var(--body);font-size:20px;color:var(--ink-soft);margin-top:30px;letter-spacing:.01em;}
+  .stats b{font-family:var(--display);font-weight:700;font-size:23px;color:var(--ink);}
+  .stats .sep{color:var(--rule);margin:0 9px;}
+  .url{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.26em;
+       text-transform:uppercase;color:var(--ink-faint);margin-top:14px;}
 
-/* ── Panel divider ── */
-.divider {
-  position: absolute;
-  left: 597px;
-  top: 40px;
-  bottom: 40px;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, #1a3a60 30%, #1a3a60 70%, transparent);
-  opacity: 0.5;
-}
-
-/* ── Right panel glow ── */
-.right-glow {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 620px;
-  height: 630px;
-  background: radial-gradient(ellipse at 50% 50%, #0d2848 0%, transparent 70%);
-}
-
-/* ══════════════════════════════════════
-   LEFT PANEL
-══════════════════════════════════════ */
-.left-panel {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 597px;
-  height: 630px;
-  padding: 0 0 0 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.gold-bar {
-  position: absolute;
-  left: 80px;
-  top: 160px;
-  width: 6px;
-  height: 220px;
-  border-radius: 3px;
-  background: linear-gradient(to bottom, #eacb6a, #c89018);
-}
-
-.label-tag {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3.5px;
-  color: #c89020;
-  margin-bottom: 22px;
-  margin-left: 33px;
-}
-
-.title-legend {
-  font-size: 106px;
-  font-weight: 700;
-  color: #edf2f8;
-  letter-spacing: -5px;
-  line-height: 1;
-  margin-left: 30px;
-  text-shadow: 0 2px 40px rgba(10, 40, 80, 0.8);
-}
-
-.title-talk {
-  font-size: 106px;
-  font-weight: 400;
-  font-style: italic;
-  color: #e0b840;
-  letter-spacing: -3px;
-  line-height: 1;
-  margin-left: 32px;
-  margin-top: 4px;
-  text-shadow: 0 0 60px rgba(220, 160, 20, 0.25), 0 2px 20px rgba(0,0,0,0.5);
-}
-
-.separator {
-  width: 380px;
-  height: 2px;
-  background: linear-gradient(to right, #e0b840, #c89018, transparent);
-  margin: 16px 0 16px 32px;
-  opacity: 0.55;
-}
-
-.subtitle {
-  font-size: 17px;
-  color: #5a7a90;
-  letter-spacing: 2px;
-  margin-left: 32px;
-  margin-bottom: 14px;
-}
-
-.stats {
-  font-size: 18px;
-  color: #7a96aa;
-  margin-left: 32px;
-}
-
-.stats span {
-  color: #d4a428;
-}
-
-.domain {
-  font-family: 'Courier New', 'Lucida Console', monospace;
-  font-size: 15px;
-  color: #304a60;
-  letter-spacing: 1px;
-  position: absolute;
-  bottom: 36px;
-  left: 112px;
-}
-
-/* ══════════════════════════════════════
-   RIGHT PANEL – SVG roundtable
-══════════════════════════════════════ */
-.right-panel {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 603px;
-  height: 630px;
-}
-
-.right-panel svg {
-  width: 603px;
-  height: 630px;
-}
+  /* ── right emblem ── */
+  #emblem{position:absolute;inset:0;pointer-events:none;}
+  .seat{position:absolute;transform:translate(-50%,-50%);text-align:center;white-space:nowrap;}
+  .seat .nm{font-family:var(--display);font-weight:600;font-size:19px;line-height:1;color:var(--ink);}
+  .seat .er{font-family:var(--display);font-style:italic;font-size:13px;color:var(--ink-faint);margin-top:3px;}
+  .qbox{position:absolute;transform:translate(-50%,-50%);text-align:center;width:230px;}
+  .qbox .ql{font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.32em;
+            text-transform:uppercase;color:var(--ink-faint);}
+  .qbox .qt{font-family:var(--display);font-style:italic;font-weight:600;font-size:31px;
+            line-height:1.12;color:var(--ink);margin-top:7px;}
+  .qbox .qu{width:42px;height:2px;background:var(--madder);margin:11px auto 0;}
 </style>
 </head>
 <body>
+  <div class="card">
+    <div class="pl top"></div><div class="pl bot"></div>
 
-<div class="bg-dots"></div>
-<div class="right-glow"></div>
-<div class="divider"></div>
+    <div class="rail">
+      <div class="eyebrow">AI&nbsp;Roundtable&nbsp;&nbsp;<span class="zh">圆桌辩论</span></div>
+      <div class="wm"><span class="legend">Legend</span><span class="talk">Talk</span></div>
+      <div class="mrule"></div>
+      <div class="tag">History&rsquo;s greatest minds<br>debate your question.</div>
+      <div class="stats"><b>161</b>&nbsp;thinkers<span class="sep">·</span><b>18</b>&nbsp;languages<span class="sep">·</span>free</div>
+      <div class="url">talk.newzone.top</div>
+    </div>
 
-<!-- ── LEFT PANEL ── -->
-<div class="left-panel">
-  <div class="gold-bar"></div>
-  <div class="label-tag">AI ROUNDTABLE DISCUSSION</div>
-  <div class="title-legend">LEGEND</div>
-  <div class="title-talk">Talk</div>
-  <div class="separator"></div>
-  <div class="subtitle">WITH HISTORY'S GREATEST THINKERS</div>
-  <div class="stats"><span>157</span> Thinkers &nbsp;·&nbsp; <span>18</span> Languages &nbsp;·&nbsp; Free</div>
-  <div class="domain">talk.newzone.top</div>
-</div>
+    <svg id="emblem" viewBox="0 0 1200 630"></svg>
+    <div id="seats"></div>
+  </div>
 
-<!-- ── RIGHT PANEL: Roundtable SVG ── -->
-<!-- SVG viewport: 603×630, center: (303, 315), node radius from center: 210 -->
-<!-- Node positions (r=210): -->
-<!--   top:          (303, 105)           -->
-<!--   top-right:    (303+148, 315-148) = (451, 167) -->
-<!--   right:        (513, 315)           -->
-<!--   bottom-right: (451, 463)           -->
-<!--   bottom:       (303, 525)           -->
-<!--   bottom-left:  (155, 463)           -->
-<!--   left:         (93, 315)            -->
-<!--   top-left:     (155, 167)           -->
-<div class="right-panel">
-<svg viewBox="0 0 603 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="panelGlow" cx="50%" cy="50%" r="55%">
-      <stop offset="0%" stop-color="#0d2848" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#07111f" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="tableGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1a4878" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#07111f" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e0b840" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#c89018" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#e0b840" stop-opacity="0.8"/>
-    </linearGradient>
-    <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="matrix"
-        values="0 0 0 0 0.1  0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0.6 0" result="colored"/>
-      <feMerge><feMergeNode in="colored"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="talkGlow">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
-      <feColorMatrix in="blur" type="matrix"
-        values="0 0 0 0 0.85  0 0 0 0 0.60  0 0 0 0 0.10  0 0 0 0.4 0" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
+<script>
+  const NS='http://www.w3.org/2000/svg';
+  const cx=876, cy=315, Rtick=198, Rname=250, Rdisc=120;
+  // A spread across eras + cultures (incl. women + non-Western); ordered chronologically.
+  const legends=[
+    {n:'Confucius',  e:'551 BC'},
+    {n:'Socrates',   e:'470 BC'},
+    {n:'Hypatia',    e:'AD 360'},
+    {n:'Avicenna',   e:'980'},
+    {n:'da Vinci',   e:'1452'},
+    {n:'Newton',     e:'1643'},
+    {n:'Kant',       e:'1724'},
+    {n:'Darwin',     e:'1809'},
+    {n:'Nietzsche',  e:'1844'},
+    {n:'de Beauvoir',e:'1908'},
+  ];
+  const svg=document.getElementById('emblem');
+  const seats=document.getElementById('seats');
+  const mk=(t,a)=>{const el=document.createElementNS(NS,t);for(const k in a)el.setAttribute(k,a[k]);return el;};
 
-  <!-- Outer dashed decorative ring -->
-  <circle cx="303" cy="315" r="265" fill="none" stroke="#0c2240" stroke-width="2"
-          stroke-dasharray="6 11" opacity="0.8"/>
+  const N=legends.length;
+  const pt=i=>{const a=(-90+i*360/N)*Math.PI/180;return [cx+Rtick*Math.cos(a), cy+Rtick*Math.sin(a)];};
 
-  <!-- Orbit ring (where nodes sit) -->
-  <circle cx="303" cy="315" r="210" fill="none" stroke="#122840" stroke-width="1" opacity="0.6"/>
+  // argument threads — thinkers in dialogue across the table
+  const chords=[[0,4],[1,6],[2,7],[3,9],[5,8],[1,4],[2,9]];
+  chords.forEach(([a,b])=>{const[x1,y1]=pt(a),[x2,y2]=pt(b);
+    svg.appendChild(mk('line',{x1,y1,x2,y2,stroke:'#8C2F39','stroke-width':1,opacity:.3}));});
 
-  <!-- Spoke lines: center → each node -->
-  <g stroke="#162e50" stroke-width="1.5" opacity="0.75">
-    <line x1="303" y1="315" x2="303" y2="105"/>
-    <line x1="303" y1="315" x2="451" y2="167"/>
-    <line x1="303" y1="315" x2="513" y2="315"/>
-    <line x1="303" y1="315" x2="451" y2="463"/>
-    <line x1="303" y1="315" x2="303" y2="525"/>
-    <line x1="303" y1="315" x2="155" y2="463"/>
-    <line x1="303" y1="315" x2="93"  y2="315"/>
-    <line x1="303" y1="315" x2="155" y2="167"/>
-  </g>
+  // central question medallion masks the thread crossings
+  svg.appendChild(mk('circle',{cx,cy,r:Rdisc,fill:'#F6F4EC'}));
+  svg.appendChild(mk('circle',{cx,cy,r:Rdisc,fill:'none',stroke:'#8E887A','stroke-width':1,opacity:.4}));
+  // table ring
+  svg.appendChild(mk('circle',{cx,cy,r:Rtick,fill:'none',stroke:'#5C584C','stroke-width':1,opacity:.55}));
 
-  <!-- Table center glow -->
-  <circle cx="303" cy="315" r="100" fill="url(#tableGlow)"/>
+  legends.forEach((p,i)=>{
+    const ang=(-90 + i*360/N)*Math.PI/180;
+    const c=Math.cos(ang), s=Math.sin(ang);
+    // seat marker
+    svg.appendChild(mk('circle',{cx:cx+Rtick*c,cy:cy+Rtick*s,r:2.8,fill:'#8C2F39'}));
+    // name label
+    const d=document.createElement('div');
+    d.className='seat';
+    d.style.left=(cx+Rname*c)+'px';
+    d.style.top=(cy+Rname*s)+'px';
+    d.innerHTML='<div class="nm">'+p.n+'</div><div class="er">'+p.e+'</div>';
+    seats.appendChild(d);
+  });
 
-  <!-- Central table circle -->
-  <circle cx="303" cy="315" r="78" fill="#06101e" stroke="#2a5888" stroke-width="2.5"/>
-  <circle cx="303" cy="315" r="70" fill="none" stroke="#1a4068" stroke-width="1" opacity="0.5"/>
-  <!-- AI text -->
-  <text x="303" y="304" font-family="Georgia, 'Times New Roman', serif"
-        font-size="32" font-weight="700" fill="#3a8ccf" text-anchor="middle">AI</text>
-  <text x="303" y="330" font-family="Arial, Helvetica, sans-serif"
-        font-size="9" fill="#1e5070" text-anchor="middle" letter-spacing="5">DEBATE</text>
-
-  <!-- ── 8 Thinker Nodes ──
-       Node: r=26, fill=#081628, stroke=#3a70a0, stroke-width=2
-       Initial: 11px italic fill=#5a8cb0
-       Name: 13px Georgia fill=#90b8cc -->
-
-  <!-- Reusable style for node labels -->
-  <style>
-    .node-name { font-family: Georgia, 'Times New Roman', serif; font-size: 13px; fill: #90b8cc; }
-    .node-init { font-family: Georgia, serif; font-size: 12px; fill: #5a8cb0; font-style: italic; }
-  </style>
-
-  <!-- 1. Socrates — top (303, 105) -->
-  <circle cx="303" cy="105" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="303" y="109" class="node-init" text-anchor="middle">S</text>
-  <text x="303" y="68"  class="node-name" text-anchor="middle">Socrates</text>
-
-  <!-- 2. Einstein — top-right (451, 167) -->
-  <circle cx="451" cy="167" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="451" y="171" class="node-init" text-anchor="middle">E</text>
-  <text x="484" y="160" class="node-name" text-anchor="start">Einstein</text>
-
-  <!-- 3. Confucius — right (513, 315) -->
-  <circle cx="513" cy="315" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="513" y="319" class="node-init" text-anchor="middle">C</text>
-  <text x="546" y="319" class="node-name" text-anchor="start">Confucius</text>
-
-  <!-- 4. Newton — bottom-right (451, 463) -->
-  <circle cx="451" cy="463" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="451" y="467" class="node-init" text-anchor="middle">N</text>
-  <text x="484" y="468" class="node-name" text-anchor="start">Newton</text>
-
-  <!-- 5. Aristotle — bottom (303, 525) -->
-  <circle cx="303" cy="525" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="303" y="529" class="node-init" text-anchor="middle">A</text>
-  <text x="303" y="565" class="node-name" text-anchor="middle">Aristotle</text>
-
-  <!-- 6. Marx — bottom-left (155, 463) -->
-  <circle cx="155" cy="463" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="155" y="467" class="node-init" text-anchor="middle">M</text>
-  <text x="120" y="468" class="node-name" text-anchor="end">Marx</text>
-
-  <!-- 7. Plato — left (93, 315) -->
-  <circle cx="93"  cy="315" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="93"  y="319" class="node-init" text-anchor="middle">P</text>
-  <text x="58"  y="319" class="node-name" text-anchor="end">Plato</text>
-
-  <!-- 8. Darwin — top-left (155, 167) -->
-  <circle cx="155" cy="167" r="27" fill="#081628" stroke="#3a70a0" stroke-width="2" filter="url(#nodeGlow)"/>
-  <text x="155" y="171" class="node-init" text-anchor="middle">D</text>
-  <text x="120" y="160" class="node-name" text-anchor="end">Darwin</text>
-
-</svg>
-</div>
-
+  // central question
+  const q=document.createElement('div');
+  q.className='qbox';
+  q.style.left=cx+'px'; q.style.top=cy+'px';
+  q.innerHTML='<div class="ql">The Question</div><div class="qt">What makes<br>a life good?</div><div class="qu"></div>';
+  seats.appendChild(q);
+</script>
 </body>
 </html>

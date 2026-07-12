@@ -58,4 +58,54 @@ describe('settingsStore', () => {
       expect(useSettingsStore.getState().thinkingLevel).toBe(level);
     }
   });
+
+  describe('per-provider memory', () => {
+    it('restores the last model chosen on each provider when switching back', () => {
+      const s = () => useSettingsStore.getState();
+      s().setDefaultModel('deepseek-v4-pro');
+      s().setDefaultProvider('anthropic');
+      s().setDefaultModel('claude-sonnet-5');
+      s().setDefaultProvider('deepseek');
+      expect(s().defaultModel).toBe('deepseek-v4-pro');
+      s().setDefaultProvider('anthropic');
+      expect(s().defaultModel).toBe('claude-sonnet-5');
+    });
+
+    it('falls back to the first catalog model on first visit to a provider', () => {
+      useSettingsStore.getState().setDefaultProvider('zhipu');
+      expect(useSettingsStore.getState().defaultModel).toBe('glm-5.2');
+    });
+
+    it('snapshots legacy active model even if it was never set through the setter', () => {
+      // Simulates state persisted before the memory maps existed.
+      useSettingsStore.setState({ defaultProvider: 'openai', defaultModel: 'gpt-5.6-luna', modelByProvider: {} });
+      const s = () => useSettingsStore.getState();
+      s().setDefaultProvider('anthropic');
+      s().setDefaultProvider('openai');
+      expect(s().defaultModel).toBe('gpt-5.6-luna');
+    });
+
+    it('remembers thinking level per provider, inheriting on first visit', () => {
+      const s = () => useSettingsStore.getState();
+      s().setThinkingLevel('high');
+      s().setDefaultProvider('anthropic');
+      expect(s().thinkingLevel).toBe('high'); // first visit inherits
+      s().setThinkingLevel('off');
+      s().setDefaultProvider('deepseek');
+      expect(s().thinkingLevel).toBe('high');
+      s().setDefaultProvider('anthropic');
+      expect(s().thinkingLevel).toBe('off');
+    });
+
+    it('mergeProviderMemory merges without touching active values', () => {
+      const s = () => useSettingsStore.getState();
+      s().setDefaultModel('deepseek-v4-pro');
+      s().mergeProviderMemory({ openai: 'gpt-5.6' }, { openai: 'medium' });
+      expect(s().defaultModel).toBe('deepseek-v4-pro');
+      expect(s().modelByProvider.openai).toBe('gpt-5.6');
+      s().setDefaultProvider('openai');
+      expect(s().defaultModel).toBe('gpt-5.6');
+      expect(s().thinkingLevel).toBe('medium');
+    });
+  });
 });

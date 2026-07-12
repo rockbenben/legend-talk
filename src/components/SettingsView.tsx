@@ -5,6 +5,7 @@ import { Form, Input, Select, AutoComplete, Button, Switch, App, Typography, Spa
 import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined, ApiOutlined, SettingOutlined, UsergroupAddOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter, PROVIDER_GROUPS } from '../adapters/registry';
+import { resolveProvider } from '../utils/prompt';
 import { getStorageUsage } from '../utils/storage';
 import { downloadFile } from '../utils/export';
 import { compressToBase64, decompressFromBase64 } from '../utils/compress';
@@ -44,6 +45,14 @@ export function SettingsView() {
 
   function applyConfig(config: Record<string, unknown>) {
     const s = useSettingsStore.getState();
+    // Memory maps first, so the provider switch below restores from imported memory.
+    const pickStrings = (obj: unknown, allow?: string[]) =>
+      Object.fromEntries(Object.entries((obj && typeof obj === 'object' ? obj : {}) as Record<string, unknown>)
+        .filter(([, v]) => typeof v === 'string' && (!allow || allow.includes(v)))) as Record<string, string>;
+    s.mergeProviderMemory(
+      pickStrings(config.modelByProvider),
+      pickStrings(config.thinkingByProvider, ['off', 'low', 'medium', 'high']) as Record<string, 'off' | 'low' | 'medium' | 'high'>,
+    );
     if (typeof config.defaultProvider === 'string') s.setDefaultProvider(config.defaultProvider);
     if (typeof config.defaultModel === 'string') s.setDefaultModel(config.defaultModel);
     if (typeof config.language === 'string') { const lng = config.language; s.setLanguage(lng); ensureLanguageLoaded(lng).then(() => i18n.changeLanguage(lng)); }
@@ -129,6 +138,8 @@ export function SettingsView() {
       language: settings.language,
       theme: settings.theme,
       thinkingLevel: settings.thinkingLevel,
+      modelByProvider: settings.modelByProvider,
+      thinkingByProvider: settings.thinkingByProvider,
       roundtableRounds: settings.roundtableRounds,
       corsProxy: settings.corsProxy,
       customBaseUrl: settings.customBaseUrl,
@@ -184,11 +195,26 @@ export function SettingsView() {
     e.target.value = '';
   };
 
-  const handleProviderChange = (v: string) => {
-    settings.setDefaultProvider(v);
-    const adapter = getAdapter(v);
-    const firstModel = adapter?.models?.[0]?.id;
-    if (firstModel) settings.setDefaultModel(firstModel);
+  // Model/thinking restore lives in the store action (per-provider memory).
+  const handleProviderChange = (v: string) => settings.setDefaultProvider(v);
+
+  const [testing, setTesting] = useState(false);
+  const handleTestConnection = async () => {
+    // resolveProvider applies the same custom-URL and CORS-proxy resolution the
+    // chat path uses, so the test exercises the real request shape.
+    const provider = resolveProvider();
+    if (!provider) {
+      message.error(t('settings.connectionFailed'));
+      return;
+    }
+    setTesting(true);
+    try {
+      const ok = await provider.adapter.validateKey(provider.apiKey, provider.corsProxy);
+      if (ok) message.success(t('settings.connectionOk'));
+      else message.error(t('settings.connectionFailed'));
+    } finally {
+      setTesting(false);
+    }
   };
 
   const providerOptions = PROVIDER_GROUPS.flatMap((g) => {
@@ -234,11 +260,20 @@ export function SettingsView() {
               </Space>
             }
           >
-            <Input.Password
-              value={settings.apiKeys[settings.defaultProvider] || ''}
-              onChange={(e) => settings.setApiKey(settings.defaultProvider, e.target.value)}
-              placeholder={t('settings.apiKeyPlaceholder', { provider: currentAdapter?.name || '' })}
-            />
+            <Space.Compact style={{ width: '100%' }}>
+              <Input.Password
+                value={settings.apiKeys[settings.defaultProvider] || ''}
+                onChange={(e) => settings.setApiKey(settings.defaultProvider, e.target.value)}
+                placeholder={t('settings.apiKeyPlaceholder', { provider: currentAdapter?.name || '' })}
+              />
+              <Button
+                loading={testing}
+                onClick={handleTestConnection}
+                disabled={settings.defaultProvider !== 'custom' && !settings.apiKeys[settings.defaultProvider]}
+              >
+                {t('settings.testConnection')}
+              </Button>
+            </Space.Compact>
           </Form.Item>
           {settings.defaultProvider === 'custom' && (
             <Form.Item label="API Base URL" extra={t('settings.customBaseUrlHint')}>

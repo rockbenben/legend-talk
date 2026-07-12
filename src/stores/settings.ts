@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { persistStorage } from '../utils/persistStorage';
-import type { Character } from '../types';
+import { getAdapter } from '../adapters/registry';
+import type { Character, ThinkingLevel } from '../types';
 
 /** Stored custom character — includes display name + era for i18n injection */
 export interface CustomCharacter extends Character {
@@ -12,7 +13,12 @@ export interface CustomCharacter extends Character {
 interface SettingsState {
   apiKeys: Record<string, string>;
   defaultProvider: string;
+  /** Active model/thinking for the CURRENT provider — what resolveProvider consumes. */
   defaultModel: string;
+  /** Per-provider memory: last model / thinking level chosen on each provider.
+   *  Maintained by the setters; setDefaultProvider restores from here on switch. */
+  modelByProvider: Record<string, string>;
+  thinkingByProvider: Record<string, ThinkingLevel>;
   language: string;
   theme: 'light' | 'dark';
   corsProxy: string;
@@ -34,6 +40,8 @@ interface SettingsState {
   setThinkingLevel: (level: 'off' | 'low' | 'medium' | 'high') => void;
   setRoundtableRounds: (rounds: number) => void;
   setShareCardEndpoint: (url: string) => void;
+  /** Merge imported per-provider memory (settings sync) without touching active values. */
+  mergeProviderMemory: (models: Record<string, string>, thinking: Record<string, ThinkingLevel>) => void;
   toggleFavorite: (characterId: string) => void;
   clearApiKeys: () => void;
   saveCustomCharacter: (char: CustomCharacter) => void;
@@ -46,6 +54,8 @@ export const useSettingsStore = create<SettingsState>()(
       apiKeys: {},
       defaultProvider: 'deepseek',
       defaultModel: 'deepseek-v4-flash',
+      modelByProvider: {},
+      thinkingByProvider: {},
       language: navigator.language || 'en',
       theme: 'light',
       corsProxy: 'https://cors.api2026.workers.dev',
@@ -58,17 +68,38 @@ export const useSettingsStore = create<SettingsState>()(
       customCharacters: [],
       setApiKey: (provider, key) =>
         set((s) => ({ apiKeys: { ...s.apiKeys, [provider]: key } })),
-      setDefaultProvider: (defaultProvider) => set({ defaultProvider }),
-      setDefaultModel: (defaultModel) => set({ defaultModel }),
+      setDefaultProvider: (provider) =>
+        set((s) => {
+          if (provider === s.defaultProvider) return {};
+          return {
+            defaultProvider: provider,
+            // Snapshot the outgoing provider's active choices (covers state
+            // persisted before the memory maps existed), then restore the
+            // incoming provider's. First visit falls back to its first catalog
+            // model; thinking level carries over unchanged.
+            modelByProvider: { ...s.modelByProvider, [s.defaultProvider]: s.defaultModel },
+            thinkingByProvider: { ...s.thinkingByProvider, [s.defaultProvider]: s.thinkingLevel },
+            defaultModel: s.modelByProvider[provider] ?? getAdapter(provider)?.models[0]?.id ?? '',
+            thinkingLevel: s.thinkingByProvider[provider] ?? s.thinkingLevel,
+          };
+        }),
+      setDefaultModel: (defaultModel) =>
+        set((s) => ({ defaultModel, modelByProvider: { ...s.modelByProvider, [s.defaultProvider]: defaultModel } })),
       setLanguage: (language) => set({ language }),
       setTheme: (theme) => set({ theme }),
       setCorsProxy: (corsProxy) => set({ corsProxy }),
       setCorsEnabled: (provider, enabled) =>
         set((s) => ({ corsEnabled: { ...s.corsEnabled, [provider]: enabled } })),
       setCustomBaseUrl: (customBaseUrl) => set({ customBaseUrl }),
-      setThinkingLevel: (thinkingLevel) => set({ thinkingLevel }),
+      setThinkingLevel: (thinkingLevel) =>
+        set((s) => ({ thinkingLevel, thinkingByProvider: { ...s.thinkingByProvider, [s.defaultProvider]: thinkingLevel } })),
       setRoundtableRounds: (roundtableRounds) => set({ roundtableRounds }),
       setShareCardEndpoint: (shareCardEndpoint) => set({ shareCardEndpoint }),
+      mergeProviderMemory: (models, thinking) =>
+        set((s) => ({
+          modelByProvider: { ...s.modelByProvider, ...models },
+          thinkingByProvider: { ...s.thinkingByProvider, ...thinking },
+        })),
       toggleFavorite: (characterId) =>
         set((s) => ({
           favoriteCharacters: s.favoriteCharacters.includes(characterId)

@@ -23,6 +23,25 @@ interface SharedData {
   messages: SharedMessage[];
 }
 
+/**
+ * Parse + validate a decoded share payload. The payload comes from a URL and is
+ * fully third-party-controlled, so a successful JSON.parse guarantees nothing
+ * about shape. `messages`/`characters` must be arrays (render maps over them),
+ * and `title` must be a string — it flows unguarded into a React child
+ * (`displayTitle`), and a non-string (e.g. `{}`) throws "Objects are not valid
+ * as a React child", crashing the whole view instead of showing the graceful
+ * malformed-link fallback. Non-string titles are dropped, not rejected, so an
+ * otherwise-renderable payload still displays (falling back to the char names).
+ */
+export function parseSharedPayload(json: string): SharedData {
+  const obj = JSON.parse(json);
+  if (!Array.isArray(obj?.messages) || !Array.isArray(obj?.characters)) {
+    throw new Error('Malformed share payload');
+  }
+  if (typeof obj.title !== 'string') obj.title = undefined;
+  return obj as SharedData;
+}
+
 export function SharedView() {
   const { data } = useParams<{ data: string }>();
   const { t } = useTranslation();
@@ -34,14 +53,8 @@ export function SharedView() {
     if (!data) return;
 
     // Successful JSON.parse doesn't guarantee a well-formed payload (old or
-    // tampered links). Validate the shape so render-time .map() can't throw.
-    const accept = (json: string) => {
-      const obj = JSON.parse(json);
-      if (!Array.isArray(obj?.messages) || !Array.isArray(obj?.characters)) {
-        throw new Error('Malformed share payload');
-      }
-      setShared(obj);
-    };
+    // tampered links). Validate the shape so render-time .map()/children can't throw.
+    const accept = (json: string) => setShared(parseSharedPayload(json));
 
     if (data.startsWith('s:')) {
       const parts = data.slice(2).split(':');

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { persistStorage } from '../utils/persistStorage';
-import { getAdapter } from '../adapters/registry';
+import { getAdapter, migrateModelId } from '../adapters/registry';
 import type { Character, ThinkingLevel } from '../types';
 
 /** Stored custom character — includes display name + era for i18n injection */
@@ -116,6 +116,26 @@ export const useSettingsStore = create<SettingsState>()(
       deleteCustomCharacter: (id) =>
         set((s) => ({ customCharacters: s.customCharacters.filter((c) => c.id !== id) })),
     }),
-    { name: 'legend-talk-settings', storage: createJSONStorage(() => persistStorage) },
+    {
+      name: 'legend-talk-settings',
+      storage: createJSONStorage(() => persistStorage),
+      // Bumped to 1 to reconcile stored model ids against catalog renames/removals.
+      // Runs once for pre-version state (treated as v0): a returning user who had
+      // picked e.g. claude-opus-4-7 or gpt-5.4 would otherwise POST a dead SKU and
+      // 400 on their next message. Remap is exact-match only, so custom SKUs survive.
+      version: 1,
+      migrate: (persisted, version) => {
+        const s = persisted as Partial<SettingsState>;
+        if (s && typeof s === 'object' && version < 1) {
+          if (typeof s.defaultModel === 'string') s.defaultModel = migrateModelId(s.defaultModel) as string;
+          if (s.modelByProvider && typeof s.modelByProvider === 'object') {
+            for (const k of Object.keys(s.modelByProvider)) {
+              s.modelByProvider[k] = migrateModelId(s.modelByProvider[k]) as string;
+            }
+          }
+        }
+        return s as SettingsState;
+      },
+    },
   ),
 );

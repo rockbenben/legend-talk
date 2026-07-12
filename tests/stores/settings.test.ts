@@ -1,4 +1,5 @@
 import { useSettingsStore } from '../../src/stores/settings';
+import { MODEL_ID_MIGRATIONS, migrateModelId } from '../../src/adapters/registry';
 
 beforeEach(() => {
   useSettingsStore.setState(useSettingsStore.getInitialState());
@@ -106,6 +107,49 @@ describe('settingsStore', () => {
       s().setDefaultProvider('openai');
       expect(s().defaultModel).toBe('gpt-5.6');
       expect(s().thinkingLevel).toBe('medium');
+    });
+
+    // Regression: applyConfig must merge imported memory AFTER the provider switch,
+    // else setDefaultProvider's snapshot of the pre-import active model clobbers the
+    // imported value for the device's currently-active provider. This models that
+    // correct order (switch away from deepseek, then merge deepseek's imported model).
+    it('imported memory for the pre-import active provider survives the switch snapshot', () => {
+      const s = () => useSettingsStore.getState();
+      // Local device: on deepseek with deepseek-v4-flash active.
+      expect(s().defaultProvider).toBe('deepseek');
+      expect(s().defaultModel).toBe('deepseek-v4-flash');
+      // applyConfig order: switch provider + set active model FIRST …
+      s().setDefaultProvider('openai');
+      s().setDefaultModel('gpt-5.6');
+      // … then merge imported per-provider memory LAST.
+      s().mergeProviderMemory({ deepseek: 'deepseek-v4-pro', openai: 'gpt-5.6' }, {});
+      // Switching back to deepseek must show the imported model, not the local one.
+      s().setDefaultProvider('deepseek');
+      expect(s().defaultModel).toBe('deepseek-v4-pro');
+    });
+  });
+
+  describe('model id migration', () => {
+    it('migrateModelId remaps known renamed ids and passes through the rest', () => {
+      expect(migrateModelId('claude-opus-4-7')).toBe('claude-opus-4-8');
+      expect(migrateModelId('claude-sonnet-4-6')).toBe('claude-sonnet-5');
+      expect(migrateModelId('mistral-small-4')).toBe('mistral-small-latest');
+      expect(migrateModelId('hunyuan-turbos-latest')).toBe('hunyuan-a13b');
+      // Unknown / custom SKUs untouched.
+      expect(migrateModelId('deepseek-v4-flash')).toBe('deepseek-v4-flash');
+      expect(migrateModelId('my-self-hosted-model')).toBe('my-self-hosted-model');
+    });
+
+    it('every migration target differs from its source (no identity entries)', () => {
+      for (const [from, to] of Object.entries(MODEL_ID_MIGRATIONS)) {
+        expect(to).not.toBe(from);
+      }
+    });
+
+    it('remaps bare and aggregator-prefixed ids independently (no collision)', () => {
+      // The bare provider id survives; only the prefixed aggregator id is retired.
+      expect(migrateModelId('grok-4.3')).toBe('grok-4.3'); // still a live xAI SKU
+      expect(migrateModelId('x-ai/grok-4.3')).toBe('x-ai/grok-4.5'); // OpenRouter, retired
     });
   });
 });

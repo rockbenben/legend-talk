@@ -45,16 +45,20 @@ export function SettingsView() {
 
   function applyConfig(config: Record<string, unknown>) {
     const s = useSettingsStore.getState();
-    // Memory maps first, so the provider switch below restores from imported memory.
     const pickStrings = (obj: unknown, allow?: string[]) =>
       Object.fromEntries(Object.entries((obj && typeof obj === 'object' ? obj : {}) as Record<string, unknown>)
         .filter(([, v]) => typeof v === 'string' && (!allow || allow.includes(v)))) as Record<string, string>;
+    if (typeof config.defaultProvider === 'string') s.setDefaultProvider(config.defaultProvider);
+    if (typeof config.defaultModel === 'string') s.setDefaultModel(config.defaultModel);
+    // Merge per-provider memory AFTER the provider/model switch above: setDefaultProvider
+    // snapshots the outgoing provider's active model into modelByProvider, so merging
+    // first would let that snapshot clobber the just-imported value for the pre-import
+    // active provider. Merging last lets imported memory win. Active model/thinking for
+    // the incoming provider are set explicitly above, so they take precedence regardless.
     s.mergeProviderMemory(
       pickStrings(config.modelByProvider),
       pickStrings(config.thinkingByProvider, ['off', 'low', 'medium', 'high']) as Record<string, 'off' | 'low' | 'medium' | 'high'>,
     );
-    if (typeof config.defaultProvider === 'string') s.setDefaultProvider(config.defaultProvider);
-    if (typeof config.defaultModel === 'string') s.setDefaultModel(config.defaultModel);
     if (typeof config.language === 'string') { const lng = config.language; s.setLanguage(lng); ensureLanguageLoaded(lng).then(() => i18n.changeLanguage(lng)); }
     if (config.theme === 'light' || config.theme === 'dark') s.setTheme(config.theme);
     if (['off', 'low', 'medium', 'high'].includes(config.thinkingLevel as string)) s.setThinkingLevel(config.thinkingLevel as 'off' | 'low' | 'medium' | 'high');
@@ -269,7 +273,14 @@ export function SettingsView() {
               <Button
                 loading={testing}
                 onClick={handleTestConnection}
-                disabled={settings.defaultProvider !== 'custom' && !settings.apiKeys[settings.defaultProvider]}
+                // Guard on each provider's actual requirement so the button can't
+                // fire a request resolveProvider() will reject: custom needs a base
+                // URL (key optional), everyone else needs a key. Without the custom
+                // branch, a custom provider with no base URL reported the generic
+                // "check API key / CORS" failure instead of the real cause.
+                disabled={settings.defaultProvider === 'custom'
+                  ? !settings.customBaseUrl
+                  : !settings.apiKeys[settings.defaultProvider]}
               >
                 {t('settings.testConnection')}
               </Button>

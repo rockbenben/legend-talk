@@ -524,3 +524,50 @@ export function getAllAdapters(): LLMAdapter[] {
 export function getAdapter(id: string): LLMAdapter | undefined {
   return adapters.find((a) => a.id === id);
 }
+
+/**
+ * Renamed/removed model ids → their surviving successor. Applied by the settings
+ * persist `migrate` so a returning user's stored selection (defaultModel or the
+ * per-provider memory) doesn't POST a dead SKU that 400s. Only EXACT known-old ids
+ * are remapped; anything else — including user-typed custom SKUs — passes through
+ * untouched. Keys are full id strings and are globally distinct (prefixed
+ * aggregator ids differ from the bare provider ids), so a flat map is unambiguous.
+ * Keep in sync with the catalog above whenever an id is retired or renamed.
+ */
+export const MODEL_ID_MIGRATIONS: Record<string, string> = {
+  // OpenAI — gpt-5.4 dropped (5.4-mini kept); 5.6 is the current flagship.
+  'gpt-5.4': 'gpt-5.6',
+  // Anthropic
+  'claude-opus-4-7': 'claude-opus-4-8',
+  'claude-sonnet-4-6': 'claude-sonnet-5',
+  // Mistral — bare version-number ids were never callable; -latest aliases are.
+  'mistral-small-4': 'mistral-small-latest',
+  'mistral-large-3': 'mistral-large-latest',
+  'ministral-3-14b': 'ministral-14b-latest',
+  'magistral-medium-1-2': 'mistral-medium-3-5',
+  // MiniMax — M2.1 retired; M3 is the current flagship.
+  'MiniMax-M2.1': 'MiniMax-M3',
+  // Tencent Hunyuan legacy — text models retired 2026-06-22; only a13b survives.
+  'hunyuan-turbos-latest': 'hunyuan-a13b',
+  'hunyuan-2.0-thinking-20251109': 'hunyuan-a13b',
+  'hunyuan-2.0-instruct-20251111': 'hunyuan-a13b',
+  'hunyuan-t1-latest': 'hunyuan-a13b',
+  'hunyuan-lite': 'hunyuan-a13b',
+  // OpenRouter (prefixed ids, distinct from the bare provider ids above)
+  'anthropic/claude-opus-4.7': 'anthropic/claude-opus-4.8',
+  'anthropic/claude-sonnet-4.6': 'anthropic/claude-sonnet-5',
+  'google/gemini-3.1-flash-lite-preview': 'google/gemini-3.5-flash',
+  'minimax/minimax-m2.7': 'minimax/minimax-m3',
+  'x-ai/grok-4.3': 'x-ai/grok-4.5',
+  'x-ai/grok-4.20': 'x-ai/grok-4.5',
+  // SiliconFlow — lowercase org prefix 404s; MiniMaxAI is the real org.
+  'minimax/MiniMax-M2.5': 'MiniMaxAI/MiniMax-M2.5',
+  // NVIDIA NIM
+  'z-ai/glm-5.1': 'z-ai/glm-5.2',
+  'meta/llama-3.1-70b-instruct': 'meta/llama-3.3-70b-instruct',
+};
+
+/** Remap one id through MODEL_ID_MIGRATIONS; unknown/custom ids pass through. */
+export function migrateModelId(id: unknown): unknown {
+  return typeof id === 'string' && MODEL_ID_MIGRATIONS[id] ? MODEL_ID_MIGRATIONS[id] : id;
+}

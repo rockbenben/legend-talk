@@ -69,7 +69,11 @@ export function SettingsView() {
     if (config.corsEnabled && typeof config.corsEnabled === 'object') Object.entries(config.corsEnabled as Record<string, boolean>).forEach(([k, v]) => { if (typeof v === 'boolean') s.setCorsEnabled(k, v); });
     if (Array.isArray(config.customCharacters)) {
       for (const c of config.customCharacters as CustomCharacter[]) {
-        if (!c.id || !c.displayName || !c.systemPrompt) continue;
+        // Null/undefined element guard first — a shared config link is third-party
+        // input; without `!c` the malformed-entry skip below throws on `null.id`,
+        // aborting applyConfig mid-way (settings half-applied, modal stuck). Matches
+        // the `!!c` guard in conversations.ts importConversations.
+        if (!c || !c.id || !c.displayName || !c.systemPrompt) continue;
         const domain = Array.isArray(c.domain) && c.domain.length > 0 ? c.domain : ['custom'];
         s.saveCustomCharacter({ ...c, domain });
         // Inject into the runtime registry + i18n now — without this, imported

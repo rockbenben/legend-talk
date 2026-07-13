@@ -92,16 +92,30 @@ describe('AnthropicAdapter', () => {
     return body;
   }
 
-  it('uses adaptive thinking on Opus 4.7 (budget_tokens 400s there)', async () => {
-    const body = await chatBody('claude-opus-4-7', 'high');
+  it('uses adaptive thinking on Opus 4.8 (budget_tokens 400s there)', async () => {
+    const body = await chatBody('claude-opus-4-8', 'high');
     expect(body.thinking).toEqual({ type: 'adaptive' });
     expect(body.output_config).toEqual({ effort: 'high' });
     expect(body.max_tokens).toBe(128000);
   });
 
-  it('caps max_tokens at 64K for Sonnet with thinking', async () => {
-    const body = await chatBody('claude-sonnet-4-6', 'medium');
+  it('caps max_tokens at 64K for Sonnet 5 with adaptive thinking', async () => {
+    const body = await chatBody('claude-sonnet-5', 'medium');
     expect(body.thinking).toEqual({ type: 'adaptive' });
+    expect(body.output_config).toEqual({ effort: 'medium' });
+    expect(body.max_tokens).toBe(64000);
+  });
+
+  it('treats Fable 5 as adaptive generation', async () => {
+    const body = await chatBody('claude-fable-5', 'low');
+    expect(body.thinking).toEqual({ type: 'adaptive' });
+    expect(body.max_tokens).toBe(64000);
+  });
+
+  it('keeps budget-style thinking on Sonnet 4.6 (extended generation)', async () => {
+    const body = await chatBody('claude-sonnet-4-6', 'medium');
+    expect(body.thinking).toEqual({ type: 'enabled', budget_tokens: 25000 });
+    expect(body.output_config).toBeUndefined();
     expect(body.max_tokens).toBe(64000);
   });
 
@@ -112,10 +126,16 @@ describe('AnthropicAdapter', () => {
     expect(body.thinking.budget_tokens).toBeLessThan(body.max_tokens);
   });
 
-  it('omits thinking entirely when no thinking level set', async () => {
-    const body = await chatBody('claude-opus-4-7');
-    expect(body.thinking).toBeUndefined();
+  it('sends explicit disabled on adaptive models when thinking is off (server default is ON)', async () => {
+    const body = await chatBody('claude-sonnet-5');
+    expect(body.thinking).toEqual({ type: 'disabled' });
     expect(body.output_config).toBeUndefined();
+    expect(body.max_tokens).toBe(16384);
+  });
+
+  it('omits thinking entirely on budget-generation models when off', async () => {
+    const body = await chatBody('claude-haiku-4-5-20251001');
+    expect(body.thinking).toBeUndefined();
     expect(body.max_tokens).toBe(16384);
   });
 });

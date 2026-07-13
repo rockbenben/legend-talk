@@ -4,3 +4,4 @@ dist
 *.local
 CLAUDE.md
 .gstack/
+.claude/settings.local.json

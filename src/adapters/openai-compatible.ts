@@ -1,12 +1,28 @@
 import type { LLMAdapter, ModelOption, ChatParams, ThinkingLevel } from '../types';
 import { parseSSE } from './sse';
 
-type ThinkingMapper = (level: ThinkingLevel) => Record<string, unknown>;
+// level === undefined means thinking is off. A mapper returning undefined for the
+// off state omits thinking params entirely (server default kept); returning a body
+// sends an explicit disable — required for providers whose server default is
+// thinking ON, where omission silently burns reasoning tokens the stream never shows.
+type ThinkingMapper = (level: ThinkingLevel | undefined) => Record<string, unknown> | undefined;
 
 const THINKING_MAPPERS: Record<string, ThinkingMapper> = {
-  reasoning_effort: (level) => ({ reasoning_effort: level }),
-  enable_thinking: () => ({ enable_thinking: true }),
-  thinking_type: () => ({ thinking: { type: 'enabled' } }),
+  // Graded reasoning_effort, omit when off — shared by heterogeneous providers,
+  // some of which reject an explicit "none".
+  reasoning_effort: (level) => (level ? { reasoning_effort: level } : undefined),
+  // OpenAI GPT-5.x: reasoning is server-default ON (medium) — off sends explicit "none".
+  reasoning_effort_none: (level) => ({ reasoning_effort: level ?? 'none' }),
+  // xAI: only low/high tiers exist (medium 400s), off sends explicit "none".
+  reasoning_effort_low_high: (level) => ({ reasoning_effort: level ? (level === 'high' ? 'high' : 'low') : 'none' }),
+  // OpenRouter: graded effort when on; universal reasoning:{enabled:false} when off.
+  reasoning_effort_openrouter: (level) => (level ? { reasoning_effort: level } : { reasoning: { enabled: false } }),
+  enable_thinking: (level) => (level ? { enable_thinking: true } : undefined),
+  // Binary thinking:{type} — server-default ON lineups (DeepSeek V4, GLM-5.x,
+  // Kimi K2.6, MiMo), so off sends explicit disabled.
+  thinking_type: (level) => ({ thinking: { type: level ? 'enabled' : 'disabled' } }),
+  // MiniMax M3: thinking:{type:"adaptive"|"disabled"} only, server default adaptive (ON).
+  thinking_adaptive: (level) => ({ thinking: { type: level ? 'adaptive' : 'disabled' } }),
 };
 
 export class OpenAICompatibleAdapter implements LLMAdapter {
@@ -50,10 +66,17 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
       stream: true,
     };
     if (params.model) body.model = params.model;
-    if (params.thinkingLevel && this.thinkingMapper) {
+    if (this.thinkingMapper) {
       const modelOpt = this.models.find((m) => m.id === params.model);
-      if (modelOpt?.thinking !== false) {
-        Object.assign(body, this.thinkingMapper(params.thinkingLevel));
+      const level = params.thinkingLevel && params.thinkingLevel !== 'off' ? params.thinkingLevel : undefined;
+      if (level) {
+        // On: listed non-thinking models opt out; unlisted (custom) models are the
+        // user's call — they explicitly picked a thinking level.
+        if (modelOpt?.thinking !== false) Object.assign(body, this.thinkingMapper(level) ?? {});
+      } else if (modelOpt && modelOpt.thinking !== false) {
+        // Off: only listed thinking-capable models get an explicit disable —
+        // sending one to an unknown SKU risks a 400 on models without the param.
+        Object.assign(body, this.thinkingMapper(undefined) ?? {});
       }
     }
 

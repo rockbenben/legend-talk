@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -19,6 +19,7 @@
   <a href="README.de.md">Deutsch</a> ·
   <a href="README.pt.md">Português</a> ·
   <a href="README.it.md">Italiano</a> ·
+  <b>Русский</b> ·
   <a href="README.ar.md">العربية</a> ·
   <a href="README.hi.md">हिन्दी</a> ·
   <a href="README.vi.md">Tiếng Việt</a> ·
@@ -40,11 +41,9 @@ Legend Talk собирает от 2 до 10 исторических или со
 
 **Демо:** [talk.newzone.top](https://talk.newzone.top) — 18 языков · бесплатно · локальный приоритет · без регистрации.
 
-## Скриншоты
-
-| Главная | Чат |
-|:-:|:-:|
-| ![Главная](../docs/images/home-chat.png) | ![Чат](../docs/images/chat-view.png) |
+|                 Главная                  |                 Чат                  |
+| :--------------------------------------: | :----------------------------------: |
+| ![Главная](../../docs/images/home-chat.png) | ![Чат](../../docs/images/chat-view.png) |
 
 ## Начало беседы
 
@@ -58,7 +57,7 @@ Legend Talk собирает от 2 до 10 исторических или со
 
 Или нажмите **🎲 Случайный** (вверху справа), чтобы мгновенно начать с 5 случайными мыслителями.
 
-**Готовые шаблоны** — 6 подобранных составов, чьи взгляды действительно сталкиваются (например, *AI и технологии*: Карпаты против Ильи против Фейнмана против Талеба против Пола Грэма). Один клик для старта, у каждого по 3 предложенные темы.
+**Готовые шаблоны** — 6 подобранных составов, чьи взгляды действительно сталкиваются (например, _AI и технологии_: Карпаты против Ильи против Фейнмана против Талеба против Пола Грэма). Один клик для старта, у каждого по 3 предложенные темы.
 
 **Чат 1 на 1** — нажмите **Чат** на любой карточке персонажа, чтобы провести приватную беседу голосом и в системе взглядов этого мыслителя.
 
@@ -84,6 +83,15 @@ Legend Talk собирает от 2 до 10 исторических или со
 - **Поделиться беседой** — сгенерируйте URL, содержащий полную беседу.
 - **Экспорт / Импорт** — сохраните в Markdown или JSON и восстановите из JSON (в Настройках) или создавайте карточки для обмена через [json2card](https://github.com/rockbenben/json2card) (укажите адрес API в Настройках).
 - **Синхронизация настроек** — перенесите вашу конфигурацию на другое устройство по URL; API-ключи шифруются по AES.
+
+## Быстрый старт
+
+```bash
+npm install
+npm run dev
+```
+
+Откройте http://localhost:5173, перейдите в Настройки, введите свой API-ключ и начните общаться. Если вы столкнётесь с ошибкой CORS, приложение предложит включить публичный прокси в один клик.
 
 ## Мыслители, модели и платформа
 
@@ -113,35 +121,28 @@ Legend Talk собирает от 2 до 10 исторических или со
 
 24 провайдера из коробки — международные, китайские и агрегаторы:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Каждый провайдер принимает свои ID моделей, а опция **Custom** подключает любой OpenAI-совместимый API.
-
-## Быстрый старт
-
-```bash
-npm install
-npm run dev
-```
-
-Откройте http://localhost:5173, перейдите в Настройки, введите свой API-ключ и начните общаться. Если вы столкнётесь с ошибкой CORS, приложение предложит включить публичный прокси в один клик.
 
 ## CORS-прокси
 
 Некоторые провайдеры блокируют прямые запросы из браузера. CORS-прокси настраивается для каждого провайдера в Настройках — просто включите его. По умолчанию используется публичный прокси (`https://cors.api2026.workers.dev`).
+
+> **Стоит знать перед включением.** Всё остальное здесь работает локально, но запрос через прокси — нет: ваш API-ключ и полный промпт проходят через этот прокси по пути к провайдеру. Прокси по умолчанию держит этот проект, но с любым прокси то же самое — в этом и есть его суть. Если ключ вам важен, поднимите свой с помощью Worker ниже и укажите его в настройках; это занимает пару минут.
 
 Чтобы запустить собственный, разверните [Cloudflare Worker](https://dash.cloudflare.com) с этим кодом:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## Разработка
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **Стек:** React 19 · antd 6 (тема на CSS-переменных, глубоко кастомизированная) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Запуск сервера разработки |
-| `npm run build` | Проверка типов и сборка для продакшена |
-| `npm run test` | Запуск тестов |
-| `npm run preview` | Предпросмотр сборки |
+| Команда           | Описание                               |
+| ----------------- | -------------------------------------- |
+| `npm run dev`     | Запуск сервера разработки              |
+| `npm run build`   | Проверка типов и сборка для продакшена |
+| `npm run test`    | Запуск тестов                          |
+| `npm run preview` | Предпросмотр сборки                    |
 
 ## Развёртывание
 
@@ -213,10 +214,6 @@ npm run build
 
 Маршрутизация основана на хэше (`/#/chat/...`, `/#/ja/chat/...`), поэтому серверная настройка маршрутизации не нужна.
 
-## О плане открытого кода 365
+## О плане 365 Open Source
 
-Это проект #002 [Плана открытого кода 365](https://github.com/rockbenben/365opensource) — один человек + AI, 300+ open-source проектов за год. [Предложите свою идею →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+Проект **#002** из [плана 365 Open Source](https://github.com/rockbenben/365opensource) — один человек + ИИ, 300+ открытых проектов за год. [Предложить свою идею →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

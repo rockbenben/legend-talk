@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -22,6 +22,7 @@
   <a href="README.ru.md">Русский</a> ·
   <a href="README.ar.md">العربية</a> ·
   <a href="README.hi.md">हिन्दी</a> ·
+  <b>Tiếng Việt</b> ·
   <a href="README.th.md">ไทย</a> ·
   <a href="README.tr.md">Türkçe</a> ·
   <a href="README.id.md">Indonesia</a> ·
@@ -40,11 +41,9 @@ Legend Talk tập hợp 2–10 nhà tư tưởng lịch sử hoặc đương đ�
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 ngôn ngữ · miễn phí · ưu tiên cục bộ · không cần đăng ký.
 
-## Ảnh chụp
-
-| Trang chủ | Chat |
-|:-:|:-:|
-| ![Trang chủ](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
+|                 Trang chủ                  |                 Chat                  |
+| :----------------------------------------: | :-----------------------------------: |
+| ![Trang chủ](../../docs/images/home-chat.png) | ![Chat](../../docs/images/chat-view.png) |
 
 ## Bắt đầu một cuộc trò chuyện
 
@@ -58,7 +57,7 @@ Legend Talk tập hợp 2–10 nhà tư tưởng lịch sử hoặc đương đ�
 
 Hoặc nhấn **🎲 Ngẫu nhiên** (góc trên bên phải) để bắt đầu ngay với 5 nhà tư tưởng ngẫu nhiên.
 
-**Mẫu nổi bật** — 6 đội hình tuyển chọn với những góc nhìn thực sự va chạm (ví dụ *AI & Công nghệ*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Một cú nhấn để bắt đầu, mỗi mẫu kèm 3 chủ đề gợi ý.
+**Mẫu nổi bật** — 6 đội hình tuyển chọn với những góc nhìn thực sự va chạm (ví dụ _AI & Công nghệ_: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Một cú nhấn để bắt đầu, mỗi mẫu kèm 3 chủ đề gợi ý.
 
 **Chat 1-1** — nhấn **Chat** trên bất kỳ thẻ nhân vật nào để trò chuyện riêng tư trong giọng nói và khung tư duy của nhà tư tưởng đó.
 
@@ -84,6 +83,15 @@ Bạn ngồi ở vị trí đầu bàn với vai trò **chủ tịch** — cuộ
 - **Chia sẻ cuộc trò chuyện** — tạo một URL chứa toàn bộ cuộc trò chuyện.
 - **Xuất / Nhập** — lưu dưới dạng Markdown hoặc JSON và khôi phục từ JSON (trong Cài đặt), hoặc tạo thẻ chia sẻ qua [json2card](https://github.com/rockbenben/json2card) (đặt endpoint API trong Cài đặt).
 - **Đồng bộ cài đặt** — chuyển thiết lập của bạn sang thiết bị khác qua URL; khóa API được mã hóa AES.
+
+## Bắt đầu nhanh
+
+```bash
+npm install
+npm run dev
+```
+
+Mở http://localhost:5173, vào Cài đặt, nhập khóa API của bạn, và bắt đầu trò chuyện. Nếu bạn gặp lỗi CORS, ứng dụng sẽ đề nghị bật một proxy công khai chỉ với một cú nhấn.
 
 ## Nhà tư tưởng, mô hình & nền tảng
 
@@ -113,35 +121,28 @@ Các nút **Sao chép liên kết đội hình** (thanh người tham gia) và *
 
 24 nhà cung cấp ngay khi cài đặt — quốc tế, đặt tại Trung Quốc, và các bộ tổng hợp:
 
-| Nhà cung cấp | Mô hình |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Nhà cung cấp                       | Mô hình                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Mọi nhà cung cấp đều chấp nhận ID mô hình tùy chỉnh, và tùy chọn **Custom** kết nối bất kỳ API tương thích OpenAI nào.
-
-## Bắt đầu nhanh
-
-```bash
-npm install
-npm run dev
-```
-
-Mở http://localhost:5173, vào Cài đặt, nhập khóa API của bạn, và bắt đầu trò chuyện. Nếu bạn gặp lỗi CORS, ứng dụng sẽ đề nghị bật một proxy công khai chỉ với một cú nhấn.
 
 ## Proxy CORS
 
 Một số nhà cung cấp chặn các yêu cầu trực tiếp từ trình duyệt. Proxy CORS được cấu hình theo từng nhà cung cấp trong Cài đặt — bật nó lên. Một proxy công khai (`https://cors.api2026.workers.dev`) được dùng theo mặc định.
+
+> **Nên biết trước khi bật.** Mọi thứ khác ở đây đều ưu tiên cục bộ, nhưng yêu cầu đi qua proxy thì không: khoá API và toàn bộ prompt của bạn đi qua proxy đó trước khi tới nhà cung cấp. Proxy mặc định do dự án này vận hành, nhưng bất kỳ proxy nào cũng vậy — đó là bản chất của proxy. Nếu bạn quan tâm tới khoá này, hãy tự dựng một cái bằng Worker bên dưới rồi trỏ Cài đặt sang đó; mất khoảng hai phút.
 
 Để chạy proxy của riêng bạn, triển khai một [Cloudflare Worker](https://dash.cloudflare.com) với đoạn mã này:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## Phát triển
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **Công nghệ:** React 19 · antd 6 (giao diện dùng biến CSS, tùy biến sâu) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Lệnh | Mô tả |
-|---------|-------------|
-| `npm run dev` | Khởi động server phát triển |
-| `npm run build` | Kiểm tra kiểu và build cho production |
-| `npm run test` | Chạy test |
-| `npm run preview` | Xem trước bản build production |
+| Lệnh              | Mô tả                                 |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Khởi động server phát triển           |
+| `npm run build`   | Kiểm tra kiểu và build cho production |
+| `npm run test`    | Chạy test                             |
+| `npm run preview` | Xem trước bản build production        |
 
 ## Triển khai
 
@@ -213,10 +214,6 @@ npm run build
 
 Định tuyến dựa trên hash (`/#/chat/...`, `/#/ja/chat/...`), nên không cần cấu hình định tuyến phía server.
 
-## Về Kế hoạch Mã nguồn mở 365
+## Giới thiệu về 365 Open Source Plan
 
-Đây là dự án #002 của [Kế hoạch Mã nguồn mở 365](https://github.com/rockbenben/365opensource) — một người + AI, 300+ dự án mã nguồn mở trong một năm. [Gửi ý tưởng của bạn →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+Dự án **#002** của [365 Open Source Plan](https://github.com/rockbenben/365opensource) — một người + AI, hơn 300 dự án mã nguồn mở trong một năm. [Gửi ý tưởng của bạn →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

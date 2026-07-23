@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -23,6 +23,7 @@
   <a href="README.ar.md">العربية</a> ·
   <a href="README.hi.md">हिन्दी</a> ·
   <a href="README.vi.md">Tiếng Việt</a> ·
+  <b>ไทย</b> ·
   <a href="README.tr.md">Türkçe</a> ·
   <a href="README.id.md">Indonesia</a> ·
   <a href="README.bn.md">বাংলা</a>
@@ -40,11 +41,9 @@ Legend Talk เชิญนักคิดทางประวัติศา�
 
 **สาธิต:** [talk.newzone.top](https://talk.newzone.top) — 18 ภาษา · ฟรี · ท้องถิ่นก่อน · ไม่ต้องสมัครสมาชิก
 
-## ภาพหน้าจอ
-
-| หน้าหลัก | แชท |
-|:-:|:-:|
-| ![หน้าหลัก](../docs/images/home-chat.png) | ![แชท](../docs/images/chat-view.png) |
+|                 หน้าหลัก                  |                 แชท                  |
+| :---------------------------------------: | :----------------------------------: |
+| ![หน้าหลัก](../../docs/images/home-chat.png) | ![แชท](../../docs/images/chat-view.png) |
 
 ## เริ่มการสนทนา
 
@@ -58,7 +57,7 @@ Legend Talk เชิญนักคิดทางประวัติศา�
 
 หรือกด **🎲 สุ่ม** (มุมขวาบน) เพื่อเริ่มทันทีด้วยนักคิดสุ่ม 5 คน
 
-**เทมเพลตแนะนำ** — 6 รายชื่อคัดสรรที่มีมุมมองขัดแย้งกันอย่างแท้จริง (เช่น *AI & Tech*: Karpathy ปะทะ Ilya ปะทะ Feynman ปะทะ Taleb ปะทะ Paul Graham) คลิกเดียวเพื่อเริ่ม แต่ละเทมเพลตมาพร้อมหัวข้อแนะนำ 3 หัวข้อ
+**เทมเพลตแนะนำ** — 6 รายชื่อคัดสรรที่มีมุมมองขัดแย้งกันอย่างแท้จริง (เช่น _AI & Tech_: Karpathy ปะทะ Ilya ปะทะ Feynman ปะทะ Taleb ปะทะ Paul Graham) คลิกเดียวเพื่อเริ่ม แต่ละเทมเพลตมาพร้อมหัวข้อแนะนำ 3 หัวข้อ
 
 **แชท 1 ต่อ 1** — คลิก **แชท** บนการ์ดตัวละครใดก็ได้เพื่อสนทนาแบบส่วนตัวด้วยน้ำเสียงและกรอบความคิดของนักคิดคนนั้น
 
@@ -84,6 +83,15 @@ Legend Talk เชิญนักคิดทางประวัติศา�
 - **แชร์แชท** — สร้าง URL ที่มีการสนทนาทั้งหมด
 - **ส่งออก / นำเข้า** — บันทึกเป็น Markdown หรือ JSON และกู้คืนจาก JSON (ในการตั้งค่า) หรือสร้างการ์ดแชร์ผ่าน [json2card](https://github.com/rockbenben/json2card) (กำหนดค่า API endpoint ในการตั้งค่า)
 - **ซิงค์การตั้งค่า** — ย้ายการตั้งค่าของคุณไปยังอุปกรณ์อื่นผ่าน URL; API key ถูกเข้ารหัสด้วย AES
+
+## เริ่มต้นอย่างรวดเร็ว
+
+```bash
+npm install
+npm run dev
+```
+
+เปิด http://localhost:5173 ไปที่การตั้งค่า ใส่ API key ของคุณ แล้วเริ่มแชท หากเจอข้อผิดพลาด CORS แอปจะเสนอให้เปิดใช้พร็อกซีสาธารณะด้วยคลิกเดียว
 
 ## นักคิด โมเดล และแพลตฟอร์ม
 
@@ -113,35 +121,28 @@ Legend Talk เชิญนักคิดทางประวัติศา�
 
 24 ผู้ให้บริการพร้อมใช้งานทันที — ระดับสากล ในจีน และผู้รวบรวม:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 ทุกผู้ให้บริการรองรับ ID โมเดลกำหนดเอง และตัวเลือก **Custom** เชื่อมต่อ API ที่เข้ากันได้กับ OpenAI ใด ๆ
-
-## เริ่มต้นอย่างรวดเร็ว
-
-```bash
-npm install
-npm run dev
-```
-
-เปิด http://localhost:5173 ไปที่การตั้งค่า ใส่ API key ของคุณ แล้วเริ่มแชท หากเจอข้อผิดพลาด CORS แอปจะเสนอให้เปิดใช้พร็อกซีสาธารณะด้วยคลิกเดียว
 
 ## CORS Proxy
 
 บางผู้ให้บริการบล็อกคำขอตรงจากเบราว์เซอร์ CORS proxy กำหนดค่าต่อผู้ให้บริการในการตั้งค่า — เปิดสวิตช์ พร็อกซีสาธารณะ (`https://cors.api2026.workers.dev`) ถูกใช้เป็นค่าเริ่มต้น
+
+> **ควรรู้ก่อนเปิดใช้** ส่วนอื่นทั้งหมดทำงานในเครื่องคุณ แต่คำขอที่ผ่านพร็อกซีไม่ใช่ — คีย์ API และพรอมป์ตทั้งหมดของคุณจะผ่านพร็อกซีนั้นก่อนถึงผู้ให้บริการ พร็อกซีเริ่มต้นดูแลโดยโปรเจกต์นี้ แต่พร็อกซีใด ๆ ก็เป็นเช่นนี้ เพราะนั่นคือสิ่งที่พร็อกซีทำ ถ้าคีย์นั้นสำคัญกับคุณ ให้สร้างของตัวเองด้วย Worker ด้านล่างแล้วชี้ในหน้าตั้งค่าไปที่นั่น ใช้เวลาราวสองนาที
 
 หากต้องการรันพร็อกซีของคุณเอง ให้ deploy [Cloudflare Worker](https://dash.cloudflare.com) ด้วยโค้ดนี้:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## การพัฒนา
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **เทคโนโลยี:** React 19 · antd 6 (ธีมตัวแปร CSS ปรับแต่งเชิงลึก) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| คำสั่ง | คำอธิบาย |
-|---------|-------------|
-| `npm run dev` | เริ่มเซิร์ฟเวอร์พัฒนา |
-| `npm run build` | ตรวจสอบชนิดข้อมูลและสร้างสำหรับโปรดักชัน |
-| `npm run test` | รันการทดสอบ |
-| `npm run preview` | แสดงตัวอย่างบิลด์โปรดักชัน |
+| คำสั่ง            | คำอธิบาย                                 |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | เริ่มเซิร์ฟเวอร์พัฒนา                    |
+| `npm run build`   | ตรวจสอบชนิดข้อมูลและสร้างสำหรับโปรดักชัน |
+| `npm run test`    | รันการทดสอบ                              |
+| `npm run preview` | แสดงตัวอย่างบิลด์โปรดักชัน               |
 
 ## การ Deploy
 
@@ -213,10 +214,6 @@ npm run build
 
 ใช้ hash routing (`/#/chat/...`, `/#/ja/chat/...`) จึงไม่ต้องตั้งค่าการ routing ฝั่งเซิร์ฟเวอร์
 
-## เกี่ยวกับแผนโอเพนซอร์ส 365
+## เกี่ยวกับโครงการ 365 Open Source
 
-นี่คือโปรเจกต์ #002 ของ [แผนโอเพนซอร์ส 365](https://github.com/rockbenben/365opensource) — 1 คน + AI, 300+ โปรเจกต์โอเพนซอร์สในหนึ่งปี [ส่งไอเดียของคุณ →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+โปรเจกต์ **#002** ของ[โครงการ 365 Open Source](https://github.com/rockbenben/365opensource) — หนึ่งคน + AI, มากกว่า 300 โปรเจกต์โอเพนซอร์สในหนึ่งปี [ส่งไอเดียของคุณ →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

@@ -1,16 +1,18 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
-  365 Açık Kaynak Planı #002 · Tarihin en büyük düşünürleriyle AI yuvarlak masa tartışması
+  Tarihin en büyük düşünürleriyle AI yuvarlak masa tartışması
+
+[![365 Open Source Plan #002](https://img.shields.io/badge/365%20Open%20Source%20Plan-%23002-1f6feb)](https://github.com/rockbenben/365opensource)
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -24,6 +26,7 @@
   <a href="README.hi.md">हिन्दी</a> ·
   <a href="README.vi.md">Tiếng Việt</a> ·
   <a href="README.th.md">ไทย</a> ·
+  <b>Türkçe</b> ·
   <a href="README.id.md">Indonesia</a> ·
   <a href="README.bn.md">বাংলা</a>
 </p>
@@ -40,11 +43,9 @@ Legend Talk, 2-10 tarihi veya çağdaş düşünürü çok turlu bir tartışmad
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 dil · ücretsiz · yerel öncelikli · kayıt gerektirmez.
 
-## Ekran Görüntüleri
-
-| Ana Sayfa | Sohbet |
-|:-:|:-:|
-| ![Ana Sayfa](../docs/images/home-chat.png) | ![Sohbet](../docs/images/chat-view.png) |
+|                 Ana Sayfa                  |                 Sohbet                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![Ana Sayfa](../../docs/images/home-chat.png) | ![Sohbet](../../docs/images/chat-view.png) |
 
 ## Bir konuşma başlatın
 
@@ -58,7 +59,7 @@ Legend Talk, 2-10 tarihi veya çağdaş düşünürü çok turlu bir tartışmad
 
 Veya 5 rastgele düşünürle anında başlamak için (sağ üstte) **🎲 Rastgele**'ye basın.
 
-**Öne çıkan şablonlar** — bakış açıları gerçekten çatışan 6 özenle seçilmiş kadro (örn. *AI & Teknoloji*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Tek tıkla başlayın, her biri 3 önerilen konu ile gelir.
+**Öne çıkan şablonlar** — bakış açıları gerçekten çatışan 6 özenle seçilmiş kadro (örn. _AI & Teknoloji_: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Tek tıkla başlayın, her biri 3 önerilen konu ile gelir.
 
 **Birebir sohbet** — o düşünürün sesi ve çerçevesiyle özel bir konuşma için herhangi bir karakter kartındaki **Sohbet**'e tıklayın.
 
@@ -84,6 +85,15 @@ Masanın başında **başkan** (chair) olarak siz oturursunuz — tartışma siz
 - **Sohbeti paylaş** — konuşmanın tamamını içeren bir URL oluşturun.
 - **Dışa/İçe aktar** — Markdown veya JSON olarak kaydedin ve JSON'dan geri yükleyin (Ayarlar'da) veya [json2card](https://github.com/rockbenben/json2card) aracılığıyla paylaşım kartları oluşturun (API uç noktasını Ayarlar'da belirleyin).
 - **Ayar senkronizasyonu** — kurulumunuzu URL aracılığıyla başka bir cihaza taşıyın; API anahtarları AES ile şifrelenir.
+
+## Hızlı Başlangıç
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:5173 açın, Ayarlar'a gidin, API anahtarınızı girin ve sohbete başlayın. Bir CORS hatasıyla karşılaşırsanız, uygulama tek tıkla genel bir proxy'yi etkinleştirmeyi önerir.
 
 ## Düşünürler, modeller ve platform
 
@@ -113,35 +123,28 @@ Kategoriler: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociol
 
 Kutudan çıkar çıkmaz 24 sağlayıcı — uluslararası, Çin merkezli ve toplayıcılar:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Her sağlayıcı özel model ID'lerini kabul eder ve **Custom** seçeneği herhangi bir OpenAI uyumlu API'yi bağlar.
-
-## Hızlı Başlangıç
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:5173 açın, Ayarlar'a gidin, API anahtarınızı girin ve sohbete başlayın. Bir CORS hatasıyla karşılaşırsanız, uygulama tek tıkla genel bir proxy'yi etkinleştirmeyi önerir.
 
 ## CORS Proxy
 
 Bazı sağlayıcılar doğrudan tarayıcı isteklerini engeller. CORS proxy, Ayarlar'da sağlayıcı başına yapılandırılır — açın. Varsayılan olarak genel bir proxy (`https://cors.api2026.workers.dev`) kullanılır.
+
+> **Açmadan önce bilmekte fayda var.** Buradaki her şey yerel öncelikli, ama proxy üzerinden giden bir istek değil: API anahtarınız ve istemin tamamı, sağlayıcıya giderken o proxy'den geçer. Varsayılan proxy'yi bu proje işletiyor, ama hangi proxy olursa olsun durum aynı — proxy zaten budur. Anahtar sizin için önemliyse aşağıdaki Worker ile kendinizinkini kurun ve Ayarlar'ı oraya yönlendirin; iki dakika sürer.
 
 Kendinizinkini çalıştırmak için bu kodla bir [Cloudflare Worker](https://dash.cloudflare.com) dağıtın:
 
@@ -153,16 +156,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +175,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +185,7 @@ export default {
 
 ## Geliştirme
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +199,12 @@ src/
 
 **Teknoloji Yığını:** React 19 · antd 6 (CSS değişkenleri teması, derinlemesine özelleştirilmiş) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Komut | Açıklama |
-|-------|----------|
-| `npm run dev` | Geliştirme sunucusu başlat |
-| `npm run build` | Tip kontrolü ve üretim için derleme |
-| `npm run test` | Testleri çalıştır |
-| `npm run preview` | Üretim derlemesini önizle |
+| Komut             | Açıklama                            |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Geliştirme sunucusu başlat          |
+| `npm run build`   | Tip kontrolü ve üretim için derleme |
+| `npm run test`    | Testleri çalıştır                   |
+| `npm run preview` | Üretim derlemesini önizle           |
 
 ## Dağıtım
 
@@ -213,10 +216,6 @@ npm run build
 
 Yönlendirme hash tabanlıdır (`/#/chat/...`, `/#/ja/chat/...`), bu yüzden sunucu tarafı yönlendirme yapılandırması gerekmez.
 
-## 365 Açık Kaynak Planı Hakkında
+## 365 Açık Kaynak Planı hakkında
 
-Bu, [365 Açık Kaynak Planı](https://github.com/rockbenben/365opensource)'nın #002 projesidir — bir kişi + AI, bir yılda 300+ açık kaynak proje. [Fikrinizi gönderin →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[365 Açık Kaynak Planı](https://github.com/rockbenben/365opensource) kapsamındaki **#002** numaralı proje — bir kişi + yapay zeka, bir yılda 300'den fazla açık kaynak proje. [Fikrinizi paylaşın →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

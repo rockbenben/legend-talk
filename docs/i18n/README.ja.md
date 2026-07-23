@@ -1,17 +1,20 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
-  365 オープンソース計画 #002 · 歴史上の偉大な思想家たちによるAI円卓討論
+  歴史上の偉大な思想家たちによるAI円卓討論
+
+[![365 开源计划 #002](https://img.shields.io/badge/365%20%E5%BC%80%E6%BA%90%E8%AE%A1%E5%88%92-%23002-1f6feb)](https://github.com/rockbenben/365opensource)
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
+  <b>日本語</b> ·
   <a href="README.ko.md">한국어</a> ·
   <a href="README.es.md">Español</a> ·
   <a href="README.fr.md">Français</a> ·
@@ -40,11 +43,9 @@ Legend Talk は2〜10人の歴史的・現代的思想家を集めて、複数�
 
 **デモ:** [talk.newzone.top](https://talk.newzone.top) — 18言語 · 無料 · ローカルファースト · 登録不要。
 
-## スクリーンショット
-
-| ホーム | チャット画面 |
-|:-:|:-:|
-| ![ホーム](../docs/images/home-chat.png) | ![チャット画面](../docs/images/chat-view.png) |
+|                 ホーム                  |                 チャット画面                  |
+| :-------------------------------------: | :-------------------------------------------: |
+| ![ホーム](../../docs/images/home-chat.png) | ![チャット画面](../../docs/images/chat-view.png) |
 
 ## 会話を始める
 
@@ -58,7 +59,7 @@ Legend Talk は2〜10人の歴史的・現代的思想家を集めて、複数�
 
 または右上の **🎲 ランダム** で、ランダムな5人の思想家と即座に開始できます。
 
-**おすすめテンプレート** — 視点が本当に衝突する6つの厳選ラインナップ（例：*AI & テック*：Karpathy 対 Ilya 対 Feynman 対 Taleb 対 Paul Graham）。ワンクリックで開始でき、それぞれに3つのおすすめトピックが付属します。
+**おすすめテンプレート** — 視点が本当に衝突する6つの厳選ラインナップ（例：_AI & テック_：Karpathy 対 Ilya 対 Feynman 対 Taleb 対 Paul Graham）。ワンクリックで開始でき、それぞれに3つのおすすめトピックが付属します。
 
 **1対1チャット** — 任意のキャラクターカードの **チャット** をクリックすると、その思想家の声とフレームワークでプライベートな会話ができます。
 
@@ -84,6 +85,15 @@ Legend Talk は2〜10人の歴史的・現代的思想家を集めて、複数�
 - **チャットを共有** — 会話全体を含むURLを生成します。
 - **エクスポート / インポート** — Markdown または JSON として保存し、JSON から復元（設定ページ）、または [json2card](https://github.com/rockbenben/json2card) でシェアカードを生成（設定でAPIエンドポイントを設定）。
 - **設定同期** — URLで別のデバイスへセットアップを移行。APIキーはAES暗号化されます。
+
+## クイックスタート
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:5173 を開き、設定ページでAPIキーを入力してチャットを開始します。CORSエラーが出た場合、アプリがワンクリックで公開プロキシを有効化する選択肢を提示します。
 
 ## 思想家・モデル・プラットフォーム
 
@@ -113,35 +123,28 @@ URLから直接会話を開始：
 
 24プロバイダーを標準搭載 — 海外、中国、アグリゲーター：
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 全プロバイダーでカスタムモデルIDに対応し、**Custom** オプションで任意のOpenAI互換APIを接続できます。
-
-## クイックスタート
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:5173 を開き、設定ページでAPIキーを入力してチャットを開始します。CORSエラーが出た場合、アプリがワンクリックで公開プロキシを有効化する選択肢を提示します。
 
 ## CORSプロキシ
 
 一部のプロバイダーはブラウザからの直接リクエストをブロックします。CORSプロキシは設定ページでプロバイダーごとに構成し、オンに切り替えます。デフォルトでは公開プロキシ（`https://cors.api2026.workers.dev`）が使用されます。
+
+> **オンにする前に知っておくこと。** 他はすべてローカル優先ですが、プロキシ経由のリクエストはそうではありません——あなたの API キーとプロンプト全文が、プロバイダーに届く前にそのプロキシを通過します。既定のプロキシは本プロジェクトが運用していますが、どのプロキシでも事情は同じです。キーが重要なら、下の Worker で自分用を立てて設定でそちらを指してください。2 分ほどで済みます。
 
 独自に運用する場合は、次のコードで [Cloudflare Worker](https://dash.cloudflare.com) をデプロイします：
 
@@ -153,16 +156,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +175,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +185,7 @@ export default {
 
 ## 開発
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +199,12 @@ src/
 
 **技術スタック:** React 19 · antd 6（CSS変数テーマ、深くカスタマイズ）· Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| コマンド | 説明 |
-|---------|------|
-| `npm run dev` | 開発サーバー起動 |
-| `npm run build` | 型チェック＋本番ビルド |
-| `npm run test` | テスト実行 |
-| `npm run preview` | 本番ビルドプレビュー |
+| コマンド          | 説明                   |
+| ----------------- | ---------------------- |
+| `npm run dev`     | 開発サーバー起動       |
+| `npm run build`   | 型チェック＋本番ビルド |
+| `npm run test`    | テスト実行             |
+| `npm run preview` | 本番ビルドプレビュー   |
 
 ## デプロイ
 
@@ -215,8 +218,4 @@ npm run build
 
 ## 365オープンソース計画について
 
-本プロジェクトは [365オープンソース計画](https://github.com/rockbenben/365opensource) の第002号です — 1人 + AI、1年で300以上のオープンソースプロジェクト。[アイデアを提出 →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[365オープンソース計画](https://github.com/rockbenben/365opensource) の **#002** 番目のプロジェクト——一人 + AIで、1年に300以上のオープンソースプロジェクトを。[あなたのアイデアを投稿する →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

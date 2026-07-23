@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,11 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
+  <b>Español</b> ·
   <a href="README.fr.md">Français</a> ·
   <a href="README.de.md">Deutsch</a> ·
   <a href="README.pt.md">Português</a> ·
@@ -40,11 +41,9 @@ Legend Talk reúne a 2-10 pensadores históricos o contemporáneos en un debate 
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 idiomas · gratis · local-first · sin registro.
 
-## Capturas
-
-| Inicio | Chat |
-|:-:|:-:|
-| ![Inicio](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
+|                 Inicio                  |                 Chat                  |
+| :-------------------------------------: | :-----------------------------------: |
+| ![Inicio](../../docs/images/home-chat.png) | ![Chat](../../docs/images/chat-view.png) |
 
 ## Iniciar una conversación
 
@@ -58,7 +57,7 @@ Legend Talk reúne a 2-10 pensadores históricos o contemporáneos en un debate 
 
 O pulsa **🎲 Aleatorio** (arriba a la derecha) para empezar al instante con 5 pensadores al azar.
 
-**Plantillas destacadas** — 6 alineaciones curadas cuyas perspectivas realmente chocan (ej. *IA y Tecnología*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Un clic para empezar, cada una con 3 temas sugeridos.
+**Plantillas destacadas** — 6 alineaciones curadas cuyas perspectivas realmente chocan (ej. _IA y Tecnología_: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Un clic para empezar, cada una con 3 temas sugeridos.
 
 **Chat 1 a 1** — haz clic en **Chat** en cualquier tarjeta de personaje para una conversación privada con la voz y el marco de ese pensador.
 
@@ -84,6 +83,15 @@ Te sientas a la cabecera de la mesa como el **presidente** — el debate se desa
 - **Compartir chat** — genera una URL que contiene la conversación completa.
 - **Exportar / Importar** — guarda como Markdown o JSON y restaura desde JSON (en Ajustes), o genera tarjetas compartibles con [json2card](https://github.com/rockbenben/json2card) (configura el endpoint de la API en Ajustes).
 - **Sincronización de ajustes** — traslada tu configuración a otro dispositivo via URL; las claves API se cifran con AES.
+
+## Inicio Rápido
+
+```bash
+npm install
+npm run dev
+```
+
+Abre http://localhost:5173, ve a Ajustes, introduce tu clave API y empieza a chatear. Si encuentras un error de CORS, la aplicación te ofrece habilitar un proxy público con un clic.
 
 ## Pensadores, modelos y plataforma
 
@@ -113,35 +121,28 @@ Los botones **Copiar enlace de alineación** (barra de participantes) y **Copiar
 
 24 proveedores listos para usar — internacionales, con base en China y agregadores:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Todos los proveedores aceptan IDs de modelo personalizados, y la opción **Custom** conecta cualquier API compatible con OpenAI.
-
-## Inicio Rápido
-
-```bash
-npm install
-npm run dev
-```
-
-Abre http://localhost:5173, ve a Ajustes, introduce tu clave API y empieza a chatear. Si encuentras un error de CORS, la aplicación te ofrece habilitar un proxy público con un clic.
 
 ## Proxy CORS
 
 Algunos proveedores bloquean las solicitudes directas del navegador. El proxy CORS se configura por proveedor en Ajustes — actívalo. Por defecto se usa un proxy público (`https://cors.api2026.workers.dev`).
+
+> **Conviene saberlo antes de activarlo.** Todo lo demás aquí es local-first, pero una petición vía proxy no lo es: tu clave de API y el prompt completo pasan por ese proxy camino del proveedor. El proxy por defecto lo opera este proyecto, pero con cualquier proxy ocurre lo mismo — es lo que un proxy hace. Si la clave te importa, despliega el tuyo con el Worker de abajo y apunta ahí desde Ajustes; se tarda unos dos minutos.
 
 Para ejecutar el tuyo propio, despliega un [Cloudflare Worker](https://dash.cloudflare.com) con este código:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## Desarrollo
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,11 +197,11 @@ src/
 
 **Stack:** React 19 · antd 6 (tema con variables CSS, profundamente personalizado) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Comando | Descripción |
-|---------|-------------|
-| `npm run dev` | Iniciar servidor de desarrollo |
-| `npm run build` | Verificar tipos y compilar para producción |
-| `npm run test` | Ejecutar tests |
+| Comando           | Descripción                                  |
+| ----------------- | -------------------------------------------- |
+| `npm run dev`     | Iniciar servidor de desarrollo               |
+| `npm run build`   | Verificar tipos y compilar para producción   |
+| `npm run test`    | Ejecutar tests                               |
 | `npm run preview` | Vista previa de la compilación de producción |
 
 ## Despliegue
@@ -213,10 +214,6 @@ npm run build
 
 El enrutamiento es basado en hash (`/#/chat/...`, `/#/ja/chat/...`), así que no se necesita configuración de enrutamiento del lado del servidor.
 
-## Acerca del Plan de Código Abierto 365
+## Sobre el Plan 365 de código abierto
 
-Este es el proyecto #002 del [Plan de Código Abierto 365](https://github.com/rockbenben/365opensource) — una persona + IA, 300+ proyectos open source en un año. [Envía tu idea →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+Proyecto **#002** del [Plan 365 de código abierto](https://github.com/rockbenben/365opensource) — una persona + IA, más de 300 proyectos de código abierto en un año. [Envía tu idea →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

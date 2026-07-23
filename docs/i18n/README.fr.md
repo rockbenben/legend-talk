@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,12 +9,13 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
   <a href="README.es.md">Español</a> ·
+  <b>Français</b> ·
   <a href="README.de.md">Deutsch</a> ·
   <a href="README.pt.md">Português</a> ·
   <a href="README.it.md">Italiano</a> ·
@@ -40,11 +41,9 @@ Legend Talk réunit 2 à 10 penseurs historiques ou contemporains dans un débat
 
 **Démo :** [talk.newzone.top](https://talk.newzone.top) — 18 langues · gratuit · local-first · sans inscription.
 
-## Captures
-
-| Accueil | Chat |
-|:-:|:-:|
-| ![Accueil](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
+|                 Accueil                  |                 Chat                  |
+| :--------------------------------------: | :-----------------------------------: |
+| ![Accueil](../../docs/images/home-chat.png) | ![Chat](../../docs/images/chat-view.png) |
 
 ## Démarrer une conversation
 
@@ -58,7 +57,7 @@ Legend Talk réunit 2 à 10 penseurs historiques ou contemporains dans un débat
 
 Ou cliquez sur **🎲 Aléatoire** (en haut à droite) pour démarrer instantanément avec 5 penseurs au hasard.
 
-**Modèles en vedette** — 6 compositions soigneusement sélectionnées dont les perspectives s'affrontent réellement (par ex. *IA & Tech* : Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Un clic pour démarrer, chacune avec 3 sujets suggérés.
+**Modèles en vedette** — 6 compositions soigneusement sélectionnées dont les perspectives s'affrontent réellement (par ex. _IA & Tech_ : Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Un clic pour démarrer, chacune avec 3 sujets suggérés.
 
 **Chat 1 à 1** — cliquez sur **Chat** sur n'importe quelle carte de personnage pour une conversation privée dans la voix et le cadre de pensée de ce penseur.
 
@@ -84,6 +83,15 @@ Vous siégez en bout de table en tant que **président** — le débat se dérou
 - **Partager une conversation** — générez une URL contenant la conversation complète.
 - **Exporter / Importer** — enregistrez en Markdown ou JSON et restaurez depuis JSON (dans les Paramètres), ou générez des cartes de partage via [json2card](https://github.com/rockbenben/json2card) (configurez le point d'accès API dans les Paramètres).
 - **Synchronisation des paramètres** — transférez votre configuration vers un autre appareil via une URL ; les clés API sont chiffrées en AES.
+
+## Démarrage Rapide
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API et commencez à discuter. Si vous rencontrez une erreur CORS, l'application propose d'activer un proxy public en un clic.
 
 ## Penseurs, modèles et plateforme
 
@@ -113,35 +121,28 @@ Les boutons **Copier le lien de l'équipe** (barre des participants) et **Copier
 
 24 fournisseurs prêts à l'emploi — internationaux, basés en Chine et agrégateurs :
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Chaque fournisseur accepte des IDs de modèle personnalisés, et l'option **Custom** connecte n'importe quelle API compatible OpenAI.
-
-## Démarrage Rapide
-
-```bash
-npm install
-npm run dev
-```
-
-Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API et commencez à discuter. Si vous rencontrez une erreur CORS, l'application propose d'activer un proxy public en un clic.
 
 ## Proxy CORS
 
 Certains fournisseurs bloquent les requêtes directes depuis le navigateur. Le proxy CORS se configure par fournisseur dans les Paramètres — activez-le. Un proxy public (`https://cors.api2026.workers.dev`) est utilisé par défaut.
+
+> **À savoir avant de l'activer.** Tout le reste ici est local-first, mais une requête passée par un proxy ne l'est pas : votre clé d'API et l'intégralité du prompt transitent par ce proxy avant d'atteindre le fournisseur. Le proxy par défaut est opéré par ce projet, mais c'est vrai de n'importe quel proxy — c'est ce qu'est un proxy. Si la clé compte pour vous, déployez le vôtre avec le Worker ci-dessous et pointez les réglages dessus ; deux minutes suffisent.
 
 Pour exécuter le vôtre, déployez un [Cloudflare Worker](https://dash.cloudflare.com) avec ce code :
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## Développement
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **Stack :** React 19 · antd 6 (thème en variables CSS, profondément personnalisé) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Commande | Description |
-|----------|-------------|
-| `npm run dev` | Serveur de développement |
-| `npm run build` | Vérification de types et compilation pour la production |
-| `npm run test` | Exécuter les tests |
-| `npm run preview` | Aperçu de la version de production |
+| Commande          | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `npm run dev`     | Serveur de développement                                |
+| `npm run build`   | Vérification de types et compilation pour la production |
+| `npm run test`    | Exécuter les tests                                      |
+| `npm run preview` | Aperçu de la version de production                      |
 
 ## Déploiement
 
@@ -213,10 +214,6 @@ npm run build
 
 Le routage est basé sur le hash (`/#/chat/...`, `/#/ja/chat/...`), aucune configuration de routage côté serveur n'est donc nécessaire.
 
-## À propos du Plan Open Source 365
+## À propos du 365 Open Source Plan
 
-Ceci est le projet #002 du [Plan Open Source 365](https://github.com/rockbenben/365opensource) — une personne + IA, plus de 300 projets open source en un an. [Soumettez votre idée →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+Projet **#002** du [365 Open Source Plan](https://github.com/rockbenben/365opensource) — une personne + l'IA, plus de 300 projets open source en un an. [Proposez votre idée →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

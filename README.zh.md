@@ -5,30 +5,40 @@
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
-  365 开源计划 #002 · 让最伟大的思想家围绕你的问题展开多轮 AI 圆桌辩论
+  让最伟大的思想家围绕你的问题展开多轮 AI 圆桌辩论
 </p>
 
 <p align="center">
-  <a href="./README.md">English</a> ·
-  <a href="./i18n/README.zh-Hant.md">繁體中文</a> ·
-  <a href="./i18n/README.ja.md">日本語</a> ·
-  <a href="./i18n/README.ko.md">한국어</a> ·
-  <a href="./i18n/README.es.md">Español</a> ·
-  <a href="./i18n/README.fr.md">Français</a> ·
-  <a href="./i18n/README.de.md">Deutsch</a> ·
-  <a href="./i18n/README.pt.md">Português</a> ·
-  <a href="./i18n/README.it.md">Italiano</a> ·
-  <a href="./i18n/README.ru.md">Русский</a> ·
-  <a href="./i18n/README.ar.md">العربية</a> ·
-  <a href="./i18n/README.hi.md">हिन्दी</a> ·
-  <a href="./i18n/README.vi.md">Tiếng Việt</a> ·
-  <a href="./i18n/README.th.md">ไทย</a> ·
-  <a href="./i18n/README.tr.md">Türkçe</a> ·
-  <a href="./i18n/README.id.md">Indonesia</a> ·
-  <a href="./i18n/README.bn.md">বাংলা</a>
+  <b><a href="https://talk.newzone.top/">▶ 在线试用</a></b> —— 18 种语言 · 免费 · 本地优先 · 无需注册
+  <br>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT"></a>
+  <a href="https://github.com/rockbenben/365opensource"><img src="https://img.shields.io/badge/365%20%E5%BC%80%E6%BA%90%E8%AE%A1%E5%88%92-%23002-1f6feb" alt="365 开源计划 #002"></a>
 </p>
 
-> **把历史上最伟大的头脑请到同一张桌前，让他们围绕你的问题展开辩论。**
+<p align="center">
+  <a href="README.md">English</a> ·
+  <b>简体中文</b> ·
+  <a href="docs/i18n/README.zh-Hant.md">繁體中文</a> ·
+  <a href="docs/i18n/README.ja.md">日本語</a> ·
+  <a href="docs/i18n/README.ko.md">한국어</a> ·
+  <a href="docs/i18n/README.es.md">Español</a> ·
+  <a href="docs/i18n/README.fr.md">Français</a> ·
+  <a href="docs/i18n/README.de.md">Deutsch</a> ·
+  <a href="docs/i18n/README.pt.md">Português</a> ·
+  <a href="docs/i18n/README.it.md">Italiano</a> ·
+  <a href="docs/i18n/README.ru.md">Русский</a> ·
+  <a href="docs/i18n/README.ar.md">العربية</a> ·
+  <a href="docs/i18n/README.hi.md">हिन्दी</a> ·
+  <a href="docs/i18n/README.vi.md">Tiếng Việt</a> ·
+  <a href="docs/i18n/README.th.md">ไทย</a> ·
+  <a href="docs/i18n/README.tr.md">Türkçe</a> ·
+  <a href="docs/i18n/README.id.md">Indonesia</a> ·
+  <a href="docs/i18n/README.bn.md">বাংলা</a>
+</p>
+
+|                首页                |              对话界面              |
+| :--------------------------------: | :--------------------------------: |
+| ![首页](docs/images/home-chat.png) | ![对话](docs/images/chat-view.png) |
 
 Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或当代名人，抛出一个问题，他们会展开多轮辩论：每轮里每个人都从自己的思维框架出发，主持人随后梳理分歧、开启下一轮。苏格拉底追问芒格的假设，尼采同时挑战两人。
 
@@ -37,14 +47,6 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或�
 - **抛出问题** — 输入一个话题，AI 自动组一桌 3–5 位观点形成张力的思想家。
 - **自定阵容** — 自己挑 2–10 位，或随机来 5 位。
 - **单独请教** — 与 161 位思想家中的任意一位一对一，用他们独有的思维框架分析，而非泛泛的 AI 扮演。
-
-**在线体验：** [talk.newzone.top](https://talk.newzone.top) —— 18 种语言 · 免费 · 本地优先 · 无需注册。
-
-## 截图
-
-| 首页 | 对话界面 |
-|:-:|:-:|
-| ![首页](docs/images/home-chat.png) | ![对话](docs/images/chat-view.png) |
 
 ## 发起对话
 
@@ -85,6 +87,15 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或�
 - **导出 / 导入** — 导出为 Markdown 或 JSON、从 JSON 恢复（设置页），或通过 [json2card](https://github.com/rockbenben/json2card) 生成分享卡片（需在设置中配置 API 端点）。
 - **设置同步** — 通过 URL 把配置同步到其他设备，密钥经 AES 加密。
 
+## 自己跑起来
+
+```bash
+npm install
+npm run dev
+```
+
+打开 http://localhost:5173，进入设置页填入 API Key，即可开始对话。遇到 CORS 错误时，应用会提示一键启用公共中转——同意之前建议先看一眼[这对你的 key 意味着什么](#cors-中转)。
+
 ## 思想家、模型与平台
 
 **161 位预设思想家**，覆盖 15 大领域、按知名度排序——直接输入任意名字即可即时创建自定义角色。
@@ -113,35 +124,28 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或�
 
 开箱即用 24 家服务商——国际、国内与聚合平台：
 
-| 服务商 | 模型 |
-|--------|------|
-| OpenAI | GPT-5.5、GPT-5.4、GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7、Claude Sonnet 4.6、Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro、Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3、Grok 4.20 系列 |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3、Command A 系列 |
-| DeepSeek | DeepSeek V4 Flash、V4 Pro |
-| 月之暗面 Kimi | Kimi K2.6、K2.5 |
-| 智谱 GLM | GLM-5.1、GLM-5、GLM-4.7 系列 |
-| MiniMax / 混元 / 千帆 / 小米 MiMo | MiniMax M2.7、混元 2.0、文心 5.1、MiMo V2.5 |
-| 字节方舟 Coding Plan | Doubao Seed 2.0、Kimi K2.5、GLM-4.7、DeepSeek V4 |
-| 阿里百炼 Coding Plan | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5 |
-| 聚合平台 | OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
+| 服务商                            | 模型                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------------------ |
+| OpenAI                            | GPT-5.5、GPT-5.4、GPT-5.4 Mini                                                                   |
+| Anthropic                         | Claude Opus 4.7、Claude Sonnet 4.6、Claude Haiku 4.5                                             |
+| Google Gemini                     | Gemini 3.1 Pro、Gemini 3.5 Flash                                                                 |
+| xAI Grok                          | Grok 4.3、Grok 4.20 系列                                                                         |
+| Mistral / Cohere                  | Mistral Medium 3.5 / Large 3、Command A 系列                                                     |
+| DeepSeek                          | DeepSeek V4 Flash、V4 Pro                                                                        |
+| 月之暗面 Kimi                     | Kimi K2.6、K2.5                                                                                  |
+| 智谱 GLM                          | GLM-5.1、GLM-5、GLM-4.7 系列                                                                     |
+| MiniMax / 混元 / 千帆 / 小米 MiMo | MiniMax M2.7、混元 2.0、文心 5.1、MiMo V2.5                                                      |
+| 字节方舟 Coding Plan              | Doubao Seed 2.0、Kimi K2.5、GLM-4.7、DeepSeek V4                                                 |
+| 阿里百炼 Coding Plan              | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5                                                        |
+| 聚合平台                          | OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
 
 所有服务商均支持自定义模型 ID，「Custom」选项可接入任意 OpenAI 兼容 API。
-
-## 快速开始
-
-```bash
-npm install
-npm run dev
-```
-
-打开 http://localhost:5173，进入设置页填入 API Key，即可开始对话。遇到 CORS 错误时，应用会提示一键启用公共中转。
 
 ## CORS 中转
 
 部分服务商不允许浏览器直接调用。在设置页按服务商开关 CORS 中转即可，默认使用公共节点（`https://cors.api2026.workers.dev`）。
+
+> **开之前值得知道**：其余部分都是本地优先，但走中转的请求不是——你的 API key 和完整 prompt 会经过该节点再转发给服务商。默认节点由本项目维护，但换成任何中转都一样，这是中转的本质。若你在意这个 key，用下面的 Worker 自建一个、在设置里指过去即可，大约两分钟。
 
 如需自建，部署一个 [Cloudflare Worker](https://dash.cloudflare.com) 并填入以下代码：
 
@@ -153,16 +157,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +176,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +186,7 @@ export default {
 
 ## 开发
 
-```
+```text
 src/
   adapters/       # LLM API 适配器（OpenAI 兼容、Anthropic）
   characters/     # 角色预设和自定义角色生成
@@ -196,12 +200,12 @@ src/
 
 **技术栈：** React 19 · antd 6（CSS 变量主题深度定制）· Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| 命令 | 说明 |
-|------|------|
-| `npm run dev` | 启动开发服务器 |
-| `npm run build` | 类型检查并构建生产版本 |
-| `npm run test` | 运行测试 |
-| `npm run preview` | 预览生产构建 |
+| 命令              | 说明                   |
+| ----------------- | ---------------------- |
+| `npm run dev`     | 启动开发服务器         |
+| `npm run build`   | 类型检查并构建生产版本 |
+| `npm run test`    | 运行测试               |
+| `npm run preview` | 预览生产构建           |
 
 ## 部署
 
@@ -215,8 +219,4 @@ npm run build
 
 ## 关于 365 开源计划
 
-本项目是 [365 开源计划](https://github.com/rockbenben/365opensource) 的第 002 个项目——一个人 + AI，一年 300+ 个开源项目。[提交你的需求 →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[365 开源计划](https://github.com/rockbenben/365opensource) 的第 **#002** 个项目——一个人 + AI，一年 300+ 个开源项目。[提交你的需求 →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

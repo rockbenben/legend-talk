@@ -1,16 +1,18 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
-  365 ओपन सोर्स योजना #002 · इतिहास के महानतम विचारकों के साथ AI गोलमेज चर्चा
+  इतिहास के महानतम विचारकों के साथ AI गोलमेज चर्चा
+
+[![365 Open Source Plan #002](https://img.shields.io/badge/365%20Open%20Source%20Plan-%23002-1f6feb)](https://github.com/rockbenben/365opensource)
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -21,6 +23,7 @@
   <a href="README.it.md">Italiano</a> ·
   <a href="README.ru.md">Русский</a> ·
   <a href="README.ar.md">العربية</a> ·
+  <b>हिन्दी</b> ·
   <a href="README.vi.md">Tiếng Việt</a> ·
   <a href="README.th.md">ไทย</a> ·
   <a href="README.tr.md">Türkçe</a> ·
@@ -40,11 +43,9 @@ Legend Talk 2–10 ऐतिहासिक या समकालीन वि�
 
 **डेमो:** [talk.newzone.top](https://talk.newzone.top) — 18 भाषाएँ · मुफ़्त · लोकल-फर्स्ट · बिना साइन-अप।
 
-## स्क्रीनशॉट
-
-| होम | चैट |
-|:-:|:-:|
-| ![होम](../docs/images/home-chat.png) | ![चैट](../docs/images/chat-view.png) |
+|                 होम                  |                 चैट                  |
+| :----------------------------------: | :----------------------------------: |
+| ![होम](../../docs/images/home-chat.png) | ![चैट](../../docs/images/chat-view.png) |
 
 ## बातचीत शुरू करें
 
@@ -58,7 +59,7 @@ Legend Talk 2–10 ऐतिहासिक या समकालीन वि�
 
 या तुरंत 5 यादृच्छिक विचारकों के साथ शुरू करने के लिए **🎲 यादृच्छिक** (ऊपर-दाएँ) दबाएँ।
 
-**विशेष टेम्पलेट** — 6 चुनिंदा लाइनअप जिनके दृष्टिकोण सचमुच टकराते हैं (जैसे *AI & Tech*: Karpathy बनाम Ilya बनाम Feynman बनाम Taleb बनाम Paul Graham)। एक क्लिक में शुरू, हर एक के साथ 3 सुझाए गए विषय।
+**विशेष टेम्पलेट** — 6 चुनिंदा लाइनअप जिनके दृष्टिकोण सचमुच टकराते हैं (जैसे _AI & Tech_: Karpathy बनाम Ilya बनाम Feynman बनाम Taleb बनाम Paul Graham)। एक क्लिक में शुरू, हर एक के साथ 3 सुझाए गए विषय।
 
 **1-1 चैट** — उस विचारक की आवाज़ और ढाँचे में निजी बातचीत के लिए किसी भी चरित्र कार्ड पर **चैट** क्लिक करें।
 
@@ -84,6 +85,15 @@ Legend Talk 2–10 ऐतिहासिक या समकालीन वि�
 - **चैट साझा करें** — पूरी बातचीत वाला एक URL बनाएँ।
 - **निर्यात / आयात** — Markdown या JSON के रूप में सहेजें और JSON से पुनर्स्थापित करें (सेटिंग्स में), या [json2card](https://github.com/rockbenben/json2card) से शेयर कार्ड बनाएँ (सेटिंग्स में API एंडपॉइंट सेट करें)।
 - **सेटिंग्स सिंक** — अपना सेटअप URL के माध्यम से किसी अन्य डिवाइस पर ले जाएँ; API कुंजियाँ AES-एन्क्रिप्टेड हैं।
+
+## त्वरित शुरुआत
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:5173 खोलें, सेटिंग्स में जाएँ, अपनी API कुंजी दर्ज करें, और चैट करना शुरू करें। यदि आपको CORS त्रुटि मिलती है, तो ऐप एक क्लिक में सार्वजनिक प्रॉक्सी सक्षम करने की पेशकश करता है।
 
 ## विचारक, मॉडल और प्लेटफ़ॉर्म
 
@@ -113,35 +123,28 @@ URL से सीधे बातचीत शुरू करें:
 
 बॉक्स से बाहर 24 प्रदाता — अंतरराष्ट्रीय, चीन-आधारित और एग्रीगेटर:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 हर प्रदाता कस्टम मॉडल ID स्वीकार करता है, और **Custom** विकल्प किसी भी OpenAI-संगत API को जोड़ता है।
-
-## त्वरित शुरुआत
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:5173 खोलें, सेटिंग्स में जाएँ, अपनी API कुंजी दर्ज करें, और चैट करना शुरू करें। यदि आपको CORS त्रुटि मिलती है, तो ऐप एक क्लिक में सार्वजनिक प्रॉक्सी सक्षम करने की पेशकश करता है।
 
 ## CORS प्रॉक्सी
 
 कुछ प्रदाता सीधे ब्राउज़र अनुरोधों को ब्लॉक करते हैं। CORS प्रॉक्सी सेटिंग्स में प्रति प्रदाता कॉन्फ़िगर की जाती है — इसे चालू करें। डिफ़ॉल्ट रूप से एक सार्वजनिक प्रॉक्सी (`https://cors.api2026.workers.dev`) का उपयोग होता है।
+
+> **चालू करने से पहले जान लें।** यहाँ बाक़ी सब कुछ लोकल-फ़र्स्ट है, पर प्रॉक्सी से जाने वाला अनुरोध नहीं: आपकी API कुंजी और पूरा प्रॉम्प्ट प्रोवाइडर तक पहुँचने से पहले उस प्रॉक्सी से गुज़रते हैं। डिफ़ॉल्ट प्रॉक्सी यही प्रोजेक्ट चलाता है, पर किसी भी प्रॉक्सी के साथ यही बात है — प्रॉक्सी का काम ही यही है। अगर वह कुंजी आपके लिए मायने रखती है, तो नीचे दिए Worker से अपना प्रॉक्सी चलाएँ और सेटिंग्स में उसी को दें; दो मिनट लगते हैं।
 
 अपना खुद का चलाने के लिए, इस कोड के साथ एक [Cloudflare Worker](https://dash.cloudflare.com) तैनात करें:
 
@@ -153,16 +156,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +175,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +185,7 @@ export default {
 
 ## विकास
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,11 +199,11 @@ src/
 
 **स्टैक:** React 19 · antd 6 (CSS-वेरिएबल थीम, गहराई से अनुकूलित) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| कमांड | विवरण |
-|---------|-------------|
-| `npm run dev` | डेव सर्वर शुरू करें |
-| `npm run build` | टाइप-चेक और प्रोडक्शन बिल्ड |
-| `npm run test` | टेस्ट चलाएँ |
+| कमांड             | विवरण                         |
+| ----------------- | ----------------------------- |
+| `npm run dev`     | डेव सर्वर शुरू करें           |
+| `npm run build`   | टाइप-चेक और प्रोडक्शन बिल्ड   |
+| `npm run test`    | टेस्ट चलाएँ                   |
 | `npm run preview` | प्रोडक्शन बिल्ड प्रीव्यू करें |
 
 ## डिप्लॉय
@@ -213,10 +216,6 @@ npm run build
 
 रूटिंग हैश-आधारित है (`/#/chat/...`, `/#/ja/chat/...`), इसलिए सर्वर-साइड रूटिंग कॉन्फ़िगरेशन की ज़रूरत नहीं।
 
-## 365 ओपन सोर्स योजना के बारे में
+## 365 ओपन सोर्स प्लान के बारे में
 
-यह [365 ओपन सोर्स योजना](https://github.com/rockbenben/365opensource) का #002 प्रोजेक्ट है — 1 व्यक्ति + AI, एक साल में 300+ ओपन सोर्स प्रोजेक्ट। [अपना आइडिया भेजें →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[365 ओपन सोर्स प्लान](https://github.com/rockbenben/365opensource) का प्रोजेक्ट **#002** — एक व्यक्ति + AI, एक साल में 300+ ओपन सोर्स प्रोजेक्ट्स। [अपना आइडिया सबमिट करें →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

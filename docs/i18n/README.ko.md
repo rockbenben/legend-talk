@@ -1,18 +1,21 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
 
 <p align="center">
-  365 오픈소스 계획 #002 · 위대한 사상가들의 AI 원탁 토론
+  위대한 사상가들의 AI 원탁 토론
+
+[![365 Open Source Plan #002](https://img.shields.io/badge/365%20Open%20Source%20Plan-%23002-1f6feb)](https://github.com/rockbenben/365opensource)
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
+  <b>한국어</b> ·
   <a href="README.es.md">Español</a> ·
   <a href="README.fr.md">Français</a> ·
   <a href="README.de.md">Deutsch</a> ·
@@ -40,11 +43,9 @@ Legend Talk은 2~10명의 역사적·현대적 사상가를 다중 라운드 토
 
 **데모:** [talk.newzone.top](https://talk.newzone.top) — 18개 언어 · 무료 · 로컬 우선 · 가입 불필요.
 
-## 스크린샷
-
-| 홈 | 채팅 화면 |
-|:-:|:-:|
-| ![홈](../docs/images/home-chat.png) | ![채팅 화면](../docs/images/chat-view.png) |
+|                 홈                  |                 채팅 화면                  |
+| :---------------------------------: | :----------------------------------------: |
+| ![홈](../../docs/images/home-chat.png) | ![채팅 화면](../../docs/images/chat-view.png) |
 
 ## 대화 시작하기
 
@@ -58,7 +59,7 @@ Legend Talk은 2~10명의 역사적·현대적 사상가를 다중 라운드 토
 
 또는 (우측 상단) **🎲 랜덤**을 눌러 무작위 5명의 사상가로 즉시 시작합니다.
 
-**추천 템플릿** — 관점이 진정으로 충돌하는 6개의 엄선된 라인업 (예: *AI & Tech*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). 한 번의 클릭으로 시작하며, 각 템플릿마다 3개의 추천 토픽이 있습니다.
+**추천 템플릿** — 관점이 진정으로 충돌하는 6개의 엄선된 라인업 (예: _AI & Tech_: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). 한 번의 클릭으로 시작하며, 각 템플릿마다 3개의 추천 토픽이 있습니다.
 
 **1대1 채팅** — 캐릭터 카드의 **채팅**을 클릭하면 그 사상가의 목소리와 사고 틀로 개인 대화를 나눕니다.
 
@@ -84,6 +85,15 @@ Legend Talk은 2~10명의 역사적·현대적 사상가를 다중 라운드 토
 - **채팅 공유** — 전체 대화가 담긴 URL을 생성합니다.
 - **내보내기/가져오기** — Markdown 또는 JSON으로 저장하고 JSON에서 복원하거나(설정에서), [json2card](https://github.com/rockbenben/json2card)로 공유 카드를 생성합니다(설정에서 API 엔드포인트 지정).
 - **설정 동기화** — URL로 설정을 다른 기기로 옮깁니다. API 키는 AES로 암호화됩니다.
+
+## 빠른 시작
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:5173을 열고 설정으로 이동해 API 키를 입력한 뒤 대화를 시작하세요. CORS 오류가 발생하면 앱이 한 번의 클릭으로 공용 프록시를 켤 수 있도록 안내합니다.
 
 ## 사상가, 모델 및 플랫폼
 
@@ -113,35 +123,28 @@ URL로 직접 대화 시작:
 
 기본 제공되는 24개 제공업체 — 해외, 중국, 그리고 애그리게이터:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 모든 제공업체에서 커스텀 모델 ID를 지원하며, **Custom** 옵션으로 모든 OpenAI 호환 API를 연결할 수 있습니다.
-
-## 빠른 시작
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:5173을 열고 설정으로 이동해 API 키를 입력한 뒤 대화를 시작하세요. CORS 오류가 발생하면 앱이 한 번의 클릭으로 공용 프록시를 켤 수 있도록 안내합니다.
 
 ## CORS 프록시
 
 일부 제공업체는 브라우저 직접 요청을 차단합니다. CORS 프록시는 설정에서 제공업체별로 구성하며, 켜기만 하면 됩니다. 기본적으로 공용 프록시(`https://cors.api2026.workers.dev`)가 사용됩니다.
+
+> **켜기 전에 알아두세요.** 나머지는 모두 로컬 우선이지만 프록시를 거치는 요청은 다릅니다 — API 키와 프롬프트 전문이 제공자에게 가기 전에 그 프록시를 통과합니다. 기본 프록시는 이 프로젝트가 운영하지만, 어떤 프록시든 마찬가지입니다. 키가 중요하다면 아래 Worker로 직접 띄우고 설정에서 그쪽을 가리키세요. 2분이면 됩니다.
 
 직접 운영하려면 다음 코드로 [Cloudflare Worker](https://dash.cloudflare.com)를 배포하세요:
 
@@ -153,16 +156,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +175,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +185,7 @@ export default {
 
 ## 개발
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +199,12 @@ src/
 
 **기술 스택:** React 19 · antd 6 (CSS 변수 테마, 깊이 커스터마이즈) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| 명령 | 설명 |
-|---------|-------------|
-| `npm run dev` | 개발 서버 시작 |
-| `npm run build` | 타입 체크 + 프로덕션 빌드 |
-| `npm run test` | 테스트 실행 |
-| `npm run preview` | 프로덕션 빌드 미리보기 |
+| 명령              | 설명                      |
+| ----------------- | ------------------------- |
+| `npm run dev`     | 개발 서버 시작            |
+| `npm run build`   | 타입 체크 + 프로덕션 빌드 |
+| `npm run test`    | 테스트 실행               |
+| `npm run preview` | 프로덕션 빌드 미리보기    |
 
 ## 배포
 
@@ -213,10 +216,6 @@ npm run build
 
 라우팅은 해시 기반(`/#/chat/...`, `/#/ja/chat/...`)이므로 서버 측 라우팅 설정이 필요 없습니다.
 
-## 365 오픈소스 계획에 대해
+## 365 오픈소스 프로젝트 소개
 
-본 프로젝트는 [365 오픈소스 계획](https://github.com/rockbenben/365opensource)의 #002 프로젝트입니다 — 1인 + AI, 1년에 300+ 오픈소스 프로젝트. [아이디어 제출 →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[365 오픈소스 프로젝트](https://github.com/rockbenben/365opensource)의 **#002**번째 프로젝트 — 한 사람 + AI, 1년에 오픈소스 프로젝트 300개 이상. [아이디어 제안하기 →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

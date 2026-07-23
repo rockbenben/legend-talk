@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -25,7 +25,8 @@
   <a href="README.vi.md">Tiếng Việt</a> ·
   <a href="README.th.md">ไทย</a> ·
   <a href="README.tr.md">Türkçe</a> ·
-  <a href="README.id.md">Indonesia</a>
+  <a href="README.id.md">Indonesia</a> ·
+  <b>বাংলা</b>
 </p>
 
 > **ইতিহাসের মহান মনীষীদের এক টেবিলে বসান এবং তাদের আপনার প্রশ্ন নিয়ে বিতর্ক করতে দিন।**
@@ -40,11 +41,9 @@ Legend Talk ২-১০ জন ঐতিহাসিক বা সমকালী
 
 **ডেমো:** [talk.newzone.top](https://talk.newzone.top) — ১৮ ভাষা · বিনামূল্যে · লোকাল-ফার্স্ট · সাইন-আপ ছাড়াই।
 
-## স্ক্রিনশট
-
-| হোম পেজ | চ্যাট ভিউ |
-|:-:|:-:|
-| ![হোম](../docs/images/home-chat.png) | ![চ্যাট](../docs/images/chat-view.png) |
+|               হোম পেজ                |               চ্যাট ভিউ                |
+| :----------------------------------: | :------------------------------------: |
+| ![হোম](../../docs/images/home-chat.png) | ![চ্যাট](../../docs/images/chat-view.png) |
 
 ## কথোপকথন শুরু করুন
 
@@ -58,7 +57,7 @@ Legend Talk ২-১০ জন ঐতিহাসিক বা সমকালী
 
 অথবা ৫ জন এলোমেলো চিন্তাবিদ নিয়ে সঙ্গে সঙ্গে শুরু করতে **🎲 এলোমেলো** (উপরে-ডানে) চাপুন।
 
-**ফিচার্ড টেমপ্লেট** — ৬টি বাছাইকৃত দল যাদের দৃষ্টিভঙ্গি সত্যিকারের সংঘর্ষে আসে (যেমন *AI & Tech*: Karpathy বনাম Ilya বনাম Feynman বনাম Taleb বনাম Paul Graham)। এক ক্লিকে শুরু, প্রতিটির সাথে ৩টি প্রস্তাবিত বিষয়।
+**ফিচার্ড টেমপ্লেট** — ৬টি বাছাইকৃত দল যাদের দৃষ্টিভঙ্গি সত্যিকারের সংঘর্ষে আসে (যেমন _AI & Tech_: Karpathy বনাম Ilya বনাম Feynman বনাম Taleb বনাম Paul Graham)। এক ক্লিকে শুরু, প্রতিটির সাথে ৩টি প্রস্তাবিত বিষয়।
 
 **১-১ চ্যাট** — সেই চিন্তাবিদের কণ্ঠ ও কাঠামোয় ব্যক্তিগত কথোপকথনের জন্য যেকোনো চরিত্র কার্ডে **চ্যাট** ক্লিক করুন।
 
@@ -84,6 +83,15 @@ Legend Talk ২-১০ জন ঐতিহাসিক বা সমকালী
 - **চ্যাট শেয়ার** — সম্পূর্ণ কথোপকথন সম্বলিত একটি URL তৈরি করুন।
 - **রপ্তানি / আমদানি** — Markdown বা JSON হিসেবে সংরক্ষণ করুন এবং JSON থেকে পুনরুদ্ধার করুন (সেটিংসে), অথবা [json2card](https://github.com/rockbenben/json2card) দিয়ে শেয়ার কার্ড তৈরি করুন (সেটিংসে API এন্ডপয়েন্ট সেট করুন)।
 - **সেটিংস সিঙ্ক** — URL দিয়ে আপনার সেটআপ অন্য ডিভাইসে নিয়ে যান; API কী AES-এনক্রিপ্টেড।
+
+## দ্রুত শুরু
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:5173 খুলুন, সেটিংসে যান, আপনার API কী দিন, এবং চ্যাট শুরু করুন। CORS ত্রুটিতে পড়লে, অ্যাপটি এক ক্লিকে একটি পাবলিক প্রক্সি চালু করার প্রস্তাব দেয়।
 
 ## চিন্তাবিদ, মডেল ও প্ল্যাটফর্ম
 
@@ -113,35 +121,28 @@ Legend Talk ২-১০ জন ঐতিহাসিক বা সমকালী
 
 বাক্সের বাইরেই ২৪টি প্রদানকারী — আন্তর্জাতিক, চীন-ভিত্তিক, এবং অ্যাগ্রিগেটর:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 প্রতিটি প্রদানকারী কাস্টম মডেল ID গ্রহণ করে, এবং **Custom** অপশন যেকোনো OpenAI-সামঞ্জস্যপূর্ণ API সংযুক্ত করে।
-
-## দ্রুত শুরু
-
-```bash
-npm install
-npm run dev
-```
-
-http://localhost:5173 খুলুন, সেটিংসে যান, আপনার API কী দিন, এবং চ্যাট শুরু করুন। CORS ত্রুটিতে পড়লে, অ্যাপটি এক ক্লিকে একটি পাবলিক প্রক্সি চালু করার প্রস্তাব দেয়।
 
 ## CORS প্রক্সি
 
 কিছু প্রদানকারী সরাসরি ব্রাউজার অনুরোধ ব্লক করে। CORS প্রক্সি সেটিংসে প্রদানকারী অনুযায়ী কনফিগার করা হয় — এটি চালু করুন। ডিফল্টভাবে একটি পাবলিক প্রক্সি (`https://cors.api2026.workers.dev`) ব্যবহৃত হয়।
+
+> **চালু করার আগে জেনে রাখুন।** এখানকার বাকি সবই লোকাল-ফার্স্ট, কিন্তু প্রক্সি দিয়ে যাওয়া অনুরোধ নয় — আপনার API কী আর সম্পূর্ণ প্রম্পট প্রদানকারীর কাছে পৌঁছানোর পথে সেই প্রক্সি হয়ে যায়। ডিফল্ট প্রক্সিটি এই প্রকল্পই চালায়, তবে যেকোনো প্রক্সির ক্ষেত্রেই এটা সত্যি — প্রক্সি তো এটাই করে। কী-টি আপনার কাছে গুরুত্বপূর্ণ হলে নিচের Worker দিয়ে নিজের একটি চালান আর সেটিংসে সেটিকে দেখান; দুই মিনিটের কাজ।
 
 নিজের প্রক্সি চালাতে, এই কোড দিয়ে একটি [Cloudflare Worker](https://dash.cloudflare.com) ডিপ্লয় করুন:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## ডেভেলপমেন্ট
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **স্ট্যাক:** React 19 · antd 6 (CSS-ভেরিয়েবল থিম, গভীরভাবে কাস্টমাইজড) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| কমান্ড | বিবরণ |
-|---------|-------------|
-| `npm run dev` | ডেভ সার্ভার চালু করুন |
-| `npm run build` | টাইপ-চেক এবং প্রোডাকশনের জন্য বিল্ড |
-| `npm run test` | টেস্ট চালান |
-| `npm run preview` | প্রোডাকশন বিল্ড প্রিভিউ |
+| কমান্ড            | বিবরণ                               |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | ডেভ সার্ভার চালু করুন               |
+| `npm run build`   | টাইপ-চেক এবং প্রোডাকশনের জন্য বিল্ড |
+| `npm run test`    | টেস্ট চালান                         |
+| `npm run preview` | প্রোডাকশন বিল্ড প্রিভিউ             |
 
 ## ডিপ্লয়
 
@@ -213,10 +214,6 @@ npm run build
 
 রাউটিং হ্যাশ-ভিত্তিক (`/#/chat/...`, `/#/ja/chat/...`), তাই সার্ভার-সাইড রাউটিং কনফিগারেশনের প্রয়োজন নেই।
 
-## ৩৬৫ ওপেন সোর্স পরিকল্পনা সম্পর্কে
+## ৩৬৫ ওপেন সোর্স প্ল্যান সম্পর্কে
 
-এটি [৩৬৫ ওপেন সোর্স পরিকল্পনা](https://github.com/rockbenben/365opensource) এর #০০২ প্রকল্প — ১ জন + AI, এক বছরে ৩০০+ ওপেন সোর্স প্রকল্প। [আপনার আইডিয়া জমা দিন →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+[৩৬৫ ওপেন সোর্স প্ল্যান](https://github.com/rockbenben/365opensource)-এর প্রজেক্ট **#002** — একজন মানুষ + AI, এক বছরে ৩০০+ ওপেন সোর্স প্রজেক্ট। [আপনার আইডিয়া জমা দিন →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

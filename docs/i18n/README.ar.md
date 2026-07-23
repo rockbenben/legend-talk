@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -20,6 +20,7 @@
   <a href="README.pt.md">Português</a> ·
   <a href="README.it.md">Italiano</a> ·
   <a href="README.ru.md">Русский</a> ·
+  <b>العربية</b> ·
   <a href="README.hi.md">हिन्दी</a> ·
   <a href="README.vi.md">Tiếng Việt</a> ·
   <a href="README.th.md">ไทย</a> ·
@@ -40,11 +41,9 @@
 
 **عرض تجريبي:** [talk.newzone.top](https://talk.newzone.top) — 18 لغة · مجاني · محلي أولاً · بلا تسجيل.
 
-## لقطات الشاشة
-
-| الرئيسية | المحادثة |
-|:-:|:-:|
-| ![الرئيسية](../docs/images/home-chat.png) | ![المحادثة](../docs/images/chat-view.png) |
+|                 الرئيسية                  |                 المحادثة                  |
+| :---------------------------------------: | :---------------------------------------: |
+| ![الرئيسية](../../docs/images/home-chat.png) | ![المحادثة](../../docs/images/chat-view.png) |
 
 ## بدء محادثة
 
@@ -58,7 +57,7 @@
 
 أو اضغط **🎲 عشوائي** (أعلى اليمين) للبدء فوراً بـ 5 مفكرين عشوائيين.
 
-**قوالب مميزة** — 6 تشكيلات منتقاة تتصادم وجهات نظرها فعلاً (مثلاً *الذكاء الاصطناعي والتقنية*: كارباثي ضد إيليا ضد فاينمان ضد طالب ضد بول غراهام). نقرة واحدة للبدء، ولكل منها 3 مواضيع مقترحة.
+**قوالب مميزة** — 6 تشكيلات منتقاة تتصادم وجهات نظرها فعلاً (مثلاً _الذكاء الاصطناعي والتقنية_: كارباثي ضد إيليا ضد فاينمان ضد طالب ضد بول غراهام). نقرة واحدة للبدء، ولكل منها 3 مواضيع مقترحة.
 
 **محادثة فردية** — انقر على **محادثة** في أي بطاقة شخصية لمحادثة خاصة بصوت ذلك المفكر وإطاره الفكري.
 
@@ -84,6 +83,15 @@
 - **مشاركة المحادثة** — أنشئ رابط URL يحتوي المحادثة كاملة.
 - **تصدير / استيراد** — احفظ بصيغة Markdown أو JSON واستعد من JSON (في الإعدادات)، أو أنشئ بطاقات مشاركة عبر [json2card](https://github.com/rockbenben/json2card) (عيّن نقطة نهاية API في الإعدادات).
 - **مزامنة الإعدادات** — انقل إعداداتك إلى جهاز آخر عبر URL؛ مفاتيح API مشفّرة بمعيار AES.
+
+## بداية سريعة
+
+```bash
+npm install
+npm run dev
+```
+
+افتح http://localhost:5173، اذهب إلى الإعدادات، أدخل مفتاح API الخاص بك، وابدأ المحادثة. إذا واجهت خطأ CORS، يعرض التطبيق تفعيل وكيل عام بنقرة واحدة.
 
 ## المفكرون والنماذج والمنصة
 
@@ -113,35 +121,28 @@
 
 24 مزوداً جاهزاً — عالميون وصينيون ومجمّعون:
 
-| المزود | النماذج |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| المزود                             | النماذج                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 يقبل كل مزود معرّفات نماذج مخصصة، ويربط خيار **Custom** أي API متوافق مع OpenAI.
-
-## بداية سريعة
-
-```bash
-npm install
-npm run dev
-```
-
-افتح http://localhost:5173، اذهب إلى الإعدادات، أدخل مفتاح API الخاص بك، وابدأ المحادثة. إذا واجهت خطأ CORS، يعرض التطبيق تفعيل وكيل عام بنقرة واحدة.
 
 ## وكيل CORS
 
 بعض المزودين يحظرون طلبات المتصفح المباشرة. يُهيّأ وكيل CORS لكل مزود في الإعدادات — فعّله. يُستخدم وكيل عام (`https://cors.api2026.workers.dev`) افتراضياً.
+
+> **يُستحسن معرفته قبل التفعيل.** كل شيء آخر هنا يعمل محليًا أولًا، أما الطلب المارّ عبر الوسيط فلا: مفتاح واجهة البرمجة والموجّه كاملًا يمرّان عبر ذلك الوسيط في طريقهما إلى المزوّد. الوسيط الافتراضي يديره هذا المشروع، لكن الأمر ذاته ينطبق على أي وسيط — فهذا هو عمل الوسيط. إن كان المفتاح يهمّك، فأنشئ وسيطك الخاص عبر الـ Worker أدناه ووجّه الإعدادات إليه؛ يستغرق ذلك دقيقتين تقريبًا.
 
 لتشغيل وكيلك الخاص، انشر [Cloudflare Worker](https://dash.cloudflare.com) بهذا الكود:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## التطوير
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **المجموعة التقنية:** React 19 · antd 6 (سمة بمتغيرات CSS، مخصّصة بعمق) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| الأمر | الوصف |
-|---------|-------------|
-| `npm run dev` | تشغيل خادم التطوير |
-| `npm run build` | فحص الأنواع والبناء للإنتاج |
-| `npm run test` | تشغيل الاختبارات |
-| `npm run preview` | معاينة بناء الإنتاج |
+| الأمر             | الوصف                       |
+| ----------------- | --------------------------- |
+| `npm run dev`     | تشغيل خادم التطوير          |
+| `npm run build`   | فحص الأنواع والبناء للإنتاج |
+| `npm run test`    | تشغيل الاختبارات            |
+| `npm run preview` | معاينة بناء الإنتاج         |
 
 ## النشر
 
@@ -213,10 +214,6 @@ npm run build
 
 التوجيه قائم على Hash (`/#/chat/...`، `/#/ja/chat/...`)، فلا حاجة لتكوين توجيه على الخادم.
 
-## حول خطة المصادر المفتوحة 365
+## عن خطة 365 مفتوح المصدر
 
-هذا المشروع #002 من [خطة المصادر المفتوحة 365](https://github.com/rockbenben/365opensource) — شخص واحد + ذكاء اصطناعي، 300+ مشروع مفتوح المصدر في عام. [أرسل فكرتك →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+المشروع **#002** من [خطة 365 مفتوح المصدر](https://github.com/rockbenben/365opensource) — شخص واحد + ذكاء اصطناعي، أكثر من 300 مشروع مفتوح المصدر في عام واحد. [شارك فكرتك ←](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

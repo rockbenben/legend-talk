@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
+  <img src="../../public/logo.png" width="84" height="84" alt="Legend Talk logo" />
 </p>
 
 <h1 align="center">Legend Talk</h1>
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="../README.md">English</a> ·
-  <a href="../README.zh.md">中文</a> ·
+  <a href="../../README.md">English</a> ·
+  <a href="../../README.zh.md">简体中文</a> ·
   <a href="README.zh-Hant.md">繁體中文</a> ·
   <a href="README.ja.md">日本語</a> ·
   <a href="README.ko.md">한국어</a> ·
@@ -25,6 +25,7 @@
   <a href="README.vi.md">Tiếng Việt</a> ·
   <a href="README.th.md">ไทย</a> ·
   <a href="README.tr.md">Türkçe</a> ·
+  <b>Indonesia</b> ·
   <a href="README.bn.md">বাংলা</a>
 </p>
 
@@ -40,11 +41,9 @@ Legend Talk mengumpulkan 2–10 pemikir historis atau kontemporer ke dalam perde
 
 **Demo:** [talk.newzone.top](https://talk.newzone.top) — 18 bahasa · gratis · lokal-pertama · tanpa pendaftaran.
 
-## Tangkapan Layar
-
-| Beranda | Chat |
-|:-:|:-:|
-| ![Beranda](../docs/images/home-chat.png) | ![Chat](../docs/images/chat-view.png) |
+|                 Beranda                  |                 Chat                  |
+| :--------------------------------------: | :-----------------------------------: |
+| ![Beranda](../../docs/images/home-chat.png) | ![Chat](../../docs/images/chat-view.png) |
 
 ## Memulai percakapan
 
@@ -58,7 +57,7 @@ Legend Talk mengumpulkan 2–10 pemikir historis atau kontemporer ke dalam perde
 
 Atau tekan **🎲 Acak** (kanan atas) untuk langsung memulai dengan 5 pemikir acak.
 
-**Template unggulan** — 6 komposisi pilihan yang perspektifnya benar-benar berbenturan (mis. *AI & Teknologi*: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Satu klik untuk memulai, masing-masing dengan 3 topik yang disarankan.
+**Template unggulan** — 6 komposisi pilihan yang perspektifnya benar-benar berbenturan (mis. _AI & Teknologi_: Karpathy vs Ilya vs Feynman vs Taleb vs Paul Graham). Satu klik untuk memulai, masing-masing dengan 3 topik yang disarankan.
 
 **Chat 1-1** — klik **Chat** pada kartu karakter mana pun untuk percakapan pribadi dalam suara dan kerangka berpikir pemikir tersebut.
 
@@ -84,6 +83,15 @@ Anda duduk di kepala meja sebagai **ketua (chair)** — perdebatan berjalan sesu
 - **Bagikan chat** — hasilkan URL yang memuat seluruh percakapan.
 - **Ekspor / Impor** — simpan sebagai Markdown atau JSON dan pulihkan dari JSON (di Pengaturan), atau buat kartu berbagi via [json2card](https://github.com/rockbenben/json2card) (atur endpoint API di Pengaturan).
 - **Sinkronisasi pengaturan** — pindahkan konfigurasi Anda ke perangkat lain via URL; kunci API dienkripsi dengan AES.
+
+## Mulai Cepat
+
+```bash
+npm install
+npm run dev
+```
+
+Buka http://localhost:5173, ke Pengaturan, masukkan kunci API Anda, dan mulai mengobrol. Jika Anda mengalami galat CORS, aplikasi menawarkan untuk mengaktifkan proxy publik dengan satu klik.
 
 ## Pemikir, model & platform
 
@@ -113,35 +121,28 @@ Tombol **Salin tautan komposisi** (bilah peserta) dan **Salin tautan kategori** 
 
 24 penyedia siap pakai — internasional, berbasis Tiongkok, dan agregator:
 
-| Provider | Models |
-|----------|--------|
-| OpenAI | GPT-5.5, GPT-5.4, GPT-5.4 Mini |
-| Anthropic | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5 |
-| Google Gemini | Gemini 3.1 Pro, Gemini 3.5 Flash |
-| xAI Grok | Grok 4.3, Grok 4.20 series |
-| Mistral / Cohere | Mistral Medium 3.5 / Large 3, Command A series |
-| DeepSeek | DeepSeek V4 Flash, V4 Pro |
-| Moonshot / Kimi | Kimi K2.6, K2.5 |
-| Zhipu GLM | GLM-5.1, GLM-5, GLM-4.7 series |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5 |
-| Volcengine Coding Plan | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4 |
-| Alibaba Bailian Coding Plan | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5 |
-| Aggregators | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+| Provider                           | Models                                                                                              |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
+| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
+| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
+| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
+| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
+| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
+| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
+| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
+| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
+| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
+| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
+| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
 
 Setiap penyedia menerima ID model kustom, dan opsi **Custom** menghubungkan API kompatibel-OpenAI apa pun.
-
-## Mulai Cepat
-
-```bash
-npm install
-npm run dev
-```
-
-Buka http://localhost:5173, ke Pengaturan, masukkan kunci API Anda, dan mulai mengobrol. Jika Anda mengalami galat CORS, aplikasi menawarkan untuk mengaktifkan proxy publik dengan satu klik.
 
 ## Proxy CORS
 
 Beberapa penyedia memblokir permintaan langsung dari browser. Proxy CORS dikonfigurasi per penyedia di Pengaturan — cukup aktifkan. Proxy publik (`https://cors.api2026.workers.dev`) digunakan secara default.
+
+> **Perlu diketahui sebelum menyalakannya.** Semua yang lain di sini local-first, tetapi permintaan yang lewat proxy tidak: kunci API dan seluruh prompt Anda melewati proxy itu dalam perjalanan ke penyedia. Proxy bawaan dijalankan proyek ini, tapi hal yang sama berlaku untuk proxy mana pun — memang begitulah cara kerja proxy. Kalau kunci itu penting bagi Anda, jalankan sendiri dengan Worker di bawah lalu arahkan Pengaturan ke sana; sekitar dua menit.
 
 Untuk menjalankan milik Anda sendiri, deploy sebuah [Cloudflare Worker](https://dash.cloudflare.com) dengan kode ini:
 
@@ -153,16 +154,16 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
     const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith('https://')) {
-      return new Response('Usage: /https://target-api.com/path', { status: 400 });
+    if (!targetUrl || !targetUrl.startsWith("https://")) {
+      return new Response("Usage: /https://target-api.com/path", { status: 400 });
     }
-    if (request.method === 'OPTIONS') {
+    if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Max-Age": "86400",
         },
       });
     }
@@ -172,7 +173,7 @@ export default {
       body: request.body,
     });
     const newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
+    newResponse.headers.set("Access-Control-Allow-Origin", "*");
     return newResponse;
   },
 };
@@ -182,7 +183,7 @@ export default {
 
 ## Pengembangan
 
-```
+```text
 src/
   adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
   characters/     # Character presets and custom character generation
@@ -196,12 +197,12 @@ src/
 
 **Stack:** React 19 · antd 6 (tema variabel-CSS, dikustomisasi secara mendalam) · Vite · Tailwind CSS v4 · Zustand · i18next · React Router · TypeScript
 
-| Perintah | Deskripsi |
-|----------|----------|
-| `npm run dev` | Jalankan server pengembangan |
-| `npm run build` | Cek tipe dan build untuk produksi |
-| `npm run test` | Jalankan tes |
-| `npm run preview` | Pratinjau build produksi |
+| Perintah          | Deskripsi                         |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Jalankan server pengembangan      |
+| `npm run build`   | Cek tipe dan build untuk produksi |
+| `npm run test`    | Jalankan tes                      |
+| `npm run preview` | Pratinjau build produksi          |
 
 ## Deploy
 
@@ -213,10 +214,6 @@ npm run build
 
 Routing berbasis hash (`/#/chat/...`, `/#/ja/chat/...`), sehingga tidak diperlukan konfigurasi routing sisi server.
 
-## Tentang Rencana Open Source 365
+## Tentang 365 Open Source Plan
 
-Ini adalah proyek #002 dari [Rencana Open Source 365](https://github.com/rockbenben/365opensource) — satu orang + AI, 300+ proyek open source dalam setahun. [Kirim ide Anda →](https://my.feishu.cn/share/base/form/shrcnI6y7rrmlSjbzkYXh6sjmzb)
-
-## License
-
-MIT
+Proyek **#002** dari [365 Open Source Plan](https://github.com/rockbenben/365opensource) — satu orang + AI, 300+ proyek open-source dalam setahun. [Ajukan ide Anda →](https://365.aishort.top/) · [Discord](https://discord.gg/PZTQfJ4GjX) · [Telegram](https://t.me/aishort_top)

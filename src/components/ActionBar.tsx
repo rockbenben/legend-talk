@@ -92,7 +92,7 @@ export function ActionBar({
   // user re-trigger Summarize (re-entrant, spawns a second stream + orphans the abort).
   if (isSummarizing) {
     return (
-      <div style={{ padding: '8px 16px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div style={{ padding: '8px 0 0', display: 'flex', alignItems: 'center', gap: 8 }}>
         <Text type="secondary">{t('chat.summarizing')}</Text>
         <Button danger size="small" onClick={onStopSummarize}>{t('chat.stop')}</Button>
       </div>
@@ -104,7 +104,7 @@ export function ActionBar({
   }
 
   return (
-    <div className="lt-actions" style={{ padding: '8px 16px 0' }}>
+    <div className="lt-actions" style={{ padding: '8px 0 0' }}>
       <Space size="small" wrap>
         {isMulti && (
           <Button size="small" type="primary" ghost onClick={onContinue}>

@@ -15,11 +15,14 @@ import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { Avatar } from './Avatar';
 
-/** Short relative time: "5m", "3h", "Yesterday", or "Mar 14". */
+/** Short relative time: "this minute", "5m", "3h", "Yesterday", or "Mar 14". */
 function formatRelative(ts: number, lng: string): string {
   const diff = Date.now() - ts;
   const min = Math.floor(diff / 60000);
-  if (min < 1) return '·';
+  // Under a minute used to render a bare "·", which reads as a rendering
+  // glitch rather than a time. Intl already has the phrase in every locale
+  // ("此刻" / "this minute" / "1 分以内") — no new string needed.
+  if (min < 1) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(0, 'minute');
   if (min < 60) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(-min, 'minute');
   const hr = Math.floor(diff / 3600000);
   if (hr < 24) return new Intl.RelativeTimeFormat(lng, { numeric: 'auto', style: 'short' }).format(-hr, 'hour');

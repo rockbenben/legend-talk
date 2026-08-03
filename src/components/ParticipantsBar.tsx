@@ -1,6 +1,6 @@
 import { useLangPath } from '../hooks/useLangPath';
 import { useTranslation } from 'react-i18next';
-import { Button, App, Tooltip, Typography, theme as antTheme } from 'antd';
+import { Button, App, Tooltip, Typography, InputNumber, Space, theme as antTheme } from 'antd';
 import { PlusOutlined, LinkOutlined, CloseOutlined } from '@ant-design/icons';
 import { Avatar } from './Avatar';
 import type { Character } from '../types';
@@ -18,10 +18,16 @@ interface ParticipantsBarProps {
   totalRounds?: number | null;
   onAdd: () => void;
   onRemove: (charId: string) => void;
+  /** Rounds the next run will discuss. Lives here, next to who is at the
+   *  table — in the title bar it sat in the opposite corner from every
+   *  control that consumes it, and cost ~100px of title on mobile. */
+  rounds: number;
+  onRoundsChange: (n: number) => void;
 }
 
 export function ParticipantsBar({
   characters, conversationCharIds, isMulti, isGenerating, currentSpeaker, currentRound, totalRounds, onAdd, onRemove,
+  rounds, onRoundsChange,
 }: ParticipantsBarProps) {
   const { t } = useTranslation();
   const lp = useLangPath();
@@ -110,6 +116,19 @@ export function ParticipantsBar({
               }}
             />
           </Tooltip>
+          {isMulti && (
+            <Space size={6} style={{ marginInlineStart: 'auto' }}>
+              <Text type="secondary" style={{ fontSize: 12 }}>{t('roundtable.rounds')}</Text>
+              <InputNumber
+                size="small"
+                min={1}
+                max={10}
+                value={rounds}
+                onChange={(v) => { if (typeof v === 'number') onRoundsChange(Math.max(1, Math.min(10, v))); }}
+                style={{ width: 60 }}
+              />
+            </Space>
+          )}
         </>
       )}
     </div>

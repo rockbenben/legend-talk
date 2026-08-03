@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button, Spin, Alert, InputNumber, Typography, Divider, Space, Card } from 'antd';
+import { Input, Button, Spin, Alert, Typography, Divider, Space, Card } from 'antd';
 import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
 import { Virtuoso } from 'react-virtuoso';
 import { useChat } from '../hooks/useChat';
@@ -21,6 +21,13 @@ import { ActionBar } from './ActionBar';
 import type { Character, Message } from '../types';
 
 const { Text, Title } = Typography;
+
+/** The proceedings column. 880 − the 140px marginal label = ~45 CJK characters
+ *  of measure; at the old 1200 a speech ran to 55+, past comfortable reading.
+ *  The note, transcript, action row and composer all sit on this same column —
+ *  they are one document, not a document plus chrome. */
+const COLUMN: React.CSSProperties = { maxWidth: 880, width: '100%', margin: '0 auto' };
+const GUTTER = '0 clamp(16px, 5vw, 96px)';
 
 function isAnalysisMsg(characterId?: string): boolean {
   return !!characterId?.startsWith('__') && !!characterId?.endsWith('__');
@@ -54,7 +61,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const singleChat = useChat(conversationId);
   const roundtable = useRoundtable(conversationId);
 
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const lang = currentLang();
   const rounds = useSettingsStore((s) => s.roundtableRounds);
   const setRounds = useSettingsStore((s) => s.setRoundtableRounds);
@@ -67,7 +74,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'copied' | 'tooLong'>('idle');
   const summarizeAbortRef = useRef<AbortController | null>(null);
-  const skipNextScrollRef = useRef(false);
 
   const [isSummoning, setIsSummoning] = useState(false);
   const [summonError, setSummonError] = useState<string | null>(null);
@@ -125,18 +131,68 @@ export function ChatView({ conversationId }: ChatViewProps) {
     setIsSummarizing(false);
   }, [conversationId]);
 
-  // Scroll on new-message events only — Virtuoso's `followOutput` handles
-  // "stay at bottom while the last message streams in." Depending on
-  // `conversation?.messages` (the array reference) would fire 20Hz during
-  // streaming and restart the smooth-scroll animation every flush, racing
-  // Virtuoso's own resize observer.
+  // ── Stick to bottom ────────────────────────────────────────────────────
+  // Delegating this to Virtuoso's `followOutput` did not work: the scroll
+  // container also holds the generating spinner, the error alerts and the
+  // bottom anchor as siblings BELOW the list, so "list is at its bottom"
+  // never means "container is at its bottom". Virtuoso reads that residual
+  // gap as "the user scrolled up" and disengages — and a smooth
+  // scrollIntoView animation feeds it intermediate offsets that disengage it
+  // too. Streaming only changes message CONTENT, not message COUNT, so a
+  // count-keyed effect never fired again either, and nothing at all ran when
+  // generation ended and the spinner row unmounted. Net effect: the reply
+  // landed below the fold and the reader had to drag down to see it.
+  //
+  // So own it against the container. A ResizeObserver catches every growth —
+  // token flush, spinner unmount, alert appearing, images settling — in one
+  // place, and the scroll listener records whether the reader deliberately
+  // moved away, which is the only reason not to follow.
+  const stickToBottomRef = useRef(true);
+
   useEffect(() => {
-    if (skipNextScrollRef.current) {
-      skipNextScrollRef.current = false;
-      return;
-    }
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [conversationId, conversation?.messages.length]);
+    if (!scrollEl) return;
+    const onScroll = () => {
+      // 80px of slack: "close enough to the bottom to still be reading along".
+      stickToBottomRef.current =
+        scrollEl.scrollHeight - scrollEl.scrollTop - scrollEl.clientHeight < 80;
+    };
+    scrollEl.addEventListener('scroll', onScroll, { passive: true });
+    return () => scrollEl.removeEventListener('scroll', onScroll);
+  }, [scrollEl]);
+
+  useEffect(() => {
+    const content = contentRef.current;
+    if (!scrollEl || !content) return;
+    // Instant, not smooth: at ~20Hz token flushes a smooth animation never
+    // settles, and each restart is what disengaged the old follow logic.
+    // Pin twice: once now, once after the next layout. Virtuoso is
+    // virtualized, so jumping to the bottom makes it render further items and
+    // re-estimate its spacer height — the scrollHeight read inside the
+    // observer callback is stale by the time that lands, leaving the view a
+    // line or so short. The rAF pass reads the settled value.
+    let raf = 0;
+    const pin = () => {
+      if (!stickToBottomRef.current) return;
+      scrollEl.scrollTop = scrollEl.scrollHeight;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (stickToBottomRef.current) scrollEl.scrollTop = scrollEl.scrollHeight;
+      });
+    };
+    const ro = new ResizeObserver(pin);
+    ro.observe(content);
+    // The container too, not just its content: the composer and action row
+    // grow as the conversation does, and that shortens the viewport out from
+    // under a transcript already pinned to the bottom.
+    ro.observe(scrollEl);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, [scrollEl]);
+
+  // Opening a conversation starts at the newest message.
+  useEffect(() => {
+    stickToBottomRef.current = true;
+    if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
+  }, [conversationId, scrollEl]);
 
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
@@ -379,7 +435,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
                       type="primary"
                       onClick={() => {
                         if (editingMsgValue.trim()) {
-                          skipNextScrollRef.current = true;
                           useConversationStore.getState().updateMessageContent(conversationId, msg.id, editingMsgValue.trim());
                         }
                         setEditingMsgId(null);
@@ -440,7 +495,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
                   onClick={() => {
                     const trimmed = editingMsgValue.trim();
                     if (trimmed && trimmed !== msg.content.trim()) {
-                      skipNextScrollRef.current = true;
                       useConversationStore.getState().updateMessageContent(conversationId, msg.id, trimmed);
                       setPendingRetryMsgId(msg.id);
                     }
@@ -570,20 +624,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
             {displayTitle}
           </Title>
         )}
-        {isMulti && (
-          <Space size={6} style={{ marginInlineStart: 'auto' }}>
-            <Text type="secondary" style={{ fontSize: 12 }}>{t('roundtable.rounds')}</Text>
-            <InputNumber
-              size="small"
-              min={1}
-              max={10}
-              value={rounds}
-              onChange={(v) => { if (typeof v === 'number') setRounds(Math.max(1, Math.min(10, v))); }}
-              disabled={isGenerating}
-              style={{ width: 64 }}
-            />
-          </Space>
-        )}
       </div>
 
       <ParticipantsBar
@@ -594,6 +634,8 @@ export function ChatView({ conversationId }: ChatViewProps) {
         currentSpeaker={roundtable.currentSpeaker}
         currentRound={roundtable.currentRound}
         totalRounds={roundtable.totalRounds}
+        rounds={rounds}
+        onRoundsChange={setRounds}
         onAdd={() => setShowPicker(true)}
         onRemove={(charId) => {
           if (conversation.characters.length <= 1) return;
@@ -601,18 +643,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
         }}
       />
 
-      {/* Messages */}
-      <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
-        <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
-          {!isConfigured && (
+      {/* A precondition, not a message — kept out of the scroll container so it
+          can't scroll away behind the transcript. */}
+      {!isConfigured && (
+        <div style={{ padding: GUTTER }}>
+          <div style={COLUMN}>
             <Alert
+              className="lt-note"
               type="warning"
               showIcon
               title={t('chat.noApiKey')}
               action={<Button type="link" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
-              style={{ marginBottom: 12 }}
             />
-          )}
+          </div>
+        </div>
+      )}
+
+      {/* Messages */}
+      {/* One hairline closes the transcript — without it a long conversation
+          scrolls up to touch the action row with no boundary. */}
+      <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)', borderBottom: '1px solid var(--lt-rule-faint)' }}>
+        <div ref={contentRef} style={COLUMN}>
           {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
             <Space orientation="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
               <Title level={3} className="display-serif-italic" style={{ margin: 0, textAlign: 'center', maxWidth: 480 }}>
@@ -678,11 +729,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
               computeItemKey={(_, msg) => msg.id}
               itemContent={renderMessage}
               increaseViewportBy={{ top: 240, bottom: 240 }}
-              // Virtuoso tracks scroll-at-bottom internally — if the user
-              // scrolls up while generating, it stops following and resumes
-              // only once they scroll back down. No need to gate this on
-              // `isGenerating`.
-              followOutput="smooth"
             />
           )}
           {isGenerating && (
@@ -758,10 +804,13 @@ export function ChatView({ conversationId }: ChatViewProps) {
               />
             );
           })()}
-          <div ref={bottomRef} />
         </div>
       </div>
 
+      {/* Action row + composer share the transcript's column — otherwise the
+          reader writes into a full-width field under a centered document. */}
+      <div style={{ padding: GUTTER }}>
+      <div style={COLUMN}>
       <ActionBar
         conversation={conversation}
         characters={characters}
@@ -783,10 +832,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
           closable
           onClose={() => setShareStatus('idle')}
           title={`${t('chat.shareTooLong')} — ${t('chat.shareTooLongHint')}`}
-          style={{ margin: '4px 16px' }}
+          style={{ margin: '4px 0' }}
         />
       )}
       <ChatInput key={conversationId} onSend={handleSend} disabled={isGenerating || isSummarizing} />
+      </div>
+      </div>
 
       {showPicker && (
         <CharacterPicker

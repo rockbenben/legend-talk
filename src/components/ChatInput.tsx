@@ -25,7 +25,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         display: 'flex',
         gap: 12,
         alignItems: 'flex-end',
-        padding: '10px 16px 16px',
+        padding: '10px 0 16px',
       }}
     >
       <div className="lt-ledger" style={{ flex: 1, minWidth: 0 }}>

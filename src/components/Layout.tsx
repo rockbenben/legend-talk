@@ -134,10 +134,10 @@ export function Layout() {
           <LanguageToggle />
           <ThemeToggle />
           <Dropdown menu={{ items: linksToItems(getProjectLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
-            <Button type="text" className="hidden sm:inline-flex">{t('nav.more')}</Button>
+            <Button type="text" className="lt-sm-up">{t('nav.more')}</Button>
           </Dropdown>
           <Dropdown menu={{ items: linksToItems(getSupportLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
-            <Button type="text" className="hidden sm:inline-flex">{t('nav.support')}</Button>
+            <Button type="text" className="lt-sm-up">{t('nav.support')}</Button>
           </Dropdown>
           <Button
             type="text"

@@ -17,7 +17,10 @@
   --lt-paper-deep: #EFECDF;
   --lt-ink: #211F19;
   --lt-ink-soft: #5C584C;
-  --lt-ink-faint: #8E887A;
+  /* 4.75:1 on --lt-paper — the old #8E887A was 3.20:1 and carried 10px meta
+     text (.lt-speech-meta) plus every placeholder. Keep any lighter value
+     for hairlines only, never for type. */
+  --lt-ink-faint: #726C5D;
   --lt-madder: #8C2F39;
   --lt-rule: #CCC5AE;
   --lt-rule-faint: #DFD9C6;
@@ -230,13 +233,27 @@ body::before {
 .lt-ledger:focus-within {
   border-bottom-color: var(--lt-madder);
 }
-.lt-ledger textarea {
+.lt-ledger :is(input, textarea) {
   font-family: var(--lt-serif-body) !important;
   font-size: 16px !important;
 }
-.lt-ledger textarea::placeholder {
+.lt-ledger :is(input, textarea)::placeholder {
   font-style: italic;
   color: var(--lt-ink-faint) !important;
+}
+/* Home hero writes on the same ledger line, one size up */
+.lt-ledger-hero :is(input, textarea) { font-size: clamp(17px, 2.2vw, 21px) !important; }
+
+/* ── Note: an Alert reduced to a marginal annotation ──
+   antd keeps role="alert" and the icon; only the box goes, so a
+   precondition reads as a note rather than the loudest element on the
+   page. No rule of its own — it annotates the boundary above it. */
+.lt-note.ant-alert {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 8px 0;
+  align-items: center;
 }
 .lt-send.ant-btn {
   letter-spacing: .22em;
@@ -276,7 +293,18 @@ body::before {
   background: transparent !important;
 }
 
-@media (max-width: 640px) {
+/* antd's runtime CSS-in-JS is UNLAYERED, so it outranks Tailwind's
+   `@layer utilities` regardless of source order — `hidden sm:inline-flex` on
+   an antd component silently does nothing. Use this instead of Tailwind
+   display utilities on any antd element. */
+.lt-sm-up { display: none !important; }
+@media (min-width: 640px) { .lt-sm-up { display: inline-flex !important; } }
+
+/* The marginal speaker label costs 140px. Below ~900px the sidebar (272px)
+   plus page padding leaves the text column too narrow to set type in, so the
+   label goes inline. Keyed above the 640px mobile breakpoint on purpose:
+   the squeeze is caused by the sidebar, which is present from 768px up. */
+@media (max-width: 900px) {
   .lt-speech { grid-template-columns: 1fr; gap: 10px; }
   .lt-speech-margin {
     text-align: start;

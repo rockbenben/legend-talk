@@ -32,7 +32,7 @@ function ThemeBodyBg() {
 const PROCEEDINGS = {
   light: {
     paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
-    ink: '#211F19', inkSoft: '#5C584C', inkFaint: '#8E887A',
+    ink: '#211F19', inkSoft: '#5C584C', inkFaint: '#726C5D',
     madder: '#8C2F39',
     rule: '#CCC5AE', ruleFaint: '#DFD9C6',
   },

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Card, Button, Tag, Space, Typography } from 'antd';
+import { Card, Button, Space, Typography } from 'antd';
 import { StarFilled, StarOutlined, CheckOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Avatar } from './Avatar';
 import type { Character } from '../types';
@@ -40,22 +40,25 @@ export function CharacterCard({
           <Text className="display-serif" ellipsis style={{ display: 'block', fontSize: 16, fontWeight: 500 }}>
             {name}
           </Text>
-          <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>{era}</Text>
+          {/* Era and domain read as one byline — the filled Tag chips were the
+              only solid blocks on the page, and they repeated the category
+              filter the reader just used to get here. */}
+          <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>
+            {[era, ...character.domain.map((d) => t(`home.categories.${d}`, d))].filter(Boolean).join(' · ')}
+          </Text>
         </div>
         {onToggleFavorite && (
           <Button
             type="text"
             size="small"
+            aria-label={t('home.favorite')}
+            title={t('home.favorite')}
+            aria-pressed={!!isFavorite}
             icon={isFavorite ? <StarFilled style={{ color: 'var(--ant-color-primary)' }} /> : <StarOutlined />}
             onClick={(e) => { e.stopPropagation(); onToggleFavorite(character.id); }}
           />
         )}
       </div>
-      <Space size={[4, 4]} wrap style={{ marginBottom: 10, minHeight: 22 }}>
-        {character.domain.map((d) => (
-          <Tag key={d} variant="filled">{t(`home.categories.${d}`, d)}</Tag>
-        ))}
-      </Space>
       <Space.Compact block>
         <Button block onClick={(e) => { e.stopPropagation(); onStartChat(character); }}>
           {t('home.startChat')}

@@ -1,7 +1,7 @@
 import { useLangPath } from '../hooks/useLangPath';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input, Button, Empty, App, Tag } from 'antd';
+import { Input, Button, App, Tag, Typography } from 'antd';
 
 const { CheckableTag } = Tag;
 import { PlusOutlined, LinkOutlined } from '@ant-design/icons';
@@ -110,12 +110,15 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
           />
         ))}
       </div>
+      {/* No illustration — antd's default is a cartoon carton that has no
+          business on this paper. The line and the button are the whole message. */}
       {search && filtered.length === 0 && (
-        <Empty style={{ padding: 32 }} description={t('home.search')}>
+        <div style={{ padding: '48px 0', textAlign: 'center' }}>
+          <Typography.Paragraph type="secondary">{t('home.noMatch')}</Typography.Paragraph>
           <Button type="primary" onClick={handleSearchSubmit}>
             {t('home.startChat')} — {search}
           </Button>
-        </Empty>
+        </div>
       )}
       {showEditor && (
         <CharacterEditor

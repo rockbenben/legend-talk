@@ -105,7 +105,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
               <div style={{ padding: 24, textAlign: 'center' }}>
                 <Button type="primary" onClick={handleCustom}>{t('home.startChat')} — {search}</Button>
               </div>
-            ) : t('chat.noConversations'),
+            ) : t('home.noMatch'),
           }}
           renderItem={(char) => (
             <List.Item

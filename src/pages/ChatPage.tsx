@@ -154,38 +154,47 @@ export function ChatPage() {
                 </Paragraph>
               </div>
 
+              {/* Topic — the hero's own instrument, written on the same ledger
+                  line as the chat input. No card: the section title, the input
+                  border and the button border all repeated the same boundary. */}
+              <div style={{ marginBottom: 32 }}>
+              <div className="lt-ledger lt-ledger-hero" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <Input
+                  variant="borderless"
+                  size="large"
+                  value={topicInput}
+                  onChange={(e) => setTopicInput(e.target.value)}
+                  onPressEnter={handleAutoRoundtable}
+                  placeholder={t('home.topicPlaceholder')}
+                  // minWidth:0 — a bare <input> in a flex row keeps a ~20ch
+                  // intrinsic width and overflows narrow screens otherwise
+                  // (same guard ChatInput uses around its textarea).
+                  style={{ paddingInline: 0, flex: 1, minWidth: 0 }}
+                />
+                <Button
+                  className="lt-send"
+                  type="primary"
+                  size="large"
+                  onClick={handleAutoRoundtable}
+                  disabled={!topicInput.trim()}
+                  icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
+                  iconPlacement="end"
+                >
+                  {t('home.autoRoundtable')}
+                </Button>
+              </div>
+
+              {/* Sits under the input it gates, as a note rather than a banner */}
               {!isConfigured && (
                 <Alert
+                  className="lt-note"
                   type="warning"
                   showIcon
                   title={t('home.apiKeyBanner')}
-                  action={<Button type="primary" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
-                  style={{ marginBottom: 24 }}
+                  action={<Button type="link" size="small" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>}
                 />
               )}
-
-              {/* Topic question */}
-              <Card title={<span className="display-serif" style={{ fontSize: 17, fontWeight: 500 }}>{t('home.autoRoundtableTitle')}</span>} style={{ marginBottom: 24 }} size="small">
-                <Space.Compact style={{ width: '100%' }}>
-                  <Input
-                    size="large"
-                    value={topicInput}
-                    onChange={(e) => setTopicInput(e.target.value)}
-                    onPressEnter={handleAutoRoundtable}
-                    placeholder={t('home.topicPlaceholder')}
-                  />
-                  <Button
-                    type="primary"
-                    size="large"
-                    onClick={handleAutoRoundtable}
-                    disabled={!topicInput.trim()}
-                    icon={<ArrowRightOutlined className="rtl:-scale-x-100" />}
-                    iconPlacement="end"
-                  >
-                    {t('home.autoRoundtable')}
-                  </Button>
-                </Space.Compact>
-              </Card>
+              </div>
 
               {/* Templates */}
               <div style={{ marginBottom: 32 }}>
@@ -241,7 +250,7 @@ export function ChatPage() {
               {/* Registry */}
               <div>
                 <Title level={5} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
-                  {t('home.title')}
+                  {t('home.registry')}
                 </Title>
                 <CharacterGrid
                   onStartChat={handleStartChat}
@@ -295,7 +304,7 @@ export function ChatPage() {
                     </Button>
                     {selectedIds.length >= 2 && (
                       <Button
-                        className="hidden sm:inline-flex"
+                        className="lt-sm-up"
                         icon={<LinkOutlined />}
                         onClick={() => {
                           const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${selectedIds.join(',')}`;

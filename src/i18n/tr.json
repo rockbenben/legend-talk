@@ -56,6 +56,7 @@
     "retry": "Yeniden dene",
     "networkError": "Bağlantı başarısız. Ağınızı kontrol edip tekrar deneyin.",
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
+    "originBlocked": "Sağlayıcı reddetti (403). Anahtarınız sorunsuz — sunucu tarayıcı isteklerini engelliyor. Proxy üzerinden geçirin.",
     "useCorsProxy": "Genel proxy kullan",
     "summonFailed": "Bu konu için uygun karakter bulunamadı",
     "thinkingUnsupported": "Bu model düşünme modunu desteklemiyor. Devre dışı bırakın veya bir akıl yürütme modeli seçin.",
@@ -138,14 +139,21 @@
     "themeDark": "Koyu",
     "thinkingLevel": "Düşünme seviyesi",
     "thinkingLevelHint": "Model yanıtlamadan önce daha derin düşünür. Daha doğru ama daha yavaş.",
+    "thinkingLevelHintNoOff": "Bu sağlayıcı akıl yürütmeyi kapatamaz — En düşük, kendi en düşük değerini gönderir; model yine akıl yürütür ve ücretlendirilir. Yükseltmek genelde daha doğru ama daha yavaş ve pahalıdır.",
     "thinkingOff": "Kapalı",
+    "thinkingMin": "En düşük",
     "thinkingLow": "Düşük",
     "thinkingMedium": "Orta",
     "thinkingHigh": "Yüksek",
     "apiKeyPlaceholder": "{{provider}} API anahtarını girin...",
-    "corsProxyHint": "İstekleri CORS kısıtlamalarını aşmak için proxy üzerinden yönlendirir",
+    "corsProxy": "CORS proxy",
+    "corsProxyHint": "CORS veya 403 hatası alırsanız açın. İstekler sağlayıcıya giderken bu proxy üzerinden geçer; yalnızca iletir, hiçbir şey saklamaz ve kendi kurulumunuzu da gösterebilirsiniz.",
+    "corsProxyInert": "Yerleşik aktarıcı yalnızca resmi uç noktalara iletir. Özel bir uç nokta ayarlıyken istekler doğrudan gider.",
+    "corsProxyInvalid": "https:// dahil tam bir URL gerekir",
     "customModel": "Özel model...",
     "customBaseUrlHint": "OpenAI uyumlu API uç noktasını girin",
+    "endpoint": "API Uç Noktası",
+    "endpointHint": "Sağlayıcının varsayılan adresini kullanır. Bölge seçin veya kendi ağ geçidinizi yapıştırın.",
     "dataManagement": "Veri",
     "conversations": "Konuşmalar",
     "exportAll": "Tümünü dışa aktar",
@@ -184,7 +192,7 @@
     },
     "confucius": {
       "name": "Konfüçyüs",
-      "era": "İlkbahar ve Sonbahar",
+      "era": "İlkbahar ve Sonbahar Dönemi",
       "questions": [
         "Patronumla olan bir çatışmayla nasıl başa çıkarım?",
         "İyi bir insan olmak ne demektir?",
@@ -201,8 +209,8 @@
       ]
     },
     "laozi": {
-      "name": "Laozi",
-      "era": "Spring and Autumn Period",
+      "name": "Lao Tzu",
+      "era": "İlkbahar ve Sonbahar Dönemi",
       "questions": [
         "Ne kadar çabalarsam o kadar endişeleniyorum",
         "Baskı altında kendime nasıl sadık kalırım?",
@@ -220,7 +228,7 @@
     },
     "zhuangzi": {
       "name": "Zhuangzi",
-      "era": "Warring States Period",
+      "era": "Savaşan Devletler Dönemi",
       "questions": [
         "Başarıya ve başarısızlığa aşırı bağlıyım",
         "Değiştirilemeyeni nasıl kabul ederim?",
@@ -229,7 +237,7 @@
     },
     "marcus-aurelius": {
       "name": "Marcus Aurelius",
-      "era": "Roman Empire",
+      "era": "Roma İmparatorluğu",
       "questions": [
         "Dış kaosa karşı nasıl etkilenmem?",
         "Değiştiremediğim şeyler hakkında nasıl düşünürüm?",
@@ -238,7 +246,7 @@
     },
     "kant": {
       "name": "Immanuel Kant",
-      "era": "Early Modern Europe",
+      "era": "Aydınlanma Çağı",
       "questions": [
         "Yalan her zaman yanlış mıdır?",
         "Kurallara mı uymalıyım yoksa sonuçlara mı odaklanmalıyım?",
@@ -247,7 +255,7 @@
     },
     "descartes": {
       "name": "René Descartes",
-      "era": "Early Modern Europe",
+      "era": "Erken Modern Avrupa",
       "questions": [
         "İnandıklarıma gerçekten güvenebilir miyim?",
         "Bir problemi sıfırdan nasıl yeniden düşünürüm?",
@@ -256,7 +264,7 @@
     },
     "hegel": {
       "name": "Georg Hegel",
-      "era": "Early Modern Europe",
+      "era": "Modern Çağ",
       "questions": [
         "Bu ikileme üçüncü bir yol var mı?",
         "Fikirlerim neden sürekli uçlara savruluyor?",
@@ -265,7 +273,7 @@
     },
     "wang-yangming": {
       "name": "Wang Yangming",
-      "era": "Ming Dynasty",
+      "era": "Ming Hanedanı",
       "questions": [
         "Ne yapmam gerektiğini biliyorum ama yapamıyorum",
         "Kaos içinde nasıl sakin kalınır?",
@@ -274,7 +282,7 @@
     },
     "sun-tzu": {
       "name": "Sun Tzu",
-      "era": "İlkbahar ve Sonbahar",
+      "era": "İlkbahar ve Sonbahar Dönemi",
       "questions": [
         "Daha az kaynakla nasıl kazanılır?",
         "Rakibin zayıflıkları nasıl bulunur?",
@@ -282,8 +290,8 @@
       ]
     },
     "genghis-khan": {
-      "name": "Genghis Khan",
-      "era": "Medieval Period",
+      "name": "Cengiz Han",
+      "era": "Orta Çağ",
       "questions": [
         "Kurumsal etkinliği korurken hızla nasıl büyürüm?",
         "Farklı geçmişlerden yetenekleri nasıl bulur ve entegre ederim?",
@@ -292,7 +300,7 @@
     },
     "hannibal": {
       "name": "Hannibal Barca",
-      "era": "Ancient Rome",
+      "era": "Antik Kartaca",
       "questions": [
         "Rakibin güçlü yönünü zayıflığa nasıl dönüştürürsünüz?",
         "Sınırlı kaynaklarla nasıl avantaj yaratılır?",
@@ -310,7 +318,7 @@
     },
     "zhuge-liang": {
       "name": "Zhuge Liang",
-      "era": "Three Kingdoms",
+      "era": "Üç Krallık",
       "questions": [
         "Dezavantajlıyken nasıl avantaj oluşturulur?",
         "Rakibin sonraki hamlesi nasıl öngörülür?",
@@ -328,7 +336,7 @@
     },
     "cao-cao": {
       "name": "Cao Cao",
-      "era": "Three Kingdoms",
+      "era": "Üç Krallık",
       "questions": [
         "Bu rekabette kendimi nasıl konumlandırırım?",
         "Gizli niyetli astlarla nasıl başa çıkarım?",
@@ -337,7 +345,7 @@
     },
     "churchill": {
       "name": "Winston Churchill",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Sınırlarımdayım — ne yapmalıyım?",
         "Takım moralini nasıl yükseltirim?",
@@ -346,7 +354,7 @@
     },
     "bismarck": {
       "name": "Otto von Bismarck",
-      "era": "Early Modern Europe",
+      "era": "Modern Çağ",
       "questions": [
         "Çatışan çıkarlar arasında hedeflerime nasıl ulaşırım?",
         "Uzlaşma ne zaman akıllıca bir hamledir?",
@@ -355,7 +363,7 @@
     },
     "zeng-guofan": {
       "name": "Zeng Guofan",
-      "era": "Late Qing Dynasty",
+      "era": "Geç Qing Hanedanı",
       "questions": [
         "Kendi tembelliğimi nasıl yenerim?",
         "Bir takımı nasıl iyi yönetirim?",
@@ -364,7 +372,7 @@
     },
     "munger": {
       "name": "Charlie Munger",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bu yatırıma değer mi?",
         "Aptalca kararlardan nasıl kaçınırım?",
@@ -373,7 +381,7 @@
     },
     "drucker": {
       "name": "Peter Drucker",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Zamanımı en önemli şeye mi harcıyorum?",
         "Bir yöneticinin etkinliği nasıl ölçülür?",
@@ -382,7 +390,7 @@
     },
     "carnegie": {
       "name": "Andrew Carnegie",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Küçük işten büyük şirkete nasıl ölçeklerim?",
         "Bir sektörde rekabet bariyerlerini nasıl kurarım?",
@@ -391,7 +399,7 @@
     },
     "matsushita": {
       "name": "Konosuke Matsushita",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Maliyetleri düşürürken kaliteyi nasıl korurum?",
         "Çalışanları gerçekten nasıl bağlı kılarım?",
@@ -400,7 +408,7 @@
     },
     "henry-ford": {
       "name": "Henry Ford",
-      "era": "Industrial Era",
+      "era": "Modern Çağ",
       "questions": [
         "Üretim maliyetlerini nasıl köklü şekilde düşürürüm?",
         "Bir ürünü herkes için nasıl erişilebilir yaparım?",
@@ -409,7 +417,7 @@
     },
     "dalio": {
       "name": "Ray Dalio",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "İlkeye dayalı karar sistemini nasıl kurarım?",
         "Başarısızlıktan sistematik olarak nasıl öğrenirim?",
@@ -418,7 +426,7 @@
     },
     "buffett": {
       "name": "Warren Buffett",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bir şirketin uzun vadeli değeri nasıl değerlendirilir?",
         "Piyasalar düştüğünde ne yapmalı?",
@@ -427,7 +435,7 @@
     },
     "peter-thiel": {
       "name": "Peter Thiel",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Başkalarının katılmadığı hangi önemli gerçeği düşünüyorsun?",
         "Rekabet bir başarısızlık biçimi mi?",
@@ -445,7 +453,7 @@
     },
     "elon-musk": {
       "name": "Elon Musk",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bu sektörün temel varsayımları nelerdir?",
         "İmkansızı nasıl mümkün kılarım?",
@@ -454,7 +462,7 @@
     },
     "freud": {
       "name": "Freud",
-      "era": "Modern",
+      "era": "Modern Çağ",
       "questions": [
         "Neden bu garip alışkanlığa sahibim?",
         "Çocukluk şu anki davranışımı nasıl şekillendirdi?",
@@ -462,8 +470,8 @@
       ]
     },
     "pavlov": {
-      "name": "Ivan Pavlov",
-      "era": "Imperial Russia",
+      "name": "İvan Pavlov",
+      "era": "Rus İmparatorluğu",
       "questions": [
         "Neden bazı durumlar dürtülerimi tetikliyor?",
         "Koşullanmış kötü alışkanlıkları nasıl kırarım?",
@@ -472,7 +480,7 @@
     },
     "jung": {
       "name": "Carl Jung",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Neden aynı hataları tekrarlıyorum?",
         "Neden bazı şeylere aşırı tepki veriyorum?",
@@ -481,7 +489,7 @@
     },
     "maslow": {
       "name": "Abraham Maslow",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Neden içimde bir boşluk hissediyorum?",
         "Bana anlam veren bir şeyi nasıl bulurum?",
@@ -490,7 +498,7 @@
     },
     "adler": {
       "name": "Alfred Adler",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Başkalarının ne düşündüğünü önemsemeyi nasıl bırakırım?",
         "Geçmiş travmalar beni nasıl etkilemeye devam ediyor?",
@@ -499,7 +507,7 @@
     },
     "skinner": {
       "name": "B.F. Skinner",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "İyi alışkanlıklar için ödül sistemlerini nasıl kullanırım?",
         "Kötü bir alışkanlığı kırmak neden bu kadar zor?",
@@ -508,7 +516,7 @@
     },
     "frankl": {
       "name": "Viktor Frankl",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Hayatım anlamını yitirdi",
         "Acıda nasıl anlam bulurum?",
@@ -517,7 +525,7 @@
     },
     "kahneman": {
       "name": "Daniel Kahneman",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Yargım sezgi mi yoksa önyargı mı?",
         "Kararlarımda çıpa etkisinden nasıl kaçınırım?",
@@ -526,7 +534,7 @@
     },
     "erikson": {
       "name": "Erik Erikson",
-      "era": "Modern Era",
+      "era": "Çağdaş",
       "questions": [
         "30'lu yaşlarda kaybolmuş hissetmek normal mi?",
         "Orta yaş krizini nasıl atlatırım?",
@@ -535,7 +543,7 @@
     },
     "zimbardo": {
       "name": "Philip Zimbardo",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "İyi insanlar neden kötü şeyler yapar?",
         "Ortam davranışı ne kadar şekillendirir?",
@@ -544,7 +552,7 @@
     },
     "einstein": {
       "name": "Einstein",
-      "era": "Modern",
+      "era": "Modern Çağ",
       "questions": [
         "Ya buna tamamen farklı bir açıdan baksak?",
         "Yanlış varsayımlar üzerine mi inşa ediyoruz?",
@@ -553,7 +561,7 @@
     },
     "newton": {
       "name": "Newton",
-      "era": "Modern İngiltere",
+      "era": "Erken Modern Avrupa",
       "questions": [
         "Karmaşık bir problemi basit yasalara nasıl ayırırım?",
         "Tahmin edilebilir bir sistem nasıl kurulur?",
@@ -562,7 +570,7 @@
     },
     "galileo": {
       "name": "Galileo",
-      "era": "Rönesans",
+      "era": "Erken Modern Avrupa",
       "questions": [
         "Yargım gerçek kanıtlarla destekleniyor mu?",
         "Sektörün geleneksel bilgeliğine nasıl meydan okurum?",
@@ -571,7 +579,7 @@
     },
     "darwin": {
       "name": "Darwin",
-      "era": "Modern İngiltere",
+      "era": "Modern Çağ",
       "questions": [
         "Stratejim değişen bir ortama nasıl uyum sağlamalı?",
         "Uzun vadeli rekabette nasıl hayatta kalırım?",
@@ -580,7 +588,7 @@
     },
     "zhang-heng": {
       "name": "Zhang Heng",
-      "era": "Eastern Han Dynasty",
+      "era": "Doğu Han Hanedanı",
       "questions": [
         "Bir fikrim var ama uygulanabilir mi bilmiyorum",
         "Teknik ve yaratıcı çalışma ayrı yollar mı?",
@@ -589,7 +597,7 @@
     },
     "hawking": {
       "name": "Stephen Hawking",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Sorunum kozmik ölçekte önemli mi?",
         "Fiziksel veya çevresel sınırlar aşılabilir mi?",
@@ -598,7 +606,7 @@
     },
     "tesla": {
       "name": "Nikola Tesla",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Fikrim zamanından ileri — nasıl ileri götürürüm?",
         "Karmaşık bir sistemi zihnimde nasıl simüle ederim?",
@@ -606,8 +614,8 @@
       ]
     },
     "copernicus": {
-      "name": "Nicolaus Copernicus",
-      "era": "Renaissance",
+      "name": "Nikolas Kopernik",
+      "era": "Rönesans",
       "questions": [
         "Temel varsayımım yanlış olabilir mi?",
         "Kendi merkezli bir bakıştan nasıl çıkarım?",
@@ -616,7 +624,7 @@
     },
     "feynman": {
       "name": "Richard Feynman",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bu problemin özü nedir?",
         "Gerçekten anladığımı nasıl bilirim?",
@@ -625,7 +633,7 @@
     },
     "curie": {
       "name": "Marie Curie",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Başkaları benden şüphe duyarken nasıl devam ederim?",
         "Şüphecileri verilerle nasıl ikna ederim?",
@@ -652,7 +660,7 @@
     },
     "kafka": {
       "name": "Kafka",
-      "era": "Modern Avrupa",
+      "era": "Modern Çağ",
       "questions": [
         "Sistem neden sürekli bana karşı çalışıyor gibi görünüyor?",
         "Saçma bir ortamda kendim nasıl kalırım?",
@@ -661,7 +669,7 @@
     },
     "li-bai": {
       "name": "Li Bai",
-      "era": "Tang Dynasty",
+      "era": "Tang Hanedanı",
       "questions": [
         "Hayata olan tutkumu nasıl yeniden keşfederim?",
         "Kurallar ile özgürlüğü nasıl dengelerim?",
@@ -669,8 +677,8 @@
       ]
     },
     "dostoevsky": {
-      "name": "Fyodor Dostoevsky",
-      "era": "Early Modern Europe",
+      "name": "Fyodor Dostoyevski",
+      "era": "Rus İmparatorluğu",
       "questions": [
         "Yanlış bir şey yaptım — nasıl yüzleşirim?",
         "Acı insanı arındırabilir mi?",
@@ -679,7 +687,7 @@
     },
     "hemingway": {
       "name": "Ernest Hemingway",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Baskı altında soğukkanlılığımı nasıl korurum?",
         "Sözlerle değil, eylemle göstermeye değer olan nedir?",
@@ -688,7 +696,7 @@
     },
     "su-shi": {
       "name": "Su Shi",
-      "era": "Song Dynasty",
+      "era": "Song Hanedanı",
       "questions": [
         "Sıkıntıda dingin nasıl kalırım?",
         "Sıradan hayatta güzelliği nasıl bulurum?",
@@ -697,7 +705,7 @@
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
-      "era": "Early Modern Europe",
+      "era": "Modern Çağ",
       "questions": [
         "Başkalarının dayattığı değerleri nasıl aşarım?",
         "Nihilizm çarptığında kendimi nasıl yeniden inşa ederim?",
@@ -706,7 +714,7 @@
     },
     "borges": {
       "name": "Jorge Luis Borges",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Gerçeklik de bir kurgu türü mü?",
         "Sonsuz olasılıklar arasında nasıl seçim yaparım?",
@@ -715,7 +723,7 @@
     },
     "lu-xun": {
       "name": "Lu Xun",
-      "era": "Modern China",
+      "era": "Cumhuriyetçi Çin",
       "questions": [
         "Neden herkes başka tarafa bakıyor?",
         "Rahatsız edici bir gerçekle nasıl yüzleşirim?",
@@ -733,7 +741,7 @@
     },
     "beethoven": {
       "name": "Beethoven",
-      "era": "Modern Avrupa",
+      "era": "Romantik Dönem",
       "questions": [
         "Koşullar ağır bir şekilde aleyhine olduğunda nasıl devam edersin?",
         "Kadere meydan okunabilir mi?",
@@ -742,7 +750,7 @@
     },
     "michelangelo": {
       "name": "Michelangelo",
-      "era": "Renaissance",
+      "era": "Rönesans",
       "questions": [
         "Kendime en yüksek standardı nasıl koyarım?",
         "Mükemmeliyetçilik motor mu yük mü?",
@@ -751,7 +759,7 @@
     },
     "picasso": {
       "name": "Picasso",
-      "era": "Modern",
+      "era": "Modern Çağ",
       "questions": [
         "Sabit düşünce kalıplarını nasıl kırarım?",
         "Yaratıcılık ile kurallar nasıl bir arada olabilir?",
@@ -760,7 +768,7 @@
     },
     "mozart": {
       "name": "Wolfgang Amadeus Mozart",
-      "era": "Early Modern Europe",
+      "era": "Erken Modern Avrupa",
       "questions": [
         "Yaratıcı işi daha doğal nasıl akıtırım?",
         "Oyun ile ciddi işi nasıl dengelerim?",
@@ -769,7 +777,7 @@
     },
     "bach": {
       "name": "Johann Sebastian Bach",
-      "era": "Early Modern Europe",
+      "era": "Erken Modern Avrupa",
       "questions": [
         "Sıkı kurallar yaratıcılığı artırabilir mi?",
         "Tekrarlayan işte tutkuyu nasıl korurum?",
@@ -778,7 +786,7 @@
     },
     "van-gogh": {
       "name": "Vincent van Gogh",
-      "era": "Early Modern Europe",
+      "era": "Modern Çağ",
       "questions": [
         "Tanınmadan nasıl devam edilir?",
         "Yalnızlık yaratıcılığın kaynağı mı engeli mi?",
@@ -787,7 +795,7 @@
     },
     "monet": {
       "name": "Claude Monet",
-      "era": "Modern France",
+      "era": "Modern Çağ",
       "questions": [
         "Aynı problemi yeni bir açıdan nasıl görürüm?",
         "İlk izlenimler neden önemlidir?",
@@ -796,7 +804,7 @@
     },
     "chopin": {
       "name": "Frédéric Chopin",
-      "era": "Romantic Era",
+      "era": "Romantik Dönem",
       "questions": [
         "Karmaşık duyguları zarafetle nasıl ifade ederim?",
         "Sadelik ile derinlik bir arada olabilir mi?",
@@ -805,7 +813,7 @@
     },
     "miyazaki": {
       "name": "Hayao Miyazaki",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Dünyaya çocuksu merakı nasıl korurum?",
         "Yaratıcı iş gerçek duyguyu nasıl iletebilir?",
@@ -814,7 +822,7 @@
     },
     "adam-smith": {
       "name": "Adam Smith",
-      "era": "Early Modern Europe",
+      "era": "Aydınlanma Çağı",
       "questions": [
         "Bireysel çıkar, toplum genelini nasıl yararına çalıştırır?",
         "Serbest piyasa ne zaman başarısız olur?",
@@ -823,7 +831,7 @@
     },
     "marx": {
       "name": "Marx",
-      "era": "Modern Avrupa",
+      "era": "Modern Çağ",
       "questions": [
         "Mevcut ekonomik sistemden kim yararlanıyor?",
         "İşçilerin değeri nasıl küçümseniyor?",
@@ -832,7 +840,7 @@
     },
     "keynes": {
       "name": "John Maynard Keynes",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Hükümetler resesyonda ne yapmalı?",
         "Kısa ve uzun vadeli hedefleri nasıl dengelerim?",
@@ -841,7 +849,7 @@
     },
     "hayek": {
       "name": "Friedrich Hayek",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Merkezi planlama neden her zaman başarısız olur?",
         "Organizasyondaki dağınık bilgiyi nasıl kullanırım?",
@@ -850,7 +858,7 @@
     },
     "malthus": {
       "name": "Thomas Malthus",
-      "era": "Georgian Britain",
+      "era": "Georgian Britanya",
       "questions": [
         "Büyüme gerçekten sonsuza kadar sürebilir mi?",
         "Kaynaklar yetmediğinde ne yapılır?",
@@ -859,7 +867,7 @@
     },
     "friedman": {
       "name": "Milton Friedman",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Devlet düzenlemesi sorunları çözer mi yoksa yaratır mı?",
         "Para politikası enflasyonu nasıl etkiler?",
@@ -868,7 +876,7 @@
     },
     "john-stuart-mill": {
       "name": "John Stuart Mill",
-      "era": "Victorian Era",
+      "era": "Viktorya Dönemi",
       "questions": [
         "Bir politikanın çoğunluğa fayda sağlayıp sağlamadığı nasıl belirlenir?",
         "Bireysel özgürlüğün sınırı nerede?",
@@ -877,7 +885,7 @@
     },
     "schumpeter": {
       "name": "Joseph Schumpeter",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Sektörüm sarsılıyor — ne yapmalıyım?",
         "Bir yeniliğin gerçekten önemli olup olmadığını nasıl değerlendirirsin?",
@@ -895,7 +903,7 @@
     },
     "sowell": {
       "name": "Thomas Sowell",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bu politikanın istenmeyen sonuçları nelerdir?",
         "Bir politikanın yalnızca iyi yanını görmekten nasıl kaçınırım?",
@@ -903,8 +911,8 @@
       ]
     },
     "julius-caesar": {
-      "name": "Julius Caesar",
-      "era": "Roman Republic",
+      "name": "Jül Sezar",
+      "era": "Roma Cumhuriyeti",
       "questions": [
         "Sistem içinden değişimi nasıl yönetirim?",
         "Kararlı davranmak için doğru zaman ne zaman?",
@@ -913,7 +921,7 @@
     },
     "gandhi": {
       "name": "Gandhi",
-      "era": "Modern",
+      "era": "Modern Çağ",
       "questions": [
         "Şiddet içermeyen yollarla değişimi nasıl yönlendiririm?",
         "Kuralların kendisi adaletsizse ne yapılır?",
@@ -922,7 +930,7 @@
     },
     "lincoln": {
       "name": "Lincoln",
-      "era": "Modern Amerika",
+      "era": "Modern Çağ",
       "questions": [
         "Derin bir ayrılık ortasında nasıl uzlaşı kurarım?",
         "Bir lider muhalefetle nasıl başa çıkmalı?",
@@ -939,8 +947,8 @@
       ]
     },
     "mlk": {
-      "name": "Martin Luther King Jr.",
-      "era": "Contemporary",
+      "name": "Martin Luther King",
+      "era": "Çağdaş",
       "questions": [
         "Kişisel deneyimi değişim gücüne nasıl dönüştürürüm?",
         "İnsanları gerçekten etkileyen bir konuşma nasıl yaparım?",
@@ -948,8 +956,8 @@
       ]
     },
     "elizabeth-i": {
-      "name": "Elizabeth I",
-      "era": "Tudor England",
+      "name": "I. Elizabeth",
+      "era": "Tudor İngilteresi",
       "questions": [
         "Rakip hizipler arasında dengeyi nasıl korurum?",
         "Stratejik belirsizlik ne zaman doğru hamledir?",
@@ -958,7 +966,7 @@
     },
     "franklin": {
       "name": "Benjamin Franklin",
-      "era": "Modern Era",
+      "era": "Aydınlanma Çağı",
       "questions": [
         "İyi bir karakteri sistematik olarak nasıl inşa ederim?",
         "Sivil görev ile kişisel çıkarı nasıl dengelerim?",
@@ -967,7 +975,7 @@
     },
     "thatcher": {
       "name": "Margaret Thatcher",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Muhalefete rağmen doğru olanı nasıl ilerletirim?",
         "Popüler olmayan kararlar vermek için nasıl bir zihin gerekir?",
@@ -976,7 +984,7 @@
     },
     "roosevelt": {
       "name": "Theodore Roosevelt",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "İzleyiciden eyleme nasıl geçerim?",
         "Risk ile ödülü nasıl tartarım?",
@@ -985,7 +993,7 @@
     },
     "lee-kuan-yew": {
       "name": "Lee Kuan Yew",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Kıt kaynakla güçlü bir kurum nasıl kurulur?",
         "Disiplin ile özgürlüğü nasıl dengelerim?",
@@ -994,7 +1002,7 @@
     },
     "turing": {
       "name": "Turing",
-      "era": "Modern",
+      "era": "Modern Çağ",
       "questions": [
         "Bu problem algoritmik olarak çözülebilir mi?",
         "Belirsiz gereksinimleri kesin kurallara nasıl dönüştürürüm?",
@@ -1003,7 +1011,7 @@
     },
     "dennis-ritchie": {
       "name": "Dennis Ritchie",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Karmaşık bir sistemi basit parçalara nasıl ayırırım?",
         "İyi bir soyutlama nasıl görünür?",
@@ -1012,7 +1020,7 @@
     },
     "lovelace": {
       "name": "Ada Lovelace",
-      "era": "Early Modern Europe",
+      "era": "Viktorya Dönemi",
       "questions": [
         "Teknoloji ile sanat birbirini nasıl güçlendirebilir?",
         "Algoritmalar gerçekten özgün bir şey yaratabilir mi?",
@@ -1021,7 +1029,7 @@
     },
     "john-mccarthy": {
       "name": "John McCarthy",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Makineler gerçekten \"anlayabilir\" mi?",
         "İnsan bilgisini nasıl biçimselleştirirsiniz?",
@@ -1030,7 +1038,7 @@
     },
     "berners-lee": {
       "name": "Tim Berners-Lee",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Açık ve paylaşılan bir sistem nasıl tasarlanır?",
         "Teknoloji ürünleri kullanıcı verilerini nasıl ele almalı?",
@@ -1039,7 +1047,7 @@
     },
     "von-neumann": {
       "name": "John von Neumann",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Bu karar oyun teorisiyle analiz edilebilir mi?",
         "Belirsiz bir problemi matematiksel modele nasıl çeviririm?",
@@ -1048,7 +1056,7 @@
     },
     "vint-cerf": {
       "name": "Vint Cerf",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Sonsuz ölçeklenebilen bir sistem nasıl tasarlanır?",
         "Açık standartlar neden tescilli protokollerden daha iyidir?",
@@ -1057,7 +1065,7 @@
     },
     "torvalds": {
       "name": "Linus Torvalds",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Bu teknik yaklaşım gerçekten uygulanabilir mi?",
         "Açık kaynak işbirliğinde kaliteyi nasıl yönetirim?",
@@ -1066,7 +1074,7 @@
     },
     "hopper": {
       "name": "Grace Hopper",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Bürokrasi içinde inovasyonu nasıl ilerletirim?",
         "Önce hareket edip sonra sormak ne zaman uygundur?",
@@ -1075,7 +1083,7 @@
     },
     "shannon": {
       "name": "Claude Shannon",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "İletişimde gürültü ve yanlış anlaşılmayı nasıl azaltırım?",
         "Hangi bilginin gerçekten önemli olduğunu nasıl ayırt ederim?",
@@ -1093,7 +1101,7 @@
     },
     "martin-luther": {
       "name": "Martin Luther",
-      "era": "Reformation Era",
+      "era": "Reform Dönemi",
       "questions": [
         "Kuralları çiğnemek ne zaman doğrudur?",
         "Büyük baskı altında tutumunu nasıl korursun?",
@@ -1101,8 +1109,8 @@
       ]
     },
     "mother-teresa": {
-      "name": "Mother Teresa",
-      "era": "Modern Era",
+      "name": "Rahibe Teresa",
+      "era": "Modern Çağ",
       "questions": [
         "Tek bir kişi neyi değiştirebilir?",
         "Umutsuz bir duruma nasıl yüzleşirim?",
@@ -1111,7 +1119,7 @@
     },
     "rumi": {
       "name": "Mevlana",
-      "era": "Ortaçağ Persya",
+      "era": "Ortaçağ İslam Dünyası",
       "questions": [
         "Yalnızlıkta bile nasıl bağlı hissederim?",
         "Aşk tüm sınırları aşabilir mi?",
@@ -1120,7 +1128,7 @@
     },
     "aquinas": {
       "name": "Thomas Aquinas",
-      "era": "Medieval Period",
+      "era": "Orta Çağ",
       "questions": [
         "Akıl ile inanç çatışır mı?",
         "Doğal yasa ahlaki bir temel olabilir mi?",
@@ -1129,7 +1137,7 @@
     },
     "al-ghazali": {
       "name": "Gazali",
-      "era": "Ortaçağ İslam",
+      "era": "Ortaçağ İslam Dünyası",
       "questions": [
         "Aklın sınırları nerededir?",
         "Şüpheyle kesinliği nasıl bulurum?",
@@ -1138,7 +1146,7 @@
     },
     "thich-nhat-hanh": {
       "name": "Thich Nhat Hanh",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Yoğunlukta bir huzur anını nasıl bulurum?",
         "Merhamet her şeye tahammül etmek mi demektir?",
@@ -1147,7 +1155,7 @@
     },
     "huineng": {
       "name": "Huineng",
-      "era": "Tang Dynasty",
+      "era": "Tang Hanedanı",
       "questions": [
         "Uyanış gerçekten bir anda gerçekleşebilir mi?",
         "Günlük hayatta anı yaşamak nasıl olur?",
@@ -1156,7 +1164,7 @@
     },
     "cs-lewis": {
       "name": "C.S. Lewis",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Akıl ile inanç bir arada olabilir mi?",
         "Acı iyi bir Tanrı ile nasıl bağdaşır?",
@@ -1174,7 +1182,7 @@
     },
     "montessori": {
       "name": "Maria Montessori",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Çocuğun iç öğrenme motivasyonu nasıl uyandırılır?",
         "Eğitimde özgürlük ve kurallar nasıl dengelenir?",
@@ -1183,7 +1191,7 @@
     },
     "helen-keller": {
       "name": "Helen Keller",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "İmkansız görünen engelleri nasıl aşarım?",
         "Zorluklar içinde ileriye giden yolu nasıl bulurum?",
@@ -1192,7 +1200,7 @@
     },
     "tagore": {
       "name": "Rabindranath Tagore",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Modern eğitimde insancıl ve şiirsel öğeler nasıl korunur?",
         "Büyümede güzellik ve sanat ne rol oynar?",
@@ -1201,7 +1209,7 @@
     },
     "dewey": {
       "name": "John Dewey",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Gerçek yaparak nasıl öğrenirim?",
         "Eğitimin gerçek amacı nedir?",
@@ -1210,7 +1218,7 @@
     },
     "piaget": {
       "name": "Jean Piaget",
-      "era": "Modern Era",
+      "era": "Modern Çağ",
       "questions": [
         "Bir çocuk bu kavramı gerçekten anlayabilir mi?",
         "Çocuğun bilişsel gelişim aşaması nasıl değerlendirilir?",
@@ -1219,7 +1227,7 @@
     },
     "steiner": {
       "name": "Rudolf Steiner",
-      "era": "Early Modern Europe",
+      "era": "Modern Çağ",
       "questions": [
         "Çocuğun bütüncül gelişimi nasıl desteklenir?",
         "Sanat entelektüel gelişimde nasıl bir rol oynar?",
@@ -1228,7 +1236,7 @@
     },
     "cai-yuanpei": {
       "name": "Cai Yuanpei",
-      "era": "Republican China",
+      "era": "Cumhuriyetçi Çin",
       "questions": [
         "Akademik özgürlük neden önemlidir?",
         "Estetik eğitim karakteri nasıl şekillendirir?",
@@ -1237,7 +1245,7 @@
     },
     "freire": {
       "name": "Paulo Freire",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Eğitim nasıl baskı yerine özgürleşme olabilir?",
         "Öğrenmede eleştirel düşünceyi nasıl uyandırırım?",
@@ -1246,7 +1254,7 @@
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
-      "era": "Modern China",
+      "era": "Cumhuriyetçi Çin",
       "questions": [
         "Günlük hayatı nasıl bir sınıfa dönüştürürüm?",
         "Eğitim hayattan koptuğunda hangi sorunlar çıkar?",
@@ -1255,7 +1263,7 @@
     },
     "gardner": {
       "name": "Howard Gardner",
-      "era": "Contemporary",
+      "era": "Çağdaş",
       "questions": [
         "Baskın zeka türlerim hangileri?",
         "Güçlü yönlerimi zor konuları öğrenmek için nasıl kullanırım?",
@@ -1264,7 +1272,7 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern Amerika",
+      "era": "Modern Çağ",
       "questions": [
         "Bir şirketin değerinin altında olduğunu nasıl anlarım?",
         "Güvenlik marjı nedir?",
@@ -1318,7 +1326,7 @@
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern Amerika",
+      "era": "Modern Çağ",
       "questions": [
         "Piyasa trendleri nasıl okunur?",
         "Kayıpları ne zaman kesmelisiniz?",
@@ -1336,7 +1344,7 @@
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern Amerika",
+      "era": "Modern Çağ",
       "questions": [
         "Uzun vadeli tutmaya değer şirketleri nasıl bulursunuz?",
         "\"Dedikodu\" yöntemi nedir?",
@@ -1354,7 +1362,7 @@
     },
     "thucydides": {
       "name": "Tukidides",
-      "era": "Antik Yunanistan",
+      "era": "Antik Yunan",
       "questions": [
         "Güç geçişi kaçınılmaz olarak çatışmaya mı yol açar?",
         "Korku ulusları nasıl savaşa sürükler?",
@@ -1363,7 +1371,7 @@
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Han Hanedanı",
+      "era": "Batı Han Hanedanı",
       "questions": [
         "Tarihte hangi yükseliş ve düşüş kalıpları tekrarlanır?",
         "Tarihi figürleri nasıl adil değerlendirebiliriz?",
@@ -1417,7 +1425,7 @@
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Erken Modern Avrupa",
+      "era": "Modern Çağ",
       "questions": [
         "Çoğunluğun tiranlığı bugün gerçek bir tehlike mi?",
         "Eşitlik özgürlüğü paradoksal olarak nasıl tehdit eder?",
@@ -1426,7 +1434,7 @@
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Erken Modern Avrupa",
+      "era": "Aydınlanma Çağı",
       "questions": [
         "Hangi iç zayıflıklar kurumlarımızı tehdit ediyor?",
         "Aşırı genişleme nasıl çöküşe yol açar?",
@@ -1625,8 +1633,8 @@
   },
   "templates": {
     "philosophy-debate": {
-      "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty",
+      "name": "Felsefe Tartışması",
+      "description": "Sorgulama, uyum, güç, feragat, görev",
       "questions": [
         "Özgür irade gerçekten var mı?",
         "Acı çekmenin anlamı nedir?",
@@ -1634,7 +1642,7 @@
       ]
     },
     "business-strategy": {
-      "name": "Business Strategy",
+      "name": "İş Stratejisi",
       "description": "Zihinsel modeller vs ilk ilkeler vs girişimcilik vs küreselleşme",
       "questions": [
         "Girişimler büyümeyi mi yoksa kârlılığı mı önceliklendirmeli?",
@@ -1643,8 +1651,8 @@
       ]
     },
     "science-panel": {
-      "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment",
+      "name": "Bilim Paneli",
+      "description": "Kesinlik vs olasılık, teori vs deney",
       "questions": [
         "Bilim sonunda her şeyi açıklayabilir mi?",
         "Teori mi deney mi daha önemli?",
@@ -1652,8 +1660,8 @@
       ]
     },
     "strategic-minds": {
-      "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast",
+      "name": "Stratejik Zihinler",
+      "description": "Zekâ vs güç vs direnç",
       "questions": [
         "Savaşmadan kazanmak mümkün mü?",
         "Bir liderin en önemli niteliği nedir?",
@@ -1661,8 +1669,8 @@
       ]
     },
     "psychology-insights": {
-      "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning",
+      "name": "Psikolojik İçgörüler",
+      "description": "Dürtüler vs davranış vs önyargı vs anlam",
       "questions": [
         "İnsan doğası temelde iyi mi yoksa kötü mü?",
         "Gerçekten rasyonel kararlar alabilir miyiz?",

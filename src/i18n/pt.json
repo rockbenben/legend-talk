@@ -56,6 +56,7 @@
     "retry": "Tentar novamente",
     "networkError": "Falha na conexão. Verifique sua rede e tente novamente.",
     "corsError": "Solicitação bloqueada pelo navegador (CORS). Um proxy é necessário.",
+    "originBlocked": "Bloqueado pelo provedor (403). Sua chave está correta — o servidor recusa requisições do navegador. Use o proxy.",
     "useCorsProxy": "Usar proxy público",
     "summonFailed": "Nenhum personagem encontrado para este tema",
     "thinkingUnsupported": "Este modelo não suporta o modo de raciocínio. Desative-o ou escolha um modelo de raciocínio.",
@@ -85,7 +86,6 @@
     "enterDecryptPassword": "Digite a senha para descriptografar (vazio para pular keys)",
     "importConversations": "Importar",
     "importedCount": "{{count}} conversas importadas",
-    "importedCount_one": "{{count}} conversa importada",
     "importedCount_other": "{{count}} conversas importadas",
     "importedCount_one": "{{count}} conversa importada",
     "importError": "Falha na importação: formato de arquivo inválido",
@@ -113,9 +113,8 @@
     "roundProgress": "Rodada {{current}}/{{total}} — {{name}} está falando...",
     "discussionComplete": "Discussão concluída",
     "continue": "Mais {{count}} rodadas",
-    "continue_one": "Mais {{count}} rodada",
     "continue_other": "Mais {{count}} rodadas",
-    "continue_one": "+{{count}} rodada",
+    "continue_one": "Mais {{count}} rodada",
     "addToRoundtable": "Adicionar à mesa",
     "removeFromRoundtable": "Remover da mesa",
     "removeParticipant": "Remover",
@@ -145,14 +144,21 @@
     "themeDark": "Escuro",
     "thinkingLevel": "Nível de raciocínio",
     "thinkingLevelHint": "O modelo raciocina mais antes de responder. Mais preciso, mas mais lento.",
+    "thinkingLevelHintNoOff": "Este provedor não consegue desligar o raciocínio — Mínimo envia o próprio valor mais baixo, que ainda raciocina e é cobrado. Aumentar costuma ser mais preciso, porém mais lento e caro.",
     "thinkingOff": "Desligado",
+    "thinkingMin": "Mínimo",
     "thinkingLow": "Baixo",
     "thinkingMedium": "Médio",
     "thinkingHigh": "Alto",
     "apiKeyPlaceholder": "Digite {{provider}} API Key...",
-    "corsProxyHint": "Encaminha solicitações via proxy para contornar restrições CORS",
+    "corsProxy": "Proxy CORS",
+    "corsProxyHint": "Ative se encontrar erros de CORS ou 403. As requisições passam por este proxy a caminho do provedor; ele apenas encaminha, sem armazenar nada, e você pode apontá-lo para seu próprio deploy.",
+    "corsProxyInert": "O relé integrado só encaminha para endpoints oficiais. Com um endpoint personalizado definido, as solicitações vão diretas.",
+    "corsProxyInvalid": "É necessário um URL completo com https://",
     "customModel": "Modelo personalizado...",
     "customBaseUrlHint": "Digite o endpoint de API compatível com OpenAI",
+    "endpoint": "Endpoint da API",
+    "endpointHint": "Usa o padrão do provedor. Escolha uma região ou cole seu próprio gateway.",
     "dataManagement": "Dados",
     "conversations": "Conversas",
     "exportAll": "Exportar tudo",
@@ -191,7 +197,7 @@
     },
     "confucius": {
       "name": "Confúcio",
-      "era": "Primavera e Outono",
+      "era": "Período das Primaveras e Outonos",
       "questions": [
         "Como lidar com um conflito com meu chefe?",
         "O que significa ser uma boa pessoa?",
@@ -199,8 +205,8 @@
       ]
     },
     "aristotle": {
-      "name": "Aristotle",
-      "era": "Ancient Greece",
+      "name": "Aristóteles",
+      "era": "Grécia Antiga",
       "questions": [
         "Como é uma boa vida?",
         "Como cultivo a virtude?",
@@ -208,8 +214,8 @@
       ]
     },
     "laozi": {
-      "name": "Laozi",
-      "era": "Spring and Autumn Period",
+      "name": "Lao-Tsé",
+      "era": "Período das Primaveras e Outonos",
       "questions": [
         "Quanto mais me esforço, mais ansioso fico",
         "Como ser fiel a mim mesmo sob pressão?",
@@ -217,8 +223,8 @@
       ]
     },
     "plato": {
-      "name": "Plato",
-      "era": "Ancient Greece",
+      "name": "Platão",
+      "era": "Grécia Antiga",
       "questions": [
         "O que vejo é realmente a realidade?",
         "Como fechar a distância entre ideal e real?",
@@ -227,7 +233,7 @@
     },
     "zhuangzi": {
       "name": "Zhuangzi",
-      "era": "Warring States Period",
+      "era": "Período dos Reinos Combatentes",
       "questions": [
         "Estou apegado demais ao sucesso e ao fracasso",
         "Como aceitar o que não pode ser mudado?",
@@ -235,8 +241,8 @@
       ]
     },
     "marcus-aurelius": {
-      "name": "Marcus Aurelius",
-      "era": "Roman Empire",
+      "name": "Marco Aurélio",
+      "era": "Império Romano",
       "questions": [
         "Como me manter imune ao caos externo?",
         "Como pensar sobre o que não posso mudar?",
@@ -245,7 +251,7 @@
     },
     "kant": {
       "name": "Immanuel Kant",
-      "era": "Early Modern Europe",
+      "era": "Iluminismo",
       "questions": [
         "Mentir é sempre errado?",
         "Devo seguir regras ou focar nos resultados?",
@@ -254,7 +260,7 @@
     },
     "descartes": {
       "name": "René Descartes",
-      "era": "Early Modern Europe",
+      "era": "Europa moderna inicial",
       "questions": [
         "Posso realmente confiar no que acredito?",
         "Como repensar um problema do zero?",
@@ -263,7 +269,7 @@
     },
     "hegel": {
       "name": "Georg Hegel",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Existe um terceiro caminho para este dilema?",
         "Por que minhas ideias sempre oscilam entre extremos?",
@@ -272,7 +278,7 @@
     },
     "wang-yangming": {
       "name": "Wang Yangming",
-      "era": "Ming Dynasty",
+      "era": "Dinastia Ming",
       "questions": [
         "Sei o que fazer mas não consigo agir",
         "Como manter a calma no caos?",
@@ -281,7 +287,7 @@
     },
     "sun-tzu": {
       "name": "Sun Tzu",
-      "era": "Spring and Autumn Period",
+      "era": "Período das Primaveras e Outonos",
       "questions": [
         "Como vencer com menos recursos?",
         "Como encontrar as fraquezas do concorrente?",
@@ -289,8 +295,8 @@
       ]
     },
     "genghis-khan": {
-      "name": "Genghis Khan",
-      "era": "Medieval Period",
+      "name": "Gengis Khan",
+      "era": "Idade Média",
       "questions": [
         "Como expandir rapidamente mantendo a eficácia organizacional?",
         "Como recrutar e integrar talentos de origens diversas?",
@@ -298,8 +304,8 @@
       ]
     },
     "hannibal": {
-      "name": "Hannibal Barca",
-      "era": "Ancient Rome",
+      "name": "Aníbal Barca",
+      "era": "Cartago Antiga",
       "questions": [
         "Como transformar a força do oponente em fraqueza?",
         "Como criar vantagem com recursos limitados?",
@@ -317,7 +323,7 @@
     },
     "zhuge-liang": {
       "name": "Zhuge Liang",
-      "era": "Three Kingdoms",
+      "era": "Três Reinos",
       "questions": [
         "Como construir vantagem em desvantagem?",
         "Como antecipar o próximo movimento do oponente?",
@@ -325,8 +331,8 @@
       ]
     },
     "machiavelli": {
-      "name": "Niccolò Machiavelli",
-      "era": "Renaissance",
+      "name": "Nicolau Maquiavel",
+      "era": "Renascimento",
       "questions": [
         "Como me proteger na política corporativa?",
         "Quais são as leis fundamentais do poder?",
@@ -335,7 +341,7 @@
     },
     "cao-cao": {
       "name": "Cao Cao",
-      "era": "Three Kingdoms",
+      "era": "Três Reinos",
       "questions": [
         "Como me posicionar nesta competição?",
         "Como lidar com subordinados de agendas ocultas?",
@@ -344,7 +350,7 @@
     },
     "churchill": {
       "name": "Winston Churchill",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Estou no meu limite — o que faço?",
         "Como restaurar a moral da equipe?",
@@ -353,7 +359,7 @@
     },
     "bismarck": {
       "name": "Otto von Bismarck",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Como atingir metas em meio a interesses conflitantes?",
         "Quando o compromisso é a jogada sábia?",
@@ -362,7 +368,7 @@
     },
     "zeng-guofan": {
       "name": "Zeng Guofan",
-      "era": "Late Qing Dynasty",
+      "era": "Fim da dinastia Qing",
       "questions": [
         "Como superar minha própria preguiça?",
         "Como liderar bem uma equipe?",
@@ -371,7 +377,7 @@
     },
     "munger": {
       "name": "Charlie Munger",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Vale a pena perseguir este investimento?",
         "Como evitar decisões estúpidas?",
@@ -380,7 +386,7 @@
     },
     "drucker": {
       "name": "Peter Drucker",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Estou gastando tempo no que mais importa?",
         "Como medir a eficácia de um gestor?",
@@ -389,7 +395,7 @@
     },
     "carnegie": {
       "name": "Andrew Carnegie",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como escalar de pequeno negócio a grande empresa?",
         "Como construir barreiras competitivas num setor?",
@@ -398,7 +404,7 @@
     },
     "matsushita": {
       "name": "Konosuke Matsushita",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como manter a qualidade ao reduzir custos?",
         "Como fazer com que os funcionários se comprometam de verdade?",
@@ -407,7 +413,7 @@
     },
     "henry-ford": {
       "name": "Henry Ford",
-      "era": "Industrial Era",
+      "era": "Era Moderna",
       "questions": [
         "Como reduzir drasticamente os custos de produção?",
         "Como tornar um produto acessível a todos?",
@@ -416,7 +422,7 @@
     },
     "dalio": {
       "name": "Ray Dalio",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como construir um sistema de decisão baseado em princípios?",
         "Como aprender sistematicamente com o fracasso?",
@@ -425,7 +431,7 @@
     },
     "buffett": {
       "name": "Warren Buffett",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como julgar o valor de longo prazo de uma empresa?",
         "O que fazer quando os mercados caem?",
@@ -434,7 +440,7 @@
     },
     "peter-thiel": {
       "name": "Peter Thiel",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Qual verdade importante poucos concordam com você?",
         "A competição é uma forma de fracasso?",
@@ -443,7 +449,7 @@
     },
     "steve-jobs": {
       "name": "Steve Jobs",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Simplificar ou adicionar recursos?",
         "Como encontrar o que realmente importa?",
@@ -452,7 +458,7 @@
     },
     "elon-musk": {
       "name": "Elon Musk",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Quais são as premissas centrais deste setor?",
         "Como tornar o impossível possível?",
@@ -461,7 +467,7 @@
     },
     "freud": {
       "name": "Sigmund Freud",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Por que tenho esse hábito estranho?",
         "Como a infância moldou meu comportamento atual?",
@@ -470,7 +476,7 @@
     },
     "pavlov": {
       "name": "Ivan Pavlov",
-      "era": "Imperial Russia",
+      "era": "Rússia imperial",
       "questions": [
         "Por que certas situações disparam meus impulsos?",
         "Como romper hábitos condicionados?",
@@ -479,7 +485,7 @@
     },
     "jung": {
       "name": "Carl Jung",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Por que repito os mesmos erros?",
         "Por que reajo exageradamente a certas coisas?",
@@ -488,7 +494,7 @@
     },
     "maslow": {
       "name": "Abraham Maslow",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Por que sinto vazio interior?",
         "Como encontrar algo que me dê sentido?",
@@ -497,7 +503,7 @@
     },
     "adler": {
       "name": "Alfred Adler",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como parar de me importar com o que os outros pensam?",
         "Como traumas passados continuam me afetando?",
@@ -506,7 +512,7 @@
     },
     "skinner": {
       "name": "B.F. Skinner",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como usar sistemas de recompensa para construir bons hábitos?",
         "Por que é tão difícil romper um mau hábito?",
@@ -515,7 +521,7 @@
     },
     "frankl": {
       "name": "Viktor Frankl",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Minha vida perdeu o sentido",
         "Como encontrar valor no sofrimento?",
@@ -524,7 +530,7 @@
     },
     "kahneman": {
       "name": "Daniel Kahneman",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Meu julgamento é intuição ou viés?",
         "Como evitar a ancoragem nas minhas decisões?",
@@ -533,7 +539,7 @@
     },
     "erikson": {
       "name": "Erik Erikson",
-      "era": "Modern Era",
+      "era": "Contemporâneo",
       "questions": [
         "É normal me sentir perdido aos 30?",
         "Como atravessar uma crise de meia-idade?",
@@ -542,7 +548,7 @@
     },
     "zimbardo": {
       "name": "Philip Zimbardo",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Por que pessoas boas fazem coisas ruins?",
         "Quanto o ambiente molda o comportamento?",
@@ -551,7 +557,7 @@
     },
     "einstein": {
       "name": "Einstein",
-      "era": "Moderno",
+      "era": "Era Moderna",
       "questions": [
         "E se olharmos isto por um ângulo completamente diferente?",
         "Estamos construindo sobre premissas erradas?",
@@ -560,7 +566,7 @@
     },
     "newton": {
       "name": "Isaac Newton",
-      "era": "Early Modern Europe",
+      "era": "Europa moderna inicial",
       "questions": [
         "Como decompor um problema complexo em leis simples?",
         "Como construir um sistema previsível?",
@@ -569,7 +575,7 @@
     },
     "galileo": {
       "name": "Galileo Galilei",
-      "era": "Early Modern Europe",
+      "era": "Europa moderna inicial",
       "questions": [
         "Meu julgamento é apoiado em evidência real?",
         "Como desafiar a sabedoria convencional do setor?",
@@ -578,7 +584,7 @@
     },
     "darwin": {
       "name": "Charles Darwin",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como minha estratégia deve se adaptar a um ambiente em mudança?",
         "Como sobreviver à competição de longo prazo?",
@@ -587,7 +593,7 @@
     },
     "zhang-heng": {
       "name": "Zhang Heng",
-      "era": "Eastern Han Dynasty",
+      "era": "Dinastia Han Oriental",
       "questions": [
         "Tenho uma ideia mas não sei se é viável",
         "Trabalho técnico e criativo são caminhos separados?",
@@ -596,7 +602,7 @@
     },
     "hawking": {
       "name": "Stephen Hawking",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Meu problema importa em escala cósmica?",
         "Os limites físicos ou ambientais podem ser transcendidos?",
@@ -605,7 +611,7 @@
     },
     "tesla": {
       "name": "Nikola Tesla",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Minha ideia está à frente do seu tempo — como avançar?",
         "Como simular mentalmente um sistema complexo?",
@@ -613,8 +619,8 @@
       ]
     },
     "copernicus": {
-      "name": "Nicolaus Copernicus",
-      "era": "Renaissance",
+      "name": "Nicolau Copérnico",
+      "era": "Renascimento",
       "questions": [
         "Minha premissa fundamental poderia estar errada?",
         "Como sair de uma perspectiva centrada em si mesmo?",
@@ -623,7 +629,7 @@
     },
     "feynman": {
       "name": "Richard Feynman",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Qual é a essência deste problema?",
         "Como sei que realmente entendo?",
@@ -632,7 +638,7 @@
     },
     "curie": {
       "name": "Marie Curie",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como persistir quando os outros duvidam?",
         "Como convencer céticos com dados?",
@@ -641,7 +647,7 @@
     },
     "shakespeare": {
       "name": "Shakespeare",
-      "era": "Renascença",
+      "era": "Renascimento",
       "questions": [
         "Como entender as motivações complexas das pessoas?",
         "Como ciúme e ambição destroem uma pessoa?",
@@ -649,8 +655,8 @@
       ]
     },
     "tolstoy": {
-      "name": "Leo Tolstoy",
-      "era": "Imperial Russia",
+      "name": "Liev Tolstói",
+      "era": "Rússia imperial",
       "questions": [
         "O que separa famílias felizes das infelizes?",
         "Devemos viver por ideais ou pelo dever?",
@@ -659,7 +665,7 @@
     },
     "kafka": {
       "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Por que o sistema sempre parece trabalhar contra mim?",
         "Como ser eu mesmo num ambiente absurdo?",
@@ -668,7 +674,7 @@
     },
     "li-bai": {
       "name": "Li Bai",
-      "era": "Tang Dynasty",
+      "era": "Dinastia Tang",
       "questions": [
         "Como redescobrir a paixão pela vida?",
         "Como equilibrar regras e liberdade?",
@@ -676,8 +682,8 @@
       ]
     },
     "dostoevsky": {
-      "name": "Fyodor Dostoevsky",
-      "era": "Early Modern Europe",
+      "name": "Fiódor Dostoiévski",
+      "era": "Rússia imperial",
       "questions": [
         "Fiz algo errado — como lido com isso?",
         "O sofrimento pode purificar uma pessoa?",
@@ -686,7 +692,7 @@
     },
     "hemingway": {
       "name": "Ernest Hemingway",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como manter a calma sob pressão?",
         "O que vale mostrar com ações e não com palavras?",
@@ -695,7 +701,7 @@
     },
     "su-shi": {
       "name": "Su Shi",
-      "era": "Song Dynasty",
+      "era": "Dinastia Song",
       "questions": [
         "Como manter a serenidade na adversidade?",
         "Como encontrar beleza na vida comum?",
@@ -704,7 +710,7 @@
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Como transcender valores impostos por outros?",
         "Como reconstruir-se quando o niilismo ataca?",
@@ -713,7 +719,7 @@
     },
     "borges": {
       "name": "Jorge Luis Borges",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "A realidade é apenas outro tipo de ficção?",
         "Como escolher em meio a possibilidades infinitas?",
@@ -722,7 +728,7 @@
     },
     "lu-xun": {
       "name": "Lu Xun",
-      "era": "Modern China",
+      "era": "China republicana",
       "questions": [
         "Por que todos olham para o outro lado?",
         "Como enfrentar uma verdade desconfortável?",
@@ -731,7 +737,7 @@
     },
     "da-vinci": {
       "name": "Leonardo da Vinci",
-      "era": "Renaissance",
+      "era": "Renascimento",
       "questions": [
         "Como cultivar curiosidade genuína?",
         "Como arte e ciência podem se inspirar mutuamente?",
@@ -740,7 +746,7 @@
     },
     "beethoven": {
       "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "era": "Romantismo",
       "questions": [
         "Como continuar quando as circunstâncias estão severamente contra você?",
         "O destino pode ser desafiado?",
@@ -749,7 +755,7 @@
     },
     "michelangelo": {
       "name": "Michelangelo",
-      "era": "Renaissance",
+      "era": "Renascimento",
       "questions": [
         "Como se manter no mais alto padrão?",
         "Perfeccionismo é motor ou fardo?",
@@ -758,7 +764,7 @@
     },
     "picasso": {
       "name": "Pablo Picasso",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como romper padrões de pensamento fixos?",
         "Como criatividade e regras podem coexistir?",
@@ -767,7 +773,7 @@
     },
     "mozart": {
       "name": "Wolfgang Amadeus Mozart",
-      "era": "Early Modern Europe",
+      "era": "Europa moderna inicial",
       "questions": [
         "Como fazer o trabalho criativo fluir mais naturalmente?",
         "Como equilibrar brincadeira e trabalho sério?",
@@ -776,7 +782,7 @@
     },
     "bach": {
       "name": "Johann Sebastian Bach",
-      "era": "Early Modern Europe",
+      "era": "Europa moderna inicial",
       "questions": [
         "Regras rígidas podem potencializar a criatividade?",
         "Como manter a paixão em trabalho repetitivo?",
@@ -785,7 +791,7 @@
     },
     "van-gogh": {
       "name": "Vincent van Gogh",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Como persistir sem reconhecimento?",
         "A solidão é fonte de criatividade ou obstáculo?",
@@ -794,7 +800,7 @@
     },
     "monet": {
       "name": "Claude Monet",
-      "era": "Modern France",
+      "era": "Era Moderna",
       "questions": [
         "Como ver o mesmo problema por um novo ângulo?",
         "Por que as primeiras impressões importam?",
@@ -803,7 +809,7 @@
     },
     "chopin": {
       "name": "Frédéric Chopin",
-      "era": "Romantic Era",
+      "era": "Romantismo",
       "questions": [
         "Como expressar emoções complexas com elegância?",
         "Simplicidade e profundidade podem coexistir?",
@@ -812,7 +818,7 @@
     },
     "miyazaki": {
       "name": "Hayao Miyazaki",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como manter o encantamento infantil pelo mundo?",
         "Como o trabalho criativo pode transmitir emoção genuína?",
@@ -821,7 +827,7 @@
     },
     "adam-smith": {
       "name": "Adam Smith",
-      "era": "Early Modern Europe",
+      "era": "Iluminismo",
       "questions": [
         "Como o interesse próprio individual beneficia a sociedade como um todo?",
         "Quando o livre mercado falha?",
@@ -830,7 +836,7 @@
     },
     "marx": {
       "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Quem se beneficia do sistema econômico atual?",
         "Como o valor dos trabalhadores é subestimado?",
@@ -839,7 +845,7 @@
     },
     "keynes": {
       "name": "John Maynard Keynes",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "O que governos devem fazer durante uma recessão?",
         "Como equilibrar objetivos de curto e longo prazo?",
@@ -848,7 +854,7 @@
     },
     "hayek": {
       "name": "Friedrich Hayek",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Por que o planejamento central sempre falha?",
         "Como aproveitar conhecimento disperso dentro de uma organização?",
@@ -857,7 +863,7 @@
     },
     "malthus": {
       "name": "Thomas Malthus",
-      "era": "Georgian Britain",
+      "era": "Grã-Bretanha georgiana",
       "questions": [
         "O crescimento realmente pode durar para sempre?",
         "O que fazer quando os recursos são insuficientes?",
@@ -866,7 +872,7 @@
     },
     "friedman": {
       "name": "Milton Friedman",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "A regulação estatal resolve ou cria problemas?",
         "Como a política monetária afeta a inflação?",
@@ -875,7 +881,7 @@
     },
     "john-stuart-mill": {
       "name": "John Stuart Mill",
-      "era": "Victorian Era",
+      "era": "Era vitoriana",
       "questions": [
         "Como saber se uma política beneficia a maioria?",
         "Onde está o limite da liberdade individual?",
@@ -884,7 +890,7 @@
     },
     "schumpeter": {
       "name": "Joseph Schumpeter",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Meu setor está sendo disrompido — o que fazer?",
         "Como julgar se uma inovação realmente importa?",
@@ -902,7 +908,7 @@
     },
     "sowell": {
       "name": "Thomas Sowell",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Quais são as consequências não intencionais desta política?",
         "Como evitar ver apenas o lado bom de uma política?",
@@ -910,8 +916,8 @@
       ]
     },
     "julius-caesar": {
-      "name": "Julius Caesar",
-      "era": "Roman Republic",
+      "name": "Júlio César",
+      "era": "República Romana",
       "questions": [
         "Como impulsionar a mudança de dentro do sistema?",
         "Quando é o momento certo de agir com decisão?",
@@ -920,7 +926,7 @@
     },
     "gandhi": {
       "name": "Mahatma Gandhi",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como impulsionar a mudança por meios não violentos?",
         "O que fazer quando as próprias regras são injustas?",
@@ -929,7 +935,7 @@
     },
     "lincoln": {
       "name": "Abraham Lincoln",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como construir consenso em meio a profunda divisão?",
         "Como um líder deve lidar com a oposição?",
@@ -938,7 +944,7 @@
     },
     "mandela": {
       "name": "Nelson Mandela",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como perdoar alguém que realmente me machucou?",
         "Como equilibrar sacrifício pessoal com objetivos coletivos?",
@@ -946,8 +952,8 @@
       ]
     },
     "mlk": {
-      "name": "Martin Luther King Jr.",
-      "era": "Contemporary",
+      "name": "Martin Luther King",
+      "era": "Contemporâneo",
       "questions": [
         "Como transformar experiência pessoal em uma força de mudança?",
         "Como fazer um discurso que realmente comova?",
@@ -955,8 +961,8 @@
       ]
     },
     "elizabeth-i": {
-      "name": "Elizabeth I",
-      "era": "Tudor England",
+      "name": "Isabel I",
+      "era": "Inglaterra Tudor",
       "questions": [
         "Como manter o equilíbrio entre facções rivais?",
         "Quando a ambiguidade estratégica é a jogada certa?",
@@ -965,7 +971,7 @@
     },
     "franklin": {
       "name": "Benjamin Franklin",
-      "era": "Modern Era",
+      "era": "Iluminismo",
       "questions": [
         "Como construir bom caráter sistematicamente?",
         "Como equilibrar dever cívico e interesse pessoal?",
@@ -974,7 +980,7 @@
     },
     "thatcher": {
       "name": "Margaret Thatcher",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como levar adiante o que é certo apesar da oposição?",
         "Que mentalidade é necessária para decisões impopulares?",
@@ -983,7 +989,7 @@
     },
     "roosevelt": {
       "name": "Theodore Roosevelt",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como passar de espectador a ator?",
         "Como pesar risco contra recompensa?",
@@ -992,7 +998,7 @@
     },
     "lee-kuan-yew": {
       "name": "Lee Kuan Yew",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como construir uma organização forte com recursos escassos?",
         "Como equilibrar disciplina e liberdade?",
@@ -1001,7 +1007,7 @@
     },
     "turing": {
       "name": "Alan Turing",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Este problema pode ser resolvido algoritmicamente?",
         "Como transformar requisitos vagos em regras precisas?",
@@ -1010,7 +1016,7 @@
     },
     "dennis-ritchie": {
       "name": "Dennis Ritchie",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como decompor um sistema complexo em partes simples?",
         "Como é uma boa abstração?",
@@ -1019,7 +1025,7 @@
     },
     "lovelace": {
       "name": "Ada Lovelace",
-      "era": "Early Modern Europe",
+      "era": "Era vitoriana",
       "questions": [
         "Como tecnologia e arte podem se fortalecer mutuamente?",
         "Algoritmos podem criar algo verdadeiramente original?",
@@ -1028,7 +1034,7 @@
     },
     "john-mccarthy": {
       "name": "John McCarthy",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Máquinas podem realmente \"entender\"?",
         "Como formalizar o conhecimento humano?",
@@ -1037,7 +1043,7 @@
     },
     "berners-lee": {
       "name": "Tim Berners-Lee",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como projetar um sistema aberto e compartilhado?",
         "Como os produtos tecnológicos devem tratar os dados do usuário?",
@@ -1046,7 +1052,7 @@
     },
     "von-neumann": {
       "name": "John von Neumann",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Esta decisão pode ser analisada com teoria dos jogos?",
         "Como converter um problema difuso em um modelo matemático?",
@@ -1055,7 +1061,7 @@
     },
     "vint-cerf": {
       "name": "Vint Cerf",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como projetar um sistema infinitamente escalável?",
         "Por que padrões abertos são melhores que protocolos proprietários?",
@@ -1064,7 +1070,7 @@
     },
     "torvalds": {
       "name": "Linus Torvalds",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Esta abordagem técnica é realmente viável?",
         "Como gerenciar qualidade na colaboração open-source?",
@@ -1073,7 +1079,7 @@
     },
     "hopper": {
       "name": "Grace Hopper",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como impulsionar inovação dentro da burocracia?",
         "Quando agir primeiro e pedir depois?",
@@ -1082,7 +1088,7 @@
     },
     "shannon": {
       "name": "Claude Shannon",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como reduzir ruído e mal-entendidos na comunicação?",
         "Como distinguir qual informação realmente importa?",
@@ -1099,8 +1105,8 @@
       ]
     },
     "martin-luther": {
-      "name": "Martin Luther",
-      "era": "Reformation Era",
+      "name": "Martinho Lutero",
+      "era": "Era da Reforma",
       "questions": [
         "Quando é certo quebrar as regras?",
         "Como manter a sua posição sob enorme pressão?",
@@ -1108,8 +1114,8 @@
       ]
     },
     "mother-teresa": {
-      "name": "Mother Teresa",
-      "era": "Modern Era",
+      "name": "Madre Teresa",
+      "era": "Era Moderna",
       "questions": [
         "O que uma única pessoa pode mudar?",
         "Como enfrentar uma situação sem esperança?",
@@ -1118,7 +1124,7 @@
     },
     "rumi": {
       "name": "Rumi",
-      "era": "Medieval Period",
+      "era": "Mundo islâmico medieval",
       "questions": [
         "Como se sentir conectado mesmo na solidão?",
         "O amor pode transcender todas as fronteiras?",
@@ -1126,8 +1132,8 @@
       ]
     },
     "aquinas": {
-      "name": "Thomas Aquinas",
-      "era": "Medieval Period",
+      "name": "Tomás de Aquino",
+      "era": "Idade Média",
       "questions": [
         "Razão e fé estão em conflito?",
         "A lei natural pode servir de fundamento moral?",
@@ -1136,7 +1142,7 @@
     },
     "al-ghazali": {
       "name": "Al-Ghazali",
-      "era": "Medieval Period",
+      "era": "Mundo islâmico medieval",
       "questions": [
         "Onde estão os limites da razão?",
         "Como encontrar certeza através da dúvida?",
@@ -1145,7 +1151,7 @@
     },
     "thich-nhat-hanh": {
       "name": "Thich Nhat Hanh",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como encontrar um momento de paz na correria?",
         "Compaixão significa tolerar tudo?",
@@ -1154,7 +1160,7 @@
     },
     "huineng": {
       "name": "Huineng",
-      "era": "Tang Dynasty",
+      "era": "Dinastia Tang",
       "questions": [
         "O despertar realmente pode acontecer num instante?",
         "Como viver o momento presente na vida diária?",
@@ -1163,7 +1169,7 @@
     },
     "cs-lewis": {
       "name": "C.S. Lewis",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Razão e fé podem coexistir?",
         "Como o sofrimento é compatível com um Deus bom?",
@@ -1181,7 +1187,7 @@
     },
     "montessori": {
       "name": "Maria Montessori",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como despertar a motivação interna da criança?",
         "Como equilibrar liberdade e regras na educação?",
@@ -1190,7 +1196,7 @@
     },
     "helen-keller": {
       "name": "Helen Keller",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como superar obstáculos aparentemente impossíveis?",
         "Como encontrar um caminho à frente na adversidade?",
@@ -1199,7 +1205,7 @@
     },
     "tagore": {
       "name": "Rabindranath Tagore",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como preservar elementos humanísticos e poéticos na educação moderna?",
         "Que papel beleza e arte desempenham no crescimento?",
@@ -1208,7 +1214,7 @@
     },
     "dewey": {
       "name": "John Dewey",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Como aprender fazendo?",
         "Qual é o verdadeiro propósito da educação?",
@@ -1217,7 +1223,7 @@
     },
     "piaget": {
       "name": "Jean Piaget",
-      "era": "Modern Era",
+      "era": "Era Moderna",
       "questions": [
         "Uma criança realmente entende este conceito?",
         "Como avaliar o estágio de desenvolvimento cognitivo?",
@@ -1226,7 +1232,7 @@
     },
     "steiner": {
       "name": "Rudolf Steiner",
-      "era": "Early Modern Europe",
+      "era": "Era Moderna",
       "questions": [
         "Como nutrir o desenvolvimento integral da criança?",
         "Qual o papel da arte no crescimento intelectual?",
@@ -1235,7 +1241,7 @@
     },
     "cai-yuanpei": {
       "name": "Cai Yuanpei",
-      "era": "Republican China",
+      "era": "China republicana",
       "questions": [
         "Por que a liberdade acadêmica importa?",
         "Como a educação estética molda o caráter?",
@@ -1244,7 +1250,7 @@
     },
     "freire": {
       "name": "Paulo Freire",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Como a educação pode ser libertação, não opressão?",
         "Como despertar o pensamento crítico na aprendizagem?",
@@ -1253,7 +1259,7 @@
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
-      "era": "Modern China",
+      "era": "China republicana",
       "questions": [
         "Como transformar o cotidiano em sala de aula?",
         "Que problemas surgem quando a educação se divorcia da vida?",
@@ -1262,7 +1268,7 @@
     },
     "gardner": {
       "name": "Howard Gardner",
-      "era": "Contemporary",
+      "era": "Contemporâneo",
       "questions": [
         "Quais são minhas inteligências dominantes?",
         "Como usar meus pontos fortes para aprender temas difíceis?",
@@ -1271,7 +1277,7 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "América moderna",
+      "era": "Era Moderna",
       "questions": [
         "Como saber se uma empresa está subvalorizada?",
         "O que é margem de segurança?",
@@ -1325,7 +1331,7 @@
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "América moderna",
+      "era": "Era Moderna",
       "questions": [
         "Como ler as tendências do mercado?",
         "Quando cortar as perdas?",
@@ -1343,7 +1349,7 @@
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "América moderna",
+      "era": "Era Moderna",
       "questions": [
         "Como encontrar empresas para manter a longo prazo?",
         "O que é o método \"scuttlebutt\"?",
@@ -1370,7 +1376,7 @@
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Dinastia Han",
+      "era": "Dinastia Han Ocidental",
       "questions": [
         "Quais padrões de ascensão e queda se repetem na história?",
         "Como julgar figuras históricas com justiça?",
@@ -1424,7 +1430,7 @@
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Europa moderna",
+      "era": "Era Moderna",
       "questions": [
         "A tirania da maioria é um perigo real hoje?",
         "Como a igualdade paradoxalmente ameaça a liberdade?",
@@ -1433,7 +1439,7 @@
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Europa moderna",
+      "era": "Iluminismo",
       "questions": [
         "Que fraquezas internas ameaçam nossas instituições?",
         "Como a superextensão leva ao colapso?",
@@ -1632,8 +1638,8 @@
   },
   "templates": {
     "philosophy-debate": {
-      "name": "Philosophy Debate",
-      "description": "Inquiry, harmony, power, detachment, duty",
+      "name": "Debate filosófico",
+      "description": "Questionamento, harmonia, poder, desapego, dever",
       "questions": [
         "O livre-arbítrio realmente existe?",
         "Qual o sentido do sofrimento?",
@@ -1641,7 +1647,7 @@
       ]
     },
     "business-strategy": {
-      "name": "Business Strategy",
+      "name": "Estratégia de negócios",
       "description": "Modelos mentais vs primeiros princípios vs startups vs globalização",
       "questions": [
         "Startups devem priorizar crescimento ou lucratividade?",
@@ -1650,8 +1656,8 @@
       ]
     },
     "science-panel": {
-      "name": "Science Panel",
-      "description": "Certainty vs probability, theory vs experiment",
+      "name": "Painel científico",
+      "description": "Certeza vs probabilidade, teoria vs experimento",
       "questions": [
         "A ciência pode explicar tudo?",
         "O que importa mais: teoria ou experimento?",
@@ -1659,8 +1665,8 @@
       ]
     },
     "strategic-minds": {
-      "name": "Strategic Minds",
-      "description": "Outsmart vs overpower vs outlast",
+      "name": "Mentes estratégicas",
+      "description": "Astúcia vs força vs resistência",
       "questions": [
         "É possível vencer sem lutar?",
         "Qual é a qualidade mais importante de um líder?",
@@ -1668,8 +1674,8 @@
       ]
     },
     "psychology-insights": {
-      "name": "Psychology Insights",
-      "description": "Drives vs behavior vs bias vs meaning",
+      "name": "Perspectivas psicológicas",
+      "description": "Impulsos vs comportamento vs viés vs sentido",
       "questions": [
         "A natureza humana é fundamentalmente boa ou má?",
         "Podemos tomar decisões verdadeiramente racionais?",

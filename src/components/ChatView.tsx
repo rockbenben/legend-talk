@@ -11,7 +11,7 @@ import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
-import { getLangInstruction, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
+import { getLangInstruction, isProviderConfigured, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
 import { compressToBase64 } from '../utils/compress';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
@@ -52,11 +52,9 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const renameConversation = useConversationStore((s) => s.renameConversation);
   const updateCharacters = useConversationStore((s) => s.updateCharacters);
   const branchConversation = useConversationStore((s) => s.branchConversation);
-  const isConfigured = useSettingsStore((s) => {
-    if (s.defaultProvider === 'custom') return !!s.customBaseUrl;
-    const key = s.apiKeys[s.defaultProvider];
-    return !!key && key.trim().length > 0;
-  });
+  // ⚠ 判据只有一份（prompt.ts）。抄一份到这里，横幅与 resolveProvider 就会各
+  // 说各话 —— 目录里再多一家 keyOptional，这里不会知道。
+  const isConfigured = useSettingsStore(isProviderConfigured);
 
   const singleChat = useChat(conversationId);
   const roundtable = useRoundtable(conversationId);
@@ -647,7 +645,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           can't scroll away behind the transcript. */}
       {!isConfigured && (
         <div style={{ padding: GUTTER }}>
-          <div style={COLUMN}>
+          <div className="lt-column" style={COLUMN}>
             <Alert
               className="lt-note"
               type="warning"
@@ -663,7 +661,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       {/* One hairline closes the transcript — without it a long conversation
           scrolls up to touch the action row with no boundary. */}
       <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)', borderBottom: '1px solid var(--lt-rule-faint)' }}>
-        <div ref={contentRef} style={COLUMN}>
+        <div ref={contentRef} className="lt-column" style={COLUMN}>
           {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
             <Space orientation="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
               <Title level={3} className="display-serif-italic" style={{ margin: 0, textAlign: 'center', maxWidth: 480 }}>
@@ -750,14 +748,30 @@ export function ChatView({ conversationId }: ChatViewProps) {
             const s = useSettingsStore.getState();
             const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
             const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
+            // A 403 with the proxy off is the origin-block shape: the key is fine
+            // and Test Connection passes, but the upstream WAF rejects requests
+            // carrying a browser Origin. Routing through the proxy fixes it, so
+            // offer the same one-click as the CORS case rather than a dead end.
+            //
+            // ⚠ 但 403 不止这一种。key 被吊销 / 打错、额度用尽、地区限制都回 403
+            // （DeepSeek、智谱、千帆都这么答），而中转一个都救不了。只按状态码判，
+            // 那几种会被套上「你的 key 没问题」的说法，真正写着原因的正文反而被
+            // 丢掉，用户还会一键把这把坏 key 送去经过公共中转再 403 一次。
+            // 判据取【正文里有没有可辨认的原因】：origin 拦截回的通常是一张 WAF
+            // 的 HTML，正文里什么都没有 —— 这也正是状态码前缀要无条件保留的原因。
+            const namesAReason = /api[\s_-]?key|token|unauthor|authenticat|credential|permission|quota|balance|insufficient|billing|expired|suspend|region|country/i.test(error);
+            const isOriginBlocked = /^\[403\]/.test(error) && !namesAReason && !s.corsEnabled[s.defaultProvider];
             const isThinkingError = !isNetwork && s.thinkingLevel !== 'off' && /\b(reasoning_effort|enable_thinking|thinking)\b/i.test(error);
             const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
-            if (isCors) return (
+            if (isCors || isOriginBlocked) return (
               <Alert
                 type="warning"
                 showIcon
                 style={{ marginTop: 8 }}
-                title={t('chat.corsError')}
+                title={t(isOriginBlocked ? 'chat.originBlocked' : 'chat.corsError')}
+                // 原始报错【始终】显示。这一支是按形状猜的，猜错时用户至少还看得见
+                // 上游到底说了什么，而不是对着一句「你的 key 没问题」走进死胡同。
+                description={<span style={{ fontSize: 12, opacity: 0.75, wordBreak: 'break-word' }}>{error}</span>}
                 action={
                   <Space>
                     <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}>{t('chat.useCorsProxy')}</Button>
@@ -810,7 +824,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       {/* Action row + composer share the transcript's column — otherwise the
           reader writes into a full-width field under a centered document. */}
       <div style={{ padding: GUTTER }}>
-      <div style={COLUMN}>
+      <div className="lt-column" style={COLUMN}>
       <ActionBar
         conversation={conversation}
         characters={characters}

@@ -10,6 +10,7 @@ import { CharacterGrid } from '../components/CharacterGrid';
 import { Avatar } from '../components/Avatar';
 import { useConversationStore } from '../stores/conversations';
 import { useSettingsStore } from '../stores/settings';
+import { isProviderConfigured } from '../utils/prompt';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
@@ -26,11 +27,8 @@ export function ChatPage() {
   const lp = useLangPath();
   const { message } = App.useApp();
   const createConversation = useConversationStore((s) => s.createConversation);
-  const isConfigured = useSettingsStore((s) => {
-    if (s.defaultProvider === 'custom') return !!s.customBaseUrl;
-    const key = s.apiKeys[s.defaultProvider];
-    return !!key && key.trim().length > 0;
-  });
+  // ⚠ 判据只有一份（prompt.ts）—— 见 ChatView 同处的说明。
+  const isConfigured = useSettingsStore(isProviderConfigured);
   const [searchParams] = useSearchParams();
 
   const charsParam = searchParams.get('chars');
@@ -157,7 +155,9 @@ export function ChatPage() {
               {/* Topic — the hero's own instrument, written on the same ledger
                   line as the chat input. No card: the section title, the input
                   border and the button border all repeated the same boundary. */}
-              <div style={{ marginBottom: 32 }}>
+              {/* lt-column: the note below queries this width to decide whether
+                  its action still fits beside the message. */}
+              <div className="lt-column" style={{ marginBottom: 32 }}>
               <div className="lt-ledger lt-ledger-hero" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Input
                   variant="borderless"

@@ -56,6 +56,7 @@
     "retry": "Retry",
     "networkError": "Connection failed. Check your network or try again.",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
+    "originBlocked": "Blocked by the provider (403). Your key is fine — the upstream rejects browser requests. Route through the proxy.",
     "useCorsProxy": "Use public proxy",
     "summonFailed": "No matching characters found for this topic",
     "thinkingUnsupported": "This model doesn't support thinking mode. Disable thinking or pick a reasoning model.",
@@ -85,7 +86,6 @@
     "enterDecryptPassword": "Enter password to decrypt settings (leave empty to skip keys)",
     "importConversations": "Import",
     "importedCount": "Imported {{count}} conversations",
-    "importedCount_one": "Imported {{count}} conversation",
     "importedCount_other": "Imported {{count}} conversations",
     "importedCount_one": "Imported {{count}} conversation",
     "importError": "Import failed: invalid file format",
@@ -112,9 +112,8 @@
     "roundProgress": "Round {{current}}/{{total}} — {{name}} is speaking...",
     "discussionComplete": "Discussion complete",
     "continue": "{{count}} more rounds",
-    "continue_one": "{{count}} more round",
     "continue_other": "{{count}} more rounds",
-    "continue_one": "+ {{count}} more round",
+    "continue_one": "{{count}} more round",
     "addToRoundtable": "Add to roundtable",
     "removeFromRoundtable": "Remove from roundtable",
     "removeParticipant": "Remove",
@@ -144,14 +143,21 @@
     "themeDark": "Dark",
     "thinkingLevel": "Thinking Level",
     "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
+    "thinkingLevelHintNoOff": "This provider cannot turn reasoning off — Min sends its own lowest value, which still reasons and still bills. Higher is usually more accurate but slower and costlier.",
     "thinkingOff": "Off",
+    "thinkingMin": "Min",
     "thinkingLow": "Low",
     "thinkingMedium": "Medium",
     "thinkingHigh": "High",
     "apiKeyPlaceholder": "Enter {{provider}} API Key...",
-    "corsProxyHint": "Routes requests through a proxy to bypass browser CORS restrictions",
+    "corsProxy": "CORS proxy",
+    "corsProxyHint": "Turn it on if you hit CORS or 403 errors. Requests travel through this proxy on the way to the provider; it forwards without storing anything, and you can point it at your own deployment.",
+    "corsProxyInert": "The built-in relay only forwards to official endpoints. With a custom endpoint set, requests go direct.",
+    "corsProxyInvalid": "Needs a full URL including https://",
     "customModel": "Custom model...",
     "customBaseUrlHint": "Enter your OpenAI-compatible API endpoint, e.g. https://api.example.com/v1",
+    "endpoint": "API Endpoint",
+    "endpointHint": "Uses the provider's default. Pick a region, or paste your own gateway.",
     "dataManagement": "Data",
     "conversations": "Conversations",
     "exportAll": "Export All",
@@ -244,7 +250,7 @@
     },
     "kant": {
       "name": "Immanuel Kant",
-      "era": "Early Modern Europe",
+      "era": "Enlightenment",
       "questions": [
         "Is lying always wrong?",
         "Should I follow rules or focus on outcomes?",
@@ -262,7 +268,7 @@
     },
     "hegel": {
       "name": "Georg Hegel",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "Is there a third way out of this dilemma?",
         "Why do my ideas keep swinging to extremes?",
@@ -298,7 +304,7 @@
     },
     "hannibal": {
       "name": "Hannibal Barca",
-      "era": "Ancient Rome",
+      "era": "Ancient Carthage",
       "questions": [
         "How to turn an opponent's strength into a weakness?",
         "How to create advantage with limited resources?",
@@ -352,7 +358,7 @@
     },
     "bismarck": {
       "name": "Otto von Bismarck",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "How to achieve goals amid conflicting interests?",
         "When is compromise the wise move?",
@@ -406,7 +412,7 @@
     },
     "henry-ford": {
       "name": "Henry Ford",
-      "era": "Industrial Era",
+      "era": "Modern Era",
       "questions": [
         "How to drastically cut production costs?",
         "How to make a product accessible to everyone?",
@@ -532,7 +538,7 @@
     },
     "erikson": {
       "name": "Erik Erikson",
-      "era": "Modern Era",
+      "era": "Contemporary",
       "questions": [
         "Is it normal to feel lost in my 30s?",
         "How to navigate a midlife crisis?",
@@ -658,7 +664,7 @@
     },
     "kafka": {
       "name": "Franz Kafka",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "Why does the system always seem to work against me?",
         "How to stay myself in an absurd environment?",
@@ -676,7 +682,7 @@
     },
     "dostoevsky": {
       "name": "Fyodor Dostoevsky",
-      "era": "Early Modern Europe",
+      "era": "Imperial Russia",
       "questions": [
         "I did something wrong — how do I face it?",
         "Can suffering purify a person?",
@@ -703,7 +709,7 @@
     },
     "nietzsche": {
       "name": "Friedrich Nietzsche",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "How to transcend values imposed by others?",
         "How to rebuild yourself when nihilism strikes?",
@@ -721,7 +727,7 @@
     },
     "lu-xun": {
       "name": "Lu Xun",
-      "era": "Modern China",
+      "era": "Republican China",
       "questions": [
         "Why does everyone look the other way?",
         "How to face an uncomfortable truth?",
@@ -739,7 +745,7 @@
     },
     "beethoven": {
       "name": "Ludwig van Beethoven",
-      "era": "Early Modern Europe",
+      "era": "Romantic Era",
       "questions": [
         "How to keep going when circumstances are severely against you?",
         "Can fate be defied?",
@@ -784,7 +790,7 @@
     },
     "van-gogh": {
       "name": "Vincent van Gogh",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "How to persist without recognition?",
         "Is loneliness a source of creativity or an obstacle?",
@@ -793,7 +799,7 @@
     },
     "monet": {
       "name": "Claude Monet",
-      "era": "Modern France",
+      "era": "Modern Era",
       "questions": [
         "How to see the same problem from a new angle?",
         "Why do first impressions matter?",
@@ -820,7 +826,7 @@
     },
     "adam-smith": {
       "name": "Adam Smith",
-      "era": "Early Modern Europe",
+      "era": "Enlightenment",
       "questions": [
         "How does individual self-interest benefit society as a whole?",
         "When does the free market fail?",
@@ -829,7 +835,7 @@
     },
     "marx": {
       "name": "Karl Marx",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "Who benefits from the current economic system?",
         "How is workers' value underestimated?",
@@ -964,7 +970,7 @@
     },
     "franklin": {
       "name": "Benjamin Franklin",
-      "era": "Modern Era",
+      "era": "Enlightenment",
       "questions": [
         "How to systematically build good character?",
         "How to balance civic duty and personal interest?",
@@ -1018,7 +1024,7 @@
     },
     "lovelace": {
       "name": "Ada Lovelace",
-      "era": "Early Modern Europe",
+      "era": "Victorian Era",
       "questions": [
         "How can technology and art empower each other?",
         "Can algorithms create something truly original?",
@@ -1117,7 +1123,7 @@
     },
     "rumi": {
       "name": "Rumi",
-      "era": "Medieval Period",
+      "era": "Medieval Islamic World",
       "questions": [
         "How to feel connected even in loneliness?",
         "Can love transcend all boundaries?",
@@ -1135,7 +1141,7 @@
     },
     "al-ghazali": {
       "name": "Al-Ghazali",
-      "era": "Medieval Period",
+      "era": "Medieval Islamic World",
       "questions": [
         "Where are the limits of reason?",
         "How to find certainty through doubt?",
@@ -1225,7 +1231,7 @@
     },
     "steiner": {
       "name": "Rudolf Steiner",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "How to nurture a child's holistic development?",
         "What role does art play in intellectual growth?",
@@ -1252,7 +1258,7 @@
     },
     "tao-xingzhi": {
       "name": "Tao Xingzhi",
-      "era": "Modern China",
+      "era": "Republican China",
       "questions": [
         "How to turn everyday life into a classroom?",
         "What problems arise when education is divorced from life?",
@@ -1270,7 +1276,7 @@
     },
     "benjamin-graham": {
       "name": "Benjamin Graham",
-      "era": "Modern America",
+      "era": "Modern Era",
       "questions": [
         "How do I know if a company is undervalued?",
         "What is the margin of safety?",
@@ -1324,7 +1330,7 @@
     },
     "jesse-livermore": {
       "name": "Jesse Livermore",
-      "era": "Modern America",
+      "era": "Modern Era",
       "questions": [
         "How do you read market trends?",
         "When should you cut your losses?",
@@ -1342,7 +1348,7 @@
     },
     "philip-fisher": {
       "name": "Philip Fisher",
-      "era": "Modern America",
+      "era": "Modern Era",
       "questions": [
         "How to find companies worth holding long-term?",
         "What is the \"scuttlebutt\" method?",
@@ -1369,7 +1375,7 @@
     },
     "sima-qian": {
       "name": "Sima Qian",
-      "era": "Han Dynasty",
+      "era": "Western Han Dynasty",
       "questions": [
         "What patterns of rise and fall repeat across history?",
         "How should we judge historical figures fairly?",
@@ -1423,7 +1429,7 @@
     },
     "tocqueville": {
       "name": "Tocqueville",
-      "era": "Early Modern Europe",
+      "era": "Modern Era",
       "questions": [
         "Is the tyranny of the majority a real danger today?",
         "How does equality paradoxically threaten freedom?",
@@ -1432,7 +1438,7 @@
     },
     "gibbon": {
       "name": "Edward Gibbon",
-      "era": "Early Modern Europe",
+      "era": "Enlightenment",
       "questions": [
         "What internal weaknesses threaten our institutions?",
         "How does over-extension lead to collapse?",

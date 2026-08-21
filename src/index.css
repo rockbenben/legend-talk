@@ -167,6 +167,10 @@ body::before {
 /* Action buttons under a speech align with the text column */
 .lt-after-speech { padding-inline-start: 140px; }
 
+/* The transcript column is the container the marginal label is measured
+   against — see the @container rule at the foot of this file. */
+.lt-column { container-type: inline-size; }
+
 /* ── Chair (user) message: single madder rule on the outer edge ── */
 .lt-chair {
   border-inline-end: 2px solid var(--lt-madder);
@@ -254,6 +258,18 @@ body::before {
   border-radius: 0;
   padding: 8px 0;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+/* Below ~390px of column the message wraps and the end-aligned action lands
+   beside a half-empty last line. Give it its own line instead. */
+@container (max-width: 390px) {
+  .lt-note.ant-alert .ant-alert-actions {
+    flex: 1 0 100%;
+    margin-inline-start: 0;
+    text-align: end;
+  }
+  .lt-note.ant-alert .ant-alert-actions .ant-btn { padding-inline: 0; }
 }
 .lt-send.ant-btn {
   letter-spacing: .22em;
@@ -276,6 +292,9 @@ body::before {
 }
 .lt-actions .ant-btn-default { color: var(--lt-ink-soft); }
 .lt-actions .ant-btn-default:hover { color: var(--lt-madder); border-color: transparent; }
+/* Letterspacing is for words; on an icon-only button it just pushes the
+   glyph off centre. */
+.lt-actions .ant-btn-icon-only { letter-spacing: 0; text-indent: 0; }
 
 /* Round divider text */
 .lt-round-rule {
@@ -300,11 +319,12 @@ body::before {
 .lt-sm-up { display: none !important; }
 @media (min-width: 640px) { .lt-sm-up { display: inline-flex !important; } }
 
-/* The marginal speaker label costs 140px. Below ~900px the sidebar (272px)
-   plus page padding leaves the text column too narrow to set type in, so the
-   label goes inline. Keyed above the 640px mobile breakpoint on purpose:
-   the squeeze is caused by the sidebar, which is present from 768px up. */
-@media (max-width: 900px) {
+/* The marginal speaker label costs 140px. Below ~560px of COLUMN the text
+   beside it is too narrow to set type in, so the label goes inline.
+   Measured against the column, not the window: the squeeze is caused by the
+   sidebar and the page gutter, so a 1000px window with the sidebar open is
+   tighter than an 800px one with it collapsed. */
+@container (max-width: 560px) {
   .lt-speech { grid-template-columns: 1fr; gap: 10px; }
   .lt-speech-margin {
     text-align: start;

@@ -68,15 +68,20 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
 
   return (
     <div>
-      <Input
-        size="large"
-        allowClear
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        onPressEnter={handleSearchSubmit}
-        placeholder={t('home.search')}
-        style={{ marginBottom: 16 }}
-      />
+      {/* Same ledger line as the hero topic field and the chat composer —
+          one instrument for writing, wherever it appears. */}
+      <div className="lt-ledger" style={{ marginBottom: 16 }}>
+        <Input
+          variant="borderless"
+          size="large"
+          allowClear
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onPressEnter={handleSearchSubmit}
+          placeholder={t('home.search')}
+          style={{ paddingInline: 0 }}
+        />
+      </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center', marginBottom: 16 }}>
         {CATEGORIES.map((c) => (
           <CheckableTag

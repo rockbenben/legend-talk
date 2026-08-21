@@ -39,6 +39,14 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, era, dropCap 
   const isRaw = !isEmpty && trimmed.length === 1;
   const displayText = isRaw ? trimmed : trimmed.replace(/^\[([^\]]+)\]:/gm, '\\[$1]:');
 
+  // ::first-letter takes exactly one letter, which splits an opening acronym:
+  // "AI 圆桌…" sets a madder "A" against a stranded "I". Prose that opens with
+  // an ordinary capitalised word is unaffected.
+  // ⚠ 只跳过【前导标点】，不能用 \W —— JS 的 \w 就是 [A-Za-z0-9_]，中日韩全部
+  // 算 \W，于是「在 AI 时代…」会被 ^\W* 吃掉「在 」再匹配上 AI，把一个本来完全
+  // 合格的单字下沉误杀。
+  const opensWithAcronym = /^[\s\p{P}]*[A-Z]{2,}/u.test(trimmed);
+
   // Cache the parsed-markdown element. Without this, ReactMarkdown re-parses
   // the whole accumulated text on every render — during streaming the last
   // message's `content` grows every ~50ms (token flush throttle), and parsing
@@ -98,7 +106,7 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, era, dropCap 
         )}
       </div>
       {!isEmpty && (
-        <div className={`lt-speech-body${dropCap && !isRaw ? ' lt-dropcap' : ''}`}>
+        <div className={`lt-speech-body${dropCap && !isRaw && !opensWithAcronym ? ' lt-dropcap' : ''}`}>
           {renderedBody}
         </div>
       )}

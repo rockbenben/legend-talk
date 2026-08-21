@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Card, Button, Space, Typography } from 'antd';
+import { Card, Button, Typography } from 'antd';
 import { StarFilled, StarOutlined, CheckOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Avatar } from './Avatar';
 import type { Character } from '../types';
@@ -59,20 +59,25 @@ export function CharacterCard({
           />
         )}
       </div>
-      <Space.Compact block>
-        <Button block onClick={(e) => { e.stopPropagation(); onStartChat(character); }}>
+      {/* Quiet text actions — Space.Compact stacked a button border inside the
+          card border inside the grid gap. One hairline per boundary: the card
+          keeps its rule, the actions keep none. */}
+      <div className="lt-actions" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <Button size="small" onClick={(e) => { e.stopPropagation(); onStartChat(character); }}>
           {t('home.startChat')}
         </Button>
         {onSelect && (
           <Button
-            type={selected ? 'primary' : 'default'}
+            type={selected ? 'primary' : 'text'}
+            size="small"
             icon={selected ? <CheckOutlined /> : <UserAddOutlined />}
             onClick={(e) => { e.stopPropagation(); onSelect(character); }}
+            aria-pressed={!!selected}
+            aria-label={t(selected ? 'roundtable.removeFromRoundtable' : 'roundtable.addToRoundtable')}
             title={t(selected ? 'roundtable.removeFromRoundtable' : 'roundtable.addToRoundtable')}
-            style={{ width: 44 }}
           />
         )}
-      </Space.Compact>
+      </div>
     </Card>
   );
 }

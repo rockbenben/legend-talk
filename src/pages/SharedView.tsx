@@ -117,7 +117,9 @@ export function SharedView() {
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
-        <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+        {/* 880, not 1200 — the same measure ChatView sets its transcript to.
+            The marginal speaker label is sized against this column. */}
+        <div className="lt-column" style={{ maxWidth: 880, width: '100%', margin: '0 auto' }}>
           {shared.messages.map((msg, idx) => {
             // Share data comes from a URL and may be tampered — skip malformed items
             // so a single bad entry can't crash the whole view.

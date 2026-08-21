@@ -2,7 +2,7 @@ import { useLangPath } from '../hooks/useLangPath';
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, Input, List, Button, Empty, Typography, theme as antTheme } from 'antd';
+import { Drawer, Input, List, Button, Typography, theme as antTheme } from 'antd';
 import {
   PlusOutlined,
   MenuOutlined,
@@ -132,7 +132,9 @@ export function ConversationList({ activeId }: ConversationListProps) {
       </div>
       <div style={{ flex: 1, overflowY: 'auto' }}>
         {filteredConversations.length === 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={t('chat.noConversations')} style={{ padding: 24 }} />
+          <Text type="secondary" style={{ display: 'block', padding: '32px 16px', textAlign: 'center', fontSize: 13 }}>
+            {t('chat.noConversations')}
+          </Text>
         ) : (
           <List
             dataSource={filteredConversations}

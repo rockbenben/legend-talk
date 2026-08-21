@@ -4,7 +4,7 @@ import { Modal, Form, Input, Button, Space, Typography } from 'antd';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { customCharacterId } from '../characters/generator';
-import { Avatar } from './Avatar';
+import { Avatar, tintRgb } from './Avatar';
 import { clearNameCache } from '../hooks/useRoundtable';
 import i18n from '../i18n';
 import type { CustomCharacter } from '../stores/settings';
@@ -13,13 +13,6 @@ const { Text } = Typography;
 
 const COLORS = ['blue', 'emerald', 'red', 'purple', 'amber', 'teal', 'orange', 'indigo', 'cyan', 'rose', 'violet', 'green', 'slate', 'stone', 'pink', 'sky'];
 const EMOJIS = ['👤', '🧠', '💡', '🎓', '🔬', '📚', '🎭', '🎨', '⚡', '🌟', '🔥', '🌊', '🏔️', '🦉', '🐉', '🤖'];
-
-const COLOR_CSS: Record<string, string> = {
-  blue: '#60a5fa', emerald: '#34d399', red: '#f87171', purple: '#c084fc',
-  amber: '#fbbf24', teal: '#2dd4bf', orange: '#fb923c', indigo: '#818cf8',
-  cyan: '#22d3ee', rose: '#fb7185', violet: '#a78bfa', green: '#4ade80',
-  slate: '#94a3b8', stone: '#a8a29e', pink: '#f472b6', sky: '#38bdf8',
-};
 
 interface CharacterEditorProps {
   character?: CustomCharacter;
@@ -135,7 +128,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
                 style={{
                   width: 28,
                   height: 28,
-                  background: COLOR_CSS[c],
+                  background: `rgb(${tintRgb[c]})`,
                   border: 'none',
                   borderRadius: 4,
                   cursor: 'pointer',

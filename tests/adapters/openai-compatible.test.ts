@@ -1,4 +1,5 @@
 import { OpenAICompatibleAdapter } from '../../src/adapters/openai-compatible';
+import { getAdapter } from '../../src/adapters/registry';
 
 function mockFetchStream(chunks: string[]) {
   const encoder = new TextEncoder();
@@ -106,83 +107,103 @@ describe('OpenAICompatibleAdapter', () => {
     return body;
   }
 
-  describe('thinking mappers', () => {
-    const thinkingTypeAdapter = new OpenAICompatibleAdapter(
+  describe('thinking wire', () => {
+    const TT = {
+      off: { thinking: { type: 'disabled' } },
+      low: { thinking: { type: 'enabled' } },
+      medium: { thinking: { type: 'enabled' } },
+      high: { thinking: { type: 'enabled' } },
+    };
+    const adapter = new OpenAICompatibleAdapter(
       'tt', 'TT', 'https://api.tt.com/v1',
-      [{ id: 'cap', name: 'Capable' }, { id: 'plain', name: 'Plain', thinking: false }],
-      { thinkingStyle: 'thinking_type' },
+      [
+        { id: 'cap', name: 'Capable', thinkingWire: TT },
+        // 没有 thinkingWire = 这个 SKU 一个思考参数都不该发（已知不思考，
+        // 或这家没有已知形态）。
+        { id: 'plain', name: 'Plain' },
+      ],
+      { fallbackThinkingWire: TT },
     );
 
-    it('thinking_type sends enabled when on', async () => {
-      const body = await chatBody(thinkingTypeAdapter, 'cap', 'high');
-      expect(body.thinking).toEqual({ type: 'enabled' });
+    it('按档位取对应的 wire 条目', async () => {
+      expect((await chatBody(adapter, 'cap', 'high')).thinking).toEqual({ type: 'enabled' });
+      expect((await chatBody(adapter, 'cap', 'low')).thinking).toEqual({ type: 'enabled' });
     });
 
-    it('thinking_type sends explicit disabled when off (server default is ON)', async () => {
-      const body = await chatBody(thinkingTypeAdapter, 'cap');
-      expect(body.thinking).toEqual({ type: 'disabled' });
+    it('关闭态发显式 disable —— 服务端默认开着思考时，省略等于按推理静默计费', async () => {
+      expect((await chatBody(adapter, 'cap')).thinking).toEqual({ type: 'disabled' });
     });
 
-    it('never sends thinking params to models tagged thinking:false', async () => {
-      expect((await chatBody(thinkingTypeAdapter, 'plain', 'high')).thinking).toBeUndefined();
-      expect((await chatBody(thinkingTypeAdapter, 'plain')).thinking).toBeUndefined();
+    it('没有 thinkingWire 的 SKU 一个参数都不发', async () => {
+      expect((await chatBody(adapter, 'plain', 'high')).thinking).toBeUndefined();
+      expect((await chatBody(adapter, 'plain')).thinking).toBeUndefined();
     });
 
-    it('unlisted (custom) models: opt-in enables, off omits (400-safe)', async () => {
-      expect((await chatBody(thinkingTypeAdapter, 'mystery', 'low')).thinking).toEqual({ type: 'enabled' });
-      expect((await chatBody(thinkingTypeAdapter, 'mystery')).thinking).toBeUndefined();
+    it('用户手填的未列出 SKU 退到 provider 级形态', async () => {
+      expect((await chatBody(adapter, 'mystery', 'low')).thinking).toEqual({ type: 'enabled' });
+      expect((await chatBody(adapter, 'mystery')).thinking).toEqual({ type: 'disabled' });
     });
 
-    it('thinking_adaptive maps on→adaptive, off→disabled (MiniMax M3)', async () => {
-      const adapter = new OpenAICompatibleAdapter(
-        'mm', 'MM', 'https://api.mm.com/v1',
-        [{ id: 'MiniMax-M3', name: 'M3' }],
-        { thinkingStyle: 'thinking_adaptive' },
+    it('provider 没有 fallback 时，未列出 SKU 也不发 —— 形态未知别乱猜', async () => {
+      const bare = new OpenAICompatibleAdapter(
+        'b', 'B', 'https://api.b.com/v1', [{ id: 'm', name: 'M' }],
       );
-      expect((await chatBody(adapter, 'MiniMax-M3', 'medium')).thinking).toEqual({ type: 'adaptive' });
-      expect((await chatBody(adapter, 'MiniMax-M3')).thinking).toEqual({ type: 'disabled' });
+      expect((await chatBody(bare, 'mystery', 'high')).thinking).toBeUndefined();
     });
 
-    it('reasoning_effort omits when off; reasoning_effort_none sends explicit none', async () => {
-      const graded = new OpenAICompatibleAdapter(
-        'g', 'G', 'https://api.g.com/v1', [{ id: 'm', name: 'M' }],
-        { thinkingStyle: 'reasoning_effort' },
+    it('缺 off 键 = 关闭态不发（厂商没有关闭值时由最低档承担）', async () => {
+      const noOff = new OpenAICompatibleAdapter(
+        'n', 'N', 'https://api.n.com/v1',
+        [{ id: 'm', name: 'M', thinkingWire: { low: { reasoning_effort: 'low' }, high: { reasoning_effort: 'high' } } }],
       );
-      expect((await chatBody(graded, 'm', 'medium')).reasoning_effort).toBe('medium');
-      expect((await chatBody(graded, 'm')).reasoning_effort).toBeUndefined();
-
-      const withNone = new OpenAICompatibleAdapter(
-        'o', 'O', 'https://api.o.com/v1', [{ id: 'gpt', name: 'GPT' }],
-        { thinkingStyle: 'reasoning_effort_none' },
-      );
-      expect((await chatBody(withNone, 'gpt')).reasoning_effort).toBe('none');
+      expect((await chatBody(noOff, 'm', 'high')).reasoning_effort).toBe('high');
+      expect((await chatBody(noOff, 'm')).reasoning_effort).toBeUndefined();
     });
 
-    it('reasoning_effort_low_high collapses medium to low (xAI)', async () => {
-      const adapter = new OpenAICompatibleAdapter(
-        'x', 'X', 'https://api.x.com/v1', [{ id: 'grok', name: 'Grok' }],
-        { thinkingStyle: 'reasoning_effort_low_high' },
-      );
-      expect((await chatBody(adapter, 'grok', 'medium')).reasoning_effort).toBe('low');
-      expect((await chatBody(adapter, 'grok', 'high')).reasoning_effort).toBe('high');
-      expect((await chatBody(adapter, 'grok')).reasoning_effort).toBe('none');
+    it('prefixes HTTP failures with the status code', async () => {
+      const adapter = new OpenAICompatibleAdapter('p', 'P', 'https://api.p.com/v1', [{ id: 'm', name: 'M' }]);
+      // An origin/WAF block answers with HTML, so the body carries no code — the
+      // prefix is what lets the UI offer "route through the proxy" instead of a
+      // dead-end error.
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(
+        new Response('<html>Forbidden</html>', { status: 403, statusText: 'Forbidden' }),
+      ));
+      await expect(async () => {
+        for await (const _ of adapter.chat({ messages: [], model: 'm', apiKey: 'k' })) { /* drain */ }
+      }).rejects.toThrow(/^\[403\]/);
     });
 
-    it('reasoning_effort_openrouter sends reasoning:{enabled:false} when off', async () => {
-      const adapter = new OpenAICompatibleAdapter(
-        'or', 'OR', 'https://api.or.com/v1', [{ id: 'anthropic/claude-sonnet-5', name: 'S5' }],
-        { thinkingStyle: 'reasoning_effort_openrouter' },
-      );
-      expect((await chatBody(adapter, 'anthropic/claude-sonnet-5', 'high')).reasoning_effort).toBe('high');
-      const off = await chatBody(adapter, 'anthropic/claude-sonnet-5');
-      expect(off.reasoning).toEqual({ enabled: false });
-      expect(off.reasoning_effort).toBeUndefined();
+    // 形态不再由本地映射表决定，而是随目录逐 SKU 下发。所以这里直接拿【真实
+    // provider】断言 —— 既验证接线，也验证目录数据本身，且不可能与上游分叉。
+    it('真实 provider 的思考参数取自目录', async () => {
+      const cases: Array<[string, string, 'low' | 'medium' | 'high' | undefined, Record<string, unknown>]> = [
+        // xAI 无关闭值（官方明写 reasoning cannot be disabled）→ 关闭态发最低档
+        ['grok', 'grok-4.6', undefined, { reasoning_effort: 'low' }],
+        ['grok', 'grok-4.6', 'medium', { reasoning_effort: 'medium' }],
+        // Cohere 的推理 SKU 服务端默认开 → 关闭态发显式 none
+        ['cohere', 'command-a-reasoning-08-2025', undefined, { reasoning_effort: 'none' }],
+        // 千帆同理，用 enable_thinking 家族
+        ['qianfan', 'ernie-5.0-thinking-latest', undefined, { enable_thinking: false }],
+        // 同一家逐 SKU 形态不同 —— 这正是「一个 provider 一种形态」表达不了的
+        ['moonshot', 'kimi-k3', undefined, { reasoning_effort: 'low' }],
+        ['moonshot', 'kimi-k2.6', undefined, { thinking: { type: 'disabled' } }],
+      ];
+      for (const [provider, model, level, expected] of cases) {
+        const a = getAdapter(provider);
+        expect(a, `${provider} 不存在`).toBeDefined();
+        const body = await chatBody(a as OpenAICompatibleAdapter, model, level);
+        for (const [k, v] of Object.entries(expected)) {
+          expect(body[k], `${provider}/${model} @${level ?? 'off'} 的 ${k}`).toEqual(v);
+        }
+      }
     });
 
-    it('providers without a thinkingStyle never send thinking params', async () => {
-      const body = await chatBody(adapter, 'test-model', 'high');
+    it('目录未给形态的 SKU 一个思考参数都不发', async () => {
+      // tokenhub 的 SKU 目录里都没有形态（上游没有已知的思考线格式）
+      const body = await chatBody(getAdapter('tokenhub') as OpenAICompatibleAdapter, 'hy3', 'high');
       expect(body.thinking).toBeUndefined();
       expect(body.reasoning_effort).toBeUndefined();
+      expect(body.enable_thinking).toBeUndefined();
     });
   });
 

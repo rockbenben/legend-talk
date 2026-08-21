@@ -1,250 +1,157 @@
-import type { LLMAdapter } from '../types';
+import type { LLMAdapter, ModelOption, ThinkingWire } from '../types';
 import { OpenAICompatibleAdapter } from './openai-compatible';
 import { AnthropicAdapter } from './anthropic';
+import { GeminiAdapter } from './gemini';
+import { findProvider, PROVIDER_CATALOG } from './providerCatalog.generated';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 厂商事实（模型清单、区域端点、文档与控制台链接）来自 providerCatalog.generated.ts。
+// 那份文件由同步脚本整份重写 —— 别手改它，也别把这些事实抄回本文件，否则下次
+// 同步就会重新分叉。本文件只留【本 app 自己的东西】：
+//   · 收录哪几家、显示名、分组
+//   · 目录里没有的条目（两个 Coding Plan）及其思考参数形态
+//   · 目录里没有的条目（Coding Plan / Together / Fireworks）
+//
+// ⚠ adapter id 【就是】目录 key，不另起本地别名 —— 一处命名，省掉一张只会漂的
+// 对照表。id 同时是【存档键】（settings store 按它分存 API key、baseUrl、CORS
+// 开关），所以改名要配一步 PROVIDER_ID_MIGRATIONS（见 stores/settings.ts），
+// 否则老用户打开就是一个解析不出的 provider。
+// Coding Plan 的两条（volcengine / alibaba）目录里没有，id 由本地自定。
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface FromCatalogOpts {
+  /** 中文/自定义显示名；省略则用目录的名字 */
+  name?: string;
+  group: string;
+  /** 覆盖默认地址。用于协议路径与目录不同的情况（gemini 走 OpenAI 兼容层） */
+  baseUrl?: string;
+}
+
+// 两个 Coding Plan 目录里没有，形态只能本地写。用的是它们各自那条线的通用形态：
+// 方舟是扁平 thinking:{type}，百炼是 enable_thinking。服务端默认都开着思考，
+// 所以关闭态必须【显式关】而不是省略 —— 省略等于按推理静默计费。
+const THINKING_TYPE_WIRE: ThinkingWire = {
+  off: { thinking: { type: 'disabled' } },
+  low: { thinking: { type: 'enabled' } },
+  medium: { thinking: { type: 'enabled' } },
+  high: { thinking: { type: 'enabled' } },
+};
+const ENABLE_THINKING_WIRE: ThinkingWire = {
+  off: { enable_thinking: false },
+  low: { enable_thinking: true },
+  medium: { enable_thinking: true },
+  high: { enable_thinking: true },
+};
+
+/** adapter id 【就是】目录 key —— 不另起本地别名，省掉一张只会漂的对照表。 */
+function fromCatalog(key: string, opts: FromCatalogOpts): OpenAICompatibleAdapter {
+  const id = key;
+  const p = findProvider(key);
+  if (!p) throw new Error(`providerCatalog 里没有 "${key}" —— 上游可能已删除该 provider`);
+  const eps = p.endpoints.map((e) => ({ label: e.label, url: e.baseUrl }));
+  if (!eps.length && !opts.baseUrl) throw new Error(`providerCatalog 的 "${key}" 没有端点，需在本地给出 baseUrl`);
+
+  // 思考参数的线格式逐 SKU 从目录搬过来 —— 不再由本地按 provider 猜一种形态。
+  // 目录没给形态的 SKU（已知不思考，或这家没有已知形态）就没有这个字段，
+  // 适配器据此一个参数都不发。
+  const models: ModelOption[] = p.models.map((m) => ({
+    id: m.id,
+    name: m.name,
+    ...(m.thinkingWire ? { thinkingWire: m.thinkingWire } : {}),
+  }));
+
+  return new OpenAICompatibleAdapter(id, opts.name ?? p.label, opts.baseUrl ?? eps[0].url, models, {
+    docsUrl: p.docs,
+    apiKeyUrl: p.apiKeyUrl,
+    fallbackThinkingWire: p.thinkingWire,
+    group: opts.group,
+    // endpoints[0].url 必须等于 baseUrl（见 EndpointOption 的约定），所以本地
+    // 覆盖了地址时不给备选列表。
+    ...(eps.length > 1 && !opts.baseUrl ? { endpoints: eps } : {}),
+  });
+}
+
+/**
+ * 收录清单：目录 key → 本 app 的呈现与传输选项。
+ *
+ * ⚠ 这里【只管收录，不管顺序】—— adapters 按目录顺序生成，上游调整排序或在中间
+ * 插入一家时这边自动跟上。分组（PROVIDER_GROUPS）仍由本 app 定：目录只分
+ * llm / aggregator 两类，而聊天场景下国内/国外的区分对用户更有用。
+ *
+ * 未收录的两家不是漏了：
+ *   · yandex —— model 必须是 gpt://<folderId>/<model> 这种 URI，本 app 没有
+ *     folderId 字段，列上短模型名会每请求 400
+ *   · azureopenai —— 认证头是 api-key 而非 Bearer，URL 还要拼
+ *     /openai/deployments/<部署名>?api-version=…，OpenAICompatibleAdapter 两条都不符
+ * llm 不在表里：兜底项单独给，永远排最后。
+ */
+const PICKED: Record<string, FromCatalogOpts> = {
+  deepseek: { name: 'DeepSeek', group: 'china' },
+  openai: { name: 'OpenAI', group: 'international' },
+  // claude / gemini 走各自的【原生】协议（/v1/messages、:streamGenerateContent），
+  // 不走 OpenAI 兼容层 —— 与上游说同一套协议，形态才能对齐。两者都是手写适配器，
+  // 名字与模型清单由那两个类自己从目录取，这里只声明分组。
+  claude: { group: 'international' },
+  gemini: { group: 'international' },
+  qwen: { name: '通义千问（阿里百炼）', group: 'china' },
+  // 形态逐 SKU 不同（k3 收顶层 reasoning_effort，K2.x 收 thinking:{type}）——
+  // 目录按 SKU 给，这里不用管。
+  moonshot: { name: 'Moonshot / Kimi', group: 'china' },
+  doubao: { name: '豆包（火山方舟）', group: 'china' },
+  mimo: { name: '小米 MiMo', group: 'china' },
+  zhipu: { name: '智谱 GLM', group: 'china' },
+  minimax: { name: 'MiniMax', group: 'china' },
+  stepfun: { name: '阶跃星辰 StepFun', group: 'china' },
+  qianfan: { name: '百度千帆', group: 'china' },
+  mistral: { name: 'Mistral', group: 'international' },
+  grok: { name: 'xAI Grok', group: 'international' },
+  cohere: { name: 'Cohere', group: 'international' },
+  openrouter: { name: 'OpenRouter', group: 'aggregator' },
+  opencode: { name: 'OpenCode Zen', group: 'aggregator' },
+  // 腾讯把文生文整体迁到了 TokenHub 聚合网关：换了域名也换了模型 id，旧的混元
+  // key 打不通新端点，所以 id 也换了（见 PROVIDER_ID_MIGRATIONS）。
+  tokenhub: { name: '腾讯 TokenHub', group: 'china' },
+  groq: { name: 'Groq', group: 'aggregator' },
+  cerebras: { name: 'Cerebras', group: 'aggregator' },
+  siliconflow: { name: 'SiliconFlow', group: 'aggregator' },
+  atlascloud: { name: 'AtlasCloud', group: 'aggregator' },
+  nvidia: { name: 'NVIDIA NIM', group: 'aggregator' },
+};
+
+// 收录了却在目录里找不到 = 上游删了这家。显式报错，不要让 filter 静默吞掉。
+for (const key of Object.keys(PICKED)) {
+  if (!findProvider(key)) throw new Error(`PICKED 收录了 ${key}，但 providerCatalog 里没有 —— 上游已删除该 provider，请更新 PICKED`);
+}
 
 const adapters: LLMAdapter[] = [
-  // ── Overseas ──
-  // GPT-5.6 家族(/terra/luna)是当前旗舰;5.6 无 mini 变体,luna 即低成本高并发档。
-  // GPT-5.x 全系为推理模型且 server 默认开(medium),故用 reasoning_effort_none:
-  // off 态发显式 "none" 而不是省略。
-  new OpenAICompatibleAdapter('openai', 'OpenAI', 'https://api.openai.com/v1', [
-    { id: 'gpt-5.6', name: 'GPT-5.6' },
-    { id: 'gpt-5.6-terra', name: 'GPT-5.6 Terra' },
-    { id: 'gpt-5.6-luna', name: 'GPT-5.6 Luna' },
-    { id: 'gpt-5.5', name: 'GPT-5.5' },
-    { id: 'gpt-5.4-mini', name: 'GPT-5.4 Mini' },
-  ], {
-    docsUrl: 'https://developers.openai.com/api/docs/guides/text',
-    apiKeyUrl: 'https://platform.openai.com/api-keys',
-    thinkingStyle: 'reasoning_effort_none',
-    group: 'international',
+  // 目录里的每一家，【按目录顺序】。收录清单 PICKED 只管收不收、叫什么、归哪组
+  // —— 顺序与思考参数形态都不在这里定。
+  ...PROVIDER_CATALOG.filter((p) => p.key in PICKED).map((p) => {
+    // 说原生协议的两家用自己的适配器；放在这个遍历里（而不是数组开头）是为了
+    // 让它们落在目录给的位置上。
+    if (p.key === 'claude') return new AnthropicAdapter() as LLMAdapter;
+    if (p.key === 'gemini') return new GeminiAdapter() as LLMAdapter;
+    return fromCatalog(p.key, PICKED[p.key]!);
   }),
 
-  new AnthropicAdapter(),
-
-  new OpenAICompatibleAdapter(
-    'gemini',
-    'Google Gemini',
-    'https://generativelanguage.googleapis.com/v1beta/openai',
-    [
-      { id: 'gemini-3.1-pro-preview', name: 'Gemini 3.1 Pro' },
-      { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash' },
-      { id: 'gemini-3.1-flash-lite', name: 'Gemini 3.1 Flash Lite' },
-    ],
-    {
-      docsUrl: 'https://ai.google.dev/gemini-api/docs/openai',
-      apiKeyUrl: 'https://aistudio.google.com/apikey',
-      thinkingStyle: 'reasoning_effort',
-      group: 'international',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'xai',
-    'xAI Grok',
-    'https://api.x.ai/v1',
-    [
-      { id: 'grok-4.5', name: 'Grok 4.5' },
-      { id: 'grok-4.3', name: 'Grok 4.3' },
-      // 4.20 系列是 thinking-intrinsic/non-reasoning SKU,无 reasoning_effort 参数
-      // → thinking:false 让映射器完全省略。
-      { id: 'grok-4.20-0309-reasoning', name: 'Grok 4.20 Reasoning', thinking: false },
-      { id: 'grok-4.20-0309-non-reasoning', name: 'Grok 4.20', thinking: false },
-      { id: 'grok-4.20-multi-agent-0309', name: 'Grok 4.20 Multi-Agent', thinking: false },
-    ],
-    {
-      docsUrl: 'https://docs.x.ai/developers/models',
-      apiKeyUrl: 'https://console.x.ai',
-      // xAI reasoning_effort 仅 low/high 两档(medium 会 400),off 发显式 none。
-      thinkingStyle: 'reasoning_effort_low_high',
-      group: 'international',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'mistral',
-    'Mistral',
-    'https://api.mistral.ai/v1',
-    [
-      // 除 medium-3-5 外一律用 -latest 别名:Mistral 可调用的 API id 是日期版
-      // (mistral-small-2603 等),纯版本号写法(mistral-small-4)不可调用。
-      // Magistral 线已废弃(magistral-medium-2509 于 2026-07-31 退役),移除。
-      { id: 'mistral-medium-3-5', name: 'Mistral Medium 3.5' },
-      { id: 'mistral-small-latest', name: 'Mistral Small 4' },
-      { id: 'mistral-large-latest', name: 'Mistral Large 3' },
-      { id: 'ministral-14b-latest', name: 'Ministral 3 14B' },
-    ],
-    {
-      docsUrl: 'https://docs.mistral.ai/api/',
-      apiKeyUrl: 'https://console.mistral.ai/api-keys',
-      group: 'international',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'cohere',
-    'Cohere',
-    'https://api.cohere.ai/compatibility/v1',
-    [
-      { id: 'command-a-plus-05-2026', name: 'Command A Plus' },
-      { id: 'command-a-03-2025', name: 'Command A' },
-      { id: 'command-a-reasoning-08-2025', name: 'Command A Reasoning' },
-    ],
-    {
-      docsUrl: 'https://docs.cohere.com/docs/compatibility-api',
-      apiKeyUrl: 'https://dashboard.cohere.com/api-keys',
-      group: 'international',
-    },
-  ),
-
-  // ── China ──
-  // DeepSeek V4 的思考开关 server 默认 enabled(api-docs.deepseek.com thinking_mode)
-  // → thinking_type 让 off 态发显式 disabled,否则每条消息都默默烧推理 token。
-  new OpenAICompatibleAdapter('deepseek', 'DeepSeek', 'https://api.deepseek.com', [
-    { id: 'deepseek-v4-flash', name: 'DeepSeek V4 Flash' },
-    { id: 'deepseek-v4-pro', name: 'DeepSeek V4 Pro' },
-  ], {
-    docsUrl: 'https://api-docs.deepseek.com/zh-cn/',
-    apiKeyUrl: 'https://platform.deepseek.com/api_keys',
-    thinkingStyle: 'thinking_type',
-    group: 'china',
-  }),
-
-  new OpenAICompatibleAdapter(
-    'moonshot',
-    'Moonshot / Kimi',
-    'https://api.moonshot.cn/v1',
-    [
-      // K2.6 通过扁平 thinking:{type} 切换思考,server 默认开 → off 发显式 disabled。
-      // K2.5 / kimi-latest 不支持参数切换 thinking → thinking:false 省略参数。
-      { id: 'kimi-k2.6', name: 'Kimi K2.6' },
-      { id: 'kimi-k2.5', name: 'Kimi K2.5', thinking: false },
-      { id: 'kimi-latest', name: 'Kimi Latest', thinking: false },
-    ],
-    {
-      docsUrl: 'https://platform.kimi.com/docs',
-      apiKeyUrl: 'https://platform.kimi.com/console/api-keys',
-      thinkingStyle: 'thinking_type',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'mimo',
-    '小米 MiMo',
-    'https://api.xiaomimimo.com/v1',
-    [
-      // Thinking via binary `thinking: {type: 'enabled'|'disabled'}` (thinking_type style).
-      { id: 'mimo-v2.5', name: 'MiMo V2.5' },
-      { id: 'mimo-v2.5-pro', name: 'MiMo V2.5 Pro' },
-    ],
-    {
-      docsUrl: 'https://platform.xiaomimimo.com/docs/zh-CN/api/chat/openai-api',
-      apiKeyUrl: 'https://platform.xiaomimimo.com/#/console/api-keys',
-      thinkingStyle: 'thinking_type',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'zhipu',
-    '智谱 GLM',
-    'https://open.bigmodel.cn/api/paas/v4',
-    [
-      { id: 'glm-5.2', name: 'GLM-5.2' },
-      { id: 'glm-5.1', name: 'GLM-5.1' },
-      { id: 'glm-5', name: 'GLM-5' },
-      { id: 'glm-5-turbo', name: 'GLM-5 Turbo' },
-      { id: 'glm-4.7', name: 'GLM-4.7' },
-      { id: 'glm-4.7-flashx', name: 'GLM-4.7 FlashX', thinking: false },
-      { id: 'glm-4.6', name: 'GLM-4.6' },
-      { id: 'glm-4.5-air', name: 'GLM-4.5 Air', thinking: false },
-      { id: 'glm-4.5-airx', name: 'GLM-4.5 AirX', thinking: false },
-      { id: 'glm-4-long', name: 'GLM-4 Long (1M ctx)', thinking: false },
-      { id: 'glm-4.7-flash', name: 'GLM-4.7 Flash (free)', thinking: false },
-      { id: 'glm-4-flashx-250414', name: 'GLM-4 FlashX', thinking: false },
-      { id: 'glm-4-flash-250414', name: 'GLM-4 Flash', thinking: false },
-    ],
-    {
-      docsUrl: 'https://open.bigmodel.cn/dev/api',
-      apiKeyUrl: 'https://open.bigmodel.cn/usercenter/apikeys',
-      thinkingStyle: 'thinking_type',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'minimax',
-    'MiniMax',
-    'https://api.minimax.io/v1',
-    [
-      // M3 引入真开关 thinking:{type:"adaptive"|"disabled"},server 默认 adaptive(开)
-      // → thinking_adaptive 让 off 态发显式 disabled。M2.x 推理是 intrinsic、无
-      // toggle 参数 → thinking:false 完全省略。
-      { id: 'MiniMax-M3', name: 'MiniMax M3' },
-      { id: 'MiniMax-M2.7', name: 'MiniMax M2.7', thinking: false },
-      { id: 'MiniMax-M2.7-highspeed', name: 'MiniMax M2.7 High-Speed', thinking: false },
-      { id: 'MiniMax-M2.5', name: 'MiniMax M2.5', thinking: false },
-    ],
-    {
-      docsUrl: 'https://platform.minimax.io/docs/api-reference/text-chat',
-      apiKeyUrl: 'https://platform.minimax.io/user-center/basic-information/interface-key',
-      thinkingStyle: 'thinking_adaptive',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'hunyuan',
-    '腾讯混元',
-    'https://api.hunyuan.cloud.tencent.com/v1',
-    [
-      // 旧版文生文模型(turbos/t1/2.0-thinking/2.0-instruct/lite)已于 2026-06-22
-      // 整体下线(公告 cloud.tencent.com/announce/detail/2301),legacy 端点仅剩
-      // a13b 在售;混元平台正迁往 TokenHub,不再新增模型。
-      { id: 'hunyuan-a13b', name: 'Hunyuan A13B' },
-    ],
-    {
-      docsUrl: 'https://cloud.tencent.com/document/product/1729/111007',
-      apiKeyUrl: 'https://console.cloud.tencent.com/hunyuan/api-key',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'qianfan',
-    '百度千帆',
-    'https://qianfan.baidubce.com/v2',
-    [
-      { id: 'ernie-5.1', name: 'ERNIE 5.1' },
-      { id: 'ernie-5.0', name: 'ERNIE 5.0' },
-      { id: 'ernie-5.0-thinking-latest', name: 'ERNIE 5.0 Thinking (reasoning)' },
-      // X1.1 是文心深度推理线,reasoning 内生(无 thinking 开关参数)。
-      { id: 'ernie-x1.1', name: 'ERNIE X1.1 (reasoning)' },
-      { id: 'ernie-4.5-turbo-128k', name: 'ERNIE 4.5 Turbo 128K' },
-      { id: 'ernie-4.5-turbo-32k', name: 'ERNIE 4.5 Turbo 32K' },
-    ],
-    {
-      docsUrl: 'https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya',
-      apiKeyUrl: 'https://console.bce.baidu.com/iam/#/iam/apikey/list',
-      group: 'china',
-    },
-  ),
-
+  // ── Coding Plan（目录不收：另一个 host + 订阅制专属 SKU，与按量付费不是同一条线）──
   new OpenAICompatibleAdapter(
     'volcengine',
     '字节方舟 Coding Plan',
     'https://ark.cn-beijing.volces.com/api/coding/v3',
     [
-      { id: 'doubao-seed-2.0-code', name: 'Doubao Seed 2.0 Code' },
-      { id: 'doubao-seed-2.0-pro', name: 'Doubao Seed 2.0 Pro' },
-      { id: 'doubao-seed-2.0-lite', name: 'Doubao Seed 2.0 Lite' },
-      { id: 'doubao-seed-code', name: 'Doubao Seed Code' },
-      { id: 'kimi-k2.5', name: 'Kimi K2.5' },
+      { id: 'doubao-seed-2.0-code', name: 'Doubao Seed 2.0 Code' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'doubao-seed-2.0-pro', name: 'Doubao Seed 2.0 Pro' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'doubao-seed-2.0-lite', name: 'Doubao Seed 2.0 Lite' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'doubao-seed-code', name: 'Doubao Seed Code' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'kimi-k2.5', name: 'Kimi K2.5' , thinkingWire: THINKING_TYPE_WIRE },
+      // Thinking-only SKU — there is nothing to disable, so it opts out rather
+      // than being sent thinking:{type:'disabled'}.
       { id: 'kimi-k2-thinking', name: 'Kimi K2 Thinking' },
-      { id: 'glm-4.7', name: 'GLM-4.7' },
-      { id: 'deepseek-v4', name: 'DeepSeek V4' },
-      { id: 'minimax-m2.5', name: 'MiniMax M2.5' },
+      { id: 'glm-4.7', name: 'GLM-4.7' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'deepseek-v4', name: 'DeepSeek V4' , thinkingWire: THINKING_TYPE_WIRE },
+      { id: 'minimax-m2.5', name: 'MiniMax M2.5' , thinkingWire: THINKING_TYPE_WIRE },
     ],
     {
       docsUrl: 'https://www.volcengine.com/docs/82379/1928261',
@@ -258,257 +165,65 @@ const adapters: LLMAdapter[] = [
     '阿里百炼 Coding Plan',
     'https://coding.dashscope.aliyuncs.com/v1',
     [
-      { id: 'qwen3.6-max-preview', name: 'Qwen 3.6 Max (preview)' },
-      { id: 'qwen3.6-plus', name: 'Qwen 3.6 Plus' },
-      { id: 'qwen3.6-flash', name: 'Qwen 3.6 Flash' },
-      { id: 'qwen3.5-plus', name: 'Qwen 3.5 Plus' },
-      { id: 'qwen3-max-2026-01-23', name: 'Qwen3 Max' },
-      { id: 'qwen3-coder-plus', name: 'Qwen3 Coder Plus' },
-      { id: 'qwen3-coder-next', name: 'Qwen3 Coder Next' },
-      { id: 'kimi-k2.5', name: 'Kimi K2.5' },
-      { id: 'glm-5', name: 'GLM-5' },
-      { id: 'glm-4.7', name: 'GLM-4.7' },
-      { id: 'MiniMax-M2.5', name: 'MiniMax M2.5' },
+      { id: 'qwen3.6-max-preview', name: 'Qwen 3.6 Max (preview)' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3.6-plus', name: 'Qwen 3.6 Plus' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3.6-flash', name: 'Qwen 3.6 Flash' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3.5-plus', name: 'Qwen 3.5 Plus' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3-max-2026-01-23', name: 'Qwen3 Max' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3-coder-plus', name: 'Qwen3 Coder Plus' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'qwen3-coder-next', name: 'Qwen3 Coder Next' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'kimi-k2.5', name: 'Kimi K2.5' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'glm-5', name: 'GLM-5' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'glm-4.7', name: 'GLM-4.7' , thinkingWire: ENABLE_THINKING_WIRE },
+      { id: 'MiniMax-M2.5', name: 'MiniMax M2.5' , thinkingWire: ENABLE_THINKING_WIRE },
     ],
     {
       docsUrl: 'https://help.aliyun.com/zh/model-studio/other-tools-coding-plan',
       apiKeyUrl: 'https://bailian.console.aliyun.com/cn-beijing#/efm/coding-plan-detail',
-      thinkingStyle: 'enable_thinking',
       group: 'china',
     },
   ),
 
-  // ── Aggregators & hosting ──
+  // 通用兜底项 —— 目录里它就叫 llm / Custom (OpenAI-compatible)。地址留空表示
+  // 「用户自己填」（存在 settings 的 customBaseUrl 里），所以不走 fromCatalog：
+  // 目录给它列的是常见本地/自建服务的起步地址，那是选填建议不是默认值，
+  // 单独由 CUSTOM_ENDPOINTS 导出给设置界面当快捷填充。
   new OpenAICompatibleAdapter(
-    'openrouter',
-    'OpenRouter',
-    'https://openrouter.ai/api/v1',
-    [
-      // 无 thinking:false 的条目 = 上游可控 reasoning SKU:on 发 reasoning_effort,
-      // off 经 OpenRouter 统一参数发 reasoning:{enabled:false}(否则默认开思考的
-      // 上游——Claude adaptive / DeepSeek / M3——每条消息默默烧推理 token)。
-      // 打 thinking:false 的是无统一 reasoning 开关的 SKU,两态都省略参数。
-      { id: 'anthropic/claude-opus-4.8', name: 'Claude Opus 4.8' },
-      { id: 'anthropic/claude-sonnet-5', name: 'Claude Sonnet 5' },
-      { id: 'deepseek/deepseek-v4-pro', name: 'DeepSeek V4 Pro' },
-      { id: 'deepseek/deepseek-v4-flash', name: 'DeepSeek V4 Flash' },
-      { id: 'google/gemini-3.5-flash', name: 'Gemini 3.5 Flash' },
-      { id: 'google/gemini-3.1-pro-preview', name: 'Gemini 3.1 Pro', thinking: false },
-      { id: 'openai/gpt-5.4-mini', name: 'GPT-5.4 Mini' },
-      { id: 'minimax/minimax-m3', name: 'MiniMax M3' },
-      { id: 'moonshotai/kimi-k2.6', name: 'Kimi K2.6' },
-      { id: 'x-ai/grok-4.5', name: 'Grok 4.5', thinking: false },
-      { id: 'xiaomi/mimo-v2-pro-20260318', name: 'Xiaomi MiMo V2 Pro', thinking: false },
-    ],
-    {
-      docsUrl: 'https://openrouter.ai/models',
-      apiKeyUrl: 'https://openrouter.ai/settings/keys',
-      thinkingStyle: 'reasoning_effort_openrouter',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'siliconflow',
-    'SiliconFlow',
-    'https://api.siliconflow.cn/v1',
-    [
-      { id: 'deepseek-ai/DeepSeek-V4-Flash', name: 'DeepSeek V4 Flash' },
-      { id: 'deepseek-ai/DeepSeek-V4-Pro', name: 'DeepSeek V4 Pro' },
-      { id: 'moonshotai/Kimi-K2.6', name: 'Kimi K2.6' },
-      // org 前缀是 MiniMaxAI(非 minimax),小写前缀会 404。
-      { id: 'MiniMaxAI/MiniMax-M2.5', name: 'MiniMax M2.5' },
-      { id: 'zai-org/GLM-5.2', name: 'GLM-5.2' },
-      { id: 'zai-org/GLM-5.1', name: 'GLM-5.1' },
-      { id: 'zai-org/GLM-4.7', name: 'GLM-4.7' },
-    ],
-    {
-      docsUrl: 'https://docs.siliconflow.cn/api-reference/chat-completions/chat-completions',
-      apiKeyUrl: 'https://cloud.siliconflow.cn/me/account/ak',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'groq',
-    'Groq',
-    'https://api.groq.com/openai/v1',
-    [
-      { id: 'llama-3.3-70b-versatile', name: 'Llama 3.3 70B', thinking: false },
-      { id: 'llama-3.1-8b-instant', name: 'Llama 3.1 8B Instant', thinking: false },
-      { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B' },
-      { id: 'openai/gpt-oss-20b', name: 'GPT OSS 20B' },
-      { id: 'groq/compound', name: 'Groq Compound' },
-      { id: 'groq/compound-mini', name: 'Groq Compound Mini' },
-    ],
-    {
-      docsUrl: 'https://console.groq.com/docs/models',
-      apiKeyUrl: 'https://console.groq.com/keys',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'cerebras',
-    'Cerebras',
-    'https://api.cerebras.ai/v1',
-    [
-      { id: 'llama3.1-8b', name: 'Llama 3.1 8B', thinking: false },
-      { id: 'gpt-oss-120b', name: 'GPT OSS 120B' },
-      { id: 'qwen-3-235b-a22b-instruct-2507', name: 'Qwen3 235B (preview)' },
-      { id: 'zai-glm-4.7', name: 'GLM-4.7 (preview)' },
-    ],
-    {
-      docsUrl: 'https://inference-docs.cerebras.ai/models/overview',
-      apiKeyUrl: 'https://cloud.cerebras.ai',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'together',
-    'Together AI',
-    'https://api.together.xyz/v1',
-    [
-      { id: 'deepseek-ai/DeepSeek-V4', name: 'DeepSeek V4', thinking: false },
-      { id: 'deepseek-ai/DeepSeek-R1', name: 'DeepSeek R1' },
-      { id: 'meta-llama/Llama-3.3-70B-Instruct-Turbo', name: 'Llama 3.3 70B', thinking: false },
-      { id: 'Qwen/Qwen3.5-397B-A17B', name: 'Qwen3.5 397B' },
-      { id: 'Qwen/Qwen3.5-9B', name: 'Qwen3.5 9B' },
-      { id: 'Qwen/Qwen3-Coder-Next', name: 'Qwen3 Coder Next' },
-      { id: 'moonshotai/Kimi-K2.5', name: 'Kimi K2.5' },
-      { id: 'MiniMaxAI/MiniMax-M2.7', name: 'MiniMax M2.7' },
-      { id: 'MiniMaxAI/MiniMax-M2.5', name: 'MiniMax M2.5' },
-      { id: 'zai-org/GLM-5.1', name: 'GLM-5.1' },
-      { id: 'zai-org/GLM-5', name: 'GLM-5' },
-      { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B' },
-      { id: 'google/gemma-4-31B-it', name: 'Gemma 4 31B', thinking: false },
-    ],
-    {
-      docsUrl: 'https://docs.together.ai/reference/chat-completions-1',
-      apiKeyUrl: 'https://api.together.xyz/settings/api-keys',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'fireworks',
-    'Fireworks AI',
-    'https://api.fireworks.ai/inference/v1',
-    [
-      { id: 'accounts/fireworks/models/deepseek-v4', name: 'DeepSeek V4', thinking: false },
-      { id: 'accounts/fireworks/models/deepseek-r1', name: 'DeepSeek R1' },
-      { id: 'accounts/fireworks/models/llama-v3p1-405b-instruct', name: 'Llama 3.1 405B', thinking: false },
-      { id: 'accounts/fireworks/models/llama-v3p1-70b-instruct', name: 'Llama 3.1 70B', thinking: false },
-      { id: 'accounts/fireworks/models/qwen3-235b-a22b-instruct-2507', name: 'Qwen3 235B Instruct' },
-      { id: 'accounts/fireworks/models/qwen3-30b-a3b-instruct-2507', name: 'Qwen3 30B' },
-      { id: 'accounts/fireworks/models/qwen2p5-72b-instruct', name: 'Qwen2.5 72B', thinking: false },
-      { id: 'accounts/fireworks/models/mistral-large-3-fp8', name: 'Mistral Large 3', thinking: false },
-    ],
-    {
-      docsUrl: 'https://docs.fireworks.ai/api-reference/post-chatcompletions',
-      apiKeyUrl: 'https://fireworks.ai/account/api-keys',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'perplexity',
-    'Perplexity',
-    'https://api.perplexity.ai',
-    [
-      { id: 'sonar', name: 'Sonar', thinking: false },
-      { id: 'sonar-pro', name: 'Sonar Pro (search)', thinking: false },
-      { id: 'sonar-reasoning-pro', name: 'Sonar Reasoning Pro' },
-      { id: 'sonar-deep-research', name: 'Sonar Deep Research' },
-    ],
-    {
-      docsUrl: 'https://docs.perplexity.ai/api-reference/chat-completions-post',
-      apiKeyUrl: 'https://www.perplexity.ai/settings/api',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'nvidia',
-    'NVIDIA NIM',
-    'https://integrate.api.nvidia.com/v1',
-    [
-      // reasoning_effort 留空(thinking:false)— NVIDIA NIM 对 DeepSeek 思考用的是
-      // chat_template_kwargs 嵌套而非顶层 reasoning_effort(参 web-tools nvidia 实现),
-      // legend-talk 这套适配器没实现该协议,故全部标 false 避免发不被接受的参数。
-      { id: 'deepseek-ai/deepseek-v4-flash', name: 'DeepSeek V4 Flash', thinking: false },
-      { id: 'deepseek-ai/deepseek-v4-pro', name: 'DeepSeek V4 Pro', thinking: false },
-      { id: 'z-ai/glm-5.2', name: 'GLM-5.2', thinking: false },
-      { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B', thinking: false },
-      { id: 'google/gemma-4-31b-it', name: 'Gemma 4 31B', thinking: false },
-      { id: 'nvidia/nemotron-3-super-120b-a12b', name: 'Nemotron 3 Super 120B', thinking: false },
-      { id: 'meta/llama-3.3-70b-instruct', name: 'Llama 3.3 70B', thinking: false },
-      { id: 'meta/llama-3.1-8b-instruct', name: 'Llama 3.1 8B', thinking: false },
-    ],
-    {
-      docsUrl: 'https://docs.api.nvidia.com/nim/reference/llm-apis',
-      apiKeyUrl: 'https://build.nvidia.com/settings/api-keys',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  // Auth: GitHub PAT with `models:read` scope (fine-grained recommended).
-  new OpenAICompatibleAdapter(
-    'github',
-    'GitHub Models',
-    'https://models.github.ai/inference',
-    [
-      // Low tier — most generous free limits (15 RPM / 150 RPD).
-      // thinking:false on non-reasoning models so the provider's reasoning_effort isn't sent.
-      { id: 'openai/gpt-4.1-mini', name: 'GPT-4.1 Mini', thinking: false },
-      { id: 'openai/gpt-4o-mini', name: 'GPT-4o Mini', thinking: false },
-      { id: 'openai/gpt-4.1-nano', name: 'GPT-4.1 Nano', thinking: false },
-      { id: 'mistral-ai/mistral-small-2503', name: 'Mistral Small 3.1', thinking: false },
-      { id: 'mistral-ai/mistral-medium-2505', name: 'Mistral Medium 3', thinking: false },
-      { id: 'microsoft/phi-4', name: 'Phi-4', thinking: false },
-      { id: 'microsoft/phi-4-reasoning', name: 'Phi-4 Reasoning', thinking: false },
-      { id: 'microsoft/phi-4-mini-reasoning', name: 'Phi-4 Mini Reasoning', thinking: false },
-      { id: 'mistral-ai/codestral-2501', name: 'Codestral', thinking: false },
-      // High tier (10 RPM / 50 RPD)
-      { id: 'openai/gpt-4.1', name: 'GPT-4.1', thinking: false },
-      { id: 'openai/gpt-4o', name: 'GPT-4o', thinking: false },
-      { id: 'meta/llama-3.3-70b-instruct', name: 'Llama 3.3 70B', thinking: false },
-      { id: 'meta/llama-4-maverick-17b-128e-instruct-fp8', name: 'Llama 4 Maverick', thinking: false },
-      { id: 'meta/llama-4-scout-17b-16e-instruct', name: 'Llama 4 Scout', thinking: false },
-      { id: 'cohere/cohere-command-r-plus-08-2024', name: 'Command R+', thinking: false },
-      // Custom tier — gpt-5 / o-series accept reasoning_effort. R1/Phi reasoning/Grok do their own thing.
-      { id: 'openai/gpt-5', name: 'GPT-5' },
-      { id: 'openai/gpt-5-mini', name: 'GPT-5 Mini' },
-      { id: 'openai/gpt-5-nano', name: 'GPT-5 Nano' },
-      { id: 'openai/o3-mini', name: 'o3 Mini (reasoning)' },
-      { id: 'openai/o4-mini', name: 'o4 Mini (reasoning)' },
-      { id: 'deepseek/deepseek-r1', name: 'DeepSeek R1 (reasoning)', thinking: false },
-      { id: 'xai/grok-3-mini', name: 'Grok 3 Mini', thinking: false },
-    ],
-    {
-      docsUrl: 'https://github.com/marketplace?type=models',
-      apiKeyUrl: 'https://github.com/settings/personal-access-tokens',
-      thinkingStyle: 'reasoning_effort',
-      group: 'aggregator',
-    },
-  ),
-
-  // ── Custom ──
-  new OpenAICompatibleAdapter(
-    'custom',
-    'Custom (OpenAI Compatible)',
+    'llm',
+    'Custom (OpenAI-compatible)',
     '',
     [],
     { group: 'custom' },
   ),
 ];
+/**
+ * Custom (llm) 的起步地址建议 —— Ollama / LM Studio / llama.cpp / LiteLLM /
+ * Together AI / Fireworks AI 之类「只是地址不同的 OpenAI 兼容端点」。它们【不】
+ * 各占一个 adapter：单列出来就得各自维护一份模型清单，而那正是要消灭的手工活。
+ * 每条各自带 docs：背后是一个独立产品，用户得先照着它的说明把服务跑起来。
+ * 与区域端点不同，这些不是同一服务的变体，所以不进 adapter 的 `endpoints`
+ * （那个字段的约定是 endpoints[0].url === baseUrl），只给设置界面当快捷填充。
+ */
+export const CUSTOM_ENDPOINTS: ReadonlyArray<{ label: string; url: string; docs?: string }> = (findProvider('llm')?.endpoints ?? []).map((e) => ({
+  label: e.label,
+  url: e.baseUrl,
+  docs: e.docs,
+}));
+
+/**
+ * 默认就该走代理的 provider —— 浏览器直连当前是坏的（CORS 缺头 / 预检 404 /
+ * 按 origin 拦截），不开代理每个请求都发不出去。
+ *
+ * 目录里的那部分由 `directBlocked` 带过来，不再手抄：上游把某家修好了、或者新
+ * 收录的某家一上来就是坏的，跑一次同步这边就跟上。手抄的下场刚发生过 —— 加
+ * opencode 时没同步这张表，而它的直连本来就不通。
+ * 两个 Coding Plan 目录里没有，仍在这里列。
+ */
+export const PROXY_BY_DEFAULT: Record<string, boolean> = {
+  ...Object.fromEntries(PROVIDER_CATALOG.filter((p) => p.directBlocked && p.key in PICKED).map((p) => [p.key, true])),
+  volcengine: true,
+  alibaba: true,
+};
 
 export const PROVIDER_GROUPS: Array<{ id: string; labelKey: string }> = [
   { id: 'international', labelKey: 'settings.providerGroupInternational' },
@@ -526,42 +241,104 @@ export function getAdapter(id: string): LLMAdapter | undefined {
 }
 
 /**
+ * 旧 provider id → 现 id。provider id 统一成了目录 key，而 id 是 settings store
+ * 里 apiKeys / modelByProvider / thinkingByProvider / corsEnabled /
+ * baseUrlByProvider 五张表的键 —— 迁移必须五张一起改名（见 stores/settings.ts
+ * 的 v3），只改 defaultProvider 会把用户配好的 key 留在读不到的旧键下。
+ *
+ * hunyuan → tokenhub 不只是改名：腾讯换了 host 也换了模型 id，旧 key 打不通新
+ * 端点。仍然搬过来是因为「搬一把失效的 key」比「静默丢掉用户填过的东西」好 ——
+ * 前者用户看得见、能自己换，后者只表现为输入框莫名其妙空了。
+ */
+export const PROVIDER_ID_MIGRATIONS: Record<string, string> = {
+  anthropic: 'claude',
+  xai: 'grok',
+  hunyuan: 'tokenhub',
+  custom: 'llm',
+  // 上游把 LiteLLM 并进了 Custom（它和 Together / Fireworks 一样，只是地址不同的
+  // OpenAI 兼容端点）。不搬的后果不是「少一个选项」而是【设置面板整个塌掉】：
+  // defaultProvider 停在一个 getAdapter 解析不出的 id 上，currentAdapter 为
+  // undefined，地址框、模型下拉、文档链接全都不渲染 —— 用户看到的是 Custom
+  // 那一栏凭空消失，而不是被换掉了。地址的搬运见 stores/settings.ts 的 v4。
+  litellm: 'llm',
+};
+
+/**
  * Renamed/removed model ids → their surviving successor. Applied by the settings
  * persist `migrate` so a returning user's stored selection (defaultModel or the
  * per-provider memory) doesn't POST a dead SKU that 400s. Only EXACT known-old ids
  * are remapped; anything else — including user-typed custom SKUs — passes through
- * untouched. Keys are full id strings and are globally distinct (prefixed
- * aggregator ids differ from the bare provider ids), so a flat map is unambiguous.
- * Keep in sync with the catalog above whenever an id is retired or renamed.
+ * untouched. Keys are full id strings, so a flat map is unambiguous.
+ *
+ * ⚠ 两条不变量由 tests/adapters/registry.test.ts 机械保证，别靠人肉核对：
+ *   ① 每个 target 必须是【当前存在】的模型 id —— 迁移只跑一次，指向另一个已死
+ *     的 id 等于没迁（旧版就出现过一串 hunyuan-* → hunyuan-a13b，而 a13b 本身
+ *     随后也退役了）。
+ *   ② 每个 key 必须【不再存在】于任何 adapter —— Coding Plan 与官方线在售的
+ *     型号有重名（glm-4.7 / kimi-k2.5 / MiniMax-M2.5 至今仍是 Coding Plan 的
+ *     合法 SKU），把它们写进迁移表会把订阅用户的选择改掉。
  */
 export const MODEL_ID_MIGRATIONS: Record<string, string> = {
   // OpenAI — gpt-5.4 dropped (5.4-mini kept); 5.6 is the current flagship.
   'gpt-5.4': 'gpt-5.6',
-  // Anthropic
-  'claude-opus-4-7': 'claude-opus-4-8',
+  // Anthropic — 4.7 / 4.8 已退役，Opus 5 是当前旗舰。
+  'claude-opus-4-7': 'claude-opus-5',
+  'claude-opus-4-8': 'claude-opus-5',
   'claude-sonnet-4-6': 'claude-sonnet-5',
   // Mistral — bare version-number ids were never callable; -latest aliases are.
   'mistral-small-4': 'mistral-small-latest',
   'mistral-large-3': 'mistral-large-latest',
   'ministral-3-14b': 'ministral-14b-latest',
   'magistral-medium-1-2': 'mistral-medium-3-5',
-  // MiniMax — M2.1 retired; M3 is the current flagship.
+  // xAI — 4.3 与 4.20 系列退役，在产只剩 4.6 / 4.5。
+  'grok-4.3': 'grok-4.5',
+  'grok-4.20-0309-reasoning': 'grok-4.5',
+  'grok-4.20-0309-non-reasoning': 'grok-4.5',
+  'grok-4.20-multi-agent-0309': 'grok-4.5',
+  // Moonshot — kimi-latest 别名不再指向在产型号。
+  // kimi-k2.5 不在此列：两个 Coding Plan 至今仍在售它，迁移表是全局扁平的，
+  // 写进去会把订阅用户选好的型号改掉。
+  'kimi-latest': 'kimi-k2.6',
+  // Zhipu — GLM-4.x 全系退役（glm-4.7 不在此列：仍是 Coding Plan 的在售 SKU）。
+  'glm-4.6': 'glm-5.2',
+  'glm-4.5-air': 'glm-5-turbo',
+  'glm-4.5-airx': 'glm-5-turbo',
+  'glm-4.7-flash': 'glm-5-turbo',
+  'glm-4.7-flashx': 'glm-5-turbo',
+  'glm-4-long': 'glm-5-turbo',
+  'glm-4-flashx-250414': 'glm-5-turbo',
+  'glm-4-flash-250414': 'glm-5-turbo',
+  // MiniMax — M2.1 退役（MiniMax-M2.5 不在此列：仍是 Coding Plan 的在售 SKU）。
   'MiniMax-M2.1': 'MiniMax-M3',
-  // Tencent Hunyuan legacy — text models retired 2026-06-22; only a13b survives.
-  'hunyuan-turbos-latest': 'hunyuan-a13b',
-  'hunyuan-2.0-thinking-20251109': 'hunyuan-a13b',
-  'hunyuan-2.0-instruct-20251111': 'hunyuan-a13b',
-  'hunyuan-t1-latest': 'hunyuan-a13b',
-  'hunyuan-lite': 'hunyuan-a13b',
+  // 腾讯 — 混元文生文 2026-06-22 整体退役，服务迁到 TokenHub，hy3 是接续型号。
+  'hunyuan-turbos-latest': 'hy3',
+  'hunyuan-2.0-thinking-20251109': 'hy3',
+  'hunyuan-2.0-instruct-20251111': 'hy3',
+  'hunyuan-t1-latest': 'hy3',
+  'hunyuan-lite': 'hy3',
+  'hunyuan-a13b': 'hy3',
   // OpenRouter (prefixed ids, distinct from the bare provider ids above)
-  'anthropic/claude-opus-4.7': 'anthropic/claude-opus-4.8',
+  'anthropic/claude-opus-4.7': 'anthropic/claude-opus-5',
+  'anthropic/claude-opus-4.8': 'anthropic/claude-opus-5',
   'anthropic/claude-sonnet-4.6': 'anthropic/claude-sonnet-5',
-  'google/gemini-3.1-flash-lite-preview': 'google/gemini-3.5-flash',
+  'google/gemini-3.1-flash-lite-preview': 'google/gemini-3.7-flash',
+  'google/gemini-3.5-flash': 'google/gemini-3.7-flash',
   'minimax/minimax-m2.7': 'minimax/minimax-m3',
   'x-ai/grok-4.3': 'x-ai/grok-4.5',
   'x-ai/grok-4.20': 'x-ai/grok-4.5',
-  // SiliconFlow — lowercase org prefix 404s; MiniMaxAI is the real org.
-  'minimax/MiniMax-M2.5': 'MiniMaxAI/MiniMax-M2.5',
+  'deepseek/deepseek-v4-pro': 'deepseek/deepseek-v4-flash',
+  'xiaomi/mimo-v2-pro-20260318': 'deepseek/deepseek-v4-flash',
+  // SiliconFlow — 小写 org 前缀 404，MiniMaxAI 才是真 org；该站 MiniMax 线已下架，
+  // 直接回落到它在售的 DeepSeek。
+  // 裸的 MiniMaxAI/MiniMax-M2.5 不在此列：Together AI 仍在售同名 SKU。
+  'minimax/MiniMax-M2.5': 'deepseek-ai/DeepSeek-V4-Flash',
+  // Groq — Llama 线下架，gpt-oss 是接续。
+  'llama-3.3-70b-versatile': 'openai/gpt-oss-120b',
+  'llama-3.1-8b-instant': 'openai/gpt-oss-20b',
+  // Cerebras
+  'llama3.1-8b': 'gemma-4-31b',
+  'qwen-3-235b-a22b-instruct-2507': 'gpt-oss-120b',
+  'zai-glm-4.7': 'gpt-oss-120b',
   // NVIDIA NIM
   'z-ai/glm-5.1': 'z-ai/glm-5.2',
   'meta/llama-3.1-70b-instruct': 'meta/llama-3.3-70b-instruct',

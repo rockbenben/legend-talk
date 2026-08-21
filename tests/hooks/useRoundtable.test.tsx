@@ -20,7 +20,6 @@ function mockAdapter() {
     id: 'openai',
     name: 'OpenAI',
     models: [{ id: 'gpt-4o', name: 'GPT-4o' }],
-    validateKey: vi.fn(),
     chat: mockChat,
   });
   useSettingsStore.getState().setApiKey('deepseek', 'sk-test');

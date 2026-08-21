@@ -1,59 +1,58 @@
-import type { LLMAdapter, ModelOption, ChatParams, ThinkingLevel } from '../types';
+import type { LLMAdapter, ModelOption, ChatParams, ThinkingWire, EndpointOption } from '../types';
 import { parseSSE } from './sse';
 
-// level === undefined means thinking is off. A mapper returning undefined for the
-// off state omits thinking params entirely (server default kept); returning a body
-// sends an explicit disable — required for providers whose server default is
-// thinking ON, where omission silently burns reasoning tokens the stream never shows.
-type ThinkingMapper = (level: ThinkingLevel | undefined) => Record<string, unknown> | undefined;
-
-const THINKING_MAPPERS: Record<string, ThinkingMapper> = {
-  // Graded reasoning_effort, omit when off — shared by heterogeneous providers,
-  // some of which reject an explicit "none".
-  reasoning_effort: (level) => (level ? { reasoning_effort: level } : undefined),
-  // OpenAI GPT-5.x: reasoning is server-default ON (medium) — off sends explicit "none".
-  reasoning_effort_none: (level) => ({ reasoning_effort: level ?? 'none' }),
-  // xAI: only low/high tiers exist (medium 400s), off sends explicit "none".
-  reasoning_effort_low_high: (level) => ({ reasoning_effort: level ? (level === 'high' ? 'high' : 'low') : 'none' }),
-  // OpenRouter: graded effort when on; universal reasoning:{enabled:false} when off.
-  reasoning_effort_openrouter: (level) => (level ? { reasoning_effort: level } : { reasoning: { enabled: false } }),
-  enable_thinking: (level) => (level ? { enable_thinking: true } : undefined),
-  // Binary thinking:{type} — server-default ON lineups (DeepSeek V4, GLM-5.x,
-  // Kimi K2.6, MiMo), so off sends explicit disabled.
-  thinking_type: (level) => ({ thinking: { type: level ? 'enabled' : 'disabled' } }),
-  // MiniMax M3: thinking:{type:"adaptive"|"disabled"} only, server default adaptive (ON).
-  thinking_adaptive: (level) => ({ thinking: { type: level ? 'adaptive' : 'disabled' } }),
-};
+interface AdapterOpts {
+  docsUrl?: string;
+  apiKeyUrl?: string;
+  group?: string;
+  endpoints?: EndpointOption[];
+  /**
+   * 用户手填的、不在 models 清单里的 SKU 该发的思考参数。清单内的 SKU 一律用
+   * 它自己的 thinkingWire —— 同一家的形态可以逐 SKU 不同，拿这个套上去会 4xx。
+   */
+  fallbackThinkingWire?: ThinkingWire;
+}
 
 export class OpenAICompatibleAdapter implements LLMAdapter {
   docsUrl?: string;
   apiKeyUrl?: string;
   group?: string;
-  private thinkingMapper?: ThinkingMapper;
+  endpoints?: EndpointOption[];
+  private fallbackThinkingWire?: ThinkingWire;
+  private opts?: AdapterOpts;
 
   constructor(
     public id: string,
     public name: string,
     public baseUrl: string,
     public models: ModelOption[],
-    opts?: { docsUrl?: string; apiKeyUrl?: string; thinkingStyle?: string; group?: string },
+    opts?: AdapterOpts,
   ) {
+    this.opts = opts;
     this.docsUrl = opts?.docsUrl;
     this.apiKeyUrl = opts?.apiKeyUrl;
     this.group = opts?.group;
-    if (opts?.thinkingStyle) this.thinkingMapper = THINKING_MAPPERS[opts.thinkingStyle];
+    this.endpoints = opts?.endpoints;
+    this.fallbackThinkingWire = opts?.fallbackThinkingWire;
   }
 
-  async validateKey(key: string, corsProxy?: string): Promise<boolean> {
-    try {
-      const url = this.buildUrl('/models', corsProxy);
-      const res = await fetch(url, {
-        headers: { Authorization: `Bearer ${key}` },
-      });
-      return res.ok;
-    } catch {
-      return false;
-    }
+  /**
+   * 这个 SKU 有没有已知的思考形态 —— 判据与 chat() 里选形态那两行【同一条】，
+   * 所以界面显示控件 ⇔ 请求真会带思考参数，不会出现一个点了没反应的开关。
+   * 没有形态时（已知不思考，或这家没有已知形态）返回 false。
+   */
+  supportsThinking(model: string): boolean {
+    const modelOpt = this.models.find((m) => m.id === model);
+    return Boolean(modelOpt ? modelOpt.thinkingWire : this.fallbackThinkingWire);
+  }
+
+  /** Same provider on a different host — a regional endpoint the user picked,
+   *  or a gateway they pasted. Models, thinking shape and links are provider
+   *  identity and must survive the swap; only the host changes. */
+  withBaseUrl(baseUrl: string): OpenAICompatibleAdapter {
+    return baseUrl === this.baseUrl
+      ? this
+      : new OpenAICompatibleAdapter(this.id, this.name, baseUrl, this.models, this.opts);
   }
 
   async *chat(params: ChatParams): AsyncGenerator<string> {
@@ -66,19 +65,13 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
       stream: true,
     };
     if (params.model) body.model = params.model;
-    if (this.thinkingMapper) {
-      const modelOpt = this.models.find((m) => m.id === params.model);
-      const level = params.thinkingLevel && params.thinkingLevel !== 'off' ? params.thinkingLevel : undefined;
-      if (level) {
-        // On: listed non-thinking models opt out; unlisted (custom) models are the
-        // user's call — they explicitly picked a thinking level.
-        if (modelOpt?.thinking !== false) Object.assign(body, this.thinkingMapper(level) ?? {});
-      } else if (modelOpt && modelOpt.thinking !== false) {
-        // Off: only listed thinking-capable models get an explicit disable —
-        // sending one to an unknown SKU risks a 400 on models without the param.
-        Object.assign(body, this.thinkingMapper(undefined) ?? {});
-      }
-    }
+    // 思考参数：逐 SKU 查表，没有条目就一个字段都不发。
+    // 清单内的 SKU 用它自己的形态；用户手填的未列出 SKU 能力未知，退到本
+    // provider 的通用形态（fallbackThinkingWire）—— 与 web-tools 的三路门控一致。
+    const modelOpt = this.models.find((m) => m.id === params.model);
+    const wire = modelOpt ? modelOpt.thinkingWire : this.fallbackThinkingWire;
+    const slot = wire?.[params.thinkingLevel ?? 'off'];
+    if (slot) Object.assign(body, slot);
 
     const response = await fetch(url, {
       method: 'POST',
@@ -94,7 +87,10 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
         detail = errBody.error?.message || JSON.stringify(errBody);
       } catch { /* ignore */ }
       // Some providers mistranslate "insufficient balance" as "平衡不足" (equilibrium) instead of "余额不足" (account balance).
-      throw new Error(detail.replace(/平衡不足/g, '余额不足'));
+      // Status is prefixed unconditionally: an origin/WAF block answers with an
+      // HTML page, not JSON, so `detail` alone carries no code — and the UI needs
+      // the number to tell a 403 (relay would fix it) from a plain failure.
+      throw new Error(`[${response.status}] ${detail.replace(/平衡不足/g, '余额不足')}`);
     }
 
     for await (const data of parseSSE(response)) {

@@ -94,13 +94,13 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173, go to Settings, enter your API key, and start chatting. If you hit a CORS error, the app offers to enable a public proxy with one click — worth reading [what that means for your key](#cors-proxy) before you accept.
+Open http://localhost:5173, go to Settings, enter your API key, and start chatting. A few providers can't be reached from a browser directly and route through a public proxy instead — it's on by default for those, so it's worth knowing [what that means for your key](#cors-proxy).
 
 ## Thinkers, models & platform
 
 **161 preset thinkers** across 15 domains, sorted by fame — type any name to create a custom character on the fly.
 
-**Models** — set the **thinking level** (off / low / medium / high), enter a **custom model ID**, or connect any **OpenAI-compatible API** as a custom provider. Default: DeepSeek V4 Flash.
+**Models** — set the **thinking level**, enter a **custom model ID**, or connect any **OpenAI-compatible API** as a custom provider. Default: DeepSeek V4 Flash. The thinking control only appears for models that actually support it, and providers with no off switch (Gemini, Grok, Groq, Cerebras, Moonshot) label their lowest level **Min** rather than Off — it still reasons and still bills, and saying "off" there would be a lie.
 
 **Platform** — 18 languages · dark mode · responsive · **local-first** (IndexedDB + localStorage dual-write, works in WeChat and restricted WebViews) · **zero CDN** (fonts self-hosted and bundled, so it works offline and behind firewalls).
 
@@ -118,81 +118,48 @@ Categories: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociolo
 
 The **Copy lineup link** (participants bar) and **Copy category link** (category filter) buttons generate these URLs from the UI.
 
-**Language routing** — prefix the URL with a language to set the UI language, e.g. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, or use `?lang=zh`. All 18 languages supported.
+**Language routing** — prefix the URL with a language to set the UI language, e.g. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. All 18 languages supported.
 
 ## Supported APIs
 
-24 providers out of the box — international, China-based, and aggregators:
+25 providers out of the box — international, China-based, and aggregators:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **Overseas** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Aggregators & Hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-Every provider accepts custom model IDs, and the **Custom** option connects any OpenAI-compatible API.
+The live model list for each provider is in Settings — model IDs move too fast to mirror here.
+
+**Run a model locally** — the **Custom** option takes any OpenAI-compatible address, with one-click starting points for LM Studio, Ollama, llama.cpp, LiteLLM, Together AI and Fireworks AI (each with a link to its own docs). Local servers need no API key: for these the address _is_ the credential, so the key field stays optional.
+
+**Regional and self-hosted endpoints** — Qwen, MiMo, Moonshot, Zhipu, MiniMax and TokenHub ship their regional hosts as a one-click switch. Beyond that, **every** provider — Anthropic and Gemini included — has a free-text endpoint field, because which upstream decides to block a browser isn't something you can predict in advance. The endpoint and the CORS proxy are independent: you can point at your own gateway and still connect directly, or use the official host through the proxy.
+
+Every provider accepts custom model IDs.
 
 ## CORS proxy
 
-Some providers block direct browser requests. The CORS proxy is configured per provider in Settings — toggle it on. A public proxy (`https://cors.api2026.workers.dev`) is used by default.
+Some providers don't send CORS headers, so a browser can't reach them directly. The proxy is a per-provider toggle in Settings, and a public one (`https://cors.api2026.workers.dev`) is used by default.
 
-> **Worth knowing before you turn it on.** Everything else here is local-first, but a proxied request is not: your API key and the full prompt travel through that proxy on the way to the provider. The default one is operated by this project, but the same is true of any proxy — that's what a proxy is. If the key matters to you, deploy your own with the Worker below and point Settings at it; it takes about two minutes.
+**It is already on for the providers that need it** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, and the two Coding Plan entries — because with it off they simply don't work. Everything else defaults to a direct connection.
 
-To run your own, deploy a [Cloudflare Worker](https://dash.cloudflare.com) with this code:
+> **Worth knowing, whether you turned it on or found it on.** Everything else here is local-first; a proxied request is not. Your API key and the full prompt travel through that proxy on the way to the provider. What the proxy does with them is the part that matters, so concretely: it forwards and nothing else — the whole request path is a single pass-through `fetch`, with no logging and no storage of any kind ([read it](scripts/cors-proxy-worker.js), it's short). It also only forwards to hosts declared in that file, so it isn't an open proxy someone else can point at arbitrary targets.
+>
+> None of that changes the fact that the request passes through a machine this project operates. If that matters for your key, run your own — it takes about two minutes.
 
-<details>
-<summary>Worker code</summary>
+To run your own, deploy a [Cloudflare Worker](https://dash.cloudflare.com) with this code, then point Settings at it:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](scripts/cors-proxy-worker.js)
 
 ## Development
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # route components: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

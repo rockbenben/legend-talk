@@ -97,7 +97,7 @@ http://localhost:5173 খুলুন, সেটিংসে যান, আপ�
 
 খ্যাতি অনুযায়ী সাজানো ১৫টি ক্ষেত্রে **১৬১ জন প্রিসেট চিন্তাবিদ** — তাৎক্ষণিকভাবে একটি কাস্টম চরিত্র তৈরি করতে যেকোনো নাম টাইপ করুন।
 
-**মডেল** — **চিন্তার মাত্রা** নির্ধারণ করুন (বন্ধ / নিম্ন / মাঝারি / উচ্চ), একটি **কাস্টম মডেল ID** দিন, অথবা যেকোনো **OpenAI-সামঞ্জস্যপূর্ণ API** কাস্টম প্রদানকারী হিসেবে সংযুক্ত করুন। ডিফল্ট: DeepSeek V4 Flash।
+**মডেল** — **চিন্তার মাত্রা** নির্ধারণ করুন (বন্ধ / নিম্ন / মাঝারি / উচ্চ), একটি **কাস্টম মডেল ID** দিন, অথবা যেকোনো **OpenAI-সামঞ্জস্যপূর্ণ API** কাস্টম প্রদানকারী হিসেবে সংযুক্ত করুন। ডিফল্ট: DeepSeek V4 Flash। চিন্তার নিয়ন্ত্রণ কেবল সেই মডেলগুলোর জন্য দেখা যায় যারা সত্যিই তা সমর্থন করে; যেসব প্রদানকারীর বন্ধ করার মান নেই (Gemini, Grok, Groq, Cerebras, Moonshot) তারা সর্বনিম্ন স্তরকে «বন্ধ» না লিখে **Min** লেখে — সেটি তখনও যুক্তি করে ও বিল হয়, তাই «বন্ধ» লেখা মিথ্যা হবে।
 
 **প্ল্যাটফর্ম** — ১৮ ভাষা · ডার্ক মোড · রেসপনসিভ · **লোকাল-ফার্স্ট** (IndexedDB + localStorage দ্বৈত-লেখন, WeChat ও সীমিত WebView-এ কাজ করে) · **শূন্য CDN** (ফন্ট স্ব-হোস্টেড ও বান্ডলড, তাই অফলাইনে ও ফায়ারওয়ালের পেছনে কাজ করে)।
 
@@ -115,81 +115,46 @@ http://localhost:5173 খুলুন, সেটিংসে যান, আপ�
 
 **দলের লিঙ্ক কপি করুন** (অংশগ্রহণকারী বার) এবং **বিভাগের লিঙ্ক কপি করুন** (বিভাগ ফিল্টার) বোতামগুলো ইন্টারফেস থেকে এই URL তৈরি করে।
 
-**ভাষা রাউটিং** — UI ভাষা নির্ধারণ করতে URL-এর শুরুতে একটি ভাষা যোগ করুন, যেমন `/#/ja/chat`, `/#/ko/chat?chars=socrates`, অথবা `?lang=zh` ব্যবহার করুন। সকল ১৮টি ভাষা সমর্থিত।
+**ভাষা রাউটিং** — UI ভাষা নির্ধারণ করতে URL-এর শুরুতে একটি ভাষা যোগ করুন, যেমন `/#/ja/chat`, `/#/ko/chat?chars=socrates`। সকল ১৮টি ভাষা সমর্থিত।
 
 ## সমর্থিত API
 
-বাক্সের বাইরেই ২৪টি প্রদানকারী — আন্তর্জাতিক, চীন-ভিত্তিক, এবং অ্যাগ্রিগেটর:
+বাক্সের বাইরেই ২৫টি প্রদানকারী — আন্তর্জাতিক, চীন-ভিত্তিক, এবং অ্যাগ্রিগেটর:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **আন্তর্জাতিক** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **চীন** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **অ্যাগ্রিগেটর ও হোস্টিং** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-প্রতিটি প্রদানকারী কাস্টম মডেল ID গ্রহণ করে, এবং **Custom** অপশন যেকোনো OpenAI-সামঞ্জস্যপূর্ণ API সংযুক্ত করে।
+প্রতিটি প্রদানকারীর হালনাগাদ মডেল তালিকা সেটিংসে আছে — মডেল ID এত দ্রুত বদলায় যে এখানে রাখার মানে হয় না।
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax ও TokenHub-এর আঞ্চলিক হোস্ট এক ক্লিকে বদলানো যায়। এর বাইরেও **প্রতিটি** প্রদানকারীর — Anthropic ও Gemini সহ — একটি মুক্ত-লেখা এন্ডপয়েন্ট ঘর আছে, কারণ কোন আপস্ট্রিম ব্রাউজার আটকাবে তা আগে থেকে বলা যায় না। এন্ডপয়েন্ট আর CORS প্রক্সি আলাদা: নিজের গেটওয়ে দেখিয়েও সরাসরি যুক্ত হতে পারেন, বা অফিসিয়াল হোস্টে প্রক্সি হয়ে যেতে পারেন।
+
+সব প্রদানকারী কাস্টম মডেল ID নেয়। **মডেল স্থানীয়ভাবে চালানো**: **Custom** যেকোনো OpenAI-সঙ্গত ঠিকানা নেয়, আর LM Studio, Ollama, llama.cpp, LiteLLM, Together AI ও Fireworks AI-এর জন্য এক-ক্লিক শুরুর ঠিকানা (প্রত্যেকটির নিজস্ব ডকুমেন্টেশন লিংকসহ) দেয়। স্থানীয় সার্ভারের API কী লাগে না — সেখানে ঠিকানাই পরিচয়পত্র, তাই কী-ঘরটি ঐচ্ছিক থাকে।
 
 ## CORS প্রক্সি
 
-কিছু প্রদানকারী সরাসরি ব্রাউজার অনুরোধ ব্লক করে। CORS প্রক্সি সেটিংসে প্রদানকারী অনুযায়ী কনফিগার করা হয় — এটি চালু করুন। ডিফল্টভাবে একটি পাবলিক প্রক্সি (`https://cors.api2026.workers.dev`) ব্যবহৃত হয়।
+কিছু প্রদানকারী CORS হেডার পাঠায় না, তাই ব্রাউজার সরাসরি তাদের কাছে পৌঁছাতে পারে না। প্রক্সি সেটিংসে প্রতি-প্রদানকারী সুইচ, আর ডিফল্টে একটি পাবলিক প্রক্সি (`https://cors.api2026.workers.dev`) ব্যবহৃত হয়।
 
-> **চালু করার আগে জেনে রাখুন।** এখানকার বাকি সবই লোকাল-ফার্স্ট, কিন্তু প্রক্সি দিয়ে যাওয়া অনুরোধ নয় — আপনার API কী আর সম্পূর্ণ প্রম্পট প্রদানকারীর কাছে পৌঁছানোর পথে সেই প্রক্সি হয়ে যায়। ডিফল্ট প্রক্সিটি এই প্রকল্পই চালায়, তবে যেকোনো প্রক্সির ক্ষেত্রেই এটা সত্যি — প্রক্সি তো এটাই করে। কী-টি আপনার কাছে গুরুত্বপূর্ণ হলে নিচের Worker দিয়ে নিজের একটি চালান আর সেটিংসে সেটিকে দেখান; দুই মিনিটের কাজ।
+**যাদের এটি দরকার তাদের জন্য এটি আগে থেকেই চালু** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM এবং দুটি Coding Plan এন্ট্রি — কারণ এটি বন্ধ থাকলে তারা একেবারেই কাজ করে না। বাকি সবাই ডিফল্টে সরাসরি যুক্ত হয়।
 
-নিজের প্রক্সি চালাতে, এই কোড দিয়ে একটি [Cloudflare Worker](https://dash.cloudflare.com) ডিপ্লয় করুন:
+> **জানা ভালো — আপনি চালু করে থাকুন বা চালু অবস্থায় পেয়ে থাকুন।** এখানে বাকি সবকিছু লোকাল-ফার্স্ট; প্রক্সি হয়ে যাওয়া অনুরোধ নয়। আপনার API কী ও সম্পূর্ণ প্রম্পট প্রদানকারীর পথে ওই প্রক্সি দিয়ে যায়। আসল কথা হলো প্রক্সি সেগুলো নিয়ে কী করে, তাই স্পষ্ট করে: এটি কেবল ফরোয়ার্ড করে, আর কিছুই না — পুরো অনুরোধ-পথ একটিমাত্র পাস-থ্রু `fetch`, কোনো লগ নেই, কোনো ধরনের সংরক্ষণ নেই ([নিজেই পড়ুন](../../scripts/cors-proxy-worker.js), ছোট)। তাছাড়া এটি কেবল ওই ফাইলে ঘোষিত হোস্টেই ফরোয়ার্ড করে, তাই এটি এমন খোলা প্রক্সি নয় যাকে কেউ যেকোনো লক্ষ্যের দিকে ঘোরাতে পারে।
+>
+> এতে এই সত্য বদলায় না যে অনুরোধটি এই প্রকল্পের চালানো একটি মেশিন হয়ে যায়। আপনার কী-এর জন্য এটি গুরুত্বপূর্ণ হলে নিজেরটি চালান — মিনিট দুয়েকের কাজ।
 
-<details>
-<summary>Worker code</summary>
+নিজেরটি চালাতে, এই কোড দিয়ে একটি [Cloudflare Worker](https://dash.cloudflare.com) ডিপ্লয় করুন এবং সেটিংসকে সেদিকে নির্দেশ করুন:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## ডেভেলপমেন্ট
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # রুট কম্পোনেন্ট: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

@@ -3,5 +3,6 @@ dist
 .env
 *.local
 CLAUDE.md
+AGENTS.md
 .gstack/
 .claude/settings.local.json

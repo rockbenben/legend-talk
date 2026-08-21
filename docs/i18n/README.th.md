@@ -97,7 +97,7 @@ npm run dev
 
 **นักคิดสำเร็จรูป 161 คน** ใน 15 สาขา เรียงตามความมีชื่อเสียง — พิมพ์ชื่อใดก็ได้เพื่อสร้างตัวละครกำหนดเองทันที
 
-**โมเดล** — ตั้ง **ระดับการคิด** (ปิด / ต่ำ / กลาง / สูง) ป้อน **ID โมเดลกำหนดเอง** หรือเชื่อมต่อ **API ที่เข้ากันได้กับ OpenAI** ใด ๆ เป็นผู้ให้บริการกำหนดเอง ค่าเริ่มต้น: DeepSeek V4 Flash
+**โมเดล** — ตั้ง **ระดับการคิด** (ปิด / ต่ำ / กลาง / สูง) ป้อน **ID โมเดลกำหนดเอง** หรือเชื่อมต่อ **API ที่เข้ากันได้กับ OpenAI** ใด ๆ เป็นผู้ให้บริการกำหนดเอง ค่าเริ่มต้น: DeepSeek V4 Flash ตัวควบคุมการคิดจะปรากฏเฉพาะกับโมเดลที่รองรับจริง และผู้ให้บริการที่ไม่มีค่าปิด (Gemini, Grok, Groq, Cerebras, Moonshot) จะกำกับระดับต่ำสุดว่า **Min** แทน «ปิด» เพราะมันยังใช้เหตุผลและยังคิดค่าใช้จ่าย การเขียนว่า «ปิด» จึงเป็นการโกหก
 
 **แพลตฟอร์ม** — 18 ภาษา · โหมดมืด · ตอบสนอง · **ท้องถิ่นก่อน** (เขียนคู่ IndexedDB + localStorage ทำงานได้ใน WeChat และ WebView ที่จำกัด) · **ไม่มี CDN** (ฟอนต์โฮสต์เองและรวมไว้ในแพ็กเกจ จึงทำงานได้แบบออฟไลน์และหลังไฟร์วอลล์)
 
@@ -115,81 +115,46 @@ npm run dev
 
 ปุ่ม **คัดลอกลิงก์รายชื่อ** (แถบผู้เข้าร่วม) และ **คัดลอกลิงก์หมวดหมู่** (ตัวกรองหมวดหมู่) สร้าง URL เหล่านี้จากอินเทอร์เฟซ
 
-**เส้นทางภาษา** — นำหน้า URL ด้วยภาษาเพื่อตั้งภาษาของอินเทอร์เฟซ เช่น `/#/ja/chat`, `/#/ko/chat?chars=socrates` หรือใช้ `?lang=zh` รองรับทั้ง 18 ภาษา
+**เส้นทางภาษา** — นำหน้า URL ด้วยภาษาเพื่อตั้งภาษาของอินเทอร์เฟซ เช่น `/#/ja/chat`, `/#/ko/chat?chars=socrates` รองรับทั้ง 18 ภาษา
 
 ## API ที่รองรับ
 
-24 ผู้ให้บริการพร้อมใช้งานทันที — ระดับสากล ในจีน และผู้รวบรวม:
+25 ผู้ให้บริการพร้อมใช้งานทันที — ระดับสากล ในจีน และผู้รวบรวม:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **ต่างประเทศ** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **จีน** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **แพลตฟอร์มรวมและโฮสติ้ง** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-ทุกผู้ให้บริการรองรับ ID โมเดลกำหนดเอง และตัวเลือก **Custom** เชื่อมต่อ API ที่เข้ากันได้กับ OpenAI ใด ๆ
+รายการโมเดลล่าสุดของแต่ละผู้ให้บริการอยู่ในหน้าตั้งค่า — ID โมเดลเปลี่ยนเร็วเกินกว่าจะคัดลอกมาไว้ที่นี่
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax และ TokenHub สลับโฮสต์ตามภูมิภาคได้ในคลิกเดียว นอกจากนี้ผู้ให้บริการ **ทุกราย** รวมถึง Anthropic และ Gemini มีช่องกรอกปลายทางแบบอิสระ เพราะคาดเดาไม่ได้ว่าต้นทางรายใดจะบล็อกเบราว์เซอร์ ปลายทางกับพร็อกซี CORS เป็นอิสระต่อกัน คุณจะชี้ไปเกตเวย์ของตัวเองแล้วยังต่อตรงก็ได้ หรือใช้โฮสต์ทางการผ่านพร็อกซีก็ได้
+
+ผู้ให้บริการทุกรายรับ ID โมเดลที่กำหนดเอง **รันโมเดลในเครื่อง**: ตัวเลือก **Custom** รับที่อยู่ที่เข้ากันได้กับ OpenAI ทุกแบบ พร้อมที่อยู่ตั้งต้นแบบคลิกเดียวสำหรับ LM Studio, Ollama, llama.cpp, LiteLLM, Together AI และ Fireworks AI (แต่ละรายมีลิงก์เอกสารของตัวเอง) เซิร์ฟเวอร์ในเครื่องไม่ต้องใช้คีย์ เพราะที่นั่นที่อยู่คือข้อมูลรับรอง ช่องคีย์จึงเว้นว่างได้
 
 ## CORS Proxy
 
-บางผู้ให้บริการบล็อกคำขอตรงจากเบราว์เซอร์ CORS proxy กำหนดค่าต่อผู้ให้บริการในการตั้งค่า — เปิดสวิตช์ พร็อกซีสาธารณะ (`https://cors.api2026.workers.dev`) ถูกใช้เป็นค่าเริ่มต้น
+ผู้ให้บริการบางรายไม่ส่งส่วนหัว CORS เบราว์เซอร์จึงเข้าถึงโดยตรงไม่ได้ พร็อกซีเป็นสวิตช์แยกตามผู้ให้บริการในหน้าตั้งค่า และค่าเริ่มต้นใช้พร็อกซีสาธารณะ (`https://cors.api2026.workers.dev`)
 
-> **ควรรู้ก่อนเปิดใช้** ส่วนอื่นทั้งหมดทำงานในเครื่องคุณ แต่คำขอที่ผ่านพร็อกซีไม่ใช่ — คีย์ API และพรอมป์ตทั้งหมดของคุณจะผ่านพร็อกซีนั้นก่อนถึงผู้ให้บริการ พร็อกซีเริ่มต้นดูแลโดยโปรเจกต์นี้ แต่พร็อกซีใด ๆ ก็เป็นเช่นนี้ เพราะนั่นคือสิ่งที่พร็อกซีทำ ถ้าคีย์นั้นสำคัญกับคุณ ให้สร้างของตัวเองด้วย Worker ด้านล่างแล้วชี้ในหน้าตั้งค่าไปที่นั่น ใช้เวลาราวสองนาที
+**เปิดอยู่แล้วสำหรับผู้ให้บริการที่จำเป็นต้องใช้** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM และรายการ Coding Plan สองรายการ — เพราะถ้าปิดไว้จะใช้งานไม่ได้เลย ส่วนที่เหลือเชื่อมต่อตรงตามค่าเริ่มต้น
 
-หากต้องการรันพร็อกซีของคุณเอง ให้ deploy [Cloudflare Worker](https://dash.cloudflare.com) ด้วยโค้ดนี้:
+> **ควรรู้ไว้ ไม่ว่าคุณจะเปิดเองหรือพบว่ามันเปิดอยู่แล้ว** ทุกอย่างที่เหลือที่นี่ทำงานในเครื่องเป็นหลัก แต่คำขอที่ผ่านพร็อกซีไม่ใช่ คีย์ API และพรอมป์ตทั้งหมดของคุณจะผ่านพร็อกซีนั้นก่อนถึงผู้ให้บริการ สิ่งสำคัญคือพร็อกซีทำอะไรกับมัน จึงขอระบุให้ชัด: มันแค่ส่งต่อ ไม่ทำอย่างอื่นเลย — เส้นทางคำขอทั้งหมดคือ `fetch` แบบส่งผ่านครั้งเดียว ไม่มีบันทึกล็อก ไม่มีการจัดเก็บใด ๆ ([อ่านเองได้](../../scripts/cors-proxy-worker.js) สั้นมาก) และมันส่งต่อเฉพาะโฮสต์ที่ประกาศไว้ในไฟล์นั้น จึงไม่ใช่พร็อกซีเปิดที่ใครจะชี้ไปยังปลายทางใดก็ได้
+>
+> ทั้งหมดนี้ไม่เปลี่ยนข้อเท็จจริงที่ว่าคำขอผ่านเครื่องที่โครงการนี้ดูแลอยู่ ถ้าเรื่องนี้สำคัญกับคีย์ของคุณ ให้ตั้งของตัวเอง — ใช้เวลาราวสองนาที
 
-<details>
-<summary>Worker code</summary>
+หากต้องการตั้งเอง ให้ deploy [Cloudflare Worker](https://dash.cloudflare.com) ด้วยโค้ดนี้ แล้วชี้หน้าตั้งค่าไปที่นั่น:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## การพัฒนา
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # คอมโพเนนต์เส้นทาง: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

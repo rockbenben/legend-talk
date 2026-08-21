@@ -99,7 +99,7 @@ npm run dev
 
 **161 位預設思想家**，覆蓋 15 大領域、按知名度排序——直接輸入任意名字即可即時建立自訂角色。
 
-**模型** — 可設 **思考強度**（關閉 / 低 / 中 / 高）、手動填入 **自訂模型 ID**，或以自訂服務商接入任意 **OpenAI 相容 API**。預設：DeepSeek V4 Flash。
+**模型** — 可設 **思考強度**（關閉 / 低 / 中 / 高）、手動填入 **自訂模型 ID**，或以自訂服務商接入任意 **OpenAI 相容 API**。預設：DeepSeek V4 Flash。思考控件只對真正支援思考的模型出現；沒有關閉檔的服務商（Gemini、Grok、Groq、Cerebras、Moonshot）最低一檔標為 **Min** 而不是「關閉」——它仍在推理、仍在計費，寫「關閉」就是撒謊。
 
 **平台** — 18 種語言 · 深色模式 · 響應式 · **本地優先**（IndexedDB + localStorage 雙寫，相容微信等受限 WebView）· **零 CDN**（字體全部自託管打包，離線與內網環境開箱即用）。
 
@@ -117,81 +117,46 @@ npm run dev
 
 參與者欄的 **複製陣容連結** 與分類篩選欄的 **複製分類圓桌連結** 可直接從介面生成這些 URL。
 
-**語言路由** — URL 加語言前綴即可切換介面語言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`，也支援 `?lang=zh`。支援全部 18 種語言。
+**語言路由** — URL 加語言前綴即可切換介面語言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`。支援全部 18 種語言。
 
 ## 支援的 API
 
-開箱即用 24 家服務商——國際、國內與聚合平台：
+開箱即用 25 家服務商——國際、國內與聚合平台：
 
-| 服務商                            | 模型                                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| OpenAI                            | GPT-5.5、GPT-5.4、GPT-5.4 Mini                                                                   |
-| Anthropic                         | Claude Opus 4.7、Claude Sonnet 4.6、Claude Haiku 4.5                                             |
-| Google Gemini                     | Gemini 3.1 Pro、Gemini 3.5 Flash                                                                 |
-| xAI Grok                          | Grok 4.3、Grok 4.20 系列                                                                         |
-| Mistral / Cohere                  | Mistral Medium 3.5 / Large 3、Command A 系列                                                     |
-| DeepSeek                          | DeepSeek V4 Flash、V4 Pro                                                                        |
-| 月之暗面 Kimi                     | Kimi K2.6、K2.5                                                                                  |
-| 智譜 GLM                          | GLM-5.1、GLM-5、GLM-4.7 系列                                                                     |
-| MiniMax / 混元 / 千帆 / 小米 MiMo | MiniMax M2.7、混元 2.0、文心 5.1、MiMo V2.5                                                      |
-| 字節方舟 Coding Plan              | Doubao Seed 2.0、Kimi K2.5、GLM-4.7、DeepSeek V4                                                 |
-| 阿里百煉 Coding Plan              | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5                                                        |
-| 聚合平台                          | OpenRouter、矽基流動、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
+- **海外** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **中國** — DeepSeek · 通義千問 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智譜 GLM · MiniMax · 階躍星辰 · 百度千帆 · 騰訊 TokenHub · 字節方舟 Coding Plan · 阿里百煉 Coding Plan
+- **聚合與託管** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-所有服務商均支援自訂模型 ID，「Custom」選項可接入任意 OpenAI 相容 API。
+各服務商的模型列表在「設定」裡即時可見——模型 ID 變動太快，此處不再鏡像。
+
+通義千問、小米 MiMo、月之暗面、智譜、MiniMax、騰訊 TokenHub 的地域節點可一鍵切換。除此之外，**每一家**（含 Anthropic 與 Gemini）都有一個自由填寫的端點框——哪家上游會攔瀏覽器無法預判。端點與 CORS 中轉是兩件獨立的事：可以指向自建網關而仍然直連，也可以走官方位址而經中轉。
+
+所有服務商均支援自訂模型 ID。**本地跑模型**：「Custom」接入任意 OpenAI 相容位址，並為 LM Studio、Ollama、llama.cpp、LiteLLM、Together AI、Fireworks AI 各準備了一鍵起步位址與各自的文件連結。本地服務無需 API key——對它們而言位址就是憑據，key 一欄可以留空。
 
 ## CORS 中轉
 
-部分服務商不允許瀏覽器直接呼叫。在設定頁按服務商開關 CORS 中轉即可，預設使用公共節點（`https://cors.api2026.workers.dev`）。
+部分服務商不發 CORS 回應標頭，瀏覽器直連不到。中轉在設定裡按服務商開關，預設使用公共節點（`https://cors.api2026.workers.dev`）。
 
-> **開之前值得知道**：其餘部分都是本地優先，但走中轉的請求不是——你的 API key 和完整 prompt 會經過該節點再轉發給服務商。預設節點由本專案維護，但換成任何中轉都一樣，這是中轉的本質。若你在意這個 key，用下面的 Worker 自建一個、在設定裡指過去即可，大約兩分鐘。
+**需要它的那幾家已經預設開著** —— OpenCode Zen、騰訊 TokenHub、NVIDIA NIM 與兩個 Coding Plan —— 因為關著它們根本不工作。其餘一律預設直連。
 
-如需自建，部署一個 [Cloudflare Worker](https://dash.cloudflare.com) 並填入以下程式碼：
+> **無論是你打開的，還是你發現它已經開著。** 其餘部分都是本地優先，走中轉的請求不是：你的 API key 與完整 prompt 會經過它再到服務商。它拿這些做什麼才是關鍵，所以說具體點：只轉發，此外什麼都不做 —— 整條請求路徑是一次透傳 `fetch`，沒有日誌、不寫任何儲存（[自己看](../../scripts/cors-proxy-worker.js)，很短）。而且只轉發該檔案裡宣告過的 host，不是可以被別人指向任意目標的開放代理。
+>
+> 這些都不改變一個事實：請求確實經過了一台本專案營運的機器。若你在意這個 key，自建一個 —— 大約兩分鐘。
 
-<details>
-<summary>Worker 代碼</summary>
+如需自建，部署一個 [Cloudflare Worker](https://dash.cloudflare.com) 並填入以下程式碼，然後在設定裡指過去：
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## 開發
 
 ```text
 src/
-  adapters/       # LLM API 適配器（OpenAI 相容、Anthropic）
+  adapters/       # LLM API 適配器（OpenAI 相容，另有原生 Anthropic 與 Gemini）
   characters/     # 角色預設和自訂角色生成
   components/     # React 組件
   hooks/          # useChat、useRoundtable
   i18n/           # 國際化
+  pages/          # 路由頁面：ChatPage、SettingsView、SharedView
   stores/         # Zustand 狀態管理
   utils/          # prompt 構建、匯出、壓縮、儲存工具
   types.ts        # 類型定義

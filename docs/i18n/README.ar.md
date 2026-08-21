@@ -97,7 +97,7 @@ npm run dev
 
 **161 مفكراً جاهزاً** عبر 15 مجالاً، مرتّبين حسب الشهرة — اكتب أي اسم لإنشاء شخصية مخصصة فوراً.
 
-**النماذج** — عيّن **مستوى التفكير** (إيقاف / منخفض / متوسط / مرتفع)، أو أدخل **معرّف نموذج مخصص**، أو اربط أي **API متوافق مع OpenAI** كمزود مخصص. الافتراضي: DeepSeek V4 Flash.
+**النماذج** — عيّن **مستوى التفكير** (إيقاف / منخفض / متوسط / مرتفع)، أو أدخل **معرّف نموذج مخصص**، أو اربط أي **API متوافق مع OpenAI** كمزود مخصص. الافتراضي: DeepSeek V4 Flash. لا يظهر عنصر التحكم في التفكير إلا للنماذج التي تدعمه فعليًا، والمزوّدون الذين لا يملكون قيمة إيقاف (Gemini وGrok وGroq وCerebras وMoonshot) يسمّون أدنى مستوى **Min** بدل «إيقاف»: فهو ما زال يستدل وتُحتسب تكلفته، وكتابة «إيقاف» ستكون كذبًا.
 
 **المنصة** — 18 لغة · وضع داكن · متجاوب · **محلي أولاً** (كتابة مزدوجة على IndexedDB + localStorage، يعمل في WeChat ومتصفحات WebView المقيّدة) · **بلا CDN** (الخطوط مستضافة ذاتياً ومضمّنة، فيعمل دون اتصال وخلف جدران الحماية).
 
@@ -115,81 +115,46 @@ npm run dev
 
 يولّد زرّا **نسخ رابط التشكيلة** (شريط المشاركين) و**نسخ رابط الفئة** (مرشّح الفئة) هذه الروابط من الواجهة.
 
-**توجيه اللغة** — أضف بادئة لغة إلى الرابط لتعيين لغة الواجهة، مثلاً `/#/ja/chat`، `/#/ko/chat?chars=socrates`، أو استخدم `?lang=zh`. جميع اللغات الـ 18 مدعومة.
+**توجيه اللغة** — أضف بادئة لغة إلى الرابط لتعيين لغة الواجهة، مثلاً `/#/ja/chat`، `/#/ko/chat?chars=socrates`. جميع اللغات الـ 18 مدعومة.
 
 ## واجهات API المدعومة
 
-24 مزوداً جاهزاً — عالميون وصينيون ومجمّعون:
+25 مزوداً جاهزاً — عالميون وصينيون ومجمّعون:
 
-| المزود                             | النماذج                                                                                             |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **دولي** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **الصين** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **التجميع والاستضافة** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-يقبل كل مزود معرّفات نماذج مخصصة، ويربط خيار **Custom** أي API متوافق مع OpenAI.
+قائمة النماذج الحالية لكل مزود موجودة في الإعدادات — معرّفات النماذج تتغير أسرع من أن تُنسخ هنا.
+
+توفّر Qwen وMiMo وMoonshot وZhipu وMiniMax وTokenHub مضيفاتها الإقليمية بنقرة واحدة. وإلى جانب ذلك، لدى **كل** مزوّد — بما في ذلك Anthropic وGemini — حقل نقطة نهاية حر، لأنه لا يمكن التنبؤ بأي مصدر سيحجب المتصفح. نقطة النهاية ووسيط CORS مستقلان: يمكنك توجيهه إلى بوابتك الخاصة مع الاتصال المباشر، أو استخدام المضيف الرسمي عبر الوسيط.
+
+يقبل كل مزوّد معرّفات نماذج مخصّصة. **تشغيل نموذج محليًا**: يقبل خيار **Custom** أي عنوان متوافق مع OpenAI، مع نقاط بداية بنقرة واحدة لـ LM Studio وOllama وllama.cpp وLiteLLM وTogether AI وFireworks AI (ولكلٍّ رابط وثائقه). الخوادم المحلية لا تحتاج مفتاحًا: العنوان نفسه هو بيانات الاعتماد هناك، لذا يبقى حقل المفتاح اختياريًا.
 
 ## وكيل CORS
 
-بعض المزودين يحظرون طلبات المتصفح المباشرة. يُهيّأ وكيل CORS لكل مزود في الإعدادات — فعّله. يُستخدم وكيل عام (`https://cors.api2026.workers.dev`) افتراضياً.
+بعض المزوّدين لا يرسلون ترويسات CORS، لذا لا يستطيع المتصفح الوصول إليهم مباشرة. الوسيط مفتاح لكل مزوّد في الإعدادات، ويُستخدم وسيط عام (`https://cors.api2026.workers.dev`) افتراضيًا.
 
-> **يُستحسن معرفته قبل التفعيل.** كل شيء آخر هنا يعمل محليًا أولًا، أما الطلب المارّ عبر الوسيط فلا: مفتاح واجهة البرمجة والموجّه كاملًا يمرّان عبر ذلك الوسيط في طريقهما إلى المزوّد. الوسيط الافتراضي يديره هذا المشروع، لكن الأمر ذاته ينطبق على أي وسيط — فهذا هو عمل الوسيط. إن كان المفتاح يهمّك، فأنشئ وسيطك الخاص عبر الـ Worker أدناه ووجّه الإعدادات إليه؛ يستغرق ذلك دقيقتين تقريبًا.
+**وهو مُفعّل مسبقًا للمزوّدين الذين يحتاجونه** — OpenCode Zen وTencent TokenHub وNVIDIA NIM وإدخالَي Coding Plan — لأنهم ببساطة لا يعملون بدونه. وكل ما عداهم يتصل مباشرة افتراضيًا.
 
-لتشغيل وكيلك الخاص، انشر [Cloudflare Worker](https://dash.cloudflare.com) بهذا الكود:
+> **يجدر أن تعرف، سواء فعّلته بنفسك أو وجدته مُفعّلًا.** كل شيء آخر هنا محلي أولًا، أما الطلب عبر الوسيط فلا. مفتاح API والمُوجّه الكامل يمران عبر ذلك الوسيط في طريقهما إلى المزوّد. المهم هو ما يفعله الوسيط بهما، وبالتحديد: يعيد التوجيه فقط ولا شيء غير ذلك — مسار الطلب كله استدعاء `fetch` تمريري واحد، دون سجلات ودون أي تخزين ([اقرأه بنفسك](../../scripts/cors-proxy-worker.js)، فهو قصير). كما أنه لا يوجّه إلا إلى المضيفات المعلنة في ذلك الملف، فهو ليس وسيطًا مفتوحًا يمكن لأحد توجيهه إلى أي هدف.
+>
+> لا يغيّر ذلك كله حقيقة أن الطلب يمر عبر جهاز يشغّله هذا المشروع. إن كان ذلك يهمّ مفتاحك، فشغّل نسختك الخاصة — نحو دقيقتين.
 
-<details>
-<summary>Worker code</summary>
+لتشغيل نسختك، انشر [Cloudflare Worker](https://dash.cloudflare.com) بهذا الكود ثم وجّه الإعدادات إليه:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## التطوير
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # مكوّنات المسارات: ChatPage وSettingsView وSharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

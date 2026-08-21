@@ -99,7 +99,7 @@ http://localhost:5173을 열고 설정으로 이동해 API 키를 입력한 뒤 
 
 **161명의 프리셋 사상가** — 15개 분야에 걸쳐 있으며 명성순으로 정렬됩니다. 아무 이름이나 입력하면 즉석에서 커스텀 캐릭터를 만들 수 있습니다.
 
-**모델** — **사고 수준**(끔 / 낮음 / 중간 / 높음)을 설정하고, **커스텀 모델 ID**를 입력하거나, 모든 **OpenAI 호환 API**를 커스텀 제공업체로 연결합니다. 기본값: DeepSeek V4 Flash.
+**모델** — **사고 수준**(끔 / 낮음 / 중간 / 높음)을 설정하고, **커스텀 모델 ID**를 입력하거나, 모든 **OpenAI 호환 API**를 커스텀 제공업체로 연결합니다. 기본값: DeepSeek V4 Flash. 사고 컨트롤은 실제로 사고를 지원하는 모델에만 나타납니다. 끄기 값이 없는 제공업체(Gemini · Grok · Groq · Cerebras · Moonshot)는 최저 단계를 「끔」이 아니라 **Min** 으로 표시합니다 — 여전히 추론하고 과금되므로 「끔」이라고 쓰면 거짓말이 됩니다.
 
 **플랫폼** — 18개 언어 · 다크 모드 · 반응형 · **로컬 우선**(IndexedDB + localStorage 이중 쓰기, WeChat 및 제한된 WebView에서 작동) · **CDN 제로**(폰트를 자체 호스팅·번들링하여 오프라인 및 방화벽 뒤에서도 작동).
 
@@ -117,81 +117,46 @@ URL로 직접 대화 시작:
 
 (참가자 바의) **라인업 링크 복사**와 (카테고리 필터의) **카테고리 링크 복사** 버튼이 이 URL들을 UI에서 생성합니다.
 
-**언어 라우팅** — URL 앞에 언어 접두사를 붙여 UI 언어를 설정합니다. 예: `/#/ja/chat`, `/#/ko/chat?chars=socrates`, 또는 `?lang=zh` 사용. 18개 언어 모두 지원.
+**언어 라우팅** — URL 앞에 언어 접두사를 붙여 UI 언어를 설정합니다. 예: `/#/ja/chat`, `/#/ko/chat?chars=socrates`. 18개 언어 모두 지원.
 
 ## 지원 API
 
-기본 제공되는 24개 제공업체 — 해외, 중국, 그리고 애그리게이터:
+기본 제공되는 25개 제공업체 — 해외, 중국, 그리고 애그리게이터:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **해외** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **중국** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **집계 & 호스팅** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-모든 제공업체에서 커스텀 모델 ID를 지원하며, **Custom** 옵션으로 모든 OpenAI 호환 API를 연결할 수 있습니다.
+각 제공업체의 최신 모델 목록은 설정에 있습니다 — 모델 ID가 너무 자주 바뀌어 여기에는 옮기지 않습니다.
+
+Qwen · MiMo · Moonshot · Zhipu · MiniMax · TokenHub은 지역 호스트를 한 번의 클릭으로 전환할 수 있습니다. 그 밖에 **모든** 제공업체(Anthropic과 Gemini 포함)에 자유 입력 엔드포인트 필드가 있습니다 — 어떤 업스트림이 브라우저를 차단할지는 미리 알 수 없기 때문입니다. 엔드포인트와 CORS 프록시는 서로 독립적입니다: 자체 게이트웨이를 가리키면서 직접 연결하거나, 공식 호스트를 프록시를 통해 사용할 수 있습니다.
+
+모든 제공업체가 커스텀 모델 ID를 지원합니다. **로컬에서 모델 실행**: 「Custom」은 임의의 OpenAI 호환 주소에 연결하며, LM Studio · Ollama · llama.cpp · LiteLLM · Together AI · Fireworks AI에는 한 번의 클릭으로 채워지는 시작 주소와 각자의 문서 링크가 준비되어 있습니다. 로컬 서버에는 API 키가 필요 없습니다 — 거기서는 주소 자체가 자격 증명이므로 키 칸은 비워 두어도 됩니다.
 
 ## CORS 프록시
 
-일부 제공업체는 브라우저 직접 요청을 차단합니다. CORS 프록시는 설정에서 제공업체별로 구성하며, 켜기만 하면 됩니다. 기본적으로 공용 프록시(`https://cors.api2026.workers.dev`)가 사용됩니다.
+일부 제공업체는 CORS 헤더를 보내지 않아 브라우저에서 직접 접근할 수 없습니다. 프록시는 설정에서 제공업체별로 켜고 끄며, 기본값은 공개 노드(`https://cors.api2026.workers.dev`)입니다.
 
-> **켜기 전에 알아두세요.** 나머지는 모두 로컬 우선이지만 프록시를 거치는 요청은 다릅니다 — API 키와 프롬프트 전문이 제공자에게 가기 전에 그 프록시를 통과합니다. 기본 프록시는 이 프로젝트가 운영하지만, 어떤 프록시든 마찬가지입니다. 키가 중요하다면 아래 Worker로 직접 띄우고 설정에서 그쪽을 가리키세요. 2분이면 됩니다.
+**필요한 제공업체에는 이미 켜져 있습니다** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, 그리고 두 개의 Coding Plan — 꺼두면 아예 동작하지 않기 때문입니다. 나머지는 모두 기본적으로 직접 연결합니다.
 
-직접 운영하려면 다음 코드로 [Cloudflare Worker](https://dash.cloudflare.com)를 배포하세요:
+> **직접 켰든, 이미 켜져 있는 것을 발견했든.** 다른 모든 것은 로컬 우선이지만 프록시를 거치는 요청은 아닙니다: API 키와 프롬프트 전문이 프록시를 지나 제공업체로 갑니다. 중요한 건 프록시가 그것으로 무엇을 하느냐이므로 구체적으로 적습니다 — 전달만 하고 그 외에는 아무것도 하지 않습니다. 요청 경로 전체가 단 한 번의 패스스루 `fetch`이며 로그도, 어떤 형태의 저장도 없습니다([직접 확인하세요](../../scripts/cors-proxy-worker.js), 짧습니다). 또한 그 파일에 선언된 호스트로만 전달하므로, 누군가가 임의의 대상으로 향하게 할 수 있는 오픈 프록시가 아닙니다.
+>
+> 그렇다고 해서 요청이 이 프로젝트가 운영하는 기계를 지난다는 사실이 사라지지는 않습니다. 키가 중요하다면 직접 운영하세요 — 2분이면 됩니다.
 
-<details>
-<summary>Worker code</summary>
+직접 운영하려면 아래 코드로 [Cloudflare Worker](https://dash.cloudflare.com)를 배포한 뒤 설정에서 그 주소를 가리키세요:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## 개발
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # 라우트 컴포넌트: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

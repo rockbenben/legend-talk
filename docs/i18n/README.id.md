@@ -97,7 +97,7 @@ Buka http://localhost:5173, ke Pengaturan, masukkan kunci API Anda, dan mulai me
 
 **161 pemikir preset** di 15 domain, diurutkan berdasarkan ketenaran — ketik nama apa pun untuk membuat karakter kustom secara langsung.
 
-**Model** — atur **level berpikir** (mati / rendah / sedang / tinggi), masukkan **ID model kustom**, atau hubungkan **API kompatibel-OpenAI** apa pun sebagai penyedia kustom. Default: DeepSeek V4 Flash.
+**Model** — atur **level berpikir** (mati / rendah / sedang / tinggi), masukkan **ID model kustom**, atau hubungkan **API kompatibel-OpenAI** apa pun sebagai penyedia kustom. Default: DeepSeek V4 Flash. Kontrol berpikir hanya muncul untuk model yang benar-benar mendukungnya, dan penyedia tanpa opsi mati (Gemini, Grok, Groq, Cerebras, Moonshot) memberi label **Min** pada level terendahnya alih-alih «mati»: ia tetap menalar dan tetap ditagih, jadi menulis «mati» adalah kebohongan.
 
 **Platform** — 18 bahasa · mode gelap · responsif · **lokal-pertama** (penulisan ganda IndexedDB + localStorage, berfungsi di WeChat dan WebView terbatas) · **tanpa CDN** (font di-host sendiri dan dibundel, sehingga berfungsi offline dan di belakang firewall).
 
@@ -115,81 +115,46 @@ Kategori: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociology
 
 Tombol **Salin tautan komposisi** (bilah peserta) dan **Salin tautan kategori** (filter kategori) menghasilkan URL ini dari antarmuka.
 
-**Rute bahasa** — awali URL dengan kode bahasa untuk mengatur bahasa antarmuka, mis. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, atau gunakan `?lang=zh`. Mendukung seluruh 18 bahasa.
+**Rute bahasa** — awali URL dengan kode bahasa untuk mengatur bahasa antarmuka, mis. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. Mendukung seluruh 18 bahasa.
 
 ## API yang Didukung
 
-24 penyedia siap pakai — internasional, berbasis Tiongkok, dan agregator:
+25 penyedia siap pakai — internasional, berbasis Tiongkok, dan agregator:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **Internasional** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **Tiongkok** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Agregator & hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-Setiap penyedia menerima ID model kustom, dan opsi **Custom** menghubungkan API kompatibel-OpenAI apa pun.
+Daftar model terkini tiap penyedia ada di Pengaturan — ID model berubah terlalu cepat untuk disalin ke sini.
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax, dan TokenHub menyediakan host regionalnya sekali klik. Selain itu, **setiap** penyedia — termasuk Anthropic dan Gemini — punya kolom endpoint teks bebas, karena upstream mana yang memblokir browser tidak bisa diprediksi. Endpoint dan proksi CORS saling independen: Anda bisa mengarah ke gateway sendiri dan tetap terhubung langsung, atau memakai host resmi lewat proksi.
+
+Semua penyedia menerima ID model kustom. **Menjalankan model secara lokal**: opsi **Custom** menerima alamat apa pun yang kompatibel dengan OpenAI, dengan titik awal sekali klik untuk LM Studio, Ollama, llama.cpp, LiteLLM, Together AI, dan Fireworks AI (masing-masing dengan tautan dokumentasinya). Server lokal tidak butuh kunci API: di sana alamatnya _adalah_ kredensialnya, jadi kolom kunci tetap opsional.
 
 ## Proxy CORS
 
-Beberapa penyedia memblokir permintaan langsung dari browser. Proxy CORS dikonfigurasi per penyedia di Pengaturan — cukup aktifkan. Proxy publik (`https://cors.api2026.workers.dev`) digunakan secara default.
+Beberapa penyedia tidak mengirim header CORS, sehingga browser tidak bisa menjangkaunya secara langsung. Proksi adalah sakelar per penyedia di Pengaturan, dan secara bawaan dipakai proksi publik (`https://cors.api2026.workers.dev`).
 
-> **Perlu diketahui sebelum menyalakannya.** Semua yang lain di sini local-first, tetapi permintaan yang lewat proxy tidak: kunci API dan seluruh prompt Anda melewati proxy itu dalam perjalanan ke penyedia. Proxy bawaan dijalankan proyek ini, tapi hal yang sama berlaku untuk proxy mana pun — memang begitulah cara kerja proxy. Kalau kunci itu penting bagi Anda, jalankan sendiri dengan Worker di bawah lalu arahkan Pengaturan ke sana; sekitar dua menit.
+**Sudah aktif untuk penyedia yang membutuhkannya** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, dan dua entri Coding Plan — karena tanpa itu mereka memang tidak jalan. Selebihnya terhubung langsung secara bawaan.
 
-Untuk menjalankan milik Anda sendiri, deploy sebuah [Cloudflare Worker](https://dash.cloudflare.com) dengan kode ini:
+> **Perlu diketahui, entah Anda yang menyalakannya atau menemukannya sudah menyala.** Semua hal lain di sini local-first; permintaan lewat proksi tidak. Kunci API dan prompt lengkap Anda melewati proksi itu menuju penyedia. Yang penting adalah apa yang dilakukan proksi terhadapnya, jadi konkretnya: ia hanya meneruskan dan tidak lebih — seluruh jalur permintaan adalah satu `fetch` pass-through, tanpa log dan tanpa penyimpanan apa pun ([baca sendiri](../../scripts/cors-proxy-worker.js), pendek kok). Ia juga hanya meneruskan ke host yang dideklarasikan di berkas itu, jadi bukan proksi terbuka yang bisa diarahkan orang ke sasaran sembarang.
+>
+> Semua itu tidak mengubah kenyataan bahwa permintaan melewati mesin yang dioperasikan proyek ini. Kalau itu penting bagi kunci Anda, jalankan sendiri — sekitar dua menit.
 
-<details>
-<summary>Worker code</summary>
+Untuk menjalankan sendiri, deploy sebuah [Cloudflare Worker](https://dash.cloudflare.com) dengan kode ini lalu arahkan Pengaturan ke sana:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## Pengembangan
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # komponen rute: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

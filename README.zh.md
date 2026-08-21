@@ -44,7 +44,7 @@ Legend Talk 是一个多轮 AI 圆桌讨论工具——选 2–10 位历史或�
 
 **三种开场方式：**
 
-- **抛出问题** — 输入一个话题，AI 自动组一桌 3–5 位观点形成张力的思想家。
+- **抛出问题** — 输入一个话题，AI 自动组一桌 3–5 位观点有冲突的思想家。
 - **自定阵容** — 自己挑 2–10 位，或随机来 5 位。
 - **单独请教** — 与 161 位思想家中的任意一位一对一，用他们独有的思维框架分析，而非泛泛的 AI 扮演。
 
@@ -100,7 +100,7 @@ npm run dev
 
 **161 位预设思想家**，覆盖 15 大领域、按知名度排序——直接输入任意名字即可即时创建自定义角色。
 
-**模型** — 可设 **思考强度**（关闭 / 低 / 中 / 高）、手动填入 **自定义模型 ID**，或以自定义服务商接入任意 **OpenAI 兼容 API**。默认：DeepSeek V4 Flash。
+**模型** — 可设 **思考强度**（关闭 / 低 / 中 / 高）、手动填入 **自定义模型 ID**，或以自定义服务商接入任意 **OpenAI 兼容 API**。默认：DeepSeek V4 Flash。思考控件只对真正支持思考的模型出现；没有关闭档的服务商（Gemini、Grok、Groq、Cerebras、Moonshot）最低一档标为 **Min** 而不是「关闭」——它仍在推理、仍在计费，写「关闭」就是撒谎。
 
 **平台** — 18 种语言 · 深色模式 · 响应式 · **本地优先**（IndexedDB + localStorage 双写，兼容微信等受限 WebView）· **零 CDN**（字体全部自托管打包，离线与内网环境开箱即用）。
 
@@ -118,81 +118,46 @@ npm run dev
 
 参与者栏的 **复制阵容链接** 与分类筛选栏的 **复制分类圆桌链接** 可直接从界面生成这些 URL。
 
-**语言路由** — URL 加语言前缀即可切换界面语言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`，也支持 `?lang=zh`。支持全部 18 种语言。
+**语言路由** — URL 加语言前缀即可切换界面语言，如 `/#/ja/chat`、`/#/ko/chat?chars=socrates`。支持全部 18 种语言。
 
 ## 支持的 API
 
-开箱即用 24 家服务商——国际、国内与聚合平台：
+开箱即用 25 家服务商——国际、国内与聚合平台：
 
-| 服务商                            | 模型                                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| OpenAI                            | GPT-5.5、GPT-5.4、GPT-5.4 Mini                                                                   |
-| Anthropic                         | Claude Opus 4.7、Claude Sonnet 4.6、Claude Haiku 4.5                                             |
-| Google Gemini                     | Gemini 3.1 Pro、Gemini 3.5 Flash                                                                 |
-| xAI Grok                          | Grok 4.3、Grok 4.20 系列                                                                         |
-| Mistral / Cohere                  | Mistral Medium 3.5 / Large 3、Command A 系列                                                     |
-| DeepSeek                          | DeepSeek V4 Flash、V4 Pro                                                                        |
-| 月之暗面 Kimi                     | Kimi K2.6、K2.5                                                                                  |
-| 智谱 GLM                          | GLM-5.1、GLM-5、GLM-4.7 系列                                                                     |
-| MiniMax / 混元 / 千帆 / 小米 MiMo | MiniMax M2.7、混元 2.0、文心 5.1、MiMo V2.5                                                      |
-| 字节方舟 Coding Plan              | Doubao Seed 2.0、Kimi K2.5、GLM-4.7、DeepSeek V4                                                 |
-| 阿里百炼 Coding Plan              | Qwen 3.6 Max/Plus/Flash、Kimi K2.5、GLM-5                                                        |
-| 聚合平台                          | OpenRouter、硅基流动、Groq、Cerebras、Together、Fireworks、Perplexity、NVIDIA NIM、GitHub Models |
+- **海外** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **国内** — DeepSeek · 通义千问 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智谱 GLM · MiniMax · 阶跃星辰 · 百度千帆 · 腾讯 TokenHub · 字节方舟 Coding Plan · 阿里百炼 Coding Plan
+- **聚合与托管** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-所有服务商均支持自定义模型 ID，「Custom」选项可接入任意 OpenAI 兼容 API。
+各服务商的模型列表在「设置」里实时可见——模型 ID 变动太快，此处不再镜像。
+
+通义千问、小米 MiMo、月之暗面、智谱、MiniMax、腾讯 TokenHub 的地域节点可一键切换。除此之外，**每一家**（含 Anthropic 与 Gemini）都有一个自由填写的端点框——哪家上游会拦浏览器无法预判。端点与 CORS 中转是两件独立的事：可以指向自建网关而仍然直连，也可以走官方地址而经中转。
+
+所有服务商均支持自定义模型 ID。**本地跑模型**：「Custom」接入任意 OpenAI 兼容地址，并为 LM Studio、Ollama、llama.cpp、LiteLLM、Together AI、Fireworks AI 各准备了一键起步地址与各自的文档链接。本地服务无需 API key——对它们而言地址就是凭据，key 一栏可以留空。
 
 ## CORS 中转
 
-部分服务商不允许浏览器直接调用。在设置页按服务商开关 CORS 中转即可，默认使用公共节点（`https://cors.api2026.workers.dev`）。
+部分服务商不发 CORS 响应头，浏览器直连不到。中转在设置里按服务商开关，默认使用公共节点（`https://cors.api2026.workers.dev`）。
 
-> **开之前值得知道**：其余部分都是本地优先，但走中转的请求不是——你的 API key 和完整 prompt 会经过该节点再转发给服务商。默认节点由本项目维护，但换成任何中转都一样，这是中转的本质。若你在意这个 key，用下面的 Worker 自建一个、在设置里指过去即可，大约两分钟。
+**需要它的那几家已经默认开着** —— OpenCode Zen、腾讯 TokenHub、NVIDIA NIM 与两个 Coding Plan —— 因为关着它们根本不工作。其余一律默认直连。
 
-如需自建，部署一个 [Cloudflare Worker](https://dash.cloudflare.com) 并填入以下代码：
+> **无论是你打开的，还是你发现它已经开着。** 其余部分都是本地优先，走中转的请求不是：你的 API key 与完整 prompt 会经过它再到服务商。它拿这些做什么才是关键，所以说具体点：只转发，此外什么都不做 —— 整条请求路径是一次透传 `fetch`，没有日志、不写任何存储（[自己看](scripts/cors-proxy-worker.js)，很短）。而且只转发该文件里声明过的 host，不是可以被别人指向任意目标的开放代理。
+>
+> 这些都不改变一个事实：请求确实经过了一台本项目运营的机器。若你在意这个 key，自建一个 —— 大约两分钟。
 
-<details>
-<summary>Worker 代码</summary>
+如需自建，部署一个 [Cloudflare Worker](https://dash.cloudflare.com) 并填入以下代码，然后在设置里指过去：
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](scripts/cors-proxy-worker.js)
 
 ## 开发
 
 ```text
 src/
-  adapters/       # LLM API 适配器（OpenAI 兼容、Anthropic）
+  adapters/       # LLM API 适配器（OpenAI 兼容，另有原生 Anthropic 与 Gemini）
   characters/     # 角色预设和自定义角色生成
   components/     # React 组件
   hooks/          # useChat、useRoundtable
   i18n/           # 国际化
+  pages/          # 路由页面：ChatPage、SettingsView、SharedView
   stores/         # Zustand 状态管理
   utils/          # prompt 构建、导出、压缩、存储工具
   types.ts        # 类型定义

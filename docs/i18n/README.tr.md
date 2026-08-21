@@ -99,7 +99,7 @@ http://localhost:5173 açın, Ayarlar'a gidin, API anahtarınızı girin ve sohb
 
 **161 hazır düşünür** 15 alanda, üne göre sıralanmış — özel bir karakteri anında oluşturmak için herhangi bir isim yazın.
 
-**Modeller** — **düşünme seviyesini** (kapalı / düşük / orta / yüksek) ayarlayın, bir **özel model ID'si** girin veya özel sağlayıcı olarak herhangi bir **OpenAI uyumlu API**'yi bağlayın. Varsayılan: DeepSeek V4 Flash.
+**Modeller** — **düşünme seviyesini** (kapalı / düşük / orta / yüksek) ayarlayın, bir **özel model ID'si** girin veya özel sağlayıcı olarak herhangi bir **OpenAI uyumlu API**'yi bağlayın. Varsayılan: DeepSeek V4 Flash. Düşünme denetimi yalnızca bunu gerçekten destekleyen modellerde görünür; kapatma değeri olmayan sağlayıcılar (Gemini, Grok, Groq, Cerebras, Moonshot) en düşük seviyeyi «kapalı» yerine **Min** olarak etiketler: model yine akıl yürütür ve yine ücretlendirilir, «kapalı» demek yalan olurdu.
 
 **Platform** — 18 dil · karanlık mod · duyarlı · **yerel öncelikli** (IndexedDB + localStorage çift yazımı, WeChat ve kısıtlı WebView'lerde çalışır) · **sıfır CDN** (fontlar kendi sunucusunda barındırılır ve paketlenir, böylece çevrimdışı ve güvenlik duvarlarının arkasında çalışır).
 
@@ -117,81 +117,46 @@ Kategoriler: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociol
 
 **Kadro bağlantısını kopyala** (katılımcı çubuğu) ve **Kategori bağlantısını kopyala** (kategori filtresi) düğmeleri bu URL'leri arayüzden oluşturur.
 
-**Dil yönlendirme** — arayüz dilini ayarlamak için URL'ye bir dil öneki ekleyin, örn. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, veya `?lang=zh` kullanın. 18 dilin tümü desteklenir.
+**Dil yönlendirme** — arayüz dilini ayarlamak için URL'ye bir dil öneki ekleyin, örn. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. 18 dilin tümü desteklenir.
 
 ## Desteklenen API'ler
 
-Kutudan çıkar çıkmaz 24 sağlayıcı — uluslararası, Çin merkezli ve toplayıcılar:
+Kutudan çıkar çıkmaz 25 sağlayıcı — uluslararası, Çin merkezli ve toplayıcılar:
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **Uluslararası** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **Çin** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Toplayıcılar ve barındırma** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-Her sağlayıcı özel model ID'lerini kabul eder ve **Custom** seçeneği herhangi bir OpenAI uyumlu API'yi bağlar.
+Her sağlayıcının güncel model listesi Ayarlar’da — model kimlikleri burada aynalanamayacak kadar hızlı değişiyor.
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax ve TokenHub bölgesel sunucularını tek tıkla değiştirir. Bunun ötesinde **her** sağlayıcının — Anthropic ve Gemini dahil — serbest metin uç nokta alanı vardır; hangi kaynağın tarayıcıyı engelleyeceği önceden kestirilemez. Uç nokta ile CORS proxy birbirinden bağımsızdır: kendi ağ geçidinizi gösterip yine doğrudan bağlanabilir ya da resmi sunucuya proxy üzerinden gidebilirsiniz.
+
+Tüm sağlayıcılar özel model ID kabul eder. **Modeli yerelde çalıştırma**: **Custom** seçeneği OpenAI uyumlu her adresi kabul eder; LM Studio, Ollama, llama.cpp, LiteLLM, Together AI ve Fireworks AI için tek tıkla başlangıç adresleri (her biri kendi dokümantasyon bağlantısıyla) hazırdır. Yerel sunucular API anahtarı istemez: orada adresin kendisi kimlik bilgisidir, bu yüzden anahtar alanı isteğe bağlı kalır.
 
 ## CORS Proxy
 
-Bazı sağlayıcılar doğrudan tarayıcı isteklerini engeller. CORS proxy, Ayarlar'da sağlayıcı başına yapılandırılır — açın. Varsayılan olarak genel bir proxy (`https://cors.api2026.workers.dev`) kullanılır.
+Bazı sağlayıcılar CORS başlıkları göndermez, bu yüzden tarayıcı onlara doğrudan erişemez. Proxy, Ayarlar'da sağlayıcı başına bir anahtardır ve varsayılan olarak genel bir proxy (`https://cors.api2026.workers.dev`) kullanılır.
 
-> **Açmadan önce bilmekte fayda var.** Buradaki her şey yerel öncelikli, ama proxy üzerinden giden bir istek değil: API anahtarınız ve istemin tamamı, sağlayıcıya giderken o proxy'den geçer. Varsayılan proxy'yi bu proje işletiyor, ama hangi proxy olursa olsun durum aynı — proxy zaten budur. Anahtar sizin için önemliyse aşağıdaki Worker ile kendinizinkini kurun ve Ayarlar'ı oraya yönlendirin; iki dakika sürer.
+**İhtiyaç duyan sağlayıcılarda zaten açık** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM ve iki Coding Plan girdisi — çünkü kapalıyken hiç çalışmıyorlar. Geri kalan her şey varsayılan olarak doğrudan bağlanır.
 
-Kendinizinkini çalıştırmak için bu kodla bir [Cloudflare Worker](https://dash.cloudflare.com) dağıtın:
+> **Siz açmış olun ya da açık bulmuş olun, bilmekte fayda var.** Buradaki her şey yerel önceliklidir; proxy üzerinden giden bir istek değildir. API anahtarınız ve tam istem, sağlayıcıya giderken o proxy'den geçer. Önemli olan proxy'nin onlarla ne yaptığıdır, o yüzden somut olarak: yalnızca iletir, başka hiçbir şey yapmaz — isteğin tüm yolu tek bir geçişli `fetch`'tir; günlük tutulmaz, hiçbir biçimde saklama yapılmaz ([kendiniz okuyun](../../scripts/cors-proxy-worker.js), kısadır). Ayrıca yalnızca o dosyada bildirilen sunuculara iletir; yani birinin istediği hedefe yöneltebileceği açık bir proxy değildir.
+>
+> Bunların hiçbiri, isteğin bu projenin işlettiği bir makineden geçtiği gerçeğini değiştirmez. Anahtarınız için bu önemliyse kendinizinkini çalıştırın — yaklaşık iki dakika sürer.
 
-<details>
-<summary>Worker code</summary>
+Kendinizinkini çalıştırmak için bu kodla bir [Cloudflare Worker](https://dash.cloudflare.com) dağıtın ve Ayarlar'ı ona yönlendirin:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## Geliştirme
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # rota bileşenleri: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

@@ -97,7 +97,7 @@ Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API et c
 
 **161 penseurs prédéfinis** répartis dans 15 domaines, classés par notoriété — saisissez n'importe quel nom pour créer un personnage personnalisé à la volée.
 
-**Modèles** — réglez le **niveau de réflexion** (désactivé / faible / moyen / élevé), saisissez un **ID de modèle personnalisé**, ou connectez n'importe quelle **API compatible OpenAI** en tant que fournisseur personnalisé. Par défaut : DeepSeek V4 Flash.
+**Modèles** — réglez le **niveau de réflexion** (désactivé / faible / moyen / élevé), saisissez un **ID de modèle personnalisé**, ou connectez n'importe quelle **API compatible OpenAI** en tant que fournisseur personnalisé. Par défaut : DeepSeek V4 Flash. Le contrôle de réflexion n'apparaît que pour les modèles qui le prennent réellement en charge, et les fournisseurs sans interrupteur d'arrêt (Gemini, Grok, Groq, Cerebras, Moonshot) nomment leur niveau le plus bas **Min** plutôt que « désactivé » : il raisonne encore et facture encore, donc écrire « désactivé » serait mensonger.
 
 **Plateforme** — 18 langues · mode sombre · responsive · **local-first** (double écriture IndexedDB + localStorage, fonctionne dans WeChat et les WebViews restreintes) · **zéro CDN** (polices auto-hébergées et intégrées, donc fonctionne hors ligne et derrière des pare-feu).
 
@@ -115,81 +115,46 @@ Catégories : `philosophy`, `strategy`, `business`, `finance`, `history`, `socio
 
 Les boutons **Copier le lien de l'équipe** (barre des participants) et **Copier le lien de catégorie** (filtre de catégorie) génèrent ces URL depuis l'interface.
 
-**Routage linguistique** — préfixez l'URL avec une langue pour définir la langue de l'interface, par ex. `/#/ja/chat`, `/#/ko/chat?chars=socrates`, ou utilisez `?lang=zh`. Les 18 langues sont prises en charge.
+**Routage linguistique** — préfixez l'URL avec une langue pour définir la langue de l'interface, par ex. `/#/ja/chat`, `/#/ko/chat?chars=socrates`. Les 18 langues sont prises en charge.
 
 ## APIs Supportées
 
-24 fournisseurs prêts à l'emploi — internationaux, basés en Chine et agrégateurs :
+25 fournisseurs prêts à l'emploi — internationaux, basés en Chine et agrégateurs :
 
-| Provider                           | Models                                                                                              |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **International** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **Chine** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Agrégateurs & hébergement** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-Chaque fournisseur accepte des IDs de modèle personnalisés, et l'option **Custom** connecte n'importe quelle API compatible OpenAI.
+La liste des modèles à jour de chaque fournisseur se trouve dans les Paramètres : les identifiants changent trop vite pour être recopiés ici.
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax et TokenHub proposent leurs hôtes régionaux en un clic. Au-delà, **chaque** fournisseur — Anthropic et Gemini compris — dispose d'un champ d'endpoint libre, car on ne peut pas prévoir quel upstream bloquera un navigateur. L'endpoint et le proxy CORS sont indépendants : vous pouvez viser votre propre passerelle tout en restant en connexion directe, ou passer par le proxy vers l'hôte officiel.
+
+Tous les fournisseurs acceptent des IDs de modèle personnalisés. **Exécuter un modèle en local** : l'option **Custom** accepte n'importe quelle adresse compatible OpenAI, avec des points de départ en un clic pour LM Studio, Ollama, llama.cpp, LiteLLM, Together AI et Fireworks AI (chacun avec un lien vers sa doc). Les serveurs locaux n'ont pas besoin de clé : l'adresse _est_ l'identifiant, le champ clé reste donc facultatif.
 
 ## Proxy CORS
 
-Certains fournisseurs bloquent les requêtes directes depuis le navigateur. Le proxy CORS se configure par fournisseur dans les Paramètres — activez-le. Un proxy public (`https://cors.api2026.workers.dev`) est utilisé par défaut.
+Certains fournisseurs n'envoient pas d'en-têtes CORS : un navigateur ne peut donc pas les joindre directement. Le proxy est une bascule par fournisseur dans les Réglages, et un proxy public (`https://cors.api2026.workers.dev`) est utilisé par défaut.
 
-> **À savoir avant de l'activer.** Tout le reste ici est local-first, mais une requête passée par un proxy ne l'est pas : votre clé d'API et l'intégralité du prompt transitent par ce proxy avant d'atteindre le fournisseur. Le proxy par défaut est opéré par ce projet, mais c'est vrai de n'importe quel proxy — c'est ce qu'est un proxy. Si la clé compte pour vous, déployez le vôtre avec le Worker ci-dessous et pointez les réglages dessus ; deux minutes suffisent.
+**Il est déjà actif pour les fournisseurs qui en ont besoin** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM et les deux entrées Coding Plan — car sans lui ils ne fonctionnent tout simplement pas. Tout le reste se connecte directement par défaut.
 
-Pour exécuter le vôtre, déployez un [Cloudflare Worker](https://dash.cloudflare.com) avec ce code :
+> **À savoir, que vous l'ayez activé ou que vous l'ayez trouvé activé.** Tout le reste ici est local-first ; une requête relayée ne l'est pas. Votre clé API et le prompt complet transitent par ce proxy avant d'atteindre le fournisseur. Ce qui compte, c'est ce que le proxy en fait, alors concrètement : il relaie, rien de plus — tout le trajet de la requête est un unique `fetch` de passage, sans journalisation ni stockage d'aucune sorte ([lisez-le](../../scripts/cors-proxy-worker.js), c'est court). Il ne relaie qu'aux hôtes déclarés dans ce fichier : ce n'est donc pas un proxy ouvert que quelqu'un pourrait pointer vers n'importe quelle cible.
+>
+> Rien de tout cela ne change le fait que la requête passe par une machine exploitée par ce projet. Si cela compte pour votre clé, déployez le vôtre — environ deux minutes.
 
-<details>
-<summary>Worker code</summary>
+Pour le vôtre, déployez un [Cloudflare Worker](https://dash.cloudflare.com) avec ce code, puis pointez les Réglages dessus :
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## Développement
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # composants de route : ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

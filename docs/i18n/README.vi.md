@@ -97,7 +97,7 @@ Mở http://localhost:5173, vào Cài đặt, nhập khóa API của bạn, và 
 
 **161 nhà tư tưởng có sẵn** trải khắp 15 lĩnh vực, sắp xếp theo độ nổi tiếng — gõ bất kỳ tên nào để tạo nhân vật tùy chỉnh ngay lập tức.
 
-**Mô hình** — đặt **mức suy nghĩ** (tắt / thấp / trung bình / cao), nhập **ID mô hình tùy chỉnh**, hoặc kết nối bất kỳ **API tương thích OpenAI** nào làm nhà cung cấp tùy chỉnh. Mặc định: DeepSeek V4 Flash.
+**Mô hình** — đặt **mức suy nghĩ** (tắt / thấp / trung bình / cao), nhập **ID mô hình tùy chỉnh**, hoặc kết nối bất kỳ **API tương thích OpenAI** nào làm nhà cung cấp tùy chỉnh. Mặc định: DeepSeek V4 Flash. Điều khiển suy nghĩ chỉ xuất hiện với các mô hình thực sự hỗ trợ, còn những nhà cung cấp không có giá trị tắt (Gemini, Grok, Groq, Cerebras, Moonshot) ghi mức thấp nhất là **Min** thay vì «tắt»: nó vẫn suy luận và vẫn tính phí, viết «tắt» sẽ là nói dối.
 
 **Nền tảng** — 18 ngôn ngữ · chế độ tối · responsive · **ưu tiên cục bộ** (ghi kép IndexedDB + localStorage, hoạt động trong WeChat và các WebView bị hạn chế) · **không CDN** (font tự lưu trữ và đóng gói sẵn, nên hoạt động ngoại tuyến và sau tường lửa).
 
@@ -115,81 +115,46 @@ Danh mục: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociolo
 
 Các nút **Sao chép liên kết đội hình** (thanh người tham gia) và **Sao chép liên kết danh mục** (bộ lọc danh mục) tạo ra các URL này từ giao diện.
 
-**Định tuyến ngôn ngữ** — thêm tiền tố ngôn ngữ vào URL để đặt ngôn ngữ giao diện, ví dụ `/#/ja/chat`, `/#/ko/chat?chars=socrates`, hoặc dùng `?lang=zh`. Hỗ trợ tất cả 18 ngôn ngữ.
+**Định tuyến ngôn ngữ** — thêm tiền tố ngôn ngữ vào URL để đặt ngôn ngữ giao diện, ví dụ `/#/ja/chat`, `/#/ko/chat?chars=socrates`. Hỗ trợ tất cả 18 ngôn ngữ.
 
 ## API hỗ trợ
 
-24 nhà cung cấp ngay khi cài đặt — quốc tế, đặt tại Trung Quốc, và các bộ tổng hợp:
+25 nhà cung cấp ngay khi cài đặt — quốc tế, đặt tại Trung Quốc, và các bộ tổng hợp:
 
-| Nhà cung cấp                       | Mô hình                                                                                             |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| OpenAI                             | GPT-5.5, GPT-5.4, GPT-5.4 Mini                                                                      |
-| Anthropic                          | Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5                                                |
-| Google Gemini                      | Gemini 3.1 Pro, Gemini 3.5 Flash                                                                    |
-| xAI Grok                           | Grok 4.3, Grok 4.20 series                                                                          |
-| Mistral / Cohere                   | Mistral Medium 3.5 / Large 3, Command A series                                                      |
-| DeepSeek                           | DeepSeek V4 Flash, V4 Pro                                                                           |
-| Moonshot / Kimi                    | Kimi K2.6, K2.5                                                                                     |
-| Zhipu GLM                          | GLM-5.1, GLM-5, GLM-4.7 series                                                                      |
-| MiniMax / Hunyuan / Qianfan / MiMo | MiniMax M2.7, Hunyuan 2.0, ERNIE 5.1, MiMo V2.5                                                     |
-| Volcengine Coding Plan             | Doubao Seed 2.0, Kimi K2.5, GLM-4.7, DeepSeek V4                                                    |
-| Alibaba Bailian Coding Plan        | Qwen 3.6 Max/Plus/Flash, Kimi K2.5, GLM-5                                                           |
-| Aggregators                        | OpenRouter, SiliconFlow, Groq, Cerebras, Together, Fireworks, Perplexity, NVIDIA NIM, GitHub Models |
+- **Quốc tế** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
+- **Trung Quốc** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Tổng hợp & lưu trữ** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
-Mọi nhà cung cấp đều chấp nhận ID mô hình tùy chỉnh, và tùy chọn **Custom** kết nối bất kỳ API tương thích OpenAI nào.
+Danh sách mô hình hiện hành của từng nhà cung cấp nằm trong Cài đặt — ID mô hình thay đổi quá nhanh để sao chép ở đây.
+
+Qwen, MiMo, Moonshot, Zhipu, MiniMax và TokenHub cho phép đổi máy chủ theo khu vực chỉ bằng một cú nhấp. Ngoài ra, **mọi** nhà cung cấp — kể cả Anthropic và Gemini — đều có ô nhập địa chỉ tự do, vì không thể đoán trước nhà cung cấp nào sẽ chặn trình duyệt. Địa chỉ và proxy CORS là hai việc độc lập: bạn có thể trỏ tới cổng riêng mà vẫn kết nối trực tiếp, hoặc dùng máy chủ chính thức qua proxy.
+
+Mọi nhà cung cấp đều nhận ID mô hình tùy chỉnh. **Chạy mô hình cục bộ**: tùy chọn **Custom** nhận bất kỳ địa chỉ tương thích OpenAI nào, kèm địa chỉ khởi đầu một chạm cho LM Studio, Ollama, llama.cpp, LiteLLM, Together AI và Fireworks AI (mỗi mục có liên kết tài liệu riêng). Máy chủ cục bộ không cần khoá API: ở đó địa chỉ chính _là_ thông tin xác thực, nên ô khoá để trống cũng được.
 
 ## Proxy CORS
 
-Một số nhà cung cấp chặn các yêu cầu trực tiếp từ trình duyệt. Proxy CORS được cấu hình theo từng nhà cung cấp trong Cài đặt — bật nó lên. Một proxy công khai (`https://cors.api2026.workers.dev`) được dùng theo mặc định.
+Một số nhà cung cấp không gửi header CORS nên trình duyệt không thể truy cập trực tiếp. Proxy là một công tắc theo từng nhà cung cấp trong Cài đặt, và mặc định dùng một proxy công khai (`https://cors.api2026.workers.dev`).
 
-> **Nên biết trước khi bật.** Mọi thứ khác ở đây đều ưu tiên cục bộ, nhưng yêu cầu đi qua proxy thì không: khoá API và toàn bộ prompt của bạn đi qua proxy đó trước khi tới nhà cung cấp. Proxy mặc định do dự án này vận hành, nhưng bất kỳ proxy nào cũng vậy — đó là bản chất của proxy. Nếu bạn quan tâm tới khoá này, hãy tự dựng một cái bằng Worker bên dưới rồi trỏ Cài đặt sang đó; mất khoảng hai phút.
+**Nó đã bật sẵn cho những nhà cung cấp cần đến** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM và hai mục Coding Plan — vì tắt đi thì đơn giản là không chạy được. Tất cả những mục còn lại mặc định kết nối trực tiếp.
 
-Để chạy proxy của riêng bạn, triển khai một [Cloudflare Worker](https://dash.cloudflare.com) với đoạn mã này:
+> **Đáng biết, dù bạn tự bật hay thấy nó đã bật sẵn.** Mọi thứ khác ở đây đều ưu tiên cục bộ; một yêu cầu đi qua proxy thì không. Khoá API và toàn bộ prompt của bạn đi qua proxy đó trên đường tới nhà cung cấp. Điều quan trọng là proxy làm gì với chúng, nên nói cụ thể: nó chỉ chuyển tiếp và không làm gì khác — toàn bộ đường đi của yêu cầu là một lệnh `fetch` xuyên suốt, không ghi log và không lưu trữ bất cứ thứ gì ([tự đọc](../../scripts/cors-proxy-worker.js), rất ngắn). Nó cũng chỉ chuyển tiếp tới các host được khai báo trong tệp đó, nên không phải một proxy mở mà ai đó có thể trỏ tới đích tuỳ ý.
+>
+> Tất cả những điều đó không thay đổi việc yêu cầu vẫn đi qua một máy do dự án này vận hành. Nếu điều đó quan trọng với khoá của bạn, hãy tự dựng một cái — mất khoảng hai phút.
 
-<details>
-<summary>Worker code</summary>
+Để tự dựng, hãy triển khai một [Cloudflare Worker](https://dash.cloudflare.com) với đoạn mã này rồi trỏ Cài đặt sang đó:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const targetUrl = url.pathname.slice(1) + url.search;
-    if (!targetUrl || !targetUrl.startsWith("https://")) {
-      return new Response("Usage: /https://target-api.com/path", { status: 400 });
-    }
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Max-Age": "86400",
-        },
-      });
-    }
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body,
-    });
-    const newResponse = new Response(response.body, response);
-    newResponse.headers.set("Access-Control-Allow-Origin", "*");
-    return newResponse;
-  },
-};
-```
-
-</details>
+[`scripts/cors-proxy-worker.js`](../../scripts/cors-proxy-worker.js)
 
 ## Phát triển
 
 ```text
 src/
-  adapters/       # LLM API adapters (OpenAI-compatible, Anthropic)
+  adapters/       # LLM API adapters (OpenAI-compatible, plus native Anthropic and Gemini)
   characters/     # Character presets and custom character generation
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
+  pages/          # thành phần route: ChatPage, SettingsView, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

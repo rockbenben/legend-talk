@@ -55,6 +55,7 @@
     "goSettings": "Ir para Configurações",
     "retry": "Tentar novamente",
     "networkError": "Falha na conexão. Verifique sua rede e tente novamente.",
+    "streamStalled": "O provedor não enviou nada por {{seconds}} segundos. Geralmente é fila em horário de pico ou raciocínio profundo muito lento — desative o pensamento ou escolha um modelo mais rápido.",
     "corsError": "Solicitação bloqueada pelo navegador (CORS). Um proxy é necessário.",
     "originBlocked": "Bloqueado pelo provedor (403). Sua chave está correta — o servidor recusa requisições do navegador. Use o proxy.",
     "useCorsProxy": "Usar proxy público",

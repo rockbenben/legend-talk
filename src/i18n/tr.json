@@ -55,6 +55,7 @@
     "goSettings": "Ayarlara git",
     "retry": "Yeniden dene",
     "networkError": "Bağlantı başarısız. Ağınızı kontrol edip tekrar deneyin.",
+    "streamStalled": "Sağlayıcı {{seconds}} saniye boyunca hiçbir şey göndermedi. Genellikle yoğun saatlerdeki kuyruk ya da çok yavaş derin akıl yürütme olur — düşünmeyi kapatın veya daha hızlı bir model seçin.",
     "corsError": "İstek tarayıcı tarafından engellendi (CORS). Proxy gerekli.",
     "originBlocked": "Sağlayıcı reddetti (403). Anahtarınız sorunsuz — sunucu tarayıcı isteklerini engelliyor. Proxy üzerinden geçirin.",
     "useCorsProxy": "Genel proxy kullan",

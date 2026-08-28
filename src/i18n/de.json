@@ -55,6 +55,7 @@
     "goSettings": "Zu Einstellungen",
     "retry": "Wiederholen",
     "networkError": "Verbindung fehlgeschlagen. Prüfe dein Netzwerk und versuche es erneut.",
+    "streamStalled": "Der Anbieter hat {{seconds}} Sekunden lang nichts gesendet. Meist eine Warteschlange zu Stoßzeiten oder sehr langsames Deep Reasoning — Denkmodus deaktivieren oder ein schnelleres Modell wählen.",
     "corsError": "Anfrage vom Browser blockiert (CORS). Ein Proxy wird benötigt.",
     "originBlocked": "Vom Anbieter blockiert (403). Ihr Schlüssel ist in Ordnung – der Server weist Browser-Anfragen ab. Über den Proxy leiten.",
     "useCorsProxy": "Öffentlichen Proxy verwenden",

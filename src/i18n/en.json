@@ -55,6 +55,7 @@
     "goSettings": "Go to Settings",
     "retry": "Retry",
     "networkError": "Connection failed. Check your network or try again.",
+    "streamStalled": "The provider sent nothing for {{seconds}}s. Usually a queue at peak hours or very slow deep reasoning — turn thinking off or pick a faster model.",
     "corsError": "Request blocked by browser (CORS). A proxy is needed.",
     "originBlocked": "Blocked by the provider (403). Your key is fine — the upstream rejects browser requests. Route through the proxy.",
     "useCorsProxy": "Use public proxy",

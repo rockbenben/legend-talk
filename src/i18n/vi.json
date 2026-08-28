@@ -55,6 +55,7 @@
     "goSettings": "Đi đến Cài đặt",
     "retry": "Thử lại",
     "networkError": "Kết nối thất bại. Kiểm tra mạng và thử lại.",
+    "streamStalled": "Nhà cung cấp không gửi gì trong {{seconds}} giây. Thường là do xếp hàng vào giờ cao điểm hoặc suy luận sâu quá chậm — hãy tắt chế độ suy nghĩ hoặc chọn mô hình nhanh hơn.",
     "corsError": "Yêu cầu bị trình duyệt chặn (CORS). Cần proxy.",
     "originBlocked": "Nhà cung cấp từ chối (403). Khóa của bạn vẫn ổn — máy chủ chặn yêu cầu từ trình duyệt. Hãy đi qua proxy.",
     "useCorsProxy": "Sử dụng proxy công cộng",

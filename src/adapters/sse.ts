@@ -19,6 +19,10 @@
  * 收紧那一档换来的是「流断了早一点报错」，代价是「正常请求被杀」。前者用户按
  * 停止就能解决，后者不能 —— 所以宁可等久一点。
  * 不设【总时长】上限：长回复本来就该跑很久，按总时长砍会砍掉正常输出。
+ *
+ * ⚠ 这句错误文案是【接口的一部分】：ChatView 用 /^Stream stalled/ 认出这一支，
+ * 换成中文提示并给出「关闭思考并重试」。改词就要连那边一起改 —— sse.test.ts
+ * 会先红，但别只把测试里的字串跟着改掉，那样分支会静悄悄地不再命中。
  */
 export const STALL_TIMEOUT_MS = 180_000;
 export async function* parseSSE(response: Response): AsyncGenerator<string> {

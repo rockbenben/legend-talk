@@ -55,6 +55,7 @@
     "goSettings": "Aller aux paramètres",
     "retry": "Réessayer",
     "networkError": "Échec de la connexion. Vérifiez votre réseau et réessayez.",
+    "streamStalled": "Le fournisseur n'a rien renvoyé pendant {{seconds}} secondes. Le plus souvent une file d'attente aux heures de pointe ou un raisonnement approfondi trop lent — désactivez la réflexion ou choisissez un modèle plus rapide.",
     "corsError": "Requête bloquée par le navigateur (CORS). Un proxy est nécessaire.",
     "originBlocked": "Bloqué par le fournisseur (403). Votre clé est valide : le serveur refuse les requêtes du navigateur. Passez par le proxy.",
     "useCorsProxy": "Utiliser le proxy public",

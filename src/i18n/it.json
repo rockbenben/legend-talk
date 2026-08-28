@@ -55,6 +55,7 @@
     "goSettings": "Vai alle impostazioni",
     "retry": "Riprova",
     "networkError": "Connessione fallita. Controlla la rete e riprova.",
+    "streamStalled": "Il provider non ha inviato nulla per {{seconds}} secondi. Di solito è una coda nelle ore di punta o un ragionamento profondo troppo lento: disattiva il pensiero o scegli un modello più veloce.",
     "corsError": "Richiesta bloccata dal browser (CORS). È necessario un proxy.",
     "originBlocked": "Bloccato dal provider (403). La chiave è valida: il server rifiuta le richieste dal browser. Instrada tramite proxy.",
     "useCorsProxy": "Usa proxy pubblico",

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input, Button, Spin, Alert, Typography, Divider, Space, Card } from 'antd';
 import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
 import { Virtuoso } from 'react-virtuoso';
+import { STALL_TIMEOUT_MS } from '../adapters/sse';
 import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
@@ -729,21 +730,6 @@ export function ChatView({ conversationId }: ChatViewProps) {
               increaseViewportBy={{ top: 240, bottom: 240 }}
             />
           )}
-          {isGenerating && (
-            <Space size="small" style={{ padding: '12px 0' }}>
-              <Spin size="small" />
-              <Text type="secondary">
-                {isMulti && roundtable.currentRound
-                  ? roundtable.currentSpeaker === '__moderator__'
-                    ? t('roundtable.moderatorSynthesizing', { current: roundtable.currentRound, total: roundtable.totalRounds })
-                    : speakerChar
-                      ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: t(`characters.${speakerChar.id}.name`) })
-                      : t('roundtable.roundPreparing', { current: roundtable.currentRound, total: roundtable.totalRounds })
-                  : t('chat.thinking')}
-              </Text>
-              <Button danger size="small" onClick={stopGenerating}>{t('chat.stop')}</Button>
-            </Space>
-          )}
           {error && (() => {
             const s = useSettingsStore.getState();
             const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
@@ -761,8 +747,30 @@ export function ChatView({ conversationId }: ChatViewProps) {
             // 的 HTML，正文里什么都没有 —— 这也正是状态码前缀要无条件保留的原因。
             const namesAReason = /api[\s_-]?key|token|unauthor|authenticat|credential|permission|quota|balance|insufficient|billing|expired|suspend|region|country/i.test(error);
             const isOriginBlocked = /^\[403\]/.test(error) && !namesAReason && !s.corsEnabled[s.defaultProvider];
+            // 「静默超时」自成一支：连接是活的、状态码是 2xx，只是上游 180 秒
+            // 一个字节都没吐（排队，或首字节前的深度推理不外发 reasoning delta）。
+            // 不能落到 isNetwork 那支去劝人开中转 —— 跨域根本不是这次的死因。
+            // 匹配的是 sse.ts 自己拼的串；改那句文案要连这里一起改（sse.test.ts 会红）。
+            const isStalled = /^Stream stalled/.test(error);
             const isThinkingError = !isNetwork && s.thinkingLevel !== 'off' && /\b(reasoning_effort|enable_thinking|thinking)\b/i.test(error);
             const retryLast = () => { const lastUserMsg = [...conversation.messages].reverse().find((m) => m.role === 'user'); if (lastUserMsg) handleRetryFrom(lastUserMsg.id); };
+            if (isStalled) return (
+              <Alert
+                type="warning"
+                showIcon
+                style={{ marginTop: 8 }}
+                title={t('chat.streamStalled', { seconds: STALL_TIMEOUT_MS / 1000 })}
+                description={<span style={{ fontSize: 12, opacity: 0.75, wordBreak: 'break-word' }}>{error}</span>}
+                action={
+                  <Space>
+                    {s.thinkingLevel !== 'off' && (
+                      <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setThinkingLevel('off'); retryLast(); }}>{t('chat.disableThinking')}</Button>
+                    )}
+                    <Button size="small" onClick={retryLast}>{t('chat.retry')}</Button>
+                  </Space>
+                }
+              />
+            );
             if (isCors || isOriginBlocked) return (
               <Alert
                 type="warning"
@@ -825,6 +833,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
           reader writes into a full-width field under a centered document. */}
       <div style={{ padding: GUTTER }}>
       <div className="lt-column" style={COLUMN}>
+      {/* Status + Stop sit BELOW the scroll container, not after the Virtuoso
+          list inside it: with customScrollParent the list root carries an
+          explicit height that lags the streaming message's growth by a frame,
+          so a flow sibling gets painted over the text still being written.
+          Down here it also stays reachable without scrolling — and ActionBar
+          renders null while generating, so it costs no extra row. */}
+      {isGenerating && (
+        <Space size="small" style={{ padding: '8px 0 0' }}>
+          <Spin size="small" />
+          <Text type="secondary">
+            {isMulti && roundtable.currentRound
+              ? roundtable.currentSpeaker === '__moderator__'
+                ? t('roundtable.moderatorSynthesizing', { current: roundtable.currentRound, total: roundtable.totalRounds })
+                : speakerChar
+                  ? t('roundtable.roundProgress', { current: roundtable.currentRound, total: roundtable.totalRounds, name: t(`characters.${speakerChar.id}.name`) })
+                  : t('roundtable.roundPreparing', { current: roundtable.currentRound, total: roundtable.totalRounds })
+              : t('chat.thinking')}
+          </Text>
+          <Button danger size="small" onClick={stopGenerating}>{t('chat.stop')}</Button>
+        </Space>
+      )}
       <ActionBar
         conversation={conversation}
         characters={characters}

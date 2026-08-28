@@ -55,6 +55,7 @@
     "goSettings": "Ke Pengaturan",
     "retry": "Coba lagi",
     "networkError": "Koneksi gagal. Periksa jaringan Anda dan coba lagi.",
+    "streamStalled": "Penyedia tidak mengirim apa pun selama {{seconds}} detik. Biasanya antrean saat jam sibuk atau penalaran mendalam yang terlalu lambat — matikan mode berpikir atau pilih model yang lebih cepat.",
     "corsError": "Permintaan diblokir browser (CORS). Diperlukan proxy.",
     "originBlocked": "Ditolak penyedia (403). Kunci Anda baik-baik saja — server menolak permintaan dari browser. Lewatkan melalui proxy.",
     "useCorsProxy": "Gunakan proxy publik",

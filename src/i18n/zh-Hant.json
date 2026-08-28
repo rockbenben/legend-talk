@@ -55,6 +55,7 @@
     "goSettings": "前往設定",
     "retry": "重試",
     "networkError": "網路連線失敗，請檢查網路後重試",
+    "streamStalled": "服務商 {{seconds}} 秒沒有回傳任何內容。多半是尖峰排隊或深度推理太慢，可關閉思考或改用更快的模型。",
     "corsError": "請求被瀏覽器攔截（CORS），需要配置中轉",
     "originBlocked": "被服務商拒絕（403）。金鑰沒問題，是上游攔截了來自瀏覽器的請求，走中轉即可。",
     "useCorsProxy": "使用公共中轉",

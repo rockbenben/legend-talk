@@ -122,7 +122,7 @@ Les boutons **Copier le lien de l'équipe** (barre des participants) et **Copier
 25 fournisseurs prêts à l'emploi — internationaux, basés en Chine et agrégateurs :
 
 - **International** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **Chine** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Chine** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Agrégateurs & hébergement** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 La liste des modèles à jour de chaque fournisseur se trouve dans les Paramètres : les identifiants changent trop vite pour être recopiés ici.
@@ -135,7 +135,7 @@ Tous les fournisseurs acceptent des IDs de modèle personnalisés. **Exécuter u
 
 Certains fournisseurs n'envoient pas d'en-têtes CORS : un navigateur ne peut donc pas les joindre directement. Le proxy est une bascule par fournisseur dans les Réglages, et un proxy public (`https://cors.api2026.workers.dev`) est utilisé par défaut.
 
-**Il est déjà actif pour les fournisseurs qui en ont besoin** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM et les deux entrées Coding Plan — car sans lui ils ne fonctionnent tout simplement pas. Tout le reste se connecte directement par défaut.
+**Il est déjà actif pour les fournisseurs qui en ont besoin** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM et les deux entrées des plans d'abonnement (Coding Plan / Token Plan) — car sans lui ils ne fonctionnent tout simplement pas. Tout le reste se connecte directement par défaut.
 
 > **À savoir, que vous l'ayez activé ou que vous l'ayez trouvé activé.** Tout le reste ici est local-first ; une requête relayée ne l'est pas. Votre clé API et le prompt complet transitent par ce proxy avant d'atteindre le fournisseur. Ce qui compte, c'est ce que le proxy en fait, alors concrètement : il relaie, rien de plus — tout le trajet de la requête est un unique `fetch` de passage, sans journalisation ni stockage d'aucune sorte ([lisez-le](../../scripts/cors-proxy-worker.js), c'est court). Il ne relaie qu'aux hôtes déclarés dans ce fichier : ce n'est donc pas un proxy ouvert que quelqu'un pourrait pointer vers n'importe quelle cible.
 >

@@ -124,7 +124,7 @@ URLから直接会話を開始：
 25プロバイダーを標準搭載 — 海外、中国、アグリゲーター：
 
 - **海外** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **中国** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **中国** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **集約・ホスティング** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 各プロバイダーの最新モデル一覧は設定画面にあります——モデルIDの入れ替わりが速いため、ここには転記しません。
@@ -137,7 +137,7 @@ Qwen・MiMo・Moonshot・Zhipu・MiniMax・TokenHub は地域別ホストをワ�
 
 一部のプロバイダーは CORS ヘッダーを返さないため、ブラウザから直接到達できません。プロキシは設定でプロバイダーごとに切り替え、既定では公開ノード（`https://cors.api2026.workers.dev`）を使います。
 
-**必要なプロバイダーでは既に有効になっています** —— OpenCode Zen・Tencent TokenHub・NVIDIA NIM・2 つの Coding Plan —— オフでは単に動かないためです。それ以外は既定で直接接続します。
+**必要なプロバイダーでは既に有効になっています** —— OpenCode Zen・Tencent TokenHub・NVIDIA NIM・2 つのサブスクプラン（Coding Plan / Token Plan） —— オフでは単に動かないためです。それ以外は既定で直接接続します。
 
 > **自分でオンにした場合も、既にオンだった場合も。** 他はすべてローカル優先ですが、プロキシ経由のリクエストはそうではありません：API キーとプロンプト全文がそこを通過してプロバイダーに届きます。重要なのはプロキシがそれをどう扱うかなので、具体的に書きます：転送するだけで他は何もしません —— リクエスト経路は単一のパススルー `fetch` で、ログもストレージも一切ありません（[実物を見てください](../../scripts/cors-proxy-worker.js)、短いです）。さらに、そのファイルで宣言されたホストにしか転送しないので、誰かが任意の宛先に向けられるオープンプロキシではありません。
 >

@@ -125,7 +125,7 @@ The **Copy lineup link** (participants bar) and **Copy category link** (category
 25 providers out of the box — international, China-based, and aggregators:
 
 - **Overseas** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Aggregators & Hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 The live model list for each provider is in Settings — model IDs move too fast to mirror here.
@@ -140,7 +140,7 @@ Every provider accepts custom model IDs.
 
 Some providers don't send CORS headers, so a browser can't reach them directly. The proxy is a per-provider toggle in Settings, and a public one (`https://cors.api2026.workers.dev`) is used by default.
 
-**It is already on for the providers that need it** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, and the two Coding Plan entries — because with it off they simply don't work. Everything else defaults to a direct connection.
+**It is already on for the providers that need it** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, and the two subscription-plan entries (Coding Plan / Token Plan) — because with it off they simply don't work. Everything else defaults to a direct connection.
 
 > **Worth knowing, whether you turned it on or found it on.** Everything else here is local-first; a proxied request is not. Your API key and the full prompt travel through that proxy on the way to the provider. What the proxy does with them is the part that matters, so concretely: it forwards and nothing else — the whole request path is a single pass-through `fetch`, with no logging and no storage of any kind ([read it](scripts/cors-proxy-worker.js), it's short). It also only forwards to hosts declared in that file, so it isn't an open proxy someone else can point at arbitrary targets.
 >

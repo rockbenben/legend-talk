@@ -124,7 +124,7 @@ Kategoriler: `philosophy`, `strategy`, `business`, `finance`, `history`, `sociol
 Kutudan çıkar çıkmaz 25 sağlayıcı — uluslararası, Çin merkezli ve toplayıcılar:
 
 - **Uluslararası** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **Çin** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Çin** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Toplayıcılar ve barındırma** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 Her sağlayıcının güncel model listesi Ayarlar’da — model kimlikleri burada aynalanamayacak kadar hızlı değişiyor.
@@ -137,7 +137,7 @@ Tüm sağlayıcılar özel model ID kabul eder. **Modeli yerelde çalıştırma*
 
 Bazı sağlayıcılar CORS başlıkları göndermez, bu yüzden tarayıcı onlara doğrudan erişemez. Proxy, Ayarlar'da sağlayıcı başına bir anahtardır ve varsayılan olarak genel bir proxy (`https://cors.api2026.workers.dev`) kullanılır.
 
-**İhtiyaç duyan sağlayıcılarda zaten açık** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM ve iki Coding Plan girdisi — çünkü kapalıyken hiç çalışmıyorlar. Geri kalan her şey varsayılan olarak doğrudan bağlanır.
+**İhtiyaç duyan sağlayıcılarda zaten açık** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM ve iki abonelik planı girdisi (Coding Plan / Token Plan) — çünkü kapalıyken hiç çalışmıyorlar. Geri kalan her şey varsayılan olarak doğrudan bağlanır.
 
 > **Siz açmış olun ya da açık bulmuş olun, bilmekte fayda var.** Buradaki her şey yerel önceliklidir; proxy üzerinden giden bir istek değildir. API anahtarınız ve tam istem, sağlayıcıya giderken o proxy'den geçer. Önemli olan proxy'nin onlarla ne yaptığıdır, o yüzden somut olarak: yalnızca iletir, başka hiçbir şey yapmaz — isteğin tüm yolu tek bir geçişli `fetch`'tir; günlük tutulmaz, hiçbir biçimde saklama yapılmaz ([kendiniz okuyun](../../scripts/cors-proxy-worker.js), kısadır). Ayrıca yalnızca o dosyada bildirilen sunuculara iletir; yani birinin istediği hedefe yöneltebileceği açık bir proxy değildir.
 >

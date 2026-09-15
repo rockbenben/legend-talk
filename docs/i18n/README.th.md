@@ -122,7 +122,7 @@ npm run dev
 25 ผู้ให้บริการพร้อมใช้งานทันที — ระดับสากล ในจีน และผู้รวบรวม:
 
 - **ต่างประเทศ** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **จีน** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **จีน** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **แพลตฟอร์มรวมและโฮสติ้ง** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 รายการโมเดลล่าสุดของแต่ละผู้ให้บริการอยู่ในหน้าตั้งค่า — ID โมเดลเปลี่ยนเร็วเกินกว่าจะคัดลอกมาไว้ที่นี่
@@ -135,7 +135,7 @@ Qwen, MiMo, Moonshot, Zhipu, MiniMax และ TokenHub สลับโฮสต
 
 ผู้ให้บริการบางรายไม่ส่งส่วนหัว CORS เบราว์เซอร์จึงเข้าถึงโดยตรงไม่ได้ พร็อกซีเป็นสวิตช์แยกตามผู้ให้บริการในหน้าตั้งค่า และค่าเริ่มต้นใช้พร็อกซีสาธารณะ (`https://cors.api2026.workers.dev`)
 
-**เปิดอยู่แล้วสำหรับผู้ให้บริการที่จำเป็นต้องใช้** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM และรายการ Coding Plan สองรายการ — เพราะถ้าปิดไว้จะใช้งานไม่ได้เลย ส่วนที่เหลือเชื่อมต่อตรงตามค่าเริ่มต้น
+**เปิดอยู่แล้วสำหรับผู้ให้บริการที่จำเป็นต้องใช้** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM และรายการแพ็กเกจสมัครสมาชิกสองรายการ (Coding Plan / Token Plan) — เพราะถ้าปิดไว้จะใช้งานไม่ได้เลย ส่วนที่เหลือเชื่อมต่อตรงตามค่าเริ่มต้น
 
 > **ควรรู้ไว้ ไม่ว่าคุณจะเปิดเองหรือพบว่ามันเปิดอยู่แล้ว** ทุกอย่างที่เหลือที่นี่ทำงานในเครื่องเป็นหลัก แต่คำขอที่ผ่านพร็อกซีไม่ใช่ คีย์ API และพรอมป์ตทั้งหมดของคุณจะผ่านพร็อกซีนั้นก่อนถึงผู้ให้บริการ สิ่งสำคัญคือพร็อกซีทำอะไรกับมัน จึงขอระบุให้ชัด: มันแค่ส่งต่อ ไม่ทำอย่างอื่นเลย — เส้นทางคำขอทั้งหมดคือ `fetch` แบบส่งผ่านครั้งเดียว ไม่มีบันทึกล็อก ไม่มีการจัดเก็บใด ๆ ([อ่านเองได้](../../scripts/cors-proxy-worker.js) สั้นมาก) และมันส่งต่อเฉพาะโฮสต์ที่ประกาศไว้ในไฟล์นั้น จึงไม่ใช่พร็อกซีเปิดที่ใครจะชี้ไปยังปลายทางใดก็ได้
 >

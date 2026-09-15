@@ -124,7 +124,7 @@ npm run dev
 開箱即用 25 家服務商——國際、國內與聚合平台：
 
 - **海外** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **中國** — DeepSeek · 通義千問 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智譜 GLM · MiniMax · 階躍星辰 · 百度千帆 · 騰訊 TokenHub · 字節方舟 Coding Plan · 阿里百煉 Coding Plan
+- **中國** — DeepSeek · 通義千問 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智譜 GLM · MiniMax · 階躍星辰 · 百度千帆 · 騰訊 TokenHub · 字節方舟 Coding Plan · 阿里百煉 Token Plan
 - **聚合與託管** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 各服務商的模型列表在「設定」裡即時可見——模型 ID 變動太快，此處不再鏡像。
@@ -137,7 +137,7 @@ npm run dev
 
 部分服務商不發 CORS 回應標頭，瀏覽器直連不到。中轉在設定裡按服務商開關，預設使用公共節點（`https://cors.api2026.workers.dev`）。
 
-**需要它的那幾家已經預設開著** —— OpenCode Zen、騰訊 TokenHub、NVIDIA NIM 與兩個 Coding Plan —— 因為關著它們根本不工作。其餘一律預設直連。
+**需要它的那幾家已經預設開著** —— OpenCode Zen、騰訊 TokenHub、NVIDIA NIM 與兩個訂閱套餐端點（Coding Plan / Token Plan） —— 因為關著它們根本不工作。其餘一律預設直連。
 
 > **無論是你打開的，還是你發現它已經開著。** 其餘部分都是本地優先，走中轉的請求不是：你的 API key 與完整 prompt 會經過它再到服務商。它拿這些做什麼才是關鍵，所以說具體點：只轉發，此外什麼都不做 —— 整條請求路徑是一次透傳 `fetch`，沒有日誌、不寫任何儲存（[自己看](../../scripts/cors-proxy-worker.js)，很短）。而且只轉發該檔案裡宣告過的 host，不是可以被別人指向任意目標的開放代理。
 >

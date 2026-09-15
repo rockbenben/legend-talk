@@ -125,7 +125,7 @@ npm run dev
 开箱即用 25 家服务商——国际、国内与聚合平台：
 
 - **海外** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **国内** — DeepSeek · 通义千问 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智谱 GLM · MiniMax · 阶跃星辰 · 百度千帆 · 腾讯 TokenHub · 字节方舟 Coding Plan · 阿里百炼 Coding Plan
+- **国内** — DeepSeek · 通义千问 · 月之暗面 Kimi · 豆包 · 小米 MiMo · 智谱 GLM · MiniMax · 阶跃星辰 · 百度千帆 · 腾讯 TokenHub · 字节方舟 Coding Plan · 阿里百炼 Token Plan
 - **聚合与托管** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 各服务商的模型列表在「设置」里实时可见——模型 ID 变动太快，此处不再镜像。
@@ -138,7 +138,7 @@ npm run dev
 
 部分服务商不发 CORS 响应头，浏览器直连不到。中转在设置里按服务商开关，默认使用公共节点（`https://cors.api2026.workers.dev`）。
 
-**需要它的那几家已经默认开着** —— OpenCode Zen、腾讯 TokenHub、NVIDIA NIM 与两个 Coding Plan —— 因为关着它们根本不工作。其余一律默认直连。
+**需要它的那几家已经默认开着** —— OpenCode Zen、腾讯 TokenHub、NVIDIA NIM 与两个订阅套餐端点（Coding Plan / Token Plan） —— 因为关着它们根本不工作。其余一律默认直连。
 
 > **无论是你打开的，还是你发现它已经开着。** 其余部分都是本地优先，走中转的请求不是：你的 API key 与完整 prompt 会经过它再到服务商。它拿这些做什么才是关键，所以说具体点：只转发，此外什么都不做 —— 整条请求路径是一次透传 `fetch`，没有日志、不写任何存储（[自己看](scripts/cors-proxy-worker.js)，很短）。而且只转发该文件里声明过的 host，不是可以被别人指向任意目标的开放代理。
 >

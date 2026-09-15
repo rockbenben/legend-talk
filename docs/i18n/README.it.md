@@ -122,7 +122,7 @@ I pulsanti **Copia link formazione** (barra dei partecipanti) e **Copia link cat
 25 provider pronti all'uso — internazionali, con sede in Cina e aggregatori:
 
 - **Internazionale** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **Cina** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Cina** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Aggregatori e hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 L'elenco aggiornato dei modelli di ogni provider è nelle Impostazioni: gli ID cambiano troppo in fretta per essere ricopiati qui.
@@ -135,7 +135,7 @@ Tutti i provider accettano ID di modello personalizzati. **Eseguire un modello i
 
 Alcuni provider non inviano header CORS, quindi un browser non può raggiungerli direttamente. Il proxy è un interruttore per provider nelle Impostazioni, e per impostazione predefinita si usa uno pubblico (`https://cors.api2026.workers.dev`).
 
-**È già attivo per i provider che ne hanno bisogno** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM e le due voci Coding Plan — perché senza non funzionano affatto. Tutto il resto usa la connessione diretta per impostazione predefinita.
+**È già attivo per i provider che ne hanno bisogno** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM e le due voci dei piani in abbonamento (Coding Plan / Token Plan) — perché senza non funzionano affatto. Tutto il resto usa la connessione diretta per impostazione predefinita.
 
 > **Da sapere, sia che l'abbia attivato tu sia che l'abbia trovato attivo.** Tutto il resto qui è local-first; una richiesta via proxy no. La tua chiave API e il prompt completo passano da quel proxy prima di arrivare al provider. Ciò che conta è cosa ne fa il proxy, quindi concretamente: inoltra e nient'altro — l'intero percorso della richiesta è un singolo `fetch` di passaggio, senza log e senza alcuna memorizzazione ([leggilo](../../scripts/cors-proxy-worker.js), è breve). Inoltre inoltra solo agli host dichiarati in quel file, quindi non è un proxy aperto che qualcuno possa puntare verso destinazioni arbitrarie.
 >

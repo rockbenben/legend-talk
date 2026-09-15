@@ -124,7 +124,7 @@ URL로 직접 대화 시작:
 기본 제공되는 25개 제공업체 — 해외, 중국, 그리고 애그리게이터:
 
 - **해외** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **중국** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **중국** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **집계 & 호스팅** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 각 제공업체의 최신 모델 목록은 설정에 있습니다 — 모델 ID가 너무 자주 바뀌어 여기에는 옮기지 않습니다.
@@ -137,7 +137,7 @@ Qwen · MiMo · Moonshot · Zhipu · MiniMax · TokenHub은 지역 호스트를 
 
 일부 제공업체는 CORS 헤더를 보내지 않아 브라우저에서 직접 접근할 수 없습니다. 프록시는 설정에서 제공업체별로 켜고 끄며, 기본값은 공개 노드(`https://cors.api2026.workers.dev`)입니다.
 
-**필요한 제공업체에는 이미 켜져 있습니다** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, 그리고 두 개의 Coding Plan — 꺼두면 아예 동작하지 않기 때문입니다. 나머지는 모두 기본적으로 직접 연결합니다.
+**필요한 제공업체에는 이미 켜져 있습니다** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, 그리고 두 개의 구독 플랜 항목(Coding Plan / Token Plan) — 꺼두면 아예 동작하지 않기 때문입니다. 나머지는 모두 기본적으로 직접 연결합니다.
 
 > **직접 켰든, 이미 켜져 있는 것을 발견했든.** 다른 모든 것은 로컬 우선이지만 프록시를 거치는 요청은 아닙니다: API 키와 프롬프트 전문이 프록시를 지나 제공업체로 갑니다. 중요한 건 프록시가 그것으로 무엇을 하느냐이므로 구체적으로 적습니다 — 전달만 하고 그 외에는 아무것도 하지 않습니다. 요청 경로 전체가 단 한 번의 패스스루 `fetch`이며 로그도, 어떤 형태의 저장도 없습니다([직접 확인하세요](../../scripts/cors-proxy-worker.js), 짧습니다). 또한 그 파일에 선언된 호스트로만 전달하므로, 누군가가 임의의 대상으로 향하게 할 수 있는 오픈 프록시가 아닙니다.
 >

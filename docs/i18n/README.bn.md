@@ -122,7 +122,7 @@ http://localhost:5173 খুলুন, সেটিংসে যান, আপ�
 বাক্সের বাইরেই ২৫টি প্রদানকারী — আন্তর্জাতিক, চীন-ভিত্তিক, এবং অ্যাগ্রিগেটর:
 
 - **আন্তর্জাতিক** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **চীন** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **চীন** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **অ্যাগ্রিগেটর ও হোস্টিং** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 প্রতিটি প্রদানকারীর হালনাগাদ মডেল তালিকা সেটিংসে আছে — মডেল ID এত দ্রুত বদলায় যে এখানে রাখার মানে হয় না।
@@ -135,7 +135,7 @@ Qwen, MiMo, Moonshot, Zhipu, MiniMax ও TokenHub-এর আঞ্চলিক �
 
 কিছু প্রদানকারী CORS হেডার পাঠায় না, তাই ব্রাউজার সরাসরি তাদের কাছে পৌঁছাতে পারে না। প্রক্সি সেটিংসে প্রতি-প্রদানকারী সুইচ, আর ডিফল্টে একটি পাবলিক প্রক্সি (`https://cors.api2026.workers.dev`) ব্যবহৃত হয়।
 
-**যাদের এটি দরকার তাদের জন্য এটি আগে থেকেই চালু** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM এবং দুটি Coding Plan এন্ট্রি — কারণ এটি বন্ধ থাকলে তারা একেবারেই কাজ করে না। বাকি সবাই ডিফল্টে সরাসরি যুক্ত হয়।
+**যাদের এটি দরকার তাদের জন্য এটি আগে থেকেই চালু** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM এবং দুটি সাবস্ক্রিপশন প্ল্যান এন্ট্রি (Coding Plan / Token Plan) — কারণ এটি বন্ধ থাকলে তারা একেবারেই কাজ করে না। বাকি সবাই ডিফল্টে সরাসরি যুক্ত হয়।
 
 > **জানা ভালো — আপনি চালু করে থাকুন বা চালু অবস্থায় পেয়ে থাকুন।** এখানে বাকি সবকিছু লোকাল-ফার্স্ট; প্রক্সি হয়ে যাওয়া অনুরোধ নয়। আপনার API কী ও সম্পূর্ণ প্রম্পট প্রদানকারীর পথে ওই প্রক্সি দিয়ে যায়। আসল কথা হলো প্রক্সি সেগুলো নিয়ে কী করে, তাই স্পষ্ট করে: এটি কেবল ফরোয়ার্ড করে, আর কিছুই না — পুরো অনুরোধ-পথ একটিমাত্র পাস-থ্রু `fetch`, কোনো লগ নেই, কোনো ধরনের সংরক্ষণ নেই ([নিজেই পড়ুন](../../scripts/cors-proxy-worker.js), ছোট)। তাছাড়া এটি কেবল ওই ফাইলে ঘোষিত হোস্টেই ফরোয়ার্ড করে, তাই এটি এমন খোলা প্রক্সি নয় যাকে কেউ যেকোনো লক্ষ্যের দিকে ঘোরাতে পারে।
 >

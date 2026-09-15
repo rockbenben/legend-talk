@@ -124,7 +124,7 @@ URL से सीधे बातचीत शुरू करें:
 बॉक्स से बाहर 25 प्रदाता — अंतरराष्ट्रीय, चीन-आधारित और एग्रीगेटर:
 
 - **अंतर्राष्ट्रीय** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **चीन** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **चीन** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **एग्रीगेटर और होस्टिंग** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 हर प्रदाता की मौजूदा मॉडल सूची सेटिंग्स में है — मॉडल ID इतनी तेज़ी से बदलते हैं कि यहाँ दोहराना बेकार है।
@@ -137,7 +137,7 @@ Qwen, MiMo, Moonshot, Zhipu, MiniMax और TokenHub अपने क्षे�
 
 कुछ प्रदाता CORS हेडर नहीं भेजते, इसलिए ब्राउज़र उन तक सीधे नहीं पहुँच सकता। प्रॉक्सी सेटिंग्स में प्रति-प्रदाता स्विच है, और डिफ़ॉल्ट रूप से एक सार्वजनिक प्रॉक्सी (`https://cors.api2026.workers.dev`) उपयोग होती है।
 
-**जिन प्रदाताओं को इसकी ज़रूरत है, उनके लिए यह पहले से चालू है** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM और दो Coding Plan प्रविष्टियाँ — क्योंकि इसके बिना वे चलते ही नहीं। बाकी सब डिफ़ॉल्ट रूप से सीधे जुड़ते हैं।
+**जिन प्रदाताओं को इसकी ज़रूरत है, उनके लिए यह पहले से चालू है** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM और दो सब्सक्रिप्शन-प्लान प्रविष्टियाँ (Coding Plan / Token Plan) — क्योंकि इसके बिना वे चलते ही नहीं। बाकी सब डिफ़ॉल्ट रूप से सीधे जुड़ते हैं।
 
 > **जानने योग्य — चाहे आपने इसे चालू किया हो या चालू पाया हो।** यहाँ बाकी सब कुछ लोकल-फ़र्स्ट है; प्रॉक्सी से जाने वाला अनुरोध नहीं। आपकी API कुंजी और पूरा प्रॉम्प्ट प्रदाता तक जाते हुए उस प्रॉक्सी से गुज़रते हैं। असल बात यह है कि प्रॉक्सी उनके साथ क्या करती है, तो ठोस रूप में: वह केवल अग्रेषित करती है और कुछ नहीं — पूरा अनुरोध-पथ एक ही पास-थ्रू `fetch` है, बिना किसी लॉग और बिना किसी भंडारण के ([खुद पढ़ें](../../scripts/cors-proxy-worker.js), छोटा है)। साथ ही यह केवल उसी फ़ाइल में घोषित होस्ट तक अग्रेषित करती है, इसलिए यह कोई खुली प्रॉक्सी नहीं जिसे कोई मनमाने लक्ष्य की ओर मोड़ सके।
 >

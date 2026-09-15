@@ -122,7 +122,7 @@ npm run dev
 25 مزوداً جاهزاً — عالميون وصينيون ومجمّعون:
 
 - **دولي** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **الصين** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **الصين** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **التجميع والاستضافة** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 قائمة النماذج الحالية لكل مزود موجودة في الإعدادات — معرّفات النماذج تتغير أسرع من أن تُنسخ هنا.
@@ -135,7 +135,7 @@ npm run dev
 
 بعض المزوّدين لا يرسلون ترويسات CORS، لذا لا يستطيع المتصفح الوصول إليهم مباشرة. الوسيط مفتاح لكل مزوّد في الإعدادات، ويُستخدم وسيط عام (`https://cors.api2026.workers.dev`) افتراضيًا.
 
-**وهو مُفعّل مسبقًا للمزوّدين الذين يحتاجونه** — OpenCode Zen وTencent TokenHub وNVIDIA NIM وإدخالَي Coding Plan — لأنهم ببساطة لا يعملون بدونه. وكل ما عداهم يتصل مباشرة افتراضيًا.
+**وهو مُفعّل مسبقًا للمزوّدين الذين يحتاجونه** — OpenCode Zen وTencent TokenHub وNVIDIA NIM وإدخالَي خطتَي الاشتراك (Coding Plan / Token Plan) — لأنهم ببساطة لا يعملون بدونه. وكل ما عداهم يتصل مباشرة افتراضيًا.
 
 > **يجدر أن تعرف، سواء فعّلته بنفسك أو وجدته مُفعّلًا.** كل شيء آخر هنا محلي أولًا، أما الطلب عبر الوسيط فلا. مفتاح API والمُوجّه الكامل يمران عبر ذلك الوسيط في طريقهما إلى المزوّد. المهم هو ما يفعله الوسيط بهما، وبالتحديد: يعيد التوجيه فقط ولا شيء غير ذلك — مسار الطلب كله استدعاء `fetch` تمريري واحد، دون سجلات ودون أي تخزين ([اقرأه بنفسك](../../scripts/cors-proxy-worker.js)، فهو قصير). كما أنه لا يوجّه إلا إلى المضيفات المعلنة في ذلك الملف، فهو ليس وسيطًا مفتوحًا يمكن لأحد توجيهه إلى أي هدف.
 >

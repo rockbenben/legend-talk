@@ -122,7 +122,7 @@ Tombol **Salin tautan komposisi** (bilah peserta) dan **Salin tautan kategori** 
 25 penyedia siap pakai — internasional, berbasis Tiongkok, dan agregator:
 
 - **Internasional** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **Tiongkok** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Tiongkok** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Agregator & hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 Daftar model terkini tiap penyedia ada di Pengaturan — ID model berubah terlalu cepat untuk disalin ke sini.
@@ -135,7 +135,7 @@ Semua penyedia menerima ID model kustom. **Menjalankan model secara lokal**: ops
 
 Beberapa penyedia tidak mengirim header CORS, sehingga browser tidak bisa menjangkaunya secara langsung. Proksi adalah sakelar per penyedia di Pengaturan, dan secara bawaan dipakai proksi publik (`https://cors.api2026.workers.dev`).
 
-**Sudah aktif untuk penyedia yang membutuhkannya** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, dan dua entri Coding Plan — karena tanpa itu mereka memang tidak jalan. Selebihnya terhubung langsung secara bawaan.
+**Sudah aktif untuk penyedia yang membutuhkannya** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM, dan dua entri paket langganan (Coding Plan / Token Plan) — karena tanpa itu mereka memang tidak jalan. Selebihnya terhubung langsung secara bawaan.
 
 > **Perlu diketahui, entah Anda yang menyalakannya atau menemukannya sudah menyala.** Semua hal lain di sini local-first; permintaan lewat proksi tidak. Kunci API dan prompt lengkap Anda melewati proksi itu menuju penyedia. Yang penting adalah apa yang dilakukan proksi terhadapnya, jadi konkretnya: ia hanya meneruskan dan tidak lebih — seluruh jalur permintaan adalah satu `fetch` pass-through, tanpa log dan tanpa penyimpanan apa pun ([baca sendiri](../../scripts/cors-proxy-worker.js), pendek kok). Ia juga hanya meneruskan ke host yang dideklarasikan di berkas itu, jadi bukan proksi terbuka yang bisa diarahkan orang ke sasaran sembarang.
 >

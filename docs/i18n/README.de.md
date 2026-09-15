@@ -124,7 +124,7 @@ Die Schaltflächen **Aufstellungslink kopieren** (Teilnehmerleiste) und **Katego
 25 Anbieter von Haus aus — international, chinesisch und Aggregatoren:
 
 - **International** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Aggregatoren & Hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 Die aktuelle Modellliste jedes Anbieters steht in den Einstellungen — Modell-IDs ändern sich zu schnell, um sie hier zu spiegeln.
@@ -137,7 +137,7 @@ Alle Anbieter akzeptieren eigene Modell-IDs. **Ein Modell lokal betreiben**: Die
 
 Manche Anbieter senden keine CORS-Header, ein Browser erreicht sie also nicht direkt. Der Proxy ist ein Schalter pro Anbieter in den Einstellungen; standardmäßig wird ein öffentlicher (`https://cors.api2026.workers.dev`) verwendet.
 
-**Für die Anbieter, die ihn brauchen, ist er bereits an** – OpenCode Zen, Tencent TokenHub, NVIDIA NIM und die beiden Coding-Plan-Einträge –, denn ohne ihn funktionieren sie schlicht nicht. Alles andere verbindet sich standardmäßig direkt.
+**Für die Anbieter, die ihn brauchen, ist er bereits an** – OpenCode Zen, Tencent TokenHub, NVIDIA NIM und die beiden Abonnement-Einträge (Coding Plan / Token Plan) –, denn ohne ihn funktionieren sie schlicht nicht. Alles andere verbindet sich standardmäßig direkt.
 
 > **Wissenswert, ob du ihn eingeschaltet hast oder ihn eingeschaltet vorgefunden hast.** Alles andere hier ist local-first; eine Anfrage über den Proxy ist es nicht. Dein API-Schlüssel und der vollständige Prompt laufen auf dem Weg zum Anbieter durch diesen Proxy. Entscheidend ist, was der Proxy damit macht, also konkret: Er leitet weiter und sonst nichts – der ganze Anfrageweg ist ein einziges durchreichendes `fetch`, ohne Logging und ohne jede Speicherung ([lies es selbst](../../scripts/cors-proxy-worker.js), es ist kurz). Außerdem leitet er nur an Hosts weiter, die in dieser Datei deklariert sind – kein offener Proxy, den jemand auf beliebige Ziele richten könnte.
 >

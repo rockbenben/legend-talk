@@ -122,7 +122,7 @@ Các nút **Sao chép liên kết đội hình** (thanh người tham gia) và *
 25 nhà cung cấp ngay khi cài đặt — quốc tế, đặt tại Trung Quốc, và các bộ tổng hợp:
 
 - **Quốc tế** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **Trung Quốc** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **Trung Quốc** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Tổng hợp & lưu trữ** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 Danh sách mô hình hiện hành của từng nhà cung cấp nằm trong Cài đặt — ID mô hình thay đổi quá nhanh để sao chép ở đây.
@@ -135,7 +135,7 @@ Mọi nhà cung cấp đều nhận ID mô hình tùy chỉnh. **Chạy mô hìn
 
 Một số nhà cung cấp không gửi header CORS nên trình duyệt không thể truy cập trực tiếp. Proxy là một công tắc theo từng nhà cung cấp trong Cài đặt, và mặc định dùng một proxy công khai (`https://cors.api2026.workers.dev`).
 
-**Nó đã bật sẵn cho những nhà cung cấp cần đến** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM và hai mục Coding Plan — vì tắt đi thì đơn giản là không chạy được. Tất cả những mục còn lại mặc định kết nối trực tiếp.
+**Nó đã bật sẵn cho những nhà cung cấp cần đến** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM và hai mục gói đăng ký (Coding Plan / Token Plan) — vì tắt đi thì đơn giản là không chạy được. Tất cả những mục còn lại mặc định kết nối trực tiếp.
 
 > **Đáng biết, dù bạn tự bật hay thấy nó đã bật sẵn.** Mọi thứ khác ở đây đều ưu tiên cục bộ; một yêu cầu đi qua proxy thì không. Khoá API và toàn bộ prompt của bạn đi qua proxy đó trên đường tới nhà cung cấp. Điều quan trọng là proxy làm gì với chúng, nên nói cụ thể: nó chỉ chuyển tiếp và không làm gì khác — toàn bộ đường đi của yêu cầu là một lệnh `fetch` xuyên suốt, không ghi log và không lưu trữ bất cứ thứ gì ([tự đọc](../../scripts/cors-proxy-worker.js), rất ngắn). Nó cũng chỉ chuyển tiếp tới các host được khai báo trong tệp đó, nên không phải một proxy mở mà ai đó có thể trỏ tới đích tuỳ ý.
 >

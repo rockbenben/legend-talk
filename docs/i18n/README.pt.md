@@ -122,7 +122,7 @@ Os botões **Copiar link da formação** (barra de participantes) e **Copiar lin
 25 provedores prontos para uso — internacionais, sediados na China e agregadores:
 
 - **Internacional** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Agregadores e hospedagem** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 A lista de modelos atual de cada provedor está em Configurações — os IDs mudam rápido demais para serem espelhados aqui.
@@ -135,7 +135,7 @@ Todos os provedores aceitam IDs de modelo personalizados. **Rodar um modelo loca
 
 Alguns provedores não enviam cabeçalhos CORS, então um navegador não consegue alcançá-los diretamente. O proxy é um botão por provedor nas Configurações, e por padrão usa-se um público (`https://cors.api2026.workers.dev`).
 
-**Já está ligado para os provedores que precisam** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM e as duas entradas de Coding Plan — porque sem ele simplesmente não funcionam. Todo o resto usa conexão direta por padrão.
+**Já está ligado para os provedores que precisam** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM e as duas entradas dos planos de assinatura (Coding Plan / Token Plan) — porque sem ele simplesmente não funcionam. Todo o resto usa conexão direta por padrão.
 
 > **Vale saber, quer você tenha ligado, quer o tenha encontrado ligado.** Todo o resto aqui é local-first; uma requisição via proxy não é. Sua chave de API e o prompt completo passam por esse proxy a caminho do provedor. O que importa é o que o proxy faz com eles, então concretamente: ele encaminha e nada mais — todo o caminho da requisição é um único `fetch` de passagem, sem logs e sem armazenamento de qualquer tipo ([leia](../../scripts/cors-proxy-worker.js), é curto). Além disso só encaminha para hosts declarados nesse arquivo, então não é um proxy aberto que alguém possa apontar para destinos arbitrários.
 >

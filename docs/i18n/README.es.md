@@ -122,7 +122,7 @@ Los botones **Copiar enlace de alineación** (barra de participantes) y **Copiar
 25 proveedores listos para usar — internacionales, con base en China y agregadores:
 
 - **Internacional** — OpenAI · Anthropic · Google Gemini · xAI Grok · Mistral · Cohere
-- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Coding Plan
+- **China** — DeepSeek · Qwen · Moonshot Kimi · Doubao · Xiaomi MiMo · Zhipu GLM · MiniMax · StepFun · Baidu Qianfan · Tencent TokenHub · Volcengine Coding Plan · Alibaba Bailian Token Plan
 - **Agregadores y hosting** — OpenRouter · OpenCode Zen · Groq · Cerebras · SiliconFlow · AtlasCloud · NVIDIA NIM
 
 La lista de modelos vigente de cada proveedor está en Ajustes: los IDs cambian demasiado rápido para duplicarlos aquí.
@@ -135,7 +135,7 @@ Todos los proveedores aceptan IDs de modelo personalizados. **Ejecutar un modelo
 
 Algunos proveedores no envían cabeceras CORS, así que un navegador no puede alcanzarlos directamente. El proxy es un interruptor por proveedor en Ajustes, y por defecto se usa uno público (`https://cors.api2026.workers.dev`).
 
-**Ya está activado para los proveedores que lo necesitan** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM y las dos entradas de Coding Plan — porque sin él simplemente no funcionan. Todo lo demás usa conexión directa por defecto.
+**Ya está activado para los proveedores que lo necesitan** — OpenCode Zen, Tencent TokenHub, NVIDIA NIM y las dos entradas de los planes de suscripción (Coding Plan / Token Plan) — porque sin él simplemente no funcionan. Todo lo demás usa conexión directa por defecto.
 
 > **Conviene saberlo, tanto si lo activaste tú como si lo encontraste activado.** Todo lo demás aquí es local-first; una petición vía proxy no lo es. Tu clave de API y el prompt completo pasan por ese proxy camino del proveedor. Lo que importa es qué hace el proxy con ellos, así que concretamente: solo reenvía y nada más — todo el camino de la petición es un único `fetch` de paso, sin registros ni almacenamiento de ningún tipo ([léelo](../../scripts/cors-proxy-worker.js), es corto). Además solo reenvía a los hosts declarados en ese archivo, así que no es un proxy abierto que otro pueda dirigir a destinos arbitrarios.
 >

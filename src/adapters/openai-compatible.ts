@@ -5,6 +5,8 @@ interface AdapterOpts {
   docsUrl?: string;
   apiKeyUrl?: string;
   group?: string;
+  /** 默认在选择器隐藏（目录 hidden），只是 UI 过滤，不影响已存配置与请求。 */
+  hidden?: boolean;
   endpoints?: EndpointOption[];
   /**
    * 用户手填的、不在 models 清单里的 SKU 该发的思考参数。清单内的 SKU 一律用
@@ -17,6 +19,7 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
   docsUrl?: string;
   apiKeyUrl?: string;
   group?: string;
+  hidden?: boolean;
   endpoints?: EndpointOption[];
   private fallbackThinkingWire?: ThinkingWire;
   private opts?: AdapterOpts;
@@ -32,6 +35,7 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
     this.docsUrl = opts?.docsUrl;
     this.apiKeyUrl = opts?.apiKeyUrl;
     this.group = opts?.group;
+    this.hidden = opts?.hidden;
     this.endpoints = opts?.endpoints;
     this.fallbackThinkingWire = opts?.fallbackThinkingWire;
   }

@@ -153,7 +153,7 @@ export const useSettingsStore = create<SettingsState>()(
       // 键）。分段反而出过事：兜底那步曾经挂在改名【之前】的一个版本段上，于是改过名
       // 的 provider 在改名前就被判成解析不出，一把推回默认服务商。
       // 顺序才是唯一要紧的东西，写在各步注释里。
-      version: 2,
+      version: 3,
       migrate: (persisted) => {
         const s = persisted as Partial<SettingsState>;
         if (!s || typeof s !== 'object') return s as SettingsState;

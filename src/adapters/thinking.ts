@@ -34,7 +34,7 @@ export function resolveThinkingWire(
  * `thinkingConfig.thinkingLevel:"low"`。界面因此不能把最低档写成「关闭」：
  * 用户以为省下了推理的钱，账单上并没有。
  *
- * 判据由目录下发，不在这里列名单；目录里没有的本地条目（Coding Plan）按
+ * 判据由目录下发，不在这里列名单；目录里没有的本地条目（订阅套餐端点）按
  * 「能关」处理 —— 它们的形态里确实带着真正的关闭值。
  */
 export function canDisableThinking(providerId: string | undefined): boolean {

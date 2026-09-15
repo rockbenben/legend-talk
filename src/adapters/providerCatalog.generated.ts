@@ -65,6 +65,16 @@ export interface CatalogProvider {
    */
   directBlocked: boolean;
   /**
+   * true = 在各 app 的默认 provider 选择器里【隐藏】，用户要打开一个默认关的高级
+   * 开关才放出来（当前是火山 Coding Plan 与阿里 Token Plan 两个订阅套餐：两家
+   * 官方文档都写明，在非 AI 编程工具 / 允许范围之外使用套餐端点可能被判定滥用，
+   * 导致订阅停用或账号 / API Key 封禁）。
+   *
+   * ⚠ 这【只】是默认 UI 过滤，不是禁用：行为层必须照常工作 —— 已经选了它的老
+   * 设置、导入的设置文件、显式指定都要能解析能用。开关只是把选项放出来。
+   */
+  hidden?: boolean;
+  /**
    * true = 这家的【地址才是凭据】，apiKey 可选甚至根本不存在（自建网关、局域网
    * 里的本地推理服务）。界面不该拿「没填 key」拦住开跑 —— 那会让本地模型完全用
    * 不了，而用户只能随便编一个字符串糊弄过去。
@@ -109,7 +119,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     protocol: "openai",
     docs: "https://api-docs.deepseek.com/",
     apiKeyUrl: "https://platform.deepseek.com/api_keys",
-    defaultModel: "deepseek-v4-flash",
+    defaultModel: "deepseek-flash",
     canDisableThinking: true,
     directBlocked: false,
     thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}},
@@ -117,7 +127,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { label: "Default", url: "https://api.deepseek.com/chat/completions", baseUrl: "https://api.deepseek.com" },
     ],
     models: [
-      { id: "deepseek-v4-flash", name: "DeepSeek V4 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
+      { id: "deepseek-flash", name: "DeepSeek Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
       { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"high"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
     ],
   },
@@ -162,7 +172,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { id: "claude-opus-5", name: "Claude Opus 5", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
       { id: "claude-sonnet-5", name: "Claude Sonnet 5", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
       { id: "claude-haiku-4-5", name: "Claude Haiku 4.5", thinking: true, thinkingWire: {"low":{"thinking":{"type":"enabled","budget_tokens":4096}},"medium":{"thinking":{"type":"enabled","budget_tokens":10000}},"high":{"thinking":{"type":"enabled","budget_tokens":12000}}} },
-      { id: "claude-fable-5", name: "Claude Fable 5", thinking: true, thinkingWire: {"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
+      { id: "claude-fable-5-1", name: "Claude Fable 5.1", thinking: true, thinkingWire: {"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
     ],
   },
   {
@@ -182,6 +192,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     models: [
       { id: "gemini-3.1-pro-preview", name: "Gemini 3.1 Pro (Preview)", thinking: true, thinkingLevels: ["low","medium","high"], thinkingWire: {"off":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"low":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"medium":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"medium"}}},"high":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"high"}}}} },
       { id: "gemini-3.7-flash", name: "Gemini 3.7 Flash", thinking: true, thinkingLevels: ["low","medium","high"], thinkingWire: {"off":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"low":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"medium":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"medium"}}},"high":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"high"}}}} },
+      { id: "gemini-3.6-flash", name: "Gemini 3.6 Flash", thinking: true, thinkingLevels: ["minimal","low","medium","high"], thinkingWire: {"off":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"minimal"}}},"low":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"medium":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"medium"}}},"high":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"high"}}}} },
       { id: "gemini-3.5-flash", name: "Gemini 3.5 Flash", thinking: true, thinkingLevels: ["minimal","low","medium","high"], thinkingWire: {"off":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"minimal"}}},"low":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"medium":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"medium"}}},"high":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"high"}}}} },
       { id: "gemini-3.5-flash-lite", name: "Gemini 3.5 Flash Lite", thinking: true, thinkingLevels: ["minimal","low","medium","high"], thinkingWire: {"off":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"minimal"}}},"low":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"low"}}},"medium":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"medium"}}},"high":{"generationConfig":{"thinkingConfig":{"thinkingLevel":"high"}}}} },
     ],
@@ -193,7 +204,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     protocol: "openai",
     docs: "https://help.aliyun.com/model-studio/qwen-api-via-openai-chat-completions",
     apiKeyUrl: "https://bailian.console.aliyun.com/?tab=model#/api-key",
-    defaultModel: "qwen3.7-plus",
+    defaultModel: "qwen3.8-flash",
     canDisableThinking: true,
     directBlocked: false,
     thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}},
@@ -204,8 +215,8 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     ],
     models: [
       { id: "qwen3.8-max", name: "Qwen3.8 Max", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
+      { id: "qwen3.8-flash", name: "Qwen3.8 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
       { id: "qwen3.7-plus", name: "Qwen3.7 Plus", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
-      { id: "qwen3.7-flash", name: "Qwen3.7 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
     ],
   },
   {
@@ -459,14 +470,14 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     models: [
       { id: "nvidia/nemotron-3-super-120b-a12b:free", name: "Nemotron 3 Super 120B (free)" },
       { id: "poolside/laguna-s-2.1:free", name: "Laguna S 2.1 (free)" },
-      { id: "deepseek/deepseek-v4-flash", name: "DeepSeek V4 Flash", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
+      { id: "deepseek/deepseek-v4.1-flash", name: "DeepSeek V4.1 Flash", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "tencent/hy3", name: "Hy3", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "anthropic/claude-sonnet-5", name: "Claude Sonnet 5", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "anthropic/claude-opus-5", name: "Claude Opus 5", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "google/gemini-3.7-flash", name: "Gemini 3.7 Flash", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "openai/gpt-5.6-luna", name: "GPT-5.6 Luna", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "z-ai/glm-5.3", name: "GLM-5.3" },
-      { id: "x-ai/grok-4.5", name: "Grok 4.5" },
+      { id: "x-ai/grok-4.6", name: "Grok 4.6" },
       { id: "moonshotai/kimi-k2.6", name: "Kimi K2.6", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
       { id: "minimax/minimax-m3", name: "MiniMax M3", thinking: true, thinkingWire: {"off":{"reasoning":{"enabled":false}},"low":{"reasoning":{"effort":"low"}},"medium":{"reasoning":{"effort":"medium"}},"high":{"reasoning":{"effort":"high"}}} },
     ],
@@ -575,7 +586,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     protocol: "openai",
     docs: "https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions",
     apiKeyUrl: "https://cloud.siliconflow.cn/me/account/ak",
-    defaultModel: "deepseek-ai/DeepSeek-V4-Flash",
+    defaultModel: "deepseek-ai/DeepSeek-V4.1-Flash",
     canDisableThinking: true,
     directBlocked: false,
     thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}},
@@ -583,7 +594,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { label: "Default", url: "https://api.siliconflow.cn/v1/chat/completions", baseUrl: "https://api.siliconflow.cn/v1" },
     ],
     models: [
-      { id: "deepseek-ai/DeepSeek-V4-Flash", name: "DeepSeek V4 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "deepseek-ai/DeepSeek-V4.1-Flash", name: "DeepSeek V4.1 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
       { id: "deepseek-ai/DeepSeek-V4-Pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
       { id: "Pro/moonshotai/Kimi-K2.6", name: "Kimi K2.6 (Pro)", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
       { id: "zai-org/GLM-5.2", name: "GLM-5.2" },
@@ -667,11 +678,68 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { label: "LM Studio", url: "http://127.0.0.1:1234/v1/chat/completions", baseUrl: "http://127.0.0.1:1234/v1", docs: "https://lmstudio.ai/docs/developer/openai-compat" },
       { label: "Ollama", url: "http://127.0.0.1:11434/v1/chat/completions", baseUrl: "http://127.0.0.1:11434/v1", docs: "https://docs.ollama.com/api/openai-compatibility" },
       { label: "llama.cpp", url: "http://127.0.0.1:8080/v1/chat/completions", baseUrl: "http://127.0.0.1:8080/v1", docs: "https://github.com/ggml-org/llama.cpp/tree/master/tools/server" },
+      { label: "koboldcpp", url: "http://127.0.0.1:5001/v1/chat/completions", baseUrl: "http://127.0.0.1:5001/v1", docs: "https://github.com/LostRuins/koboldcpp/wiki" },
       { label: "LiteLLM", url: "http://127.0.0.1:4000/v1/chat/completions", baseUrl: "http://127.0.0.1:4000/v1", docs: "https://docs.litellm.ai/docs/" },
       { label: "Together AI", url: "https://api.together.xyz/v1/chat/completions", baseUrl: "https://api.together.xyz/v1", docs: "https://docs.together.ai/docs/inference/openai-compatibility" },
       { label: "Fireworks AI", url: "https://api.fireworks.ai/inference/v1/chat/completions", baseUrl: "https://api.fireworks.ai/inference/v1", docs: "https://docs.fireworks.ai/tools-sdks/openai-compatibility" },
     ],
     models: [
+    ],
+  },
+  {
+    key: "volcengine",
+    label: "Volcengine Coding Plan",
+    category: "llm",
+    protocol: "openai",
+    docs: "https://www.volcengine.com/docs/82379/1928261",
+    apiKeyUrl: "https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey",
+    defaultModel: "doubao-seed-evolving",
+    canDisableThinking: true,
+    directBlocked: true,
+    hidden: true,
+    thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}},
+    endpoints: [
+      { label: "Default", url: "https://ark.cn-beijing.volces.com/api/coding/v3/chat/completions", baseUrl: "https://ark.cn-beijing.volces.com/api/coding/v3" },
+    ],
+    models: [
+      { id: "doubao-seed-evolving", name: "Doubao Seed Evolving", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "doubao-seed-2.1-turbo", name: "Doubao Seed 2.1 Turbo", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "doubao-seed-2.0-lite", name: "Doubao Seed 2.0 Lite", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "minimax-m3", name: "MiniMax M3", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "glm-5.3", name: "GLM-5.3 (glm-latest)", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "glm-5.3-flash", name: "GLM-5.3 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "deepseek-v4-flash", name: "DeepSeek V4 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "kimi-k2.7-code", name: "Kimi K2.7 Code", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "kimi-k3", name: "Kimi K3", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+    ],
+  },
+  {
+    key: "alibaba",
+    label: "Alibaba Bailian Token Plan",
+    category: "llm",
+    protocol: "openai",
+    docs: "https://help.aliyun.com/zh/model-studio/token-plan-personal-overview",
+    apiKeyUrl: "https://bailian.console.aliyun.com/cn-beijing/subscription/token-plan/personal",
+    defaultModel: "qwen3.8-flash",
+    canDisableThinking: true,
+    directBlocked: true,
+    hidden: true,
+    thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}},
+    endpoints: [
+      { label: "Default", url: "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1/chat/completions", baseUrl: "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1" },
+    ],
+    models: [
+      { id: "qwen3.8-max", name: "Qwen 3.8 Max" },
+      { id: "qwen3.8-flash", name: "Qwen 3.8 Flash" },
+      { id: "qwen3.7-max", name: "Qwen 3.7 Max", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "qwen3.7-plus", name: "Qwen 3.7 Plus", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "qwen3.6-flash", name: "Qwen 3.6 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "deepseek-v4.1-flash", name: "DeepSeek V4.1 Flash" },
+      { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "deepseek-v4-pro-0813", name: "DeepSeek V4 Pro 0813", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "deepseek-v4-flash-0731", name: "DeepSeek V4 Flash 0731", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "glm-5.2", name: "GLM-5.2", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
     ],
   },
 ] as const;

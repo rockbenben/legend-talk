@@ -1,22 +1,24 @@
-import type { LLMAdapter, ModelOption, ThinkingWire } from '../types';
+import type { LLMAdapter, ModelOption } from '../types';
 import { OpenAICompatibleAdapter } from './openai-compatible';
 import { AnthropicAdapter } from './anthropic';
 import { GeminiAdapter } from './gemini';
 import { findProvider, PROVIDER_CATALOG } from './providerCatalog.generated';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 厂商事实（模型清单、区域端点、文档与控制台链接）来自 providerCatalog.generated.ts。
-// 那份文件由同步脚本整份重写 —— 别手改它，也别把这些事实抄回本文件，否则下次
-// 同步就会重新分叉。本文件只留【本 app 自己的东西】：
+// 厂商事实（模型清单、区域端点、文档与控制台链接、逐 SKU 思考 wire）来自
+// providerCatalog.generated.ts。那份文件由同步脚本整份重写 —— 别手改它，也别把
+// 这些事实抄回本文件，否则下次同步就会重新分叉。本文件只留【本 app 自己的东西】：
 //   · 收录哪几家、显示名、分组
-//   · 目录里没有的条目（两个 Coding Plan）及其思考参数形态
-//   · 目录里没有的条目（Coding Plan / Together / Fireworks）
+//   · 目录里没有的条目（Custom 兜底项 / Together / Fireworks 等起步地址）
 //
 // ⚠ adapter id 【就是】目录 key，不另起本地别名 —— 一处命名，省掉一张只会漂的
 // 对照表。id 同时是【存档键】（settings store 按它分存 API key、baseUrl、CORS
 // 开关），所以改名要配一步 PROVIDER_ID_MIGRATIONS（见 stores/settings.ts），
 // 否则老用户打开就是一个解析不出的 provider。
-// Coding Plan 的两条（volcengine / alibaba）目录里没有，id 由本地自定。
+// 两个用途受限的订阅套餐（volcengine 方舟 Coding Plan / alibaba 百炼 Token Plan）
+// 在上游目录里标了 hidden（上游网页选择器默认不显示，官方提示非 AI 编程工具/允许
+// 范围之外的调用可能被判滥用而封停）；数据本身是全的，hidden 只是上游 UI 的筛选轴，
+// 本 app 照收。
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -27,22 +29,6 @@ interface FromCatalogOpts {
   /** 覆盖默认地址。用于协议路径与目录不同的情况（gemini 走 OpenAI 兼容层） */
   baseUrl?: string;
 }
-
-// 两个 Coding Plan 目录里没有，形态只能本地写。用的是它们各自那条线的通用形态：
-// 方舟是扁平 thinking:{type}，百炼是 enable_thinking。服务端默认都开着思考，
-// 所以关闭态必须【显式关】而不是省略 —— 省略等于按推理静默计费。
-const THINKING_TYPE_WIRE: ThinkingWire = {
-  off: { thinking: { type: 'disabled' } },
-  low: { thinking: { type: 'enabled' } },
-  medium: { thinking: { type: 'enabled' } },
-  high: { thinking: { type: 'enabled' } },
-};
-const ENABLE_THINKING_WIRE: ThinkingWire = {
-  off: { enable_thinking: false },
-  low: { enable_thinking: true },
-  medium: { enable_thinking: true },
-  high: { enable_thinking: true },
-};
 
 /** adapter id 【就是】目录 key —— 不另起本地别名，省掉一张只会漂的对照表。 */
 function fromCatalog(key: string, opts: FromCatalogOpts): OpenAICompatibleAdapter {
@@ -66,6 +52,8 @@ function fromCatalog(key: string, opts: FromCatalogOpts): OpenAICompatibleAdapte
     apiKeyUrl: p.apiKeyUrl,
     fallbackThinkingWire: p.thinkingWire,
     group: opts.group,
+    // 目录 hidden：默认选择器过滤，行为层照常（已存配置/导入/解析不受影响）。
+    ...(p.hidden ? { hidden: true as const } : {}),
     // endpoints[0].url 必须等于 baseUrl（见 EndpointOption 的约定），所以本地
     // 覆盖了地址时不给备选列表。
     ...(eps.length > 1 && !opts.baseUrl ? { endpoints: eps } : {}),
@@ -117,6 +105,13 @@ const PICKED: Record<string, FromCatalogOpts> = {
   siliconflow: { name: 'SiliconFlow', group: 'aggregator' },
   atlascloud: { name: 'AtlasCloud', group: 'aggregator' },
   nvidia: { name: 'NVIDIA NIM', group: 'aggregator' },
+  // 订阅套餐端点 —— 上游目录里标了 hidden（默认选择器不显示，官方文档称非 AI
+  // 编程工具 / 允许范围之外使用套餐端点可能被判定滥用而封停账号/订阅），本 app
+  // 一直收录，事实（专属 host、SKU 清单、思考 wire、directBlocked）全部由目录下发。
+  // alibaba 2026-09 由 Coding Plan 换成 Token Plan（host 与 SKU 全换）；旧套餐
+  // 存档里的失效 SKU 不做迁移，存量用户报错后在设置里重选即可。
+  volcengine: { name: '字节方舟 Coding Plan', group: 'china' },
+  alibaba: { name: '阿里百炼 Token Plan', group: 'china' },
 };
 
 // 收录了却在目录里找不到 = 上游删了这家。显式报错，不要让 filter 静默吞掉。
@@ -134,55 +129,6 @@ const adapters: LLMAdapter[] = [
     if (p.key === 'gemini') return new GeminiAdapter() as LLMAdapter;
     return fromCatalog(p.key, PICKED[p.key]!);
   }),
-
-  // ── Coding Plan（目录不收：另一个 host + 订阅制专属 SKU，与按量付费不是同一条线）──
-  new OpenAICompatibleAdapter(
-    'volcengine',
-    '字节方舟 Coding Plan',
-    'https://ark.cn-beijing.volces.com/api/coding/v3',
-    [
-      { id: 'doubao-seed-2.0-code', name: 'Doubao Seed 2.0 Code' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'doubao-seed-2.0-pro', name: 'Doubao Seed 2.0 Pro' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'doubao-seed-2.0-lite', name: 'Doubao Seed 2.0 Lite' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'doubao-seed-code', name: 'Doubao Seed Code' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'kimi-k2.5', name: 'Kimi K2.5' , thinkingWire: THINKING_TYPE_WIRE },
-      // Thinking-only SKU — there is nothing to disable, so it opts out rather
-      // than being sent thinking:{type:'disabled'}.
-      { id: 'kimi-k2-thinking', name: 'Kimi K2 Thinking' },
-      { id: 'glm-4.7', name: 'GLM-4.7' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'deepseek-v4', name: 'DeepSeek V4' , thinkingWire: THINKING_TYPE_WIRE },
-      { id: 'minimax-m2.5', name: 'MiniMax M2.5' , thinkingWire: THINKING_TYPE_WIRE },
-    ],
-    {
-      docsUrl: 'https://www.volcengine.com/docs/82379/1928261',
-      apiKeyUrl: 'https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey',
-      group: 'china',
-    },
-  ),
-
-  new OpenAICompatibleAdapter(
-    'alibaba',
-    '阿里百炼 Coding Plan',
-    'https://coding.dashscope.aliyuncs.com/v1',
-    [
-      { id: 'qwen3.6-max-preview', name: 'Qwen 3.6 Max (preview)' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3.6-plus', name: 'Qwen 3.6 Plus' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3.6-flash', name: 'Qwen 3.6 Flash' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3.5-plus', name: 'Qwen 3.5 Plus' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3-max-2026-01-23', name: 'Qwen3 Max' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3-coder-plus', name: 'Qwen3 Coder Plus' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'qwen3-coder-next', name: 'Qwen3 Coder Next' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'kimi-k2.5', name: 'Kimi K2.5' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'glm-5', name: 'GLM-5' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'glm-4.7', name: 'GLM-4.7' , thinkingWire: ENABLE_THINKING_WIRE },
-      { id: 'MiniMax-M2.5', name: 'MiniMax M2.5' , thinkingWire: ENABLE_THINKING_WIRE },
-    ],
-    {
-      docsUrl: 'https://help.aliyun.com/zh/model-studio/other-tools-coding-plan',
-      apiKeyUrl: 'https://bailian.console.aliyun.com/cn-beijing#/efm/coding-plan-detail',
-      group: 'china',
-    },
-  ),
 
   // 通用兜底项 —— 目录里它就叫 llm / Custom (OpenAI-compatible)。地址留空表示
   // 「用户自己填」（存在 settings 的 customBaseUrl 里），所以不走 fromCatalog：
@@ -214,15 +160,12 @@ export const CUSTOM_ENDPOINTS: ReadonlyArray<{ label: string; url: string; docs?
  * 默认就该走代理的 provider —— 浏览器直连当前是坏的（CORS 缺头 / 预检 404 /
  * 按 origin 拦截），不开代理每个请求都发不出去。
  *
- * 目录里的那部分由 `directBlocked` 带过来，不再手抄：上游把某家修好了、或者新
- * 收录的某家一上来就是坏的，跑一次同步这边就跟上。手抄的下场刚发生过 —— 加
- * opencode 时没同步这张表，而它的直连本来就不通。
- * 两个 Coding Plan 目录里没有，仍在这里列。
+ * 全部由目录的 `directBlocked` 派生，不再手抄：上游把某家修好了、或者新收录的
+ * 某家（含两个订阅套餐端点）一上来就是坏的，跑一次同步这边就跟上。手抄的下场
+ * 发生过 —— 加 opencode 时没同步这张表，而它的直连本来就不通。
  */
 export const PROXY_BY_DEFAULT: Record<string, boolean> = {
   ...Object.fromEntries(PROVIDER_CATALOG.filter((p) => p.directBlocked && p.key in PICKED).map((p) => [p.key, true])),
-  volcengine: true,
-  alibaba: true,
 };
 
 export const PROVIDER_GROUPS: Array<{ id: string; labelKey: string }> = [
@@ -274,9 +217,9 @@ export const PROVIDER_ID_MIGRATIONS: Record<string, string> = {
  *   ① 每个 target 必须是【当前存在】的模型 id —— 迁移只跑一次，指向另一个已死
  *     的 id 等于没迁（旧版就出现过一串 hunyuan-* → hunyuan-a13b，而 a13b 本身
  *     随后也退役了）。
- *   ② 每个 key 必须【不再存在】于任何 adapter —— Coding Plan 与官方线在售的
- *     型号有重名（glm-4.7 / kimi-k2.5 / MiniMax-M2.5 至今仍是 Coding Plan 的
- *     合法 SKU），把它们写进迁移表会把订阅用户的选择改掉。
+ *   ② 每个 key 必须【不再存在】于任何 adapter —— 订阅套餐与官方线在售的型号
+ *     长期有重名（如 qwen3.6-plus / glm-5 至今在硅基/智谱官方线在售），把它们
+ *     写进迁移表会把别的 adapter 用户的选择改掉。
  */
 export const MODEL_ID_MIGRATIONS: Record<string, string> = {
   // OpenAI — gpt-5.4 dropped (5.4-mini kept); 5.6 is the current flagship.
@@ -296,10 +239,8 @@ export const MODEL_ID_MIGRATIONS: Record<string, string> = {
   'grok-4.20-0309-non-reasoning': 'grok-4.5',
   'grok-4.20-multi-agent-0309': 'grok-4.5',
   // Moonshot — kimi-latest 别名不再指向在产型号。
-  // kimi-k2.5 不在此列：两个 Coding Plan 至今仍在售它，迁移表是全局扁平的，
-  // 写进去会把订阅用户选好的型号改掉。
   'kimi-latest': 'kimi-k2.6',
-  // Zhipu — GLM-4.x 全系退役（glm-4.7 不在此列：仍是 Coding Plan 的在售 SKU）。
+  // Zhipu — GLM-4.x 全系退役。
   'glm-4.6': 'glm-5.2',
   'glm-4.5-air': 'glm-5-turbo',
   'glm-4.5-airx': 'glm-5-turbo',
@@ -308,8 +249,22 @@ export const MODEL_ID_MIGRATIONS: Record<string, string> = {
   'glm-4-long': 'glm-5-turbo',
   'glm-4-flashx-250414': 'glm-5-turbo',
   'glm-4-flash-250414': 'glm-5-turbo',
-  // MiniMax — M2.1 退役（MiniMax-M2.5 不在此列：仍是 Coding Plan 的在售 SKU）。
+  // MiniMax — M2.1 退役。
   'MiniMax-M2.1': 'MiniMax-M3',
+  // 火山 Coding Plan 2026-09-15 换架（官方快速开始页 Model Name 表）：整批旧别名
+  // 下架。minimax-m2.5 小写是火山专属别名（百炼那边是大写 MiniMax-M2.5，不同字符串）。
+  'doubao-seed-2.0-code': 'doubao-seed-evolving',
+  'doubao-seed-2.0-pro': 'doubao-seed-evolving',
+  'doubao-seed-code': 'doubao-seed-evolving',
+  'kimi-k2-thinking': 'kimi-k3',
+  'deepseek-v4': 'deepseek-v4-pro',
+  'minimax-m2.5': 'minimax-m3',
+  // 百炼 Coding Plan → Token Plan（2026-09）：旧套餐 SKU 几乎全换（qwen3.5-plus /
+  // qwen3-max-* / qwen3-coder-* / kimi-k2.5 / glm-4.7 / MiniMax-M2.5 等），只
+  // qwen3.7-plus 一个重叠。这批【不登记迁移】：套餐存量用户极少，旧 id 请求报错后
+  // 在设置里重选即可（仓库方针：全量发布、不做向后兼容垫片）。qwen3.6-flash 在
+  // 新套餐里重新在售，昨天一度登记的迁移已撤回。
+  'qwen3.6-max-preview': 'qwen3.7-plus',
   // 腾讯 — 混元文生文 2026-06-22 整体退役，服务迁到 TokenHub，hy3 是接续型号。
   'hunyuan-turbos-latest': 'hy3',
   'hunyuan-2.0-thinking-20251109': 'hy3',
@@ -324,14 +279,14 @@ export const MODEL_ID_MIGRATIONS: Record<string, string> = {
   'google/gemini-3.1-flash-lite-preview': 'google/gemini-3.7-flash',
   'google/gemini-3.5-flash': 'google/gemini-3.7-flash',
   'minimax/minimax-m2.7': 'minimax/minimax-m3',
-  'x-ai/grok-4.3': 'x-ai/grok-4.5',
-  'x-ai/grok-4.20': 'x-ai/grok-4.5',
-  'deepseek/deepseek-v4-pro': 'deepseek/deepseek-v4-flash',
-  'xiaomi/mimo-v2-pro-20260318': 'deepseek/deepseek-v4-flash',
+  'x-ai/grok-4.3': 'x-ai/grok-4.6',
+  'x-ai/grok-4.20': 'x-ai/grok-4.6',
+  'deepseek/deepseek-v4-pro': 'deepseek/deepseek-v4.1-flash',
+  'xiaomi/mimo-v2-pro-20260318': 'deepseek/deepseek-v4.1-flash',
   // SiliconFlow — 小写 org 前缀 404，MiniMaxAI 才是真 org；该站 MiniMax 线已下架，
   // 直接回落到它在售的 DeepSeek。
   // 裸的 MiniMaxAI/MiniMax-M2.5 不在此列：Together AI 仍在售同名 SKU。
-  'minimax/MiniMax-M2.5': 'deepseek-ai/DeepSeek-V4-Flash',
+  'minimax/MiniMax-M2.5': 'deepseek/deepseek-v4.1-flash',
   // Groq — Llama 线下架，gpt-oss 是接续。
   'llama-3.3-70b-versatile': 'openai/gpt-oss-120b',
   'llama-3.1-8b-instant': 'openai/gpt-oss-20b',

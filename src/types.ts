@@ -52,6 +52,13 @@ export interface LLMAdapter {
   apiKeyUrl?: string;
   group?: string;
   /**
+   * 默认在服务商选择器里隐藏（来自目录的 hidden 字段）—— 当前是火山方舟
+   * Coding Plan 与阿里百炼 Token Plan 两个订阅套餐端点：官方称仅限 AI 编程工具
+   * 交互式使用，允许范围之外调用可能被封停订阅或账号 / API Key。只是【默认 UI
+   * 过滤】：已选中它的存档、导入的设置、解析、发请求一律照常工作，高级开关放出。
+   */
+  hidden?: boolean;
+  /**
    * 这个 SKU 有没有已知的思考形态 —— 界面据此决定要不要显示思考控件。
    * 省略 = 恒为真（claude 原生适配器：它对任何在册或手填的型号都算得出形态）。
    */

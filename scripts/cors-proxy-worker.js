@@ -64,8 +64,9 @@ const ALLOWED_HOSTS = new Set([
   "token-plan-sgp.xiaomimimo.com",
   "tokenhub.tencentmaas.com",
   "tokenhub-intl.tencentmaas.com",
-  // Coding Plan 订阅线（与按量付费不是同一个 host）
-  "coding.dashscope.aliyuncs.com",
+  // 订阅套餐线（与按量付费不是同一个 host）：火山 Coding Plan、阿里百炼 Token Plan
+  // （2026-09 由 coding.dashscope.aliyuncs.com 迁到 token-plan.cn-beijing.maas.aliyuncs.com）
+  "token-plan.cn-beijing.maas.aliyuncs.com",
 ]);
 
 // 短链【不过期】，改按条数封顶。分享出去的链接是给别人点的，按时间自杀最难受：

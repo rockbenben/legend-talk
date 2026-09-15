@@ -138,6 +138,8 @@
     "providerGroupChina": "China",
     "providerGroupAggregator": "Agregadores e hospedagem",
     "providerGroupCustom": "Personalizado",
+    "showCodingPlans": "Mostrar endpoints dos planos de assinatura",
+    "showCodingPlansHelp": "Estes são endpoints exclusivos de planos de assinatura (Volcengine Coding Plan e Alibaba Bailian Token Plan). A documentação oficial informa que são destinados apenas ao uso interativo em ferramentas de programação com IA; usar sua URL base e chave de API fora do escopo permitido pode ser considerado abuso, resultando na suspensão da assinatura ou no banimento da conta / chave de API. Ative apenas se entender o risco.",
     "defaultModel": "Modelo",
     "language": "Idioma",
     "theme": "Tema",

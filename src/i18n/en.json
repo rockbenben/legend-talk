@@ -137,6 +137,8 @@
     "providerGroupChina": "China",
     "providerGroupAggregator": "Aggregators & Hosting",
     "providerGroupCustom": "Custom",
+    "showCodingPlans": "Show subscription-plan endpoints",
+    "showCodingPlansHelp": "These are subscription-only endpoints (Volcengine Coding Plan and Alibaba Bailian Token Plan). The official docs state they are for interactive use in AI coding tools only; using their Base URL and API key outside the permitted scope may be treated as abuse, resulting in suspension or a ban on the account / API key. Enable only if you understand the risk.",
     "defaultModel": "Current Model",
     "language": "Language",
     "theme": "Theme",

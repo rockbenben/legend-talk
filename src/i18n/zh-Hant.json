@@ -133,6 +133,8 @@
     "providerGroupChina": "中國",
     "providerGroupAggregator": "聚合與託管",
     "providerGroupCustom": "自訂",
+    "showCodingPlans": "顯示訂閱套餐節點",
+    "showCodingPlansHelp": "這些是訂閱套餐專屬端點（火山方舟 Coding Plan、阿里百煉 Token Plan）。官方文件指出：僅限在 AI 程式設計工具中互動式使用，在允許範圍之外使用對應的 Base URL 和 API Key 可能被識別為濫用，導致訂閱停用，或帳號 / API Key 被封鎖。請確認瞭解風險後再開啟。",
     "defaultModel": "當前模型",
     "language": "語言",
     "theme": "主題",

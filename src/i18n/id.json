@@ -133,6 +133,8 @@
     "providerGroupChina": "Tiongkok",
     "providerGroupAggregator": "Agregator & hosting",
     "providerGroupCustom": "Kustom",
+    "showCodingPlans": "Tampilkan endpoint paket langganan",
+    "showCodingPlansHelp": "Ini adalah endpoint eksklusif paket langganan (Volcengine Coding Plan, Alibaba Bailian Token Plan). Dokumentasi resmi menyatakan bahwa endpoint ini hanya untuk penggunaan interaktif di alat pemrograman AI; menggunakan Base URL dan API key di luar cakupan yang diizinkan dapat dianggap penyalahgunaan dan menyebabkan langganan dihentikan atau akun / API key diblokir. Aktifkan hanya jika Anda memahami risikonya.",
     "defaultModel": "Model",
     "language": "Bahasa",
     "theme": "Tema",

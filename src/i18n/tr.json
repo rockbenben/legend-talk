@@ -133,6 +133,8 @@
     "providerGroupChina": "Çin",
     "providerGroupAggregator": "Toplayıcılar ve barındırma",
     "providerGroupCustom": "Özel",
+    "showCodingPlans": "Abonelik planı uç noktalarını göster",
+    "showCodingPlansHelp": "Bunlar abonelik planlarına özel uç noktalardır (Volcengine Coding Plan ve Alibaba Bailian Token Plan). Resmî belgeler, bunların yalnızca AI kodlama araçlarında etkileşimli kullanıma yönelik olduğunu belirtir; ilgili Base URL ve API anahtarının izin verilen kapsam dışında kullanılması kötüye kullanım sayılabilir ve aboneliğin askıya alınmasına veya hesabın / API anahtarının engellenmesine yol açabilir. Yalnızca riski anladıysanız etkinleştirin.",
     "defaultModel": "Model",
     "language": "Dil",
     "theme": "Tema",

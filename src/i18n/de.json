@@ -137,6 +137,8 @@
     "providerGroupChina": "China",
     "providerGroupAggregator": "Aggregatoren & Hosting",
     "providerGroupCustom": "Benutzerdefiniert",
+    "showCodingPlans": "Abonnement-Paket-Endpunkte anzeigen",
+    "showCodingPlansHelp": "Hierbei handelt es sich um ausschließlich für Abonnementpakete verfügbare Endpunkte (Volcengine Coding Plan, Alibaba Bailian Token Plan). Laut offizieller Dokumentation sind sie nur für die interaktive Verwendung in KI-Coding-Tools vorgesehen; die Verwendung der zugehörigen Base-URL und des API-Schlüssels außerhalb des zulässigen Rahmens kann als Missbrauch gewertet werden und zur Sperrung des Abonnements oder des Kontos / API-Schlüssels führen. Nur aktivieren, wenn Sie das Risiko verstehen.",
     "defaultModel": "Modell",
     "language": "Sprache",
     "theme": "Design",

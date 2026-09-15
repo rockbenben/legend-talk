@@ -133,6 +133,8 @@
     "providerGroupChina": "중국",
     "providerGroupAggregator": "집계 & 호스팅",
     "providerGroupCustom": "사용자 지정",
+    "showCodingPlans": "구독 플랜 엔드포인트 표시",
+    "showCodingPlansHelp": "이들은 구독 플랜 전용 엔드포인트입니다(Volcengine Coding Plan, Alibaba Bailian Token Plan). 공식 문서에 따르면 AI 코딩 도구에서의 대화형 사용만 허용되며, 허용 범위 밖에서 전용 Base URL과 API 키를 사용하면 오용으로 간주되어 구독 중지 또는 계정/API 키 차단으로 이어질 수 있습니다. 위험을 이해한 경우에만 켜세요.",
     "defaultModel": "모델",
     "language": "언어",
     "theme": "테마",

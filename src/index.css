@@ -292,6 +292,25 @@ body::before {
 }
 .lt-actions .ant-btn-default { color: var(--lt-ink-soft); }
 .lt-actions .ant-btn-default:hover { color: var(--lt-madder); border-color: transparent; }
+/* The disclosure label is a long sentence in some locales (English is 30
+   uppercase-tracked characters); antd buttons are nowrap, so let it wrap on
+   narrow columns instead of overflowing. */
+.lt-actions .lt-disclosure.ant-btn {
+  white-space: normal;
+  text-align: start;
+  line-height: 1.5;
+  height: auto;
+}
+/* Persistent state — Settings disclosure footnote while hidden catalogue
+   entries are revealed: the same madder as hover, but at rest. The actual
+   switch lives inside the popover; the color only explains why the picker
+   gained providers. Must sit AFTER the hover rule (equal specificity). */
+.lt-actions .ant-btn-default.lt-disclosure-on,
+.lt-actions .ant-btn-default.lt-disclosure-on:hover,
+.lt-actions .ant-btn-default.lt-disclosure-on:focus-visible {
+  color: var(--lt-madder);
+  border-color: transparent;
+}
 /* Letterspacing is for words; on an icon-only button it just pushes the
    glyph off centre. */
 .lt-actions .ant-btn-icon-only { letter-spacing: 0; text-indent: 0; }

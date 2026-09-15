@@ -133,6 +133,8 @@
     "providerGroupChina": "中国",
     "providerGroupAggregator": "集約・ホスティング",
     "providerGroupCustom": "カスタム",
+    "showCodingPlans": "サブスクリプションプランのエンドポイントを表示",
+    "showCodingPlansHelp": "これらはサブスクリプションプラン専用のエンドポイントです（Volcengine Coding Plan、Alibaba Bailian Token Plan）。公式ドキュメントでは、AI コーディングツール内での対話的な利用に限られ、許可された範囲外で専用の Base URL と API キーを使うと不正利用とみなされ、サブスクリプション停止、またはアカウント / API キーの封鎖につながる可能性があるとされています。リスクを理解したうえで有効にしてください。",
     "defaultModel": "モデル",
     "language": "言語",
     "theme": "テーマ",

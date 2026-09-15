@@ -85,6 +85,18 @@ describe('adapter registry', () => {
     expect(adapter!.models.length).toBeGreaterThan(0);
   });
 
+  // hidden 只是【默认选择器过滤】：条目照样注册、照样能解析 —— 已选中它的存档、
+  // 导入的设置、按 id 显式获取都必须工作。UI 自己负责在列选项时过滤。
+  it('两个 Coding Plan 标了 hidden，其余条目不标；hidden 不影响解析', () => {
+    for (const id of ['volcengine', 'alibaba']) {
+      const adapter = getAdapter(id);
+      expect(adapter, `${id} 必须存在`).toBeDefined();
+      expect(adapter!.hidden, `${id} 应默认隐藏`).toBe(true);
+    }
+    const hiddenOthers = getAllAdapters().filter((a) => a.hidden && a.id !== 'volcengine' && a.id !== 'alibaba');
+    expect(hiddenOthers.map((a) => a.id)).toEqual([]);
+  });
+
   it('returns undefined for unknown id', () => {
     expect(getAdapter('nonexistent')).toBeUndefined();
   });
@@ -137,9 +149,10 @@ describe('思考控件的两条界面不变量', () => {
     }
   });
 
-  it('能关闭的照旧为 true，目录里没有的本地条目按能关处理', () => {
+  it('能关闭的照旧为 true（含目录下发的 Coding Plan），未知 id 按能关处理', () => {
     expect(canDisableThinking('deepseek')).toBe(true);
-    expect(canDisableThinking('volcengine')).toBe(true); // Coding Plan，目录里没有
+    expect(canDisableThinking('volcengine')).toBe(true); // Coding Plan，目录 canDisableThinking:true
+    expect(canDisableThinking('alibaba')).toBe(true);
     expect(canDisableThinking(undefined)).toBe(true);
   });
 });

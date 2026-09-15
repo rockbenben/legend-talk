@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Form, Input, Select, AutoComplete, Button, Switch, App, Typography, Space, Divider, Flex, Tag } from 'antd';
+import { Form, Input, Select, AutoComplete, Button, Switch, App, Typography, Space, Divider, Flex, Tag, Popover } from 'antd';
 
 const { CheckableTag } = Tag;
 import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined, ApiOutlined, SettingOutlined, UsergroupAddOutlined, DatabaseOutlined } from '@ant-design/icons';
@@ -19,6 +19,7 @@ import { useConversationStore } from '../stores/conversations';
 import { clearAllStorage } from '../utils/persistStorage';
 import { ensureLanguageLoaded } from '../i18n';
 import { useLangPath } from '../hooks/useLangPath';
+import { useShowCodingPlans } from '../hooks/useShowCodingPlans';
 import { CharacterEditor } from './CharacterEditor';
 import { Avatar } from './Avatar';
 import { presetCharacters } from '../characters/presets';
@@ -44,6 +45,11 @@ export function SettingsView() {
   const conversations = useConversationStore((s) => s.conversations);
   const importConversations = useConversationStore((s) => s.importConversations);
   const adapters = getAllAdapters();
+  // 订阅套餐端点（火山方舟 Coding Plan / 阿里百炼 Token Plan）默认藏起来：
+  // 官方称仅限 AI 编程工具交互式使用，允许范围之外调用可能被判滥用封停。
+  // 用户显式打开这个高级开关才放出 —— 但已经选了
+  // 它们的存档不能被藏没（下面过滤时当前选中项永远保留，否则 Select 显示裸 id）。
+  const [showCodingPlans, setShowCodingPlans] = useShowCodingPlans();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const currentAdapter = getAdapter(settings.defaultProvider);
@@ -321,7 +327,10 @@ export function SettingsView() {
   };
 
   const providerOptions = PROVIDER_GROUPS.flatMap((g) => {
-    const inGroup = adapters.filter((a) => (a.group || 'custom') === g.id);
+    const inGroup = adapters.filter(
+      (a) => (a.group || 'custom') === g.id
+        && (showCodingPlans || a.id === settings.defaultProvider || !a.hidden),
+    );
     if (inGroup.length === 0) return [];
     return [{
       label: t(g.labelKey),
@@ -355,6 +364,39 @@ export function SettingsView() {
               optionFilterProp="label"
             />
           </Form.Item>
+          {/* 高级入口：默认隐藏的订阅套餐端点（Coding Plan / Token Plan）。
+              极少有人用，不摆一个常开的 Switch 占主设置的版面 —— 只在选择框
+              下放一条很淡的文字注脚，点开气泡才看到风险说明和真正的开关。
+              开启后注脚文字转茜红色，解释下拉里为什么多出了服务商。
+              风险说明：两家官方文档均写明仅限 AI 编程工具交互式使用，允许范围
+              之外调用可能封停订阅或账号 / API Key。 */}
+          <div className="lt-actions" style={{ marginTop: -8, marginBottom: 16 }}>
+            <Popover
+              trigger="click"
+              placement="bottomLeft"
+              content={
+                <div style={{ maxWidth: 320 }}>
+                  <Paragraph type="secondary" style={{ fontSize: 12, marginBottom: 12 }}>
+                    {t('settings.showCodingPlansHelp')}
+                  </Paragraph>
+                  <Space size={6}>
+                    <Switch size="small" checked={showCodingPlans} onChange={setShowCodingPlans} />
+                    <Text style={{ fontSize: 13 }}>{t('settings.showCodingPlans')}</Text>
+                  </Space>
+                </div>
+              }
+            >
+              {/* 与 .lt-actions 其余条目同一件乐器：默认 Button、class 剥框。
+                  ON 态只给文字上茜红色（.lt-disclosure-on），不做圆点 —— 圆点
+                  叠 0.2em 字距会被推成「• 列表项」，比开关本身还吵。 */}
+              <Button
+                size="small"
+                className={`lt-disclosure${showCodingPlans ? ' lt-disclosure-on' : ''}`}
+              >
+                {t('settings.showCodingPlans')}
+              </Button>
+            </Popover>
+          </div>
           <Form.Item
             label={
               <Space>

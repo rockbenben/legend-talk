@@ -133,6 +133,8 @@
     "providerGroupChina": "Trung Quốc",
     "providerGroupAggregator": "Tổng hợp & lưu trữ",
     "providerGroupCustom": "Tùy chỉnh",
+    "showCodingPlans": "Hiển thị điểm cuối của gói đăng ký",
+    "showCodingPlansHelp": "Đây là các điểm cuối dành riêng cho gói đăng ký (Volcengine Coding Plan, Alibaba Bailian Token Plan). Tài liệu chính thức nêu rõ: chỉ được dùng tương tác trong các công cụ lập trình AI; việc dùng Base URL và API key tương ứng ngoài phạm vi cho phép có thể bị coi là lạm dụng, dẫn đến ngừng gói hoặc khóa tài khoản / API key. Chỉ bật khi bạn đã hiểu rủi ro.",
     "defaultModel": "Mô hình",
     "language": "Ngôn ngữ",
     "theme": "Giao diện",

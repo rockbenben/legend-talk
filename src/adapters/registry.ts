@@ -96,7 +96,10 @@ const PICKED: Record<string, FromCatalogOpts> = {
   grok: { name: 'xAI Grok', group: 'international' },
   cohere: { name: 'Cohere', group: 'international' },
   openrouter: { name: 'OpenRouter', group: 'aggregator' },
-  opencode: { name: 'OpenCode Zen', group: 'aggregator' },
+  // 上游 2026-09 把 key 从 opencode 改成 opencodeZen（同一账号下有 Zen 余额按量 /
+  // Go 订阅两条产品线，光写 opencode 读不出是哪条）。这里必须跟着改 —— 否则下面的
+  // 守卫会直接抛错、整个 settings 面板塌掉。
+  opencodeZen: { name: 'OpenCode Zen', group: 'aggregator' },
   // 腾讯把文生文整体迁到了 TokenHub 聚合网关：换了域名也换了模型 id，旧的混元
   // key 打不通新端点，所以 id 也换了（见 PROVIDER_ID_MIGRATIONS）。
   tokenhub: { name: '腾讯 TokenHub', group: 'china' },
@@ -198,6 +201,10 @@ export const PROVIDER_ID_MIGRATIONS: Record<string, string> = {
   xai: 'grok',
   hunyuan: 'tokenhub',
   custom: 'llm',
+  // 上游把 opencode 改名成 opencodeZen（同账号下的两条产品线要能分辨）。搬过来是
+  // 必须的：id 是 settings store 里 apiKeys / modelByProvider / thinkingByProvider /
+  // corsEnabled / baseUrlByProvider 五张表的键，不搬就等于把用户配好的 key 丢掉。
+  opencode: 'opencodeZen',
   // 上游把 LiteLLM 并进了 Custom（它和 Together / Fireworks 一样，只是地址不同的
   // OpenAI 兼容端点）。不搬的后果不是「少一个选项」而是【设置面板整个塌掉】：
   // defaultProvider 停在一个 getAdapter 解析不出的 id 上，currentAdapter 为

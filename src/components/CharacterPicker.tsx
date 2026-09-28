@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Input, List, Button, Tag, Typography, Space } from 'antd';
+import { Modal, Input, Button, Tag, Typography, Space } from 'antd';
 
 const { CheckableTag } = Tag;
 import { StarFilled } from '@ant-design/icons';
@@ -98,33 +98,33 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
         </div>
       </Space>
       <div style={{ maxHeight: '60vh', overflowY: 'auto' }}>
-        <List
-          dataSource={sorted}
-          locale={{
-            emptyText: search ? (
-              <div style={{ padding: 24, textAlign: 'center' }}>
-                <Button type="primary" onClick={handleCustom}>{t('home.startChat')} — {search}</Button>
-              </div>
-            ) : t('home.noMatch'),
-          }}
-          renderItem={(char) => (
-            <List.Item
-              style={{ padding: '10px 24px', cursor: 'pointer' }}
+        {sorted.length === 0 ? (
+          search ? (
+            <div style={{ padding: 24, textAlign: 'center' }}>
+              <Button type="primary" onClick={handleCustom}>{t('home.startChat')} — {search}</Button>
+            </div>
+          ) : (
+            <div style={{ padding: 24, textAlign: 'center' }}>{t('home.noMatch')}</div>
+          )
+        ) : (
+          sorted.map((char) => (
+            <div
+              key={char.id}
               onClick={() => handleSelect(char)}
-              extra={favoriteCharacters.includes(char.id) ? <StarFilled style={{ color: 'var(--ant-color-primary)' }} /> : null}
+              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 24px', cursor: 'pointer' }}
             >
-              <List.Item.Meta
-                avatar={<Avatar emoji={char.avatar} color={char.color} size="sm" />}
-                title={
-                  <Text className="display-serif lt-title" style={{ fontSize: 15 }}>
-                    {t(`characters.${char.id}.name`)}
-                  </Text>
-                }
-                description={<Text type="secondary" style={{ fontSize: 12 }}>{t(`characters.${char.id}.era`)}</Text>}
-              />
-            </List.Item>
-          )}
-        />
+              <Avatar emoji={char.avatar} color={char.color} size="sm" />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <Text className="display-serif lt-title" style={{ fontSize: 15 }}>
+                  {t(`characters.${char.id}.name`)}
+                </Text>
+                <br />
+                <Text type="secondary" style={{ fontSize: 12 }}>{t(`characters.${char.id}.era`)}</Text>
+              </div>
+              {favoriteCharacters.includes(char.id) && <StarFilled style={{ color: 'var(--ant-color-primary)' }} />}
+            </div>
+          ))
+        )}
       </div>
     </Modal>
   );

@@ -2,7 +2,7 @@ import { useLangPath } from '../hooks/useLangPath';
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, Input, List, Button, Typography, theme as antTheme } from 'antd';
+import { Drawer, Input, Button, Typography, theme as antTheme } from 'antd';
 import {
   PlusOutlined,
   MenuOutlined,
@@ -137,113 +137,111 @@ export function ConversationList({ activeId }: ConversationListProps) {
             {t('chat.noConversations')}
           </Text>
         ) : (
-          <List
-            dataSource={filteredConversations}
-            renderItem={(conv) => {
-              const isActive = activeId === conv.id;
-              const chars = conv.characters
-                .map((id) => presetCharacters.find((p) => p.id === id))
-                .filter((c): c is NonNullable<typeof c> => !!c);
-              const visibleChars = chars.slice(0, 3);
-              const extraChars = chars.length - visibleChars.length;
-              const time = formatRelative(conv.updatedAt || conv.createdAt, i18n.language);
-              return (
-                <List.Item
-                  className="group"
-                  onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
-                  onDoubleClick={(e) => { e.stopPropagation(); startEditing(conv); }}
-                  style={{
-                    padding: '12px 14px',
-                    cursor: 'pointer',
-                    background: isActive ? `color-mix(in srgb, ${token.colorPrimary} 6%, transparent)` : undefined,
-                    borderInlineStart: isActive ? `2px solid ${token.colorPrimary}` : '2px solid transparent',
-                  }}
-                >
-                  <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {/* Title row: title + delete on hover */}
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        {editingId === conv.id ? (
-                          <Input
-                            size="small"
-                            autoFocus
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
-                            onBlur={finishEditing}
-                            onPressEnter={finishEditing}
-                            onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
-                            onClick={(e) => e.stopPropagation()}
-                          />
-                        ) : (
-                          <Text
-                            className="display-serif"
-                            ellipsis
-                            style={{
-                              fontSize: 15,
-                              fontWeight: isActive ? 600 : 500,
-                              color: isActive ? token.colorPrimary : token.colorText,
-                              display: 'block',
-                            }}
-                          >
-                            {getDisplayTitle(conv)}
-                          </Text>
-                        )}
-                      </div>
-                      <Button
-                        type="text"
-                        size="small"
-                        icon={<CloseOutlined style={{ fontSize: 11 }} />}
-                        className="opacity-0 group-hover:!opacity-100"
-                        style={{ color: token.colorTextTertiary, transition: 'opacity 0.18s', flexShrink: 0 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          deleteConversation(conv.id);
-                          if (activeId === conv.id) navigate(lp('/chat'));
-                        }}
-                      />
-                    </div>
-                    {/* Meta row: stacked participant avatars + relative time */}
-                    {chars.length > 0 ? (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-                        <div style={{ display: 'flex', flexShrink: 0 }}>
-                          {visibleChars.map((c, j) => (
-                            <div
-                              key={c.id}
-                              style={{
-                                marginInlineStart: j > 0 ? -6 : 0,
-                                position: 'relative',
-                                zIndex: j + 1,
-                              }}
-                            >
-                              <Avatar emoji={c.avatar} color={c.color} size="xs" />
-                            </div>
-                          ))}
-                        </div>
-                        {extraChars > 0 && (
-                          <Text type="secondary" style={{ fontSize: 11, flexShrink: 0 }}>+{extraChars}</Text>
-                        )}
+          filteredConversations.map((conv) => {
+            const isActive = activeId === conv.id;
+            const chars = conv.characters
+              .map((id) => presetCharacters.find((p) => p.id === id))
+              .filter((c): c is NonNullable<typeof c> => !!c);
+            const visibleChars = chars.slice(0, 3);
+            const extraChars = chars.length - visibleChars.length;
+            const time = formatRelative(conv.updatedAt || conv.createdAt, i18n.language);
+            return (
+              <div
+                key={conv.id}
+                className="group"
+                onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
+                onDoubleClick={(e) => { e.stopPropagation(); startEditing(conv); }}
+                style={{
+                  padding: '12px 14px',
+                  cursor: 'pointer',
+                  background: isActive ? `color-mix(in srgb, ${token.colorPrimary} 6%, transparent)` : undefined,
+                  borderInlineStart: isActive ? `2px solid ${token.colorPrimary}` : '2px solid transparent',
+                }}
+              >
+                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {/* Title row: title + delete on hover */}
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      {editingId === conv.id ? (
+                        <Input
+                          size="small"
+                          autoFocus
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onBlur={finishEditing}
+                          onPressEnter={finishEditing}
+                          onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
                         <Text
-                          type="secondary"
+                          className="display-serif"
+                          ellipsis
                           style={{
-                            fontSize: 11,
-                            fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
-                            marginInlineStart: 'auto',
-                            flexShrink: 0,
+                            fontSize: 15,
+                            fontWeight: isActive ? 600 : 500,
+                            color: isActive ? token.colorPrimary : token.colorText,
+                            display: 'block',
                           }}
                         >
-                          {time}
+                          {getDisplayTitle(conv)}
                         </Text>
+                      )}
+                    </div>
+                    <Button
+                      type="text"
+                      size="small"
+                      icon={<CloseOutlined style={{ fontSize: 11 }} />}
+                      className="opacity-0 group-hover:!opacity-100"
+                      style={{ color: token.colorTextTertiary, transition: 'opacity 0.18s', flexShrink: 0 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteConversation(conv.id);
+                        if (activeId === conv.id) navigate(lp('/chat'));
+                      }}
+                    />
+                  </div>
+                  {/* Meta row: stacked participant avatars + relative time */}
+                  {chars.length > 0 ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                      <div style={{ display: 'flex', flexShrink: 0 }}>
+                        {visibleChars.map((c, j) => (
+                          <div
+                            key={c.id}
+                            style={{
+                              marginInlineStart: j > 0 ? -6 : 0,
+                              position: 'relative',
+                              zIndex: j + 1,
+                            }}
+                          >
+                            <Avatar emoji={c.avatar} color={c.color} size="xs" />
+                          </div>
+                        ))}
                       </div>
-                    ) : (
-                      <Text type="secondary" style={{ fontSize: 11 }}>
+                      {extraChars > 0 && (
+                        <Text type="secondary" style={{ fontSize: 11, flexShrink: 0 }}>+{extraChars}</Text>
+                      )}
+                      <Text
+                        type="secondary"
+                        style={{
+                          fontSize: 11,
+                          fontFamily: 'ui-monospace, "JetBrains Mono", Menlo, monospace',
+                          marginInlineStart: 'auto',
+                          flexShrink: 0,
+                        }}
+                      >
                         {time}
                       </Text>
-                    )}
-                  </div>
-                </List.Item>
-              );
-            }}
-          />
+                    </div>
+                  ) : (
+                    <Text type="secondary" style={{ fontSize: 11 }}>
+                      {time}
+                    </Text>
+                  )}
+                </div>
+              </div>
+            );
+          })
         )}
       </div>
       <div style={{ padding: 12, borderTop: `1px solid ${token.colorBorderSecondary}` }}>

@@ -6,3 +6,5 @@ CLAUDE.md
 AGENTS.md
 .gstack/
 .claude/settings.local.json
+.design-qa/
+.qoder-credits/

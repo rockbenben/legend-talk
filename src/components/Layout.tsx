@@ -23,6 +23,7 @@ function getProjectLinks(lng: string): NavLink[] {
   const lp = getLangPath(lng);
   const lpLower = lp.toLowerCase();
   return [
+    { label: '365', url: 'https://365.aishort.top/' },
     { label: 'AI Short', url: `https://www.aishort.top/${lp ? lp + '/' : ''}` },
     { label: 'ToolsByAI', url: `https://tools.newzone.top/${lpLower || 'zh'}` },
     { label: 'IMGPrompt', url: `https://prompt.newzone.top/app/${lpLower || 'zh'}` },

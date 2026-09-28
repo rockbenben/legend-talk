@@ -176,6 +176,7 @@
     "error": "出錯了：{{message}}",
     "somethingWrong": "發生了一些問題",
     "unexpectedError": "發生了意外錯誤",
+    "goHome": "返回討論",
     "confirm": "確認",
     "unknown": "未知",
     "cancel": "取消",

@@ -176,6 +176,7 @@
     "error": "오류: {{message}}",
     "somethingWrong": "문제가 발생했습니다",
     "unexpectedError": "예기치 못한 오류가 발생했습니다",
+    "goHome": "토론으로 돌아가기",
     "confirm": "확인",
     "unknown": "알 수 없음",
     "cancel": "취소",

@@ -176,6 +176,7 @@
     "error": "Kesalahan: {{message}}",
     "somethingWrong": "Terjadi kesalahan",
     "unexpectedError": "Terjadi kesalahan tak terduga",
+    "goHome": "Kembali ke diskusi",
     "confirm": "Konfirmasi",
     "unknown": "Tidak diketahui",
     "cancel": "Batal",

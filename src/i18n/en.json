@@ -180,6 +180,7 @@
     "error": "Error: {{message}}",
     "somethingWrong": "Something went wrong",
     "unexpectedError": "An unexpected error occurred",
+    "goHome": "Back to the discussion",
     "confirm": "Confirm",
     "unknown": "Unknown",
     "cancel": "Cancel",

@@ -176,6 +176,7 @@
     "error": "Lỗi: {{message}}",
     "somethingWrong": "Đã xảy ra lỗi",
     "unexpectedError": "Đã xảy ra lỗi không mong muốn",
+    "goHome": "Quay lại thảo luận",
     "confirm": "Xác nhận",
     "unknown": "Không rõ",
     "cancel": "Hủy",

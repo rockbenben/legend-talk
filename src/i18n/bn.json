@@ -176,6 +176,7 @@
     "error": "ত্রুটি: {{message}}",
     "somethingWrong": "কিছু একটা গড়বড় হয়েছে",
     "unexpectedError": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে",
+    "goHome": "আলোচনায় ফিরুন",
     "confirm": "নিশ্চিত করুন",
     "unknown": "অজানা",
     "cancel": "বাতিল",

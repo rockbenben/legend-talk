@@ -181,6 +181,7 @@
     "error": "Erreur : {{message}}",
     "somethingWrong": "Quelque chose s'est mal passé",
     "unexpectedError": "Une erreur inattendue est survenue",
+    "goHome": "Retour à la discussion",
     "confirm": "Confirmer",
     "unknown": "Inconnu",
     "cancel": "Annuler",

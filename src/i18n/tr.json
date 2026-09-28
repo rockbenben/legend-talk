@@ -176,6 +176,7 @@
     "error": "Hata: {{message}}",
     "somethingWrong": "Bir şeyler ters gitti",
     "unexpectedError": "Beklenmeyen bir hata oluştu",
+    "goHome": "Tartışmaya dön",
     "confirm": "Onayla",
     "unknown": "Bilinmeyen",
     "cancel": "İptal",

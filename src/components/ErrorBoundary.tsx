@@ -5,6 +5,13 @@ import i18n from '../i18n';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
+  /** Extra action rendered under the retry button, only on the error screen. */
+  afterRetry?: ReactNode;
+  /**
+   * For react-router's errorElement, which mounts only AFTER the error was
+   * caught by the router — a boundary in that tree can never catch it itself.
+   */
+  error?: unknown;
 }
 
 interface State {
@@ -24,8 +31,12 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   render() {
-    if (this.state.hasError) {
+    const propError = this.props.error === undefined ? null
+      : this.props.error instanceof Error ? this.props.error
+      : new Error(String(this.props.error));
+    if (propError || this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
+      const message = (propError || this.state.error)?.message;
       return (
         <div
           style={{
@@ -47,7 +58,7 @@ export class ErrorBoundary extends Component<Props, State> {
             {i18n.t('common.somethingWrong')}
           </h2>
           <p style={{ margin: 0, fontSize: 15, color: 'var(--lt-ink-soft)', maxWidth: 420 }}>
-            {this.state.error?.message || i18n.t('common.unexpectedError')}
+            {message || i18n.t('common.unexpectedError')}
           </p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
@@ -64,6 +75,7 @@ export class ErrorBoundary extends Component<Props, State> {
           >
             {i18n.t('chat.retry')}
           </button>
+          {this.props.afterRetry}
         </div>
       );
     }

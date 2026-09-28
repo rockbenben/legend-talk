@@ -176,6 +176,7 @@
     "error": "خطأ: {{message}}",
     "somethingWrong": "حدث خطأ ما",
     "unexpectedError": "حدث خطأ غير متوقع",
+    "goHome": "العودة إلى النقاش",
     "confirm": "تأكيد",
     "unknown": "غير معروف",
     "cancel": "إلغاء",

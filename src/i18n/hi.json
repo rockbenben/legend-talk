@@ -176,6 +176,7 @@
     "error": "त्रुटि: {{message}}",
     "somethingWrong": "कुछ गड़बड़ हो गई",
     "unexpectedError": "एक अप्रत्याशित त्रुटि हुई",
+    "goHome": "चर्चा पर लौटें",
     "confirm": "पुष्टि करें",
     "unknown": "अज्ञात",
     "cancel": "रद्द करें",

@@ -176,6 +176,7 @@
     "error": "ข้อผิดพลาด: {{message}}",
     "somethingWrong": "เกิดข้อผิดพลาด",
     "unexpectedError": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
+    "goHome": "กลับไปยังการอภิปราย",
     "confirm": "ยืนยัน",
     "unknown": "ไม่ทราบ",
     "cancel": "ยกเลิก",

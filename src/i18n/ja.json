@@ -176,6 +176,7 @@
     "error": "エラー：{{message}}",
     "somethingWrong": "問題が発生しました",
     "unexpectedError": "予期しないエラーが発生しました",
+    "goHome": "討論に戻る",
     "confirm": "確認",
     "unknown": "不明",
     "cancel": "キャンセル",

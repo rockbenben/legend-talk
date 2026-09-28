@@ -267,8 +267,7 @@ export function ChatPage() {
                   bottom: 0,
                   zIndex: 10,
                   borderTop: '1px solid var(--ant-color-border-secondary)',
-                  background: 'var(--ant-color-bg-elevated)',
-                  backdropFilter: 'blur(8px)',
+                  background: 'var(--lt-paper)',
                 }}
               >
                 <div style={{ maxWidth: 1200, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>

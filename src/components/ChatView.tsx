@@ -568,11 +568,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'color-mix(in srgb, currentColor 6%, transparent)',
-            backdropFilter: 'blur(2px)',
+            background: 'color-mix(in srgb, var(--lt-paper) 92%, transparent)',
           }}
         >
-          <Space orientation="vertical" align="center" size="middle" style={{ padding: 24, background: 'var(--ant-color-bg-elevated)', border: '1px solid var(--ant-color-border)', borderRadius: 'var(--ant-border-radius-lg)', maxWidth: 360 }}>
+          {/* Hairline memorandum, not a glass card: the veil carries the
+              separation, so the sheet draws only its top/bottom rules. */}
+          <Space orientation="vertical" align="center" size="middle" style={{ padding: 24, background: 'transparent', borderBlock: '1px solid var(--lt-rule)', maxWidth: 360 }}>
             {isSummoning ? (
               <>
                 <Spin />

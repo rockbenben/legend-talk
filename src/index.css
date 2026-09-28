@@ -15,6 +15,7 @@
 :root {
   --lt-paper: #F6F4EC;
   --lt-paper-deep: #EFECDF;
+  --lt-paper-elevated: #FBF9F1;
   --lt-ink: #211F19;
   --lt-ink-soft: #5C584C;
   /* 4.75:1 on --lt-paper — the old #8E887A was 3.20:1 and carried 10px meta
@@ -31,6 +32,7 @@
 .dark {
   --lt-paper: #201D17;
   --lt-paper-deep: #191713;
+  --lt-paper-elevated: #2B271E;
   --lt-ink: #F1EBDC;
   --lt-ink-soft: #C4BBA6;
   --lt-ink-faint: #988F79;

@@ -30,6 +30,9 @@ function ThemeBodyBg() {
  */
 
 const PROCEEDINGS = {
+  // Every key here must have a --lt-* twin in index.css — the sync invariant
+  // test walks this object; `elevated` shipped TS-only for months, so the
+  // "keep both palettes in sync" rule was unenforceable for it.
   light: {
     paper: '#F6F4EC', paperDeep: '#EFECDF', elevated: '#FBF9F1',
     ink: '#211F19', inkSoft: '#5C584C', inkFaint: '#726C5D',

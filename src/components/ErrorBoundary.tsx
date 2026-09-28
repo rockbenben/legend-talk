@@ -27,15 +27,40 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (
-        <div className="flex flex-col items-center justify-center h-full gap-4 p-8 text-center">
-          <div className="text-4xl">⚠️</div>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{i18n.t('common.somethingWrong')}</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            gap: 16,
+            padding: 32,
+            textAlign: 'center',
+            background: 'var(--lt-paper)',
+            color: 'var(--lt-ink)',
+            fontFamily: 'var(--lt-serif-body)',
+          }}
+        >
+          <div style={{ fontSize: 32 }}>⚠️</div>
+          <h2 style={{ margin: 0, fontSize: 20, fontWeight: 600, fontFamily: 'var(--lt-serif-display)' }}>
+            {i18n.t('common.somethingWrong')}
+          </h2>
+          <p style={{ margin: 0, fontSize: 15, color: 'var(--lt-ink-soft)', maxWidth: 420 }}>
             {this.state.error?.message || i18n.t('common.unexpectedError')}
           </p>
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
-            className="px-4 py-2 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600"
+            style={{
+              border: 0,
+              borderRadius: 2,
+              padding: '8px 20px',
+              fontSize: 14,
+              fontFamily: 'inherit',
+              cursor: 'pointer',
+              background: 'var(--lt-madder)',
+              color: 'var(--lt-paper)',
+            }}
           >
             {i18n.t('chat.retry')}
           </button>

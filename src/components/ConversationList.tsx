@@ -14,6 +14,7 @@ import {
 import { useConversationStore } from '../stores/conversations';
 import { presetCharacters } from '../characters/presets';
 import { Avatar } from './Avatar';
+import { isRtlLang } from '../utils/lang';
 
 /** Short relative time: "this minute", "5m", "3h", "Yesterday", or "Mar 14". */
 function formatRelative(ts: number, lng: string): string {
@@ -297,7 +298,7 @@ export function ConversationList({ activeId }: ConversationListProps) {
           <Button type="text" icon={<SettingOutlined />} onClick={() => navigate(lp('/settings'))} />
         </div>
         <Drawer
-          placement="left"
+          placement={isRtlLang(i18n.language) ? 'right' : 'left'}
           open={!collapsed}
           onClose={() => setCollapsed(true)}
           width="80vw"

@@ -7,6 +7,7 @@ import { useSettingsStore } from '../stores/settings';
 import { ensureLanguageLoaded } from '../i18n';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
+import { isRtlLang } from '../utils/lang';
 
 const { Header, Content } = AntLayout;
 const { useToken } = antTheme;
@@ -73,7 +74,7 @@ export function Layout() {
   useEffect(() => {
     const lng = i18n.language;
     document.documentElement.lang = lng;
-    document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = isRtlLang(lng) ? 'rtl' : 'ltr';
     const meta: Record<string, { title: string; desc: string }> = {
       en: { title: "Legend Talk — AI Roundtable with History's Greatest Thinkers", desc: 'AI roundtable with 160+ historical and contemporary thinkers. Pick 2-10 figures, ask a question, watch them debate. 18 languages supported.' },
       zh: { title: 'Legend Talk — 与最伟大的思想家 AI 圆桌讨论', desc: '160+ 位历史和当代思想家围绕你的问题展开多轮辩论。支持 18 种语言。' },
@@ -99,6 +100,8 @@ export function Layout() {
     const descEl = document.querySelector('meta[name="description"]');
     if (descEl) descEl.setAttribute('content', m?.desc || 'AI roundtable with 160+ historical and contemporary thinkers. Pick 2-10 figures, ask a question, watch them debate. 18 languages supported.');
   }, [i18n.language]);
+
+  const menuPlacement = isRtlLang(i18n.language) ? 'bottomLeft' : 'bottomRight';
 
   return (
     <AntLayout
@@ -134,10 +137,10 @@ export function Layout() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <LanguageToggle />
           <ThemeToggle />
-          <Dropdown menu={{ items: linksToItems(getProjectLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
+          <Dropdown menu={{ items: linksToItems(getProjectLinks(i18n.language)) }} placement={menuPlacement} trigger={['click']}>
             <Button type="text" className="lt-sm-up">{t('nav.more')}</Button>
           </Dropdown>
-          <Dropdown menu={{ items: linksToItems(getSupportLinks(i18n.language)) }} placement="bottomRight" trigger={['click']}>
+          <Dropdown menu={{ items: linksToItems(getSupportLinks(i18n.language)) }} placement={menuPlacement} trigger={['click']}>
             <Button type="text" className="lt-sm-up">{t('nav.support')}</Button>
           </Dropdown>
           <Button

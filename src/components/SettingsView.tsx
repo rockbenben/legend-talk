@@ -24,6 +24,7 @@ import { CharacterEditor } from './CharacterEditor';
 import { Avatar } from './Avatar';
 import { presetCharacters } from '../characters/presets';
 import { clearNameCache } from '../hooks/useRoundtable';
+import { isRtlLang } from '../utils/lang';
 import type { CustomCharacter } from '../stores/settings';
 
 const { Title, Text, Paragraph } = Typography;
@@ -373,7 +374,7 @@ export function SettingsView() {
           <div className="lt-actions" style={{ marginTop: -8, marginBottom: 16 }}>
             <Popover
               trigger="click"
-              placement="bottomLeft"
+              placement={isRtlLang(i18n.language) ? 'bottomRight' : 'bottomLeft'}
               content={
                 <div style={{ maxWidth: 320 }}>
                   <Paragraph type="secondary" style={{ fontSize: 12, marginBottom: 12 }}>

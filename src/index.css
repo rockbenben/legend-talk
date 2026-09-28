@@ -159,9 +159,10 @@ body::before {
   font-family: var(--lt-serif-display);
   font-size: 2.9em;
   font-weight: 600;
-  float: left;
+  float: inline-start;
   line-height: .82;
-  padding: 5px 9px 0 0;
+  padding-block: 5px 0;
+  padding-inline-end: 9px;
   color: var(--lt-madder);
 }
 /* Action buttons under a speech align with the text column */

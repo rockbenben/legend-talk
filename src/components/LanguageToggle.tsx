@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useSettingsStore } from '../stores/settings';
 import { ensureLanguageLoaded } from '../i18n';
+import { isRtlLang } from '../utils/lang';
 
 const LANG_DISPLAY: Record<string, string> = {
   en: 'English', zh: '中文', 'zh-Hant': '繁體中文', ja: '日本語', ko: '한국어',
@@ -41,7 +42,7 @@ export function LanguageToggle() {
   return (
     <Dropdown
       menu={{ items, selectedKeys: [i18n.language] }}
-      placement="bottomRight"
+      placement={isRtlLang(i18n.language) ? 'bottomLeft' : 'bottomRight'}
       trigger={['click']}
     >
       <Button type="text" icon={<GlobalOutlined />} aria-label={i18n.t('nav.selectLanguage')} title={i18n.t('nav.selectLanguage')}>

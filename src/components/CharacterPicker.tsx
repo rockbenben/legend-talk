@@ -71,7 +71,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
       open
       onCancel={onClose}
       footer={null}
-      title={<span className="display-serif" style={{ fontSize: 18, fontWeight: 500 }}>{t('chat.addParticipant')}</span>}
+      title={<span className="display-serif lt-title" style={{ fontSize: 18 }}>{t('chat.addParticipant')}</span>}
       width={520}
       styles={{ body: { padding: 0 } }}
     >
@@ -90,7 +90,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
               key={c}
               checked={category === c}
               onChange={() => setCategory(c)}
-              style={{ margin: 0, fontSize: 13, padding: '2px 10px' }}
+              className="lt-chip"
             >
               {t(`home.categories.${c}`)}
             </CheckableTag>
@@ -116,7 +116,7 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
               <List.Item.Meta
                 avatar={<Avatar emoji={char.avatar} color={char.color} size="sm" />}
                 title={
-                  <Text className="display-serif" style={{ fontSize: 15, fontWeight: 500 }}>
+                  <Text className="display-serif lt-title" style={{ fontSize: 15 }}>
                     {t(`characters.${char.id}.name`)}
                   </Text>
                 }

@@ -14,6 +14,7 @@ import { isProviderConfigured } from '../utils/prompt';
 import { presetCharacters } from '../characters/presets';
 import { generateCharacter } from '../characters/generator';
 import { roundtableTemplates } from '../characters/templates';
+import { WIDE_COLUMN } from '../utils/layout';
 import type { Character } from '../types';
 
 const { Title, Paragraph, Text } = Typography;
@@ -123,14 +124,14 @@ export function ChatPage() {
           <ChatView conversationId={validId} />
         ) : (
           <div style={{ height: '100%', overflowY: 'auto' }}>
-            <div style={{ padding: 'clamp(20px, 5vw, 96px)', maxWidth: 1200, margin: '0 auto', paddingBottom: 96 }}>
+            <div style={{ padding: 'clamp(20px, 5vw, 96px)', ...WIDE_COLUMN, paddingBottom: 96 }}>
               {/* Masthead */}
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
                   <Title
-                    className="display-serif"
+                    className="display-serif lt-title"
                     level={1}
-                    style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', fontWeight: 500, lineHeight: 1.15 }}
+                    style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', lineHeight: 1.15 }}
                   >
                     {t('home.title')}
                   </Title>
@@ -198,7 +199,7 @@ export function ChatPage() {
 
               {/* Templates */}
               <div style={{ marginBottom: 32 }}>
-                <Title level={3} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                <Title level={3} className="display-serif lt-title" style={{ marginBottom: 12 }}>
                   {t('home.templates')}
                 </Title>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
@@ -234,7 +235,7 @@ export function ChatPage() {
                           })}
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
-                          <Text className="display-serif" ellipsis style={{ display: 'block', fontSize: 15, fontWeight: 500 }}>
+                          <Text className="display-serif lt-title" ellipsis style={{ display: 'block', fontSize: 15 }}>
                             {t(`templates.${tpl.id}.name`)}
                           </Text>
                           <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>
@@ -249,7 +250,7 @@ export function ChatPage() {
 
               {/* Registry */}
               <div>
-                <Title level={3} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                <Title level={3} className="display-serif lt-title" style={{ marginBottom: 12 }}>
                   {t('home.registry')}
                 </Title>
                 <CharacterGrid
@@ -270,7 +271,7 @@ export function ChatPage() {
                   background: 'var(--lt-paper)',
                 }}
               >
-                <div style={{ maxWidth: 1200, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <div style={{ ...WIDE_COLUMN, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', gap: 6, overflowX: 'auto', minWidth: 0, flex: '1 1 auto' }}>
                     {selectedIds.map((cid) => {
                       const char = presetCharacters.find((c) => c.id === cid);

@@ -73,7 +73,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
     <Modal
       open
       onCancel={onClose}
-      title={<span className="display-serif" style={{ fontSize: 18, fontWeight: 500 }}>{isEdit ? t('chat.editCharacter') : t('chat.createCharacter')}</span>}
+      title={<span className="display-serif lt-title" style={{ fontSize: 18 }}>{isEdit ? t('chat.editCharacter') : t('chat.createCharacter')}</span>}
       width={520}
       footer={[
         <Button key="cancel" onClick={onClose}>{t('common.cancel')}</Button>,
@@ -142,7 +142,7 @@ export function CharacterEditor({ character, onClose, onStartChat }: CharacterEd
         <Form.Item>
           <Space>
             <Avatar emoji={avatar} color={color} size="sm" />
-            <Text className="display-serif" style={{ fontSize: 15, fontWeight: 500 }}>{name || '...'}</Text>
+            <Text className="display-serif lt-title" style={{ fontSize: 15 }}>{name || '...'}</Text>
           </Space>
         </Form.Item>
         <Form.Item label={t('chat.characterSystemPrompt')}>

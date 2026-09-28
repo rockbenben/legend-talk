@@ -7,6 +7,7 @@ import { ArrowRightOutlined } from '@ant-design/icons';
 import { MessageBubble } from '../components/MessageBubble';
 import { presetCharacters } from '../characters/presets';
 import { decompressFromBase64 } from '../utils/compress';
+import { COLUMN, COLUMN_PADDING } from '../utils/layout';
 import { useSettingsStore } from '../stores/settings';
 
 const { Title, Text } = Typography;
@@ -111,15 +112,15 @@ export function SharedView() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
         <Text type="secondary" style={{ fontSize: 12 }}>{t('shared.title')}</Text>
-        <Title level={4} className="display-serif" style={{ margin: 0, fontWeight: 500 }}>
+        <Title level={4} className="display-serif lt-title" style={{ margin: 0 }}>
           {displayTitle}
         </Title>
       </div>
 
-      <div style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: COLUMN_PADDING }}>
         {/* 880, not 1200 — the same measure ChatView sets its transcript to.
             The marginal speaker label is sized against this column. */}
-        <div className="lt-column" style={{ maxWidth: 880, width: '100%', margin: '0 auto' }}>
+        <div className="lt-column" style={COLUMN}>
           {shared.messages.map((msg, idx) => {
             // Share data comes from a URL and may be tampered — skip malformed items
             // so a single bad entry can't crash the whole view.

@@ -92,6 +92,21 @@ body::before {
   text-transform: uppercase;
 }
 
+/* Display-serif titles carry a lighter weight than antd's heading default.
+   The size stays the component's business (it varies per surface); the weight
+   is the design decision, so it lives here rather than in ~12 inline styles. */
+.display-serif.lt-title { font-weight: 500; }
+
+/* Category / endpoint chips — one instrument, reused in four places. */
+.lt-chip.ant-tag-checkable {
+  margin: 0;
+  font-size: 13px;
+  padding: 2px 10px;
+}
+
+/* "Add" affordances are dashed to read as an empty slot, not a command. */
+.lt-add.ant-btn { border-style: dashed; }
+
 /* ── Masthead (Layout header) — one quiet hairline ── */
 .lt-masthead {
   border-bottom: 1px solid var(--lt-rule) !important;
@@ -178,9 +193,15 @@ body::before {
 .lt-column { container-type: inline-size; }
 
 /* ── Chair (user) message: single madder rule on the outer edge ── */
+.lt-chair-block {
+  display: flex;
+  justify-content: flex-end;
+  margin: 34px 0 10px;
+}
 .lt-chair {
   border-inline-end: 2px solid var(--lt-madder);
   padding-inline-end: 16px;
+  max-width: 78%;
 }
 .lt-chair-label {
   font-size: 10.5px;

@@ -88,7 +88,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
             key={c}
             checked={category === c}
             onChange={() => setCategory(c)}
-            style={{ margin: 0, fontSize: 13, padding: '2px 10px' }}
+            className="lt-chip"
           >
             {t(`home.categories.${c}`)}
           </CheckableTag>
@@ -98,7 +98,7 @@ export function CharacterGrid({ onStartChat, onSelect, selectedIds = [] }: Chara
         )}
       </div>
       <div style={{ marginBottom: 16 }}>
-        <Button icon={<PlusOutlined />} onClick={() => setShowEditor(true)} style={{ borderStyle: 'dashed' }}>
+        <Button className="lt-add" icon={<PlusOutlined />} onClick={() => setShowEditor(true)}>
           {t('chat.createCharacter')}
         </Button>
       </div>

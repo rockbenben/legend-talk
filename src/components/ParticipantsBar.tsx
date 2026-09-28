@@ -100,7 +100,7 @@ export function ParticipantsBar({
       )}
       {!isGenerating && (
         <>
-          <Button size="small" icon={<PlusOutlined />} onClick={onAdd} style={{ borderStyle: 'dashed' }}>
+          <Button size="small" className="lt-add" icon={<PlusOutlined />} onClick={onAdd}>
             {t('chat.addParticipant')}
           </Button>
           <Tooltip title={t('chat.copyLineupLink')}>

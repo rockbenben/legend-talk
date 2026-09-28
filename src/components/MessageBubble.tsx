@@ -81,8 +81,8 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, era, dropCap 
   // ── Chair (user): end-aligned, double madder rule ────────────────────
   if (isUser) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '34px 0 10px' }}>
-        <div className="lt-chair" style={{ maxWidth: '78%' }}>
+      <div className="lt-chair-block">
+        <div className="lt-chair">
           <div className="lt-chair-label" title={fullDate}>
             {t('chat.theChair')}{timeLabel ? ` · ${timeLabel}` : ''}
           </div>

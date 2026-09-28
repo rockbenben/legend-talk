@@ -25,6 +25,7 @@ import { Avatar } from './Avatar';
 import { presetCharacters } from '../characters/presets';
 import { clearNameCache } from '../hooks/useRoundtable';
 import { isRtlLang } from '../utils/lang';
+import { COLUMN } from '../utils/layout';
 import type { CustomCharacter } from '../stores/settings';
 
 const { Title, Text, Paragraph } = Typography;
@@ -342,16 +343,16 @@ export function SettingsView() {
 
   return (
     <div style={{ height: '100%', overflowY: 'auto' }}>
-      <div style={{ maxWidth: 880, margin: '0 auto', padding: 'clamp(16px, 5vw, 64px)' }}>
+      <div style={{ ...COLUMN, padding: 'clamp(16px, 5vw, 64px)' }}>
         <Space size="middle" style={{ marginBottom: 24 }}>
           <Button type="text" icon={<ArrowLeftOutlined className="rtl:-scale-x-100" />} onClick={() => navigate(-1)} />
-          <Title className="display-serif" level={2} style={{ margin: 0, fontWeight: 500 }}>
+          <Title className="display-serif lt-title" level={2} style={{ margin: 0 }}>
             {t('settings.title')}
           </Title>
         </Space>
         <Divider />
 
-        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif lt-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <ApiOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.defaultProvider')}
         </Title>
@@ -446,7 +447,7 @@ export function SettingsView() {
                     key={ep.url}
                     checked={settings.customBaseUrl === ep.url}
                     onChange={() => settings.setCustomBaseUrl(ep.url)}
-                    style={{ margin: 0, fontSize: 13, padding: '2px 10px' }}
+                    className="lt-chip"
                   >
                     {ep.label}
                   </CheckableTag>
@@ -483,7 +484,7 @@ export function SettingsView() {
                         settings.defaultProvider,
                         ep.url === swappable.baseUrl ? '' : ep.url,
                       )}
-                      style={{ margin: 0, fontSize: 13, padding: '2px 10px' }}
+                      className="lt-chip"
                     >
                       {ep.label}
                     </CheckableTag>
@@ -610,7 +611,7 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif lt-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <SettingOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.general')}
         </Title>
@@ -652,7 +653,7 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif lt-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <DatabaseOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.dataManagement')}
         </Title>
@@ -719,7 +720,7 @@ function CustomCharactersSection() {
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <Title level={3} className="display-serif" style={{ fontWeight: 500, margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif lt-title" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
           <UsergroupAddOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.customCharacters')}
           {customCharacters.length > 0 && (
@@ -728,7 +729,7 @@ function CustomCharactersSection() {
             </Text>
           )}
         </Title>
-        <Button icon={<PlusOutlined />} onClick={() => { setEditingChar(undefined); setShowEditor(true); }} style={{ borderStyle: 'dashed' }}>
+        <Button className="lt-add" icon={<PlusOutlined />} onClick={() => { setEditingChar(undefined); setShowEditor(true); }}>
           {t('chat.createCharacter')}
         </Button>
       </div>
@@ -740,7 +741,7 @@ function CustomCharactersSection() {
             <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid var(--ant-color-border-secondary)' }}>
               <Avatar emoji={c.avatar} color={c.color} size="sm" />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <Text className="display-serif" ellipsis style={{ display: 'block', fontWeight: 500 }}>{c.displayName}</Text>
+                <Text className="display-serif lt-title" ellipsis style={{ display: 'block' }}>{c.displayName}</Text>
                 <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>{c.era || c.systemPrompt.slice(0, 60)}</Text>
               </div>
               <Button type="text" size="small" icon={<EditOutlined />} onClick={() => { setEditingChar(c); setShowEditor(true); }} />

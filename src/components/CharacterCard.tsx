@@ -37,7 +37,7 @@ export function CharacterCard({
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 10 }}>
         <Avatar emoji={character.avatar} color={character.color} size="md" />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <Text className="display-serif" ellipsis style={{ display: 'block', fontSize: 16, fontWeight: 500 }}>
+          <Text className="display-serif lt-title" ellipsis style={{ display: 'block', fontSize: 16 }}>
             {name}
           </Text>
           {/* Era and domain read as one byline — the filled Tag chips were the

@@ -14,6 +14,7 @@ import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
 import { getLangInstruction, isProviderConfigured, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
 import { compressToBase64 } from '../utils/compress';
+import { COLUMN, COLUMN_PADDING, GUTTER } from '../utils/layout';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
 import { CharacterPicker } from './CharacterPicker';
@@ -23,12 +24,6 @@ import type { Character, Message } from '../types';
 
 const { Text, Title } = Typography;
 
-/** The proceedings column. 880 − the 140px marginal label = ~45 CJK characters
- *  of measure; at the old 1200 a speech ran to 55+, past comfortable reading.
- *  The note, transcript, action row and composer all sit on this same column —
- *  they are one document, not a document plus chrome. */
-const COLUMN: React.CSSProperties = { maxWidth: 880, width: '100%', margin: '0 auto' };
-const GUTTER = '0 clamp(16px, 5vw, 96px)';
 
 function isAnalysisMsg(characterId?: string): boolean {
   return !!characterId?.startsWith('__') && !!characterId?.endsWith('__');
@@ -662,7 +657,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
       {/* Messages */}
       {/* One hairline closes the transcript — without it a long conversation
           scrolls up to touch the action row with no boundary. */}
-      <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: '24px clamp(16px, 5vw, 96px)', borderBottom: '1px solid var(--lt-rule-faint)' }}>
+      <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: COLUMN_PADDING, borderBottom: '1px solid var(--lt-rule-faint)' }}>
         <div ref={contentRef} className="lt-column" style={COLUMN}>
           {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
             <Space orientation="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>

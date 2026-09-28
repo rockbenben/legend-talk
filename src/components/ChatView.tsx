@@ -613,7 +613,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           />
         ) : (
           <Title
-            level={5}
+            level={2}
             className="display-serif"
             ellipsis
             onClick={startEditTitle}
@@ -760,7 +760,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 showIcon
                 style={{ marginTop: 8 }}
                 title={t('chat.streamStalled', { seconds: STALL_TIMEOUT_MS / 1000 })}
-                description={<span style={{ fontSize: 12, opacity: 0.75, wordBreak: 'break-word' }}>{error}</span>}
+                description={<span style={{ fontSize: 12, color: 'var(--lt-ink-soft)', wordBreak: 'break-word' }}>{error}</span>}
                 action={
                   <Space>
                     {s.thinkingLevel !== 'off' && (
@@ -779,7 +779,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 title={t(isOriginBlocked ? 'chat.originBlocked' : 'chat.corsError')}
                 // 原始报错【始终】显示。这一支是按形状猜的，猜错时用户至少还看得见
                 // 上游到底说了什么，而不是对着一句「你的 key 没问题」走进死胡同。
-                description={<span style={{ fontSize: 12, opacity: 0.75, wordBreak: 'break-word' }}>{error}</span>}
+                description={<span style={{ fontSize: 12, color: 'var(--lt-ink-soft)', wordBreak: 'break-word' }}>{error}</span>}
                 action={
                   <Space>
                     <Button size="small" type="primary" onClick={() => { useSettingsStore.getState().setCorsEnabled(s.defaultProvider, true); retryLast(); }}>{t('chat.useCorsProxy')}</Button>

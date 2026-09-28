@@ -45,8 +45,8 @@ export function LanguageToggle() {
       placement={isRtlLang(i18n.language) ? 'bottomLeft' : 'bottomRight'}
       trigger={['click']}
     >
-      <Button type="text" icon={<GlobalOutlined />} aria-label={i18n.t('nav.selectLanguage')} title={i18n.t('nav.selectLanguage')}>
-        <span className="hidden sm:inline">{LANG_DISPLAY[i18n.language] || i18n.language}</span>
+      <Button type="text" icon={<GlobalOutlined />} aria-label={i18n.t('nav.selectLanguage')}>
+        <span className="hidden sm:inline" aria-hidden="true">{LANG_DISPLAY[i18n.language] || i18n.language}</span>
       </Button>
     </Dropdown>
   );

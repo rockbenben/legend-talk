@@ -351,7 +351,7 @@ export function SettingsView() {
         </Space>
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
           <ApiOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.defaultProvider')}
         </Title>
@@ -610,7 +610,7 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
           <SettingOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.general')}
         </Title>
@@ -652,7 +652,7 @@ export function SettingsView() {
 
         <Divider />
 
-        <Title level={5} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif" style={{ fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8 }}>
           <DatabaseOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.dataManagement')}
         </Title>
@@ -719,7 +719,7 @@ function CustomCharactersSection() {
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-        <Title level={5} className="display-serif" style={{ fontWeight: 500, margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Title level={3} className="display-serif" style={{ fontWeight: 500, margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
           <UsergroupAddOutlined style={{ color: 'var(--ant-color-text-tertiary)' }} />
           {t('settings.customCharacters')}
           {customCharacters.length > 0 && (

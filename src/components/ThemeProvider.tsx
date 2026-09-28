@@ -146,6 +146,11 @@ export function ThemeProvider({ children }: Props) {
           primaryShadow: 'none',
           defaultShadow: 'none',
           dangerShadow: 'none',
+          // antd's disabled primary is white-on-alpha-gray: on paper it reads
+          // ~1:1 and the send button disappears. Keep it legible as "present
+          // but inert" — ink at 45%, sitting on the deep-paper surface.
+          colorTextDisabled: isDark ? 'rgba(241, 235, 220, 0.45)' : 'rgba(33, 31, 25, 0.45)',
+          colorBgContainerDisabled: p.paperDeep,
         },
       },
     };

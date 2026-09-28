@@ -42,6 +42,9 @@
 
 html, body {
   margin: 0;
+  /* The token fontFamily only reaches antd components; bare elements would
+     otherwise render in Tailwind's preflight sans and leak a fourth register. */
+  font-family: var(--lt-serif-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

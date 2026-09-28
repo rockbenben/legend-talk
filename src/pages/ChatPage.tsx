@@ -198,7 +198,7 @@ export function ChatPage() {
 
               {/* Templates */}
               <div style={{ marginBottom: 32 }}>
-                <Title level={5} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                <Title level={3} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
                   {t('home.templates')}
                 </Title>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
@@ -249,7 +249,7 @@ export function ChatPage() {
 
               {/* Registry */}
               <div>
-                <Title level={5} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
+                <Title level={3} className="display-serif" style={{ fontWeight: 500, marginBottom: 12 }}>
                   {t('home.registry')}
                 </Title>
                 <CharacterGrid

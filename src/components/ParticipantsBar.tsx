@@ -123,6 +123,7 @@ export function ParticipantsBar({
                 size="small"
                 min={1}
                 max={10}
+                aria-label={t('roundtable.rounds')}
                 value={rounds}
                 onChange={(v) => { if (typeof v === 'number') onRoundsChange(Math.max(1, Math.min(10, v))); }}
                 style={{ width: 60 }}

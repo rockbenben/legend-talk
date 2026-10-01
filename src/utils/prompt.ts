@@ -175,7 +175,7 @@ export function resolveProvider() {
 
   const apiKey = settings.apiKeys[settings.defaultProvider] || '';
 
-  const model = settings.defaultModel || (adapter.models[0]?.id ?? '');
+  const model = settings.defaultModel || adapter.defaultModel || (adapter.models[0]?.id ?? '');
 
   // 中转与地址是【正交】的两轴：地址决定打哪儿，这个开关决定走不走那一跳。
   // 唯一的组合限制在 proxyWouldServe —— 内置的那台公共中转按 host 白名单转发，

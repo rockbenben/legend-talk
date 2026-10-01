@@ -50,6 +50,7 @@ function fromCatalog(key: string, opts: FromCatalogOpts): OpenAICompatibleAdapte
   return new OpenAICompatibleAdapter(id, opts.name ?? p.label, opts.baseUrl ?? eps[0].url, models, {
     docsUrl: p.docs,
     apiKeyUrl: p.apiKeyUrl,
+    ...(p.defaultModel ? { defaultModel: p.defaultModel } : {}),
     fallbackThinkingWire: p.thinkingWire,
     group: opts.group,
     // 目录 hidden：默认选择器过滤，行为层照常（已存配置/导入/解析不受影响）。

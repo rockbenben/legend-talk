@@ -25,6 +25,7 @@ export class AnthropicAdapter implements LLMAdapter {
   id = 'claude';
   name = 'Anthropic';
   models: ModelOption[] = CATALOG.models.map((m) => ({ id: m.id, name: m.name }));
+  defaultModel = CATALOG.defaultModel;
   docsUrl = CATALOG.docs;
   apiKeyUrl = CATALOG.apiKeyUrl;
   group = 'international';

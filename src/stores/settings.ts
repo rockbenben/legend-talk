@@ -71,7 +71,10 @@ export const useSettingsStore = create<SettingsState>()(
     (set) => ({
       apiKeys: {},
       defaultProvider: FALLBACK_PROVIDER,
-      defaultModel: 'deepseek-v4-flash',
+      // 【不再硬编码字面量】—— 这里曾经是手抄的一个 deepseek 型号，上游把该档
+      // 滚动成 deepseek-flash 后没人回头改它，新装用户第一句话就打 404。
+      // 现从目录实时取该家开箱默认。
+      defaultModel: getAdapter(FALLBACK_PROVIDER)?.defaultModel ?? '',
       modelByProvider: {},
       thinkingByProvider: {},
       language: navigator.language || 'en',
@@ -100,7 +103,7 @@ export const useSettingsStore = create<SettingsState>()(
             // model; thinking level carries over unchanged.
             modelByProvider: { ...s.modelByProvider, [s.defaultProvider]: s.defaultModel },
             thinkingByProvider: { ...s.thinkingByProvider, [s.defaultProvider]: s.thinkingLevel },
-            defaultModel: s.modelByProvider[provider] ?? getAdapter(provider)?.models[0]?.id ?? '',
+            defaultModel: s.modelByProvider[provider] ?? getAdapter(provider)?.defaultModel ?? getAdapter(provider)?.models[0]?.id ?? '',
             thinkingLevel: s.thinkingByProvider[provider] ?? s.thinkingLevel,
           };
         }),
@@ -204,7 +207,7 @@ export const useSettingsStore = create<SettingsState>()(
         // litellm 的地址抢救也一起跳过。
         if (typeof s.defaultProvider === 'string' && !getAdapter(s.defaultProvider)) {
           s.defaultProvider = FALLBACK_PROVIDER;
-          s.defaultModel = getAdapter(FALLBACK_PROVIDER)?.models[0]?.id ?? '';
+          s.defaultModel = getAdapter(FALLBACK_PROVIDER)?.defaultModel ?? getAdapter(FALLBACK_PROVIDER)?.models[0]?.id ?? '';
         }
         return s as SettingsState;
       },

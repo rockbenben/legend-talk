@@ -11,7 +11,7 @@ describe('settingsStore', () => {
     const state = useSettingsStore.getState();
     expect(state.apiKeys).toEqual({});
     expect(state.defaultProvider).toBe('deepseek');
-    expect(state.defaultModel).toBe('deepseek-v4-flash');
+    expect(state.defaultModel).toBe('deepseek-flash'); // 目录默认(曾为手抄死串 deepseek-v4-flash,见 settings.ts 注释)
     expect(state.theme).toBe('light');
     expect(state.corsProxy).toBe('https://cors.api2026.workers.dev');
   });
@@ -115,9 +115,9 @@ describe('settingsStore', () => {
     // correct order (switch away from deepseek, then merge deepseek's imported model).
     it('imported memory for the pre-import active provider survives the switch snapshot', () => {
       const s = () => useSettingsStore.getState();
-      // Local device: on deepseek with deepseek-v4-flash active.
+      // Local device: on deepseek with the catalog default active.
       expect(s().defaultProvider).toBe('deepseek');
-      expect(s().defaultModel).toBe('deepseek-v4-flash');
+      expect(s().defaultModel).toBe('deepseek-flash');
       // applyConfig order: switch provider + set active model FIRST …
       s().setDefaultProvider('openai');
       s().setDefaultModel('gpt-5.6');
@@ -227,5 +227,21 @@ describe('settingsStore', () => {
         expect(getAdapter(from), `${from} 仍然是活着的 provider，不该出现在迁移表里`).toBeUndefined();
       }
     });
+  });
+});
+
+describe('切服务商 / 新装 的默认型号来自目录', () => {
+  // 曾经 restore 与初始值都拿 models[0](或更糟:硬编码字面量),与目录的
+  // defaultModel 语义错位 —— claude 新面孔落 opus 顶档、tokenhub 落 preview。
+  it('initial defaultModel is deepseek 的目录默认,不是快照字面量', () => {
+    const dm = useSettingsStore.getInitialState().defaultModel;
+    expect(dm).toBe('deepseek-flash');
+  });
+  it('switching to a never-used provider lands on its catalog default', () => {
+    const store = useSettingsStore.getState();
+    const prev = store.defaultProvider;
+    useSettingsStore.getState().setDefaultProvider('claude');
+    expect(useSettingsStore.getState().defaultModel).toBe('claude-sonnet-5-5');
+    useSettingsStore.setState({ defaultProvider: prev, defaultModel: store.defaultModel, modelByProvider: {} });
   });
 });

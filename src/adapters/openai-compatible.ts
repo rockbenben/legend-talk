@@ -13,12 +13,15 @@ interface AdapterOpts {
    * 它自己的 thinkingWire —— 同一家的形态可以逐 SKU 不同，拿这个套上去会 4xx。
    */
   fallbackThinkingWire?: ThinkingWire;
+  /** 开箱默认型号，随目录下发；见 LLMAdapter.defaultModel 的注释。 */
+  defaultModel?: string;
 }
 
 export class OpenAICompatibleAdapter implements LLMAdapter {
   docsUrl?: string;
   apiKeyUrl?: string;
   group?: string;
+  defaultModel?: string;
   hidden?: boolean;
   endpoints?: EndpointOption[];
   private fallbackThinkingWire?: ThinkingWire;
@@ -34,6 +37,7 @@ export class OpenAICompatibleAdapter implements LLMAdapter {
     this.opts = opts;
     this.docsUrl = opts?.docsUrl;
     this.apiKeyUrl = opts?.apiKeyUrl;
+    this.defaultModel = opts?.defaultModel;
     this.group = opts?.group;
     this.hidden = opts?.hidden;
     this.endpoints = opts?.endpoints;

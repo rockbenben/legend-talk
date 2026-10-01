@@ -153,3 +153,25 @@ describe('thinkingWireIf：取首个匹配 ⇒ 规则之间不继承', () => {
   });
 
 });
+
+describe('adapter.defaultModel（目录开箱默认）', () => {
+  // 每个标了 defaultModel 的 adapter，那个型号必须在它自己的清单里 ——
+  // 上游目录的"默认 ∈ models[]"不变量在消费侧的等价物；也拦住把字面量
+  // 抄回代码里的复发（新装 404 事故的根因形态）。
+  it("every advertised default is in the adapter model list", () => {
+    for (const a of getAllAdapters()) {
+      if (!a.defaultModel) continue;
+      expect(a.models.some((m) => m.id === a.defaultModel), `${a.id}: defaultModel=${a.defaultModel} 不在清单`).toBe(true);
+    }
+  });
+  it('the defaults users actually land on are the curated tier, not the first row', () => {
+    // 首行≠默认的家是有意为之：claude 首行 opus、tokenhub 首行 preview。
+    // 取几个已知错位点，防止哪天有人"顺手"把 models[0] 当默认回去。
+    const probe = (id: string) => getAllAdapters().find((a) => a.id === id);
+    expect(probe('claude')?.defaultModel).toBe('claude-sonnet-5-5');
+    expect(probe('claude')?.models[0]?.id).toBe('claude-opus-5-5');
+    expect(probe('tokenhub')?.defaultModel).toBe('hy3');
+    expect(probe('moonshot')?.defaultModel).toBe('kimi-k2.6');
+    expect(probe('atlascloud')?.defaultModel).toBe('deepseek-ai/deepseek-v4.1-flash');
+  });
+});

@@ -48,6 +48,13 @@ export interface LLMAdapter {
   id: string;
   name: string;
   models: ModelOption[];
+  /**
+   * 开箱默认型号 = 目录的 defaultModel（上游按负载精挑的那一档），不是
+   * models[0] —— 清单首行常常【故意不是】默认（claude 首行是 opus 旗舰档、
+   * tokenhub 首行是 preview 滚动别名），拿首行当默认会把新用户直接放到
+   * 最贵或行为不稳的档上。缺省（自定义 llm / 目录没标）时调用方退回首行。
+   */
+  defaultModel?: string;
   docsUrl?: string;
   apiKeyUrl?: string;
   group?: string;

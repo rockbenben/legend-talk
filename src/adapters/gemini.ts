@@ -23,6 +23,7 @@ export class GeminiAdapter implements LLMAdapter {
   id = 'gemini';
   name = 'Google Gemini';
   models: ModelOption[] = CATALOG.models.map((m) => ({ id: m.id, name: m.name, ...(m.thinkingWire ? { thinkingWire: m.thinkingWire } : {}) }));
+  defaultModel = CATALOG.defaultModel;
   docsUrl = CATALOG.docs;
   apiKeyUrl = CATALOG.apiKeyUrl;
   group = 'international';

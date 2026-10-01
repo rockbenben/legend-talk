@@ -1,36 +1,7 @@
-import { getAdapter, getAllAdapters, MODEL_ID_MIGRATIONS, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT } from '../../src/adapters/registry';
+import { getAdapter, getAllAdapters, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT } from '../../src/adapters/registry';
 import { PROVIDER_CATALOG } from '../../src/adapters/providerCatalog.generated';
 import { OpenAICompatibleAdapter } from '../../src/adapters/openai-compatible';
 import { canDisableThinking } from '../../src/adapters/thinking';
-
-/** 当前所有 adapter 在售的模型 id。 */
-function liveModelIds(): Set<string> {
-  return new Set(getAllAdapters().flatMap((a) => a.models.map((m) => m.id)));
-}
-
-describe('MODEL_ID_MIGRATIONS', () => {
-  // 迁移只跑一次，指向另一个已死的 id 等于没迁 —— 旧版真出现过一串
-  // hunyuan-* → hunyuan-a13b，而 a13b 本身随后也退役了。
-  it('每个 target 都是当前在售的模型 id', () => {
-    const live = liveModelIds();
-    const dead = Object.entries(MODEL_ID_MIGRATIONS).filter(([, to]) => !live.has(to));
-    expect(dead, `迁移目标已不存在：${dead.map(([f, t]) => `${f}→${t}`).join(', ')}`).toEqual([]);
-  });
-
-  // Coding Plan 与官方线有重名 SKU（glm-4.7 / kimi-k2.5 / MiniMax-M2.5 至今仍是
-  // Coding Plan 的合法型号）。把它们写进迁移表会把订阅用户选好的模型改掉。
-  it('每个 key 都已不在任何 adapter 里', () => {
-    const live = liveModelIds();
-    const stillLive = Object.keys(MODEL_ID_MIGRATIONS).filter((from) => live.has(from));
-    expect(stillLive, `这些 id 仍在售，不该被迁移：${stillLive.join(', ')}`).toEqual([]);
-  });
-
-  it('不存在链式迁移（target 不能又是别人的 key）', () => {
-    const keys = new Set(Object.keys(MODEL_ID_MIGRATIONS));
-    const chained = Object.entries(MODEL_ID_MIGRATIONS).filter(([, to]) => keys.has(to));
-    expect(chained, `链式迁移只会跑一步：${chained.map(([f, t]) => `${f}→${t}`).join(', ')}`).toEqual([]);
-  });
-});
 
 describe('PROVIDER_ID_MIGRATIONS', () => {
   it('每个 target 都是现存的 adapter id，每个 key 都已不存在', () => {

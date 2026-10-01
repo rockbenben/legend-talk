@@ -1,5 +1,5 @@
 import { useSettingsStore, PROVIDER_KEYED_FIELDS } from '../../src/stores/settings';
-import { MODEL_ID_MIGRATIONS, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT, getAdapter, migrateModelId } from '../../src/adapters/registry';
+import { PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT, getAdapter } from '../../src/adapters/registry';
 
 beforeEach(() => {
   useSettingsStore.setState(useSettingsStore.getInitialState());
@@ -143,29 +143,7 @@ describe('settingsStore', () => {
     expect(new Set(recordFields)).toEqual(new Set(PROVIDER_KEYED_FIELDS));
   });
 
-  describe('model id migration', () => {
-    it('migrateModelId remaps known renamed ids and passes through the rest', () => {
-      expect(migrateModelId('claude-opus-4-7')).toBe('claude-opus-5');
-      expect(migrateModelId('claude-sonnet-4-6')).toBe('claude-sonnet-5');
-      expect(migrateModelId('mistral-small-4')).toBe('mistral-small-latest');
-      expect(migrateModelId('hunyuan-turbos-latest')).toBe('hy3');
-      // Unknown / custom SKUs untouched.
-      expect(migrateModelId('deepseek-v4-flash')).toBe('deepseek-v4-flash');
-      expect(migrateModelId('my-self-hosted-model')).toBe('my-self-hosted-model');
-    });
-
-    it('every migration target differs from its source (no identity entries)', () => {
-      for (const [from, to] of Object.entries(MODEL_ID_MIGRATIONS)) {
-        expect(to).not.toBe(from);
-      }
-    });
-
-    it('remaps bare and aggregator-prefixed ids independently (no collision)', () => {
-      // The bare provider id survives; only the prefixed aggregator id is retired.
-      expect(migrateModelId('gemini-3.5-flash')).toBe('gemini-3.5-flash'); // still a live Gemini SKU
-      expect(migrateModelId('google/gemini-3.5-flash')).toBe('google/gemini-3.7-flash'); // OpenRouter, retired
-    });
-  });
+    // 型号退役不改名（2026-10-01 定案）：旧 id 原样通过，报错可见可自救。
   // provider 被删 / 被并进别家时,存档里的 defaultProvider 会指向一个
   // getAdapter 解析不出的 id。那不是「下拉里少一项」,而是【设置面板整块塌掉】:
   // currentAdapter 为 undefined,地址框、模型下拉、文档链接全都不渲染,用户看到
@@ -185,7 +163,7 @@ describe('settingsStore', () => {
       expect(out.defaultProvider, '落在解析不出的 id 上会让设置面板整块塌掉').toBe('llm');
       expect((out.apiKeys as Record<string, string>).llm).toBe('sk-master');
       expect((out.apiKeys as Record<string, string>).litellm).toBeUndefined();
-      expect((out.modelByProvider as Record<string, string>).llm).toBe('claude-sonnet-5');
+      expect((out.modelByProvider as Record<string, string>).llm).toBe('claude-sonnet-5'); // 型号原样通过，改名只动 provider 键
       // ⚠ Custom 读的是 customBaseUrl，不是 baseUrlByProvider —— 只做通用改键的话
       // 用户会落在一个 key 还在、地址却空了的 Custom 上，照样发不出请求。
       expect(out.customBaseUrl, '地址没搬到 Custom 实际读的字段').toBe('https://gw.example/v1');
@@ -224,12 +202,11 @@ describe('settingsStore', () => {
       expect(out.customBaseUrl, '被推回默认服务商之后，只认 litellm 的那段地址抢救就跳过了').toBe('https://gw/v1');
     });
 
-    // 改名会接龙：当年 4-7 → 4-8，今天 4-8 → 5。整张表每次都重跑，不能假设「迁过
-    // 一次就到位了」。
-    it('已经迁过一次的型号继续往下迁', () => {
+    // 型号原样通过：退役不改名，用户重选（与目录「老型号不留」同方针）。
+    it('retired model ids pass through untouched', () => {
       const out = migrate({ defaultModel: 'claude-opus-4-8', modelByProvider: { zhipu: 'glm-4.6' } });
-      expect(out.defaultModel, '停在死 SKU 上，下一句话就 400，界面上没有任何解释').toBe('claude-opus-5');
-      expect((out.modelByProvider as Record<string, string>).zhipu).toBe('glm-5.2');
+      expect(out.defaultModel).toBe('claude-opus-4-8');
+      expect((out.modelByProvider as Record<string, string>).zhipu).toBe('glm-4.6');
     });
 
     // persist 是【整个对象替换】，初始 state 里那份 PROXY_BY_DEFAULT 只有全新安装

@@ -24,9 +24,9 @@ async function run(model: string, thinkingLevel?: ThinkingLevel, messages = [{ r
 
 describe('GeminiAdapter', () => {
   it('走原生接口而不是 OpenAI 兼容层，认证用 x-goog-api-key 头', async () => {
-    const { url, headers } = await run('gemini-3.7-flash');
+    const { url, headers } = await run('gemini-3.8-flash');
     expect(url).toBe(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:streamGenerateContent?alt=sse',
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:streamGenerateContent?alt=sse',
     );
     // 兼容层的痕迹一个都不该有
     expect(url).not.toContain('/openai');
@@ -37,25 +37,25 @@ describe('GeminiAdapter', () => {
   });
 
   it('拼接全部 text part，并跳过 thought part', async () => {
-    const { text } = await run('gemini-3.7-flash');
+    const { text } = await run('gemini-3.8-flash');
     expect(text).toBe('ab');
   });
 
   it('system 走 systemInstruction；没有 system 时整个字段省略（空 text 会 400）', async () => {
-    const withSys = await run('gemini-3.7-flash', 'off', [
+    const withSys = await run('gemini-3.8-flash', 'off', [
       { role: 'system', content: 'S' } as never,
       { role: 'user', content: 'hi' },
     ]);
     expect(withSys.body.systemInstruction).toEqual({ parts: [{ text: 'S' }] });
     expect(withSys.body.contents).toEqual([{ role: 'user', parts: [{ text: 'hi' }] }]);
 
-    const noSys = await run('gemini-3.7-flash');
+    const noSys = await run('gemini-3.8-flash');
     expect('systemInstruction' in noSys.body).toBe(false);
   });
 
   it('关闭态发该 SKU 的最低档，而不是省略 —— Gemini 3 没有关闭开关', async () => {
     // 省略会落到服务端默认档位，用户点了「关」反而按中档计费
-    const { body } = await run('gemini-3.7-flash', 'off');
+    const { body } = await run('gemini-3.8-flash', 'off');
     expect(body.generationConfig.thinkingConfig).toEqual({ thinkingLevel: 'low' });
     // 3.5 系多一档 minimal，最低档就不同
     const lite = await run('gemini-3.5-flash-lite', 'off');
@@ -64,7 +64,7 @@ describe('GeminiAdapter', () => {
 
   it('该 SKU 不收的档位降到不高于所选的最高档 —— 发枚举外的值是确定性 400', async () => {
     // 3.7-flash 只收 low/medium/high，没有 minimal
-    expect((await run('gemini-3.7-flash', 'high')).body.generationConfig.thinkingConfig).toEqual({ thinkingLevel: 'high' });
+    expect((await run('gemini-3.8-flash', 'high')).body.generationConfig.thinkingConfig).toEqual({ thinkingLevel: 'high' });
     expect((await run('gemini-3.5-flash', 'medium')).body.generationConfig.thinkingConfig).toEqual({ thinkingLevel: 'medium' });
   });
 
@@ -78,13 +78,13 @@ describe('GeminiAdapter', () => {
   });
 
   it('不发 temperature —— Gemini 3.x 官方建议用默认值', async () => {
-    const { body } = await run('gemini-3.7-flash', 'high');
+    const { body } = await run('gemini-3.8-flash', 'high');
     expect(body.generationConfig.temperature).toBeUndefined();
   });
 
   it('模型清单与链接取自目录，不再手抄', async () => {
     expect(adapter.models.length).toBeGreaterThan(0);
-    expect(adapter.models.some((m) => m.id === 'gemini-3.7-flash')).toBe(true);
+    expect(adapter.models.some((m) => m.id === 'gemini-3.8-flash')).toBe(true);
     expect(adapter.docsUrl).toContain('ai.google.dev');
     expect(adapter.apiKeyUrl).toContain('aistudio.google.com');
   });

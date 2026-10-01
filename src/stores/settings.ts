@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { persistStorage } from '../utils/persistStorage';
-import { getAdapter, migrateModelId, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT } from '../adapters/registry';
+import { getAdapter, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT } from '../adapters/registry';
 
 /** Ships as the default, and the landing spot when a provider is retired. */
 const FALLBACK_PROVIDER = 'deepseek';
@@ -143,8 +143,7 @@ export const useSettingsStore = create<SettingsState>()(
       name: 'legend-talk-settings',
       storage: createJSONStorage(() => persistStorage),
       // ⚠ 加迁移条目 = 【必须 bump version】。zustand 只在「存档版本 ≠ 这里的
-      // version」时才调 migrate，版本一致就整个跳过。所以往 MODEL_ID_MIGRATIONS /
-      // PROVIDER_ID_MIGRATIONS / PROXY_BY_DEFAULT 里加东西却不动这个数字，等于没加：
+      // version」时才调 migrate，版本一致就整个跳过。所以往 PROVIDER_ID_MIGRATIONS / PROXY_BY_DEFAULT 里加东西却不动这个数字，等于没加：
       // 已经停在当前版本的人一辈子跑不到。
       //
       // 下面【不再按版本分段】。分段只有在「同一份数据要按存档年代做不同处理」时才
@@ -183,15 +182,8 @@ export const useSettingsStore = create<SettingsState>()(
           }
         }
 
-        // 2. 型号改名：存档里留着一个退役 SKU，下一句话就 400，界面上没有任何解释。
-        // 改名会接龙（4-7 → 4-8 → 5），所以每次都重跑整张表，不能假设「迁过一次就
-        // 到位了」。
-        if (typeof s.defaultModel === 'string') s.defaultModel = migrateModelId(s.defaultModel) as string;
-        if (s.modelByProvider && typeof s.modelByProvider === 'object') {
-          for (const k of Object.keys(s.modelByProvider)) {
-            s.modelByProvider[k] = migrateModelId(s.modelByProvider[k]) as string;
-          }
-        }
+        // 2.（已撤销）型号退役不再改名：见 adapters/registry 的死账注释，
+        // 旧 id 原样通过，报错可见可自救。
 
         // 3. 代理默认开关：persist 是【整个对象替换】，初始 state 里那份
         // PROXY_BY_DEFAULT 只有全新安装拿得到。老用户存档里没有后来新增的

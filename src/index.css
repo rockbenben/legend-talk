@@ -69,6 +69,65 @@ body::before {
 
 ::selection { background: var(--lt-madder); color: var(--lt-paper); }
 
+/* ── Markdown typesetting in the transcript ─────────────────────────
+   ReactMarkdown emits raw HTML and Tailwind preflight strips list
+   markers, quote borders and table rules by design — so a model's
+   numbered argument rendered as an unnumbered wall of paragraphs
+   (found live in single chat; SharedView reads the same classes).
+   The proceedings re-grant them print styling, one accent tier below
+   the structural rules (rule-dark, not madder). */
+.lt-speech-body :is(ol, ul),
+.lt-synthesis-body :is(ol, ul) {
+  margin: .7em 0;
+  padding-inline-start: 1.7em;
+}
+.lt-speech-body ol, .lt-synthesis-body ol { list-style: decimal; }
+.lt-speech-body ul, .lt-synthesis-body ul { list-style: disc; }
+.lt-speech-body :is(ol, ul) :is(ol, ul) { margin: .3em 0; }
+.lt-speech-body li + li, .lt-synthesis-body li + li { margin-top: .35em; }
+.lt-speech-body ::marker, .lt-synthesis-body ::marker { color: var(--lt-ink-faint); font-style: normal; }
+.lt-speech-body blockquote, .lt-synthesis-body blockquote {
+  margin: .9em 0;
+  border-inline-start: 2px solid var(--lt-rule-dark);
+  padding-inline-start: 14px;
+  font-style: italic;
+  color: var(--lt-ink-soft);
+}
+.lt-speech-body code, .lt-synthesis-body code {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: var(--lt-paper-deep);
+  border: 1px solid var(--lt-rule-faint);
+  border-radius: 2px;
+  padding: 0 4px;
+}
+.lt-speech-body pre, .lt-synthesis-body pre {
+  background: var(--lt-paper-deep);
+  border: 1px solid var(--lt-rule-faint);
+  border-radius: 2px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: .9em 0;
+  line-height: 1.6;
+}
+.lt-speech-body pre code, .lt-synthesis-body pre code { background: transparent; border: 0; padding: 0; }
+.lt-speech-body table, .lt-synthesis-body table { border-collapse: collapse; margin: .9em 0; font-size: .95em; }
+.lt-speech-body :is(th, td), .lt-synthesis-body :is(th, td) {
+  border: 1px solid var(--lt-rule);
+  padding: 4px 10px;
+  text-align: start;
+}
+.lt-speech-body th, .lt-synthesis-body th { background: var(--lt-paper-deep); font-weight: 600; }
+.lt-speech-body hr, .lt-synthesis-body hr { border: 0; border-top: 1px solid var(--lt-rule); margin: 1.3em 0; }
+.lt-speech-body :is(h1, h2, h3, h4), .lt-synthesis-body :is(h1, h2, h3, h4) {
+  font-family: var(--lt-serif-display);
+  font-weight: 600;
+  font-size: 1.15em;
+  margin: 1.2em 0 .45em;
+  color: var(--lt-ink);
+}
+.lt-speech-body a:hover, .lt-synthesis-body a:hover { text-decoration: underline; }
+
 /* Quiet print-like scrollbars */
 * { scrollbar-width: thin; scrollbar-color: var(--lt-rule-dark) transparent; }
 
@@ -102,10 +161,33 @@ body::before {
   margin: 0;
   font-size: 13px;
   padding: 2px 10px;
+  border: 1px solid transparent;
+}
+/* Checked reads as an outlined tab, not a solid block — antd's default paints
+   the primary as a filled pill, which stacks a second red surface onto a page
+   whose only accent should be hairlines and text. */
+.lt-chip.ant-tag-checkable.ant-tag-checkable-checked {
+  background: transparent;
+  color: var(--lt-madder);
+  border-color: var(--lt-madder);
+}
+.lt-chip.ant-tag-checkable.ant-tag-checkable-checked:hover {
+  color: var(--lt-madder);
+  border-color: var(--lt-madder);
 }
 
 /* "Add" affordances are dashed to read as an empty slot, not a command. */
 .lt-add.ant-btn { border-style: dashed; }
+
+/* Two-line clamp for card descriptions — as a class, not an inline style:
+   antd Typography drops the -webkit-line-clamp keys from its style prop,
+   leaving a clipped -webkit-box with no visible line count. */
+.lt-clamp2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 /* ── Masthead (Layout header) — one quiet hairline ── */
 .lt-masthead {
@@ -187,6 +269,15 @@ body::before {
 }
 /* Action buttons under a speech align with the text column */
 .lt-after-speech { padding-inline-start: 140px; }
+
+/* Arabic cannot be tracked: letter-spacing tears the cursive connection and
+   every glyph snaps to its isolated form (caught live on 「المنسق」 at .38em).
+   Under RTL the tracked small-caps labels lose tracking AND the optical
+   indent that compensated it; hierarchy still reads through size and color. */
+html[dir="rtl"] :is(.lt-caps, .lt-speech-meta, .lt-chair-label, .lt-synthesis-head > span, .lt-round-rule, .lt-send.ant-btn, .lt-actions .ant-btn) {
+  letter-spacing: normal;
+  text-indent: 0;
+}
 
 /* The transcript column is the container the marginal label is measured
    against — see the @container rule at the foot of this file. */
@@ -288,6 +379,25 @@ body::before {
   flex-wrap: wrap;
   row-gap: 2px;
 }
+/* The action follows the sentence it answers — antd stretches the message
+   section (flex:1) so 「前往设置」 parks half a screen from the words on a wide
+   column. Un-stretch the section and the action sits 12px after the text. */
+.lt-note.ant-alert .ant-alert-section { flex: 0 1 auto; }
+.lt-note.ant-alert .ant-alert-actions { margin-inline-start: 12px; }
+
+/* antd's dark algorithm DERIVES its own primary text color (#B06C73, 4.19:1
+   on dark paper — under AA at body size) from the madder seed. Wherever antd
+   paints text primary-colored, use the design's own madder instead:
+   7.39:1 light / 5.37:1 dark. !important because antd's runtime CSS-in-JS
+   injects after this file at equal specificity; hover swaps to an underline
+   so the pinned color still reads as interactive. */
+.ant-btn.ant-btn-color-link:not(:disabled) { color: var(--lt-madder) !important; }
+.ant-btn.ant-btn-color-link:not(:disabled):hover { text-decoration: underline; }
+.ant-typography a, a.ant-typography, .ant-form-item-label a { color: var(--lt-madder) !important; }
+/* Password visibility toggle: antd's 15px icon is under the 24px touch/
+   pointer-target floor; pad the hit box, not the glyph. */
+.ant-input-password-icon { font-size: 16px; padding: 4px; }
+.ant-dropdown-menu-item.ant-dropdown-menu-item-selected { color: var(--lt-madder) !important; }
 /* Below ~390px of column the message wraps and the end-aligned action lands
    beside a half-empty last line. Give it its own line instead. */
 @container (max-width: 390px) {
@@ -302,6 +412,23 @@ body::before {
   letter-spacing: .22em;
   text-indent: .22em;
   font-weight: 600;
+}
+
+/* Hover-revealed controls (per-speech actions, row delete) must not be
+   hover-ONLY: touch devices never fire :hover, and keyboard users need the
+   row focused to reach them. Tailwind covers hover/focus-within; coarse
+   pointers get the row permanently visible. The !important is what beats the
+   inline `opacity: 0` the components set as the resting state. */
+.lt-reveal { transition: opacity .18s; }
+@media (pointer: coarse) {
+  .lt-reveal { opacity: 1 !important; }
+}
+
+/* A speech that produced no text (interrupted before the first token) reads
+   as an absence record, not a rendering glitch. */
+.lt-unspoken {
+  font-style: italic;
+  color: var(--lt-ink-faint);
 }
 
 /* ── Proceedings action row (ActionBar) — quiet text actions, no boxes ── */
@@ -362,6 +489,10 @@ body::before {
 .ant-menu-item-selected {
   background: transparent !important;
 }
+
+/* C4: antd stacks .ant-form-item-extra ~2px under the control, so the helper
+   reads as a second line inside the box. Give it 6px of clear air. */
+.ant-form-item .ant-form-item-extra { margin-top: 6px; }
 
 /* antd's runtime CSS-in-JS is UNLAYERED, so it outranks Tailwind's
    `@layer utilities` regardless of source order — `hidden sm:inline-flex` on

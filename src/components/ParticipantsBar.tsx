@@ -117,18 +117,20 @@ export function ParticipantsBar({
             />
           </Tooltip>
           {isMulti && (
-            <Space size={6} style={{ marginInlineStart: 'auto' }}>
-              <Text type="secondary" style={{ fontSize: 12 }}>{t('roundtable.rounds')}</Text>
-              <InputNumber
-                size="small"
-                min={1}
-                max={10}
-                aria-label={t('roundtable.rounds')}
-                value={rounds}
-                onChange={(v) => { if (typeof v === 'number') onRoundsChange(Math.max(1, Math.min(10, v))); }}
-                style={{ width: 60 }}
-              />
-            </Space>
+            <Tooltip title={t('roundtable.roundsHint')}>
+              <Space size={6} style={{ marginInlineStart: 'auto' }}>
+                <Text type="secondary" style={{ fontSize: 12 }}>{t('roundtable.rounds')}</Text>
+                <InputNumber
+                  size="small"
+                  min={1}
+                  max={10}
+                  aria-label={t('roundtable.rounds')}
+                  value={rounds}
+                  onChange={(v) => { if (typeof v === 'number') onRoundsChange(Math.max(1, Math.min(10, v))); }}
+                  style={{ width: 60 }}
+                />
+              </Space>
+            </Tooltip>
           )}
         </>
       )}

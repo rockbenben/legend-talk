@@ -359,6 +359,7 @@ export function SettingsView() {
         <Form layout="vertical">
           <Form.Item label={t('settings.provider')}>
             <Select
+              aria-label={t('settings.provider')}
               value={settings.defaultProvider}
               onChange={handleProviderChange}
               options={providerOptions}
@@ -382,7 +383,7 @@ export function SettingsView() {
                     {t('settings.showCodingPlansHelp')}
                   </Paragraph>
                   <Space size={6}>
-                    <Switch size="small" checked={showCodingPlans} onChange={setShowCodingPlans} />
+                    <Switch size="small" aria-label={t('settings.showCodingPlans')} checked={showCodingPlans} onChange={setShowCodingPlans} />
                     <Text style={{ fontSize: 13 }}>{t('settings.showCodingPlans')}</Text>
                   </Space>
                 </div>
@@ -428,6 +429,10 @@ export function SettingsView() {
                   // （见 isProviderConfigured）—— 这里曾经是第四份手抄：Custom 认地址、
                   // keyOptional 两样都不认、其余认 key，抄一次漏一次。
                   disabled={!isProviderConfigured(settings)}
+                  // Native title (not Tooltip): antd disables pointer-events on
+                  // a disabled Button, so a Tooltip would never open — the one
+                  // state that needs the explanation defeats the fancy hover.
+                  title={!isProviderConfigured(settings) ? t('settings.testConnectionHint') : undefined}
                 >
                   {t('settings.testConnection')}
                 </Button>
@@ -507,6 +512,7 @@ export function SettingsView() {
             }
           >
             <AutoComplete
+              aria-label={t('settings.defaultModel')}
               style={{ width: '100%' }}
               value={settings.defaultModel}
               onChange={(v) => settings.setDefaultModel(v ?? '')}
@@ -554,6 +560,7 @@ export function SettingsView() {
               extra={thinkingCanDisable ? t('settings.thinkingLevelHint') : t('settings.thinkingLevelHintNoOff')}
             >
               <Select
+                aria-label={t('settings.thinkingLevel')}
                 value={settings.thinkingLevel}
                 onChange={(v) => settings.setThinkingLevel(v as 'off' | 'low' | 'medium' | 'high')}
                 options={[
@@ -579,6 +586,7 @@ export function SettingsView() {
                     CORS 留在标签里，403 之类的症状与"key 会经过它"的披露放说明。 */}
                 <Text strong style={{ fontSize: 14 }}>{t('settings.corsProxy')}</Text>
                 <Switch
+                  aria-label={t('settings.corsProxy')}
                   checked={!!settings.corsEnabled[settings.defaultProvider] && !relayInert}
                   disabled={relayInert}
                   onChange={(v) => settings.setCorsEnabled(settings.defaultProvider, v)}
@@ -619,6 +627,7 @@ export function SettingsView() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             <Form.Item label={t('settings.language')}>
               <Select
+                aria-label={t('settings.language')}
                 value={i18n.language}
                 onChange={(lng) => { ensureLanguageLoaded(lng).then(() => { i18n.changeLanguage(lng); settings.setLanguage(lng); }); }}
                 options={((i18n.options.supportedLngs || []) as string[]).filter((l) => l !== 'cimode').map((lng) => ({ value: lng, label: LANG_DISPLAY[lng] || lng }))}
@@ -626,6 +635,7 @@ export function SettingsView() {
             </Form.Item>
             <Form.Item label={t('settings.theme')}>
               <Select
+                aria-label={t('settings.theme')}
                 value={settings.theme}
                 onChange={(v) => settings.setTheme(v as 'light' | 'dark')}
                 options={[

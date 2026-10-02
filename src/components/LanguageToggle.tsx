@@ -45,7 +45,11 @@ export function LanguageToggle() {
       placement={isRtlLang(i18n.language) ? 'bottomLeft' : 'bottomRight'}
       trigger={['click']}
     >
-      <Button type="text" icon={<GlobalOutlined />} aria-label={i18n.t('nav.selectLanguage')}>
+      {/* Name must CONTAIN the visible text (axe label-content-name-mismatch):
+          「选择语言」 alone contradicted the 「中文」 on the button; the suffix
+          keeps both readings honest — and the bare icon under 640px still has
+          a name because the label is on the button, not in the span. */}
+      <Button type="text" icon={<GlobalOutlined />} aria-label={`${i18n.t('nav.selectLanguage')}: ${LANG_DISPLAY[i18n.language] || i18n.language}`}>
         <span className="hidden sm:inline" aria-hidden="true">{LANG_DISPLAY[i18n.language] || i18n.language}</span>
       </Button>
     </Dropdown>

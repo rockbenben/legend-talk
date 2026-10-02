@@ -8,6 +8,7 @@ import { Input, Button, Spin, Alert, Typography, Divider, Space, Card } from 'an
 import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
 import { Virtuoso } from 'react-virtuoso';
 import { STALL_TIMEOUT_MS } from '../adapters/sse';
+import { getAdapter } from '../adapters/registry';
 import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
@@ -58,6 +59,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const lang = currentLang();
   const rounds = useSettingsStore((s) => s.roundtableRounds);
+  const defaultProvider = useSettingsStore((s) => s.defaultProvider);
   const setRounds = useSettingsStore((s) => s.setRoundtableRounds);
   const [showPicker, setShowPicker] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
@@ -384,9 +386,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
     const prevMsg = idx > 0 ? conversation.messages[idx - 1] : null;
     const showDivider = isMulti && msg.role === 'user' && prevMsg?.role === 'character';
     // A character speech right after a moderator synthesis opens a new round —
-    // typeset a「第 N 轮」rule like the printed proceedings.
+    // typeset a「第 N 轮」rule like the printed proceedings. The FIRST round
+    // opens after the topic (or the focus card that absorbed it) — a chaptered
+    // document numbers its opening chapter too, so the rule is not reserved
+    // for round ≥ 2.
     const showRoundRule = isMulti && msg.role === 'character' && msg.characterId && !msg.characterId.startsWith('__')
-      && prevMsg?.characterId === '__moderator__';
+      && (prevMsg?.characterId === '__moderator__' || prevMsg?.role === 'user' || prevMsg?.characterId === '__focus__');
     const roundNo = showRoundRule
       ? conversation.messages.slice(0, idx).filter((m) => m.characterId === '__moderator__').length + 1
       : 0;
@@ -517,7 +522,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
           )}
           {!isGenerating && !isSummarizing && editingMsgId !== msg.id && (
             <div
-              className={`group-hover:!opacity-100${afterSpeech}`}
+              className={`group-hover:!opacity-100 group-focus-within:!opacity-100 lt-reveal${afterSpeech}`}
               style={{
                 display: 'flex',
                 gap: 0,
@@ -568,7 +573,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
         >
           {/* Hairline memorandum, not a glass card: the veil carries the
               separation, so the sheet draws only its top/bottom rules. */}
-          <Space orientation="vertical" align="center" size="middle" style={{ padding: 24, background: 'transparent', borderBlock: '1px solid var(--lt-rule)', maxWidth: 360 }}>
+          <Space orientation="vertical" align="center" size="small" style={{ padding: '24px 32px', background: 'transparent', borderBlock: '1px solid var(--lt-rule)', maxWidth: 480, textAlign: 'center' }}>
             {isSummoning ? (
               <>
                 <Spin />
@@ -576,18 +581,25 @@ export function ChatView({ conversationId }: ChatViewProps) {
               </>
             ) : !isConfigured ? (
               <>
-                <Text>{t('chat.noApiKey')}</Text>
+                <Text className="display-serif" style={{ fontSize: 18, fontWeight: 600 }}>{t('chat.summonBlocked')}</Text>
+                <Text type="secondary" style={{ fontSize: 13, lineHeight: 1.9 }}>
+                  {t('chat.summonNoKeyBody', {
+                    topic: pendingTopic,
+                    provider: getAdapter(defaultProvider)?.name || defaultProvider,
+                  })}
+                </Text>
                 <Space>
                   <Button type="primary" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
-                  <Button onClick={() => startSummon(pendingTopic)}>{t('chat.retry')}</Button>
+                  <Button onClick={() => setPendingTopic(null)}>{t('chat.later')}</Button>
                 </Space>
               </>
             ) : summonError ? (
               <>
-                <Text type="danger">{summonError}</Text>
+                <Text className="display-serif" style={{ fontSize: 18, fontWeight: 600 }}>{t('chat.summonBlocked')}</Text>
+                <Text type="danger" style={{ fontSize: 13 }}>{summonError}</Text>
                 <Space>
                   <Button type="primary" onClick={() => startSummon(pendingTopic)}>{t('chat.retry')}</Button>
-                  <Button onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                  <Button onClick={() => setPendingTopic(null)}>{t('chat.later')}</Button>
                 </Space>
               </>
             ) : null}
@@ -639,8 +651,10 @@ export function ChatView({ conversationId }: ChatViewProps) {
       />
 
       {/* A precondition, not a message — kept out of the scroll container so it
-          can't scroll away behind the transcript. */}
-      {!isConfigured && (
+          can't scroll away behind the transcript. Hidden while the summon veil
+          is up: the veil says the same thing with more context, and two
+          "no API key" banners on one screen is one too many. */}
+      {!isConfigured && !(pendingTopic && !isMulti) && (
         <div style={{ padding: GUTTER }}>
           <div className="lt-column" style={COLUMN}>
             <Alert

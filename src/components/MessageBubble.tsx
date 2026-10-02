@@ -105,7 +105,12 @@ function MessageBubbleImpl({ content, isUser, avatar, color, name, era, dropCap 
           <span className="lt-speech-meta" title={fullDate}>{timeLabel}</span>
         )}
       </div>
-      {!isEmpty && (
+      {isEmpty ? (
+        // An idle empty speech is an interrupted turn — typeset it as an
+        // absence record so it never reads as a broken render. (The live
+        // streaming stub is handled upstream and never reaches here.)
+        <div className="lt-speech-body lt-unspoken">{t('chat.notSpoken')}</div>
+      ) : (
         <div className={`lt-speech-body${dropCap && !isRaw && !opensWithAcronym ? ' lt-dropcap' : ''}`}>
           {renderedBody}
         </div>

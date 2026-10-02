@@ -127,27 +127,13 @@ export function ChatPage() {
             <div style={{ padding: 'clamp(20px, 5vw, 96px)', ...WIDE_COLUMN, paddingBottom: 96 }}>
               {/* Masthead */}
               <div style={{ marginBottom: 32 }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                  <Title
-                    className="display-serif lt-title"
-                    level={1}
-                    style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', lineHeight: 1.15 }}
-                  >
-                    {t('home.title')}
-                  </Title>
-                  <Button
-                    icon={<ThunderboltOutlined />}
-                    onClick={() => {
-                      const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
-                      const charIds = shuffled.slice(0, 5).map((c) => c.id);
-                      const convId = createConversation('roundtable', charIds);
-                      navigate(lp(`/chat/${convId}`));
-                    }}
-                    style={{ flexShrink: 0, marginTop: 4 }}
-                  >
-                    {t('home.randomRoundtable')}
-                  </Button>
-                </div>
+                <Title
+                  className="display-serif lt-title"
+                  level={1}
+                  style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.8rem)', lineHeight: 1.15 }}
+                >
+                  {t('home.title')}
+                </Title>
                 <Paragraph type="secondary" style={{ marginTop: 12, fontSize: 16, maxWidth: 640 }}>
                   {t('home.subtitle')}
                 </Paragraph>
@@ -172,6 +158,23 @@ export function ChatPage() {
                   // (same guard ChatInput uses around its textarea).
                   style={{ paddingInline: 0, flex: 1, minWidth: 0 }}
                 />
+                {/* Random panel sits on the ledger line with 开始 — it is an
+                    alternative way to fill this one instrument, not a second
+                    hero action floating over the title. */}
+                <Button
+                  type="text"
+                  size="large"
+                  icon={<ThunderboltOutlined />}
+                  onClick={() => {
+                    const shuffled = [...presetCharacters].sort(() => Math.random() - 0.5);
+                    const charIds = shuffled.slice(0, 5).map((c) => c.id);
+                    const convId = createConversation('roundtable', charIds);
+                    navigate(lp(`/chat/${convId}`));
+                  }}
+                  style={{ flexShrink: 0 }}
+                >
+                  {t('home.randomRoundtable')}
+                </Button>
                 <Button
                   className="lt-send"
                   type="primary"
@@ -199,7 +202,7 @@ export function ChatPage() {
 
               {/* Templates */}
               <div style={{ marginBottom: 32 }}>
-                <Title level={3} className="display-serif lt-title" style={{ marginBottom: 12 }}>
+                <Title level={2} className="display-serif lt-title" style={{ marginBottom: 12, fontSize: 26 }}>
                   {t('home.templates')}
                 </Title>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
@@ -238,7 +241,11 @@ export function ChatPage() {
                           <Text className="display-serif lt-title" ellipsis style={{ display: 'block', fontSize: 15 }}>
                             {t(`templates.${tpl.id}.name`)}
                           </Text>
-                          <Text type="secondary" ellipsis style={{ display: 'block', fontSize: 12 }}>
+                          {/* Two-line clamp (.lt-clamp2): a single ellipsized
+                              line cut template descriptions mid-phrase on
+                              3-card rows; clamp keeps the whole thought when
+                              it wraps. */}
+                          <Text type="secondary" className="lt-clamp2" style={{ fontSize: 12 }}>
                             {t(`templates.${tpl.id}.description`)}
                           </Text>
                         </div>
@@ -250,7 +257,7 @@ export function ChatPage() {
 
               {/* Registry */}
               <div>
-                <Title level={3} className="display-serif lt-title" style={{ marginBottom: 12 }}>
+                <Title level={2} className="display-serif lt-title" style={{ marginBottom: 12, fontSize: 26 }}>
                   {t('home.registry')}
                 </Title>
                 <CharacterGrid

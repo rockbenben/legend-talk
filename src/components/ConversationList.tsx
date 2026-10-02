@@ -152,56 +152,21 @@ export function ConversationList({ activeId }: ConversationListProps) {
                 onClick={() => { navigate(lp(`/chat/${conv.id}`)); if (isMobile) setCollapsed(true); }}
                 onDoubleClick={(e) => { e.stopPropagation(); startEditing(conv); }}
                 style={{
-                  padding: '12px 14px',
+                  padding: '10px 14px',
                   cursor: 'pointer',
-                  background: isActive ? `color-mix(in srgb, ${token.colorPrimary} 6%, transparent)` : undefined,
-                  borderInlineStart: isActive ? `2px solid ${token.colorPrimary}` : '2px solid transparent',
+                  // Active reads as a marginal rule + red title — a tinted
+                  // background block would fight the "one hairline, no fill"
+                  // doctrine (and turns into a muddy maroon in dark mode).
+                  // --lt-madder, not token.colorPrimary: the dark algorithm
+                  // DERIVES a slightly browner primary (#B06C73, 4.19:1 — under
+                  // AA at 15px), while the CSS variable is the design's own
+                  // madder at 7.39:1 light / 5.37:1 dark.
+                  borderInlineStart: isActive ? '2px solid var(--lt-madder)' : '2px solid transparent',
                 }}
               >
-                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {/* Title row: title + delete on hover */}
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      {editingId === conv.id ? (
-                        <Input
-                          size="small"
-                          autoFocus
-                          value={editValue}
-                          onChange={(e) => setEditValue(e.target.value)}
-                          onBlur={finishEditing}
-                          onPressEnter={finishEditing}
-                          onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
-                          onClick={(e) => e.stopPropagation()}
-                        />
-                      ) : (
-                        <Text
-                          className="display-serif"
-                          ellipsis
-                          style={{
-                            fontSize: 15,
-                            fontWeight: isActive ? 600 : 500,
-                            color: isActive ? token.colorPrimary : token.colorText,
-                            display: 'block',
-                          }}
-                        >
-                          {getDisplayTitle(conv)}
-                        </Text>
-                      )}
-                    </div>
-                    <Button
-                      type="text"
-                      size="small"
-                      icon={<CloseOutlined style={{ fontSize: 11 }} />}
-                      className="opacity-0 group-hover:!opacity-100"
-                      style={{ color: token.colorTextTertiary, transition: 'opacity 0.18s', flexShrink: 0 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteConversation(conv.id);
-                        if (activeId === conv.id) navigate(lp('/chat'));
-                      }}
-                    />
-                  </div>
-                  {/* Meta row: stacked participant avatars + relative time */}
+                <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  {/* Meta row leads: avatars + time are the scan anchors, the
+                      title gets the full row width beneath them. */}
                   {chars.length > 0 ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
                       <div style={{ display: 'flex', flexShrink: 0 }}>
@@ -234,10 +199,50 @@ export function ConversationList({ activeId }: ConversationListProps) {
                       </Text>
                     </div>
                   ) : (
-                    <Text type="secondary" style={{ fontSize: 11 }}>
-                      {time}
-                    </Text>
+                    <Text type="secondary" style={{ fontSize: 11 }}>{time}</Text>
                   )}
+                  {/* Title row: title + delete on hover/focus (touch: always, via .lt-reveal) */}
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      {editingId === conv.id ? (
+                        <Input
+                          size="small"
+                          autoFocus
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onBlur={finishEditing}
+                          onPressEnter={finishEditing}
+                          onKeyDown={(e) => { if (e.key === 'Escape') setEditingId(null); }}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <Text
+                          className="display-serif"
+                          ellipsis
+                          style={{
+                            fontSize: 15,
+                            fontWeight: isActive ? 600 : 500,
+                            color: isActive ? 'var(--lt-madder)' : token.colorText,
+                            display: 'block',
+                          }}
+                        >
+                          {getDisplayTitle(conv)}
+                        </Text>
+                      )}
+                    </div>
+                    <Button
+                      type="text"
+                      size="small"
+                      icon={<CloseOutlined style={{ fontSize: 11 }} />}
+                      className="opacity-0 group-hover:!opacity-100 group-focus-within:!opacity-100 lt-reveal"
+                      style={{ color: token.colorTextTertiary, flexShrink: 0 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteConversation(conv.id);
+                        if (activeId === conv.id) navigate(lp('/chat'));
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             );

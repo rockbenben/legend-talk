@@ -7,4 +7,7 @@ AGENTS.md
 .gstack/
 .claude/settings.local.json
 .design-qa/
-.qoder-credits/
+.qoder*
+DESIGN.md
+design-preview/
+design.qa.yaml

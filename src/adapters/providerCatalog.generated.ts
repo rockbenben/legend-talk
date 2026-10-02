@@ -70,8 +70,8 @@ export interface CatalogProvider {
   directBlocked: boolean;
   /**
    * true = 在各 app 的默认 provider 选择器里【隐藏】，用户要打开一个默认关的高级
-   * 开关才放出来（当前是火山 Coding Plan 与阿里 Token Plan 两个订阅套餐：两家
-   * 官方文档都写明，在非 AI 编程工具 / 允许范围之外使用套餐端点可能被判定滥用，
+   * 开关才放出来（被标的都是订阅套餐端点：官方文档写明，在非 AI 编程工具 /
+   * 允许范围之外使用套餐端点可能被判定滥用，
    * 导致订阅停用或账号 / API Key 封禁）。
    *
    * ⚠ 这【只】是默认 UI 过滤，不是禁用：行为层必须照常工作 —— 已经选了它的老
@@ -93,8 +93,9 @@ export interface CatalogProvider {
   thinkingWire?: CatalogModel["thinkingWire"];
   /**
    * 未列出 SKU 的【条件】形态：取【第一条】pattern 匹配上的 wire，都不匹配才用
-   * 上面的 thinkingWire。目前只有 Claude 有 —— 它的思考协议分两代，而属于哪一代
-   * 取决于模型名（官方：4.7 及以后【拒收】budget_tokens，用了直接 400），手填的
+   * 上面的 thinkingWire。只有【思考协议按名字分代、且无法从 models 清单判定】的
+   * provider 才需要它（Claude 即此类：官方 4.7 及以后【拒收】budget_tokens，
+   * 属于哪一代取决于模型名），手填的
    * SKU 不在任何清单里，只能按名字判。
    *
    * ⚠ 是【有序数组】，规则会互相包含：官方标 Always on 的那几支同属新世代，正则
@@ -106,8 +107,8 @@ export interface CatalogProvider {
    * 不是「用宽规则那一档」。所以各规则的非-off 档位集合恒等（生成时断言），只有
    * off 允许缺席（缺 off = 这一支关不掉）。加新规则时别只写差异的那半。
    *
-   * 这套规则各 app 各写一份必然漂（已经漂过一次：某次精简把 4.7/4.8 删了，
-   * 手填 opus-4-8 就会 400），所以由目录统一下发。
+   * 这套规则各 app 各写一份必然漂，所以由目录统一下发；删掉窄规则里的任何档位，
+   * 都可能让手填的 SKU 拿到被拒的参数形态。
    */
   thinkingWireIf?: readonly { pattern: string; wire: CatalogModel["thinkingWire"] }[];
   /** [0] 为默认端点 */
@@ -166,13 +167,13 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     canDisableThinking: true,
     directBlocked: false,
     thinkingWire: {"low":{"thinking":{"type":"enabled","budget_tokens":4096}},"medium":{"thinking":{"type":"enabled","budget_tokens":10000}},"high":{"thinking":{"type":"enabled","budget_tokens":12000}}},
-    thinkingWireIf: [{"pattern":"claude-(fable-5|mythos)","wire":{"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}}},{"pattern":"claude-(opus-5|opus-4-[78]|sonnet-5|fable-5|mythos)","wire":{"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}}}],
+    thinkingWireIf: [{"pattern":"claude-(fable-5|mythos|opus-5-5)","wire":{"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}}},{"pattern":"claude-(opus-5|opus-4-[78]|sonnet-5|fable-5|mythos)","wire":{"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}}}],
     endpoints: [
       { label: "Anthropic", url: "https://api.anthropic.com/v1/messages", baseUrl: "https://api.anthropic.com/v1" },
     ],
     models: [
-      { id: "claude-opus-5-5", name: "Claude Opus 5.5", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
-      { id: "claude-sonnet-5-5", name: "Claude Sonnet 5.5", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
+      { id: "claude-opus-5-5", name: "Claude Opus 5.5", thinking: true, thinkingWire: {"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
+      { id: "claude-sonnet-5-5", name: "Claude Sonnet 5.5", thinking: true, thinkingWire: {"off":{"thinking":{"type":"between_tools"}},"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
       { id: "claude-haiku-4-5", name: "Claude Haiku 4.5", thinking: true, thinkingWire: {"low":{"thinking":{"type":"enabled","budget_tokens":4096}},"medium":{"thinking":{"type":"enabled","budget_tokens":10000}},"high":{"thinking":{"type":"enabled","budget_tokens":12000}}} },
       { id: "claude-fable-5-1", name: "Claude Fable 5.1", thinking: true, thinkingWire: {"low":{"thinking":{"type":"adaptive"},"output_config":{"effort":"low"}},"medium":{"thinking":{"type":"adaptive"},"output_config":{"effort":"medium"}},"high":{"thinking":{"type":"adaptive"},"output_config":{"effort":"high"}}} },
     ],
@@ -235,7 +236,6 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     models: [
       { id: "qwen3.8-max", name: "Qwen3.8 Max", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
       { id: "qwen3.8-flash", name: "Qwen3.8 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
-      { id: "qwen3.7-plus", name: "Qwen3.7 Plus", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true,"thinking_budget":1024},"medium":{"enable_thinking":true,"thinking_budget":4096},"high":{"enable_thinking":true,"thinking_budget":8192}} },
     ],
   },
   {
@@ -255,6 +255,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     ],
     models: [
       { id: "kimi-k3", name: "Kimi K3", thinking: true, thinkingLevels: ["low","high"], thinkingWire: {"off":{"reasoning_effort":"low"},"low":{"reasoning_effort":"low"},"medium":{"reasoning_effort":"low"},"high":{"reasoning_effort":"high"}} },
+      { id: "kimi-k2.7-code", name: "Kimi K2.7 Code" },
       { id: "kimi-k2.6", name: "Kimi K2.6", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
     ],
   },
@@ -309,17 +310,17 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     docs: "https://docs.bigmodel.cn/cn/guide/start/introduction",
     apiKeyUrl: "https://bigmodel.cn/usercenter/proj-mgmt/apikeys",
     defaultModel: "glm-5.3",
-    canDisableThinking: true,
+    canDisableThinking: false,
     directBlocked: false,
-    thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}},
+    thinkingWire: {"off":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"medium"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}},
     endpoints: [
       { label: "Mainland (CN)", url: "https://open.bigmodel.cn/api/paas/v4/chat/completions", baseUrl: "https://open.bigmodel.cn/api/paas/v4" },
       { label: "International (Z.ai)", url: "https://api.z.ai/api/paas/v4/chat/completions", baseUrl: "https://api.z.ai/api/paas/v4" },
     ],
     models: [
-      { id: "glm-5.3", name: "GLM-5.3" },
-      { id: "glm-5.3-flash", name: "GLM-5.3 Flash" },
-      { id: "glm-5.3-flashx", name: "GLM-5.3 FlashX" },
+      { id: "glm-5.3", name: "GLM-5.3", thinking: true, thinkingLevels: ["low","high"], thinkingWire: {"off":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
+      { id: "glm-5.3-flash", name: "GLM-5.3 Flash", thinking: true, thinkingLevels: ["low","high"], thinkingWire: {"off":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
+      { id: "glm-5.3-flashx", name: "GLM-5.3 FlashX", thinking: true, thinkingLevels: ["low","high"], thinkingWire: {"off":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"low":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"medium":{"thinking":{"type":"enabled"},"reasoning_effort":"low"},"high":{"thinking":{"type":"enabled"},"reasoning_effort":"high"}} },
     ],
   },
   {
@@ -339,6 +340,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     ],
     models: [
       { id: "MiniMax-M3", name: "MiniMax M3", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"adaptive"}},"medium":{"thinking":{"type":"adaptive"}},"high":{"thinking":{"type":"adaptive"}}} },
+      { id: "MiniMax-M2.7", name: "MiniMax M2.7" },
     ],
   },
   {
@@ -349,14 +351,15 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
     docs: "https://platform.stepfun.com/docs/zh/guides/models",
     apiKeyUrl: "https://platform.stepfun.com/interface-key",
     defaultModel: "step-3.5-flash",
-    canDisableThinking: true,
+    canDisableThinking: false,
     directBlocked: false,
+    thinkingWire: {"off":{"reasoning_effort":"low"},"low":{"reasoning_effort":"low"},"medium":{"reasoning_effort":"medium"},"high":{"reasoning_effort":"high"}},
     endpoints: [
       { label: "Default", url: "https://api.stepfun.com/v1/chat/completions", baseUrl: "https://api.stepfun.com/v1" },
     ],
     models: [
       { id: "step-3.5-flash", name: "Step 3.5 Flash" },
-      { id: "step-3.7-flash", name: "Step 3.7 Flash" },
+      { id: "step-3.7-flash", name: "Step 3.7 Flash", thinking: true, thinkingLevels: ["low","medium","high"], thinkingWire: {"off":{"reasoning_effort":"low"},"low":{"reasoning_effort":"low"},"medium":{"reasoning_effort":"medium"},"high":{"reasoning_effort":"high"}} },
     ],
   },
   {
@@ -769,7 +772,7 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { id: "deepseek-v4.1-flash", name: "DeepSeek V4.1 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
       { id: "deepseek-v4-flash", name: "DeepSeek V4 Flash", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
       { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
-      { id: "kimi-k2.7-code", name: "Kimi K2.7 Code", thinking: true, thinkingWire: {"off":{"thinking":{"type":"disabled"}},"low":{"thinking":{"type":"enabled"}},"medium":{"thinking":{"type":"enabled"}},"high":{"thinking":{"type":"enabled"}}} },
+      { id: "kimi-k2.7-code", name: "Kimi K2.7 Code" },
       { id: "kimi-k2.8-preview", name: "Kimi K2.8 Preview" },
       { id: "kimi-k3", name: "Kimi K3" },
     ],
@@ -790,11 +793,8 @@ export const PROVIDER_CATALOG: readonly CatalogProvider[] = [
       { label: "Default", url: "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1/chat/completions", baseUrl: "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1" },
     ],
     models: [
-      { id: "qwen3.8-max", name: "Qwen 3.8 Max" },
-      { id: "qwen3.8-flash", name: "Qwen 3.8 Flash" },
-      { id: "qwen3.7-max", name: "Qwen 3.7 Max", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
-      { id: "qwen3.7-plus", name: "Qwen 3.7 Plus", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
-      { id: "qwen3.6-flash", name: "Qwen 3.6 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "qwen3.8-max", name: "Qwen 3.8 Max", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
+      { id: "qwen3.8-flash", name: "Qwen 3.8 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
       { id: "deepseek-v4.1-flash", name: "DeepSeek V4.1 Flash", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
       { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },
       { id: "deepseek-v4-pro-0813", name: "DeepSeek V4 Pro 0813", thinking: true, thinkingWire: {"off":{"enable_thinking":false},"low":{"enable_thinking":true},"medium":{"enable_thinking":true},"high":{"enable_thinking":true}} },

@@ -41,6 +41,14 @@ for (const l of langs) {
     console.log(`== ${l} ==`);
     console.log('  duplicate keys (后写覆盖前写，前一份是死代码):', dups.join(', '));
   }
+  // 议事录排印规矩：省略号是单字符「…」，不是三个点。2026-10 一轮全量清过
+  // （14 键 × 18 语言），这条判据防止新文案把 "..." 带回来。
+  const dots = flat(load(l)).filter(([, v]) => typeof v === 'string' && v.includes('...')).map(([k]) => k);
+  if (dots.length) {
+    issues++;
+    console.log(`== ${l} ==`);
+    console.log('  ASCII "..." (排印规矩用「…」):', dots.join(', '));
+  }
 }
 for (const l of langs.slice(1)) {
   const j = Object.fromEntries(flat(load(l)).filter(([k]) => !isPlural(k)));

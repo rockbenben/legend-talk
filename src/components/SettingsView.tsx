@@ -55,8 +55,9 @@ export function SettingsView() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const currentAdapter = getAdapter(settings.defaultProvider);
-  // 这家有没有「关闭思考」这一档 —— 没有的话最低档仍在推理、仍在计费
-  const thinkingCanDisable = canDisableThinking(settings.defaultProvider);
+  // 当前【这个型号】有没有「关闭思考」这一档 —— 没有的话最低档仍在推理、仍在计费。
+  // 逐 SKU 判：同一家里可以两种能力都有（openai 的 luna 收 none、astra 只到 low）。
+  const thinkingCanDisable = canDisableThinking(settings.defaultProvider, settings.defaultModel);
   // 当前服务商的全部 SKU —— 模型框的 filterOption 用它判「输入是不是已选中的型号」
   const knownModelIds = new Set((currentAdapter?.models ?? []).map((m) => m.id));
   // 能换地址的适配器 —— 现在【每一家】都能（claude / gemini 两个原生适配器也

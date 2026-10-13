@@ -126,6 +126,61 @@ describe('思考控件的两条界面不变量', () => {
     expect(canDisableThinking('alibaba')).toBe(true);
     expect(canDisableThinking(undefined)).toBe(true);
   });
+
+  // ③ 逐 SKU 判据。测试【自己独立算一遍】关闭档那个值算不算真关闭，不复用
+  //    canDisableThinking 的实现 —— 否则实现改口时这条会跟着改，就成了恒真证人。
+  const realOffValue = (off: Record<string, unknown> | undefined): boolean => {
+    if (!off) return false;
+    const leaves = (v: unknown): unknown[] => (v !== null && typeof v === 'object' ? Object.values(v).flatMap(leaves) : [v]);
+    const vs = leaves(off);
+    return vs.length > 0 && vs.every((v) => v === false || v === 0 || (typeof v === 'string' && ['none', 'disabled', 'off'].includes(v.toLowerCase())));
+  };
+
+  it('逐 SKU：关闭档发的是真关闭值才算关得掉，发最低档 / 根本没有关闭档都不算', () => {
+    let checked = 0;
+    let vacuous = 0;
+    for (const p of PROVIDER_CATALOG) {
+      for (const m of p.models) {
+        if (!m.thinkingWire) {
+          // 压根不发思考参数的 SKU：这一档无所谓关不关，但界面也不该因此显示控件 ——
+          // 两件事必须同时成立，否则「按能关处理」就成了没人看见的分支。
+          // 只对本 app 收了的那几家成立（没收的 provider 没有 adapter，谈不上控件）。
+          const adapter = getAdapter(p.key);
+          if (!adapter) continue;
+          vacuous++;
+          expect(canDisableThinking(p.key, m.id), `${p.key}/${m.id}：不发思考参数，不该被算成关不掉`).toBe(true);
+          expect(adapter.supportsThinking?.(m.id) ?? true, `${p.key}/${m.id}：没有形态却显示思考控件`).toBe(false);
+          continue;
+        }
+        checked++;
+        expect(canDisableThinking(p.key, m.id), `${p.key}/${m.id}：标签与关闭档实际发的那个值不一致`).toBe(realOffValue(m.thinkingWire.off));
+      }
+    }
+    expect(checked, '目录里一个带思考形态的 SKU 都没有 —— 这条在空转').toBeGreaterThan(0);
+    expect(vacuous, '目录里一个不带思考形态的 SKU 都没有 —— 上面那条分支没被走过').toBeGreaterThan(0);
+  });
+
+  it('同一家内两种关闭能力并存：provider 级那个布尔必然对一边是错的', () => {
+    const wiredOf = (p: (typeof PROVIDER_CATALOG)[number]) => p.models.filter((m) => m.thinkingWire);
+    const mixed = PROVIDER_CATALOG.filter((p) => {
+      const wired = wiredOf(p);
+      return wired.some((m) => realOffValue(m.thinkingWire!.off)) && wired.some((m) => !realOffValue(m.thinkingWire!.off));
+    });
+    expect(mixed.length, '目录里没有「同一家两种关闭能力」的样本 —— 这条在空转（openai / claude 正是这种）').toBeGreaterThan(0);
+    for (const p of mixed) {
+      const wired = wiredOf(p);
+      const provSays = p.canDisableThinking !== false;
+      expect(wired.some((m) => canDisableThinking(p.key, m.id) !== provSays), `${p.key}：provider 级布尔与逐 SKU 判据完全一致，那逐 SKU 这条没在起作用`).toBe(true);
+      expect(wired.filter((m) => canDisableThinking(p.key, m.id)).length, `${p.key} 该有关得掉的 SKU`).toBeGreaterThan(0);
+      expect(wired.filter((m) => !canDisableThinking(p.key, m.id)).length, `${p.key} 该有关不掉的 SKU`).toBeGreaterThan(0);
+    }
+  });
+
+  it('手填的 SKU 退回 provider 级保守值', () => {
+    for (const p of PROVIDER_CATALOG) {
+      expect(canDisableThinking(p.key, 'hand-typed-unknown-sku'), `${p.key}：未在册的型号应等于 provider 级判据`).toBe(p.canDisableThinking !== false);
+    }
+  });
 });
 
 // thinkingWireIf 是【取首个匹配】的有序数组，所以规则之间【没有继承】：某一档在

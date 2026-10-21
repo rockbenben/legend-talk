@@ -97,7 +97,7 @@ Buka http://localhost:5173, ke Pengaturan, masukkan kunci API Anda, dan mulai me
 
 **161 pemikir preset** di 15 domain, diurutkan berdasarkan ketenaran — ketik nama apa pun untuk membuat karakter kustom secara langsung.
 
-**Model** — atur **level berpikir** (mati / rendah / sedang / tinggi), masukkan **ID model kustom**, atau hubungkan **API kompatibel-OpenAI** apa pun sebagai penyedia kustom. Default: DeepSeek V4 Flash. Kontrol berpikir hanya muncul untuk model yang benar-benar mendukungnya, dan penyedia tanpa opsi mati (Gemini, Grok, Groq, Cerebras, Moonshot) memberi label **Min** pada level terendahnya alih-alih «mati»: ia tetap menalar dan tetap ditagih, jadi menulis «mati» adalah kebohongan.
+**Model** — atur **level berpikir** (mati / rendah / sedang / tinggi), masukkan **ID model kustom**, atau hubungkan **API kompatibel-OpenAI** apa pun sebagai penyedia kustom. Default: DeepSeek Flash. Kontrol berpikir hanya muncul untuk model yang benar-benar mendukungnya, dan model yang tidak bisa dimatikan memberi label **Min** pada level terendahnya alih-alih «mati»: ia tetap menalar dan tetap ditagih, jadi menulis «mati» adalah kebohongan.
 
 **Platform** — 18 bahasa · mode gelap · responsif · **lokal-pertama** (penulisan ganda IndexedDB + localStorage, berfungsi di WeChat dan WebView terbatas) · **tanpa CDN** (font di-host sendiri dan dibundel, sehingga berfungsi offline dan di belakang firewall).
 
@@ -129,7 +129,7 @@ Daftar model terkini tiap penyedia ada di Pengaturan — ID model berubah terlal
 
 Qwen, MiMo, Moonshot, Zhipu, MiniMax, dan TokenHub menyediakan host regionalnya sekali klik. Selain itu, **setiap** penyedia — termasuk Anthropic dan Gemini — punya kolom endpoint teks bebas, karena upstream mana yang memblokir browser tidak bisa diprediksi. Endpoint dan proksi CORS saling independen: Anda bisa mengarah ke gateway sendiri dan tetap terhubung langsung, atau memakai host resmi lewat proksi.
 
-Semua penyedia menerima ID model kustom. **Menjalankan model secara lokal**: opsi **Custom** menerima alamat apa pun yang kompatibel dengan OpenAI, dengan titik awal sekali klik untuk LM Studio, Ollama, llama.cpp, LiteLLM, Together AI, dan Fireworks AI (masing-masing dengan tautan dokumentasinya). Server lokal tidak butuh kunci API: di sana alamatnya _adalah_ kredensialnya, jadi kolom kunci tetap opsional.
+Semua penyedia menerima ID model kustom. **Menjalankan model secara lokal**: opsi **Custom** menerima alamat apa pun yang kompatibel dengan OpenAI, dengan titik awal sekali klik untuk LM Studio, Ollama, llama.cpp, koboldcpp, LiteLLM, 9Router, OmniRoute, Together AI, Fireworks AI (masing-masing dengan tautan dokumentasinya). Server lokal tidak butuh kunci API: di sana alamatnya _adalah_ kredensialnya, jadi kolom kunci tetap opsional.
 
 ## Proxy CORS
 

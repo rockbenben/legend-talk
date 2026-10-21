@@ -100,7 +100,7 @@ npm run dev
 
 **161 位预设思想家**，覆盖 15 大领域、按知名度排序——直接输入任意名字即可即时创建自定义角色。
 
-**模型** — 可设 **思考强度**（关闭 / 低 / 中 / 高）、手动填入 **自定义模型 ID**，或以自定义服务商接入任意 **OpenAI 兼容 API**。默认：DeepSeek V4 Flash。思考控件只对真正支持思考的模型出现；没有关闭档的服务商（Gemini、Grok、Groq、Cerebras、Moonshot）最低一档标为 **Min** 而不是「关闭」——它仍在推理、仍在计费，写「关闭」就是撒谎。
+**模型** — 可设 **思考强度**、手动填入 **自定义模型 ID**，或以自定义服务商接入任意 **OpenAI 兼容 API**。默认：DeepSeek Flash。思考控件只对真正支持思考的模型出现，且是**按型号**判的：下拉只列该型号真有的档（Kimi K3 没有「中」），关不掉的型号最低一档标为 **Min** 而不是「关闭」——它仍在推理、仍在计费，写「关闭」就是撒谎；三档发出去的 body 完全相同的型号只给一个「开」，不再摆三行一模一样的选项。
 
 **平台** — 18 种语言 · 深色模式 · 响应式 · **本地优先**（IndexedDB + localStorage 双写，兼容微信等受限 WebView）· **零 CDN**（字体全部自托管打包，离线与内网环境开箱即用）。
 
@@ -132,7 +132,7 @@ npm run dev
 
 通义千问、小米 MiMo、月之暗面、智谱、MiniMax、腾讯 TokenHub 的地域节点可一键切换。除此之外，**每一家**（含 Anthropic 与 Gemini）都有一个自由填写的端点框——哪家上游会拦浏览器无法预判。端点与 CORS 中转是两件独立的事：可以指向自建网关而仍然直连，也可以走官方地址而经中转。
 
-所有服务商均支持自定义模型 ID。**本地跑模型**：「Custom」接入任意 OpenAI 兼容地址，并为 LM Studio、Ollama、llama.cpp、LiteLLM、Together AI、Fireworks AI 各准备了一键起步地址与各自的文档链接。本地服务无需 API key——对它们而言地址就是凭据，key 一栏可以留空。
+所有服务商均支持自定义模型 ID。**本地跑模型**：「Custom」接入任意 OpenAI 兼容地址，并为 LM Studio、Ollama、llama.cpp、koboldcpp、LiteLLM、9Router、OmniRoute、Together AI、Fireworks AI 各准备了一键起步地址与各自的文档链接。本地服务无需 API key——对它们而言地址就是凭据，key 一栏可以留空。
 
 ## CORS 中转
 
@@ -157,7 +157,7 @@ src/
   components/     # React 组件
   hooks/          # useChat、useRoundtable
   i18n/           # 国际化
-  pages/          # 路由页面：ChatPage、SettingsView、SharedView
+  pages/          # 路由页面：ChatPage、SettingsPage、SharedView
   stores/         # Zustand 状态管理
   utils/          # prompt 构建、导出、压缩、存储工具
   types.ts        # 类型定义

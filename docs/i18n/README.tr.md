@@ -99,7 +99,7 @@ http://localhost:5173 açın, Ayarlar'a gidin, API anahtarınızı girin ve sohb
 
 **161 hazır düşünür** 15 alanda, üne göre sıralanmış — özel bir karakteri anında oluşturmak için herhangi bir isim yazın.
 
-**Modeller** — **düşünme seviyesini** (kapalı / düşük / orta / yüksek) ayarlayın, bir **özel model ID'si** girin veya özel sağlayıcı olarak herhangi bir **OpenAI uyumlu API**'yi bağlayın. Varsayılan: DeepSeek V4 Flash. Düşünme denetimi yalnızca bunu gerçekten destekleyen modellerde görünür; kapatma değeri olmayan sağlayıcılar (Gemini, Grok, Groq, Cerebras, Moonshot) en düşük seviyeyi «kapalı» yerine **Min** olarak etiketler: model yine akıl yürütür ve yine ücretlendirilir, «kapalı» demek yalan olurdu.
+**Modeller** — **düşünme seviyesini** (kapalı / düşük / orta / yüksek) ayarlayın, bir **özel model ID'si** girin veya özel sağlayıcı olarak herhangi bir **OpenAI uyumlu API**'yi bağlayın. Varsayılan: DeepSeek Flash. Düşünme denetimi yalnızca bunu gerçekten destekleyen modellerde görünür; kapatılamayan modeller en düşük seviyeyi «kapalı» yerine **Min** olarak etiketler: model yine akıl yürütür ve yine ücretlendirilir, «kapalı» demek yalan olurdu.
 
 **Platform** — 18 dil · karanlık mod · duyarlı · **yerel öncelikli** (IndexedDB + localStorage çift yazımı, WeChat ve kısıtlı WebView'lerde çalışır) · **sıfır CDN** (fontlar kendi sunucusunda barındırılır ve paketlenir, böylece çevrimdışı ve güvenlik duvarlarının arkasında çalışır).
 
@@ -131,7 +131,7 @@ Her sağlayıcının güncel model listesi Ayarlar’da — model kimlikleri bur
 
 Qwen, MiMo, Moonshot, Zhipu, MiniMax ve TokenHub bölgesel sunucularını tek tıkla değiştirir. Bunun ötesinde **her** sağlayıcının — Anthropic ve Gemini dahil — serbest metin uç nokta alanı vardır; hangi kaynağın tarayıcıyı engelleyeceği önceden kestirilemez. Uç nokta ile CORS proxy birbirinden bağımsızdır: kendi ağ geçidinizi gösterip yine doğrudan bağlanabilir ya da resmi sunucuya proxy üzerinden gidebilirsiniz.
 
-Tüm sağlayıcılar özel model ID kabul eder. **Modeli yerelde çalıştırma**: **Custom** seçeneği OpenAI uyumlu her adresi kabul eder; LM Studio, Ollama, llama.cpp, LiteLLM, Together AI ve Fireworks AI için tek tıkla başlangıç adresleri (her biri kendi dokümantasyon bağlantısıyla) hazırdır. Yerel sunucular API anahtarı istemez: orada adresin kendisi kimlik bilgisidir, bu yüzden anahtar alanı isteğe bağlı kalır.
+Tüm sağlayıcılar özel model ID kabul eder. **Modeli yerelde çalıştırma**: **Custom** seçeneği OpenAI uyumlu her adresi kabul eder; LM Studio, Ollama, llama.cpp, koboldcpp, LiteLLM, 9Router, OmniRoute, Together AI, Fireworks AI için tek tıkla başlangıç adresleri (her biri kendi dokümantasyon bağlantısıyla) hazırdır. Yerel sunucular API anahtarı istemez: orada adresin kendisi kimlik bilgisidir, bu yüzden anahtar alanı isteğe bağlı kalır.
 
 ## CORS Proxy
 

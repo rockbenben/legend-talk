@@ -149,6 +149,7 @@
     "thinkingLevelHint": "调高后，模型先推理再作答：更准，但更慢、更耗额度。",
     "thinkingLevelHintNoOff": "该服务商不支持关闭思考——最低档发送它自己的最低值，仍会推理、仍会计费。调高通常更准确，但更慢、更耗额度。",
     "thinkingOff": "关闭",
+    "thinkingOn": "开",
     "thinkingMin": "最低",
     "thinkingLow": "低",
     "thinkingMedium": "中",

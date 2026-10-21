@@ -153,6 +153,7 @@
     "thinkingLevelHint": "Model reasons deeper before answering. More accurate but slower and uses more tokens.",
     "thinkingLevelHintNoOff": "This provider cannot turn reasoning off — Min sends its own lowest value, which still reasons and still bills. Higher is usually more accurate but slower and costlier.",
     "thinkingOff": "Off",
+    "thinkingOn": "On",
     "thinkingMin": "Min",
     "thinkingLow": "Low",
     "thinkingMedium": "Medium",

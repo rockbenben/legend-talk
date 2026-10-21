@@ -149,6 +149,7 @@
     "thinkingLevelHint": "Model berpikir lebih dalam. Lebih akurat tapi lebih lambat.",
     "thinkingLevelHintNoOff": "Penyedia ini tidak bisa mematikan penalaran — Minimum mengirim nilai terendahnya sendiri, yang tetap menalar dan tetap ditagih. Lebih tinggi biasanya lebih akurat tapi lebih lambat dan mahal.",
     "thinkingOff": "Mati",
+    "thinkingOn": "Aktif",
     "thinkingMin": "Minimum",
     "thinkingLow": "Rendah",
     "thinkingMedium": "Sedang",

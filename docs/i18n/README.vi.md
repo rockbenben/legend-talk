@@ -97,7 +97,7 @@ Mở http://localhost:5173, vào Cài đặt, nhập khóa API của bạn, và 
 
 **161 nhà tư tưởng có sẵn** trải khắp 15 lĩnh vực, sắp xếp theo độ nổi tiếng — gõ bất kỳ tên nào để tạo nhân vật tùy chỉnh ngay lập tức.
 
-**Mô hình** — đặt **mức suy nghĩ** (tắt / thấp / trung bình / cao), nhập **ID mô hình tùy chỉnh**, hoặc kết nối bất kỳ **API tương thích OpenAI** nào làm nhà cung cấp tùy chỉnh. Mặc định: DeepSeek V4 Flash. Điều khiển suy nghĩ chỉ xuất hiện với các mô hình thực sự hỗ trợ, còn những nhà cung cấp không có giá trị tắt (Gemini, Grok, Groq, Cerebras, Moonshot) ghi mức thấp nhất là **Min** thay vì «tắt»: nó vẫn suy luận và vẫn tính phí, viết «tắt» sẽ là nói dối.
+**Mô hình** — đặt **mức suy nghĩ** (tắt / thấp / trung bình / cao), nhập **ID mô hình tùy chỉnh**, hoặc kết nối bất kỳ **API tương thích OpenAI** nào làm nhà cung cấp tùy chỉnh. Mặc định: DeepSeek Flash. Điều khiển suy nghĩ chỉ xuất hiện với các mô hình thực sự hỗ trợ, còn những mô hình không thể tắt ghi mức thấp nhất là **Min** thay vì «tắt»: nó vẫn suy luận và vẫn tính phí, viết «tắt» sẽ là nói dối.
 
 **Nền tảng** — 18 ngôn ngữ · chế độ tối · responsive · **ưu tiên cục bộ** (ghi kép IndexedDB + localStorage, hoạt động trong WeChat và các WebView bị hạn chế) · **không CDN** (font tự lưu trữ và đóng gói sẵn, nên hoạt động ngoại tuyến và sau tường lửa).
 
@@ -129,7 +129,7 @@ Danh sách mô hình hiện hành của từng nhà cung cấp nằm trong Cài 
 
 Qwen, MiMo, Moonshot, Zhipu, MiniMax và TokenHub cho phép đổi máy chủ theo khu vực chỉ bằng một cú nhấp. Ngoài ra, **mọi** nhà cung cấp — kể cả Anthropic và Gemini — đều có ô nhập địa chỉ tự do, vì không thể đoán trước nhà cung cấp nào sẽ chặn trình duyệt. Địa chỉ và proxy CORS là hai việc độc lập: bạn có thể trỏ tới cổng riêng mà vẫn kết nối trực tiếp, hoặc dùng máy chủ chính thức qua proxy.
 
-Mọi nhà cung cấp đều nhận ID mô hình tùy chỉnh. **Chạy mô hình cục bộ**: tùy chọn **Custom** nhận bất kỳ địa chỉ tương thích OpenAI nào, kèm địa chỉ khởi đầu một chạm cho LM Studio, Ollama, llama.cpp, LiteLLM, Together AI và Fireworks AI (mỗi mục có liên kết tài liệu riêng). Máy chủ cục bộ không cần khoá API: ở đó địa chỉ chính _là_ thông tin xác thực, nên ô khoá để trống cũng được.
+Mọi nhà cung cấp đều nhận ID mô hình tùy chỉnh. **Chạy mô hình cục bộ**: tùy chọn **Custom** nhận bất kỳ địa chỉ tương thích OpenAI nào, kèm địa chỉ khởi đầu một chạm cho LM Studio, Ollama, llama.cpp, koboldcpp, LiteLLM, 9Router, OmniRoute, Together AI, Fireworks AI (mỗi mục có liên kết tài liệu riêng). Máy chủ cục bộ không cần khoá API: ở đó địa chỉ chính _là_ thông tin xác thực, nên ô khoá để trống cũng được.
 
 ## Proxy CORS
 

@@ -1,7 +1,7 @@
 import { getAdapter, getAllAdapters, PROVIDER_ID_MIGRATIONS, PROXY_BY_DEFAULT } from '../../src/adapters/registry';
 import { PROVIDER_CATALOG } from '../../src/adapters/providerCatalog.generated';
 import { OpenAICompatibleAdapter } from '../../src/adapters/openai-compatible';
-import { canDisableThinking } from '../../src/adapters/thinking';
+import { canDisableThinking, clampThinkingLevel, isBinaryThinkingModel, selectableThinkingLevels, thinkingSelectValue } from '../../src/adapters/thinking';
 
 describe('PROVIDER_ID_MIGRATIONS', () => {
   it('每个 target 都是现存的 adapter id，每个 key 都已不存在', () => {
@@ -87,6 +87,42 @@ describe('adapter registry', () => {
 });
 
 describe('思考控件的两条界面不变量', () => {
+  // ③ 下拉只能给该型号真有的档 —— 摆一个它不收的档，线上会被钳到更低的一档，
+  //    界面上写着「中」而实际跑的是 low（显示 != 线上）。
+  it('档位按型号收窄，显示值 = 钳到该型号真有的那一档', () => {
+    let narrowed = 0;
+    for (const p of PROVIDER_CATALOG) {
+      for (const m of p.models) {
+        const levels = selectableThinkingLevels(p.key, m.id);
+        expect(levels.length, `${p.key}/${m.id}`).toBeGreaterThan(0);
+        const table = m.effortLevels ?? m.thinkingLevels;
+        if (table?.length) {
+          narrowed++;
+          expect(levels, `${p.key}/${m.id}`).toEqual(['low', 'medium', 'high'].filter((l) => table.includes(l)));
+        }
+        for (const want of ['low', 'medium', 'high'] as const) {
+          expect(levels, `${p.key}/${m.id} @${want} 钳完仍要在表内`).toContain(clampThinkingLevel(p.key, m.id, want));
+        }
+      }
+    }
+    expect(narrowed, '目录里一个声明了档位表的型号都没有 —— 这条在空转').toBeGreaterThan(0);
+    // 具体一支：Kimi K3 官方只收 low/high ⇒ 存的 medium 落到 low，线上也发 low
+    expect(selectableThinkingLevels('moonshot', 'kimi-k3')).toEqual(['low', 'high']);
+    expect(clampThinkingLevel('moonshot', 'kimi-k3', 'medium')).toBe('low');
+    // 二元型号（线上三档同 body）下拉必须只剩一个「开」—— 摆低/中/高是骗人：
+    // 拨哪个跑的都是同一份，拨「低」以为省了 token 其实没省。
+    for (const p of PROVIDER_CATALOG) {
+      for (const m of p.models) {
+        const wire = m.thinkingWire as Record<string, unknown> | undefined;
+        if (!wire) continue;
+        const slots = ['low', 'medium', 'high'].map((l) => JSON.stringify(wire[l] ?? null));
+        const bin = slots[0] === slots[1] && slots[1] === slots[2];
+        expect(isBinaryThinkingModel(p.key, m.id), `${p.key}/${m.id} 二元判定`).toBe(bin);
+        if (bin) expect(thinkingSelectValue(p.key, m.id, 'medium'), `${p.key}/${m.id} 二元应显示 on`).toBe('on');
+      }
+    }
+  });
+
   // ① 显示控件 ⇔ 请求真会带思考参数。否则是个点了没反应的开关，比没有更糟。
   it('supportsThinking 与 chat() 里选形态的判据一致', () => {
     // chat() 的三路门控：清单内看它自己那份形态，清单外退 provider 级。
@@ -123,8 +159,12 @@ describe('思考控件的两条界面不变量', () => {
   it('能关闭的照旧为 true（含目录下发的 Coding Plan），未知 id 按能关处理', () => {
     expect(canDisableThinking('deepseek')).toBe(true);
     expect(canDisableThinking('volcengine')).toBe(true); // Coding Plan，目录 canDisableThinking:true
-    expect(canDisableThinking('alibaba')).toBe(true);
     expect(canDisableThinking(undefined)).toBe(true);
+    // ⚠ alibaba 的 provider 级现在是 false：这一家有了【关不掉】的 SKU ——
+    //   glm-5.3 是官方「仅思考模式」（传入 enable_thinking=false 不会生效），
+    //   关闭态只能发官方最低档 reasoning_effort。provider 级那个布尔答的是
+    //   「这一家有没有关不掉的型号」，逐 SKU 判才准（见上面那条用例）。
+    expect(canDisableThinking('alibaba')).toBe(false);
   });
 
   // ③ 逐 SKU 判据。测试【自己独立算一遍】关闭档那个值算不算真关闭，不复用

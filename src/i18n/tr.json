@@ -149,6 +149,7 @@
     "thinkingLevelHint": "Model yanıtlamadan önce daha derin düşünür. Daha doğru ama daha yavaş.",
     "thinkingLevelHintNoOff": "Bu sağlayıcı akıl yürütmeyi kapatamaz — En düşük, kendi en düşük değerini gönderir; model yine akıl yürütür ve ücretlendirilir. Yükseltmek genelde daha doğru ama daha yavaş ve pahalıdır.",
     "thinkingOff": "Kapalı",
+    "thinkingOn": "Açık",
     "thinkingMin": "En düşük",
     "thinkingLow": "Düşük",
     "thinkingMedium": "Orta",

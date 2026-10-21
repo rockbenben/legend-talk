@@ -149,6 +149,7 @@
     "thinkingLevelHint": "モデルが深く推論してから回答します。より正確ですが遅く、トークン消費が増えます。",
     "thinkingLevelHintNoOff": "このプロバイダーは思考をオフにできません。最小はプロバイダー独自の最低値を送るため、推論は続き課金もされます。上げるほど正確ですが遅く高価になります。",
     "thinkingOff": "オフ",
+    "thinkingOn": "オン",
     "thinkingMin": "最小",
     "thinkingLow": "低",
     "thinkingMedium": "中",

@@ -153,6 +153,7 @@
     "thinkingLevelHint": "Das Modell denkt tiefer nach. Genauer, aber langsamer.",
     "thinkingLevelHintNoOff": "Dieser Anbieter kann das Denken nicht abschalten — Minimum sendet seinen eigenen niedrigsten Wert, der weiterhin denkt und berechnet wird. Höher ist meist genauer, aber langsamer und teurer.",
     "thinkingOff": "Aus",
+    "thinkingOn": "Ein",
     "thinkingMin": "Minimum",
     "thinkingLow": "Niedrig",
     "thinkingMedium": "Mittel",

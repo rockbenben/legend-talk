@@ -149,6 +149,7 @@
     "thinkingLevelHint": "Mô hình suy nghĩ sâu hơn. Chính xác hơn nhưng chậm hơn.",
     "thinkingLevelHintNoOff": "Nhà cung cấp này không tắt được suy luận — Thấp nhất gửi giá trị thấp nhất của chính nó, mô hình vẫn suy luận và vẫn tính phí. Mức cao hơn thường chính xác hơn nhưng chậm và tốn kém hơn.",
     "thinkingOff": "Tắt",
+    "thinkingOn": "Bật",
     "thinkingMin": "Thấp nhất",
     "thinkingLow": "Thấp",
     "thinkingMedium": "Trung bình",

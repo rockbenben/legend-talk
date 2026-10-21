@@ -99,7 +99,7 @@ npm run dev
 
 **161 voreingestellte Denker** in 15 Bereichen, nach Bekanntheit sortiert — geben Sie einen beliebigen Namen ein, um spontan einen eigenen Charakter zu erstellen.
 
-**Modelle** — legen Sie die **Denktiefe** fest (aus / niedrig / mittel / hoch), geben Sie eine **eigene Modell-ID** ein oder verbinden Sie eine beliebige **OpenAI-kompatible API** als eigenen Anbieter. Standard: DeepSeek V4 Flash. Die Denk-Steuerung erscheint nur bei Modellen, die das wirklich unterstützen; Anbieter ohne Aus-Schalter (Gemini, Grok, Groq, Cerebras, Moonshot) beschriften ihre unterste Stufe mit **Min** statt „aus“ – sie denkt weiter und wird weiter berechnet, „aus“ wäre gelogen.
+**Modelle** — legen Sie die **Denktiefe** fest (aus / niedrig / mittel / hoch), geben Sie eine **eigene Modell-ID** ein oder verbinden Sie eine beliebige **OpenAI-kompatible API** als eigenen Anbieter. Standard: DeepSeek Flash. Die Denk-Steuerung erscheint nur bei Modellen, die das wirklich unterstützen; Modelle, die sich nicht abschalten lassen, beschriften ihre unterste Stufe mit **Min** statt „aus“ – sie denkt weiter und wird weiter berechnet, „aus“ wäre gelogen.
 
 **Plattform** — 18 Sprachen · Dunkler Modus · Responsive · **Local-first** (IndexedDB + localStorage Dual-Write, funktioniert in WeChat und eingeschränkten WebViews) · **Zero CDN** (Schriftarten selbst gehostet und gebündelt, funktioniert daher offline und hinter Firewalls).
 
@@ -131,7 +131,7 @@ Die aktuelle Modellliste jedes Anbieters steht in den Einstellungen — Modell-I
 
 Qwen, MiMo, Moonshot, Zhipu, MiniMax und TokenHub bieten ihre regionalen Hosts per Klick. Darüber hinaus hat **jeder** Anbieter – auch Anthropic und Gemini – ein frei beschreibbares Endpunkt-Feld, denn welcher Upstream einen Browser blockiert, lässt sich nicht vorhersagen. Endpunkt und CORS-Proxy sind unabhängig: Du kannst auf dein eigenes Gateway zeigen und trotzdem direkt verbinden, oder den offiziellen Host über den Proxy nutzen.
 
-Alle Anbieter akzeptieren eigene Modell-IDs. **Ein Modell lokal betreiben**: Die Option **Custom** nimmt jede OpenAI-kompatible Adresse an, mit Ein-Klick-Startadressen für LM Studio, Ollama, llama.cpp, LiteLLM, Together AI und Fireworks AI (jeweils mit Link zur eigenen Doku). Lokale Server brauchen keinen API-Schlüssel: dort _ist_ die Adresse die Zugangsberechtigung, das Schlüsselfeld bleibt optional.
+Alle Anbieter akzeptieren eigene Modell-IDs. **Ein Modell lokal betreiben**: Die Option **Custom** nimmt jede OpenAI-kompatible Adresse an, mit Ein-Klick-Startadressen für LM Studio, Ollama, llama.cpp, koboldcpp, LiteLLM, 9Router, OmniRoute, Together AI, Fireworks AI (jeweils mit Link zur eigenen Doku). Lokale Server brauchen keinen API-Schlüssel: dort _ist_ die Adresse die Zugangsberechtigung, das Schlüsselfeld bleibt optional.
 
 ## CORS-Proxy
 

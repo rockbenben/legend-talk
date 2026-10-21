@@ -7,7 +7,7 @@ const { CheckableTag } = Tag;
 import { ArrowLeftOutlined, EditOutlined, CloseOutlined, PlusOutlined, ImportOutlined, ExportOutlined, ShareAltOutlined, ApiOutlined, SettingOutlined, UsergroupAddOutlined, DatabaseOutlined } from '@ant-design/icons';
 import { useSettingsStore } from '../stores/settings';
 import { getAllAdapters, getAdapter, PROVIDER_GROUPS, PROVIDER_ID_MIGRATIONS, CUSTOM_ENDPOINTS } from '../adapters/registry';
-import { canDisableThinking } from '../adapters/thinking';
+import { canDisableThinking, isBinaryThinkingModel, thinkingSelectValue, selectableThinkingLevels } from '../adapters/thinking';
 import { resolveProvider, probeConnection, proxyWouldServe, isProviderConfigured } from '../utils/prompt';
 import { getStorageUsage } from '../utils/storage';
 import { downloadFile } from '../utils/export';
@@ -58,6 +58,11 @@ export function SettingsView() {
   // 当前【这个型号】有没有「关闭思考」这一档 —— 没有的话最低档仍在推理、仍在计费。
   // 逐 SKU 判：同一家里可以两种能力都有（openai 的 luna 收 none、astra 只到 low）。
   const thinkingCanDisable = canDisableThinking(settings.defaultProvider, settings.defaultModel);
+  // 该型号真有的档（目录逐型号下发）+ 存值的钳位 —— 显示的必须等于线上真发的那一档。
+  const thinkingLevels = selectableThinkingLevels(settings.defaultProvider, settings.defaultModel);
+  // 二元型号（线上三档同一份 body）只给一个「开」—— 摆低/中/高是骗人
+  const thinkingBinary = isBinaryThinkingModel(settings.defaultProvider, settings.defaultModel);
+  const thinkingLevelValue = thinkingSelectValue(settings.defaultProvider, settings.defaultModel, settings.thinkingLevel);
   // 当前服务商的全部 SKU —— 模型框的 filterOption 用它判「输入是不是已选中的型号」
   const knownModelIds = new Set((currentAdapter?.models ?? []).map((m) => m.id));
   // 能换地址的适配器 —— 现在【每一家】都能（claude / gemini 两个原生适配器也
@@ -562,13 +567,19 @@ export function SettingsView() {
             >
               <Select
                 aria-label={t('settings.thinkingLevel')}
-                value={settings.thinkingLevel}
-                onChange={(v) => settings.setThinkingLevel(v as 'off' | 'low' | 'medium' | 'high')}
+                value={thinkingLevelValue}
+                // 'on' 只是显示值：真存进去的是 'medium'（厂商那几档发出去的 body 一样）
+                onChange={(v) => settings.setThinkingLevel((v === 'on' ? 'medium' : v) as 'off' | 'low' | 'medium' | 'high')}
                 options={[
                   { value: 'off', label: thinkingCanDisable ? t('settings.thinkingOff') : t('settings.thinkingMin') },
-                  { value: 'low', label: t('settings.thinkingLow') },
-                  { value: 'medium', label: t('settings.thinkingMedium') },
-                  { value: 'high', label: t('settings.thinkingHigh') },
+                  ...(thinkingBinary
+                    ? [{ value: 'on', label: t('settings.thinkingOn') }]
+                    : // 只给该型号真有的档（目录逐型号下发）—— 摆一个它不收的档，
+                      // 线上会被钳到更低的一档，界面上写着「中」而实际跑的是 low。
+                      thinkingLevels.map((l) => ({
+                        value: l,
+                        label: l === 'low' ? t('settings.thinkingLow') : l === 'medium' ? t('settings.thinkingMedium') : t('settings.thinkingHigh'),
+                      }))),
                 ]}
               />
             </Form.Item>

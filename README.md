@@ -100,7 +100,7 @@ Open http://localhost:5173, go to Settings, enter your API key, and start chatti
 
 **161 preset thinkers** across 15 domains, sorted by fame — type any name to create a custom character on the fly.
 
-**Models** — set the **thinking level**, enter a **custom model ID**, or connect any **OpenAI-compatible API** as a custom provider. Default: DeepSeek V4 Flash. The thinking control only appears for models that actually support it, and providers with no off switch (Gemini, Grok, Groq, Cerebras, Moonshot) label their lowest level **Min** rather than Off — it still reasons and still bills, and saying "off" there would be a lie.
+**Models** — set the **thinking level**, enter a **custom model ID**, or connect any **OpenAI-compatible API** as a custom provider. Default: DeepSeek Flash. The thinking control only appears for models that actually support it, and it is judged **per model**: the dropdown lists only the levels that model really accepts (Kimi K3 has no Medium), a model that cannot be turned off labels its lowest level **Min** rather than Off — it still reasons and still bills, and saying "off" there would be a lie — and a model whose levels are byte-identical on the wire gets a single **On** instead of three rows that all do the same thing.
 
 **Platform** — 18 languages · dark mode · responsive · **local-first** (IndexedDB + localStorage dual-write, works in WeChat and restricted WebViews) · **zero CDN** (fonts self-hosted and bundled, so it works offline and behind firewalls).
 
@@ -159,7 +159,7 @@ src/
   components/     # React components
   hooks/          # useChat, useRoundtable
   i18n/           # Internationalization
-  pages/          # route components: ChatPage, SettingsView, SharedView
+  pages/          # route components: ChatPage, SettingsPage, SharedView
   stores/         # Zustand state management
   utils/          # Prompt building, export, compression, storage
   types.ts        # Type definitions

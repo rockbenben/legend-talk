@@ -45,6 +45,9 @@ const ALLOWED_HOSTS = new Set([
   "llm.api.cloud.yandex.net",
   // 国内
   "api.deepseek.com",
+  // minimax 的【大陆站】是目录里的默认端点（官方《文本生成》页 base_url
+  // https://api.minimax.cn/v1）—— 缺这一条的表现是：目录选 minimax 走代理时 403。
+  "api.minimax.cn",
   "api.minimax.io",
   "api.minimaxi.com",
   "api.moonshot.ai",

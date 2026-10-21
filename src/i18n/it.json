@@ -154,6 +154,7 @@
     "thinkingLevelHint": "Il modello ragiona più a fondo. Più preciso ma più lento.",
     "thinkingLevelHintNoOff": "Questo provider non può disattivare il ragionamento: Minimo invia il suo valore più basso, che ragiona comunque e viene fatturato. Alzarlo è più preciso ma più lento e costoso.",
     "thinkingOff": "Disattivato",
+    "thinkingOn": "Attivo",
     "thinkingMin": "Minimo",
     "thinkingLow": "Basso",
     "thinkingMedium": "Medio",

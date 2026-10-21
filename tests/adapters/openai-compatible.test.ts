@@ -187,6 +187,15 @@ describe('OpenAICompatibleAdapter', () => {
         // 同一家逐 SKU 形态不同 —— 这正是「一个 provider 一种形态」表达不了的
         ['moonshot', 'kimi-k3', undefined, { reasoning_effort: 'low' }],
         ['moonshot', 'kimi-k2.6', undefined, { thinking: { type: 'disabled' } }],
+        // TokenHub 逐型号形态（2026-10-21 按官方逐型号表重做）：关得掉的只发一个开关；
+        // 关不掉（官方 enabled（不支持关闭））→ 只发最低档 effort；minimax-m3 只收 adaptive。
+        ['tokenhub', 'hy3', undefined, { thinking: { type: 'disabled' } }],
+        ['tokenhub', 'hy3', 'high', { thinking: { type: 'enabled' } }],
+        ['tokenhub', 'glm-5.3', undefined, { reasoning_effort: 'low' }],
+        ['tokenhub', 'minimax-m3', 'high', { thinking: { type: 'adaptive' } }],
+        // 阿里百炼的 glm-5.3 是「仅思考模式」：关闭态发最低档，不发 enable_thinking:false
+        // （官方两页对 false 的后果口径不一 ⇒ 两种口径下都别发 false）
+        ['alibaba', 'glm-5.3', undefined, { reasoning_effort: 'low' }],
       ];
       for (const [provider, model, level, expected] of cases) {
         const a = getAdapter(provider);
@@ -199,11 +208,15 @@ describe('OpenAICompatibleAdapter', () => {
     });
 
     it('目录未给形态的 SKU 一个思考参数都不发', async () => {
-      // tokenhub 的 SKU 目录里都没有形态（上游没有已知的思考线格式）
-      const body = await chatBody(getAdapter('tokenhub') as OpenAICompatibleAdapter, 'hy3', 'high');
-      expect(body.thinking).toBeUndefined();
-      expect(body.reasoning_effort).toBeUndefined();
-      expect(body.enable_thinking).toBeUndefined();
+      // tokenhub 的 deepseek-v4.1-flash / mimo-v2.6-pro：官方三处思考文档
+      // （1823/131208 两张表 + 1823/132248）都没有它们 ⇒ 目录不给形态 ⇒ 一个参数都不发。
+      // （tokenhub 的其余在册型号【有】形态了 —— 见上面那条「真实 provider 的思考参数取自目录」。）
+      for (const model of ['deepseek-v4.1-flash', 'mimo-v2.6-pro']) {
+        const body = await chatBody(getAdapter('tokenhub') as OpenAICompatibleAdapter, model, 'high');
+        expect(body.thinking, model).toBeUndefined();
+        expect(body.reasoning_effort, model).toBeUndefined();
+        expect(body.enable_thinking, model).toBeUndefined();
+      }
     });
   });
 

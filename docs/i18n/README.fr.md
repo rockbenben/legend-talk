@@ -97,7 +97,7 @@ Ouvrez http://localhost:5173, allez dans Paramètres, entrez votre clé API et c
 
 **161 penseurs prédéfinis** répartis dans 15 domaines, classés par notoriété — saisissez n'importe quel nom pour créer un personnage personnalisé à la volée.
 
-**Modèles** — réglez le **niveau de réflexion** (désactivé / faible / moyen / élevé), saisissez un **ID de modèle personnalisé**, ou connectez n'importe quelle **API compatible OpenAI** en tant que fournisseur personnalisé. Par défaut : DeepSeek V4 Flash. Le contrôle de réflexion n'apparaît que pour les modèles qui le prennent réellement en charge, et les fournisseurs sans interrupteur d'arrêt (Gemini, Grok, Groq, Cerebras, Moonshot) nomment leur niveau le plus bas **Min** plutôt que « désactivé » : il raisonne encore et facture encore, donc écrire « désactivé » serait mensonger.
+**Modèles** — réglez le **niveau de réflexion** (désactivé / faible / moyen / élevé), saisissez un **ID de modèle personnalisé**, ou connectez n'importe quelle **API compatible OpenAI** en tant que fournisseur personnalisé. Par défaut : DeepSeek Flash. Le contrôle de réflexion n'apparaît que pour les modèles qui le prennent réellement en charge, et les modèles qu'on ne peut pas désactiver nomment leur niveau le plus bas **Min** plutôt que « désactivé » : il raisonne encore et facture encore, donc écrire « désactivé » serait mensonger.
 
 **Plateforme** — 18 langues · mode sombre · responsive · **local-first** (double écriture IndexedDB + localStorage, fonctionne dans WeChat et les WebViews restreintes) · **zéro CDN** (polices auto-hébergées et intégrées, donc fonctionne hors ligne et derrière des pare-feu).
 
@@ -129,7 +129,7 @@ La liste des modèles à jour de chaque fournisseur se trouve dans les Paramètr
 
 Qwen, MiMo, Moonshot, Zhipu, MiniMax et TokenHub proposent leurs hôtes régionaux en un clic. Au-delà, **chaque** fournisseur — Anthropic et Gemini compris — dispose d'un champ d'endpoint libre, car on ne peut pas prévoir quel upstream bloquera un navigateur. L'endpoint et le proxy CORS sont indépendants : vous pouvez viser votre propre passerelle tout en restant en connexion directe, ou passer par le proxy vers l'hôte officiel.
 
-Tous les fournisseurs acceptent des IDs de modèle personnalisés. **Exécuter un modèle en local** : l'option **Custom** accepte n'importe quelle adresse compatible OpenAI, avec des points de départ en un clic pour LM Studio, Ollama, llama.cpp, LiteLLM, Together AI et Fireworks AI (chacun avec un lien vers sa doc). Les serveurs locaux n'ont pas besoin de clé : l'adresse _est_ l'identifiant, le champ clé reste donc facultatif.
+Tous les fournisseurs acceptent des IDs de modèle personnalisés. **Exécuter un modèle en local** : l'option **Custom** accepte n'importe quelle adresse compatible OpenAI, avec des points de départ en un clic pour LM Studio, Ollama, llama.cpp, koboldcpp, LiteLLM, 9Router, OmniRoute, Together AI, Fireworks AI (chacun avec un lien vers sa doc). Les serveurs locaux n'ont pas besoin de clé : l'adresse _est_ l'identifiant, le champ clé reste donc facultatif.
 
 ## Proxy CORS
 

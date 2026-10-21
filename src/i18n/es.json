@@ -154,6 +154,7 @@
     "thinkingLevelHint": "El modelo razona más antes de responder. Más preciso pero más lento.",
     "thinkingLevelHintNoOff": "Este proveedor no permite desactivar el razonamiento: Mínimo envía su propio valor más bajo, que sigue razonando y facturando. Subirlo suele ser más preciso pero más lento y caro.",
     "thinkingOff": "Desactivado",
+    "thinkingOn": "Activado",
     "thinkingMin": "Mínimo",
     "thinkingLow": "Bajo",
     "thinkingMedium": "Medio",

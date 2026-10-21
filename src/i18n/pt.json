@@ -154,6 +154,7 @@
     "thinkingLevelHint": "O modelo raciocina mais antes de responder. Mais preciso, mas mais lento.",
     "thinkingLevelHintNoOff": "Este provedor não consegue desligar o raciocínio — Mínimo envia o próprio valor mais baixo, que ainda raciocina e é cobrado. Aumentar costuma ser mais preciso, porém mais lento e caro.",
     "thinkingOff": "Desligado",
+    "thinkingOn": "Ligado",
     "thinkingMin": "Mínimo",
     "thinkingLow": "Baixo",
     "thinkingMedium": "Médio",

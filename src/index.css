@@ -470,8 +470,9 @@ html[dir="rtl"] :is(.lt-caps, .lt-speech-meta, .lt-chair-label, .lt-synthesis-he
 .lt-actions .ant-btn-icon-only { letter-spacing: 0; text-indent: 0; }
 
 /* The ghost primary action ("+ N rounds") carries the madder as text; the
-   dark-set madder (#CB7B84) lands at 4.19:1 on paper at 12px — a hair under
-   AA. Lighten it in dark only; light's #8C2F39 is 7.39:1. */
+   dark-set madder (#CB7B84) lands at 5.37:1 on paper — already past AA's 4.5 —
+   so this is a deliberate one-step brightening, not an AA exemption. Lighten it
+   in dark only; light's #8C2F39 is 7.39:1. */
 .dark .lt-actions .ant-btn-background-ghost { color: #D68A93; }
 
 /* Round divider text */

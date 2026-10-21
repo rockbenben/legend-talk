@@ -29,5 +29,8 @@ export default defineConfig({
     // 真漏过：一个返回 403 的 fetch stub 留在那儿没人收，后面的用例只是碰巧自己
     // 也覆盖了 fetch 才没红 —— 下一个不自带 fetch 的测试就会莫名其妙收到 403。
     unstubGlobals: true,
+    // Vitest 5 起 clearMocks 默认 true：每个用例开头都会清掉所有 mock 的调用历史
+    // （实现保留）。所以 mock 必须在用例体内建 —— 放在模块顶层或 beforeAll 里的话，
+    // 用例里读 mock.calls[0] 会读到空，且这类失败是「断言还过、语义已错」的方向。
   },
 });

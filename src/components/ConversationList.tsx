@@ -304,7 +304,10 @@ export function ConversationList({ activeId }: ConversationListProps) {
           placement={isRtlLang(i18n.language) ? 'right' : 'left'}
           open={!collapsed}
           onClose={() => setCollapsed(true)}
-          width="80vw"
+          // `size`, not `width` — antd 6 deprecated `width` in favour of it
+          // ("Will be removed in next major version"), and this Drawer only
+          // mounts on phones, so the warning only ever showed up in mobile QA.
+          size="80vw"
           styles={{ body: { padding: 0 }, header: { display: 'none' } }}
         >
           {renderListBody()}

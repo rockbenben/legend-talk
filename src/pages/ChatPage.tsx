@@ -145,22 +145,20 @@ export function ChatPage() {
               {/* lt-column: the note below queries this width to decide whether
                   its action still fits beside the message. */}
               <div className="lt-column" style={{ marginBottom: 32 }}>
-              <div className="lt-ledger lt-ledger-hero" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div className="lt-ledger lt-ledger-hero lt-hero-row">
                 <Input
+                  className="lt-hero-input"
                   variant="borderless"
                   size="large"
                   value={topicInput}
                   onChange={(e) => setTopicInput(e.target.value)}
                   onPressEnter={handleAutoRoundtable}
                   placeholder={t('home.topicPlaceholder')}
-                  // minWidth:0 — a bare <input> in a flex row keeps a ~20ch
-                  // intrinsic width and overflows narrow screens otherwise
-                  // (same guard ChatInput uses around its textarea).
-                  style={{ paddingInline: 0, flex: 1, minWidth: 0 }}
                 />
                 {/* Random panel sits on the ledger line with 开始 — it is an
                     alternative way to fill this one instrument, not a second
                     hero action floating over the title. */}
+                <div className="lt-hero-actions">
                 <Button
                   type="text"
                   size="large"
@@ -171,7 +169,6 @@ export function ChatPage() {
                     const convId = createConversation('roundtable', charIds);
                     navigate(lp(`/chat/${convId}`));
                   }}
-                  style={{ flexShrink: 0 }}
                 >
                   {t('home.randomRoundtable')}
                 </Button>
@@ -186,6 +183,7 @@ export function ChatPage() {
                 >
                   {t('home.autoRoundtable')}
                 </Button>
+                </div>
               </div>
 
               {/* Sits under the input it gates, as a note rather than a banner */}
@@ -317,7 +315,10 @@ export function ChatPage() {
                           const url = `${window.location.origin}${window.location.pathname}#${lp('/chat')}?chars=${selectedIds.join(',')}`;
                           // Toast only on success — writeText fails in WeChat/restricted
                           // WebViews, and a false "copied" there is worse than silence.
-                          navigator.clipboard.writeText(url).then(() => message.success(t('chat.linkCopied'))).catch(() => {});
+                          // A failure still gets a word: the click did happen.
+                          navigator.clipboard.writeText(url)
+                            .then(() => message.success(t('chat.linkCopied')))
+                            .catch(() => message.error(t('chat.copyFailed')));
                         }}
                       >
                         {t('chat.copyLineupLink')}

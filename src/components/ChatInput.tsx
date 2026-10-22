@@ -6,9 +6,12 @@ import { SendOutlined } from '@ant-design/icons';
 interface ChatInputProps {
   onSend: (content: string) => void;
   disabled?: boolean;
+  /** Overridden in a one-on-one chat, where "steer the discussion" describes a
+   *  feature that does not exist — there is only one voice to talk to. */
+  placeholder?: string;
 }
 
-export function ChatInput({ onSend, disabled }: ChatInputProps) {
+export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
   const { t } = useTranslation();
   const [value, setValue] = useState('');
 
@@ -39,7 +42,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
               handleSubmit();
             }
           }}
-          placeholder={t('chat.inputPlaceholder')}
+          placeholder={placeholder ?? t('chat.inputPlaceholder')}
           disabled={disabled}
           autoSize={{ minRows: 1, maxRows: 6 }}
           style={{ paddingInlineStart: 0 }}

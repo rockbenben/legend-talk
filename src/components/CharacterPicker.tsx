@@ -108,21 +108,37 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
           )
         ) : (
           sorted.map((char) => (
-            <div
+            // A real <button>, not a div with an onClick: the picker is the
+            // only way to add a panelist mid-roundtable, and a div click target
+            // is unreachable by keyboard and unannounced by screen readers.
+            <button
+              type="button"
               key={char.id}
               onClick={() => handleSelect(char)}
-              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 24px', cursor: 'pointer' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                width: '100%',
+                padding: '10px 24px',
+                cursor: 'pointer',
+                textAlign: 'start',
+                background: 'transparent',
+                border: 'none',
+                color: 'inherit',
+                font: 'inherit',
+              }}
             >
               <Avatar emoji={char.avatar} color={char.color} size="sm" />
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <span style={{ flex: 1, minWidth: 0 }}>
                 <Text className="display-serif lt-title" style={{ fontSize: 15 }}>
                   {t(`characters.${char.id}.name`)}
                 </Text>
                 <br />
                 <Text type="secondary" style={{ fontSize: 12 }}>{t(`characters.${char.id}.era`)}</Text>
-              </div>
+              </span>
               {favoriteCharacters.includes(char.id) && <StarFilled style={{ color: 'var(--ant-color-primary)' }} />}
-            </div>
+            </button>
           ))
         )}
       </div>

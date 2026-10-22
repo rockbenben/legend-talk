@@ -191,18 +191,118 @@ export function resolveProvider() {
   return { adapter, apiKey, model, lang: settings.language, corsProxy, thinkingLevel: settings.thinkingLevel };
 }
 
+/** A character the panel may be built from, plus the names it is known by. */
+export interface SummonCandidate {
+  id: string;
+  domain: string;
+  /** Display names in every language the model might answer in. */
+  names?: string[];
+}
+
+export interface SummonResult {
+  /** Catalogue ids to seat at the table, already validated. */
+  ids: string[];
+  /**
+   * Why the panel is empty:
+   *  - 'ok'       — ids are populated.
+   *  - 'no-match' — a list came back, but nothing in it is a known character.
+   *  - 'no-list'  — the reply contained no list we could read at all.
+   *
+   * The two failure causes need different words to the user: one is the
+   * catalogue, the other is the model. Telling both "no matching characters
+   * found" sends the user off rewriting the topic when the topic was fine.
+   */
+  reason: 'ok' | 'no-match' | 'no-list';
+  /** The model's raw reply — shown verbatim so a failed summon is diagnosable. */
+  raw: string;
+}
+
+/**
+ * Read the panel out of the model's reply.
+ *
+ * The reply is NOT guaranteed to be a bare JSON array. Models add a sentence of
+ * reasoning first, and that sentence often carries its own brackets — "the
+ * topic spans [urban, rural] issues, so I pick [...]". Taking the FIRST
+ * bracket group (the old behaviour) then reads the wrong group and throws the
+ * real answer away; the user is told no character matched their topic while a
+ * perfectly good list sits further down the reply.
+ *
+ * So: collect every group, keep the ones that parse as an array of strings,
+ * and take the first that actually names known characters.
+ *
+ * Tokens are matched by id AND by display name. A model answering in the
+ * conversation's language answers with names ("苏格拉底"), not the catalogue's
+ * English slugs, and those must not be thrown away either.
+ */
+export function parseSummonReply(reply: string, chars: Array<{ id: string; names?: string[] }>): SummonResult {
+  const raw = reply.trim();
+  const groups = raw.match(/\[[\s\S]*?\]/g) ?? [];
+  const arrays: string[][] = [];
+  for (const group of groups) {
+    try {
+      const parsed = JSON.parse(group);
+      if (!Array.isArray(parsed)) continue;
+      const strings = parsed.filter((x): x is string => typeof x === 'string');
+      if (strings.length) arrays.push(strings);
+    } catch {
+      // Not JSON — e.g. "[Socrates] and [Confucius]". Keep looking.
+    }
+  }
+  if (!arrays.length) return { ids: [], reason: 'no-list', raw };
+
+  const lookup = buildNameLookup(chars);
+  for (const arr of arrays) {
+    const ids: string[] = [];
+    for (const token of arr) {
+      const id = lookup(token);
+      if (id && !ids.includes(id)) ids.push(id);
+    }
+    if (ids.length) return { ids: ids.slice(0, 5), reason: 'ok', raw };
+  }
+  // A list came back — it just doesn't name anyone we know.
+  return { ids: [], reason: 'no-match', raw };
+}
+
+function buildNameLookup(chars: Array<{ id: string; names?: string[] }>) {
+  const exact = new Map<string, string>();
+  for (const c of chars) {
+    exact.set(c.id.toLowerCase(), c.id);
+    for (const n of c.names ?? []) {
+      const key = n.trim().toLowerCase();
+      if (key) exact.set(key, c.id);
+    }
+  }
+  const strip = /^["'“”‘’「」『』()（）\s]+|["'“”‘’「」『』()（）\s]+$/g;
+  return (token: string): string | undefined => {
+    const cleaned = token.replace(strip, '').toLowerCase();
+    if (!cleaned) return undefined;
+    const hit = exact.get(cleaned);
+    if (hit) return hit;
+    // "Socrates (苏格拉底)" / "孔子（Confucius）" — the name sits inside a
+    // decorated token. Longest name wins so "Sun Tzu" beats "Sun". Short
+    // names are left out: two-letter CJK names ("老子") occur in ordinary
+    // prose far too often to be safe here.
+    let best: { id: string; len: number } | undefined;
+    for (const [key, id] of exact) {
+      if (key.length < 3) continue;
+      if (!cleaned.includes(key)) continue;
+      if (!best || key.length > best.len) best = { id, len: key.length };
+    }
+    return best?.id;
+  };
+}
+
 /**
  * Suggest 3-5 characters for a roundtable on the given topic.
- * Returns an array of character IDs from presetCharacters.
+ * Returns the catalogue ids to seat, plus why the panel is empty when it is.
  */
 export async function suggestCharacters(
   topic: string,
   provider: NonNullable<ReturnType<typeof resolveProvider>>,
-  allChars: Array<{ id: string; domain: string }>,
+  allChars: SummonCandidate[],
   signal?: AbortSignal,
-): Promise<string[]> {
+): Promise<SummonResult> {
   const charList = allChars.map((c) => `${c.id} [${c.domain}]`).join(', ');
-  const validIds = new Set(allChars.map((c) => c.id));
   const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
     {
       role: 'system',
@@ -225,14 +325,7 @@ export async function suggestCharacters(
     result += token;
   }
 
-  const match = result.match(/\[[\s\S]*?\]/);
-  if (!match) return [];
-  try {
-    const ids = JSON.parse(match[0]) as string[];
-    return ids.filter((id) => validIds.has(id)).slice(0, 5);
-  } catch {
-    return [];
-  }
+  return parseSummonReply(result, allChars);
 }
 
 /**

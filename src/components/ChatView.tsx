@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button, Spin, Alert, Typography, Divider, Space, Card } from 'antd';
+import { Input, Button, Spin, Alert, Typography, Divider, Space, Card, App } from 'antd';
 import { CopyOutlined, EditOutlined, ReloadOutlined, BranchesOutlined, ArrowRightOutlined, AimOutlined } from '@ant-design/icons';
 import { Virtuoso } from 'react-virtuoso';
 import { STALL_TIMEOUT_MS } from '../adapters/sse';
@@ -30,6 +30,17 @@ function isAnalysisMsg(characterId?: string): boolean {
   return !!characterId?.startsWith('__') && !!characterId?.endsWith('__');
 }
 
+/**
+ * Keep the model's own words readable when they are shown back to the user.
+ * A model that ignored the "JSON array only" instruction can answer with a
+ * paragraph — the point is to let the user SEE that, not to paste a novel
+ * into the error veil.
+ */
+function truncateReply(reply: string, max = 240): string {
+  const flat = reply.replace(/\s+/g, ' ').trim();
+  return flat.length > max ? `${flat.slice(0, max)}…` : flat;
+}
+
 const ANALYSIS_META: Record<string, { emoji: string; labelKey: string }> = {
   '__summarize__': { emoji: '📋', labelKey: 'chat.summarize' },
   '__moderator__': { emoji: '⚖️', labelKey: 'moderator.name' },
@@ -40,9 +51,10 @@ interface ChatViewProps {
 }
 
 export function ChatView({ conversationId }: ChatViewProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const lp = useLangPath();
+  const { message } = App.useApp();
   const conversation = useConversationStore(
     (s) => s.conversations.find((c) => c.id === conversationId),
   );
@@ -200,13 +212,31 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
     setIsSummoning(true);
     setSummonError(null);
-    const allChars = presetCharacters.map((c) => ({ id: c.id, domain: c.domain[0] }));
+    // The catalogue is offered to the model as English slugs, but a model that
+    // answers in the conversation's language answers with display names — so
+    // hand it both spellings and let the parser resolve either.
+    const tEn = i18n.getFixedT('en');
+    const allChars = presetCharacters.map((c) => ({
+      id: c.id,
+      domain: c.domain[0],
+      names: [t(`characters.${c.id}.name`), tEn(`characters.${c.id}.name`)],
+    }));
     suggestCharacters(topic, provider, allChars, controller.signal)
-      .then((charIds) => {
-        if (charIds.length >= 2) {
-          useConversationStore.getState().updateCharacters(conversationId, charIds);
+      .then((res) => {
+        if (res.ids.length >= 2) {
+          useConversationStore.getState().updateCharacters(conversationId, res.ids);
           setPendingTopic(null);
           roundtable.sendMessage(conversationId, topic, rounds);
+        } else if (res.reason === 'no-list') {
+          // The model replied, but not with a list we can read. Show what it
+          // actually said — "no matching characters" would blame the topic for
+          // a failure that has nothing to do with it.
+          setSummonError(t('chat.summonBadReply', { reply: truncateReply(res.raw) }));
+        } else if (res.ids.length === 1) {
+          // The model named exactly one panelist. A roundtable needs two, and
+          // seating a single voice here would silently downgrade the request
+          // to a one-on-one chat — say what happened instead.
+          setSummonError(t('chat.summonOnePanel', { reply: truncateReply(res.raw) }));
         } else {
           setSummonError(t('chat.summonFailed'));
         }
@@ -369,7 +399,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
       await navigator.clipboard.writeText(url);
       setShareStatus('copied');
     } catch {
+      // Silence here would be a lie in the other direction: the click did
+      // something and it failed. WriteText is unavailable in exactly the
+      // WebViews this app targets (WeChat's in-app browser, some corporate
+      // shells) — say so, and let the user copy the link by hand.
       setShareStatus('idle');
+      message.error(t('chat.copyFailed'));
       return;
     }
     setTimeout(() => setShareStatus('idle'), 2000);
@@ -673,13 +708,20 @@ export function ChatView({ conversationId }: ChatViewProps) {
           scrolls up to touch the action row with no boundary. */}
       <div ref={setScrollEl} style={{ flex: 1, overflowY: 'auto', padding: COLUMN_PADDING, borderBottom: '1px solid var(--lt-rule-faint)' }}>
         <div ref={contentRef} className="lt-column" style={COLUMN}>
-          {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && !isSummoning && !summonError && conversation.title && (
+          {/* No panel yet. The topic is on record — say so, and give the one
+              step that moves things forward. The old copy here was a spinner
+              reading "Matching…", shown precisely when NOTHING was matching:
+              after the summon failed and the user dismissed the veil the
+              conversation sat in that state forever, looking busy and offering
+              no way out. */}
+          {conversation.characters.length === 0 && conversation.messages.length === 0 && !pendingTopic && conversation.title && (
             <Space orientation="vertical" align="center" size="large" style={{ width: '100%', padding: '64px 0' }}>
               <Title level={3} className="display-serif-italic" style={{ margin: 0, textAlign: 'center', maxWidth: 480 }}>
                 "{conversation.title}"
               </Title>
-              <Spin />
-              <Text type="secondary">{t('home.suggesting')}</Text>
+              <Button type="primary" onClick={() => setShowPicker(true)}>
+                {t('home.pickPanelists')}
+              </Button>
             </Space>
           )}
           {conversation.messages.length === 0 && (firstChar && !isMulti || (isMulti && roundtableTopics.length > 0)) && (() => {
@@ -888,7 +930,23 @@ export function ChatView({ conversationId }: ChatViewProps) {
           style={{ margin: '4px 0' }}
         />
       )}
-      <ChatInput key={conversationId} onSend={handleSend} disabled={isGenerating || isSummarizing} />
+      <ChatInput
+        key={conversationId}
+        onSend={handleSend}
+        // Nobody at the table = nobody to talk to. Leaving the composer live
+        // there let the user type into a trap: the send failed with a generic
+        // "something went wrong" because there was no character to answer.
+        disabled={isGenerating || isSummarizing || conversation.characters.length === 0}
+        placeholder={
+          conversation.characters.length === 0
+            ? t('chat.pickPanelistsFirst')
+            : !isMulti && firstChar
+              // One-on-one: name the thinker. "Adjust the discussion focus" is a
+              // roundtable affordance — a single voice has no focus to steer.
+              ? t('chat.inputPlaceholderSingle', { name: t(`characters.${firstChar.id}.name`) })
+              : t('chat.inputPlaceholder')
+        }
+      />
       </div>
       </div>
 

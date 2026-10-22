@@ -366,6 +366,37 @@ html[dir="rtl"] :is(.lt-caps, .lt-speech-meta, .lt-chair-label, .lt-synthesis-he
 /* Home hero writes on the same ledger line, one size up */
 .lt-ledger-hero :is(input, textarea) { font-size: clamp(17px, 2.2vw, 21px) !important; }
 
+/* ── Home hero row ──
+   The topic field and the two buttons share one ledger line. On a phone the
+   buttons take ~205px of a ~335px column and the field is left with ~30px —
+   the placeholder collapses to "E…" and there is nothing left to read. Below
+   the breakpoint the field takes the whole line and the buttons sit under it,
+   right-aligned. The flex settings live here rather than inline so the media
+   query can reach them (an inline `flex` would win over any rule here). */
+.lt-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* min-width:0 — a bare <input> in a flex row keeps a ~20ch intrinsic width and
+   overflows narrow screens otherwise (same guard ChatInput uses around its
+   textarea). */
+.lt-hero-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-inline: 0;
+}
+.lt-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+@media (max-width: 639px) {
+  .lt-hero-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .lt-hero-actions { justify-content: flex-end; }
+}
+
 /* ── Note: an Alert reduced to a marginal annotation ──
    antd keeps role="alert" and the icon; only the box goes, so a
    precondition reads as a note rather than the loudest element on the

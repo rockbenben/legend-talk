@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "اطرح سؤالاً أو وجّه النقاش…",
+    "inputPlaceholderFirst": "اطرح سؤالك الأول…",
     "inputPlaceholderSingle": "اسأل {{name}}…",
     "pickPanelistsFirst": "اختر المشاركين أولًا",
     "send": "إرسال",
@@ -52,6 +53,7 @@
     "rename": "إعادة تسمية",
     "untitled": "بدون عنوان",
     "noConversations": "لا توجد محادثات بعد",
+    "noSearchResults": "لا توجد محادثات مطابقة",
     "noMessages": "جرّب سؤالاً أدناه، أو اكتب سؤالك",
     "searchConversations": "…بحث في المحادثات",
     "noApiKey": "مفتاح API غير مُعدّ",
@@ -75,6 +77,7 @@
     "newWithSame": "موضوع جديد",
     "export": "تصدير",
     "share": "مشاركة",
+    "shareViaRelay": "هذا الوسيط ينشئ الرابط القصير: تُرسل المحادثة كاملةً إلى {{address}}. استخدم التصدير لتبقى على هذا الجهاز.",
     "copied": "تم النسخ",
     "copyFailed": "فشل النسخ — انسخ الرابط يدويًا",
     "shareTooLong": "المحادثة طويلة جداً للمشاركة عبر رابط",

@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "Fragen stellen oder die Diskussion lenken…",
+    "inputPlaceholderFirst": "Stelle deine erste Frage…",
     "inputPlaceholderSingle": "{{name}} eine Frage stellen…",
     "pickPanelistsFirst": "Bitte zuerst die Teilnehmer auswählen",
     "send": "Senden",
@@ -52,6 +53,7 @@
     "rename": "Umbenennen",
     "untitled": "Ohne Titel",
     "noConversations": "Keine Gespräche",
+    "noSearchResults": "Keine passenden Unterhaltungen",
     "noMessages": "Versuchen Sie eine Frage unten oder geben Sie Ihre eigene ein",
     "searchConversations": "Gespräche suchen…",
     "noApiKey": "API-Schlüssel nicht konfiguriert",
@@ -75,6 +77,7 @@
     "newWithSame": "Neues Thema",
     "export": "Exportieren",
     "share": "Teilen",
+    "shareViaRelay": "Dieser Proxy erzeugt den Kurzlink: die gesamte Unterhaltung wird an {{address}} gesendet. Exportieren lässt sie auf diesem Gerät.",
     "copied": "Kopiert",
     "copyFailed": "Kopieren fehlgeschlagen — Link bitte manuell kopieren",
     "shareTooLong": "Gespräch zu lang zum Teilen per URL",

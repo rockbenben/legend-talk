@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "提問，或調整討論焦點…",
+    "inputPlaceholderFirst": "提出你的第一個問題…",
     "inputPlaceholderSingle": "向 {{name}} 提問…",
     "pickPanelistsFirst": "先挑選嘉賓，再開始提問",
     "send": "傳送",
@@ -52,6 +53,7 @@
     "rename": "重新命名",
     "untitled": "未命名對話",
     "noConversations": "暫無對話",
+    "noSearchResults": "沒有符合的對話",
     "noMessages": "試試下面的問題，或自己提一個",
     "searchConversations": "搜尋對話…",
     "noApiKey": "請先配置 API 金鑰",
@@ -75,6 +77,7 @@
     "newWithSame": "換個話題",
     "export": "匯出",
     "share": "分享對話",
+    "shareViaRelay": "短連結由中轉服務產生：整段對話會傳送到 {{address}}。想留在本機就用「匯出」。",
     "copied": "已複製",
     "copyFailed": "複製失敗，請手動複製連結",
     "shareTooLong": "對話過長，無法透過連結分享",

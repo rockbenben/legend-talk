@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "Đặt câu hỏi hoặc định hướng thảo luận…",
+    "inputPlaceholderFirst": "Hãy đặt câu hỏi đầu tiên của bạn…",
     "inputPlaceholderSingle": "Hỏi {{name}} một câu…",
     "pickPanelistsFirst": "Hãy chọn người tham gia trước",
     "send": "Gửi",
@@ -52,6 +53,7 @@
     "rename": "Đổi tên",
     "untitled": "Chưa đặt tên",
     "noConversations": "Chưa có cuộc trò chuyện nào",
+    "noSearchResults": "Không có cuộc trò chuyện nào khớp",
     "noMessages": "Thử một câu hỏi bên dưới hoặc nhập câu hỏi của bạn",
     "searchConversations": "Tìm kiếm cuộc trò chuyện…",
     "noApiKey": "Chưa cấu hình API Key",
@@ -75,6 +77,7 @@
     "newWithSame": "Chủ đề mới",
     "export": "Xuất",
     "share": "Chia sẻ",
+    "shareViaRelay": "Proxy này tạo liên kết ngắn: toàn bộ cuộc trò chuyện được gửi tới {{address}}. Dùng Xuất để giữ lại trên thiết bị này.",
     "copied": "Đã sao chép",
     "copyFailed": "Sao chép thất bại — hãy sao chép liên kết thủ công",
     "shareTooLong": "Cuộc trò chuyện quá dài để chia sẻ qua URL",

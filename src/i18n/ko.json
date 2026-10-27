@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "질문하거나 토론 초점을 조정…",
+    "inputPlaceholderFirst": "첫 질문을 입력하세요…",
     "inputPlaceholderSingle": "{{name}}에게 질문하기…",
     "pickPanelistsFirst": "먼저 패널을 선택하세요",
     "send": "전송",
@@ -52,6 +53,7 @@
     "rename": "이름 변경",
     "untitled": "제목 없음",
     "noConversations": "대화가 없습니다",
+    "noSearchResults": "일치하는 대화가 없습니다",
     "noMessages": "아래 질문을 시도하거나 직접 입력하세요",
     "searchConversations": "대화 검색…",
     "noApiKey": "API 키가 설정되지 않았습니다",
@@ -75,6 +77,7 @@
     "newWithSame": "다른 주제",
     "export": "내보내기",
     "share": "대화 공유",
+    "shareViaRelay": "짧은 링크는 이 프록시가 만듭니다: 대화 전체가 {{address}}(으)로 전송됩니다. 이 기기에 남기려면 ‘내보내기’를 사용하세요.",
     "copied": "복사됨",
     "copyFailed": "복사하지 못했습니다 — 링크를 직접 복사해 주세요",
     "shareTooLong": "대화가 너무 길어 URL로 공유할 수 없습니다",

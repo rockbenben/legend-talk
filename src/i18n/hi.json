@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "सवाल पूछें या चर्चा की दिशा बदलें…",
+    "inputPlaceholderFirst": "अपना पहला सवाल पूछें…",
     "inputPlaceholderSingle": "{{name}} से कुछ पूछें…",
     "pickPanelistsFirst": "पहले प्रतिभागी चुनें",
     "send": "भेजें",
@@ -52,6 +53,7 @@
     "rename": "नाम बदलें",
     "untitled": "शीर्षकहीन",
     "noConversations": "कोई बातचीत नहीं",
+    "noSearchResults": "कोई मेल खाती बातचीत नहीं",
     "noMessages": "नीचे कोई प्रश्न आज़माएं या अपना लिखें",
     "searchConversations": "बातचीत खोजें…",
     "noApiKey": "API कुंजी कॉन्फ़िगर नहीं है",
@@ -75,6 +77,7 @@
     "newWithSame": "नया विषय",
     "export": "निर्यात",
     "share": "साझा करें",
+    "shareViaRelay": "यह प्रॉक्सी छोटा लिंक बनाता है: पूरी बातचीत {{address}} पर भेज दी जाती है। इसे इस डिवाइस पर रखने के लिए निर्यात का उपयोग करें।",
     "copied": "कॉपी हो गया",
     "copyFailed": "कॉपी नहीं हो सका — लिंक को स्वयं कॉपी करें",
     "shareTooLong": "बातचीत URL से साझा करने के लिए बहुत लंबी है",

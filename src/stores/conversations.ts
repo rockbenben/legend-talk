@@ -41,7 +41,7 @@ export const useConversationStore = create<ConversationState>()(
           messages: [],
           createdAt: now,
           updatedAt: now,
-          ...(title && { title }),
+          ...(title && { title, defaultTitle: title }),
           ...(templateId && { templateId }),
         };
         set((s) => ({ conversations: [conv, ...s.conversations] }));

@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "質問する、または論点を絞る…",
+    "inputPlaceholderFirst": "最初の問いを入力…",
     "inputPlaceholderSingle": "{{name}} に質問する…",
     "pickPanelistsFirst": "まずパネリストを選んでください",
     "send": "送信",
@@ -52,6 +53,7 @@
     "rename": "名前変更",
     "untitled": "無題",
     "noConversations": "対話がありません",
+    "noSearchResults": "一致する会話がありません",
     "noMessages": "下の質問を試すか、自分で入力してください",
     "searchConversations": "対話を検索…",
     "noApiKey": "APIキーが未設定です",
@@ -75,6 +77,7 @@
     "newWithSame": "別の話題",
     "export": "エクスポート",
     "share": "対話を共有",
+    "shareViaRelay": "短縮リンクはこのプロキシが生成します：会話全文が {{address}} に送信されます。この端末に留めるなら「エクスポート」を使ってください。",
     "copied": "コピーしました",
     "copyFailed": "コピーに失敗しました — 手動でリンクをコピーしてください",
     "shareTooLong": "対話が長すぎてURLで共有できません",

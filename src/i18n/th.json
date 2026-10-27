@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "ถาม หรือปรับโฟกัสการสนทนา…",
+    "inputPlaceholderFirst": "ตั้งคำถามแรกของคุณ…",
     "inputPlaceholderSingle": "ถาม {{name}} สักข้อ…",
     "pickPanelistsFirst": "เลือกผู้ร่วมสนทนาก่อน",
     "send": "ส่ง",
@@ -52,6 +53,7 @@
     "rename": "เปลี่ยนชื่อ",
     "untitled": "ไม่มีชื่อ",
     "noConversations": "ยังไม่มีการสนทนา",
+    "noSearchResults": "ไม่พบการสนทนาที่ตรงกัน",
     "noMessages": "ลองคำถามด้านล่าง หรือพิมพ์คำถามของคุณเอง",
     "searchConversations": "ค้นหาการสนทนา…",
     "noApiKey": "ยังไม่ได้ตั้งค่า API Key",
@@ -75,6 +77,7 @@
     "newWithSame": "หัวข้อใหม่",
     "export": "ส่งออก",
     "share": "แชร์",
+    "shareViaRelay": "พร็อกซีนี้เป็นผู้สร้างลิงก์สั้น: การสนทนาทั้งหมดจะถูกส่งไปที่ {{address}} ใช้การส่งออกเพื่อเก็บไว้ในเครื่องนี้",
     "copied": "คัดลอกแล้ว",
     "copyFailed": "คัดลอกไม่สำเร็จ — กรุณาคัดลอกลิงก์ด้วยตนเอง",
     "shareTooLong": "การสนทนายาวเกินไปที่จะแชร์ผ่าน URL",

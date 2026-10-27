@@ -1,6 +1,6 @@
 import { useLangPath } from '../hooks/useLangPath';
 import { currentLang } from '../utils/lang';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useConversationStore } from '../stores/conversations';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { useChat } from '../hooks/useChat';
 import { useRoundtable } from '../hooks/useRoundtable';
 import { useSettingsStore } from '../stores/settings';
 import { presetCharacters } from '../characters/presets';
-import { getLangInstruction, isProviderConfigured, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
+import { getLangInstruction, isProviderConfigured, proxyWouldServe, resolveProvider, streamResponse, suggestCharacters } from '../utils/prompt';
 import { compressToBase64 } from '../utils/compress';
 import { COLUMN, COLUMN_PADDING, GUTTER } from '../utils/layout';
 import { MessageBubble } from './MessageBubble';
@@ -156,13 +156,78 @@ export function ChatView({ conversationId }: ChatViewProps) {
   // place, and the scroll listener records whether the reader deliberately
   // moved away, which is the only reason not to follow.
   const stickToBottomRef = useRef(true);
+  // Every scroll position WE caused, newest last. The scroll event is delivered
+  // asynchronously: by the time the handler runs, the transcript may have grown
+  // again, and the gap to the bottom then reads "the reader moved away" even
+  // though nobody scrolled. One speech is taller than the slack threshold, so
+  // a single arriving message was enough to switch follow-mode off for the
+  // rest of the session — the newest message, the error alert and the focus
+  // card's Start button all ended up below the fold, under the composer.
+  //
+  // A single "last position" is not enough: two pins can happen before the
+  // first scroll event is delivered, and the event then reports the older one.
+  // So keep a short history and treat any event landing on one of them as ours.
+  const ownScrollTopsRef = useRef<number[]>([]);
+  const rememberOwnScroll = (top: number) => {
+    const own = ownScrollTopsRef.current;
+    own.push(top);
+    if (own.length > 8) own.splice(0, own.length - 8);
+  };
+
+  /**
+   * Scroll the transcript so its REAL bottom sits at the bottom of the viewport.
+   *
+   * Three mechanisms, and they each fix a different part of "the newest
+   * message ended up below the fold":
+   *
+   * 1. `ownScrollTopsRef` (above) — the scroll event is delivered
+   *    asynchronously, so by the time the handler runs the transcript may have
+   *    grown again; the gap to the bottom then reads "the reader moved away"
+   *    although nobody scrolled. Remembering the positions WE caused tells the
+   *    two apart.
+   * 2. This function — `scrollHeight` can be one layout behind the rendered
+   *    content, so the tail of the last message is still below the fold even
+   *    after a scroll to the bottom. The list element carries the real height
+   *    of the rendered items; the difference is added on top.
+   * 3. The `conversation.messages.length` effect below — a new message changes
+   *    the height before the ResizeObserver gets a chance to fire.
+   *
+   * Measured, for the record: the reader CAN always scroll the tail into view
+   * by hand (the scroll range is not capped by the estimate — verified by
+   * dragging the scrollbar to the bottom), so this is "the app did not follow",
+   * not "the content was unreachable".
+   *
+   * ⚠ `data-testid="virtuoso-item-list"` is react-virtuoso's INTERNAL marker,
+   * not a documented API. If a future version renames it, the correction
+   * silently stops applying and the newest message falls below the fold again.
+   * The element is optional here (the plain scroll still happens), so a rename
+   * degrades rather than breaks — but it will not fail loudly, and jsdom has no
+   * layout, so no test can catch it either. See AGENTS.md.
+   */
+  const scrollToBottom = useCallback(() => {
+    if (!scrollEl) return;
+    scrollEl.scrollTop = scrollEl.scrollHeight;
+    const list = contentRef.current?.querySelector('[data-testid="virtuoso-item-list"]') as HTMLElement | null;
+    if (list) {
+      const overflow = list.getBoundingClientRect().bottom - scrollEl.getBoundingClientRect().bottom;
+      if (overflow > 0) scrollEl.scrollTop += overflow;
+    }
+    rememberOwnScroll(scrollEl.scrollTop);
+  }, [scrollEl]);
 
   useEffect(() => {
     if (!scrollEl) return;
     const onScroll = () => {
+      const top = scrollEl.scrollTop;
+      // One of OUR scrolls → the gap that opened up is content that arrived,
+      // which is the one thing we do want to follow. Keep following.
+      if (ownScrollTopsRef.current.some((v) => Math.abs(top - v) <= 1)) {
+        stickToBottomRef.current = true;
+        return;
+      }
       // 80px of slack: "close enough to the bottom to still be reading along".
       stickToBottomRef.current =
-        scrollEl.scrollHeight - scrollEl.scrollTop - scrollEl.clientHeight < 80;
+        scrollEl.scrollHeight - top - scrollEl.clientHeight < 80;
     };
     scrollEl.addEventListener('scroll', onScroll, { passive: true });
     return () => scrollEl.removeEventListener('scroll', onScroll);
@@ -179,12 +244,26 @@ export function ChatView({ conversationId }: ChatViewProps) {
     // observer callback is stale by the time that lands, leaving the view a
     // line or so short. The rAF pass reads the settled value.
     let raf = 0;
+    let observedList: HTMLElement | null = null;
     const pin = () => {
+      // The list element is what grows when a message lands; the container
+      // around it is sized by Virtuoso's own bookkeeping, so it does not always
+      // change when the rendered content does. Observe the list too — otherwise
+      // the tail of the newest message never triggers a re-pin and stays under
+      // the fold. (Same internal marker as in scrollToBottom — see the note
+      // there about it not being a public API.)
+      const list = content.querySelector('[data-testid="virtuoso-item-list"]') as HTMLElement | null;
+      if (list && list !== observedList) {
+        if (observedList) ro.unobserve(observedList);
+        observedList = list;
+        ro.observe(list);
+      }
       if (!stickToBottomRef.current) return;
-      scrollEl.scrollTop = scrollEl.scrollHeight;
+      scrollToBottom();
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        if (stickToBottomRef.current) scrollEl.scrollTop = scrollEl.scrollHeight;
+        if (!stickToBottomRef.current) return;
+        scrollToBottom();
       });
     };
     const ro = new ResizeObserver(pin);
@@ -194,13 +273,27 @@ export function ChatView({ conversationId }: ChatViewProps) {
     // under a transcript already pinned to the bottom.
     ro.observe(scrollEl);
     return () => { cancelAnimationFrame(raf); ro.disconnect(); };
-  }, [scrollEl]);
+  }, [scrollEl, scrollToBottom]);
+
+  // A new message changes the transcript's height before the ResizeObserver
+  // gets a chance to fire. Pin again here so the newest message is never left
+  // below the fold — the reader should not have to hunt for what just landed.
+  useEffect(() => {
+    if (!scrollEl || !stickToBottomRef.current) return;
+    scrollToBottom();
+  }, [scrollEl, conversation?.messages.length, scrollToBottom]);
 
   // Opening a conversation starts at the newest message.
   useEffect(() => {
     stickToBottomRef.current = true;
-    if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
-  }, [conversationId, scrollEl]);
+    if (scrollEl) {
+      scrollToBottom();
+      // This jump fires a scroll event too. The transcript is still short at
+      // this point, so the event lands long before the list has grown — and
+      // without recording it, that event reads as "the reader scrolled away
+      // from the bottom" and follow-mode never starts.
+    }
+  }, [conversationId, scrollEl, scrollToBottom]);
 
   const startSummon = (topic: string) => {
     const provider = resolveProvider();
@@ -285,6 +378,26 @@ export function ChatView({ conversationId }: ChatViewProps) {
 
   const handleSend = (content: string) => {
     setPendingRetryMsgId(null);
+    // A template roundtable is BORN named after the template ("哲学辩论"), so the
+    // topic it actually discusses never reaches the title — and two roundtables
+    // from the same template are indistinguishable in the sidebar. The first
+    // user message IS the topic, so it takes the title over. Same shape as a
+    // topic-started conversation, which names itself after the topic.
+    //
+    // "Is the title still the default?" is answered against the title stored at
+    // CREATION (defaultTitle), not against the template's name in the current
+    // language — the UI language may have changed since the conversation was
+    // opened, and comparing localized strings silently disabled the hand-over.
+    // A title the user set by hand differs from defaultTitle, so it is left
+    // alone.
+    if (
+      conversation.templateId &&
+      conversation.title === conversation.defaultTitle &&
+      !conversation.messages.some((m) => m.role === 'user')
+    ) {
+      const topic = content.trim();
+      if (topic) renameConversation(conversationId, [...topic].slice(0, 29).join(''));
+    }
     if (isMulti) roundtable.sendMessage(conversationId, content, rounds);
     else singleChat.sendMessage(conversationId, content);
   };
@@ -785,7 +898,25 @@ export function ChatView({ conversationId }: ChatViewProps) {
           {error && (() => {
             const s = useSettingsStore.getState();
             const isNetwork = /Failed to fetch|NetworkError|Load failed|ERR_NETWORK|ETIMEDOUT|ECONNREFUSED|ENOTFOUND|timeout/i.test(error);
-            const isCors = isNetwork && !s.corsEnabled[s.defaultProvider];
+            // 「开中转」这个建议只有在【中转真的能转到这家】时才成立。
+            //
+            // Custom（llm）根本不走中转 —— resolveProvider 里的 useCors 要求
+            // !isCustom，所以给它开中转开关，请求还是照原样发出去，一个字都不会变；
+            // 设置页那一栏对 Custom 压根不渲染，用户过去找也找不到那个开关。
+            // 而 Custom 连的又常常是本机 / 自建服务（README 主推 Ollama、LM Studio、
+            // LiteLLM），「连不上」是它最常见的死法 —— 端口没起、地址写错、http
+            // 写成 https，浏览器一律回一句 Failed to fetch。把这句话说成「CORS
+            // 被拦、请用中转」再附一个点了没反应的按钮，是把人引向一条死路。
+            //
+            // 自填地址配内置公共中转同理：proxyWouldServe 为 false（名单外 + 局域网
+            // 够不着 + 可能带 ?token 的地址不该交给第三方），中转帮不上忙。
+            const relayAdapter = getAdapter(s.defaultProvider);
+            const relayOverride = s.baseUrlByProvider?.[s.defaultProvider]?.trim();
+            const relayCanServe =
+              s.defaultProvider !== 'llm' &&
+              !!relayAdapter &&
+              proxyWouldServe(relayAdapter, relayOverride, s.corsProxy);
+            const isCors = isNetwork && !s.corsEnabled[s.defaultProvider] && relayCanServe;
             // A 403 with the proxy off is the origin-block shape: the key is fine
             // and Test Connection passes, but the upstream WAF rejects requests
             // carrying a browser Origin. Routing through the proxy fixes it, so
@@ -798,7 +929,7 @@ export function ChatView({ conversationId }: ChatViewProps) {
             // 判据取【正文里有没有可辨认的原因】：origin 拦截回的通常是一张 WAF
             // 的 HTML，正文里什么都没有 —— 这也正是状态码前缀要无条件保留的原因。
             const namesAReason = /api[\s_-]?key|token|unauthor|authenticat|credential|permission|quota|balance|insufficient|billing|expired|suspend|region|country/i.test(error);
-            const isOriginBlocked = /^\[403\]/.test(error) && !namesAReason && !s.corsEnabled[s.defaultProvider];
+            const isOriginBlocked = /^\[403\]/.test(error) && !namesAReason && !s.corsEnabled[s.defaultProvider] && relayCanServe;
             // 「静默超时」自成一支：连接是活的、状态码是 2xx，只是上游 180 秒
             // 一个字节都没吐（排队，或首字节前的深度推理不外发 reasoning delta）。
             // 不能落到 isNetwork 那支去劝人开中转 —— 跨域根本不是这次的死因。
@@ -846,7 +977,17 @@ export function ChatView({ conversationId }: ChatViewProps) {
                 showIcon
                 style={{ marginTop: 8 }}
                 title={t('chat.networkError')}
-                action={<Button size="small" type="primary" onClick={retryLast}>{t('chat.retry')}</Button>}
+                description={<span style={{ fontSize: 12, color: 'var(--lt-ink-soft)', wordBreak: 'break-word' }}>{error}</span>}
+                action={
+                  <Space>
+                    <Button size="small" type="primary" onClick={retryLast}>{t('chat.retry')}</Button>
+                    {/* 中转帮不上忙的时候，解药在设置里（自定义地址 / 服务商 / key），
+                        没有这一条用户就只剩一个「重试」，对着同一个死路重试。 */}
+                    {!relayCanServe && (
+                      <Button size="small" type="link" onClick={() => navigate(lp('/settings'))}>{t('chat.goSettings')}</Button>
+                    )}
+                  </Space>
+                }
               />
             );
             if (isThinkingError) return (
@@ -944,7 +1085,12 @@ export function ChatView({ conversationId }: ChatViewProps) {
               // One-on-one: name the thinker. "Adjust the discussion focus" is a
               // roundtable affordance — a single voice has no focus to steer.
               ? t('chat.inputPlaceholderSingle', { name: t(`characters.${firstChar.id}.name`) })
-              : t('chat.inputPlaceholder')
+              : isMulti && conversation.messages.length === 0
+                // A roundtable that has not started yet has no focus to steer
+                // either — the focus card only exists from the first directive
+                // on. Offer the first question instead.
+                ? t('chat.inputPlaceholderFirst')
+                : t('chat.inputPlaceholder')
         }
       />
       </div>

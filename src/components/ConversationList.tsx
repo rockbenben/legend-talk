@@ -78,9 +78,16 @@ export function ConversationList({ activeId }: ConversationListProps) {
   };
 
   const filteredConversations = useMemo(() => {
+    // 按【最近活跃】排序,不是按创建顺序。存储里的数组是创建顺序(createConversation
+    // 往前插),但每条消息都会 bump updatedAt,标签又正是拿 updatedAt 显示的 ——
+    // 于是"你三天前开的对话今天接着聊"会停在老位置上,标签却写着"此刻",
+    // 整个列表的时间标签和顺序互相打架。只改渲染顺序,不动存储。
+    const ordered = [...conversations].sort(
+      (a, b) => (b.updatedAt || b.createdAt) - (a.updatedAt || a.createdAt),
+    );
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return conversations;
-    return conversations.filter((conv) => {
+    if (!q) return ordered;
+    return ordered.filter((conv) => {
       const title = getDisplayTitle(conv).toLowerCase();
       if (title.includes(q)) return true;
       const charNames = conv.characters
@@ -133,8 +140,11 @@ export function ConversationList({ activeId }: ConversationListProps) {
       </div>
       <div style={{ flex: 1, overflowY: 'auto' }}>
         {filteredConversations.length === 0 ? (
+          // 「暂无对话」说的是【你一条都没有】,而搜索没匹配上时说的是【有,但不是
+          // 这些】。混成一句话,用户会以为自己的记录没了 —— 数据其实都在,清空
+          // 搜索词就回来。两种情况必须分开说。
           <Text type="secondary" style={{ display: 'block', padding: '32px 16px', textAlign: 'center', fontSize: 13 }}>
-            {t('chat.noConversations')}
+            {searchQuery.trim() ? t('chat.noSearchResults') : t('chat.noConversations')}
           </Text>
         ) : (
           filteredConversations.map((conv) => {

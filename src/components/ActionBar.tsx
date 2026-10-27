@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useLangPath } from '../hooks/useLangPath';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Button, Dropdown, Space, Typography } from 'antd';
+import { Button, Dropdown, Space, Typography, Tooltip } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useConversationStore } from '../stores/conversations';
 import { useSettingsStore } from '../stores/settings';
@@ -35,6 +35,7 @@ export function ActionBar({
   const lp = useLangPath();
   const createConversation = useConversationStore((s) => s.createConversation);
   const shareCardEndpoint = useSettingsStore((s) => s.shareCardEndpoint);
+  const corsProxy = useSettingsStore((s) => s.corsProxy);
   const [cardStatus, setCardStatus] = useState<'idle' | 'generating' | 'error' | 'network-error'>('idle');
   const cardAbortRef = useRef<AbortController | null>(null);
   const cardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -122,9 +123,20 @@ export function ActionBar({
         >
           {t('chat.newWithSame')}
         </Button>
-        <Button size="small" onClick={onShare} disabled={shareStatus === 'sharing'}>
-          {shareStatus === 'sharing' ? '…' : shareStatus === 'copied' ? t('chat.copied') : t('chat.share')}
-        </Button>
+        <Tooltip
+          // The share flow hands the whole conversation to the relay to get a
+          // short link — that is the one place this app sends a conversation
+          // somewhere the user did not point it at. Say so at the button that
+          // does it, and name the address it goes to.
+          // trigger: hover AND focus — a hover-only tooltip hides the text from
+          // keyboard and touch users (this repo's own rule).
+          title={corsProxy.trim() ? t('chat.shareViaRelay', { address: corsProxy.replace(/\/+$/, '') }) : undefined}
+          trigger={['hover', 'focus']}
+        >
+          <Button size="small" onClick={onShare} disabled={shareStatus === 'sharing'}>
+            {shareStatus === 'sharing' ? '…' : shareStatus === 'copied' ? t('chat.copied') : t('chat.share')}
+          </Button>
+        </Tooltip>
         <Dropdown menu={{ items: exportItems }} trigger={['click']}>
           <Button size="small">{t('chat.export')} <DownOutlined style={{ fontSize: 10 }} /></Button>
         </Dropdown>

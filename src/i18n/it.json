@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "Chiedi o orienta la discussione…",
+    "inputPlaceholderFirst": "Fai la tua prima domanda…",
     "inputPlaceholderSingle": "Fai una domanda a {{name}}…",
     "pickPanelistsFirst": "Prima scegli i partecipanti",
     "send": "Invia",
@@ -52,6 +53,7 @@
     "rename": "Rinomina",
     "untitled": "Senza titolo",
     "noConversations": "Nessuna conversazione",
+    "noSearchResults": "Nessuna conversazione corrispondente",
     "noMessages": "Prova una domanda qui sotto o scrivi la tua",
     "searchConversations": "Cerca conversazioni…",
     "noApiKey": "Chiave API non configurata",
@@ -75,6 +77,7 @@
     "newWithSame": "Nuovo tema",
     "export": "Esporta",
     "share": "Condividi",
+    "shareViaRelay": "Questo proxy genera il link breve: l’intera conversazione viene inviata a {{address}}. Usa Esporta per lasciarla su questo dispositivo.",
     "copied": "Copiato",
     "copyFailed": "Copia non riuscita — copia il link manualmente",
     "shareTooLong": "Conversazione troppo lunga per la condivisione via URL",

@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "Sorun ya da tartışmanın yönünü belirle…",
+    "inputPlaceholderFirst": "İlk sorunuzu sorun…",
     "inputPlaceholderSingle": "{{name}}’a bir soru sor…",
     "pickPanelistsFirst": "Önce katılımcıları seçin",
     "send": "Gönder",
@@ -52,6 +53,7 @@
     "rename": "Yeniden adlandır",
     "untitled": "Başlıksız",
     "noConversations": "Henüz sohbet yok",
+    "noSearchResults": "Eşleşen sohbet yok",
     "noMessages": "Aşağıdaki bir soruyu deneyin veya kendi sorunuzu yazın",
     "searchConversations": "Sohbetleri ara…",
     "noApiKey": "API anahtarı yapılandırılmamış",
@@ -75,6 +77,7 @@
     "newWithSame": "Yeni konu",
     "export": "Dışa aktar",
     "share": "Paylaş",
+    "shareViaRelay": "Bu proxy kısa bağlantıyı oluşturur: konuşmanın tamamı {{address}} adresine gönderilir. Dışa aktar ile bu cihazda kalır.",
     "copied": "Kopyalandı",
     "copyFailed": "Kopyalama başarısız — bağlantıyı elle kopyalayın",
     "shareTooLong": "Sohbet URL ile paylaşılamayacak kadar uzun",

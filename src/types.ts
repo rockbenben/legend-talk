@@ -102,6 +102,13 @@ export interface Conversation {
   id: string;
   type: 'single' | 'roundtable';
   title?: string;
+  /**
+   * The title this conversation was CREATED with, kept so "is the title still
+   * the default?" can be answered without comparing localized strings — a
+   * template roundtable is named after the template in the language of the
+   * moment, and the UI language may have changed since.
+   */
+  defaultTitle?: string;
   templateId?: string;
   characters: string[];
   messages: Message[];

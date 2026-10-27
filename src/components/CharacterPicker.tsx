@@ -101,7 +101,14 @@ export function CharacterPicker({ onSelect, onClose, excludeIds = [] }: Characte
         {sorted.length === 0 ? (
           search ? (
             <div style={{ padding: 24, textAlign: 'center' }}>
-              <Button type="primary" onClick={handleCustom}>{t('home.startChat')} — {search}</Button>
+              {/* The wording has to match the ACTION, and the action here is
+                  "seat this person at the table" — the picker is only ever
+                  opened to add a panelist to an ongoing roundtable. The home
+                  page's registry button says "start a chat" because that is
+                  what it does; copying that label over here told the user they
+                  were about to open a private conversation, and clicking
+                  actually added them to the panel. */}
+              <Button type="primary" onClick={handleCustom}>{t('roundtable.addToRoundtable')} — {search}</Button>
             </div>
           ) : (
             <div style={{ padding: 24, textAlign: 'center' }}>{t('home.noMatch')}</div>

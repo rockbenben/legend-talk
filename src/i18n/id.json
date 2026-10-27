@@ -43,6 +43,7 @@
   },
   "chat": {
     "inputPlaceholder": "Tanya, atau arahkan diskusi…",
+    "inputPlaceholderFirst": "Ajukan pertanyaan pertamamu…",
     "inputPlaceholderSingle": "Tanyakan sesuatu kepada {{name}}…",
     "pickPanelistsFirst": "Pilih peserta terlebih dahulu",
     "send": "Kirim",
@@ -52,6 +53,7 @@
     "rename": "Ganti nama",
     "untitled": "Tanpa judul",
     "noConversations": "Belum ada obrolan",
+    "noSearchResults": "Tidak ada percakapan yang cocok",
     "noMessages": "Coba pertanyaan di bawah atau ketik sendiri",
     "searchConversations": "Cari obrolan…",
     "noApiKey": "API Key belum dikonfigurasi",
@@ -75,6 +77,7 @@
     "newWithSame": "Topik baru",
     "export": "Ekspor",
     "share": "Bagikan",
+    "shareViaRelay": "Proksi ini membuat tautan pendek: seluruh percakapan dikirim ke {{address}}. Gunakan Ekspor agar tetap di perangkat ini.",
     "copied": "Disalin",
     "copyFailed": "Gagal menyalin — salin tautan secara manual",
     "shareTooLong": "Obrolan terlalu panjang untuk dibagikan via URL",
